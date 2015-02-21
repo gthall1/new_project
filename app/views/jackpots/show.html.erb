@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+<h2><%= @jackpot.name %></h2>
+<% if @jackpot.open %>
+	It's not too late! You may still enter this drawing! 
+<% else %>
+	We're sorry! We are no longer taking entries into this drawing.
+<% end %>
+<%= link_to 'Edit', edit_jackpot_path(@jackpot) %> |
+<%= link_to 'Back', jackpots_path %>

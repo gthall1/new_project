@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @game.name %>
+</p>
+
+<% if @game.id == 1 %>
+	<h2 class="outcome">Click to play! 1/5 wins a credit!</h2>
+	<button class="play">Click here!</button>
+<% end %>
+
+<input type="hidden" id="game_token" name="game_token" value="<%= session[:game_token] %>" />
+
+<br />
+<%= link_to 'Back', root_path %>

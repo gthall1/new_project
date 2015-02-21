@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-SampleApp::Application.load_tasks
+Alotto::Application.load_tasks

@@ -1,0 +1,29 @@
+<h1>Listing jackpots</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Jackpot</th>
+      <th>Draw Date</th>
+      <th>Prize</th>
+      <th>Edit</th>
+      <th>Destroy</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @jackpots.each do |jackpot| %>
+      <tr>
+        <td><%= link_to jackpot.name, jackpot %></td>
+        <td><%= jackpot.draw_date %></td>
+        <td><%= jackpot.prize %></td>
+        <td><%= link_to 'Edit', edit_jackpot_path(jackpot) %></td>
+        <td><%= link_to 'Destroy', jackpot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Jackpot', new_jackpot_path %>

@@ -1,0 +1,2 @@
+module JackpotsHelper
+end
