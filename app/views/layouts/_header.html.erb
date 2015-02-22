@@ -8,7 +8,13 @@
           <li><%= link_to "FAQ", faq_path %></li>
           <% if signed_in? %>
             <li><%= link_to "Users", users_path %></li>
-            <li id="credits" data-user-credits="<%= current_user.credits %>" style="color:#fff">Credits <span id="credit_count"><%= current_user.credits %></span></li>
+            <li id="credits" data-user-credits="<%= current_user.credits %>" style="color:#fff">Credits <span id="credit_count">
+            <% if current_user.credits %>
+            <%= current_user.credits %>
+            <% else %>
+            0
+            <% end %>
+            </span></li>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Account <b class="caret"></b>
