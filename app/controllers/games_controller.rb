@@ -10,9 +10,9 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.json
   def show
-    case params[:id]
+    case @game.name
       #Test game
-      when @game.name == "Test"
+      when "Test"
         init_testgame
       end
   end
@@ -44,15 +44,21 @@ class GamesController < ApplicationController
       end
 
       if win 
-        game.credits_earned = game.credits_earned + 1
-        game.save
         user = User.find(game.user_id)
         if user.credits.nil?
           user.credits = 1
-          user.save(validate: false)
+          if user.save(validate: false)
+            game.credits_earned = 0 if game.credits_earned.nil?
+            game.credits_earned = game.credits_earned + 1
+            game.save
+          end
         else
           user.credits = user.credits + 1
-          user.save(validate: false)
+          if user.save(validate: false)
+            game.credits_earned = 0 if game.credits_earned.nil?
+            game.credits_earned = game.credits_earned + 1
+            game.save
+          end
         end
       end
       earned_credits = game.credits_earned
@@ -130,6 +136,7 @@ class GamesController < ApplicationController
 
     def init_testgame
       if signed_in?
+        p "init testgameing"
         game = UserGameSession.new
         game.token = SecureRandom.urlsafe_base64
         game.user_id = current_user.id
