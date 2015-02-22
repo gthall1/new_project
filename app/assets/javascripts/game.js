@@ -15,6 +15,9 @@ $(document).ready(function(){
 			  	}else{
 			  		$(".outcome").html("Sorry you lost! So far you have earned "+ data.total_credits +" in this game session! Click again for another chance!")
 			  	}
+		  		if(data.partner_image != "none"){
+		  			$(".ad-space").html("<img style='max-height:100px' src='"+data.partner_image +"' />");
+		  		}
 			}else if(data.status == "closed"){
 				$(".outcome").html("Sorry this game has closed!");
 			}

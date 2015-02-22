@@ -11,9 +11,10 @@ class GamesController < ApplicationController
   # GET /games/1.json
   def show
     case params[:id]
-    when "1"
-      init_testgame
-    end
+      #Test game
+      when @game.name == "Test"
+        init_testgame
+      end
   end
   
   def test_game_check
@@ -30,6 +31,18 @@ class GamesController < ApplicationController
         win = false
         status = "closed"
       end
+
+      #10% chance of showing a random advertisement
+      if rand(10) == 0
+        if rand(2) == 0
+          ad_image = "/assets/testad.jpg"
+        else
+          ad_image = "/assets/testad2.jpg"
+        end
+      else
+        ad_image = "none"
+      end
+
       if win 
         game.credits_earned = game.credits_earned + 1
         game.save
@@ -38,7 +51,6 @@ class GamesController < ApplicationController
           user.credits = 1
           user.save(validate: false)
         else
-          p "found ser with some credits"
           user.credits = user.credits + 1
           user.save(validate: false)
         end
@@ -49,7 +61,8 @@ class GamesController < ApplicationController
     game_json = {
       :win => win,
       :total_credits => earned_credits,
-      :status => status 
+      :status => status,
+      :partner_image => ad_image
     }
 
     render json: game_json
@@ -120,7 +133,7 @@ class GamesController < ApplicationController
         game = UserGameSession.new
         game.token = SecureRandom.urlsafe_base64
         game.user_id = current_user.id
-        game.game_id = 1
+        game.game_id = Game.where(name: "Test").first.id
         game.credits_earned = 0
         game.active = true
         game.save

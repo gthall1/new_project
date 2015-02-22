@@ -19,4 +19,6 @@ Alotto::Application.routes.draw do
   match '/about',   to: 'static_pages#about',   via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
   match '/updates', to: 'games#test_game_check', via: 'get'
+  match '/deposit',  to: 'jackpots#show',         via: 'get'
+
 end

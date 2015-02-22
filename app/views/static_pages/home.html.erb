@@ -1,11 +1,21 @@
 <% if signed_in? %>
+<div class="container">
   <div class="row">
-    Play a game!
-    <br />
-    <% @games.each do | g | %>
-      <%= link_to 'Play Testgame', g %>
-    <% end %>
+    <div style="width:400px;display:inline;float:left;">
+      Play a game!
+      <br />
+      <% @games.each do | g | %>
+        <%= link_to 'Play Testgame', g %>
+      <% end %>
+    </div>
+    <div style="width:400px;display:inline;float:right;" >
+      Prize: <%= @current_jackpot.prize %><br/>
+      Jackpot Entries: <%= (@current_jackpot.user_entries.size/@current_jackpot.max_entries) *100 %>%<br/>
+      
+      <%= link_to 'Deposit Credits', jackpot_path(@current_jackpot) %>
+    </div>
   </div>
+</div>
 <% else %>
   <div class="center hero-unit">
     <h1>Welcome to Alotto</h1>
@@ -15,3 +25,4 @@
   </div>
 
 <% end %>
+

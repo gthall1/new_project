@@ -5,8 +5,11 @@
   <%= @game.name %>
 </p>
 
-<% if @game.id == 1 %>
+<% if @game.name == "Test" %>
 	<h2 class="outcome">Click to play! 1/5 wins a credit!</h2>
+	<div class="ad-space">
+		A partner image will show here sometimes!
+	</div>
 	<button class="play">Click here!</button>
 <% end %>
 
