@@ -9,7 +9,8 @@ gem 'faker', '1.1.2'
 
 
 group :development do
-  gem 'mysql2'
+  #gem 'mysql2'
+  gem 'pg', '0.15.1'
 end
 
 gem 'sass-rails', '4.0.1'
@@ -21,5 +22,5 @@ gem 'jbuilder', '1.0.2'
 
 group :production do
   gem 'rails_12factor', '0.0.2'
-  gem 'pg', '0.15.1'
+  #gem 'pg', '0.15.1'\
 end
