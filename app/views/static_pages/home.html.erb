@@ -5,7 +5,7 @@
       Play a game!
       <br />
       <% @games.each do | g | %>
-        <%= link_to 'Play Testgame', g %>
+        <%= link_to "Play #{g.name}", g %> <br/>
       <% end %>
     </div>
     <div style="width:400px;display:inline;float:right;" >

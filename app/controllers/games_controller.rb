@@ -14,6 +14,8 @@ class GamesController < ApplicationController
       #Test game
       when "Test"
         init_testgame
+      when "Helicopter"
+        init_testgame
       end
   end
   
@@ -74,6 +76,55 @@ class GamesController < ApplicationController
     render json: game_json
   end
 
+  def helicopter_check
+    earned_credits = 0
+    total_earned_credits = 0
+    win = false
+    status = "failed"
+    if params[:score] && params[:token] && !params[:token].empty?
+      status = "success"
+      
+      game = UserGameSession.where(token: params[:token]).first
+      score = params[:score].to_i
+      if rand(2) == 0
+        ad_image = "/assets/testad.jpg"
+      else
+        ad_image = "/assets/testad2.jpg"
+      end
+
+      if score >= 500 
+        win = true
+        user = User.find(game.user_id)
+        earned_credits = score/500
+        if user.credits.nil?
+          user.credits = earned_credits
+          if user.save(validate: false)
+            game.credits_earned = 0 if game.credits_earned.nil?
+            game.credits_earned = game.credits_earned + earned_credits
+            game.save
+          end
+        else
+          user.credits = user.credits + earned_credits
+          if user.save(validate: false)
+            game.credits_earned = 0 if game.credits_earned.nil?
+            game.credits_earned = game.credits_earned + earned_credits
+            game.save
+          end
+        end
+      end
+      total_earned_credits = game.credits_earned
+    end
+
+    game_json = {
+      :win => win,  
+      :earned => earned_credits,
+      :total_credits => total_earned_credits,
+      :status => status,
+      :partner_image => ad_image
+    }
+
+    render json: game_json
+  end
   # GET /games/new
   def new
     @game = Game.new

@@ -11,6 +11,36 @@
 		A partner image will show here sometimes!
 	</div>
 	<button class="play">Click here!</button>
+	<%= javascript_include_tag "game" %>
+<% elsif @game.name == "Helicopter" %>
+	<div class="ad-space">
+		A partner image will show here sometimes!
+	</div>
+	<div class="outcome">
+		
+	</div>
+	<div id="jscopter-container" class="clearfix">
+	    <p>Click anywhere in the game to start.  Hold the mouse button down to rise, let go to fall. Every 500 points earns 1 credit!</p>
+	</div>
+
+<%= javascript_include_tag "jscopter" %>
+<script type="text/javascript">
+// initialise the copter
+    var options = {
+	copter : {
+            height : 15,
+            width : 30
+        },
+        canvas : {
+            height : 300,
+            width : 500,
+            refreshRate : 20
+        }
+    }
+    
+    jsCopter.init("jscopter", "jscopter-container", options);	
+
+</script>
 <% end %>
 
 <input type="hidden" id="game_token" name="game_token" value="<%= session[:game_token] %>" />
@@ -18,5 +48,4 @@
 <br />
 <%= link_to 'Back', root_path %>
 
-<%= javascript_include_tag "game" %>
 
