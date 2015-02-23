@@ -10,8 +10,9 @@ gem 'faker', '1.1.2'
 
 group :development do
   #gem 'mysql2'
-  gem 'pg', '0.15.1'
 end
+
+gem 'pg', '0.15.1'
 
 gem 'sass-rails', '4.0.1'
 gem 'uglifier', '2.1.1'
