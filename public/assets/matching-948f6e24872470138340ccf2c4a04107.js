@@ -1,17 +1,19 @@
 var tiles = new Array(),
 	iFlippedTile = null,
 	iTileBeingFlippedId = null,
-	tileImages = new Array(1,2,3,4,5,6,7,8,9,10),
+	advertisers = new Array(),
+	tileImage = new Array(),
 	tileAllocation = null,
 	iTimer = 0,
 	iInterval = 100,
-	iPeekTime = 3000;
+	iPeekTime = 3000,
+	matchcount = 0;
 
 function getRandomImageForTile() {
 
 	var iRandomImage = Math.floor((Math.random() * tileAllocation.length)),
 		iMaxImageUse = 2;
-	
+
 	while(tileAllocation[iRandomImage] >= iMaxImageUse ) {
 			
 		iRandomImage = iRandomImage + 1;
@@ -31,10 +33,20 @@ function createTile(iCounter) {
 		iRandomImage = getRandomImageForTile();
 		
 	tileAllocation[iRandomImage] = tileAllocation[iRandomImage] + 1;
-		
+	image = "/assets/" +  (iRandomImage + 1) + ".jpg"
+ 	$.ajax({
+      type: "GET",
+      url: "/get_advertiser_logo",
+      data: { id: advertisers[iRandomImage]}
+    })
+	.done(function( data ) {
+		image = data.ad_image;
+	});	
+	tileImage[iRandomImage] = image
+	
 	curTile.setFrontColor("tileColor1");
 	curTile.setStartAt(500 * Math.floor((Math.random() * 5) + 1));
-	curTile.setBackContentImage("/assets/" +  (iRandomImage + 1) + ".jpg");
+	curTile.setBackContentImage(image);
 	
 	return curTile;
 }
@@ -46,7 +58,7 @@ function initState() {
 		allocated twice.
 	*/
 	tileAllocation = new Array(0,0,0,0,0,0,0,0,0,0);
-	
+   
 	while(tiles.length > 0) {
 		tiles.pop();
 	}
@@ -60,10 +72,14 @@ function initTiles() {
 
 	var iCounter = 0, 
 		curTile = null;
-
+	matchcount = 0
 	initState();
-	
+	 //console.log("ADVERTISER LENGTH IS "+ advertisers.length)
+
 	// Randomly create twenty tiles and render to board
+	//while(advertisers.length < 10){
+	//	console.log("waiting for response")
+	//}
 	for(iCounter = 0; iCounter < 20; iCounter++) {
 		
 		curTile = createTile(iCounter);
@@ -138,17 +154,41 @@ function checkMatch() {
 			setTimeout("tiles[" + iFlippedTile + "].revertFlip()", 2000);
 			setTimeout("tiles[" + iTileBeingFlippedId + "].revertFlip()", 2000);
 			
-			playAudio("mp3/no.mp3");
+			//playAudio("mp3/no.mp3"); kept in in case you want this
 
 		} else {
-			playAudio("mp3/applause.mp3");
+			matchcount = matchcount + 1;
+			if (matchcount == 10){
+				victory();
+			}
+			//playAudio("mp3/applause.mp3"); maybe we will want this?
 		}
 
 		iFlippedTile = null;
 		iTileBeingFlippedId = null;
 	}
 }
-
+function victory(){
+    var token = $("#game_token").val();
+    $.ajax({
+      type: "GET",
+      url: "/memorywin",
+      data: { token: token, match: matchcount }
+    })
+      .done(function( data ) {
+        if(data.status == "success"){
+            if(data.win === true){
+                var credits = $("#credits").data("user-credits");
+                $(".outcome").html("You won "+data.earned + " credit(s) for a total of "+ data.total_credits +" credit(s) so far! Click 'New Game' again for another chance!")
+                $("#credit_count").html(credits + data.total_credits);
+            }else{
+                $(".outcome").html("Sorry you lost! So far you have earned "+ data.total_credits +" in this game session! Click again for another chance!")
+            }
+        }else if(data.status == "closed"){
+            $(".outcome").html("Sorry this game has closed!");
+        }
+      });
+}
 function onPeekComplete() {
 
 	$('div.tile').click(function() {
@@ -167,11 +207,22 @@ function onPeekStart() {
 	setTimeout("hideTiles( function() { onPeekComplete(); })",iPeekTime);
 }
 
+
+
 $(document).ready(function() {
 	
 	$('#startGameButton').click(function(event) {
 		event.preventDefault();
-		initTiles();
+	 	$.ajax({
+	      type: "GET",
+	      url: "/get_advertisers"
+	    })
+		.done(function( data ) {
+			console.log("DONE LOADING ADVERTISERS")
+			//console.log(data.advertisers);
+			advertisers = data.advertisers;
+			initTiles();
+		});
 		
 		setTimeout("revealTiles(function() { onPeekStart(); })",iInterval);
 
