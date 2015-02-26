@@ -13,11 +13,13 @@
 	<button class="play">Click here!</button>
 	<%= javascript_include_tag "game" %>
 <% elsif @game.name == "Memory Game" %>
-    <%= javascript_include_tag "http://code.jquery.com/ui/1.9.2/jquery-ui.min.js"%>
+    <%= javascript_include_tag "//code.jquery.com/ui/1.9.2/jquery-ui.min.js"%>
     <%= javascript_include_tag "tile.js"%>
     <%= javascript_include_tag "jquery.flip.js"%>
     <%= javascript_include_tag "matching"%>
-		<div id="game">>
+	<div class="outcome">	
+	</div>
+		<div id="game">
 			<div id="board">
 			</div>
 			<a href='#' id="startGameButton">New Game</a>

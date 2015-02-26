@@ -75,6 +75,69 @@ class GamesController < ApplicationController
 
     render json: game_json
   end
+  
+  #returns 10 advertisers, for card game
+  def get_advertisers
+   # @advertisers = Advertiser.all.select(:id).limit(10)
+   ad_json = {
+      :advertisers => Advertiser.all.select(:id).limit(10).pluck(:id) 
+    }
+    render json: ad_json
+  end
+
+  def get_advertiser_logo
+    ad_image = "testad2.jpg"
+    if params[:id] && !params[:id].blank?
+      ad_image =  Advertiser.find(params[:id]).logo      
+    end
+    ad_json = {
+      :ad_image => ad_image
+    }
+    render json: ad_json
+  end
+
+  def memory_check
+    earned_credits = 0
+    total_earned_credits = 0
+    win = false
+    status = "failed"
+    if params[:match] && params[:token] && !params[:token].empty?
+      status = "success"
+      
+      game = UserGameSession.where(token: params[:token]).first
+
+      if params[:match].to_i >= 10 
+        win = true
+        user = User.find(game.user_id)
+        earned_credits = 5
+        if user.credits.nil?
+          user.credits = earned_credits
+          if user.save(validate: false)
+            game.credits_earned = 0 if game.credits_earned.nil?
+            game.credits_earned = game.credits_earned + earned_credits
+            game.save
+          end
+        else
+          user.credits = user.credits + earned_credits
+          if user.save(validate: false)
+            game.credits_earned = 0 if game.credits_earned.nil?
+            game.credits_earned = game.credits_earned + earned_credits
+            game.save
+          end
+        end
+      end
+      total_earned_credits = game.credits_earned
+    end
+
+    game_json = {
+      :win => win,  
+      :earned => earned_credits,
+      :total_credits => total_earned_credits,
+      :status => status
+    }
+
+    render json: game_json
+  end
 
   def helicopter_check
     earned_credits = 0

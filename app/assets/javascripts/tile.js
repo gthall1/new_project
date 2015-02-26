@@ -24,7 +24,7 @@ function tile(id) {
 	
 	this.onFlipComplete = function() {
 	
-		console.log("Flip complete");
+		//console.log("Flip complete");
 		
 		while(this.flipCompleteCallbacks.length > 0) {
 			
@@ -36,7 +36,7 @@ function tile(id) {
 	
 	this.revertFlip = function() {
 
-		console.log("Reverting tile " + this.id);
+		//console.log("Reverting tile " + this.id);
 		
 		$("#" + this.id + " img").hide();
 		
