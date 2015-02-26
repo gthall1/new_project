@@ -141,6 +141,64 @@ aside {
   }
 }
 
+/* MATCHING GAME */
+#board {
+  padding-top: 10px;
+    width: 570px;
+    height: 450px;
+  background-color: rgb(228, 223, 208);
+}
+
+#startGameButton
+{
+  font-family: 'Cherry Swash', cursive;
+  font-weight: 400;
+  color: rgb(20, 166, 0);
+  padding-bottom: 10px;
+  display: block;
+  &:hover{
+    background:none;
+  }
+}
+
+.tile {
+  float:left;
+  width: 100px;
+  height: 100px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #cfcfcf;
+  cursor: pointer;
+}
+
+.tile img {
+  display: block;
+  margin: 0 auto;
+  padding-top: 25px;
+  width: 50px;
+}
+
+.tileColor1 {
+   background-color: rgb(176, 235, 23);
+}
+
+.tileColor2 {
+   background-color: rgb(57, 171, 62);
+}
+
+.tileColor3 {
+   background-color: rgb(130, 189, 46);
+}
+
+.tileColor4 {
+   background-color: rgb(200, 217, 126);
+}
+
+
+.tileColor5 {
+   background-color: #82bd2d;
+}
+
 
 /* forms */
 

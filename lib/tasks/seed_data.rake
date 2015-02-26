@@ -7,6 +7,10 @@ task :seed_data => :environment do |t,args|
 	heligame.name = "Helicopter"
 	heligame.save
 
+	memory = Game.new
+	memory.name = "Memory Game"
+	memory.save
+
 	jackpot = Jackpot.new
 	jackpot.name = "Test"
 	jackpot.draw_date = Time.now + 2.months
