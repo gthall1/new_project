@@ -10,13 +10,7 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.json
   def show
-    case @game.name
-      #Test game
-      when "Test"
-        init_testgame
-      when "Helicopter"
-        init_testgame
-      end
+    init_testgame(@game.id)
   end
   
   def test_game_check
@@ -109,7 +103,7 @@ class GamesController < ApplicationController
       if params[:match].to_i >= 10 
         win = true
         user = User.find(game.user_id)
-        earned_credits = 5
+        earned_credits = 10
         if user.credits.nil?
           user.credits = earned_credits
           if user.save(validate: false)
@@ -155,10 +149,10 @@ class GamesController < ApplicationController
         ad_image = "/assets/testad2.jpg"
       end
 
-      if score >= 500 
+      if score >= 100 
         win = true
         user = User.find(game.user_id)
-        earned_credits = score/500
+        earned_credits = score/100
         if user.credits.nil?
           user.credits = earned_credits
           if user.save(validate: false)
@@ -248,13 +242,13 @@ class GamesController < ApplicationController
       params.require(:game).permit(:name)
     end
 
-    def init_testgame
+    def init_testgame(game_id)
       if signed_in?
         p "init testgameing"
         game = UserGameSession.new
         game.token = SecureRandom.urlsafe_base64
         game.user_id = current_user.id
-        game.game_id = Game.where(name: "Test").first.id
+        game.game_id = game_id
         game.credits_earned = 0
         game.active = true
         game.save
@@ -268,7 +262,7 @@ class GamesController < ApplicationController
         end 
         session[:game_token] = game.token   
       else
-        redirect_to root
+        redirect_to root_path
       end
     end      
 end
