@@ -244,7 +244,6 @@ class GamesController < ApplicationController
 
     def init_testgame(game_id)
       if signed_in?
-        p "init testgameing"
         game = UserGameSession.new
         game.token = SecureRandom.urlsafe_base64
         game.user_id = current_user.id
