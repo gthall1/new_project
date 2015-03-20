@@ -7,6 +7,7 @@ var tiles = new Array(),
 	iTimer = 0,
 	iInterval = 100,
 	iPeekTime = 3000,
+	clockstop = true,
 	matchcount = 0;
 
 function getRandomImageForTile() {
@@ -67,13 +68,42 @@ function initState() {
 	iTimer = 0;
 	
 }
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10)
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.text(minutes + ":" + seconds);
+
+        if (!clockstop && --timer < 0) {
+            timer = duration;
+        }
+    }, 1000);
+}
+
 
 function initTiles() {
-
-	var iCounter = 0, 
-		curTile = null;
-	matchcount = 0
+    var time = 60 * 10,
+	    iCounter = 0, 
+		curTile = null,
+	matchcount = 0;
 	initState();
+	clockstop = false;
+ 	$.ajax({
+      type: "GET",
+      url: "/reset_timer"
+    })
+	.done(function( data ) {
+		if (data.status == "success"){
+		    display = $('#time');
+		    console.log(data.time_left);
+		    startTimer(data.time_left, display);
+		}
+	});	
 	 //console.log("ADVERTISER LENGTH IS "+ advertisers.length)
 
 	// Randomly create twenty tiles and render to board
@@ -173,15 +203,20 @@ function victory(){
     $.ajax({
       type: "GET",
       url: "/memorywin",
-      data: { token: token, match: matchcount }
+      data: { token: token, match: matchcount,time_left:$('#time').html() }
     })
       .done(function( data ) {
         if(data.status == "success"){
             if(data.win === true){
                 var credits = $("#credits").data("user-credits");
+                clockstop = true;
                 $(".outcome").html("You won "+data.earned + " credit(s) for a total of "+ data.total_credits +" credit(s) so far! Click 'New Game' again for another chance!")
                 $("#credit_count").html(credits + data.total_credits);
+                if(data.score){
+                	$(".scorebox").html("Your new high score is " + data.score +"!");
+                }
             }else{
+            	clockstop= true;
                 $(".outcome").html("Sorry you lost! So far you have earned "+ data.total_credits +" in this game session! Click again for another chance!")
             }
         }else if(data.status == "closed"){
@@ -210,7 +245,7 @@ function onPeekStart() {
 
 
 $(document).ready(function() {
-	
+
 	$('#startGameButton').click(function(event) {
 		event.preventDefault();
 	 	$.ajax({
@@ -222,8 +257,7 @@ $(document).ready(function() {
 			//console.log(data.advertisers);
 			advertisers = data.advertisers;
 			initTiles();
-		});
-		
+		});	
 		setTimeout("revealTiles(function() { onPeekStart(); })",iInterval);
 
 	});

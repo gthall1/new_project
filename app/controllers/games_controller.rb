@@ -10,7 +10,9 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.json
   def show
-    init_testgame(@game.id)
+    init_testgame(@game.id) unless @game.name == "Memory Game"
+    @current_high_score = UserGameSession.where(user_id:current_user.id,game_id:@game.id).where.not(score: nil).order("score desc").first
+    @current_high_score = Time.at(@current_high_score.score).utc.strftime("%M:%S") if @current_high_score
   end
   
   def test_game_check
@@ -94,12 +96,20 @@ class GamesController < ApplicationController
     earned_credits = 0
     total_earned_credits = 0
     win = false
+    high_score = nil
     status = "failed"
+    score = params[:time_left]
+    if score
+      minutes = score.split(":")[0].to_i * 60
+      seconds = score.split(":")[1].to_i
+      total_time = minutes + seconds
+    end
     if params[:match] && params[:token] && !params[:token].empty?
       status = "success"
-      
+ 
       game = UserGameSession.where(token: params[:token]).first
-
+      current_high_score = UserGameSession.where(user_id:current_user.id,game_id:game.id).where.not(score: nil).order("score desc").first
+      current_high_score = Time.at(current_high_score.score).utc.strftime("%M:%S") if current_high_score     
       if params[:match].to_i >= 10 
         win = true
         user = User.find(game.user_id)
@@ -109,6 +119,7 @@ class GamesController < ApplicationController
           if user.save(validate: false)
             game.credits_earned = 0 if game.credits_earned.nil?
             game.credits_earned = game.credits_earned + earned_credits
+            game.score = total_time
             game.save
           end
         else
@@ -116,9 +127,16 @@ class GamesController < ApplicationController
           if user.save(validate: false)
             game.credits_earned = 0 if game.credits_earned.nil?
             game.credits_earned = game.credits_earned + earned_credits
+            game.score = total_time
             game.save
           end
         end
+      end
+      game_score = Time.at(game.score).utc.strftime("%M:%S")
+      if current_high_score && game_score > current_high_score
+        high_score = game_score
+      elsif !current_high_score
+        high_score = game_score
       end
       total_earned_credits = game.credits_earned
     end
@@ -127,6 +145,7 @@ class GamesController < ApplicationController
       :win => win,  
       :earned => earned_credits,
       :total_credits => total_earned_credits,
+      :score => "high_score",
       :status => status
     }
 
@@ -229,6 +248,43 @@ class GamesController < ApplicationController
       format.html { redirect_to games_url }
       format.json { head :no_content }
     end
+  end
+
+  def reset_game
+    no_user = false
+    if current_user
+      game = UserGameSession.new
+      game.token = SecureRandom.urlsafe_base64
+      game.user_id = current_user.id
+      game.game_id = Game.where(name: "Memory Game").first.id
+      game.credits_earned = 0
+      game.active = true
+      game.save
+      if !session[:game_token].nil?
+       old_game = UserGameSession.where(token:session[:game_token]).first
+       #close previous game game
+       if old_game
+        old_game.active = false
+        old_game.save
+       end
+      end 
+      time_left = 10.minutes.to_i - (Time.now - game.created_at.to_i) .to_i
+      if time_left < 0
+        time_left = 0
+      end
+      session[:game_token] = game.token   
+      game_json = {
+        :status => "success",
+        :token => game.token, 
+        :time_left => time_left
+      }    
+    else
+      game_json = {
+        :status => "failure"
+      }
+    end   
+
+    render json: game_json     
   end
 
   private

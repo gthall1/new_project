@@ -18,6 +18,7 @@ Alotto::Application.routes.draw do
   match '/heliwin', to: 'games#helicopter_check', via: 'get'
   match '/memorywin', to: 'games#memory_check', via: 'get'
   match '/get_advertisers', to: 'games#get_advertisers', via: 'get'
+  match '/reset_timer', to: 'games#reset_game', via: 'get'
   match '/get_advertiser_logo', to: 'games#get_advertiser_logo', via: 'get'
   match '/deposit',  to: 'jackpots#show',         via: 'get'
 
