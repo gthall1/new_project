@@ -203,7 +203,6 @@ function checkMatch() {
 }
 function victory(){
     var token = $("#game_token").val();
-    clearInterval(the_timer);
     $.ajax({
       type: "GET",
       url: "/memorywin",

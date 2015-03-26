@@ -11,8 +11,9 @@ class GamesController < ApplicationController
   # GET /games/1.json
   def show
     init_testgame(@game.id) unless @game.name == "Memory Game"
-    @current_high_score = UserGameSession.where(user_id:current_user.id,game_id:@game.id).where.not(score: nil).order("score desc").first
-    @current_high_score = Time.at(@current_high_score.score).utc.strftime("%M:%S") if @current_high_score
+    @current_high_score = UserGameSession.where(user_id:current_user.id,game_id:@game.id).where.not(score: nil).order("score desc").first.score
+    @current_high_score = Time.at(@current_high_score).utc.strftime("%M:%S") if @current_high_score && @game.name == "Memory Game"
+
   end
   
   def test_game_check
@@ -108,7 +109,7 @@ class GamesController < ApplicationController
       status = "success"
  
       game = UserGameSession.where(token: params[:token]).first
-      current_high_score = UserGameSession.where(user_id:current_user.id,game_id:game.id).where.not(score: nil).order("score desc").first
+      current_high_score = UserGameSession.where(user_id:current_user.id,game_id:game.game_id).where.not(score: nil).order("score desc").first
       current_high_score = Time.at(current_high_score.score).utc.strftime("%M:%S") if current_high_score     
       if params[:match].to_i >= 10 
         win = true
@@ -145,7 +146,7 @@ class GamesController < ApplicationController
       :win => win,  
       :earned => earned_credits,
       :total_credits => total_earned_credits,
-      :score => "high_score",
+      :score => high_score,
       :status => status
     }
 
@@ -157,11 +158,19 @@ class GamesController < ApplicationController
     total_earned_credits = 0
     win = false
     status = "failed"
+
     if params[:score] && params[:token] && !params[:token].empty?
       status = "success"
       
       game = UserGameSession.where(token: params[:token]).first
+      current_high_score = UserGameSession.where(user_id:current_user.id,game_id:game.game_id).where.not(score: nil).order("score desc").first.score
       score = params[:score].to_i
+      high_score = nil
+      if current_high_score && score > current_high_score
+        high_score = score
+      elsif !current_high_score
+        high_score = score
+      end
       if rand(2) == 0
         ad_image = "/assets/testad.jpg"
       else
@@ -177,6 +186,7 @@ class GamesController < ApplicationController
           if user.save(validate: false)
             game.credits_earned = 0 if game.credits_earned.nil?
             game.credits_earned = game.credits_earned + earned_credits
+            game.score = score
             game.save
           end
         else
@@ -184,6 +194,7 @@ class GamesController < ApplicationController
           if user.save(validate: false)
             game.credits_earned = 0 if game.credits_earned.nil?
             game.credits_earned = game.credits_earned + earned_credits
+            game.score = score
             game.save
           end
         end
@@ -196,6 +207,7 @@ class GamesController < ApplicationController
       :earned => earned_credits,
       :total_credits => total_earned_credits,
       :status => status,
+      :score => high_score,
       :partner_image => ad_image
     }
 

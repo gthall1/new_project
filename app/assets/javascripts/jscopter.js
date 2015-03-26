@@ -316,17 +316,11 @@ var jsCopter = {
     
         // create score html elements and add them to the page
         this.scores.elements.current = this.createScore('current');
-        this.scores.elements.top = this.createScore('top');
         
         // retrieve the current top score from cookie, if cookie script is present
         // if (!!cookie && !!cookie.get) {
         //     var topScore = cookie.get('topScore');
         // }
-        var topScore = 0
-        // condition : if a current top score exists, set it
-        if (topScore) {
-            this.scores.top = this.scores.elements.top.innerHTML = topScore;
-        }
     },
     
     
@@ -685,16 +679,16 @@ var jsCopter = {
     endGame: function() {
     
         // condition : if the current score is higher than the top score, set it
-        if (this.scores.current > this.scores.top) {
+        // if (this.scores.current > this.scores.top) {
             
-            // set the top score
-            this.scores.elements.top.innerHTML = this.scores.current;
+        //     // set the top score
+        //     this.scores.elements.top.innerHTML = this.scores.current;
             
-            // set cookie containing the top score
-            // if (cookie && cookie.set) {
-            //     cookie.set('topScore', this.scores.current, 1000, '/');
-            // }
-        } 
+        //     // set cookie containing the top score
+        //     // if (cookie && cookie.set) {
+        //     //     cookie.set('topScore', this.scores.current, 1000, '/');
+        //     // }
+        // } 
         var token = $("#game_token").val();
         $.ajax({
           type: "GET",
@@ -705,10 +699,13 @@ var jsCopter = {
             if(data.status == "success"){
                 if(data.win === true){
                     var credits = $("#credits").data("user-credits");
-                    $(".outcome").html("You won "+data.earned + "credit(s) for a total of "+ data.total_credits +" credit(s) so far! Click again for another chance!")
+                    $(".outcome").html("You won "+data.earned + " credit(s) for a total of "+ data.total_credits +" credit(s) so far! Click again for another chance!")
                     $("#credit_count").html(credits + data.total_credits);
                 }else{
                     $(".outcome").html("Sorry you lost! So far you have earned "+ data.total_credits +" in this game session! Click again for another chance!")
+                }
+                if(data.score){
+                    $(".scorebox").html("Your new high score is " + data.score +"!");
                 }
                 if(data.partner_image != "none"){
                     $(".ad-space").html("<img style='max-height:100px' src='"+data.partner_image +"' />");
