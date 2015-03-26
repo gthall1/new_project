@@ -169,7 +169,12 @@ class GamesController < ApplicationController
       status = "success"
       
       game = UserGameSession.where(token: params[:token]).first
-      current_high_score = UserGameSession.where(user_id:current_user.id,game_id:game.game_id).where.not(score: nil).order("score desc").first.score
+      current_high_score = UserGameSession.where(user_id:current_user.id,game_id:game.game_id).where.not(score: nil).order("score desc").first
+      if !current_high_score.blank?
+        current_high_score = current_high_score.score
+      else 
+        current_high_score = nil
+      end
       score = params[:score].to_i
       high_score = nil
       if current_high_score && score > current_high_score

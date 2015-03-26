@@ -61,7 +61,7 @@
 
 <input type="hidden" id="game_token" name="game_token" value="<%= session[:game_token] %>" />
  
- <% if @top_scores %>
+ <% if !@top_scores.blank? %>
 	 <h3>Top Scores </h3>
 	 <ul>
 	 <% @top_scores.each do |t| %>
