@@ -60,7 +60,19 @@
 <% end %>
 
 <input type="hidden" id="game_token" name="game_token" value="<%= session[:game_token] %>" />
-
+ 
+ <% if @top_scores %>
+	 <h3>Top Scores </h3>
+	 <ul>
+	 <% @top_scores.each do |t| %>
+	 	<% 
+	 	score = t.score
+	 	score = Time.at(t.score).utc.strftime("%M:%S") if @game.name == "Memory Game" 
+	 	%>
+	 	<li><%= t.user.name %> - <%= score %></li>
+	 <% end %>
+ <% end %>
+</ul>
 <br />
 <%= link_to 'Back', root_path %>
 
