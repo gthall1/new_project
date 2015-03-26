@@ -105,11 +105,13 @@ class GamesController < ApplicationController
     win = false
     high_score = nil
     status = "failed"
+    total_time = nil
     score = params[:time_left]
     if score
       minutes = score.split(":")[0].to_i * 60
       seconds = score.split(":")[1].to_i
       total_time = minutes + seconds
+      p total_time
     end
     if params[:match] && params[:token] && !params[:token].empty?
       status = "success"
@@ -140,7 +142,7 @@ class GamesController < ApplicationController
         end
       end
       game_score = Time.at(game.score).utc.strftime("%M:%S")
-      if current_high_score && game_score > current_high_score
+      if current_high_score && game_score < current_high_score
         high_score = game_score
       elsif !current_high_score
         high_score = game_score

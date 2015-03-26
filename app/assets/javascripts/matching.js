@@ -104,6 +104,7 @@ function initTiles() {
 		if (data.status == "success"){
 		    display = $('#time');
 		    console.log(data.duration);
+		    $('#game_token').val(data.token);
 		    startTimer(data.duration, display);
 		}
 	});	
