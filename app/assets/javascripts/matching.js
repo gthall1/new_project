@@ -8,7 +8,8 @@ var tiles = new Array(),
 	iInterval = 100,
 	iPeekTime = 3000,
 	clockstop = true,
-	matchcount = 0;
+	matchcount = 0
+	the_timer = null;
 
 function getRandomImageForTile() {
 
@@ -70,24 +71,26 @@ function initState() {
 }
 function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
-    setInterval(function () {
-        minutes = parseInt(timer / 60, 10)
-        seconds = parseInt(timer % 60, 10);
+    clearInterval(the_timer);
+    the_timer = setInterval(function () {
+        minutes = parseInt(timer / 60, 00)
+        seconds = parseInt(timer % 60, 00);
 
-        minutes = minutes < 10 ? "0" + minutes : minutes;
+        minutes = minutes < 1 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
         display.text(minutes + ":" + seconds);
 
-        if (!clockstop && --timer < 0) {
+        if (!clockstop && ++duration < 999) {
             timer = duration;
         }
+
     }, 1000);
 }
 
 
 function initTiles() {
-    var time = 60 * 10,
+    var time = 0,
 	    iCounter = 0, 
 		curTile = null,
 	matchcount = 0;
@@ -100,8 +103,8 @@ function initTiles() {
 	.done(function( data ) {
 		if (data.status == "success"){
 		    display = $('#time');
-		    console.log(data.time_left);
-		    startTimer(data.time_left, display);
+		    console.log(data.duration);
+		    startTimer(data.duration, display);
 		}
 	});	
 	 //console.log("ADVERTISER LENGTH IS "+ advertisers.length)
@@ -200,6 +203,7 @@ function checkMatch() {
 }
 function victory(){
     var token = $("#game_token").val();
+    clearInterval(the_timer);
     $.ajax({
       type: "GET",
       url: "/memorywin",
@@ -253,8 +257,6 @@ $(document).ready(function() {
 	      url: "/get_advertisers"
 	    })
 		.done(function( data ) {
-			console.log("DONE LOADING ADVERTISERS")
-			//console.log(data.advertisers);
 			advertisers = data.advertisers;
 			initTiles();
 		});	

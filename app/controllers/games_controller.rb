@@ -268,15 +268,15 @@ class GamesController < ApplicationController
         old_game.save
        end
       end 
-      time_left = 10.minutes.to_i - (Time.now - game.created_at.to_i) .to_i
-      if time_left < 0
-        time_left = 0
+      duration = (Time.now.to_i - game.created_at.to_i).to_i
+      if duration > 999.seconds
+        duration = 999.seconds
       end
       session[:game_token] = game.token   
       game_json = {
         :status => "success",
         :token => game.token, 
-        :time_left => time_left
+        :duration => duration
       }    
     else
       game_json = {
