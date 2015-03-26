@@ -10,6 +10,7 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.json
   def show
+    @game = Game.find(params[:id])
     init_testgame(@game.id) unless @game.name == "Memory Game"
     @current_high_score = UserGameSession.where(user_id:current_user.id,game_id:@game.id).where.not(score: nil).order("score desc").first
     @current_high_score = Time.at(@current_high_score.score).utc.strftime("%M:%S") if @current_high_score
