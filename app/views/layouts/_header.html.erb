@@ -6,16 +6,18 @@
         <ul class="nav pull-right">
 
           <% if signed_in? %>
-            <li>@<%= current_user.name %>:</li>
-            <li id="credits" data-user-credits="<%= current_user.credits %>" style="color:#ff0000">Credits <span id="credit_count">
+            <li class="navbar-user" id="credits">@<%= current_user.name %>:</li>
+            <li class="navbar-links" id="credits" data-user-credits="<%= current_user.credits %>" style="color:#ff0000"><span id="credit_count">
             <% if current_user.credits %>
             <%= current_user.credits %>
             <% else %>
             0
             <% end %>
-            </span></li>
-            <li><%= link_to "Surveys", '#' %></li>
-            <li><%= link_to "Deposit Credits", '#', class: "btn btn-large btn-default" %></li>
+            </span> credits</li>
+            <li class="navbar-links" id="normal-links"><%= link_to "Surveys", '#' %></li>
+
+            <li class="navbar-links btn btn-outlined btn-theme btn-sm" data-wow-delay="0.7s"><%= link_to "Deposit Credits", '#' %></li>
+
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars fa-3x"></i></a>
               <ul class="dropdown-menu">
@@ -30,9 +32,9 @@
               </ul>
             </li>
           <% else %>
-            <li><%= link_to "How it works", root_path %></li>
-            <li><%= link_to "FAQ", faq_path %></li>
-            <li><%= link_to "Sign in", signin_path, class: "btn btn-large btn-default" %></li>
+            <li class="navbar-links" id="normal-links"><%= link_to "How it works", root_path %></li>
+            <li class="navbar-links" id="normal-links"><%= link_to "FAQ", faq_path %></li>
+            <li id="navbar-button" class="navbar-links btn btn-outlined btn-theme btn-sm" ><%= link_to "Sign in", signin_path %></li>
           <% end %>
         </ul>
       </nav>
