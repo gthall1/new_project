@@ -20,7 +20,7 @@
 
     <span class="scorebox"> <% if @current_high_score %> Your Current Fastest Time Is <span class="highscore"><%= @current_high_score %></span>!<% else %> You have no high score yet!<% end %></span>
      <br/><span id="time">00:00</span>
-	<div class="outcome">	
+	<div class="outcome">
 	</div>
 		<div id="game">
 			<div id="board">
@@ -33,7 +33,7 @@
 	</div>
     <span class="scorebox"> <% if @current_high_score %> Your Current High score is <span class="highscore"><%= @current_high_score %></span>!<% else %> You have no high score yet!<% end %></span>
 	<div class="outcome">
-		
+
 	</div>
 	<div id="jscopter-container" class="clearfix">
 	    <p>Click anywhere in the game to start.  Hold the mouse button down to rise, let go to fall. Every 500 points earns 1 credit!</p>
@@ -53,27 +53,27 @@
             refreshRate : 20
         }
     };
-    
-    jsCopter.init("jscopter", "jscopter-container", options);	
+
+    jsCopter.init("jscopter", "jscopter-container", options);
 
 </script>
 <% end %>
 
 <input type="hidden" id="game_token" name="game_token" value="<%= session[:game_token] %>" />
- 
+
  <% if !@top_scores.blank? %>
 	 <h3>Top Scores </h3>
 	 <ul>
 	 <% @top_scores.each do |t| %>
-	 	<% 
+	 	<%
 	 	score = t.score
-	 	score = Time.at(t.score).utc.strftime("%M:%S") if @game.name == "Memory Game" 
+	 	score = Time.at(t.score).utc.strftime("%M:%S") if @game.name == "Memory Game"
 	 	%>
 	 	<li><%= t.user.name %> - <%= score %></li>
 	 <% end %>
  <% end %>
 </ul>
 <br />
-<%= link_to 'Back', root_path %>
+<%= link_to 'Back', root_path, class: "btn btn-outlined btn-theme btn-sm" %>
 
 

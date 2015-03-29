@@ -7,9 +7,9 @@
 <% if @jackpot.open && current_user && signed_in? && current_user.credits > 0 && @jackpot.user_entries.size <  @jackpot.max_entries %>
 	<form id="deposit_form" action="/deposit">
 		It's not too late! You may still enter this drawing! You have <%= @jackpot.user_entries.where(user_id: 1).size %> entries already in this pot. You currently have <%= current_user.credits %> to deposit.
-		<%= number_field_tag 'credits', nil, in: 1...current_user.credits %>
+		<%= number_field_tag 'credits', nil, in: 1..current_user.credits %>
 		<%= hidden_field_tag 'id', @jackpot.id %>
-		<input type="submit" value="Deposit">
+		<input type="submit" value="Deposit" class="btn btn-outlined btn-theme btn-sm">
 	</form>
 <% elsif current_user && current_user.credits < 1 %>
 	You currently have <%= current_user.credits %>.  This is not enough to enter this pot.
