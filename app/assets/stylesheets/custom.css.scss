@@ -305,7 +305,7 @@ a:hover {
 html,
 body {
 /*css for full size background image*/
-  background: url(background_kinda.svg) no-repeat center center fixed;
+  background: url(background_decent.svg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -317,6 +317,20 @@ body {
   text-align: center;
   background-position: 0 0;
 
+}
+
+body.landing {
+  background: url(background_decent.svg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  height: 1000px;
+  background-color: #AADDD6;
+  color: #AADDD6;
+  text-align: center;
+  background-position: 0 0;
 }
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
@@ -540,5 +554,63 @@ li.navbar-links:hover {
   color: #6f5499;
   /* text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); */
 }
+
+/* Rectangle 2: */
+.sign-up {
+  opacity: 0.74;
+  background: #7B80A2;
+  border: 1px solid #979797;
+  width: 400px;
+  height: 600px;
+  margin-left: 650px;
+}
+
+.blue {
+opacity: 0.90;
+background: #315565;
+border: 3px solid #979797;
+padding-top: 30px;
+padding-right: 30px;
+padding-bottom: 30px;
+padding-left: 30px;
+}
+
+p.faq {
+  font-size: 40px;
+  padding: 20px;
+  line-height: 40px;
+  color: #E8DCE1;
+  padding: 30px;
+}
+
+p.answer {
+  font-size: 20px;
+  color: red;
+  padding: 10px;
+  line-height: 130%;
+}
+
+h1.arrow { font-size: 55px;
+  text-transform: uppercase;
+  color: #E8DCE1;
+  letter-spacing: 1px;
+  padding-bottom: 30px;
+  font-weight: bold;
+}
+
+.btn-outlined.btn-white {
+    background: none;
+    color: #FFFFFF;
+  border-color: #FFFFFF;
+}
+
+.btn-outlined.btn-white:hover,
+.btn-outlined.btn-white:active {
+    color: #6f5499;
+    background: #FFFFFF;
+    border-color: #FFFFFF;
+}
+
+
 
 
