@@ -12,6 +12,7 @@ Alotto::Application.routes.draw do
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/faq',    to: 'static_pages#faq',    via: 'get'
+  match '/how_it_works', to: 'static_pages#how_it_works', via: 'get'
   match '/about',   to: 'static_pages#about',   via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
   match '/updates', to: 'games#test_game_check', via: 'get'
