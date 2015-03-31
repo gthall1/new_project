@@ -6,10 +6,10 @@
         <ul class="nav pull-right">
 
           <% if signed_in? %>
-            <li class="navbar-user" id="credits">@<%= current_user.name %>:</li>
+            <li class="navbar-user" style="padding-top:17px;">@<%= current_user.name %>:</li>
             <li class="navbar-links" id="credits" data-user-credits="<%= current_user.credits %>" style="color:#ff0000"><span id="credit_count">
             <% if current_user.credits %>
-            <%= current_user.credits %>
+             <%= current_user.credits %>
             <% else %>
             0
             <% end %>

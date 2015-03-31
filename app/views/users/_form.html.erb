@@ -9,6 +9,17 @@
       <%= f.label :email %>
       <%= f.text_field :email %>
 
+      <%= f.label :zipcode %>
+      <%= f.text_field :zipcode, :maxlength => 5 %>
+
+      <%= f.label "Date of birth" %>
+      <%= f.date_select :dob,:start_year => 1930,:end_year => Time.now.year, :order => [:month, :day, :year] %>
+
+      <%= f.radio_button :gender, '1' %> 
+      <%= label :gender_male, 'male' %>
+      <%= f.radio_button :gender, '2' %>
+      <%= label :gender_female, 'female' %> 
+
       <%= f.label :password %>
       <%= f.password_field :password %>
 
