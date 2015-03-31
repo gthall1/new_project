@@ -7,6 +7,33 @@ class JackpotsController < ApplicationController
     @jackpots = Jackpot.all
   end
 
+  def current_jackpot
+    @jackpot = Jackpot.where(open: true).first
+    @message = nil
+    if current_user && signed_in? && params[:credits] && params[:id] && !params[:credits].blank?
+      count = 0
+      if current_user.credits >= params[:credits].to_i
+        params[:credits].to_i.times do | e | 
+          if @jackpot.user_entries.size < @jackpot.max_entries 
+            user_entry = UserEntry.new
+            user_entry.user_id = current_user.id
+            user_entry.jackpot_id = @jackpot.id
+            if user_entry.save
+              count = count + 1
+              current_user.credits = (current_user.credits - 1) 
+              current_user.save(validate: false)
+              @message = "You have deposited #{params[:credits]} credits into the pot!"
+            end
+          else
+            @message = "The jackpot has filled up with entries.  #{count} of the #{params[:credits]} credits you deposited made it in."
+          end
+        end
+      else
+        @message = "You cannot deposit #{params[:credits]} credits! You only have #{current_user.credits} credits."
+      end
+    end
+    render 'show'
+  end
   # GET /jackpots/1
   # GET /jackpots/1.json
   def show
