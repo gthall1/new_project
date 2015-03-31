@@ -22,7 +22,7 @@
 		<div class="moneyJar"></div>
 		<h4 class="prize"><%= ((@jackpot.user_entries.size.to_f/@jackpot.max_entries.to_f) * 100).to_i%>% Full.</h4>
 		<p class="depositCredits">You have <%= @jackpot.user_entries.where(user_id: 1).size %> credits in this pot.</p>
-	<% elsif current_user && !current_user.credits %>
+	<% elsif current_user && !current_user.credits || current_user.credits == 0%>
 		You currently have 0 credits.  Earn more credits by playing games.
 	<% elsif current_user && signed_in? %>
 		We're sorry! We are no longer taking entries into this drawing.
