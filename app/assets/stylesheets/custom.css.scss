@@ -169,6 +169,8 @@ aside {
 
 #game {
   padding-top: 40px;
+  height: 675px;
+  width: 975px;
 }
 
 #board {
@@ -185,6 +187,14 @@ aside {
   opacity: .80;
 }
 
+#leaderboardHeli {
+  width: 300px;
+  height: 650px;
+  background-color: #fff;
+  opacity: .80;
+  margin-right: 45px;
+}
+
 #topScore {
   width: 550px;
   height: 145px;
@@ -196,6 +206,31 @@ aside {
   text-align: left;
   padding-top: 20px;
   padding-left: 20px;
+}
+
+#topScoreHeli {
+  width: 480px;
+  height: 145px;
+  background-color: #fff;
+  opacity: .85;
+  margin-top: 25px;
+  font-size: 32px;
+  line-height: 60px;
+  text-align: left;
+  padding-top: 20px;
+  padding-left: 20px;
+}
+
+#topScoreClear {
+  width: 480px;
+  height: 128px;
+  opacity: 1;
+  padding-left: 20px;
+}
+
+.center-button a {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .scoreList {

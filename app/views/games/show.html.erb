@@ -47,13 +47,35 @@
 	<div class="ad-space">
 		A partner image will show here sometimes!
 	</div>
-    <span class="scorebox"> <% if @current_high_score %> Your Current High score is <span class="highscore"><%= @current_high_score %></span>!<% else %> You have no high score yet!<% end %></span>
-	<div class="outcome">
 
-	</div>
-	<div id="jscopter-container" class="clearfix">
-	    <p>Click anywhere in the game to start.  Hold the mouse button down to rise, let go to fall. Every 500 points earns 1 credit!</p>
-	</div>
+	<div class="outcome"></div>
+  <p>Click anywhere in the game to start.  Hold the mouse button down to rise, let go to fall. Every 500 points earns 1 credit!</p>
+	<div id="game">
+    <div id="jscopter-container" class="clearfix" style="display:inline;float:left;"></div>
+    <div id="leaderboardHeli" style="display:inline;float:right;">
+      <% if !@top_scores.blank? %>
+
+        <div id="leader"><h3>Leaderboard</h3></div>
+        <ul>
+        <% @top_scores.each do |t| %>
+          <%
+            score = t.score
+            score = Time.at(t.score).utc.strftime("%M:%S") if @game.name == "Memory Game"
+          %>
+            <li class="scoreList"><%= t.user.name %> - <%= score %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+    <div id="topScoreHeli" style="display:inline;float:left;">
+      <p id="currentscorecontainer">
+        current score:
+        <strong id="currentscore">0</strong>
+      </p>
+      <span class="scorebox"> <% if @current_high_score %> Your High score: <span class="highscore"><%= @current_high_score %></span><% else %> You have no high score yet!<% end %></span>
+    </div>
+    <div id="topScoreClear" style="display:inline;float:left;"></div>
+  </div>
 
 <%= javascript_include_tag "jscopter" %>
 <script type="text/javascript">
@@ -81,7 +103,7 @@
 
 
 <br />
-<div>
+<div class="container">
 <%= link_to 'Home', root_path, class: "btn btn-outlined btn-theme btn-lg back" %>
 </div>
 
