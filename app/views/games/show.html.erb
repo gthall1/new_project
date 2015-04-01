@@ -22,10 +22,24 @@
      <br/><span id="time">00:00</span>
 	<div class="outcome">
 	</div>
+  <a href='#' id="startGameButton" class="btn btn-outlined btn-theme btn-lg">New Game</a>
 		<div id="game">
-			<div id="board">
-			</div>
-			<a href='#' id="startGameButton">New Game</a>
+			<div id="board" style="display:inline;float:left;"></div>
+      <div id="leaderboard" style="display:inline;float:right;">
+        <% if !@top_scores.blank? %>
+
+          <div id="leader"><h3>Leaderboard</h3></div>
+          <ul>
+          <% @top_scores.each do |t| %>
+            <%
+              score = t.score
+              score = Time.at(t.score).utc.strftime("%M:%S") if @game.name == "Memory Game"
+            %>
+              <li class="scoreList"><%= t.user.name %> - <%= score %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
 		</div>
 <% elsif @game.name == "Helicopter" %>
 	<div class="ad-space">
@@ -61,19 +75,11 @@
 
 <input type="hidden" id="game_token" name="game_token" value="<%= session[:game_token] %>" />
 
- <% if !@top_scores.blank? %>
-	 <h3>Top Scores </h3>
-	 <ul>
-	 <% @top_scores.each do |t| %>
-	 	<%
-	 	score = t.score
-	 	score = Time.at(t.score).utc.strftime("%M:%S") if @game.name == "Memory Game"
-	 	%>
-	 	<li><%= t.user.name %> - <%= score %></li>
-	 <% end %>
- <% end %>
-</ul>
-<br />
-<%= link_to 'Back', root_path, class: "btn btn-outlined btn-theme btn-sm" %>
 
+
+
+<br />
+<div>
+<%= link_to 'Back', root_path, class: "btn btn-outlined btn-theme btn-sm back" %>
+</div>
 
