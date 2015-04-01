@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
+<p class="gameTitle">
   <%= @game.name %>
 </p>
 
@@ -18,11 +17,10 @@
     <%= javascript_include_tag "jquery.flip.js"%>
     <%= javascript_include_tag "matching"%>
 
-    <span class="scorebox"> <% if @current_high_score %> Your Current Fastest Time Is <span class="highscore"><%= @current_high_score %></span>!<% else %> You have no high score yet!<% end %></span>
-     <br/><span id="time">00:00</span>
+
 	<div class="outcome">
 	</div>
-  <a href='#' id="startGameButton" class="btn btn-outlined btn-theme btn-lg">New Game</a>
+  <a href='#' id="startGameButton" class="btn btn-outlined btn-theme btn-lg">Start New Game</a>
 		<div id="game">
 			<div id="board" style="display:inline;float:left;"></div>
       <div id="leaderboard" style="display:inline;float:right;">
@@ -39,6 +37,10 @@
             <% end %>
           </ul>
         <% end %>
+      </div>
+      <div id="topScore" style="display:inline;float:left;">
+        Current time: <span id="time">00:00</span></br>
+        <span class="scorebox"> <% if @current_high_score %> Your Fastest Time: <span class="highscore"><%= @current_high_score %></span><% else %> You have no high score yet!<% end %></span>
       </div>
 		</div>
 <% elsif @game.name == "Helicopter" %>
@@ -80,6 +82,6 @@
 
 <br />
 <div>
-<%= link_to 'Back', root_path, class: "btn btn-outlined btn-theme btn-sm back" %>
+<%= link_to 'Home', root_path, class: "btn btn-outlined btn-theme btn-lg back" %>
 </div>
 
