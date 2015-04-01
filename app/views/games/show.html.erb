@@ -18,8 +18,9 @@
     <%= javascript_include_tag "matching"%>
 
 
-	<div class="outcome">
-	</div>
+	<div class="outcome"></div>
+  <div class="instructions"><p>Classic card flip game.</br>Find the matching pairs of cards.</br>Every matching pair earns 1 credit!</p>
+  </div>
   <a href='#' id="startGameButton" class="btn btn-outlined btn-theme btn-lg">Start New Game</a>
 		<div id="game">
 			<div id="board" style="display:inline;float:left;"></div>
@@ -49,7 +50,8 @@
 	</div>
 
 	<div class="outcome"></div>
-  <p>Click anywhere in the game to start.  Hold the mouse button down to rise, let go to fall. Every 500 points earns 1 credit!</p>
+  <div class="instructions"><p>Click anywhere in the game to start.</br>Hold the mouse button down to rise, let go to fall.</br>Every 100 points earns 1 credit!</p>
+  </div>
 	<div id="game">
     <div id="jscopter-container" class="clearfix" style="display:inline;float:left;"></div>
     <div id="leaderboardHeli" style="display:inline;float:right;">

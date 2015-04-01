@@ -699,10 +699,10 @@ var jsCopter = {
             if(data.status == "success"){
                 if(data.win === true){
                     var credits = $("#credits").data("user-credits");
-                    $(".outcome").html("You won "+data.earned + " credit(s) for a total of "+ data.total_credits +" credit(s) so far! Click again for another chance!")
+                    $(".outcome").html("You won "+data.earned + " credit(s) for a total of "+ data.total_credits +" credit(s) so far! <br /> Click to play again!")
                     $("#credit_count").html(credits + data.total_credits);
                 }else{
-                    $(".outcome").html("Sorry you lost! So far you have earned "+ data.total_credits +" in this game session! Click again for another chance!")
+                    $(".outcome").html("Sorry you lost! So far you have earned "+ data.total_credits +" credit(s) in this game session! <br /> Click to play again!")
                 }
                 if(data.score){
                     $(".scorebox").html("Your new high score is " + data.score +"!");
