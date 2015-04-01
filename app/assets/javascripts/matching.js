@@ -17,23 +17,23 @@ function getRandomImageForTile() {
 		iMaxImageUse = 2;
 
 	while(tileAllocation[iRandomImage] >= iMaxImageUse ) {
-			
+
 		iRandomImage = iRandomImage + 1;
-			
+
 		if(iRandomImage >= tileAllocation.length) {
-				
+
 			iRandomImage = 0;
 		}
 	}
-	
+
 	return iRandomImage;
 }
 
 function createTile(iCounter) {
-	
+
 	var curTile =  new tile("tile" + iCounter),
 		iRandomImage = getRandomImageForTile();
-		
+
 	tileAllocation[iRandomImage] = tileAllocation[iRandomImage] + 1;
 	image = "/assets/" +  (iRandomImage + 1) + ".jpg"
  	$.ajax({
@@ -43,31 +43,31 @@ function createTile(iCounter) {
     })
 	.done(function( data ) {
 		image = data.ad_image;
-	});	
+	});
 	tileImage[iRandomImage] = image
-	
+
 	curTile.setFrontColor("tileColor1");
 	curTile.setStartAt(500 * Math.floor((Math.random() * 5) + 1));
 	curTile.setBackContentImage(image);
-	
+
 	return curTile;
 }
 
 function initState() {
 
 	/* Reset the tile allocation count array.  This
-		is used to ensure each image is only 
+		is used to ensure each image is only
 		allocated twice.
 	*/
 	tileAllocation = new Array(0,0,0,0,0,0,0,0,0,0);
-   
+
 	while(tiles.length > 0) {
 		tiles.pop();
 	}
-	
+
 	$('#board').empty();
 	iTimer = 0;
-	
+
 }
 function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
@@ -91,7 +91,7 @@ function startTimer(duration, display) {
 
 function initTiles() {
     var time = 0,
-	    iCounter = 0, 
+	    iCounter = 0,
 		curTile = null,
 	matchcount = 0;
 	initState();
@@ -107,7 +107,7 @@ function initTiles() {
 		    $('#game_token').val(data.token);
 		    startTimer(data.duration, display);
 		}
-	});	
+	});
 	 //console.log("ADVERTISER LENGTH IS "+ advertisers.length)
 
 	// Randomly create twenty tiles and render to board
@@ -115,37 +115,37 @@ function initTiles() {
 	//	console.log("waiting for response")
 	//}
 	for(iCounter = 0; iCounter < 20; iCounter++) {
-		
+
 		curTile = createTile(iCounter);
-		
+
 		$('#board').append(curTile.getHTML());
-		
+
 		tiles.push(curTile);
-	}	
+	}
 }
 
 function hideTiles(callback) {
-	
+
 	var iCounter = 0;
 
 	for(iCounter = 0; iCounter < tiles.length; iCounter++) {
-		
+
 		tiles[iCounter].revertFlip();
 
 	}
-	
+
 	callback();
 }
 
 function revealTiles(callback) {
-	
+
 	var iCounter = 0,
 		bTileNotFlipped = false;
 
 	for(iCounter = 0; iCounter < tiles.length; iCounter++) {
-		
+
 		if(tiles[iCounter].getFlipped() === false) {
-		
+
 			if(iTimer > tiles[iCounter].getStartAt()) {
 				tiles[iCounter].flip();
 			}
@@ -154,7 +154,7 @@ function revealTiles(callback) {
 			}
 		}
 	}
-	
+
 	iTimer = iTimer + iInterval;
 
 	if(bTileNotFlipped === true) {
@@ -165,29 +165,29 @@ function revealTiles(callback) {
 }
 
 function playAudio(sAudio) {
-	
+
 	var audioElement = document.getElementById('audioEngine');
-			
+
 	if(audioElement !== null) {
 
 		audioElement.src = sAudio;
 		audioElement.play();
-	}	
+	}
 }
 
 function checkMatch() {
-	
+
 	if(iFlippedTile === null) {
-		  
+
 		iFlippedTile = iTileBeingFlippedId;
 
 	} else {
-		
+
 		if( tiles[iFlippedTile].getBackContentImage() !== tiles[iTileBeingFlippedId].getBackContentImage()) {
-			
+
 			setTimeout("tiles[" + iFlippedTile + "].revertFlip()", 2000);
 			setTimeout("tiles[" + iTileBeingFlippedId + "].revertFlip()", 2000);
-			
+
 			//playAudio("mp3/no.mp3"); kept in in case you want this
 
 		} else {
@@ -214,7 +214,7 @@ function victory(){
             if(data.win === true){
                 var credits = $("#credits").data("user-credits");
                 clockstop = true;
-                $(".outcome").html("You won "+data.earned + " credit(s) for a total of "+ data.total_credits +" credit(s) so far! Click 'New Game' again for another chance!")
+                $(".outcome").html("You won "+data.earned + " credit(s) for a total of "+ data.total_credits +" credit(s) so far! <br /> Click 'Start New Game' to play again!")
                 $("#credit_count").html(credits + data.total_credits);
                 if(data.score){
                 	$(".scorebox").html("Your new high score is " + data.score +"!");
@@ -231,14 +231,14 @@ function victory(){
 function onPeekComplete() {
 
 	$('div.tile').click(function() {
-	
+
 		iTileBeingFlippedId = this.id.substring("tile".length);
-	
+
 		if(tiles[iTileBeingFlippedId].getFlipped() === false) {
 			tiles[iTileBeingFlippedId].addFlipCompleteCallback(function() { checkMatch(); });
 			tiles[iTileBeingFlippedId].flip();
 		}
-	  
+
 	});
 }
 
@@ -259,7 +259,7 @@ $(document).ready(function() {
 		.done(function( data ) {
 			advertisers = data.advertisers;
 			initTiles();
-		});	
+		});
 		setTimeout("revealTiles(function() { onPeekStart(); })",iInterval);
 
 	});

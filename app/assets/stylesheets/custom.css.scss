@@ -160,23 +160,132 @@ aside {
     }
   }
 }
+
+.gameTitle {
+  font-size: 60px;
+  margin-bottom: 30px;
+}
 /* MATCHING GAME */
+
+#game {
+  padding-top: 40px;
+  height: 675px;
+  width: 975px;
+}
+
 #board {
   padding-top: 10px;
     width: 570px;
     height: 450px;
-  background-color: rgb(228, 223, 208);
+  background-color: #000000;
+}
+
+#leaderboard {
+  width: 300px;
+  height: 650px;
+  background-color: #fff;
+  opacity: .80;
+}
+
+#leaderboardHeli {
+  width: 300px;
+  height: 650px;
+  background-color: #fff;
+  opacity: .80;
+  margin-right: 45px;
+}
+
+#topScore {
+  width: 550px;
+  height: 145px;
+  background-color: #fff;
+  opacity: .85;
+  margin-top: 25px;
+  font-size: 32px;
+  line-height: 60px;
+  text-align: left;
+  padding-top: 20px;
+  padding-left: 20px;
+}
+
+#topScoreHeli {
+  width: 480px;
+  height: 145px;
+  background-color: #fff;
+  opacity: .85;
+  margin-top: 25px;
+  font-size: 32px;
+  line-height: 60px;
+  text-align: left;
+  padding-top: 20px;
+  padding-left: 20px;
+}
+
+#topScoreClear {
+  width: 480px;
+  height: 128px;
+  opacity: 1;
+  padding-left: 20px;
+}
+
+.instructions {
+  width: 400px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+}
+
+.outcome {
+  width: 400px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  font-size: 18px;
+  color: red;
+}
+
+.center-button a {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.scoreList {
+  font-size: 20px;
+  border-bottom: 1px solid #000000;
+  line-height: 40px;
+  margin-right: 25px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.bestList
+
+.scoreList li {
+
 }
 
 #startGameButton{
-  font-family: 'Cherry Swash', cursive;
-  font-weight: 400;
-  color: rgb(20, 166, 0);
-  padding-bottom: 10px;
-  display: block;
-  &:hover{
-    background:none;
-  }
+  margin-top: 20px;
+}
+
+.back {
+  margin-top: 40px;
+}
+
+#leader {
+  background: #000000;
+  margin-top: 0;
+
+}
+#leader h3 {
+  font-size: 28px;
+  line-height: 40px;
+  margin-top: 0;
+  color: #fff;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .tile {
