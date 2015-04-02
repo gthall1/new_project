@@ -1,24 +1,36 @@
-<p id="notice"><%= notice %></p>
-<h2><%= @jackpot.name %></h2>
-<h3><%= @message %></h3>
-<h4>Prize: <%= @jackpot.prize %></h4>
-<h4><%= ((@jackpot.user_entries.size.to_f/@jackpot.max_entries.to_f) * 100).to_i%>% Full.</h4>
+<div class="instructions">
+	<p id="notice"><%= notice %></p>
+	<!-- <h2><%= @jackpot.name %></h2> -->
+	<h3><%= @message %></h3>
+	<h4 class="prize">Prize: <%= @jackpot.prize %></h4>
 
-<% if @jackpot.open && current_user && signed_in? && current_user.credits &&current_user.credits  > 0 && @jackpot.user_entries.size <  @jackpot.max_entries %>
-	<form id="deposit_form" action="/deposit">
-		It's not too late! You may still enter this drawing! You have <%= @jackpot.user_entries.where(user_id: 1).size %> entries already in this pot. You currently have <%= current_user.credits %> to deposit.
-		<%= number_field_tag 'credits', nil, in: 1..current_user.credits %>
-		<%= hidden_field_tag 'id', @jackpot.id %>
-		<input type="submit" value="Deposit" class="btn btn-outlined btn-theme btn-sm">
-	</form>
-<% elsif current_user && !current_user.credits %>
-	You currently have 0 credits.  This is not enough to enter this pot.
-<% elsif current_user && signed_in? %>
-	We're sorry! We are no longer taking entries into this drawing.
-<% else %>
-	You must sign in to deposit credits!
-<% end %>
-<% if current_user && current_user.admin %>
-	<%= link_to 'Edit', edit_jackpot_path(@jackpot) %> |
-	<%= link_to 'Back', jackpots_path %>
-<% end %>
+
+	<% if @jackpot.open && current_user && signed_in? && current_user.credits &&current_user.credits  > 0 && @jackpot.user_entries.size <  @jackpot.max_entries %>
+		<form id="deposit_form" action="/deposit">
+			 <span class="depositCredits">Available credits to deposit:  <%= current_user.credits %></span>
+			<div class="putEmIn">
+				<div id="depositTheCredits" style="display:inline;float:right;">
+				 <input type="submit" value="Deposit Credits " class="btn btn-outlined btn-theme btn-lg depositCreditsButton">
+				</div>
+				<div id="creditsField" style="display:inline;float:left;">
+					<%= number_field_tag 'credits', nil, placeholder: '# of credits to deposit', in: 1..current_user.credits %>
+					<%= hidden_field_tag 'id', @jackpot.id %>
+				</div>
+			</div>
+
+		</form>
+		<div class="moneyJar"></div>
+		<h4 class="prize"><%= ((@jackpot.user_entries.size.to_f/@jackpot.max_entries.to_f) * 100).to_i%>% Full.</h4>
+		<p class="depositCredits">You have <%= @jackpot.user_entries.where(user_id: 1).size %> credits in this pot.</p>
+	<% elsif current_user && !current_user.credits %>
+		You currently have 0 credits.  Earn more credits by playing games.
+	<% elsif current_user && signed_in? %>
+		We're sorry! We are no longer taking entries into this drawing.
+	<% else %>
+		You must sign in to deposit credits!
+	<% end %>
+	<% if current_user && current_user.admin %>
+		<%= link_to 'Edit', edit_jackpot_path(@jackpot) %> |
+		<%= link_to 'Back', jackpots_path %>
+	<% end %>
+</div>

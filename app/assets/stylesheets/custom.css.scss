@@ -61,6 +61,14 @@ p {
   line-height: 1.7em;
 }
 
+/*deposit*/
+
+.prize {
+  font-size: 36px;
+  margin-bottom: 30px;
+}
+
+
 
 /* header */
 
@@ -79,6 +87,12 @@ p {
     color: white;
     text-decoration: none;
   }
+}
+
+.navbar-inverse #logo:hover,
+.navbar-inverse #logo:focus {
+  background-color: transparent;
+  color: #999999;
 }
 
 /* navbar */
@@ -159,6 +173,12 @@ aside {
       margin-top: 0px;
     }
   }
+}
+
+.putEmIn {
+  height: 100px;
+  width: 400px;
+  margin-top: 30px;
 }
 
 .gameTitle {
@@ -592,7 +612,8 @@ li.navbar-links:hover {
 }
 
 #credits {
-  padding-top: 20px;
+  padding-top: 17px;
+
 }
 
 #normal-links {
@@ -719,6 +740,24 @@ h1.arrow { font-size: 55px;
     border-color: #FFFFFF;
 }
 
+.depositCredits {
+  color: red;
+  font-size: 18px;
+}
 
+.depositCreditsButton {
+
+}
+
+#creditsField {
+  display: inline;
+  float: left;
+  width: 180px;
+  margin-left: 0px;
+}
+
+#depositTheCredits {
+
+}
 
 
