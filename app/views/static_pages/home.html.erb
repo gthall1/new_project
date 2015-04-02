@@ -1,18 +1,24 @@
 <% if signed_in? %>
 <div class="container">
   <div class="row">
-    <div style="width:400px;display:inline;float:left;">
-      Play a game!
+    <div style="width:450px;display:inline;float:left;">
+      <p>Play a game!</p>
+
+      <div class="heliHome"></div>
+
+      <div class="memoryHome"></div>
       <br />
       <% @games.each do | g | %>
         <%= link_to "Play #{g.name}", g %> <br/>
       <% end %>
     </div>
-    <div style="width:400px;display:inline;float:right;" >
-      Prize: <%= @current_jackpot.prize %><br/>
-      Jackpot Entries: <%= (@current_jackpot.user_entries.size/@current_jackpot.max_entries) *100 %>%<br/>
+    <div style="width:450px;display:inline;float:right;" >
+      <p class="prizeHome">Prize: <%= @current_jackpot.prize %></p><br/>
+      <p class="prizeHome"><%= (@current_jackpot.user_entries.size/@current_jackpot.max_entries) *100 %>% full</p><br/>
 
-      <%= link_to 'Deposit Credits', jackpot_path(@current_jackpot) %>
+      <div class="moneyPot"></div>
+
+      <%= link_to 'Deposit Credits', jackpot_path(@current_jackpot), class: "btn btn-outlined btn-white btn-lg back" %>
     </div>
   </div>
 </div>

@@ -66,6 +66,18 @@ p {
 .prize {
   font-size: 36px;
   margin-bottom: 30px;
+  line-height: 44px;
+}
+
+.prizeHome {
+  font-size: 44px;
+  margin-bottom: 20px;
+  line-height: 44px;
+}
+
+#percentHome {
+  font-size: 36px;
+
 }
 
 
@@ -614,6 +626,29 @@ li.navbar-links:hover {
 #credits {
   padding-top: 17px;
 
+}
+
+/*homepage logged in */
+
+#homeInLeft {
+
+}
+
+#homeInRight {
+
+}
+
+.heliHome {
+  height: 300px;
+  width: 300px;
+  background-color: #000000;
+
+}
+
+.memoryHome {
+  height: 300px;
+  width: 300px;
+  background-color: #000000;
 }
 
 #normal-links {
