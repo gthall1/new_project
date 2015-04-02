@@ -640,15 +640,34 @@ li.navbar-links:hover {
 
 .heliHome {
   height: 300px;
-  width: 300px;
+  width: 450px;
   background-color: #000000;
+  background: url(heli_pic.png) no-repeat center center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 60px;
 
 }
 
 .memoryHome {
+  display: table-cell;
+
   height: 300px;
-  width: 300px;
+  width: 450px;
   background-color: #000000;
+  background: url(memory_pic.png) no-repeat center center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
+  vertical-align: middle;
+}
+
+.dull {
+  display: inline-block;
+  background-color: #000000;
+  width: 88%;
+  height: 88%;
+  opacity: .65;
 }
 
 #normal-links {
@@ -807,6 +826,22 @@ h1.arrow { font-size: 55px;
   margin-left: auto;
   margin-right: auto;
 }
+
+/*homepage game div fonts*/
+
+.gameCover {
+  font-size: 36px;
+  color: #fff;
+  padding-top: 70px;
+}
+
+.earnCredits {
+  font-size: 20px;
+  color: red;
+  margin-top: 105px;
+}
+
+
 
 /*body {
   background: url(background_decent.svg) no-repeat center center fixed;

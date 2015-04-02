@@ -2,17 +2,29 @@
 <div class="container">
   <div class="row">
     <div style="width:450px;display:inline;float:left;">
-      <p>Play a game!</p>
 
-      <div class="heliHome"></div>
 
-      <div class="memoryHome"></div>
+      <div class="heliHome">
+
+        <p class="gameCover">Helicopter</p>
+        <br />
+        <p class="earnCredits">earn credits</p>
+
+      </div>
+
+      <div class="memoryHome">
+        <div class="dull">
+        <p class="gameCover">Card Match</p>
+        <br />
+        <p class="earnCredits">earn credits</p>
+        </div>
+      </div>
       <br />
       <% @games.each do | g | %>
         <%= link_to "Play #{g.name}", g %> <br/>
       <% end %>
     </div>
-    <div style="width:450px;display:inline;float:right;" >
+    <div style="width:450px;display:inline;float:right;margin-top:40px" >
       <p class="prizeHome">Prize: <%= @current_jackpot.prize %></p><br/>
       <p class="prizeHome"><%= (@current_jackpot.user_entries.size/@current_jackpot.max_entries) *100 %>% full</p><br/>
 
