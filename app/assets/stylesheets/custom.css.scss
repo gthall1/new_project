@@ -741,7 +741,7 @@ h1.arrow { font-size: 55px;
 }
 
 .depositCredits {
-  color: red;
+  color: black;
   font-size: 18px;
 }
 
@@ -750,14 +750,38 @@ h1.arrow { font-size: 55px;
 }
 
 #creditsField {
-  display: inline;
-  float: left;
   width: 180px;
-  margin-left: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
 }
 
 #depositTheCredits {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
 
 }
 
+/* deposit credits page */
 
+.moneyPot {
+  height: 400px;
+  width: 400px;
+  background: url(jackpot.svg) no-repeat center center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*body {
+  background: url(background_decent.svg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  height: 100%;
+  background-color: #AADDD6;
+  color: #AADDD6;
+  text-align: center;
+  background-position: 0 0; */
