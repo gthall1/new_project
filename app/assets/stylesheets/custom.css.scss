@@ -66,6 +66,18 @@ p {
 .prize {
   font-size: 36px;
   margin-bottom: 30px;
+  line-height: 44px;
+}
+
+.prizeHome {
+  font-size: 44px;
+  margin-bottom: 20px;
+  line-height: 44px;
+}
+
+#percentHome {
+  font-size: 36px;
+
 }
 
 
@@ -616,6 +628,48 @@ li.navbar-links:hover {
 
 }
 
+/*homepage logged in */
+
+#homeInLeft {
+
+}
+
+#homeInRight {
+
+}
+
+.heliHome {
+  height: 300px;
+  width: 450px;
+  background-color: #000000;
+  background: url(heli_pic.png) no-repeat center center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 60px;
+
+}
+
+.memoryHome {
+  display: table-cell;
+
+  height: 300px;
+  width: 450px;
+  background-color: #000000;
+  background: url(memory_pic.png) no-repeat center center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
+  vertical-align: middle;
+}
+
+.dull {
+  display: inline-block;
+  background-color: #000000;
+  width: 88%;
+  height: 88%;
+  opacity: .65;
+}
+
 #normal-links {
   padding-top: 12px;
   color: black;
@@ -741,7 +795,7 @@ h1.arrow { font-size: 55px;
 }
 
 .depositCredits {
-  color: red;
+  color: black;
   font-size: 18px;
 }
 
@@ -750,14 +804,54 @@ h1.arrow { font-size: 55px;
 }
 
 #creditsField {
-  display: inline;
-  float: left;
   width: 180px;
-  margin-left: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
 }
 
 #depositTheCredits {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
 
 }
 
+/* deposit credits page */
 
+.moneyPot {
+  height: 400px;
+  width: 400px;
+  background: url(jackpot.svg) no-repeat center center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*homepage game div fonts*/
+
+.gameCover {
+  font-size: 36px;
+  color: #fff;
+  padding-top: 70px;
+}
+
+.earnCredits {
+  font-size: 20px;
+  color: red;
+  margin-top: 105px;
+}
+
+
+
+/*body {
+  background: url(background_decent.svg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  height: 100%;
+  background-color: #AADDD6;
+  color: #AADDD6;
+  text-align: center;
+  background-position: 0 0; */
