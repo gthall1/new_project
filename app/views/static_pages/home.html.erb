@@ -30,42 +30,20 @@
 
       <div class="moneyPot"></div>
 
-      <%= link_to 'Deposit Credits', jackpot_path(@current_jackpot), class: "btn btn-outlined btn-white btn-lg back" %>
+      <%= link_to 'Deposit Credits', jackpot_path(@current_jackpot), class: "btn btn-outlined btn-white btn-lg" %>
     </div>
   </div>
 </div>
 <% else %>
 
-<body class="landing">
-  <div class="container">
-    <div class="row">
-      <div class="sign-up">
-        <%= render 'users/form'%>
-      </div>
-    </div>
-  </div>
-</body>
+
+
+<div class="sign-up">
+  <%= render 'users/form'%>
+</div>
 
 
 
-
-
-
-
-
-
-    <!-- <section class="hero_2" id="hero">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-8 col-md-offset-2 text-center inner">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6 col-md-offset-3 text-center">
-          </div>
-        </div>
-      </div>
-    </section>  -->
 
 <% end %>
 

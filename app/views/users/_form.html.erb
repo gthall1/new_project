@@ -1,32 +1,43 @@
 <div class="row">
   <div class="span5">
+    <div class="welcomeBox">Welcome</div>
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 
-      <%= f.label :username %>
-      <%= f.text_field :name %>
+      <%= f.label :username, class: "obscure" %>
+      <%= f.text_field :name, placeholder: 'username' %>
 
-      <%= f.label :email %>
-      <%= f.text_field :email %>
+      <%= f.label :email, class: "obscure" %>
+      <%= f.text_field :email, placeholder: 'email' %>
 
-      <%= f.label :zipcode %>
-      <%= f.text_field :zipcode, :maxlength => 5 %>
+      <%= f.label :zipcode, class: "obscure" %>
+      <%= f.text_field :zipcode, placeholder: 'zip code', :maxlength => 5 %>
 
       <%= f.label "Date of birth" %>
       <%= f.date_select :dob,:start_year => 1930,:end_year => Time.now.year, :order => [:month, :day, :year] %>
 
-      <%= f.radio_button :gender, '1' %> 
-      <%= label :gender_male, 'male' %>
-      <%= f.radio_button :gender, '2' %>
-      <%= label :gender_female, 'female' %> 
+      <div class="row">
+        <div class="genderButtonLeft">
+          <%= f.radio_button :gender, '1' %>
+          <%= label :gender_male, 'male' %>
+        </div>
+        <div class="genderButtonRight">
+          <%= f.radio_button :gender, '2' %>
+          <%= label :gender_female, 'female' %>
+        </div>
+      </div>
 
-      <%= f.label :password %>
-      <%= f.password_field :password %>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation %>
 
-      <%= f.submit "Create my account", class: "navbar-links btn btn-outlined btn-theme btn-sm" %>
+      <%= f.label :password, class: "obscure" %>
+      <%= f.password_field :password, placeholder: "password" %>
+
+      <%= f.label :password_confirmation, class: "obscure" %>
+      <%= f.password_field :password_confirmation, placeholder: "confirm password" %>
+
+      <p class="termsOfService">by registering you agree to our <em><b>Privacy Policy</b></em> and <em><b>Terms of Service</b></em></p>
+
+      <%= f.submit "Create my account", class: "btn btn-outlined btn-white btn-lg btn-Create" %>
     <% end %>
   </div>
 </div>

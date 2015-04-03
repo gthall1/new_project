@@ -701,6 +701,11 @@ li.navbar-links:hover {
   padding:8px 20px;
 }
 
+.btn-Create {
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
 .btn-outlined {
     border-radius: 89;
     -webkit-transition: all 0.3s;
@@ -744,7 +749,6 @@ li.navbar-links:hover {
   background: #7B80A2;
   border: 1px solid #979797;
   width: 400px;
-  height: 600px;
   margin-left: 650px;
 }
 
@@ -841,6 +845,69 @@ h1.arrow { font-size: 55px;
   margin-top: 105px;
 }
 
+/*sign up*/
+
+.span5 {
+  padding-left: 10px;
+}
+
+#user_name, #user_email, #user_zipcode, #user_password, #user_password_confirmation {
+  width: 250px;
+  margin: 10px;
+  font-size: 24px;
+  line-height: 35px;
+}
+
+#user_dob_2i {
+  width: 105px;
+}
+
+#user_dob_3i {
+  width: 55px;
+}
+
+#user_dob_1i {
+  width: 80px;
+}
+
+.obscure {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+.genderButtonLeft {
+  width: 100px;
+  display: inline;
+  float: left;
+  margin-left: 110px;
+}
+
+.genderButtonRight {
+  width: 100px;
+  display: inline;
+  float: right;
+  margin-right: 80px;
+}
+
+.termsOfService {
+  font-size: 10px;
+  color: #3A4172;
+}
+
+.welcomeBox {
+  background: #3A4172;
+  border: 1px solid #979797;
+  color: #fff;
+  height: 70px;
+  width: 200px;
+  line-height: 65px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-size: 32px;
+}
 
 
 /*body {
