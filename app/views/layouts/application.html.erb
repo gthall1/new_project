@@ -11,6 +11,9 @@
   </head>
   <body>
     <%= render 'layouts/header' %>
+    <div class="container-fluid" style="margin-bottom:30px">
+      <span class="subLogo">Play Games. Earn Credits. Win the Jackpot.</span>
+    </div>
     <div class="container">
       <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>"><%= value %></div>

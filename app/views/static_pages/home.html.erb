@@ -30,15 +30,18 @@
 
       <div class="moneyPot"></div>
 
-      <%= link_to 'Deposit Credits', jackpot_path(@current_jackpot), class: "btn btn-outlined btn-white btn-lg" %>
+      <!-- button below pot
+
+        <%= link_to 'Deposit Credits', jackpot_path(@current_jackpot), class: "btn btn-outlined btn-white btn-lg" %>
+
+      -->
+
     </div>
   </div>
 </div>
 <% else %>
 
 
-
-<span class="subLogo">Play Games. Earn Credits. Win the Jackpot.</span>
 <div class="sign-up">
   <%= render 'users/form'%>
 </div>
