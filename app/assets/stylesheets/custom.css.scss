@@ -763,6 +763,20 @@ padding-bottom: 30px;
 padding-left: 30px;
 }
 
+.whiteHIW {
+  background-color: #fff;
+  opacity: .85;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+p.HIWfont {
+  padding-top: 25px;
+  margin-bottom: 40px;
+  font-size: 16px;
+  line-height: 24px;
+}
+
 p.faq {
   font-size: 40px;
   padding: 20px;
@@ -785,6 +799,15 @@ h1.arrow { font-size: 55px;
   padding-bottom: 30px;
   font-weight: bold;
 }
+
+h1.arrow2 { font-size: 55px;
+  text-transform: uppercase;
+  color: #315565;
+  letter-spacing: 1px;
+  padding-bottom: 30px;
+  font-weight: bold;
+}
+
 
 .btn-outlined.btn-white {
     background: none;

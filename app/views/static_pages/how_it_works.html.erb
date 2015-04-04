@@ -1,13 +1,24 @@
 <% provide(:title, 'How it works') %>
-<div class="containter blue">
-  <h1 class="arrow">How it works</h1>
+<div class="containter whiteHIW">
+  <h1 class="arrow2">How it works</h1>
+  <div class="row">
+    <div class="span4">
+      <%= image_tag "play_games.png" %>
+      <p class="HIWfont">Play games to earn credits</p>
+    </div>
+    <div class="span4">
+      <%= image_tag "deposit_credits.png" %>
+      <p class="HIWfont">Deposit your credits into the pot. It's just like having your "name in a hat". The more credits you have in the pot, the more chances you have to win!</p>
+    </div>
+    <div class="span4">
+      <%= image_tag "win_money.png" %>
+      <p class="HIWfont">When the pot is full we randomly draw one credit from the pot and the luckee winner gets the prize</p>
+    </div>
+  </div>
 
 
-  <p class="faq">Q: Well how does it work?</p>
-  <p class="answer">hell if i know</p>
+    </br>
 
+    <%= link_to 'Home', root_path, class: "btn btn-outlined btn-theme btn-theme btn-lg" %>
 
-  </br>
-
-  <%= link_to 'Home', root_path, class: "btn btn-outlined btn-theme btn-white btn-lg" %>
 </div>
