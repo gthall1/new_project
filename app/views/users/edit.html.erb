@@ -1,36 +1,45 @@
 <% provide(:title, "Edit user") %>
 <h1>Update your information</h1>
 
-<div class="row">
-  <div class="span6 offset3">
-    <%= form_for(@user) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
+<div class="edit-user">
+  <div class="row">
+    <div class="span5">
+      <%= form_for(@user) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
 
-      <%= f.label :name, "Username" %>
-      <%= f.text_field :name %>
+        <%= f.label :name, "Username" %>
+        <%= f.text_field :name %>
 
-      <%= f.label :email %>
-      <%= f.text_field :email %>
+        <%= f.label :email %>
+        <%= f.text_field :email %>
 
-      <%= f.label :zipcode %>
-      <%= f.text_field :zipcode, :maxlength => 5 %>
+        <%= f.label :zipcode %>
+        <%= f.text_field :zipcode, :maxlength => 5 %>
 
-      <%= f.label "Date of birth" %>
-      <%= f.date_select :dob,:start_year => 1930,:end_year => Time.now.year, :order => [:month, :day, :year] %>
+        <%= f.label "Date of birth" %>
+        <%= f.date_select :dob,:start_year => 1930,:end_year => Time.now.year, :order => [:month, :day, :year] %>
 
-      <%= f.radio_button :gender, '1' %> 
-      <%= label :gender_male, 'male' %>
-      <%= f.radio_button :gender, '2' %>
-      <%= label :gender_female, 'female' %> 
+        <div class="row">
+          <div class="genderButtonLeft">
+            <%= f.radio_button :gender, '1' %>
+            <%= label :gender_male, 'male' %>
+          </div>
+          <div class="genderButtonRight">
+            <%= f.radio_button :gender, '2' %>
+            <%= label :gender_female, 'female' %>
+          </div>
+        </div>
 
-      <%= f.label :password %>
-      <%= f.password_field :password %>
 
-      <%= f.label :password_confirmation, "Confirm Password" %>
-      <%= f.password_field :password_confirmation %>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
 
-      <%= f.submit "Save changes", class: "btn btn-outlined btn-theme btn-sm" %>
-    <% end %>
+        <%= f.label :password_confirmation, "Confirm Password" %>
+        <%= f.password_field :password_confirmation %>
 
+        <%= f.submit "Save changes", class: "btn btn-outlined btn-white btn-lg btn-Create" %>
+      <% end %>
+
+    </div>
   </div>
 </div>
