@@ -9,7 +9,7 @@
 
 
 	<% if @jackpot.open && current_user && signed_in? && current_user.credits &&current_user.credits  > 0 && @jackpot.user_entries.size <  @jackpot.max_entries %>
-		<p class="depositCredits">You have <font color="red"><%= @jackpot.user_entries.where(user_id: 1).size %></font> credits in this pot.</p>
+		<p class="depositCredits">You have <font color="red"><%= @jackpot.user_entries.where(user_id: current_user.id).size %></font> credits in this pot.</p>
 		<form id="deposit_form" action="/deposit">
 			 <span class="depositCredits">Available credits to deposit:  <font color="red"><%= current_user.credits %></font></span>
 
