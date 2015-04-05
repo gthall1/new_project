@@ -26,6 +26,7 @@
 		</div>
 
 	<% elsif current_user && !current_user.credits || current_user.credits == 0 %>
+		<p class="depositCredits">You have <font color="red"><%= @jackpot.user_entries.where(user_id: current_user.id).size %></font> credits in this pot.</p></br>
 		You currently have 0 credits.  Earn more credits by playing games.
 	<% elsif current_user && signed_in? %>
 		We're sorry! We are no longer taking entries into this drawing.
