@@ -88,6 +88,7 @@ p {
   float: left;
   margin-right: 10px;
   font-size: 54px;
+  font-family: Capriola;
   color: white;
   text-transform: uppercase;
   letter-spacing: -1px;
@@ -451,7 +452,7 @@ a:hover {
 html,
 body {
 /*css for full size background image*/
-  background: url(background_decent.svg) no-repeat center center fixed;
+  background: url(background_adjusted.svg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -854,6 +855,18 @@ h1.arrow2 { font-size: 55px;
   margin-left: auto;
   margin-right: auto;
 }
+
+/*logo
+.logoIcon {
+  height: 60px;
+  width: 52px;
+  background: url(homelogo.png) no-repeat center center;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+*/
 
 /*homepage game div fonts*/
 
