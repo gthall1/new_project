@@ -5,6 +5,11 @@
       <h1>
         <%= @user.name %>
       </h1>
+      <ul>
+      	<li>Name: <%= @user.name %></li>
+      	<li>Credits on hand: <%= @user.credits %></li>
+      	<li>Credits used: <%= @user.user_entries.size %></li>
+      </ul>
     </section>
   </aside>
 </div>

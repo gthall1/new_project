@@ -1,7 +1,8 @@
 <li>
-  <%= link_to user.name, user %>
+  <%= link_to user.name, user %> | Credits on hand : <%= user.credits ||=0 %> | Credits Deposited: <%= user.user_entries.size ||= 0 %>
   <% if current_user.admin? && !current_user?(user) %>
-    | <%= link_to "delete", user, method: :delete,
-                                  data: { confirm: "You sure?" } %>
+
+    <% if false %><%= link_to "delete", user, method: :delete,
+                                  data: { confirm: "You sure?" } %> <% end %>
   <% end %>
 </li>
