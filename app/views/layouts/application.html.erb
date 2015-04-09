@@ -24,6 +24,7 @@
       <%= debug(params) if Rails.env.development? %>
     </div>
 
+<% if Rails.env.production? %>
     <!-- google analytics -->
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -35,6 +36,6 @@
       ga('send', 'pageview');
 
     </script>
-
+<% end %>
   </body>
 </html>
