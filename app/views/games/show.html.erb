@@ -53,6 +53,7 @@
 
 	<div class="outcome"></div>
   <div class="instructions"><p>Click anywhere in the game to start.</br>Hold the mouse button down to rise, let go to fall.</br>Every 100 points earns 1 credit!</p>
+  </br><p style="color:red">If game not working in your browser, try 'cmd + shift + R'</p>
   </div>
 	<div id="game">
     <div id="jscopter-container" class="clearfix" style="display:inline;float:left;"></div>
@@ -72,10 +73,12 @@
       <% end %>
     </div>
     <div id="topScoreHeli" style="display:inline;float:left;">
-      <p id="currentscorecontainer">
-        current score:
-        <strong id="currentscore">0</strong>
-      </p>
+      <!-- tried recreating score here, couldn't get it working
+        <p id="currentscorecontainer">
+          current score:
+          <strong id="currentscore">0</strong>
+        </p>
+      -->
       <span class="scorebox"> <% if @current_high_score %> Your High score: <span class="highscore"><%= @current_high_score %></span><% else %> You have no high score yet!<% end %></span>
     </div>
     <div id="topScoreClear" style="display:inline;float:left;"></div>
