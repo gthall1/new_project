@@ -259,6 +259,7 @@ $(document).ready(function() {
 		.done(function( data ) {
 			advertisers = data.advertisers;
 			initTiles();
+			matchcount = 0;
 		});
 		setTimeout("revealTiles(function() { onPeekStart(); })",iInterval);
 

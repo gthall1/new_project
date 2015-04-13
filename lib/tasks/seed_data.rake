@@ -32,3 +32,18 @@ task :seed_data => :environment do |t,args|
 	jackpot.max_entries = 500
 	jackpot.save
 end
+#stock names
+# burgess_j
+# coder19
+# mattie_ice
+# xfit4life
+# bball1818
+# hammond9
+# lawler
+# bigoak1
+# overthehill
+# nattychamps13
+# patsfan87
+# task :seed_new_jackpot => :environment do |t,args|
+# 	10.times do | i 
+# end
