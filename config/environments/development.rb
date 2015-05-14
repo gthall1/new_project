@@ -5,9 +5,13 @@ Alotto::Application.configure do
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
-
+  config.log_level = :debug
   # Do not eager load code on boot.
   config.eager_load = false
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.asset_host = 'http://localhost:3000'
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true

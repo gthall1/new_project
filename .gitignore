@@ -20,3 +20,4 @@ doc/
 .rvmrc
 .ruby-*
 .secret
+config/local_env.yml
