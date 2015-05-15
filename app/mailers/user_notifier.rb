@@ -5,7 +5,7 @@ class UserNotifier < ActionMailer::Base
   def send_credit_reminder(args)
   	@user = User.where(id:args[:user_id]).first
 
-  	if @user.credits > 0
+  	if @user && !@user.credits.blank? && @user.credits > 0
   		@head_message = "You have #{@user.credits} credits ready for deposit! Make sure to deposit all of your credits to increase your chances of winning the grand prize of #{Jackpot.where(open:true).last.prize}!"
 	    mail( :to => @user.email,
 	    :reply_to => 'griffhall1@gmail.com',
@@ -14,3 +14,4 @@ class UserNotifier < ActionMailer::Base
 	end
   end
 end
+
