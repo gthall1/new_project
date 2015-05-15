@@ -2,9 +2,9 @@
                       <table bgcolor="#FFFFFF"  border="0" cellpadding="0" cellspacing="0" width="500" id="emailBody">
 
 
-              <%= render partial: "header_module_row", locals: { heading: "Jackpot Ending Soon", sub_heading:"Our jackpot is coming to a close!",heading_message: "Make sure to deposit all of your credits to increase your chances of winning the grand prize!" } %>
+              <%= render partial: "header_module_row", locals: { heading: "Jackpot Ending Soon", sub_heading:"Our jackpot is coming to a close!",heading_message: @head_message } %>
 
-              <%= render partial: "two_col_module_row", locals: {left_col_heading: "Earn more credits!", left_col_text:  "As you play games on GetLuckee you earn credits that you can deposit into our jackpot for a chance to win great prizes!",right_col_heading: "Don't Forget!", right_col_text:  "Time is running out! Make sure you have deposited all of your earned credits into the pot!" } %>
+              <%= render partial: "two_col_module_row", locals: {left_col_heading: "Earn more credits!", left_col_text:  "As you play games on GetLuckee you earn credits that you can deposit into our jackpot for a chance to win great prizes!",right_col_heading: "Don't Forget!", right_col_text:  "Time is running out! Make sure you have deposited all of your earned credits into the pot!  You earned them! Why not use them?" } %>
 
               <%= render partial: "cta_module_row", locals: {cta_text: "Deposit Credits" } %>
             
