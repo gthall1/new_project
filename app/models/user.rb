@@ -8,10 +8,27 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
-                    uniqueness: { case_sensitive: false }
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
   has_secure_password
-  validates :password, length: { minimum: 6 }
+  validates :password, length: { minimum: 6 } ,:if => '!password.nil?'
+
+  def self.omniauth(auth)
+    where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
+      user.provider = auth.provider
+      user.name = auth.info.name
+      user.uid = auth.uid
+      user.oath_name = auth.info.namea
+      pass = SecureRandom.urlsafe_base64
+      user.password = pass
+      user.password_confirmation = pass
+      user.email = auth.info.email
+      user.gender = auth.extra.raw_info.gender == "male" ? 1 : auth.extra.raw_info.gender == "female" ? 2 : nil
+      user.oath_image = auth.info.image
+      user.oath_token = auth.credentials.token
+      user.oath_expires_at = Time.at(auth.credentials.expires_at)
+      user.save!
+    end
+  end
 
   def User.new_remember_token
     SecureRandom.urlsafe_base64

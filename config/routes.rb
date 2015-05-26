@@ -23,5 +23,5 @@ Alotto::Application.routes.draw do
   match '/get_advertiser_logo', to: 'games#get_advertiser_logo', via: 'get'
   match '/current_jackpot', to:'jackpots#current_jackpot', via: 'get'
   match '/deposit',  to: 'jackpots#show',         via: 'get'
-
+  get 'auth/:provider/callback', to: 'sessions#create_from_facebook'
 end

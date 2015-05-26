@@ -1,6 +1,10 @@
 <div class="row">
   <div class="span5">
     <div class="welcomeBox">Welcome</div>
+  <%= link_to "/auth/facebook" do %>
+    <% image_tag "facebook_sign_in.png", :width => "250px" %>
+  <% end %>
+    <br/> Or
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 
