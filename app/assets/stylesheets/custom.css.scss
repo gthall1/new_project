@@ -968,12 +968,28 @@ h1.arrow2 { font-size: 55px;
     font-size:40px;
     position:relative;
     border-bottom: 1px solid #000;
-    .cost{
+    .cost {
       position:absolute;
       right:0px;
       color:red;
     }
+    .pressButton {
+      position: absolute;
+      left: 0px;
+      margin-top: 0px;
+      color: #ffffff;
+      border-color: #ffffff;
+    }
   }
+}
+
+.redeemHeading {
+  font-size: 28px;
+}
+
+.redeemCredits {
+  font-size: 18px;
+  color: red;
 }
 
 /*body {
