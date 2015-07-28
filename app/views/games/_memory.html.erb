@@ -19,6 +19,7 @@
           <ul>
           <% @top_scores.each do |t| %>
             <%
+              next if User.where(id:t.user_id).empty?
               score = t.score
               score = Time.at(t.score).utc.strftime("%M:%S") if @game.name == "Memory Game"
             %>

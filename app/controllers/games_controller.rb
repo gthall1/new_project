@@ -16,6 +16,17 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.json
   def show
+    case @game.name
+      when "Memory Game"
+        @top_scores = UserGameSession.where(game_id:@game.id).where.not(score:nil).order("score asc").limit(10)
+      when "Helicopter"
+        @top_scores = UserGameSession.where(game_id:@game.id).where.not(score:nil).order("score desc").limit(10)
+    end
+
+    @current_high_score = UserGameSession.where(user_id:current_user.id,game_id:@game.id).where.not(score: nil).order("score desc").first.score if UserGameSession.where(user_id:current_user.id,game_id:@game.id).where.not(score: nil).order("score desc").present?
+    @current_high_score = Time.at(@current_high_score).utc.strftime("%M:%S") if @current_high_score && @game.name == "Memory Game"
+
+
      render "games/show_mobile" if is_mobile?
   end
   
