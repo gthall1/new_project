@@ -107,6 +107,7 @@ p {
 .subLogo {
   float: left;
   font-size: 16px;
+  padding-left: 60px;
   color: #fff;
 }
 
@@ -637,10 +638,12 @@ li.navbar-links:hover {
 }
 
 .heliHome {
-  height: 300px;
-  width: 450px;
+  height: 400px;
+  width: 750px;
   background-color: #000000;
   background: url(heli_pic.png) no-repeat center center;
+  background-size: cover;
+  margin-top: 30px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 60px;
@@ -648,12 +651,13 @@ li.navbar-links:hover {
 }
 
 .memoryHome {
-  display: table-cell;
 
-  height: 300px;
-  width: 450px;
+
+  height: 400px;
+  width: 750px;
   background-color: #000000;
   background: url(memory_pic.png) no-repeat center center;
+  background-size: cover;
   margin-left: auto;
   margin-right: auto;
   margin-top: 25px;
@@ -782,6 +786,8 @@ p.HIWfont {
   margin-bottom: 40px;
   font-size: 16px;
   line-height: 24px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 p.faq {
@@ -885,7 +891,7 @@ h1.arrow2 { font-size: 55px;
 .earnCredits {
   font-size: 20px;
   color: red;
-  margin-top: 105px;
+  margin-top: 45px;
 }
 
 /*sign up*/
