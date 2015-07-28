@@ -32,6 +32,19 @@ textarea {
   width:95%;
   margin:auto;
 }
+.sign-in{
+  font-weight: bold;
+  border: 1px solid #6f5499;
+  border-radius: 5px;
+  padding: 5px;
+  width: 250px;
+  margin: auto;
+  margin-bottom: 10px;
+  a,a:visited,a:hover{
+    color: #6f5499;
+    font-size: 18px;
+  }
+}
 .cash-out{
   ul{
     padding:0px;

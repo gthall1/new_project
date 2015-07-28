@@ -1,6 +1,10 @@
 class SessionsController < ApplicationController
+  include ApplicationHelper
+  
+  layout :determine_layout
 
   def new
+    render "sessions/new_mobile" if is_mobile?
   end
 
   def create

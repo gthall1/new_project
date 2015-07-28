@@ -1,8 +1,11 @@
 <div class='mobile-form'>
     <div class="welcome-box-m">Play Games. <br /> Earn Cash.</div>
-  <%= link_to "/auth/facebook" do %>
-    <% image_tag "facebook_sign_in.png", :width => "250px" %>
-  <% end %>
+    <div class='sign-in'>
+       <%= link_to "Sign in", signin_path %>
+    </div>
+    <%= link_to "/auth/facebook" do %>
+      <% image_tag "facebook_sign_in.png", :width => "250px" %>
+    <% end %>
     <br/>  <br/> OR <br/> <br/>
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
