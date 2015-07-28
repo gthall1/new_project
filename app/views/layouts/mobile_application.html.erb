@@ -45,7 +45,9 @@
         -->
     </head>
     <body ondragstart="return false;" ondrop="return false;" >
+        <% if signed_in? %>
         <nav class="nav ssm-nav-visible">
+            <h2>Swipe to close this menu.</h2>
             <div class='side-nav-top'>
                 <% if signed_in? %>
                     <% if !current_user.oath_image.blank? %>
@@ -68,6 +70,7 @@
 
         <div class="ssm-overlay"></div>
    
+        <% end %>
 
         <div class='mobile-container' style="width:100%;">
             <div class='mobile-header'>
@@ -92,6 +95,7 @@
             </script>
 
         <% end %>
+
          <% if Rails.env.production? %>
             <!-- google analytics -->
             <script>
