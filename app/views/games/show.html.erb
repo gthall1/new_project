@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p class="gameTitle">
+  <%= @game.name %>
+</p>
+  <% case @game.name %>
+    <% when 'test' %>
+      <h2 class="outcome">Click to play! 1/5 wins a credit!</h2>
+      <div class="ad-space">
+        A partner image will show here sometimes!
+      </div>
+      <button class="play">Click here!</button>
+      <%= javascript_include_tag "game" %>
+    <% when 'Memory Game' %>
+      <%= render 'memory' %>
+    <% when 'Helicopter' %>
+      <%= render 'helicopter' %>      
+    <% when 'Sorcerer Game' %>
+      <%= render 'sorcerer_m' %>
+  <% end %>
+<input type="hidden" id="game_token" name="game_token" value="<%= session[:game_token] %>" />
+
+
+
+
+<br />
+<div class="container">
+<%= link_to 'Home', root_path, class: "btn btn-outlined btn-theme btn-lg back" %>
+</div>
+
