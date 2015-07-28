@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @feed_game.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @feed_game.description %>
+</p>
+
+<p>
+  <strong>Thumb 60:</strong>
+  <%= @feed_game.thumb_60 %>
+</p>
+
+<p>
+  <strong>Thumb 120:</strong>
+  <%= @feed_game.thumb_120 %>
+</p>
+
+<p>
+  <strong>Thumb 180:</strong>
+  <%= @feed_game.thumb_180 %>
+</p>
+
+<p>
+  <strong>External link:</strong>
+  <%= @feed_game.external_link %>
+</p>
+
+<p>
+  <strong>Orientation:</strong>
+  <%= @feed_game.orientation %>
+</p>
+
+<p>
+  <strong>Game added:</strong>
+  <%= @feed_game.game_added %>
+</p>
+
+<p>
+  <strong>Aspect ratio:</strong>
+  <%= @feed_game.aspect_ratio %>
+</p>
+
+<%= link_to 'Edit', edit_feed_game_path(@feed_game) %> |
+<%= link_to 'Back', feed_games_path %>

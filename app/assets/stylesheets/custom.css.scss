@@ -40,6 +40,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1;
 }
 
+
 h1 {
   font-size: 3em;
   letter-spacing: -2px;
@@ -70,6 +71,7 @@ p {
 }
 
 .prizeHome {
+  color: #000;
   font-size: 44px;
   margin-bottom: 20px;
   line-height: 44px;
@@ -203,6 +205,10 @@ aside {
 .gameTitle {
   font-size: 60px;
   margin-bottom: 30px;
+  color:#000;
+}
+.outcome,.instructions{
+  color:#000;
 }
 /* MATCHING GAME */
 
@@ -460,7 +466,7 @@ body {
 
   height: 100%;
   background-color: #AADDD6;
-  color: #AADDD6;
+  color: #000;
   text-align: center;
   background-position: 0 0;
 }
@@ -945,7 +951,24 @@ h1.arrow2 { font-size: 55px;
   margin-bottom: 10px;
   font-size: 32px;
 }
-
+.cash-out{
+  ul{
+    padding:0px;
+    margin:0px;
+    list-style-type:none;
+  }
+  li{
+    padding:30px;
+    font-size:40px;
+    position:relative;
+    border-bottom: 1px solid #000;
+    .cost{
+      position:absolute;
+      right:0px;
+      color:red;
+    }
+  }
+}
 
 /*body {
   background: url(background_decent.svg) no-repeat center center fixed;

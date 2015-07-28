@@ -1,0 +1,11 @@
+<div class="game-header mobile-container">
+  <%= link_to "Go Back", games_path %>
+  <div class='game-title'>  <%= @game.name %> </div> 
+</div>
+<div class="game-container">
+
+  <% case @game.name %>
+    <% when 'Sorcerer Game' %>
+      <%= render 'sorcerer_m' %>
+  <% end %>
+</div>

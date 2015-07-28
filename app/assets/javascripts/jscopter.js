@@ -677,7 +677,7 @@ var jsCopter = {
      * Function to call when the game has come to an end
      */
     endGame: function() {
-
+        console.log('hey')
         // condition : if the current score is higher than the top score, set it
         // if (this.scores.current > this.scores.top) {
 
@@ -696,6 +696,7 @@ var jsCopter = {
           data: { token: token, score: this.scores.current }
         })
           .done(function( data ) {
+            console.log(data);
             if(data.status == "success"){
                 if(data.win === true){
                     var credits = $("#credits").data("user-credits");

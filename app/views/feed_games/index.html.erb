@@ -1,0 +1,43 @@
+<h1>Listing feed_games</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Thumb 60</th>
+      <th>Thumb 120</th>
+      <th>Thumb 180</th>
+      <th>External link</th>
+      <th>Orientation</th>
+      <th>Game added</th>
+      <th>Aspect ratio</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @feed_games.each do |feed_game| %>
+      <tr>
+        <td><%= feed_game.name %></td>
+        <td><%= feed_game.description %></td>
+        <td><%= feed_game.thumb_60 %></td>
+        <td><%= feed_game.thumb_120 %></td>
+        <td><%= feed_game.thumb_180 %></td>
+        <td><%= feed_game.external_link %></td>
+        <td><%= feed_game.orientation %></td>
+        <td><%= feed_game.game_added %></td>
+        <td><%= feed_game.aspect_ratio %></td>
+        <td><%= link_to 'Show', feed_game %></td>
+        <td><%= link_to 'Edit', edit_feed_game_path(feed_game) %></td>
+        <td><%= link_to 'Destroy', feed_game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Feed game', new_feed_game_path %>

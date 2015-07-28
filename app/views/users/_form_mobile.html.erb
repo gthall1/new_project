@@ -1,0 +1,24 @@
+<div class='mobile-form'>
+    <div class="welcome-box-m">Play Games. <br /> Earn Cash.</div>
+  <%= link_to "/auth/facebook" do %>
+    <% image_tag "facebook_sign_in.png", :width => "250px" %>
+  <% end %>
+    <br/>  <br/> OR <br/> <br/>
+    <%= form_for(@user) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.text_field :name, placeholder: 'Username' %>
+
+      <%= f.text_field :email, placeholder: 'Email' %>
+
+      <%= f.password_field :password, placeholder: "Password" %>
+
+      <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %>
+      
+      <%= f.submit "Create my account", class: "btn btn-outlined btn-white btn-lg btn-Create" %>
+
+      <p class="termsOfService">by registering you agree to our <em><b>Privacy Policy</b></em> and <em><b>Terms of Service</b></em></p>
+
+    <% end %>
+
+</div>

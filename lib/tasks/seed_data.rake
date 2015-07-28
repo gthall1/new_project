@@ -32,6 +32,51 @@ task :seed_data => :environment do |t,args|
 	jackpot.max_entries = 500
 	jackpot.save
 end
+task :seed_games => :environment do | t, args | 
+  require 'net/http'
+   source = 'http://api.famobi.com/feed/'
+   resp = Net::HTTP.get_response(URI.parse(source))
+   data = resp.body
+   result = JSON.parse(data)
+   a = GameCategory.all
+   a.destroy_all
+   result["categories"].each_with_index do | c,i |
+   	cat = GameCategory.new
+   	cat.id = i+1
+   	cat.name = c
+   	cat.save
+   end
+   b = FeedGame.all
+   b.destroy_all
+   result["games"].each do | g |
+   	game = FeedGame.new
+   	game.name = g["name"]
+   	game.description = g["description"]
+   	game.thumb_60 = g["thumb_60"]
+   	game.thumb_120 = g["thumb_120"]
+   	game.thumb_180 = g["thumb_180"]
+
+   	game.save
+   	g["categories"].each do | c|
+   		gc = GameCategoryRel.new
+   		gc.feed_game_id = game.id
+   		gc.category_id = GameCategory.where(name:c[1])
+   		gc.save
+   	end
+   end
+	# open('image.png', 'wb') do |file|
+	#   file << open('http://example.com/image.png').read
+	# end 
+	  
+end
+
+task :seed_new_games => :environment do | t, args|
+   sorc = Game.new
+   sorc.name = "Sorcerer Game"
+   sorc.image = "sorcerer_1.png"
+   sorc.save
+end
+
 #stock names
 # burgess_j
 # coder19

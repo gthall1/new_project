@@ -1,27 +1,26 @@
-<h1>Listing games</h1>
+<div class="container">
+  <div class="row">
+    <div style="width:450px;display:block;margin:auto;">
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @games.each do |game| %>
-      <tr>
-        <td><%= game.name %></td>
-        <td><%= link_to 'Show', game %></td>
-        <td><%= link_to 'Edit', edit_game_path(game) %></td>
-        <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <%= link_to game_path(Game.where(name:"Helicopter").first.id), style: "text-decoration:none;" do %>
+        <div class="heliHome">
+          <p class="gameCover">Helicopter</p>
+          <br />
+          <p class="earnCredits">earn credits</p>
+        </div>
+      <% end %>
 
-<br>
+    </div>
+    <div style="width:450px;display:block;margin:auto;">
 
-<%= link_to 'New Game', new_game_path %>
+        <%= link_to game_path(Game.where(name:"Memory Game").first.id), style: "text-decoration:none;" do %>
+          <div class="memoryHome">
+            <p class="gameCover">Card Match</p>
+            <br />
+            <p class="earnCredits">earn credits</p>
+          </div>
+        <% end %>
+    </div>
+  </div>
+</div>

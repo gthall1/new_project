@@ -1,0 +1,52 @@
+ <div class="instructions"><p>Click anywhere in the game to start.</br>Hold the mouse button down to rise, let go to fall.</br>Every 100 points earns 1 credit!</p>
+  </br><p style="color:red">If game not working in your browser, try 'cmd + shift + R'</p>
+  </div>
+  <div class="outcome"></div>
+
+  <div id="game">
+    <div id="jscopter-container" class="clearfix" style="display:inline;float:left;"></div>
+    <div id="leaderboardHeli" style="display:inline;float:right;">
+      <% if !@top_scores.blank? %>
+
+        <div id="leader"><h3>Leaderboard</h3></div>
+        <ul>
+        <% @top_scores.each do |t| %>
+          <%
+            score = t.score
+            score = Time.at(t.score).utc.strftime("%M:%S") if @game.name == "Memory Game"
+          %>
+            <li class="scoreList"><%= t.user.name %> - <%= score %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+    <div id="topScoreHeli" style="display:inline;float:left;">
+      <!-- tried recreating score here, couldn't get it working
+        <p id="currentscorecontainer">
+          current score:
+          <strong id="currentscore">0</strong>
+        </p>
+      -->
+      <span class="scorebox"> <% if @current_high_score %> Your High score: <span class="highscore"><%= @current_high_score %></span><% else %> You have no high score yet!<% end %></span>
+    </div>
+    <div id="topScoreClear" style="display:inline;float:left;"></div>
+  </div>
+
+<%= javascript_include_tag "jscopter" %>
+<script type="text/javascript">
+// initialise the copter
+    var options = {
+  copter : {
+            height : 15,
+            width : 30
+        },
+        canvas : {
+            height : 300,
+            width : 500,
+            refreshRate : 20
+        }
+    };
+
+    jsCopter.init("jscopter", "jscopter-container", options);
+
+</script>

@@ -1,0 +1,53 @@
+<%= form_for(@feed_game) do |f| %>
+  <% if @feed_game.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@feed_game.errors.count, "error") %> prohibited this feed_game from being saved:</h2>
+
+      <ul>
+      <% @feed_game.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :thumb_60 %><br>
+    <%= f.text_field :thumb_60 %>
+  </div>
+  <div class="field">
+    <%= f.label :thumb_120 %><br>
+    <%= f.text_field :thumb_120 %>
+  </div>
+  <div class="field">
+    <%= f.label :thumb_180 %><br>
+    <%= f.text_field :thumb_180 %>
+  </div>
+  <div class="field">
+    <%= f.label :external_link %><br>
+    <%= f.text_field :external_link %>
+  </div>
+  <div class="field">
+    <%= f.label :orientation %><br>
+    <%= f.text_field :orientation %>
+  </div>
+  <div class="field">
+    <%= f.label :game_added %><br>
+    <%= f.datetime_select :game_added %>
+  </div>
+  <div class="field">
+    <%= f.label :aspect_ratio %><br>
+    <%= f.text_field :aspect_ratio %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

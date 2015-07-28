@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150331020918) do
+ActiveRecord::Schema.define(version: 20150726161605) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,11 +23,58 @@ ActiveRecord::Schema.define(version: 20150331020918) do
     t.datetime "updated_at"
   end
 
-  create_table "games", force: true do |t|
+  create_table "challenges", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "challenged_user_id"
+    t.integer  "game_id"
+    t.integer  "winner"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "feed_games", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "thumb_60"
+    t.string   "thumb_120"
+    t.string   "thumb_180"
+    t.string   "external_link"
+    t.string   "orientation"
+    t.datetime "game_added"
+    t.decimal  "aspect_ratio"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "game_categories", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "game_category_rels", force: true do |t|
+    t.integer  "feed_game_id"
+    t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "games", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image"
+  end
+
+  create_table "identities", force: true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
   create_table "jackpots", force: true do |t|
     t.string   "name"
@@ -56,6 +103,7 @@ ActiveRecord::Schema.define(version: 20150331020918) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "score"
+    t.integer  "challenge_id"
   end
 
   create_table "users", force: true do |t|
@@ -70,6 +118,16 @@ ActiveRecord::Schema.define(version: 20150331020918) do
     t.date     "dob"
     t.string   "zipcode"
     t.integer  "gender"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "oath_name"
+    t.string   "oath_image"
+    t.string   "oath_token"
+    t.datetime "oath_expires_at"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.integer  "lifetime_credits"
+    t.integer  "pending_credits"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

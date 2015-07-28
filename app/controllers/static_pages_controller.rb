@@ -1,11 +1,18 @@
 class StaticPagesController < ApplicationController
+  include ApplicationHelper
+  
+  layout :determine_layout
 
   def home
-     @games = Game.all
      if !signed_in? 
+      @current_jackpot = Jackpot.where(open: true).first
       @user = User.new
+       if is_mobile?
+        render "static_pages/home_mobile"
+       end      
+     else
+      redirect_to games_path
      end
-     @current_jackpot = Jackpot.where(open: true).first
   end
   
   def faq
@@ -16,4 +23,9 @@ class StaticPagesController < ApplicationController
 
   def contact
   end
+
+  def redeem
+  end
+
+
 end

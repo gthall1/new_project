@@ -1,0 +1,34 @@
+<%= javascript_include_tag "//code.jquery.com/ui/1.9.2/jquery-ui.min.js"%>
+    <%= javascript_include_tag "tile.js"%>
+    <%= javascript_include_tag "jquery.flip.js"%>
+    <%= javascript_include_tag "matching"%>
+
+
+  <div class="instructions"><p>Classic card flip game.</br>Find the matching pairs of cards.</br>Every matching pair earns 1 credit!</p>
+  </br><p style="color:red">If game not working in your browser, try 'cmd + shift + R' or refreshing the page.</p>
+  </div>
+  <a href='#' id="startGameButton" class="btn btn-outlined btn-theme btn-lg">Start New Game</a>
+    <div class="outcome"></div>
+
+    <div id="game">
+      <div id="board" style="display:inline;float:left;"></div>
+      <div id="leaderboard" style="display:inline;float:right;">
+        <% if !@top_scores.blank? %>
+
+          <div id="leader"><h3>Leaderboard</h3></div>
+          <ul>
+          <% @top_scores.each do |t| %>
+            <%
+              score = t.score
+              score = Time.at(t.score).utc.strftime("%M:%S") if @game.name == "Memory Game"
+            %>
+              <li class="scoreList"><%= t.user.name %> - <%= score %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+      <div id="topScore" style="display:inline;float:left;">
+        Current time: <span id="time">00:00</span></br>
+        <span class="scorebox"> <% if @current_high_score %> Your Fastest Time: <span class="highscore"><%= @current_high_score %></span><% else %> You have no high score yet!<% end %></span>
+      </div>
+    </div>

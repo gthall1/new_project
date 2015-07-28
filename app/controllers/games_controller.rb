@@ -1,25 +1,22 @@
 class GamesController < ApplicationController
   before_action :set_game, only: [:show, :edit, :update, :destroy]
+  include ApplicationHelper
+  layout :determine_layout
 
   # GET /games
   # GET /games.json
   def index
     @games = Game.all
+    @current_jackpot = Jackpot.where(open: true).first
+
+    render "games/index_mobile" if is_mobile?
   end
 
+ 
   # GET /games/1
   # GET /games/1.json
   def show
-    case @game.name
-    when "Memory Game"
-      @top_scores = UserGameSession.where(game_id:@game.id).where.not(score:nil).order("score asc").limit(10)
-    when "Helicopter"
-      @top_scores = UserGameSession.where(game_id:@game.id).where.not(score:nil).order("score desc").limit(10)
-    end
-    init_testgame(@game.id) unless @game.name == "Memory Game"
-    @current_high_score = UserGameSession.where(user_id:current_user.id,game_id:@game.id).where.not(score: nil).order("score desc").first.score if UserGameSession.where(user_id:current_user.id,game_id:@game.id).where.not(score: nil).order("score desc").present?
-    @current_high_score = Time.at(@current_high_score).utc.strftime("%M:%S") if @current_high_score && @game.name == "Memory Game"
-
+     render "games/show_mobile" if is_mobile?
   end
   
   def test_game_check
@@ -275,6 +272,34 @@ class GamesController < ApplicationController
     end
   end
 
+  def set_heli
+    game = UserGameSession.new
+    game.token = SecureRandom.urlsafe_base64
+    game.user_id = current_user.id
+    game.game_id = Game.where(name: "Helicopter").first.id
+    game.credits_earned = 0
+    game.active = true
+    game.save
+    if !session[:game_token].nil?
+     old_game = UserGameSession.where(token:session[:game_token]).first
+     #close previous game game
+     if old_game
+      old_game.active = false
+      old_game.save
+     end
+    end 
+    duration = (Time.now.to_i - game.created_at.to_i).to_i
+    if duration > 999.seconds
+      duration = 999.seconds
+    end
+    session[:game_token] = game.token   
+    game_json = {
+      :status => "success",
+      :token => game.token, 
+      :duration => duration
+    }        
+  end
+
   def reset_game
     no_user = false
     if current_user
@@ -316,6 +341,9 @@ class GamesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_game
       @game = Game.find(params[:id])
+      if @game.name == "Helicopter"
+        set_heli
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

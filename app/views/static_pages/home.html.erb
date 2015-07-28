@@ -1,60 +1,12 @@
-<% if signed_in? %>
-<div class="container">
-  <div class="row">
-    <div style="width:450px;display:inline;float:left;">
-
-
-      <%= link_to game_path(2), style: "text-decoration:none;" do %>
-        <div class="heliHome">
-          <p class="gameCover">Helicopter</p>
-          <br />
-          <p class="earnCredits">earn credits</p>
-        </div>
-      <% end %>
-
-      <%= link_to game_path(3) do %>
-        <div class="memoryHome">
-          <div class="dull">
-          <p class="gameCover">Card Match</p>
-          <br />
-          <p class="earnCredits">earn credits</p>
-          </div>
-        </div>
-      <% end %>
-
-
-      <br />
-      <!-- running list of game links
-
-        <% @games.each do | g | %>
-          <%= link_to "Play #{g.name}", g %> <br/>
-        <% end %>
-
-      -->
-
-    </div>
-    <div style="width:450px;display:inline;float:right;margin-top:40px" >
-      <p class="prizeHome">Prize: <%= @current_jackpot.prize %></p><br/>
-      <p class="prizeHome"><%= ((@current_jackpot.user_entries.size.to_f/@current_jackpot.max_entries.to_f) *100).to_i%>% full</p><br/>
-
-      <div class="moneyPot"></div>
-
-      <!-- button below pot
-
-        <%= link_to 'Deposit Credits', jackpot_path(@current_jackpot), class: "btn btn-outlined btn-white btn-lg" %>
-
-      -->
-
-    </div>
-  </div>
-</div>
-<% else %>
 
 
 <div class="sign-up">
-  <%= render 'users/form'%>
+  <% if is_mobile? %>
+    <%= render 'users/form_mobile'%>
+  <% else %>
+    <%= render 'users/form'%>
+  <% end %>
 </div>
 
 
-<% end %>
 
