@@ -19,6 +19,14 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      if session[:referred_user_id] 
+        referral_user = User.where(id:session[:referred_user_id]).first
+        if referral_user
+          referral_user.credits = referral_user.credits + 25
+          referral_user.save
+          session[:referred_user_id] = nil
+        end
+      end
       sign_in @user
       flash[:success] = "Welcome to Luckee!"
       redirect_to(root_url)

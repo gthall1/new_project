@@ -61,6 +61,7 @@
                                 $ Redeem: <%= current_user.credits %> 
                             </li>
                         <% end %>
+                        <li><%= link_to "Surveys", surveys_path %></li>
                         <li> Invite Friends </li>
                     </ul>
                     <%= link_to "Sign out", signout_path, method: "delete" %>

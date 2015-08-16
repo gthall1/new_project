@@ -1,0 +1,35 @@
+<h1>Listing surveys</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Credits</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @surveys.each do |survey| %>
+    <tr>
+      <td><%= survey.name %></td>
+      <td><%= survey.credits%></td>
+      <% if UserSurvey.where(survey_id: survey.id,user_id:current_user.id).present? %>
+      <td>Survey Completed</td>
+      <% else %>
+      <td><%= link_to 'Take Survey', survey %></td>
+      <% end %>
+    </tr>
+    <% if current_user && current_user.admin %>
+      <tr>
+        <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
+        <td><%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Survey', new_survey_path %>

@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :jackpots, through: :user_entries
   belongs_to :jackpot
 
-  before_create :create_remember_token
+  before_create :create_remember_token, :create_referral_code
 
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
@@ -38,9 +38,14 @@ class User < ActiveRecord::Base
     Digest::SHA1.hexdigest(token.to_s)
   end
 
+  def create_referral_code
+    self.referral = SecureRandom.hex(4)
+  end
+
   private
 
     def create_remember_token
       self.remember_token = User.digest(User.new_remember_token)
     end
+
 end

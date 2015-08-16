@@ -15,6 +15,14 @@ class StaticPagesController < ApplicationController
      end
   end
   
+  def home_invite
+    referred_user_id = User.where(referral:params[:referral]).first
+    if referred_user_id
+      session[:referred_user_id] = referred_user_id.id
+    end
+    redirect_to root_path
+  end
+
   def faq
   end
 
