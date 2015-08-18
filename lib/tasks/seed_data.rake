@@ -32,6 +32,14 @@ task :seed_data => :environment do |t,args|
 	jackpot.max_entries = 500
 	jackpot.save
 end
+
+task :add_referal_to_users  => :environment do | t, args |
+   User.all.each do | u |
+      u.create_referral_code
+      u.save
+   end
+end
+
 task :seed_games => :environment do | t, args | 
   require 'net/http'
    source = 'http://api.famobi.com/feed/'

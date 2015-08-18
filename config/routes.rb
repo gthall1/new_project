@@ -19,6 +19,7 @@ Alotto::Application.routes.draw do
   match '/how_it_works', to: 'static_pages#how_it_works', via: 'get'
   match '/about',   to: 'static_pages#about',   via: 'get'
   match '/redeem',   to: 'static_pages#redeem',   via: 'get'
+  match '/refer',   to: 'static_pages#refer',   via: 'get'  
   match '/contact', to: 'static_pages#contact', via: 'get'
   match '/updates', to: 'games#test_game_check', via: 'get'
   match '/user_survey', to: 'surveys#user_survey_save', via: 'patch'

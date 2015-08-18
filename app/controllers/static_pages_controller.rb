@@ -23,6 +23,13 @@ class StaticPagesController < ApplicationController
     redirect_to root_path
   end
 
+  def refer
+    @referal_code = nil
+    if signed_in?
+      @referal_code = current_user.referral
+    end
+  end 
+
   def faq
   end
 

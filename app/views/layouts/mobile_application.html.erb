@@ -83,6 +83,9 @@
                 <%= link_to root_path do %> 
                     <h2>Luckee</h2>
                 <% end %>
+                <div class='referral-link'>
+                    <%= link_to "Refer Friend", refer_path %>
+                </div>
             </div>
           <% flash.each do |key, value| %>
             <div class="alert alert-<%= key %>"><%= value %></div>
