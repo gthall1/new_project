@@ -5,19 +5,22 @@
 
 
   <div style="position: fixed; background-color: transparent; top: 10%; left: 0px; width: 100%; height: 100%"></div>
-  <script>
+  
+  <canvas id="canvas" class='ani_hack' width="1024" height="768"> </canvas>
+
+  <script type='text/javascript'>
       $(document).ready(function(){
+       
        var oMain = new CMain({
           combo_value: 50,  //amount added to the score for each ball exploded in a combo
           extra_score: 100  //amount added to the score when level is completely cleared
-        });
+       });
 
        $(oMain).on("game_start", function(evt) {
 
        });
 
        $(oMain).on("save_score", function(evt,iScore) {
-               //alert("iScore: "+iScore);
        });
 
        $(oMain).on("restart", function(evt) {
@@ -26,7 +29,6 @@
      });
 
   </script>
-  <canvas id="canvas" class='ani_hack' width="1024" height="768"> </canvas>
 
 
 <%= content_for(:game_javascript) do %>

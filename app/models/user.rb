@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   before_save { self.email = email.downcase }
   has_many :user_entries
   has_many :jackpots, through: :user_entries
+  has_many :user_game_sessions
   belongs_to :jackpot
 
   before_create :create_remember_token, :create_referral_code
@@ -28,6 +29,22 @@ class User < ActiveRecord::Base
       user.oath_expires_at = Time.at(auth.credentials.expires_at)
       user.save!
     end
+  end
+
+  def add_credits(args={})
+    credits = args[:credits].to_i 
+    if !self.credits.nil? && self.credits >= 0
+      self.credits += credits
+    else
+      self.credits = credits
+    end
+
+    if !self.lifetime_credits.nil? && self.lifetime_credits >= 0
+      self.lifetime_credits += credits
+    else
+      self.lifetime_credits = credits
+    end
+    self.save
   end
 
   def User.new_remember_token

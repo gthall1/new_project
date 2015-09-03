@@ -61,7 +61,15 @@ function CInterface(){
     };
     
     this.refreshScore = function(iScore){
-        _oScoreText.text = TEXT_SCORE +" "+iScore;
+        
+      var token = $("#game_token").val();
+      $.ajax({
+        type: "GET",
+        url: "/score_update",
+        data: { token: token, score: iScore }
+      });       
+      
+      _oScoreText.text = TEXT_SCORE +" "+iScore; //stock
     };
     
     this._onExit = function(){

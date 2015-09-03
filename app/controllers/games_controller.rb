@@ -21,15 +21,52 @@ class GamesController < ApplicationController
         @top_scores = UserGameSession.where(game_id:@game.id).where.not(score:nil).order("score asc").limit(10)
       when "Helicopter"
         @top_scores = UserGameSession.where(game_id:@game.id).where.not(score:nil).order("score desc").limit(10)
+      when "Sorcerer Game"
+        set_game_token({game_name:@game.name})
     end
 
     @current_high_score = UserGameSession.where(user_id:current_user.id,game_id:@game.id).where.not(score: nil).order("score desc").first.score if UserGameSession.where(user_id:current_user.id,game_id:@game.id).where.not(score: nil).order("score desc").present?
     @current_high_score = Time.at(@current_high_score).utc.strftime("%M:%S") if @current_high_score && @game.name == "Memory Game"
 
 
-     render "games/show_mobile" if is_mobile?
+    render "games/show_mobile" if is_mobile?
   end
   
+  def score_update
+    status='fail'
+    if params[:token] && !params[:token].empty? && params[:score] && !params[:score].empty?
+      status = "success"
+      score = params[:score].to_i
+      game_session = UserGameSession.where(token: params[:token]).first
+      if game_session.active
+        user = game_session.user
+        if game_session.game.name == "Sorcerer Game"
+          credits = (score/1000.to_f).ceil
+        else
+          credits = 100
+        end
+        if user
+          user.add_credits({credits:credits})
+        else
+          status = "error"
+        end
+        game_session.score = score
+        game_session.credits_earned = credits
+        game_session.save
+      else
+
+        status = "closed"
+      end
+    end
+
+    game_json = {
+      :earned => 100,
+      :status => status
+    }
+
+    render json: game_json    
+  end
+
   def test_game_check
     earned_credits = 0
     status = "failed"
@@ -309,6 +346,29 @@ class GamesController < ApplicationController
       :token => game.token, 
       :duration => duration
     }        
+  end
+
+  def set_game_token(args={})
+    p "SETTING GAME TOKEN"
+    game_name = args[:game_name] ||= "Memory Game"
+    if current_user
+      game = UserGameSession.new
+      game.token = SecureRandom.urlsafe_base64
+      game.user_id = current_user.id
+      game.game_id = Game.where(name: game_name).first.id
+      game.credits_earned = 0
+      game.active = true
+      game.save
+      if !session[:game_token].nil?
+       old_game = UserGameSession.where(token:session[:game_token]).first
+       #close previous game game
+       if old_game
+        old_game.active = false
+        old_game.save
+       end
+      end 
+      session[:game_token] = game.token      
+    end       
   end
 
   def reset_game

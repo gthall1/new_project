@@ -24,6 +24,8 @@ Alotto::Application.routes.draw do
   match '/updates', to: 'games#test_game_check', via: 'get'
   match '/user_survey', to: 'surveys#user_survey_save', via: 'patch'
   match '/heliwin', to: 'games#helicopter_check', via: 'get'
+  match '/sorcend', to: 'games#sorcerer_end', via: 'get'
+  match '/score_update', to: 'games#score_update', via: 'get'
   match '/memorywin', to: 'games#memory_check', via: 'get'
   match '/get_advertisers', to: 'games#get_advertisers', via: 'get'
   match '/reset_timer', to: 'games#reset_game', via: 'get'
