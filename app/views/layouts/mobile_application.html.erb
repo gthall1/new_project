@@ -54,17 +54,22 @@
                         <div style='text-align:center;'><%= image_tag(current_user.oath_image) %></div>
                     <% end %>
                     <h2><%= current_user.name %></h2>
-                    <h2> </h2>
+                    <h2 class='lifetime-credits'> <span class='credits'><%= current_user.lifetime_credits ||= 0 %></span> lifetime earning </h2>
                     <ul>
                         <%= link_to redeem_path do %>
                             <li>
-                                $ Redeem: <%= current_user.credits %> 
+                        $ Redeem <span class='redeem'><%= current_user.credits ||= 0%> </span>
+                                
                             </li>
+                            <li> <hr></hr></li>
                         <% end %>
-                        <li><%= link_to "Surveys", surveys_path %></li>
-                        <li> Invite Friends </li>
+                        <li><%= embedded_svg('svgs/icons/gear42.svg', :class => 'settings-icon') %> Settings</li>
+                        <li> <hr></hr></li>
+                        <li><%= embedded_svg('svgs/icons/homework.svg', :class => 'survey-icon') %> <%= link_to "Survey", surveys_path %> <span class='survey-credits'>+100</span></li>
+                        <li> <hr></hr></li>
+                        <li> <%= embedded_svg('svgs/icons/homework.svg', :class => 'survey-icon') %><%= link_to refer_path do %>Invite Friends <% end %></li>
                     </ul>
-                    <%= link_to "Sign out", signout_path, method: "delete" %>
+                    <div style='text-align:center'><%= link_to "Sign out", signout_path, method: "delete" %></div>
                 <% end %>
             </div>
         </nav>
@@ -73,17 +78,27 @@
    
         <% end %>
 
-        <div class='mobile-container' style="width:100%;">
+        <div class='mobile-container <% if !signed_in? %>with-money<% end %>' style="width:100%;">
             <% if signed_in? %>
                 <div class='mobile-header'>
-                    <div class="ssm-open-nav" title="open nav" >
-                         <%= embedded_svg('hamburger.svg', :class => 'mobile-menu') %>
-                    </div>         
-                    <%= link_to root_path do %> 
-                        <h2>Luckee</h2>
+                    <% if @game %>
+                    <%= link_to games_path do %>
+                      <%= embedded_svg('svgs/icons/arrowhead7.svg', :class => 'back-button') %>
+                    <% end %>
+                    <% else %>
+                         <div class="ssm-open-nav" title="open nav" >
+                             <%= embedded_svg('hamburger.svg', :class => 'mobile-menu') %>
+                        </div>                   
+                    <% end %>
+                    <% if @game %>
+                        <h2><%= @game.name %></h2>
+                    <% else %>        
+                        <h2><%= link_to games_path do %>Luckee<% end %></h2>
                     <% end %>
                     <div class='referral-link'>
-                        <%= link_to "Refer Friend", refer_path %>
+                        <%= link_to refer_path do %>
+                          <%= embedded_svg('svgs/icons/share_button.svg', :class => 'refer-link-icon') %>          
+                        <% end %>
                     </div>
                 </div>
             <% else %>

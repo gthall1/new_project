@@ -1,5 +1,6 @@
 class GamesController < ApplicationController
   before_action :set_game, only: [:show, :edit, :update, :destroy]
+  before_filter :check_signed_in
   include ApplicationHelper
   layout :determine_layout
 
@@ -12,6 +13,9 @@ class GamesController < ApplicationController
     render "games/index_mobile" if is_mobile?
   end
 
+  def check_signed_in
+    redirect_to root_path if !signed_in?
+  end
  
   # GET /games/1
   # GET /games/1.json

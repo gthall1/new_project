@@ -35,8 +35,12 @@ textarea {
   position:absolute;
   top:0px;
   min-height:100vh;
-  background: url('/assets/svgs/top_background_wo_dollars.svg') #EAF9FC;
+  background: url('/assets/svgs/mobile_background_wo_dollars.svg') #EAF9FC;
   background-size: cover;
+  &.with-money{
+    background: url('/assets/svgs/mobile_background_w_dollars.svg') #EAF9FC;
+    background-size: cover;
+  }
 }
 .survey-container{
   width:90%;
@@ -167,7 +171,6 @@ textarea {
   height:60px;
   padding:20px;
   font-size:18px;
-  background:#fff;
   .p{
     font-size:16px;
   }
@@ -202,18 +205,68 @@ p {
 }
 
 .mobile-header{
+
+  position:relative;
+  top:-10px;
+  width:100%;
+  display:block;
+  .back-button{
+    width:35px;
+    height:35px;
+    z-index:1;
+    display:inline;
+    top: 6px;
+    left: 10px;
+    position: relative;    
+  }
   h2{
     font-size:30px;
     color:#fff;
     padding:10px;
     padding-bottom:0px;
     margin-bottom:10px;
+    a,a:hover,a:visited{
+      color:#fff;
+      text-decoration:none;
+    }
   }
   a{
 
   }
   height:10%;
-  background:#53DDBE;
+  background:#F2BB7C;
+  .referral-link{
+    position:absolute;
+    right:15px;
+    top:0px;
+    z-index:1;
+    .refer-link-icon{
+      width:50px;
+      height:50px;
+      fill:#fff;
+    }
+  }
+}
+.mobile-header{
+    position: relative;
+    top: 0px;
+    width: 100%;
+    display: block;
+    height: 10%;
+    background: #F2BB7C;
+    min-height: 50px;
+    a{
+      z-index:1;
+      position:relative;
+    }
+    h2{
+      position:absolute;
+      width:100%;
+      z-index:0;
+      margin:auto;
+      text-align:center;
+      top:0px;
+    }
 }
 .sign-up{
   z-index:10;
@@ -293,12 +346,14 @@ p {
 .game-list-container{
   width:90%;
   margin:auto;
+  padding-top:20px;
   .game-image{
     border-radius:10px;
   }
 }
 .game-container{
   min-height:800px;
+  background:#000;
 }
 
 
@@ -307,10 +362,10 @@ p {
 .nav {
     height: 100%;
     width: 280px;
-    background:#53DDBE;
     left: 0;
     top: 0;
-    color:#fff;
+    color:$dark-font;
+    background-color:#FED5AF;
     z-index: 2;
     position: fixed;
     overflow-y: auto;
@@ -320,16 +375,41 @@ p {
       list-style-type:none;
       li{
         background-color:#cecece;
-        color:#000;
+        color:#4A4A4A;
         padding:10px;
-        height:20px;
-        border-bottom:1px solid #000;
+        text-align:center;
+        font-size:18px;
+        a,a:visited{
+          color:$dark-font;
+        }
+        hr{
+          border-bottom:1px solid #4A4A4A;
+          margin:0px;
+          border-top:0px;
+        }
+        .survey-credits,.redeem{
+          color:#D9232B;
+        }
       }
     }
     ul{
       padding-left:0px;
       margin-left:0px;
-    }    
+      border-top: 1px solid $dark-font;
+      border-bottom: 1px solid $dark-font;
+    }
+    h2{
+      color:$dark-font;
+    }
+    .settings-icon{
+      width:20px;
+      height:20px;
+    }
+    .survey-icon{
+      width:20px;
+      height:20px;
+    }
+
 }
 /* overlay layer */
 .ssm-overlay {
@@ -347,6 +427,7 @@ p {
   display: inline;
   position: absolute;
   top: 20px;
+  z-index:1;
   cursor:pointer;
   left: 5%;
 }
