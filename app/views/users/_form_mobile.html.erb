@@ -1,27 +1,36 @@
 <div class='mobile-form'>
-    <div class="welcome-box-m">Play Games. <br /> Earn Cash.</div>
-    <div class='sign-in'>
-       <%= link_to "Sign in", signin_path %>
-    </div>
+    <div class="welcome-box-m">Play Games. Earn Cash.</div>
     <%= link_to "/auth/facebook" do %>
-      <% image_tag "facebook_sign_in.png", :width => "250px" %>
+      <%= embedded_svg('svgs/facebook_button.svg', :class => 'facebook-signup') %>
     <% end %>
-    <br/>  <br/> OR <br/> <br/>
-    <%= form_for(@user) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
+    <span class='small-note'>We do not post anything to facebook.</span>
 
-      <%= f.text_field :name, placeholder: 'Username' %>
+   
+    <div class='form-separator'>
+      <div class='left-separator'></div><div class='or-separator'>or</div><div class='right-separator'></div>
+    </div>
 
-      <%= f.text_field :email, placeholder: 'Email' %>
+    <%= embedded_svg('svgs/email_button.svg', :class => 'email-signup') %>
 
-      <%= f.password_field :password, placeholder: "Password" %>
+    <div class='email-form'>
+      <h2> Register with email </h2>
+      <%= form_for(@user) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
 
-      <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %>
-      
-      <%= f.submit "Create my account", class: "btn btn-outlined btn-white btn-lg btn-Create" %>
+        <%= f.text_field :name, placeholder: 'Username' %>
 
-      <p class="termsOfService">by registering you agree to our <em><b>Privacy Policy</b></em> and <em><b>Terms of Service</b></em></p>
+        <%= f.text_field :email, placeholder: 'Email' %>
 
-    <% end %>
+        <%= f.password_field :password, placeholder: "Password" %>
 
+        <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %>
+        
+        <%= f.submit "Create my account", class: "btn btn-outlined btn-white btn-lg btn-Create" %>
+
+        <p class="termsOfService">by registering you agree to our <em><b>Privacy Policy</b></em> and <em><b>Terms of Service</b></em></p>
+      <% end %>
+    </div>
+      <div class='sign-in'>
+        Already have an account?  <%= link_to "Sign In", signin_path %>
+      </div>
 </div>

@@ -2,6 +2,8 @@
 @import "bootstrap";
 
 $grayMediumLight: #eaeaea;
+$dark-font: #4A4A4A;
+$dark-blue: #10172B;
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -17,7 +19,6 @@ html {
 
 body {
   padding-top: 0px;
-  background:#53DDBE;
 }
 
 section {
@@ -31,6 +32,10 @@ textarea {
 .mobile-container{
   width:95%;
   margin:auto;
+  position:absolute;
+  top:0px;
+  background: url('/assets/svgs/top_background_wo_dollars.svg') #EAF9FC;
+  background-size: cover;
 }
 .survey-container{
   width:90%;
@@ -40,17 +45,29 @@ textarea {
   }
 }
 .sign-in{
-  font-weight: bold;
-  border: 1px solid #6f5499;
-  border-radius: 5px;
+  font-weight: normal;
   padding: 5px;
-  width: 250px;
   margin: auto;
   margin-bottom: 10px;
+  color: #6f5499;
+  font-size: 14px;
   a,a:visited,a:hover{
     color: #6f5499;
-    font-size: 18px;
+    font-weight:bold;
+    text-decoration:none;
+    font-size:18px;
   }
+}
+.facebook-signup{
+  width:90%;
+  margin:auto;
+  display:block;
+}
+.email-signup{
+  width:90%;
+  z-index:10;
+  margin:auto;
+  display:block;
 }
 .cash-out{
   ul{
@@ -67,6 +84,67 @@ textarea {
       position:absolute;
       right:0px;
       color:red;
+    }
+  }
+}
+.mobile-home-footer{
+  width:100%;
+  .footer-links{
+    text-align:center;
+    color:#ABABAB;
+    width:80%;
+    margin:auto;
+    .privacy-link{
+      margin-right:30px;
+    }
+  }
+}
+.home-bottom{
+  position:relative;
+  max-height:500px;
+  z-index:1;
+  .mountain-image{
+    position:relative;
+    top:-177px;
+    max-height:300px;
+    z-index:1;
+    .mountains{
+      width:100%;
+      z-index:1;
+      background:transparent;
+    }  
+  }
+  .trees{
+    position: absolute;
+    top: -311px;
+    width: 100%;
+     z-index:1;
+    .tree-hills{
+      width:100%;
+      z-index:1;
+      background:transparent;
+    }
+  }
+  .bottom-content{
+    z-index:1;
+    background:url('/assets/svgs/bottom_background.svg') $dark-blue;
+    background-size:contain;
+    position:relative;
+    bottom:150px;
+    width:100%;
+    text-align:center;
+    padding-bottom:100px;
+    h2{
+      font-size:30px;
+    }
+    .how-it-works-image{
+      margin-top:20px;
+      height:95px;
+      width:95px;
+    }
+    p{
+      margin-top:15px;
+      color:#fff;
     }
   }
 }
@@ -97,6 +175,7 @@ h1 {
   letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
+  color:#4A4A4A;
 }
 
 h2 {
@@ -128,25 +207,68 @@ p {
   background:#53DDBE;
 }
 .sign-up{
+  z-index:10;
   text-align:center;
   width:95%;
   margin:auto;
+  position:relative;
 }
 .welcome-box-m{
   font-size:16px;
   margin-bottom:20px;
 }
+.form-separator{
+  position:relative;
+  display:block;
+  margin:20px 0px 10px 0px; 
+  .left-separator{
+    width:40%;
+    height:12px;
+    border-bottom:1px solid #CBC5C5;
+    left:15px;
+    top:-3px;
+    position:absolute;
+  }
+  .or-separator{
+    color:#5C5C5C;
+    font-size:24px;
+    position:relative;
+    top:-4px;
+  }
+  .right-separator{
+    width:40%;
+    height:12px;
+    border-bottom:1px solid #CBC5C5;
+    right:15px;
+    top:-3px;
+    position:absolute;
+  }  
+}
+
 .mobile-form{
+  z-index:10;
   form{
     margin:0px;
+    z-index:10;
   }
   width:100%;
   margin:auto;
   input{
+    z-index:10;
     box-sizing:border-box;
     height:35px;
     width:100%;
     display:block;
+  }
+  .small-note{
+    color:#ABABAB;
+  }
+  .email-form{
+    z-index:10;
+    display:none;
+    h2{
+      color:$dark-font;
+    }
   }
 }
 .game-list-container{

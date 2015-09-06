@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="1440px" height="774px" viewBox="0 0 1440 774" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.2.2 (9983) - http://www.bohemiancoding.com/sketch -->
+    <title>trees+hills</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="home_screen" sketch:type="MSArtboardGroup" transform="translate(0.000000, -561.000000)" fill="#10162C">
+            <g id="sun_rays-+-Oval-37-+-Group" sketch:type="MSLayerGroup" transform="translate(-1399.000000, -1072.000000)">
+                <g id="Group" transform="translate(1399.000000, 968.000000)" sketch:type="MSShapeGroup">
+                    <g id="bottom_part" transform="translate(0.000000, 665.000000)">
+                        <g id="trees+hills">
+                            <path d="M1279.19727,0.453125 L1318.23242,149.222656 L1302.88867,150.175781 L1332.36523,257.820312 L1315.06445,258.515625 L1341.88477,371.15625 L1216.11523,371.15625 L1242.24414,256.863281 L1224.54883,256.863281 L1254.41602,147.308594 L1239.89648,147.265625 L1279.19727,0.453125 Z" id="tree"></path>
+                            <path d="M780.432453,503.926264 L860.245855,466.413097 L947.018849,432.863237 L1034.68953,402.960674 L1128.6541,371.162044 L1252.53483,334.373069 L1298.90185,317.071454 L1347.1651,304.325667 L1440,284.298455 L1440,773.852528 L0,773.852528 L0,159.842697 L780.432453,503.926264 Z" id="Path-209"></path>
+                            <path d="M322.715852,121.279297 L354.02751,203.148001 L341.719675,203.672511 L365.364004,262.909898 L351.486356,263.292532 L373,325.279297 L272.115234,325.279297 L293.074274,262.383238 L278.880157,262.383238 L302.837821,202.094681 L291.191125,202.071036 L322.715852,121.279297 Z" id="tree-3"></path>
+                            <path d="M922.658235,266.279297 L953.969893,348.148001 L941.662058,348.672511 L965.306386,407.909898 L951.428739,408.292532 L972.942383,470.279297 L872.057617,470.279297 L893.016657,407.383238 L878.82254,407.383238 L902.780204,347.094681 L891.133508,347.071036 L922.658235,266.279297 Z" id="tree-2"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

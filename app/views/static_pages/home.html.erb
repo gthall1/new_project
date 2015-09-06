@@ -1,11 +1,12 @@
-
-<div class="sign-up">
-  <% if is_mobile? %>
-    <%= render 'users/form_mobile'%>
-  <% else %>
-    <%= render 'users/form'%>
-  <% end %>
-</div>
+<% if is_mobile? %>
+	<div class="sign-up">
+    	<%= render 'users/form_mobile'%>
+	</div>
+<% else %>
+	<div class="sign-up">
+		<%= render 'users/form'%>
+	</div>
+<% end %>
 
 
 

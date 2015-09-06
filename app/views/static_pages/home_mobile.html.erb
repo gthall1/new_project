@@ -1,3 +1,28 @@
 <div class="sign-up">
 	  <%= render 'users/form_mobile'%>
 </div>
+<div class='mobile-home-footer'>
+	<div class='footer-links'>
+		<span class='privacy-link'>Privacy Policy </span> 
+		<span class='terms-link'>Terms of Service</span>
+	</div>
+</div>
+<div class='home-bottom'>
+	<div class='mountain-image'>
+    	<%= embedded_svg('svgs/mountains.svg', :class => 'mountains') %>
+	</div>
+	<div class='trees'>
+		<%= embedded_svg('svgs/trees_and_low_hills.svg', :class => 'tree-hills') %>	
+	</div>
+	<div class='bottom-content'>
+			<h2>How it Works </h2>
+    		<%= embedded_svg('svgs/bottom_image_1.svg', :class => 'how-it-works-image') %>
+    		<p>Play any game to<br/> earn credits</p>
+
+      		<%= embedded_svg('svgs/bottom_image_2.svg', :class => 'how-it-works-image') %>
+    		<p>Earn enough<br/> credits to cash <br/> out</p>  	
+
+      		<%= embedded_svg('svgs/bottom_image_3.svg', :class => 'how-it-works-image') %>
+    		<p>Request a cash out!<br/> We will redeem your <br/> credits and send you <br/> cash within 24 hours.</p>  	    			
+	</div>
+</div>

@@ -74,19 +74,21 @@
         <% end %>
 
         <div class='mobile-container' style="width:100%;">
-            <div class='mobile-header'>
-                <% if signed_in? %>
+            <% if signed_in? %>
+                <div class='mobile-header'>
                     <div class="ssm-open-nav" title="open nav" >
                          <%= embedded_svg('hamburger.svg', :class => 'mobile-menu') %>
                     </div>         
-                <% end %>       
-                <%= link_to root_path do %> 
-                    <h2>Luckee</h2>
-                <% end %>
-                <div class='referral-link'>
-                    <%= link_to "Refer Friend", refer_path %>
+                    <%= link_to root_path do %> 
+                        <h2>Luckee</h2>
+                    <% end %>
+                    <div class='referral-link'>
+                        <%= link_to "Refer Friend", refer_path %>
+                    </div>
                 </div>
-            </div>
+            <% else %>
+                <h1>Luckee </h1>
+            <% end %>
           <% flash.each do |key, value| %>
             <div class="alert alert-<%= key %>"><%= value %></div>
           <% end %>            
