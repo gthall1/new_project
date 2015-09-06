@@ -34,6 +34,7 @@ textarea {
   margin:auto;
   position:absolute;
   top:0px;
+  min-height:100vh;
   background: url('/assets/svgs/top_background_wo_dollars.svg') #EAF9FC;
   background-size: cover;
 }
@@ -56,6 +57,14 @@ textarea {
     font-weight:bold;
     text-decoration:none;
     font-size:18px;
+  }
+  form{
+    max-width:200px;
+    margin:auto;
+  }
+  p{
+    max-width:200px;
+    margin:auto;
   }
 }
 .facebook-signup{
@@ -213,6 +222,14 @@ p {
   margin:auto;
   position:relative;
 }
+.create-email{
+  border-radius:10px;
+  width:80%;
+  margin:auto;
+  background:#6f5499;
+  color:#fff;
+  font-size:16px;
+}
 .welcome-box-m{
   font-size:16px;
   margin-bottom:20px;
@@ -257,7 +274,9 @@ p {
     z-index:10;
     box-sizing:border-box;
     height:35px;
-    width:100%;
+    width:95%;
+    margin:auto;
+    margin-bottom:10px;
     display:block;
   }
   .small-note{
