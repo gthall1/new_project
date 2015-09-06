@@ -14,6 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
-//= require jquery.slideandswipe.min
 //= require home
+//= require jquery.slideandswipe.min
 
