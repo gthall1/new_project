@@ -17,14 +17,20 @@
        });
 
        $(oMain).on("game_start", function(evt) {
-
+          //alet("game_start");
        });
 
        $(oMain).on("save_score", function(evt,iScore) {
        });
 
        $(oMain).on("restart", function(evt) {
-               //alert("restart");
+          $.ajax({
+            type: "GET",
+            url: "/new_game",
+            success:function(data) {
+              $("#game_token").val(data.token);
+            }
+          }); 
        });
      });
 

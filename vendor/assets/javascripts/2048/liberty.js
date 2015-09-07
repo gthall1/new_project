@@ -2830,6 +2830,7 @@ function _K1(_X4, _Y4, _Z4) {
                         data: { token: token, score: global._K4 },
                         success:function(data) {
                             $('.credits').html(data.user_total + ' credits');
+                            $("#game_token").val(data.token);
                         }
                       });                    
                     _E1(_X4, _Y4, _X4._y5);

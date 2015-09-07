@@ -43,7 +43,7 @@ class GamesController < ApplicationController
       status = "success"
       score = params[:score].to_i
       game_session = UserGameSession.where(token: params[:token]).first
-      if game_session.active
+      if game_session.active && (game_session.score.blank? || score >= game_session.score)
         user = game_session.user
         if game_session.game.name == "Sorcerer Game"
           credits = (score/1000.to_f).ceil - 1 #subtract 1 otherwise itll give a credit once anything is scored
@@ -61,6 +61,15 @@ class GamesController < ApplicationController
         game_session.score = score
         game_session.credits_earned = credits
         game_session.save
+      elsif game_session.active && score < game_session.score
+        #this is case when user starts new game and didnt get a new token
+        set_game_token({game_name:game_session.game.name})
+        game_session = UserGameSession.where(token: session[:game_token]).first
+        game_session.score = score
+        credits_to_apply = credits - game_session.credits_applied
+        current_user.add_credits({credits:credits_to_apply})
+        game_session.credits_earned = credits
+        game_session.save
       else
 
         status = "closed"
@@ -70,6 +79,7 @@ class GamesController < ApplicationController
     game_json = {
       :earned => credits,
       :user_total => user_total,
+      :token => game_session.token,
       :status => status
     }
 
@@ -357,8 +367,22 @@ class GamesController < ApplicationController
     }        
   end
 
+  #for when clicking 'new game' within a game
+  def new_game_session
+
+    old_game = UserGameSession.where(token:session[:game_token]).first
+    set_game_token({game_name:old_game.game.name})
+    game_json = {
+      :status => "success",
+      :token =>  session[:game_token]
+    } 
+
+    render json: game_json
+  end
+
   def set_game_token(args={})
     p "SETTING GAME TOKEN"
+
     game_name = args[:game_name] ||= "Memory Game"
     if current_user
       game = UserGameSession.new
@@ -368,13 +392,15 @@ class GamesController < ApplicationController
       game.credits_earned = 0
       game.active = true
       game.save
-      if !session[:game_token].nil?
+      if !session[:game_token].nil? 
        old_game = UserGameSession.where(token:session[:game_token]).first
+
        #close previous game game
        if old_game
         old_game.active = false
         old_game.save
        end
+
       end 
       session[:game_token] = game.token      
     end       
