@@ -14,7 +14,7 @@
     <tr>
       <td><%= survey.name %></td>
       <td><%= survey.credits%></td>
-      <% if UserSurvey.where(survey_id: survey.id,user_id:current_user.id).present? %>
+      <% if UserSurvey.where(survey_id: survey.id,user_id:current_user.id,complete:true).present? %>
       <td>Survey Completed</td>
       <% else %>
       <td><%= link_to 'Take Survey', survey %></td>

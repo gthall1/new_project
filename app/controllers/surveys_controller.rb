@@ -15,11 +15,16 @@ class SurveysController < ApplicationController
   # GET /surveys/1
   # GET /surveys/1.json
   def show
-    @user_survey = UserSurvey.new
-    @user_survey.survey_id = @survey.id
-    @user_survey.user_id = current_user.id
-    @user_survey.complete = false
-    @user_survey.save
+    if UserSurvey.where(user_id:current_user.id,survey_id:@survey.id).present?
+      @user_survey =  UserSurvey.where(user_id:current_user.id,survey_id:@survey.id).first
+    else
+      @user_survey = UserSurvey.new
+      @user_survey.survey_id = @survey.id
+      @user_survey.user_id = current_user.id
+      @user_survey.complete = false
+      @user_survey.save
+    end
+    
     if is_mobile?
       render "surveys/show_mobile"
     end  
