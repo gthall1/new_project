@@ -1,5 +1,5 @@
 <% provide(:title, 'Redeem') %>
 <div class='my-balance'>
-	<p class="redeemHeading" >Refer a friend for credits!</p>
-	<p class="redeemCredits"><%= request.host_with_port %>/invite/<%=@referal_code %></p>
+	<p class="redeemHeading" >When you invite a friend and they sign up through your personalized link, you earn <span class='credits'> 50 </span> credits!</p>
+	<p class="redeemCredits">Copy and share your link:<br/> <%= request.host_with_port %>/invite/<%=@referal_code %></p>
 </div>

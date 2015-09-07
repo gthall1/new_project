@@ -66,7 +66,10 @@ function CInterface(){
       $.ajax({
         type: "GET",
         url: "/score_update",
-        data: { token: token, score: iScore }
+        data: { token: token, score: iScore },
+        success:function(data) {
+            $('.credits').html(data.user_total + ' credits');
+        }
       });       
       
       _oScoreText.text = TEXT_SCORE +" "+iScore; //stock

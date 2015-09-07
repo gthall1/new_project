@@ -1,5 +1,6 @@
   <div class='game-list-container'>
       <% @games.each do | g | %>
+      <% next if g.name != 'Sorcerer Game'%>
        <%= link_to game_path(g) do %>
         <%= image_tag(g.image, :class=>'game-image') %>
        <% end %>

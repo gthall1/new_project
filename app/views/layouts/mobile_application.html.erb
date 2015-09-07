@@ -91,9 +91,9 @@
                         </div>                   
                     <% end %>
                     <% if @game %>
-                        <h2><%= @game.name %></h2>
+                        <h2><%= @game.name %><br /><span class='credits' style='top:0px'><%= current_user.credits ||= 0 %> credits</span></h2>
                     <% else %>        
-                        <h2><%= link_to games_path do %>Luckee<% end %></h2>
+                        <h2><%= link_to games_path do %>Luckee<% end %><br /><span class='credits'><%= current_user.credits ||= 0 %> credits</span></h2>
                     <% end %>
                     <div class='referral-link'>
                         <%= link_to refer_path do %>

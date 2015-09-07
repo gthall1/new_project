@@ -38,6 +38,7 @@ class GamesController < ApplicationController
   
   def score_update
     status='fail'
+    credits = 0
     if params[:token] && !params[:token].empty? && params[:score] && !params[:score].empty?
       status = "success"
       score = params[:score].to_i
@@ -46,11 +47,10 @@ class GamesController < ApplicationController
         user = game_session.user
         if game_session.game.name == "Sorcerer Game"
           credits = (score/1000.to_f).ceil
-        else
-          credits = 100
         end
         if user
           user.add_credits({credits:credits})
+          user_total = user.credits
         else
           status = "error"
         end
@@ -64,7 +64,8 @@ class GamesController < ApplicationController
     end
 
     game_json = {
-      :earned => 100,
+      :earned => credits,
+      :user_total => user_total,
       :status => status
     }
 

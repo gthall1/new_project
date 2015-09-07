@@ -4,6 +4,7 @@
 $grayMediumLight: #eaeaea;
 $dark-font: #4A4A4A;
 $dark-blue: #10172B;
+$credits-red: #D9232B;
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -90,13 +91,21 @@ textarea {
   }
   li{
     padding:30px;
-    font-size:40px;
+    padding-bottom:45px;
+    font-color:$dark-font;
+    font-size:50px;
     position:relative;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid $dark-font;
     .cost{
       position:absolute;
-      right:0px;
-      color:red;
+      right:15px;
+      color:$credits-red;
+      .credit-label{
+        font-size:16px;
+        width: 100px;
+        left: 35px;
+        position: relative;        
+      }
     }
   }
 }
@@ -168,9 +177,32 @@ textarea {
   }
 }
 .my-balance{
-  height:60px;
+  height:80px;
   padding:20px;
   font-size:18px;
+  background:#fff;
+  .icon-holder{
+    position:relative;
+    width:25%;
+    .payment-icon{
+      width:50px;
+      height:50px;
+      position:relative;
+      left:20px;
+      top:-40px;
+    }
+    display:inline-block;
+  }
+  .credits{
+    color:$credits-red;
+  }
+  .redeemCredits{
+    font-size:30px;
+  }
+  .text-holder{
+    display:inline-block;
+  }
+  border-bottom:1px solid $dark-font;
   .p{
     font-size:16px;
   }
@@ -229,6 +261,12 @@ p {
       color:#fff;
       text-decoration:none;
     }
+    .credits{
+      color:$credits-red;
+      font-size:16px;
+      position:relative;
+      top:-10px;
+    }
   }
   a{
 
@@ -254,7 +292,7 @@ p {
     display: block;
     height: 10%;
     background: #F2BB7C;
-    min-height: 50px;
+    min-height: 60px;
     a{
       z-index:1;
       position:relative;
@@ -349,6 +387,7 @@ p {
   padding-top:20px;
   .game-image{
     border-radius:10px;
+    width:100%;
   }
 }
 .game-container{

@@ -1,16 +1,19 @@
 <% provide(:title, 'Redeem') %>
-<div class='mobile-container'>
-	<div class='my-balance'>
+<div class='my-balance'>
+	<div class='icon-holder'>
+		<%= embedded_svg('svgs/icons/payment7.svg', :class => 'payment-icon') %>
+	</div>
+	<div class='text-holder'>
+		<p class="redeemCredits">My balance: <span class='credits'>
+		<%= current_user.credits.blank? ? "0" : current_user.credits %></span></p>
 		<p class="redeemHeading" >Redeem your credits for cash</p>
-		<p class="redeemCredits">Your balance:
-		<%= current_user.credits.blank? ? "0" : current_user.credits %></p>
 
 	</div>
-	<div class='cash-out'>
-		<ul>
-			<li><span class="pressButton btn btn-outlined btn-theme btn-lg back">Redeem Credits</span>$5 <span class='cost'>1000</span></li>
-			<li><span class="pressButton btn btn-outlined btn-theme btn-lg back">Redeem Credits</span>$10 <span class='cost'>1900</span></li>
-			<li><span class="pressButton btn btn-outlined btn-theme btn-lg back">Redeem Credits</span>$20 <span class='cost'>2800</span></li>
-		</ul>
-	</div>
+</div>
+<div class='cash-out'>
+	<ul>
+		<li>$5 <span class='cost'>1000<br /><span class='credit-label'>credits</span></span></li>
+		<li>$10 <span class='cost'>1900<br /><span class='credit-label'>credits</span></span></span></li>
+		<li>$20 <span class='cost'>2800<br /><span class='credit-label'>credits</span></span></span></li>
+	</ul>
 </div>
