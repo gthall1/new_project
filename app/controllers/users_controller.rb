@@ -1,8 +1,12 @@
 class UsersController < ApplicationController
+  include ApplicationHelper
+
   before_action :signed_in_user,
                 only: [:index, :edit, :update, :destroy]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: [:index, :destroy]
+
+  layout :determine_layout
 
   def index
     @users = User.all
@@ -36,6 +40,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    render "users/edit_mobile" if is_mobile?
   end
 
   def update

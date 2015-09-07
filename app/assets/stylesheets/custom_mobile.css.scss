@@ -109,6 +109,19 @@ textarea {
     }
   }
 }
+.edit-user{
+  width:95%;
+  form{
+    padding:10px;
+    .genderButtonLeft,.genderButtonRight{
+      display:inline-block;
+      float:left;
+    }
+    input{
+      width:90%;
+    } 
+  }
+}
 .mobile-home-footer{
   width:100%;
   .footer-links{

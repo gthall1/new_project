@@ -63,7 +63,7 @@
                             </li>
                             <li> <hr></hr></li>
                         <% end %>
-                        <li><%= embedded_svg('svgs/icons/gear42.svg', :class => 'settings-icon') %> Settings</li>
+                        <li><%= link_to edit_user_path(current_user) do %><%= embedded_svg('svgs/icons/gear42.svg', :class => 'settings-icon') %> Settings <% end %></li>
                         <li> <hr></hr></li>
                         <li><%= embedded_svg('svgs/icons/homework.svg', :class => 'survey-icon') %> <%= link_to "Survey", surveys_path %> <span class='survey-credits'>+100</span></li>
                         <li> <hr></hr></li>
