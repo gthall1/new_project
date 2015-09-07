@@ -11,7 +11,7 @@ class UserNotifier < ActionMailer::Base
 	    :reply_to => 'griffhall1@gmail.com',
 	    :display_name => "GetLuckee",
 	    :subject => "Don't miss out on great prizes!" )
-	end
+	 end
   end
 end
 

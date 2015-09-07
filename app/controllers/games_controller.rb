@@ -25,7 +25,7 @@ class GamesController < ApplicationController
         @top_scores = UserGameSession.where(game_id:@game.id).where.not(score:nil).order("score asc").limit(10)
       when "Helicopter"
         @top_scores = UserGameSession.where(game_id:@game.id).where.not(score:nil).order("score desc").limit(10)
-      when "Sorcerer Game"
+      when "Sorcerer Game","2048"
         set_game_token({game_name:@game.name})
     end
 
@@ -47,6 +47,8 @@ class GamesController < ApplicationController
         user = game_session.user
         if game_session.game.name == "Sorcerer Game"
           credits = (score/1000.to_f).ceil - 1 #subtract 1 otherwise itll give a credit once anything is scored
+        elsif game_session.game.name == "2048"
+          credits = (score/100.to_f).ceil - 1 
         end
         if user
           credits_to_apply = credits - game_session.credits_applied

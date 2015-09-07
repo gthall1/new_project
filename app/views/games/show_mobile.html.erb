@@ -3,6 +3,9 @@
   <% case @game.name %>
     <% when 'Sorcerer Game' %>
       <%= render 'sorcerer_m' %>
+    <% when '2048' %>
+      <%= render 'twentyfortyeight_m' %>      
   <% end %>
 </div>
+
 <input type="hidden" id="game_token" name="game_token" value="<%= session[:game_token] %>" />

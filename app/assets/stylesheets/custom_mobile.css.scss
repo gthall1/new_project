@@ -312,7 +312,7 @@ p {
     }
     h2{
       position:absolute;
-      width:100%;
+      width:95%;
       z-index:0;
       margin:auto;
       text-align:center;
@@ -401,6 +401,8 @@ p {
   .game-image{
     border-radius:10px;
     width:100%;
+    max-height:100px;
+    margin-top:20px;
   }
 }
 .game-container{

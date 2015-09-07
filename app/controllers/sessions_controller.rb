@@ -14,7 +14,11 @@ class SessionsController < ApplicationController
       redirect_to root_url
     else
       flash.now[:error] = 'Invalid email/password combination'
-      render 'new'
+      if is_mobile?
+        render "sessions/new_mobile" 
+      else
+        render 'new' 
+      end
     end
   end
 
