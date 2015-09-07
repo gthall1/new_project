@@ -24,7 +24,8 @@ class User < ActiveRecord::Base
       user.password_confirmation = pass
       user.email = auth.info.email
       user.gender = auth.extra.raw_info.gender == "male" ? 1 : auth.extra.raw_info.gender == "female" ? 2 : nil
-      user.oath_image = auth.info.image
+      res = Net::HTTP.get_response(URI(auth.info.image+'?width=200&height=200'))
+      user.oath_image = res["location"]
       user.oath_token = auth.credentials.token
       user.oath_expires_at = Time.at(auth.credentials.expires_at)
       user.save!

@@ -46,10 +46,12 @@ class GamesController < ApplicationController
       if game_session.active
         user = game_session.user
         if game_session.game.name == "Sorcerer Game"
-          credits = (score/1000.to_f).ceil
+          credits = (score/1000.to_f).ceil - 1 #subtract 1 otherwise itll give a credit once anything is scored
         end
         if user
-          user.add_credits({credits:credits})
+          credits_to_apply = credits - game_session.credits_applied
+          user.add_credits({credits:credits_to_apply})
+          game_session.credits_applied = credits
           user_total = user.credits
         else
           status = "error"
