@@ -2823,16 +2823,35 @@ function _K1(_X4, _Y4, _Z4) {
                     };
                     global._K4 += _Z4;
                     //THIS IS THE LUCKEE SCORE UPDATE
-                    var token = $("#game_token").val();
-                      $.ajax({
-                        type: "GET",
-                        url: "/score_update",
-                        data: { token: token, score: global._K4 },
-                        success:function(data) {
-                            $('.credits').html(data.user_total + ' credits');
-                            $("#game_token").val(data.token);
+                        var token = $("#game_token").val();
+                          $.ajax({
+                            type: "GET",
+                            url: "/score_update",
+                            data: { token: token, score: global._K4 },
+                            success:function(data) {
+                                $('.credits').html(data.user_total + ' credits');
+                                if(data.token != $("#game_token").val()){
+                                    console.log('new_token');
+                                    $("#game_token").val(data.token);
+                                    $("#credits_earned").val(0);
+                                }else{
+                                    $("#credits_earned").val(data.earned);
+                                }
+                                console.log(data.earned);
+                            }
+                          });                         
+                        if ((Math.ceil(global._K4/100)-1) == 0 && $("#credits_earned").val() > 1){
+                            $.ajax({
+                                type: "GET",
+                                url: "/new_game",
+                                success:function(data) {
+                                  console.log('NEW GAME');
+                                  $("#game_token").val(data.token);
+                                  $("#credits_earned").val(0);
+                                }
+                              }); 
                         }
-                      });                    
+                   
                     _E1(_X4, _Y4, _X4._y5);
                 }
             } else {

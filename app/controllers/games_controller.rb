@@ -39,17 +39,20 @@ class GamesController < ApplicationController
   def score_update
     status='fail'
     credits = 0
+    user = current_user
     if params[:token] && !params[:token].empty? && params[:score] && !params[:score].empty?
       status = "success"
       score = params[:score].to_i
       game_session = UserGameSession.where(token: params[:token]).first
-      if game_session.active && (game_session.score.blank? || score >= game_session.score)
-        user = game_session.user
-        if game_session.game.name == "Sorcerer Game"
-          credits = (score/1000.to_f).ceil - 1 #subtract 1 otherwise itll give a credit once anything is scored
-        elsif game_session.game.name == "2048"
-          credits = (score/100.to_f).ceil - 1 
-        end
+      p "Score : #{score} | Game SEssion Score: #{game_session.score}"
+      
+      if game_session.game.name == "Sorcerer Game"
+        credits = (score/1000.to_f).ceil - 1 #subtract 1 otherwise itll give a credit once anything is scored
+      elsif game_session.game.name == "2048"
+        credits = (score/100.to_f).ceil - 1 
+      end      
+      if game_session.active
+        
         if user
           credits_to_apply = credits - game_session.credits_applied
           user.add_credits({credits:credits_to_apply})
@@ -61,25 +64,27 @@ class GamesController < ApplicationController
         game_session.score = score
         game_session.credits_earned = credits
         game_session.save
-      elsif game_session.active && score < game_session.score
-        #this is case when user starts new game and didnt get a new token
-        set_game_token({game_name:game_session.game.name})
-        game_session = UserGameSession.where(token: session[:game_token]).first
-        game_session.score = score
-        credits_to_apply = credits - game_session.credits_applied
-        current_user.add_credits({credits:credits_to_apply})
-        game_session.credits_earned = credits
-        game_session.save
-      else
+      # elsif score < game_session.score && credits < game_session.credits_applied
+      #   #this is case when user starts new game and didnt get a new token
+      #   set_game_token({game_name:game_session.game.name})
+      #   game_session = UserGameSession.where(token: session[:game_token]).first
+      #   game_session.score = score
+      #   credits_to_apply = credits - game_session.credits_applied
+      #   current_user.add_credits({credits:credits_to_apply})
+      #   game_session.credits_earned = credits
+      #   game_session.save
+      elsif !game_session.active 
 
         status = "closed"
+      else 
+        status = "skip"
       end
     end
 
     game_json = {
       :earned => credits,
-      :user_total => user_total,
-      :token => game_session.token,
+      :user_total => user.credits,
+      :token => session[:game_token],
       :status => status
     }
 
