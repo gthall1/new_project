@@ -1,0 +1,1 @@
+function RenderLoadingBar_Standard(l,a,e,i,r,t){var f=40*(a/100),d=15,n=(a-f)/2,c=10+.75*(e-d),g=f/i*r;l.fillStyle="rgba(255,255,255,255)",l.fillRect(0,0,a,e),t&&l.drawImage(t,0,0,525,800),0!=r&&(l.fillRect(n,c,f,d),l.fillStyle="rgba(60,255,60,255)",l.fillRect(n,c,g,d))}
