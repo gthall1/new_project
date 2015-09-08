@@ -52,12 +52,10 @@ class GamesController < ApplicationController
         credits = (score/100.to_f).ceil - 1 
       end      
       if game_session.active
-        
-        if user
-          credits_to_apply = credits - game_session.credits_applied
-          user.add_credits({credits:credits_to_apply})
-          game_session.credits_applied = credits
-          user_total = user.credits
+         credits_to_apply = credits - game_session.credits_applied
+        if user && credits_to_apply > 0
+          user.add_credits({credits:credits_to_apply}) 
+          game_session.credits_applied += credits_to_apply 
         else
           status = "error"
         end
