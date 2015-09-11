@@ -83,7 +83,20 @@ task :seed_new_games => :environment do | t, args|
    sorc.name = "Sorcerer Game"
    sorc.image = "sorcerer_1.png"
    sorc.save
+
+   tfe = Game.new
+   tfe.name = "2048"
+   tfe.image = "2048.png"
+   tfe.save
+
+   bh = Game.new
+   bh.name = "Black Hole"
+   bh.image = "black_hole.png"
+   bh.device_type = 1
+   bh.save   
 end
+
+
 
 #stock names
 # burgess_j

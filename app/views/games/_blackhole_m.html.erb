@@ -1,0 +1,19 @@
+<div id="gameContainer"></div>
+<div id="orientation"></div>
+
+<div id="interstitial_bg" style="display:none;position:absolute;left:0;top:0;background-color:rgb(64, 64, 64);background-color:rgba(64, 64, 64, 0.8);">
+    <p style="margin-top:100px;">UNABLE TO LOAD CONTENT!</p>
+    <p>TAP ON 'X' TO CLOSE</p>
+</div>
+<div id="interstitial_container" style="display:none;">
+</div>
+        <!-- Run the game code -->
+<script>
+  document.body.setAttribute("style","-ms-touch-action: none;");
+  
+</script>
+
+
+<%= content_for(:game_javascript) do %>
+  <%= javascript_include_tag "blackhole", "data-turbolinks-track" => true %>
+<% end %>

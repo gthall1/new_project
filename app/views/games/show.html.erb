@@ -19,6 +19,8 @@
       <%= render 'sorcerer_m' %>
     <% when '2048' %>
       <%= render 'twentyfortyeight_m' %>      
+    <% when 'Black Hole' %>
+      <%= render 'blackhole_m' %>       
   <% end %>
   
 <input type="hidden" id="game_token" name="game_token" value="<%= session[:game_token] %>" />
