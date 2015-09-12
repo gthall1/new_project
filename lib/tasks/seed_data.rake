@@ -82,6 +82,7 @@ task :seed_new_games => :environment do | t, args|
    sorc = Game.new
    sorc.name = "Sorcerer Game"
    sorc.image = "sorcerer_1.png"
+   sorc.device_type = 1
    sorc.save
 
    tfe = Game.new
@@ -94,6 +95,12 @@ task :seed_new_games => :environment do | t, args|
    bh.image = "black_hole.png"
    bh.device_type = 1
    bh.save   
+
+   traffic = Game.new
+   traffic.name = "Traffic"
+   traffic.image = "traffic.png"
+   traffic.device_type = 1
+   traffic.save   
 end
 
 

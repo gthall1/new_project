@@ -25,7 +25,7 @@ class GamesController < ApplicationController
         @top_scores = UserGameSession.where(game_id:@game.id).where.not(score:nil).order("score asc").limit(10)
       when "Helicopter"
         @top_scores = UserGameSession.where(game_id:@game.id).where.not(score:nil).order("score desc").limit(10)
-      when "Sorcerer Game","2048","Black Hole"
+      when "Sorcerer Game","2048","Black Hole","Traffic"
         set_game_token({game_name:@game.name})
     end
 
@@ -483,5 +483,8 @@ class GamesController < ApplicationController
       else
         redirect_to root_path
       end
-    end      
+    end 
+
+    def get_traffic_json
+    end     
 end
