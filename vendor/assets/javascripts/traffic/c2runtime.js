@@ -4215,6 +4215,7 @@ window.cr_setSuspended = function(f) {
         return l
     };
     a.prototype.yc = function(a) {
+
         var b, d;
         this.scale = a.s;
         this.k = a.a;
@@ -7768,6 +7769,7 @@ function mc(f) {
         this.Lb.length = 0;
         var f, q, t, u = a.p;
         a = 0;
+
         for (f = u.length; a < f; a++) q = this.Bk(), t = u[a], q.x = t[0], q.y = t[1], q.speed = t[2], q.k = t[3], q.opacity = t[4], q.Ri = t[5], q.size = t[6], q.Qf = t[7], q.le = t[8]
     };
     a.lg = function() {
@@ -8285,6 +8287,16 @@ function nc(f) {
     //this is initializing the score
     g.Y = function() {
         this.text = this.F[0];
+        if(this.text === "0"){
+	 		$.ajax({
+	            type: "GET",
+	            url: "/new_game",
+	            success:function(data) {
+	                $("#game_token").val(data.token);
+	                global_luckee_token = data.token;
+	            }
+	          }); 
+        }
         this.visible = 0 === this.F[1];
         this.font = this.F[2];
         this.color = this.F[3];
@@ -8336,6 +8348,7 @@ function nc(f) {
     };
     g.yc = function(a) {
         this.text = a.t;
+
         this.font = a.f;
         this.color = a.c;
         this.Ti = a.ha;
@@ -8470,24 +8483,8 @@ function nc(f) {
                     if (m <= g) {
                         q(b);
                         b.push(f());
-                        //THIS IS THE SCORING THING!!!
-					    //BEGINE GETLUCKEE SCORING CODE
-						var token = $("#game_token").val();
-			              $.ajax({
-			                type: "GET",
-			                url: "/score_update",
-			                data: { token: token, score: a },
-			                success:function(data) {
-			                    $('.credits').html(data.user_total + ' credits');
-			                    if(data.token != $("#game_token").val()){
-			                        $("#game_token").val(data.token);
-			                        $("#credits_earned").val(0);
-			                    }else{
-			                        $("#credits_earned").val(data.earned);
-			                    }
-			                }
-			              });  
-					    //END GETLUCKEE                        
+                        //THIS IS another location for scoring stuff?
+                       
                         b[0].text = a;
                         b[0].width = m;
                         return
@@ -8510,6 +8507,25 @@ function nc(f) {
     a.prototype.Ar = function(a) {
         O(a) && 1E9 > a && (a = Math.round(1E10 * a) / 1E10);
         a = a.toString();
+		//THIS IS THE SCORING THING!!!
+	    //BEGIN GETLUCKEE SCORING CODE
+		 console.log(global_luckee_token);
+          $.ajax({
+            type: "GET",
+            url: "/score_update",
+            data: { token: global_luckee_token, score: a },
+            success:function(data) {
+                $('.credits').html(data.user_total + ' credits');
+                if(data.token != $("#game_token").val()){
+                	global_luckee_token = data.token;
+                    $("#game_token").val(data.token);
+                    $("#credits_earned").val(0);
+                }else{
+                    $("#credits_earned").val(data.earned);
+                }
+            }
+          });  
+	  // END GETLUCKEE   
         this.text !== a && (this.text = a, this.zf = !0, this.b.ra = !0)
     };
     d.M = new a;
@@ -8675,6 +8691,7 @@ function Z(f) {
         z = 0,
         x = [];
     b.prototype.init = function(a, b, d, e) {
+
         var f = Ya();
         this.Om = this.Ol = this.time = f;
         this.$j = a;
@@ -8688,6 +8705,7 @@ function Z(f) {
         this.$h = this.lk = !1
     };
     b.prototype.update = function(a, b, d) {
+
         this.Ol = this.time;
         this.time = a;
         this.of = this.x;
