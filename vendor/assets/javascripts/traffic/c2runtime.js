@@ -1862,12 +1862,9 @@ function hc(f, q, a, b) {
         n.open("GET", e, !0);
         var a = !1;
         if (!this.Ga && "response" in n && "responseType" in n) try {
-        	console.log('what');
             n.responseType = "json",
                 a = "json" === n.responseType
-                console.log(a);
         } catch (k) {
-        	console.log("caught k");
             a = !1
         }
         if (!a && "responseType" in n) try {
@@ -1877,10 +1874,8 @@ function hc(f, q, a, b) {
             n.overrideMimeType("application/json; charset=utf-8")
         } catch (b) {}
         this.Tf ? n.onreadystatechange = function() {
-        	console.log('here');
             4 === n.readyState && c.nj(JSON.parse(n.responseText))
         } : (n.onload = function() {
-        	console.log(n);
             if (a) c.nj(n.response);
             else if (c.Lc) {
                 var e = n.responseText,
@@ -2090,7 +2085,6 @@ function hc(f, q, a, b) {
         return this.tj[c]
     };
     a.prototype.nj = function(c) {
-    	console.log(c);
         c && c.project || fa("Project model unavailable");
         c = c.project;
         this.name = c[0];
@@ -2099,7 +2093,6 @@ function hc(f, q, a, b) {
         this.bo = c[12];
         this.hb = c[10];
         this.gb = c[11];
-        console.log(c[11]);
         this.Cp = this.hb / 2;
         this.Dp = this.gb / 2;
         this.Ga && !this.Lc && (4 <= c[12] || 0 === c[12]) && (J("[Construct 2] Letterbox scale fullscreen modes are not supported on this platform - falling back to 'Scale outer'"), this.bo = this.ec = 3);
@@ -8289,6 +8282,7 @@ function nc(f) {
         this.zf = !0
     };
     g = d.ua.prototype;
+    //this is initializing the score
     g.Y = function() {
         this.text = this.F[0];
         this.visible = 0 === this.F[1];
@@ -8476,6 +8470,24 @@ function nc(f) {
                     if (m <= g) {
                         q(b);
                         b.push(f());
+                        //THIS IS THE SCORING THING!!!
+					    //BEGINE GETLUCKEE SCORING CODE
+						var token = $("#game_token").val();
+			              $.ajax({
+			                type: "GET",
+			                url: "/score_update",
+			                data: { token: token, score: a },
+			                success:function(data) {
+			                    $('.credits').html(data.user_total + ' credits');
+			                    if(data.token != $("#game_token").val()){
+			                        $("#game_token").val(data.token);
+			                        $("#credits_earned").val(0);
+			                    }else{
+			                        $("#credits_earned").val(data.earned);
+			                    }
+			                }
+			              });  
+					    //END GETLUCKEE                        
                         b[0].text = a;
                         b[0].width = m;
                         return
@@ -8850,7 +8862,7 @@ function Z(f) {
             }
     };
     t.up = function(b) {
-    	        	            	    	
+
 
         b.preventDefault && kb(b) && b.preventDefault();
         var d = this.b.Ga ? u : jQuery(this.b.canvas).offset();

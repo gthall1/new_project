@@ -49,6 +49,8 @@ class GamesController < ApplicationController
         credits = (score/1000.to_f).ceil - 1 #subtract 1 otherwise itll give a credit once anything is scored
       elsif game_session.game.name == "2048"
         credits = (score/100.to_f).ceil - 1 
+      elsif game_session.game.name == "Traffic"
+        credits = (score/10.to_f).ceil - 1         
       elsif game_session.game.name == "Black Hole"
         #credits = score * 5   
         credits_to_apply = 5
@@ -58,8 +60,10 @@ class GamesController < ApplicationController
         if user && credits_to_apply > 0
           user.add_credits({credits:credits_to_apply}) 
           game_session.credits_applied += credits_to_apply 
-        else
+        elsif !user
           status = "error"
+        else
+          status = "nothingearned"
         end
         game_session.score = score
         game_session.credits_earned = credits
