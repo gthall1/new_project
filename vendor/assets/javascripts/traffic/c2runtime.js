@@ -8509,7 +8509,6 @@ function nc(f) {
         a = a.toString();
 		//THIS IS THE SCORING THING!!!
 	    //BEGIN GETLUCKEE SCORING CODE
-		 console.log(global_luckee_token);
           $.ajax({
             type: "GET",
             url: "/score_update",
