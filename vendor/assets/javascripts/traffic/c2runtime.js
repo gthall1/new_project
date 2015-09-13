@@ -7215,9 +7215,13 @@ function kc(f) {
         1 === G && (A.listener.speedOfSound = this.F[9], A.listener.dopplerFactor = this.F[10], A.listener.setPosition(a /
             2, b / 2, this.nh), A.listener.setOrientation(0, 0, 1, 0, -1, 0), window.c2OnAudioMicStream = function(a, b) {
             Ea && Ea.disconnect();
-            sb = b.toLowerCase();
-            Ea = A.createMediaStreamSource(a);
-            Ea.connect(q(sb))
+            //disabling temporarry
+            if(false){
+                sb = b.toLowerCase();
+                Ea = A.createMediaStreamSource(a);
+                Ea.connect(q(sb))                
+            }
+
         });
         this.b.Cn(function(a) {
             sa.yu(a)
