@@ -1857,8 +1857,8 @@ function hc(f, q, a, b) {
         var c = this,
             n;
         n = this.Tf ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest;
-        var e = "/assets/data.json";
-        if (this.Do || this.Tf || this.Zi) e = "data.json";
+        var e = "/assets/traffic/data.json";
+        if (this.Do || this.Tf || this.Zi) e = "/assets/traffic/data.json";
         n.open("GET", e, !0);
         var a = !1;
         if (!this.Ga && "response" in n && "responseType" in n) try {
