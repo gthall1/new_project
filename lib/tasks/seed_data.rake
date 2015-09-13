@@ -100,7 +100,14 @@ task :seed_new_games => :environment do | t, args|
    traffic.name = "Traffic"
    traffic.image = "traffic.png"
    traffic.device_type = 1
-   traffic.save   
+   traffic.save 
+
+   flappy = Game.new
+   flappy.name = "Flappy Pilot"
+   flappy.image = "flappy_pilot.png"
+   flappy.device_type = 1
+   flappy.save 
+
 end
 
 
