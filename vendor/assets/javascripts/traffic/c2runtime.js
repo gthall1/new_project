@@ -2031,7 +2031,7 @@ function hc(f, q, a, b) {
                     height: Math.round(n) + "px"
                 })), this.C && this.C.rg(Math.round(c * e), Math.round(n * e)), this.tb && this.qa && (this.qa.width = Math.round(c), this.qa.height = Math.round(n)), this.qa && (this.qa.webkitImageSmoothingEnabled = this.ca, this.qa.mozImageSmoothingEnabled = this.ca, this.qa.msImageSmoothingEnabled =
                     this.ca, this.qa.imageSmoothingEnabled = this.ca), this.kq(), this.Ga || !d && !this.Ll || window.setTimeout(function() {
-                    window.scrollTo(0, 1)
+                    window.scrollTo(0, 60);
                 }, 100)
         }
     };

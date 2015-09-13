@@ -3557,8 +3557,10 @@ quat4.str=function(a){return"["+a[0]+", "+a[1]+", "+a[2]+", "+a[3]+"]"};
 		var offx = 0, offy = 0;
 		var neww = 0, newh = 0, intscale = 0;
 		var tryHideAddressBar = (this.isiPhoneiOS6 && this.isSafari && !navigator["standalone"] && !this.isDomFree && !this.isCordova);
-		if (tryHideAddressBar)
+		if (tryHideAddressBar && this.isIphoneiOS6)
 			h += 60;		// height of Safari iPhone iOS 6 address bar
+		if(this.isAndroid)
+			h += 45;
 		if (this.lastWindowWidth === w && this.lastWindowHeight === h && !force)
 			return;
 		this.lastWindowWidth = w;
