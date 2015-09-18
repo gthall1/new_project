@@ -36,7 +36,7 @@ textarea {
   position:absolute;
   top:0px;
   min-height:100vh;
-  background: url('/assets/svgs/mobile_background_wo_dollars.svg') #EAF9FC;
+  background: url('/assets/svgs/mobile_bg_wo_dollars.svg') #EAF9FC;
   background-size: cover;
   &.with-money{
     background: url('/assets/svgs/mobile_background_w_dollars.svg') #EAF9FC;
@@ -341,7 +341,7 @@ p {
 .form-separator{
   position:relative;
   display:block;
-  margin:20px 0px 10px 0px; 
+  margin:15px 0px 10px 0px; 
   .left-separator{
     width:40%;
     height:12px;
@@ -352,8 +352,9 @@ p {
   }
   .or-separator{
     color:#5C5C5C;
-    font-size:24px;
+    font-size:22px;
     position:relative;
+    font-weight:bold;
     top:-4px;
   }
   .right-separator{
@@ -385,6 +386,8 @@ p {
   }
   .small-note{
     color:#ABABAB;
+    position:relative;
+    top:5px;
   }
   .email-form{
     z-index:10;
@@ -398,6 +401,7 @@ p {
   width:90%;
   margin:auto;
   padding-top:20px;
+  padding-bottom:40px;
   .game-image{
     border-radius:10px;
     width:100%;
@@ -430,10 +434,11 @@ p {
         background-color:#cecece;
         color:#4A4A4A;
         padding:10px;
-        text-align:center;
+        text-align:left;
         font-size:18px;
         a,a:visited{
           color:$dark-font;
+          vertical-align: middle;
         }
         hr{
           border-bottom:1px solid #4A4A4A;
@@ -442,6 +447,8 @@ p {
         }
         .survey-credits,.redeem{
           color:#D9232B;
+          position:absolute;
+          right:15px;
         }
       }
     }
@@ -457,11 +464,15 @@ p {
     .settings-icon{
       width:20px;
       height:20px;
+
     }
     .survey-icon{
       width:20px;
       height:20px;
     }
+    svg{
+      vertical-align: middle;
+    }    
 
 }
 /* overlay layer */

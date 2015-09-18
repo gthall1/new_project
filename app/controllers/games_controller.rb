@@ -390,7 +390,14 @@ class GamesController < ApplicationController
 
     render json: game_json
   end
+  #for when clicking 'new game' within construct 2 games
+  def reset_game
 
+    old_game = UserGameSession.where(token:session[:game_token]).first
+    set_game_token({game_name:old_game.game.name})
+    render text: session[:game_token]
+  end
+  
   def set_game_token(args={})
     p "SETTING GAME TOKEN"
 
