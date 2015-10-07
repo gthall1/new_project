@@ -1,28 +1,30 @@
+require 'rake'
+
 task :seed_data => :environment do |t,args|
 
 	#SEED TESTGAME
 	testgame = Game.new
 	testgame.name = "Test"
 	testgame.save
-	
+
 	#SEED HELICOPTER GAME
 	heligame = Game.new
 	heligame.name = "Helicopter"
 	heligame.save
-    
+
     #SEED MEMORY GAME
 	memory = Game.new
 	memory.name = "Memory Game"
 	memory.save
 
 	#SEED ADVERTISERS
-	10.times do | i | 
+	10.times do | i |
 		a = Advertiser.new
 		a.name = "Advertiser #{i}"
 		a.logo = "#{i}.jpg"
 		a.save
 	end
-	
+
     #SEED JACKPOT
 	jackpot = Jackpot.new
 	jackpot.name = "Test"
@@ -40,7 +42,7 @@ task :add_referal_to_users  => :environment do | t, args |
    end
 end
 
-task :seed_games => :environment do | t, args | 
+task :seed_games => :environment do | t, args |
   require 'net/http'
    source = 'http://api.famobi.com/feed/'
    resp = Net::HTTP.get_response(URI.parse(source))
@@ -74,8 +76,8 @@ task :seed_games => :environment do | t, args |
    end
 	# open('image.png', 'wb') do |file|
 	#   file << open('http://example.com/image.png').read
-	# end 
-	  
+	# end
+
 end
 
 task :seed_new_games => :environment do | t, args|
@@ -94,19 +96,19 @@ task :seed_new_games => :environment do | t, args|
    bh.name = "Black Hole"
    bh.image = "black_hole.png"
    bh.device_type = 1
-   bh.save   
+   bh.save
 
    traffic = Game.new
    traffic.name = "Traffic"
    traffic.image = "traffic.png"
    traffic.device_type = 1
-   traffic.save 
+   traffic.save
 
    flappy = Game.new
    flappy.name = "Flappy Pilot"
    flappy.image = "flappy_pilot.png"
    flappy.device_type = 1
-   flappy.save 
+   flappy.save
 
 end
 
@@ -125,5 +127,5 @@ end
 # nattychamps13
 # patsfan87
 # task :seed_new_jackpot => :environment do |t,args|
-# 	10.times do | i 
+# 	10.times do | i
 # end

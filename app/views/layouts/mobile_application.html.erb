@@ -59,7 +59,7 @@
                         <%= link_to redeem_path do %>
                             <li>
                         $ Redeem <span class='redeem'><%= current_user.credits ||= 0%> </span>
-                                
+
                             </li>
                             <li> <hr></hr></li>
                         <% end %>
@@ -75,7 +75,7 @@
         </nav>
 
         <div class="ssm-overlay"></div>
-   
+
         <% end %>
 
         <div class='mobile-container <% if !signed_in? %>with-money<% end %>' style="width:100%;">
@@ -83,21 +83,21 @@
                 <div class='mobile-header'>
                     <% if @game %>
                     <%= link_to games_path do %>
-                      <%= embedded_svg('svgs/icons/arrowhead7.svg', :class => 'back-button') %>
+                    <i class="fa fa-chevron-left back-button"></i>
                     <% end %>
                     <% else %>
                          <div class="ssm-open-nav" title="open nav" >
-                             <%= embedded_svg('hamburger.svg', :class => 'mobile-menu') %>
-                        </div>                   
+                            <i class="fa fa-bars mobile-menu"></i>
+                        </div>
                     <% end %>
                     <% if @game %>
                         <h2><%= @game.name %><br /><span class='credits' <% if @game.name == 'Sorcerer Game' %>style='top:0px'<% end %>><%= current_user.credits ||= 0 %> credits</span></h2>
-                    <% else %>        
+                    <% else %>
                         <h2><%= link_to games_path do %>Luckee<% end %><br /><span class='credits'><%= current_user.credits ||= 0 %> credits</span></h2>
                     <% end %>
                     <div class='referral-link'>
                         <%= link_to refer_path do %>
-                          <%= embedded_svg('svgs/icons/share_button.svg', :class => 'refer-link-icon') %>          
+                          <%= embedded_svg('svgs/icons/share_button.svg', :class => 'refer-link-icon') %>
                         <% end %>
                     </div>
                 </div>
@@ -106,7 +106,7 @@
             <% end %>
           <% flash.each do |key, value| %>
             <div class="alert alert-<%= key %>"><%= value %></div>
-          <% end %>            
+          <% end %>
           <%= yield %>
         </div>
         <% if signed_in? %>
@@ -116,10 +116,10 @@
                     if(/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream){
                       document.querySelector('meta[name=viewport]')
                         .setAttribute(
-                          'content', 
+                          'content',
                           'initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no'
                         );
-                    }                    
+                    }
                      //$('.ssm-open-nav').trigger('click');
                  });
             </script>
@@ -136,7 +136,7 @@
 
               ga('create', 'UA-58032053-2', 'auto');
               ga('send', 'pageview');
-      
+
 
             </script>
         <% end %>

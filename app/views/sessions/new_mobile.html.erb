@@ -3,6 +3,10 @@
 
 <div class="row">
   <div class="sign-in">
+    <%= link_to "/auth/facebook" do %>
+      <%= image_tag 'facebook_button.png', :class => 'facebook-signup' %>
+    <% end %>
+
     <%= form_for(:session, url: sessions_path) do |f| %>
 
       <%= f.label :email %>
