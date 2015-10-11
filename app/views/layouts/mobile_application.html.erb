@@ -80,7 +80,7 @@
 
         <div class='mobile-container <% if !signed_in? %>with-money<% end %>' style="width:100%;">
             <% if signed_in? %>
-                <div class='mobile-header'>
+                <div class='mobile-header' <% if @game && @game.id == 7 %> style='display:none;'<% end %>>
                     <% if @game %>
                     <%= link_to games_path do %>
                       <%= embedded_svg('svgs/icons/arrowhead7.svg', :class => 'back-button') %>

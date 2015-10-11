@@ -1,6 +1,7 @@
 class GamesController < ApplicationController
   before_action :set_game, only: [:show, :edit, :update, :destroy]
   before_filter :check_signed_in
+  skip_before_filter  :verify_authenticity_token, only:[:score_update,:reset_game]
   include ApplicationHelper
   layout :determine_layout
 
@@ -20,6 +21,7 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.json
   def show
+    p params
     case @game.name
       when "Memory Game"
         @top_scores = UserGameSession.where(game_id:@game.id).where.not(score:nil).order("score asc").limit(10)
@@ -85,15 +87,26 @@ class GamesController < ApplicationController
       else 
         status = "skip"
       end
+      if UserGameSession.where(user_id:current_user.id,game_id:game_session.game.id).where.not(score: nil).order("score desc").present?
+        current_high_score = UserGameSession.where(user_id:current_user.id,game_id:game_session.game.id).where.not(score: nil).order("score desc").first.score 
+      else
+        current_high_score = 0
+      end      
     end
 
     game_json = {
-      :earned => credits,
-      :user_total => user.credits,
-      :token => session[:game_token],
-      :status => status
-    }
+      :c2dictionary => true,
+      :data => { 
+       :earned => credits,
+       :total_credits => user.credits,
+       :token => session[:game_token],
+       :status => status ,
+       :hscore => current_high_score   
+      }
 
+    }
+    p game_json
+    #render text: user.credits
     render json: game_json    
   end
 
@@ -393,11 +406,25 @@ class GamesController < ApplicationController
   #for when clicking 'new game' within construct 2 games
   def reset_game
 
-    old_game = UserGameSession.where(token:session[:game_token]).first
+    old_game = UserGameSession.where(token:session[:game_token]).last
     set_game_token({game_name:old_game.game.name})
-    render text: session[:game_token]
+    if UserGameSession.where(user_id:current_user.id,game_id:old_game.game.id).where.not(score: nil).order("score desc").present?
+      high_score = UserGameSession.where(user_id:current_user.id,game_id:old_game.game.id).where.not(score: nil).order("score desc").first.score 
+    else
+      high_score = 0
+    end
+    game_json = {
+      :c2dictionary => true,
+      :data => { 
+       :earned => 0,
+       :total_credits => old_game.user.credits,
+       :token => session[:game_token],
+       :hscore => high_score       
+      } 
+    }
+    render json: game_json
   end
-  
+
   def set_game_token(args={})
     p "SETTING GAME TOKEN"
 
@@ -424,42 +451,42 @@ class GamesController < ApplicationController
     end       
   end
 
-  def reset_game
-    no_user = false
-    if current_user
-      game = UserGameSession.new
-      game.token = SecureRandom.urlsafe_base64
-      game.user_id = current_user.id
-      game.game_id = Game.where(name: "Memory Game").first.id
-      game.credits_earned = 0
-      game.active = true
-      game.save
-      if !session[:game_token].nil?
-       old_game = UserGameSession.where(token:session[:game_token]).first
-       #close previous game game
-       if old_game
-        old_game.active = false
-        old_game.save
-       end
-      end 
-      duration = (Time.now.to_i - game.created_at.to_i).to_i
-      if duration > 999.seconds
-        duration = 999.seconds
-      end
-      session[:game_token] = game.token   
-      game_json = {
-        :status => "success",
-        :token => game.token, 
-        :duration => duration
-      }    
-    else
-      game_json = {
-        :status => "failure"
-      }
-    end   
+  # def reset_game
+  #   no_user = false
+  #   if current_user
+  #     game = UserGameSession.new
+  #     game.token = SecureRandom.urlsafe_base64
+  #     game.user_id = current_user.id
+  #     game.game_id = Game.where(name: "Memory Game").first.id
+  #     game.credits_earned = 0
+  #     game.active = true
+  #     game.save
+  #     if !session[:game_token].nil?
+  #      old_game = UserGameSession.where(token:session[:game_token]).first
+  #      #close previous game game
+  #      if old_game
+  #       old_game.active = false
+  #       old_game.save
+  #      end
+  #     end 
+  #     duration = (Time.now.to_i - game.created_at.to_i).to_i
+  #     if duration > 999.seconds
+  #       duration = 999.seconds
+  #     end
+  #     session[:game_token] = game.token   
+  #     game_json = {
+  #       :status => "success",
+  #       :token => game.token, 
+  #       :duration => duration
+  #     }    
+  #   else
+  #     game_json = {
+  #       :status => "failure"
+  #     }
+  #   end   
 
-    render json: game_json     
-  end
+  #   render json: game_json     
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
