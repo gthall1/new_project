@@ -21,6 +21,79 @@ html {
 
 body {
   padding-top: 0px;
+  position: relative;
+  z-index: 1;
+
+  &.overlay-screen {
+    .mobile-container {
+      height: 100vh;
+      overflow: hidden;
+    }
+    .mobile--overlay {
+      color: #fff;
+      width: 100%;
+      height: 100vh;
+      position: absolute;
+      background-color: rgba(117,117,117,0.5);
+      background-image: url(http://localhost:3000/assets/blur.png);
+      background-position: center;
+      background-size: cover;
+      z-index: 100;
+      text-align: center;
+      // font-weight: 100;
+    }
+    .overlay__content {
+      display: block;
+      @include vertical-align();
+    }
+    .overlay__logo {
+      border-radius: 15px;
+      display: block;
+      margin: 30px auto 30px;
+    }
+    .overlay__title {
+      color: #fff;
+      // font-weight: 100;
+      letter-spacing: 1px;
+      display: inline-block;
+      border-bottom: 1px solid;
+      padding-bottom: 30px;
+      font-size: 17px;
+      display: block;
+      width: 30%;
+      margin: 0 auto 30px;
+    }
+    .overlay__bookmark {
+      width: auto;
+      height: 20px;
+      position: relative;
+      bottom: 3px;
+      margin: 0 2px;
+    }
+    .overlay__down-arrow {
+      font-size: 3em;
+      margin-top: 50px;
+    }
+    .overlay__opt-out {
+      display: inline-block;
+      font-size: 10px;
+      // text-transform: uppercase;
+      color: #524E4E;
+      position: absolute;
+      right: 20px;
+      top: 10px;
+      font-weight: 200;
+      letter-spacing: 1px;
+      text-decoration: underline;
+    }
+  }
+}
+
+.overlay__content {
+  display: none;
+}
+.overlay__opt-out {
+  display: none;
 }
 
 section {
@@ -34,7 +107,7 @@ textarea {
 .mobile-container{
   width:95%;
   margin:auto;
-  position:absolute;
+  position: absolute;
   top:0px;
   min-height:100vh;
   background: url('/assets/svgs/mobile_bg_wo_dollars.svg') #EAF9FC;
@@ -49,6 +122,11 @@ textarea {
   margin:auto;
   p{
     margin-top:20px;
+  }
+}
+.hide-top-title {
+  .top-title {
+    display: none;
   }
 }
 .sign-in{
@@ -67,8 +145,20 @@ textarea {
     font-size:18px;
   }
   form{
-    max-width:200px;
+    max-width: 80%;
     margin:auto;
+
+    input[type="submit"] {
+      padding: 10px 60px;
+      margin: 10px 0;
+      background-color: #915AB9;
+      border: none;
+      border-radius: 50px;
+      color: #fff;
+      &:hover {
+          background-color: #c8ade0;
+        }
+    }
   }
   p{
     max-width:200px;
@@ -84,12 +174,15 @@ textarea {
   background-color: #ddd8e9;
   width: 100%;
   padding-left: 20px;
+  color: #fff;
 }
 
 .facebook-signup{
-  width:90%;
+  width:85%;
   margin:auto;
   display:block;
+  margin-left: 44px !important;
+  margin-bottom: 10px;
 }
 .email-signup{
   width:90%;
@@ -369,6 +462,11 @@ p {
   position:relative;
   display:block;
   margin:15px 0px 10px 0px;
+
+  .sign-in & {
+    margin: 30px auto 20px;
+    width: 80%;
+  }
   .left-separator{
     width:40%;
     height:12px;

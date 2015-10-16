@@ -15,5 +15,7 @@
 //= require turbolinks
 //= require bootstrap
 //= require home
+//= require js-cookie
+//= require app-cookies
 //= require jquery.slideandswipe.min
 
