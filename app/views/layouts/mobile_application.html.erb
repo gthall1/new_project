@@ -106,6 +106,17 @@
                         <h2><%= link_to games_path do %>Luckee<% end %><br /><span class='credits'><%= current_user.credits ||= 0 %> credits</span></h2>
                     <% end %>
                     <div class='referral-link'>
+
+                        <div class="share-dialog js-share-dialog">
+                            <div class="arrow-up"></div>
+                            <p>When you invite a friend and they sign up through your personalized link, you earn <span>25 credits</span></p>
+                            <p>Copy &amp; share:</p>
+                            <p class="share-dialog__link"><%= request.host_with_port %>/invite/<%=@referal_code %></p>
+                            <div class="share-dialog__close-container">
+                                <p class="share-dialog__close js-share-dialog__close">Got it</p>
+                            </div>
+                        </div> <!--/.share-dialog -->
+
                         <%= link_to refer_path do %>
                           <%= embedded_svg('svgs/icons/share_button.svg', :class => 'refer-link-icon') %>
                         <% end %>

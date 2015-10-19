@@ -17,5 +17,6 @@
 //= require home
 //= require js-cookie
 //= require app-cookies
+//= require main
 //= require jquery.slideandswipe.min
 
