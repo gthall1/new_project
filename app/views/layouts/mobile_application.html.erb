@@ -47,31 +47,49 @@
     <body ondragstart="return false;" ondrop="return false;" <%= "class=#{@body_class}" if @body_class %>>
         <% if signed_in? %>
         <nav class="nav ssm-nav-visible">
-            <h2>Swipe to close this menu.</h2>
             <div class='side-nav-top'>
                 <% if signed_in? %>
-                    <% if !current_user.oath_image.blank? %>
-                        <div style='text-align:center;'><%= image_tag(current_user.oath_image) %></div>
-                    <% end %>
-                    <h2><%= current_user.name %></h2>
-                    <h2 class='lifetime-credits'> <span class='credits'><%= current_user.lifetime_credits ||= 0 %></span> lifetime earning </h2>
-                    <ul>
-                        <%= link_to redeem_path do %>
-                            <li>
-                        $ Redeem <span class='redeem'><%= current_user.credits ||= 0%> </span>
-
-                            </li>
-                            <li> <hr></hr></li>
+                    <div class="side-nav__user-info">
+                        <h2 class="side-nav__close">Swipe to close</h2>
+                        <% if !current_user.oath_image.blank? %>
+                            <div style='text-align:center;'><%= image_tag(current_user.oath_image) %></div>
                         <% end %>
-                        <li><%= link_to edit_user_path(current_user) do %><%= embedded_svg('svgs/icons/gear42.svg', :class => 'settings-icon') %> Settings <% end %></li>
-                        <li> <hr></hr></li>
-                        <li><%= embedded_svg('svgs/icons/homework.svg', :class => 'survey-icon') %> <%= link_to "Survey", surveys_path %> <span class='survey-credits'>+100</span></li>
-                        <li> <hr></hr></li>
-                        <li> <%= embedded_svg('svgs/icons/homework.svg', :class => 'survey-icon') %><%= link_to refer_path do %>Invite Friends <% end %></li>
+                        <h2 class="side-nav__username"><%= current_user.name %></h2>
+                        <h2 class='lifetime-credits'> <span class='credits'><%= pluralize(current_user.lifetime_credits, 'liftime earning')%></span></h2>
+                    </div>
+                    <ul class="side-nav_links">
+                            <li>
+                                <%= embedded_svg('svgs/icons/redeem.svg', :class => 'settings-icon') %>
+                                <%= link_to redeem_path do %>
+                                    Redeem Credits
+                                <% end %>
+                                <span class='redeem'><%= current_user.credits ||= 0%> </span>
+                            </li>
+                        <li>
+                            <%= embedded_svg('svgs/icons/gear42.svg', :class => 'settings-icon') %>
+                            <%= link_to edit_user_path(current_user) do %>
+                                Settings
+                            <% end %>
+                        </li>
+
+                        <li>
+                            <%= embedded_svg('svgs/icons/homework.svg', :class => 'survey-icon') %>
+                            <%= link_to "Survey", surveys_path %>
+                            <span class='survey-credits'>+100</span>
+                        </li>
+
+                        <li>
+                            <i class="fa fa-user-plus survey-icon"></i>
+                            <%= link_to refer_path do %> Invite Friends <% end %>
+                            <span class='survey-credits'>+50</span>
+                        </li>
                     </ul>
-                    <div style='text-align:center'><%= link_to "Sign out", signout_path, method: "delete" %></div>
+                    <div class="side-nav__signout">
+                        <i class="fa fa-sign-out"></i>
+                        <%= link_to "Sign out", signout_path, method: "delete", class: 'side-nav__signout-link'%>
+                    </div>
                 <% end %>
-            </div>
+            </div><!--/.side-nav-top -->
         </nav>
 
         <div class="ssm-overlay"></div>
@@ -118,12 +136,14 @@
                         </div> <!--/.share-dialog -->
 
                         <%= link_to refer_path do %>
-                          <%= embedded_svg('svgs/icons/share_button.svg', :class => 'refer-link-icon') %>
+                            <i class="fa fa-user-plus">
+                                <span class="earn">+50</span>
+                            </i>
                         <% end %>
                     </div>
                 </div>
             <% else %>
-                <h1 class="top-title">Luckee</h1>
+                <img src="/assets/homescreen-logo.png" class="top-title">
             <% end %>
           <% flash.each do |key, value| %>
             <div class="alert alert-<%= key %>"><%= value %></div>
