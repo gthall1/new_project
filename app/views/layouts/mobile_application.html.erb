@@ -58,18 +58,18 @@
                         <h2 class='lifetime-credits'> <span class='credits'><%= pluralize(current_user.lifetime_credits, 'liftime earning')%></span></h2>
                     </div>
                     <ul class="side-nav_links">
-                            <li>
-                                <%= embedded_svg('svgs/icons/redeem.svg', :class => 'settings-icon') %>
-                                <%= link_to redeem_path do %>
-                                    Redeem Credits
-                                <% end %>
-                                <span class='redeem'><%= current_user.credits ||= 0%> </span>
-                            </li>
                         <li>
-                            <%= embedded_svg('svgs/icons/gear42.svg', :class => 'settings-icon') %>
-                            <%= link_to edit_user_path(current_user) do %>
-                                Settings
+                            <%= embedded_svg('svgs/icons/redeem.svg', :class => 'settings-icon') %>
+                            <%= link_to redeem_path do %>
+                                Redeem Credits
                             <% end %>
+                            <span class='survey-credits'><%= current_user.credits ||= 0%> </span>
+                        </li>
+
+                        <li>
+                            <i class="fa fa-user-plus survey-icon"></i>
+                            <%= link_to refer_path do %> Invite Friends <% end %>
+                            <span class='survey-credits'>+50</span>
                         </li>
 
                         <li>
@@ -79,9 +79,10 @@
                         </li>
 
                         <li>
-                            <i class="fa fa-user-plus survey-icon"></i>
-                            <%= link_to refer_path do %> Invite Friends <% end %>
-                            <span class='survey-credits'>+50</span>
+                            <%= embedded_svg('svgs/icons/gear42.svg', :class => 'settings-icon') %>
+                            <%= link_to edit_user_path(current_user) do %>
+                                Settings
+                            <% end %>
                         </li>
                     </ul>
                     <div class="side-nav__signout">
