@@ -52,7 +52,7 @@ body {
     .overlay__content {
       display: block;
       @include vertical-align();
-      font-weight: 200;
+      // font-weight: 200;
       font-size: 16px;
     }
     .overlay__logo {
@@ -62,7 +62,7 @@ body {
     }
     .overlay__title {
       color: #fff;
-      font-weight: 200;
+      // font-weight: 200;
       letter-spacing: 1px;
       display: inline-block;
       border-bottom: 1px solid;
@@ -91,7 +91,7 @@ body {
       position: absolute;
       right: 20px;
       top: 10px;
-      font-weight: 200;
+      // font-weight: 200;
       letter-spacing: 1px;
       text-decoration: underline;
     }
@@ -209,7 +209,7 @@ textarea {
   margin-top: 10px;
   background-color: $white;
   padding: 10px;
-  font-weight: 200;
+  // font-weight: 200;
   ul{
     padding:0px;
     margin:0px;
@@ -239,7 +239,7 @@ textarea {
   margin-bottom: 0;
   padding-bottom: 10px;
   text-align: left;
-  font-weight: 200;
+  // font-weight: 200;
   letter-spacing: 0.25px;
 }
 .cash-out__cost {
@@ -367,7 +367,7 @@ textarea {
 .redeemCredits {
   font-size: 18px;
   margin-bottom: 0;
-  font-weight: 200;
+  // font-weight: 200;
   letter-spacing: 0.25px;
 }
 .refer-friend {
@@ -382,7 +382,7 @@ textarea {
 .redeemCredits__desc {
   margin: -5px 0 0;
   font-size: 12px;
-  font-weight: 200;
+  // font-weight: 200;
   letter-spacing: 0.25;
 }
 .redeemCredits__title {
@@ -482,7 +482,7 @@ p {
     .credits{
       color:$credits-red;
       font-size: 14px;
-      font-weight: 200;
+      // font-weight: 200;
       letter-spacing: 0.25px;
       position:relative;
       top:-15px;
@@ -715,7 +715,7 @@ p {
   a {
     font-size: 14px;
      margin-left: 15px;
-     font-weight: 200;
+     // font-weight: 200;
      letter-spacing: 0.5px;
      &:hover {
       text-decoration: none;
@@ -754,7 +754,7 @@ p {
 
   h2 {
     color: $white;
-    font-weight: 200;
+    // font-weight: 200;
     letter-spacing: 0.5px;
   }
 }
