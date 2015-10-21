@@ -42,7 +42,7 @@ body {
       height: 100vh;
       position: absolute;
       background-color: rgba(117,117,117,0.5);
-      background-image: url(http://localhost:3000/assets/blur.png);
+      background-image: url(/assets/blur.png);
       background-position: center;
       background-size: cover;
       z-index: 100;
@@ -741,6 +741,17 @@ p {
   &:hover {
     text-decoration: none;
   }
+}
+.side-nav__avatar {
+  text-align: center;
+  height: 70px;
+  width: 70px;
+  background-color: white;
+  text-align: center;
+  background-position: center;
+  background-size: 100%;
+  margin: auto;
+  border-radius: 100%;
 }
 .side-nav__username {
   font-size: 16px;
