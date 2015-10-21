@@ -5,7 +5,7 @@
     <% end %>
     <span class='small-note'>We do not post anything to facebook.</span>
 
-   
+
     <div class='form-separator'>
       <div class='left-separator'></div><div class='or-separator'>or</div><div class='right-separator'></div>
     </div>
@@ -24,12 +24,12 @@
         <%= f.password_field :password, placeholder: "Password" %>
 
         <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %>
-        
+
         <%= f.submit "Create my account", class: "btn btn-outlined btn-white btn-lg btn-Create create-email" %>
 
       <% end %>
     </div>
-      <div class='sign-in'>
+      <div class='sign-in home-page__signin'>
         Already have an account?  <%= link_to "Sign In", signin_path %>
       </div>
 </div>
