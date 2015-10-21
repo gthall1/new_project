@@ -52,7 +52,7 @@
                     <div class="side-nav__user-info">
                         <h2 class="side-nav__close">Swipe to close</h2>
                         <% if !current_user.oath_image.blank? %>
-                            <div class="side-nav__avatar" style="background-image: url(current_user.oath_image);"></div>
+                            <div class="side-nav__avatar" style="background-image: url(<%= current_user.oath_image %>);"></div>
                         <% end %>
                         <h2 class="side-nav__username"><%= current_user.name %></h2>
                         <h2 class='lifetime-credits'> <span class='credits'><%= pluralize(current_user.lifetime_credits, 'liftime earning')%></span></h2>
