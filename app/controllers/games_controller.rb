@@ -54,7 +54,7 @@ class GamesController < ApplicationController
       elsif game_session.game.name == "Traffic"
         credits = (score/10.to_f).ceil - 1   
       elsif game_session.game.name == "Flappy Pilot"
-        credits = (score/5.to_f).ceil - 1                
+        credits = (score/10.to_f).ceil - 1                
       elsif game_session.game.name == "Black Hole"
         #credits = score * 5   
         credits_to_apply = 5
