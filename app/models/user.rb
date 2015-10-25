@@ -1,12 +1,14 @@
 class User < ActiveRecord::Base
   before_save { self.email = email.downcase }
+  attr_accessor :reset_token
+
   has_many :user_entries
   has_many :jackpots, through: :user_entries
   has_many :user_game_sessions
   belongs_to :jackpot
 
   before_create :create_remember_token, :create_referral_code
-
+  after_create :send_welcome_email
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
@@ -52,12 +54,32 @@ class User < ActiveRecord::Base
     SecureRandom.urlsafe_base64
   end
 
+  def send_welcome_email
+    UserNotifier.send_welcome_email({user_id:self.id}).deliver
+  end
+
+  def send_password_reset_email
+    UserNotifier.password_reset(self).deliver
+  end
+
   def User.digest(token)
     Digest::SHA1.hexdigest(token.to_s)
   end
 
   def create_referral_code
     self.referral = SecureRandom.hex(4)
+  end
+
+  # Returns true if a password reset has expired.
+  def password_reset_expired?
+    reset_sent_at < 2.hours.ago
+  end
+
+  # Sets the password reset attributes.
+  def create_reset_digest
+    self.reset_token = User.new_remember_token
+    update_attribute(:reset_digest,  User.digest(reset_token))
+    update_attribute(:reset_sent_at, Time.zone.now)
   end
 
   private

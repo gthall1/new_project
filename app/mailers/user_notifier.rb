@@ -1,6 +1,6 @@
 class UserNotifier < ActionMailer::Base
-  default from: "GetLuckee <gamemaster@getluckee.com>"
-  layout 'mailer'
+  default from: "Luckee <gamemaster@getluckee.com>"
+ # default from: "Griff Hall via Luckee <griffhall1@gmail.com>"
 
   def send_credit_reminder(args)
   	@user = User.where(id:args[:user_id]).first
@@ -11,7 +11,24 @@ class UserNotifier < ActionMailer::Base
 	    :reply_to => 'griffhall1@gmail.com',
 	    :display_name => "GetLuckee",
 	    :subject => "Don't miss out on great prizes!" )
-	 end
+	  end
   end
-end
 
+  def send_welcome_email(args)
+    @user = User.where(id:args[:user_id]).first
+
+    if @user 
+      mail( :to => @user.email,
+      :reply_to => 'griffhall1@gmail.com',
+      :from => 'Griff Hall via Luckee <griffhall1@gmail.com>',
+      :display_name => "Luckee",
+      :subject => "Thanks for joining the Luckee Beta!" )
+    end
+  end  
+
+  def password_reset(user)
+    @user = user
+    mail(to: user.email,:display_name => "Luckee", subject: "Password reset")
+  end
+
+end
