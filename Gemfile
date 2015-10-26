@@ -7,6 +7,7 @@ gem 'bootstrap-sass', '2.3.2.0'
 gem 'bcrypt-ruby', '3.1.2'
 gem 'faker', '1.1.2'
 
+gem 'runtimeerror_notifier'
 
 group :development do
   #gem 'mysql2'
@@ -28,5 +29,6 @@ gem 'httpi', '~> 2.2.4'
 
 group :production do
   gem 'rails_12factor', '0.0.2'
+
   #gem 'pg', '0.15.1'\
 end
