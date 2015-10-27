@@ -21,7 +21,6 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.json
   def show
-    p params
     case @game.name
       when "Memory Game"
         @top_scores = UserGameSession.where(game_id:@game.id).where.not(score:nil).order("score asc").limit(10)
@@ -46,7 +45,7 @@ class GamesController < ApplicationController
       status = "success"
       score = params[:score].to_i
       game_session = UserGameSession.where(token: params[:token]).first
-      p "Score : #{score} | Game SEssion Score: #{game_session.score}"
+     # p "Score : #{score} | Game SEssion Score: #{game_session.score}"
       if game_session.game.name == "Sorcerer Game"
         credits = (score/1000.to_f).ceil - 1 #subtract 1 otherwise itll give a credit once anything is scored
       elsif game_session.game.name == "2048"
@@ -54,7 +53,7 @@ class GamesController < ApplicationController
       elsif game_session.game.name == "Traffic"
         credits = (score/10.to_f).ceil - 1   
       elsif game_session.game.name == "Flappy Pilot"
-        credits = (score/5.to_f).ceil - 1                
+        credits = (score/10.to_f).ceil - 1                
       elsif game_session.game.name == "Black Hole"
         #credits = score * 5   
         credits_to_apply = 5
