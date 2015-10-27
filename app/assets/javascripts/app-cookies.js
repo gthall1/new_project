@@ -24,14 +24,14 @@ var cookies = {
     if(window.orientation == 0) // Portrait
     {
       // refactor and replace with callback function
-      alert('Portrait');
-      $('body').addClass('overlay-screen');
+      // alert('Portrait');
+      $('.mobile--overlay').removeClass('hide');
     }
     else // Landscape
     {
       // refactor and replace with callback function
-      alert('Landscape');
-      $('body').removeClass('overlay-screen');
+      // alert('Landscape');
+      $('.mobile--overlay').addClass('hide');
     }
   },
 
