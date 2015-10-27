@@ -22,7 +22,7 @@ class UserNotifier < ActionMailer::Base
       :reply_to => 'griffhall1@gmail.com',
       :from => 'Griff Hall via Luckee <griffhall1@gmail.com>',
       :display_name => "Luckee",
-      :subject => "Thanks for joining the Luckee Beta!" )
+      :subject => "Thanks for checking out Luckee!" )
     end
   end  
 
