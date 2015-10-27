@@ -23,15 +23,6 @@ ActiveRecord::Schema.define(version: 20151025215700) do
     t.datetime "updated_at"
   end
 
-  create_table "challenges", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "challenged_user_id"
-    t.integer  "game_id"
-    t.integer  "winner"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "feed_games", force: true do |t|
     t.string   "name"
     t.string   "description"
