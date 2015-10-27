@@ -25,10 +25,10 @@ gem 'turbolinks', '1.1.1'
 gem 'jbuilder', '1.0.2'
 gem 'nokogiri'
 gem 'httpi', '~> 2.2.4'
+gem 'raygun4ruby'
 
 group :production do
   gem 'rails_12factor', '0.0.2'
-  gem 'raygun4ruby'
 
   #gem 'pg', '0.15.1'\
 end
