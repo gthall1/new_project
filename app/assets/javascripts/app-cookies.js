@@ -57,7 +57,7 @@ var cookies = {
     cookies.showShareDialog()
     cookies.setAddToHomescreen();
     cookies.bind();
-    cookies.registerViewport();
+    // cookies.registerViewport();
   }
 };
 
