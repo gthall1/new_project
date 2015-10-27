@@ -54,6 +54,9 @@ body {
       @include vertical-align();
       // font-weight: 200;
       font-size: 16px;
+      &.hide {
+        display: none;
+      }
     }
     .overlay__logo {
       border-radius: 15px;
@@ -95,9 +98,25 @@ body {
       // letter-spacing: 1px;
       text-decoration: underline;
     }
+
+    .rotate-dialogue {
+      @include vertical-align();
+      .rotate__title {
+        font-size: 14px;
+        color: $white;
+      }
+      .rotate__icon {
+        font-size: 4em;
+      }
+      &.show {
+        display: block;
+      }
+    }
   }
 }
-
+.rotate-dialogue {
+  display: none;
+}
 .overlay__content {
   display: none;
 }

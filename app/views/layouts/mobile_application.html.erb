@@ -108,7 +108,11 @@
                     <p>"Add to Home Screen"</p>
                     <i class="overlay__down-arrow ios fa fa-long-arrow-down"></i>
                 </div>
-            </div>
+                <div class="rotate-dialogue">
+                            <i class="fa fa-repeat rotate__icon"></i>
+                            <h1 class="rotate__title">Please rotate your screen to play!</h1>
+                    </div>
+                </div>
             <% if signed_in? %>
                 <div class='mobile-header' <% if @game && Game.where(name:['Traffic','Flappy Pilot']).pluck(:id).include?(@game.id) %> style='display:none;'<% end %>>
                     <% if @game %>

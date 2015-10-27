@@ -1,6 +1,6 @@
 	<!-- The canvas must be inside a div called c2canvasdiv -->
 	<div id="c2canvasdiv">
-	
+
 		<!-- The canvas the project will render to.  If you change its ID, don't forget to change the
 		ID the runtime looks for in the jQuery events above (ready() and cr_sizeCanvas()). -->
 		<canvas id="c2canvas" width="625" height="950">
@@ -14,7 +14,7 @@
 			<a href="http://www.apple.com/safari/download/">Apple Safari</a><br/>
 			<a href="http://www.google.com/chromeframe">Google Chrome Frame for Internet Explorer</a><br/></h1>
 		</canvas>
-		
+
 	</div>
     <script>
  		var global_luckee_token = '<%= session[:game_token] %>';
@@ -26,14 +26,14 @@
 			window.scrollTo(0,0);
 			window.scrollTo(0,0);
 		});
-		
+
 		// Start the Construct 2 project running on window load.
 		jQuery(document).ready(function ()
-		{			
+		{
 			// Create new runtime using the c2canvas
 			cr_createRuntime("c2canvas");
 		});
-		
+
 		// Pause and resume on page becoming visible/invisible
 		function onVisibilityChanged() {
 			if (document.hidden || document.mozHidden || document.webkitHidden || document.msHidden)
@@ -41,15 +41,28 @@
 			else
 				cr_setSuspended(false);
 		};
-		
+
 		document.addEventListener("visibilitychange", onVisibilityChanged, false);
 		document.addEventListener("mozvisibilitychange", onVisibilityChanged, false);
 		document.addEventListener("webkitvisibilitychange", onVisibilityChanged, false);
 		document.addEventListener("msvisibilitychange", onVisibilityChanged, false);
-		
+
     </script>
 
 
 <%= content_for(:game_javascript) do %>
   <%= javascript_include_tag "flappy_pilot", "data-turbolinks-track" => true %>
+
+  <script>
+  	$(document).ready(function(){
+  		$('body').addClass('overlay-screen');
+  		$('.rotate-dialogue').addClass('show');
+  		$('.overlay__content').addClass('hide');
+  		$('.overlay__opt-out').remove();
+
+  		$(window).on("orientationchange",function(){
+  		  cookies.changeOrientation();
+  		});
+  	});
+  </script>
 <% end %>

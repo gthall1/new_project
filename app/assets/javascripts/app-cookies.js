@@ -29,27 +29,19 @@ var cookies = {
   changeOrientation: function() {
     if(window.orientation == 0) // Portrait
     {
-      alert('Portrait');
+      // refactor and replace with callback function
+      $('body').addClass('overlay-screen');
     }
     else // Landscape
     {
-      alert('Landscape');
+      // refactor and replace with callback function
+      $('body').removeClass('overlay-screen');
     }
   },
-
-  // listenForOrientation: function() {
-  //   $(window).on("orientationchange",function(){
-  //     cookies.changeOrientation();
-  //   });
-  // }
 
   bind: function() {
     $('.js-share-dialog__close').click(function(){
       $('.js-share-dialog').removeClass('show');
-    });
-
-    $(window).on("orientationchange",function(){
-      cookies.changeOrientation();
     });
   },
 
