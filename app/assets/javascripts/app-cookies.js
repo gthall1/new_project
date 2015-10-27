@@ -11,12 +11,6 @@ var cookies = {
     };
   },
 
-  registerViewport: function() {
-    if ('standalone' in navigator && !navigator.standalone && (/iphone|ipod|ipad/gi).test(navigator.platform) && (/Safari/i).test(navigator.appVersion)) {
-        alert('added to homescreen');
-    }
-  },
-
   showShareDialog: function() {
     if (Cookies.get('login') === 'initial') {
       console.log('Welcome back!');
@@ -30,11 +24,13 @@ var cookies = {
     if(window.orientation == 0) // Portrait
     {
       // refactor and replace with callback function
+      alert('Portrait');
       $('body').addClass('overlay-screen');
     }
     else // Landscape
     {
       // refactor and replace with callback function
+      alert('Landscape');
       $('body').removeClass('overlay-screen');
     }
   },
