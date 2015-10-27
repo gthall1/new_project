@@ -15,7 +15,7 @@ module ApplicationHelper
     true
   end
 
-  def determine_layout 
+  def determine_layout
   	is_mobile? ? "mobile_application" : "application"
   end
 
@@ -27,5 +27,5 @@ module ApplicationHelper
     svg["class"] = options[:class] if options[:class].present?
     raw doc
   end
-  
+
 end
