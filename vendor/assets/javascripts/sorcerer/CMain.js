@@ -58,22 +58,22 @@ function CMain(oData){
                 createjs.Sound.alternateExtensions = ["mp3"];
                 createjs.Sound.addEventListener("fileload", createjs.proxy(this.soundLoaded, this));
 
-                createjs.Sound.registerSound("./sounds/press_but.ogg", "press_but");
-                createjs.Sound.registerSound("./sounds/win.ogg", "win");
-                createjs.Sound.registerSound("./sounds/game_over.ogg", "game_over");
-                createjs.Sound.registerSound("./sounds/combo.ogg", "combo");
-                createjs.Sound.registerSound("./sounds/shot.ogg", "shot");
-                createjs.Sound.registerSound("./sounds/soundtrack.ogg", "soundtrack");
+                // createjs.Sound.registerSound("./sounds/press_but.ogg", "press_but");
+                // createjs.Sound.registerSound("./sounds/win.ogg", "win");
+                // createjs.Sound.registerSound("./sounds/game_over.ogg", "game_over");
+                // createjs.Sound.registerSound("./sounds/combo.ogg", "combo");
+                // createjs.Sound.registerSound("./sounds/shot.ogg", "shot");
+                // createjs.Sound.registerSound("./sounds/soundtrack.ogg", "soundtrack");
         }else{
                 createjs.Sound.alternateExtensions = ["ogg"];
                 createjs.Sound.addEventListener("fileload", createjs.proxy(this.soundLoaded, this));
 
-                createjs.Sound.registerSound("./sounds/press_but.mp3", "press_but");
-                createjs.Sound.registerSound("./sounds/win.mp3", "win");
-                createjs.Sound.registerSound("./sounds/game_over.mp3", "game_over");
-                createjs.Sound.registerSound("./sounds/combo.mp3", "combo");
-                createjs.Sound.registerSound("./sounds/shot.mp3", "shot");
-                createjs.Sound.registerSound("./sounds/soundtrack.mp3", "soundtrack");
+                // createjs.Sound.registerSound("./sounds/press_but.mp3", "press_but");
+                // createjs.Sound.registerSound("./sounds/win.mp3", "win");
+                // createjs.Sound.registerSound("./sounds/game_over.mp3", "game_over");
+                // createjs.Sound.registerSound("./sounds/combo.mp3", "combo");
+                // createjs.Sound.registerSound("./sounds/shot.mp3", "shot");
+                // createjs.Sound.registerSound("./sounds/soundtrack.mp3", "soundtrack");
         }
         
         RESOURCE_TO_LOAD += 6;

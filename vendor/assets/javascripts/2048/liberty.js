@@ -2829,7 +2829,7 @@ function _K1(_X4, _Y4, _Z4) {
                             url: "/score_update",
                             data: { token: token, score: global._K4 },
                             success:function(data) {
-                                $('.credits').html(data.user_total + ' credits');
+                                $('.credits').html(data.total_credits + ' credits');
                                 if(data.token != $("#game_token").val()){
                                     console.log('new_token');
                                     $("#game_token").val(data.token);

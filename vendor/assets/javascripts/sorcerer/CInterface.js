@@ -68,7 +68,7 @@ function CInterface(){
         url: "/score_update",
         data: { token: token, score: iScore },
         success:function(data) {
-            $('.credits').html(data.user_total + ' credits');
+            $('.credits').html(data.total_credits + ' credits');
         }
       });       
       

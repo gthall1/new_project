@@ -92,18 +92,28 @@ class GamesController < ApplicationController
         current_high_score = 0
       end      
     end
+    case game_session.game.name
+      when '2048','Black Hole','Sorcerer Game'
+        game_json = {
+           :earned => credits,
+           :total_credits => user.credits,
+           :token => session[:game_token],
+           :status => status,
+           :hscore => current_high_score   
+          }      
+      when 'Flappy Pilot','Traffic'
+        game_json = {
+          :c2dictionary => true,
+          :data => { 
+           :earned => credits,
+           :total_credits => user.credits,
+           :token => session[:game_token],
+           :status => status,
+           :hscore => current_high_score   
+          }
+        }
+    end
 
-    game_json = {
-      :c2dictionary => true,
-      :data => { 
-       :earned => credits,
-       :total_credits => user.credits,
-       :token => session[:game_token],
-       :status => status ,
-       :hscore => current_high_score   
-      }
-
-    }
     p game_json
     #render text: user.credits
     render json: game_json    
