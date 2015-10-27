@@ -1,6 +1,9 @@
 <div class="game-container">
 
   <% case @game.name %>
+    <% when 'Memory Game' %>
+      <%= @tttt %>
+      <%= testesrror.aaa %>
     <% when 'Sorcerer Game' %>
       <%= render 'sorcerer_m' %>
     <% when '2048' %>
@@ -16,3 +19,6 @@
 
 <input type="hidden" id="game_token" name="game_token" value="<%= session[:game_token] %>" />
 <input type="hidden" id="credits_earned" name="credits_earned" value=0 />
+<script type='text/javascript'>
+
+</script>
