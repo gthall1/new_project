@@ -5,7 +5,7 @@ var app = {
       if (Cookies.get('user') === 'returning') {
         console.log('Welcome home!');
       } else {
-          Cookies.set('user', 'returning');
+          Cookies.set('user', 'returning', { expires: 1 });
           $('body').addClass('overlay-screen add-to-home');
       }
     };
@@ -29,12 +29,12 @@ var app = {
   },
 
   changeOrientation: function() {
-    if(window.orientation == 0) // Portrait
-    {
+    if(window.orientation == 0) {
+      // Portrait
       $('.mobile--overlay').removeClass('hide');
     }
-    else // Landscape
-    {
+    else {
+      // Landscape
       $('.mobile--overlay').addClass('hide');
     }
   },
