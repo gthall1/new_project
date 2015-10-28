@@ -55,13 +55,10 @@
 
   <script>
   	$(document).ready(function(){
-  		$('body').addClass('overlay-screen');
-  		$('.rotate-dialogue').addClass('show');
-  		$('.overlay__content').addClass('hide');
-  		$('.overlay__opt-out').remove();
+  		app.showRotateDialog();
 
   		$(window).on("orientationchange",function(){
-  		  cookies.changeOrientation();
+  		  app.changeOrientation();
   		});
   	});
   </script>

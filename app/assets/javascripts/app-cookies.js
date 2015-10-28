@@ -1,12 +1,12 @@
-var cookies = {
+var app = {
   // Script to prompt user to add Luckee App shortcut to homescreen
   setAddToHomescreen: function() {
-    if (mobileCheck.iOS() && !mobileCheck.MobileChrome()) {
+    if (mobileCheck.iOS() && !mobileCheck.MobileChrome() && !app.checkAppMode()) {
       if (Cookies.get('user') === 'returning') {
         console.log('Welcome home!');
       } else {
           Cookies.set('user', 'returning');
-          $('body').addClass('overlay-screen');
+          $('body').addClass('overlay-screen add-to-home');
       }
     };
   },
@@ -20,17 +20,21 @@ var cookies = {
     }
   },
 
+  checkAppMode: function() {
+    return window.navigator.standalone;
+  },
+
+  showRotateDialog: function() {
+    $('body').addClass('overlay-screen overlay-screen--rotate');
+  },
+
   changeOrientation: function() {
     if(window.orientation == 0) // Portrait
     {
-      // refactor and replace with callback function
-      // alert('Portrait');
       $('.mobile--overlay').removeClass('hide');
     }
     else // Landscape
     {
-      // refactor and replace with callback function
-      // alert('Landscape');
       $('.mobile--overlay').addClass('hide');
     }
   },
@@ -42,9 +46,9 @@ var cookies = {
   },
 
   init: function() {
-    cookies.showShareDialog()
-    cookies.setAddToHomescreen();
-    cookies.bind();
+    app.showShareDialog()
+    app.setAddToHomescreen();
+    app.bind();
   }
 };
 
