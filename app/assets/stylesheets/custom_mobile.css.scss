@@ -30,101 +30,111 @@ body {
   padding-top: 0px;
   position: relative;
   z-index: 1;
-  &.overlay-screen--rotate {
-    .mobile--overlay {
-      background-image: url(/assets/rotate_screen_2.jpg)
-    }
-    .rotate-dialogue {
-      display: block;
-      @include vertical-align();
-
-      .rotate__title {
-        font-size: 14px;
-        color: $white;
-      }
-      .rotate__icon {
-        font-size: 4em;
-      }
-    }
-    .overlay__opt-out {
-      display: none !important;
-    }
-    .overlay__content {
-      display: none !important;
-    }
+}
+.overlay-screen--rotate {
+  .mobile--overlay {
+    background-image: url(/assets/rotate_screen_2.jpg)
   }
-
-  &.add-to-home {
-    .mobile--overlay {
-      background-image: url(/assets/blur.png);
-    }
+  .overlay__back-to-dash {
+    display: inline-block;
+    font-size: 10px;
+    color: $white;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    text-decoration: underline;
   }
-
-  &.overlay-screen {
-    .mobile-container {
-      height: 100vh;
-      overflow: hidden;
-    }
-    .mobile--overlay {
-      color: #fff;
-      width: 100%;
-      height: 100vh;
-      position: absolute;
-      background-color: rgba(117,117,117,0.5);
-      background-position: center;
-      background-size: cover;
-      z-index: 100;
-      text-align: center;
-    }
-    .overlay__content {
-      display: block;
-      @include vertical-align();
-      font-size: 16px;
-      &.hide {
-        display: none;
-      }
-    }
-    .overlay__logo {
-      border-radius: 15px;
-      display: block;
-      margin: 30px auto 30px;
-    }
-    .overlay__title {
-      color: #fff;
-      display: inline-block;
-      border-bottom: 1px solid;
-      padding-bottom: 30px;
-      font-size: 17px;
-      display: block;
-      width: 30%;
-      margin: 0 auto 30px;
-      font-size: 18px;
-    }
-    .overlay__bookmark {
-      width: auto;
-      height: 20px;
-      position: relative;
-      bottom: 3px;
-      margin: 0 2px;
-    }
-    .overlay__down-arrow {
-      font-size: 3em;
-      margin-top: 50px;
-    }
-    .overlay__opt-out {
-      display: inline-block;
-      font-size: 10px;
-      color: #524E4E;
-      position: absolute;
-      right: 20px;
-      top: 10px;
-      text-decoration: underline;
-    }
+  .rotate-dialogue {
+    display: block;
+    @include vertical-align();
+  }
+  .rotate__title {
+    font-size: 14px;
+    color: $white;
+  }
+  .rotate__icon {
+    font-size: 4em;
+  }
+  .overlay__opt-out {
+    display: none !important;
+  }
+  .overlay__content {
+    display: none !important;
   }
 }
+
+.add-to-home {
+  .mobile--overlay {
+    background-image: url(/assets/blur.png);
+  }
+}
+
+.overlay-screen {
+  .mobile-container {
+    height: 100vh;
+    overflow: hidden;
+  }
+  .mobile--overlay {
+    color: #fff;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    background-color: rgba(117,117,117,0.5);
+    background-position: center;
+    background-size: cover;
+    z-index: 100;
+    text-align: center;
+  }
+  .overlay__content {
+    display: block;
+    @include vertical-align();
+    font-size: 16px;
+    &.hide {
+      display: none;
+    }
+  }
+  .overlay__logo {
+    border-radius: 15px;
+    display: block;
+    margin: 30px auto 30px;
+  }
+  .overlay__title {
+    color: #fff;
+    display: inline-block;
+    border-bottom: 1px solid;
+    padding-bottom: 30px;
+    font-size: 17px;
+    display: block;
+    width: 30%;
+    margin: 0 auto 30px;
+    font-size: 18px;
+  }
+  .overlay__bookmark {
+    width: auto;
+    height: 20px;
+    position: relative;
+    bottom: 3px;
+    margin: 0 2px;
+  }
+  .overlay__down-arrow {
+    font-size: 3em;
+    margin-top: 50px;
+  }
+  .overlay__opt-out {
+    display: inline-block;
+    font-size: 10px;
+    color: #524E4E;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    text-decoration: underline;
+  }
+}
+
 .rotate-dialogue,
 .overlay__content,
-.overlay__opt-out {
+.overlay__opt-out,
+.overlay__back-to-dash {
   display: none;
 }
 
