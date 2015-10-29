@@ -42,5 +42,51 @@ class StaticPagesController < ApplicationController
   def redeem
   end
 
+  def new_cash_out
+    @cash_out = CashOut.new(cash_out_params)
+    case @cash_out.credits
+    when 1000
+      @cash_out.cash = 5
+    when 1950
+      @cash_out.cash = 10
+    when 3900
+      @cash_out.cash = 20
+    end
+    p @cash_out.cashout_type == 1
 
+    if @cash_out.cashout_type == 1 && !params[:first_name].blank? && !params[:last_name].blank? && !params[:email].blank?
+      u = current_user
+      u.firstname = params[:first_name]
+      u.lastname = params[:last_name]
+      u.save
+      @cash_out.paypal = params[:email]      
+    end
+
+    if !@cash_out.cashout_type.nil? && (!@cash_out.paypal.blank? || !@cash_out.venmo.blank?) && @cash_out.save
+      #i guess i can change this later to be cleaner
+      if current_user.credits >= @cash_out.credits
+        @current_user.credits = current_user.credits - @cash_out.credits
+        current_user.pending_credits = @cash_out.credits
+        current_user.save
+        if Rails.env.production?
+          UserNotifier.send_cash_out_email({user_id:current_user.id}).deliver
+        end
+      else
+        redirect_to redeem_credits_path(credits:@cash_out.credits)
+      end
+       
+    else
+      redirect_to redeem_credits_path(credits:@cash_out.credits)
+    end    
+  end
+
+  def redeem_credits
+    @amount = params[:credits]
+    @cash_out = CashOut.new
+  end
+
+  private 
+    def cash_out_params
+      params.require(:cash_out).permit(:user_id, :credits, :cash,:venmo,:paypal,:cashout_type)
+    end
 end

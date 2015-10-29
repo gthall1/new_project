@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151025215700) do
+ActiveRecord::Schema.define(version: 20151029024047) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,26 @@ ActiveRecord::Schema.define(version: 20151025215700) do
   create_table "advertisers", force: true do |t|
     t.string   "name"
     t.string   "logo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cash_outs", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "credits"
+    t.integer  "cash"
+    t.string   "venmo"
+    t.string   "paypal"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "cashout_type"
+  end
+
+  create_table "challenges", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "challenged_user_id"
+    t.integer  "game_id"
+    t.integer  "winner"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -139,6 +159,8 @@ ActiveRecord::Schema.define(version: 20151025215700) do
     t.string   "referral"
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
+    t.string   "firstname"
+    t.string   "lastname"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

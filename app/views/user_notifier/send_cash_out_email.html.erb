@@ -1,0 +1,28 @@
+Cash out!<br />
+
+User id: <%= @user.id %> <br />
+
+Credits: <%= @cash_out.credits %><br />
+
+Cash: <%= @cash_out.cash %><br />
+
+Cash Out Type: <%= @cash_out.cashout_type == 1 ? 'Paypal' : 'Venmo' %><br />
+
+<% if @cash_out.cashout_type == 1 %>
+	Firstname : <%= @user.firstname %><br />
+
+	Lastname : <%= @user.lastname %><br />
+
+	Email : <%= @user.email %><br />
+
+<% else %>
+	venmo account: <%= @cash_out.venmo %><br />
+
+	Email : <%= @user.email %><br />
+
+<% end %>
+
+
+This users current lifetime credits <%= @user.lifetime_credits %>, their current credits <%= @user.credits %>.
+
+Good luck!

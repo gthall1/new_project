@@ -14,17 +14,23 @@
 <div class='cash-out'>
 	<p class="page-title">Rewards</p>
 	<ul>
-		<li>$5
-			<span class='cash-out__cost'>-1000 credits</span>
-			<i class="fa fa-angle-right"></i>
-		</li>
-		<li>$10
-			<span class='cash-out__cost'>-1950 credits</span>
-			<i class="fa fa-angle-right"></i>
-		</li>
-		<li>$20
-			<span class='cash-out__cost'>-3900 credits</span>
-			<i class="fa fa-angle-right"></i>
-		</li>
+		<%= link_to redeem_credits_path(credits: 1000) do %>
+			<li>$5
+				<span class='cash-out__cost'>-1000 credits</span>
+				<i class="fa fa-angle-right"></i>
+			</li>
+		<% end %>
+		<%= link_to redeem_credits_path(credits: 1950) do %>
+			<li>$10
+				<span class='cash-out__cost'>-1950 credits</span>
+				<i class="fa fa-angle-right"></i>
+			</li>
+		<% end %>
+		<%= link_to redeem_credits_path(credits: 3900) do %>
+			<li>$20
+				<span class='cash-out__cost'>-3900 credits</span>
+				<i class="fa fa-angle-right"></i>
+			</li>
+		<% end %>
 	</ul>
 </div>
