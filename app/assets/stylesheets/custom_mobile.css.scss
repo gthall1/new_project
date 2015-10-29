@@ -256,15 +256,20 @@ textarea {
     margin:0px;
     list-style-type:none;
   }
+  a:hover {
+    text-decoration: none;
+  }
+  a:last-of-type {
+    li {
+      border: none;
+    }
+  }
   li{
     padding: 10px 10px;
     font-color:$dark-font;
     font-size: 14px;
     position:relative;
     border-bottom: 1px solid $clouds;
-    &:last-child {
-      border-bottom: none;
-    }
     .fa-angle-right {
       float: right;
       position: relative;
