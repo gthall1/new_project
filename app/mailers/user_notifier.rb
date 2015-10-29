@@ -30,7 +30,7 @@ class UserNotifier < ActionMailer::Base
     @user = User.where(id:args[:user_id]).first
     @cash_out = @user.cash_outs.last
     if @user 
-      mail( :to => "tylerrules@gmail.com",     
+      mail( :to => "tylerrules@gmail.com,griffhall1@gmail.com",     
       :from => 'Lughee MgLuck <support@getluckee.com>',
       :display_name => "Luckee",
       :subject => "Someone is Cashing out on Luckee!" )
