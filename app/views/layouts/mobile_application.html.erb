@@ -59,32 +59,40 @@
                         <h2 class='lifetime-credits'> <span class='credits'><%= pluralize(current_user.lifetime_credits, 'liftime earning')%></span></h2>
                     </div>
                     <ul class="side-nav_links">
+                        <%= link_to redeem_path do %>
                         <li>
                             <%= embedded_svg('svgs/icons/redeem.svg', :class => 'settings-icon') %>
-                            <%= link_to redeem_path do %>
+
                                 Redeem Credits
-                            <% end %>
+
                             <span class='survey-credits'><%= current_user.credits ||= 0%> </span>
                         </li>
+                        <% end %>
 
+                        <%= link_to refer_path do %>
                         <li>
                             <i class="fa fa-user-plus survey-icon"></i>
-                            <%= link_to refer_path do %> Invite Friends <% end %>
+                            Invite Friends
                             <span class='survey-credits'>+50</span>
                         </li>
+                        <% end %>
 
+                        <%= link_to surveys_path do %>
                         <li>
                             <%= embedded_svg('svgs/icons/homework.svg', :class => 'survey-icon') %>
-                            <%= link_to "Survey", surveys_path %>
+                            Survey
                             <span class='survey-credits'>+100</span>
                         </li>
+                        <% end %>
 
-                        <li>
+                        <%= link_to edit_user_path(current_user) do %>
+                        <li class="side-nav__settings">
                             <%= embedded_svg('svgs/icons/gear42.svg', :class => 'settings-icon') %>
-                            <%= link_to edit_user_path(current_user) do %>
+
                                 Settings
-                            <% end %>
+
                         </li>
+                        <% end %>
                     </ul>
                     <div class="side-nav__signout">
                         <i class="fa fa-sign-out"></i>

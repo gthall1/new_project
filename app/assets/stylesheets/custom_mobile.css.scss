@@ -783,29 +783,31 @@ p {
 
 }
 .side-nav_links {
-  padding: 10px;
+  padding: 0 10px 10px;
+  a{
+    display: inline-block;
+    width: 100%;
+    &:hover {
+     text-decoration: none;
+    }
+  }
   li {
-    &:first-child {
-      padding-top: 0;
-    }
-    &:last-child {
-      border-bottom: none;
-    }
+    font-size: 14px !important;
     border-bottom: 1px solid $clouds;
     margin-left: 10px;
-  }
-  a {
-    font-size: 14px;
-     margin-left: 15px;
-     // font-weight: 200;
-     // letter-spacing: 0.5px;
-     &:hover {
-      text-decoration: none;
-     }
+    svg, i {
+      margin-right: 15px;
+    }
   }
   span {
     font-size: 12px;
   }
+  .fa-user-plus {
+    font-size: 18px;
+  }
+}
+.side-nav__settings {
+  border: none !important;
 }
 .side-nav__signout {
   position: absolute;
