@@ -26,6 +26,17 @@ class UserNotifier < ActionMailer::Base
     end
   end  
 
+  def send_cash_out_email(args)
+    @user = User.where(id:args[:user_id]).first
+    @cash_out = @user.cash_outs.last
+    if @user 
+      mail( :to => "tylerrules@gmail.com",     
+      :from => 'Lughee MgLuck <support@getluckee.com>',
+      :display_name => "Luckee",
+      :subject => "Someone is Cashing out on Luckee!" )
+    end
+  end  
+
   def password_reset(user)
     @user = user
     mail(to: user.email,:display_name => "Luckee", subject: "Password reset")

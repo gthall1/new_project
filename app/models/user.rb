@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :user_entries
   has_many :jackpots, through: :user_entries
   has_many :user_game_sessions
+  has_many :cash_outs
   belongs_to :jackpot
 
   before_create :create_remember_token, :create_referral_code
