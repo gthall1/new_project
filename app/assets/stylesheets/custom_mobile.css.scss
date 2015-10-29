@@ -299,7 +299,14 @@ textarea {
     }
     select {
       display: inline-block;
-      width: 30%;
+      width: 32%;
+      margin: 0px 0.66%;
+    }
+    select:first-of-type {
+      float: left;
+    }
+    select:last-of-type {
+      float: right;
     }
     .btn-submit {
       margin-top: 20px;
