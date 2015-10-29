@@ -271,13 +271,11 @@ textarea {
     }
   }
 }
-.cash-out__title {
+.page-title {
   font-size: 16px;
   border-bottom: 1px solid $orange;
   margin-bottom: 0;
   text-align: left;
-  // font-weight: 200;
-  // letter-spacing: 0.25px;
 }
 .cash-out__cost {
   display: block;
@@ -285,17 +283,56 @@ textarea {
   font-size: 12px;
 }
 .edit-user{
-  width:95%;
-  form{
-    padding:10px;
-    .genderButtonLeft,.genderButtonRight{
-      display:inline-block;
-      float:left;
-    }
+  background-color: $white;
+  padding: 10px;
+  form {
+    margin: 0;
     input{
-      width:90%;
+      width: 100%;
+      border: none;
+      box-shadow: none;
+      border-bottom: 1px solid $clouds;
+      border-radius: 0;
+      outline: none;
+      margin: 0;
+      padding: 5px;
+    }
+    select {
+      display: inline-block;
+      width: 30%;
+    }
+    .btn-submit {
+      margin-top: 20px;
+      background-color: $purple;
+      border: none;
+      box-shadow: none;
+      background-image: none;
+      text-shadow: none;
+      color: white;
     }
   }
+}
+.page-title--account {
+  margin-bottom: 15px;
+}
+.page-title--password {
+  margin: 15px 0;
+}
+.edit-user__container {
+  border: 1px solid $silver;
+  overflow-x: hidden;
+}
+.edit-user__partition {
+  padding: 10px;
+}
+.edit-user__gender {
+  width: 45%;
+}
+.genderButtonLeft {
+  float: left;
+}
+.genderButtonRight {
+  float: right;
 }
 .mobile-home-footer{
   margin-top: 20px;
