@@ -1,6 +1,7 @@
 $(document).ready(function(){
-  cookies.init();
+  //cookies.init();
 
+  app.init();
   $( ".paypal-choice" ).click(function() {
 	 $(".paypal-choice").hide();
 	 $(".venmo-choice").hide();
@@ -23,5 +24,4 @@ $(document).ready(function(){
 	 $(".final-step").hide();
 
    });
-  app.init();
 });
