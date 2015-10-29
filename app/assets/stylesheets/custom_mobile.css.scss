@@ -30,97 +30,111 @@ body {
   padding-top: 0px;
   position: relative;
   z-index: 1;
-
-  &.overlay-screen {
-    .mobile-container {
-      height: 100vh;
-      overflow: hidden;
-    }
-    .mobile--overlay {
-      color: #fff;
-      width: 100%;
-      height: 100vh;
-      position: absolute;
-      background-color: rgba(117,117,117,0.5);
-      background-image: url(/assets/blur.png);
-      background-position: center;
-      background-size: cover;
-      z-index: 100;
-      text-align: center;
-      // font-weight: 100;
-    }
-    .overlay__content {
-      display: block;
-      @include vertical-align();
-      // font-weight: 200;
-      font-size: 16px;
-      &.hide {
-        display: none;
-      }
-    }
-    .overlay__logo {
-      border-radius: 15px;
-      display: block;
-      margin: 30px auto 30px;
-    }
-    .overlay__title {
-      color: #fff;
-      // font-weight: 200;
-      // letter-spacing: 1px;
-      display: inline-block;
-      border-bottom: 1px solid;
-      padding-bottom: 30px;
-      font-size: 17px;
-      display: block;
-      width: 30%;
-      margin: 0 auto 30px;
-      font-size: 18px;
-    }
-    .overlay__bookmark {
-      width: auto;
-      height: 20px;
-      position: relative;
-      bottom: 3px;
-      margin: 0 2px;
-    }
-    .overlay__down-arrow {
-      font-size: 3em;
-      margin-top: 50px;
-    }
-    .overlay__opt-out {
-      display: inline-block;
-      font-size: 10px;
-      color: #524E4E;
-      position: absolute;
-      right: 20px;
-      top: 10px;
-      // font-weight: 200;
-      // letter-spacing: 1px;
-      text-decoration: underline;
-    }
-
-    .rotate-dialogue {
-      @include vertical-align();
-      .rotate__title {
-        font-size: 14px;
-        color: $white;
-      }
-      .rotate__icon {
-        font-size: 4em;
-      }
-      &.show {
-        display: block;
-      }
-    }
+}
+.overlay-screen--rotate {
+  .mobile--overlay {
+    background-image: url(/assets/rotate_screen_2.jpg)
+  }
+  .overlay__back-to-dash {
+    display: inline-block;
+    font-size: 10px;
+    color: $white;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    text-decoration: underline;
+  }
+  .rotate-dialogue {
+    display: block;
+    @include vertical-align();
+  }
+  .rotate__title {
+    font-size: 14px;
+    color: $white;
+  }
+  .rotate__icon {
+    font-size: 4em;
+  }
+  .overlay__opt-out {
+    display: none !important;
+  }
+  .overlay__content {
+    display: none !important;
   }
 }
-.rotate-dialogue {
-  display: none;
+
+.add-to-home {
+  .mobile--overlay {
+    background-image: url(/assets/blur.png);
+  }
 }
-.overlay__content {
-  display: none;
+
+.overlay-screen {
+  .mobile-container {
+    height: 100vh;
+    overflow: hidden;
+  }
+  .mobile--overlay {
+    color: #fff;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    background-color: rgba(117,117,117,0.5);
+    background-position: center;
+    background-size: cover;
+    z-index: 100;
+    text-align: center;
+  }
+  .overlay__content {
+    display: block;
+    @include vertical-align();
+    font-size: 16px;
+    &.hide {
+      display: none;
+    }
+  }
+  .overlay__logo {
+    border-radius: 15px;
+    display: block;
+    margin: 30px auto 30px;
+  }
+  .overlay__title {
+    color: #fff;
+    display: inline-block;
+    border-bottom: 1px solid;
+    padding-bottom: 30px;
+    font-size: 17px;
+    display: block;
+    width: 30%;
+    margin: 0 auto 30px;
+    font-size: 18px;
+  }
+  .overlay__bookmark {
+    width: auto;
+    height: 20px;
+    position: relative;
+    bottom: 3px;
+    margin: 0 2px;
+  }
+  .overlay__down-arrow {
+    font-size: 3em;
+    margin-top: 50px;
+  }
+  .overlay__opt-out {
+    display: inline-block;
+    font-size: 10px;
+    color: #524E4E;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    text-decoration: underline;
+  }
 }
-.overlay__opt-out {
+
+.rotate-dialogue,
+.overlay__content,
+.overlay__opt-out,
+.overlay__back-to-dash {
   display: none;
 }
 
@@ -260,13 +274,11 @@ textarea {
     }
   }
 }
-.cash-out__title {
+.page-title {
   font-size: 16px;
   border-bottom: 1px solid $orange;
   margin-bottom: 0;
   text-align: left;
-  // font-weight: 200;
-  // letter-spacing: 0.25px;
 }
 .cash-out__cost {
   display: block;
@@ -274,17 +286,64 @@ textarea {
   font-size: 12px;
 }
 .edit-user{
-  width:95%;
-  form{
-    padding:10px;
-    .genderButtonLeft,.genderButtonRight{
-      display:inline-block;
-      float:left;
-    }
+  background-color: $white;
+  padding: 10px;
+  form {
+    margin: 0;
     input{
-      width:90%;
+      width: 100%;
+      border: none;
+      box-shadow: none;
+      border-bottom: 1px solid $clouds;
+      border-radius: 0;
+      outline: none;
+      margin: 0;
+      padding: 7px;
+    }
+    select {
+      display: inline-block;
+      width: 32%;
+      margin: 0px 0.66%;
+    }
+    select:first-of-type {
+      float: left;
+    }
+    select:last-of-type {
+      float: right;
+    }
+    .btn-submit {
+      margin-top: 20px;
+      background-color: $purple;
+      border: none;
+      box-shadow: none;
+      background-image: none;
+      text-shadow: none;
+      color: white;
+      padding: 10px 0;
     }
   }
+}
+.page-title--account {
+  margin-bottom: 15px;
+}
+.page-title--password {
+  margin: 15px 0;
+}
+.edit-user__container {
+  border: 1px solid $silver;
+  overflow-x: hidden;
+}
+.edit-user__partition {
+  padding: 10px;
+}
+.edit-user__gender {
+  width: 45%;
+}
+.genderButtonLeft {
+  float: left;
+}
+.genderButtonRight {
+  float: right;
 }
 .mobile-home-footer{
   margin-top: 20px;

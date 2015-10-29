@@ -101,6 +101,7 @@
         <div class='mobile-container <% if !signed_in? %>with-money<% end %>' style="width:100%;">
             <div class="mobile--overlay">
                 <a href="/" class="overlay__opt-out">Preview in Browser</a>
+                <a href="/" class="overlay__back-to-dash">Return to Dashboard</a>
                 <div class="overlay__content">
                     <img class="overlay__logo" src="/assets/logo-144.png">
                     <h1 class="overlay__title">Luckee</h1>
@@ -111,8 +112,8 @@
                 <div class="rotate-dialogue">
                             <i class="fa fa-repeat rotate__icon"></i>
                             <h1 class="rotate__title">Please rotate your screen to play!</h1>
-                    </div>
                 </div>
+            </div>
             <% if signed_in? %>
                 <div class='mobile-header' <% if @game && Game.where(name:['Traffic','Flappy Pilot']).pluck(:id).include?(@game.id) %> style='display:none;'<% end %>>
                     <% if @game %>

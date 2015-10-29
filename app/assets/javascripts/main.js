@@ -23,4 +23,5 @@ $(document).ready(function(){
 	 $(".final-step").hide();
 
    });
+  app.init();
 });
