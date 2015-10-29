@@ -256,8 +256,11 @@ textarea {
     margin:0px;
     list-style-type:none;
   }
-  a:hover {
-    text-decoration: none;
+  a {
+    color: #333;
+    &:hover {
+      text-decoration: none;
+    }
   }
   a:last-of-type {
     li {
