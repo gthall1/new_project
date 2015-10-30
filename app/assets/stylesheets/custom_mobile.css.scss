@@ -173,6 +173,9 @@ textarea {
       bottom: 25px;
       right: 5px;
       color: $silver;
+      &.cash-choice {
+        bottom: -3px;
+      }
     }
   }
 }
@@ -407,6 +410,21 @@ textarea {
   }
   .p{
     font-size:16px;
+  }
+}
+
+.venmo-choice {
+  border: none !important;
+  img {
+    height: 10px;
+    width: auto;
+  }
+}
+
+.paypal-choice {
+  img {
+    height: 15px;
+    width: auto;
   }
 }
 
