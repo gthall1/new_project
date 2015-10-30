@@ -87,7 +87,8 @@ body {
   }
   .overlay__content {
     display: block;
-    @include vertical-align();
+    // @include vertical-align();
+    padding: 20% 0 25%;
     font-size: 16px;
     &.hide {
       display: none;
@@ -96,17 +97,17 @@ body {
   .overlay__logo {
     border-radius: 15px;
     display: block;
-    margin: 30px auto 30px;
+    margin: 20px auto 20px;
   }
   .overlay__title {
     color: #fff;
     display: inline-block;
     border-bottom: 1px solid;
-    padding-bottom: 30px;
+    padding-bottom: 20px;
     font-size: 17px;
     display: block;
     width: 30%;
-    margin: 0 auto 30px;
+    margin: 0 auto 20px;
     font-size: 18px;
   }
   .overlay__bookmark {
@@ -117,8 +118,8 @@ body {
     margin: 0 2px;
   }
   .overlay__down-arrow {
-    font-size: 3em;
-    margin-top: 50px;
+    font-size: 2em;
+    margin-top: 10px;
   }
   .overlay__opt-out {
     display: inline-block;
@@ -256,15 +257,23 @@ textarea {
     margin:0px;
     list-style-type:none;
   }
+  a {
+    color: #333;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  a:last-of-type {
+    li {
+      border: none;
+    }
+  }
   li{
     padding: 10px 10px;
     font-color:$dark-font;
     font-size: 14px;
     position:relative;
     border-bottom: 1px solid $clouds;
-    &:last-child {
-      border-bottom: none;
-    }
     .fa-angle-right {
       float: right;
       position: relative;
@@ -786,29 +795,31 @@ p {
 
 }
 .side-nav_links {
-  padding: 10px;
+  padding: 0 10px 10px;
+  a{
+    display: inline-block;
+    width: 100%;
+    &:hover {
+     text-decoration: none;
+    }
+  }
   li {
-    &:first-child {
-      padding-top: 0;
-    }
-    &:last-child {
-      border-bottom: none;
-    }
+    font-size: 14px !important;
     border-bottom: 1px solid $clouds;
     margin-left: 10px;
-  }
-  a {
-    font-size: 14px;
-     margin-left: 15px;
-     // font-weight: 200;
-     // letter-spacing: 0.5px;
-     &:hover {
-      text-decoration: none;
-     }
+    svg, i {
+      margin-right: 15px;
+    }
   }
   span {
     font-size: 12px;
   }
+  .fa-user-plus {
+    font-size: 18px;
+  }
+}
+.side-nav__settings {
+  border: none !important;
 }
 .side-nav__signout {
   position: absolute;
