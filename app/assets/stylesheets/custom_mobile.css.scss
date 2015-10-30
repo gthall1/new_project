@@ -439,7 +439,7 @@ p {
 }
 
 .mobile-header{
-  position: fixed;
+  position: relative;
   top:-10px;
   width:100%;
   display:block;
@@ -513,7 +513,7 @@ p {
   color: $red;
 }
 .mobile-header{
-    position: fixed;
+    position: relative;
     top: 0px;
     width: 100%;
     display: block;
