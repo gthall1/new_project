@@ -6,7 +6,7 @@
       <div class="redeem__copy">
         <p class="redeemCredits">My balance: <span class='credits'>
         <%= current_user.credits.blank? ? "0" : current_user.credits %></span>
-        <p class="redeemCredits__desc">How much would you like to cash out? </p>
+        <p class="redeemCredits__desc">How would you like to cash out?</p>
       </div>
     </div>
   </div>
@@ -31,18 +31,18 @@
       </ul>
     </div>
     <div class='paypal-select'>
-    	<div class='back-choice'>back</div>
+    	<div class='back-choice'>Choose different provider</div>
 		<label for='cash_out_paypal' >Paypal Details </label>
 		<label for='first_name' >First Name: </label>
 		<%= text_field_tag "first_name", "First Name", :value => current_user.firstname %>
 		<label for='last_name' >Last Name: </label>
 		<%= text_field_tag "last_name","Last Name", :value => current_user.lastname %>
-		<label for='email' >Email: </label>
-		<%= text_field_tag "email","email", :value => current_user.email %>
+		<label for='email' >Paypal Email: </label>
+		<%= text_field_tag "email" %>
 	</div>
     <div class='venmo-select'>
-    	<div class='back-choice'>back</div>
-	    <label for='cash_out_venmo' >Venmo name </label>
+    	<div class='back-choice'>Choose different provider</div>
+	    <label for='cash_out_venmo' >Venmo username </label>
 	    <%= f.text_field "venmo" %>
 	</div>
 	<div class='final-step'>
