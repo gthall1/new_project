@@ -944,7 +944,10 @@ p {
     }
     .overlay__down-arrow {
       font-size: 2em;
-      margin-top: 10px;
+      position: absolute;
+      bottom: 30px;
+      margin-left: -7px;
+      left: 50%;
     }
     .overlay__opt-out {
       display: inline-block;
