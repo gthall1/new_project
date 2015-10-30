@@ -379,6 +379,7 @@ class GamesController < ApplicationController
     game.game_id = Game.where(name: "Helicopter").first.id
     game.credits_earned = 0
     game.active = true
+    game.arrival_id = session[:arrival_id]
     game.save
     if !session[:game_token].nil?
      old_game = UserGameSession.where(token:session[:game_token]).first
@@ -445,6 +446,7 @@ class GamesController < ApplicationController
       game.game_id = Game.where(name: game_name).first.id
       game.credits_earned = 0
       game.active = true
+      game.arrival_id = session[:arrival_id]
       game.save
       if !session[:game_token].nil? 
        old_game = UserGameSession.where(token:session[:game_token]).first
@@ -459,43 +461,6 @@ class GamesController < ApplicationController
       session[:game_token] = game.token      
     end       
   end
-
-  # def reset_game
-  #   no_user = false
-  #   if current_user
-  #     game = UserGameSession.new
-  #     game.token = SecureRandom.urlsafe_base64
-  #     game.user_id = current_user.id
-  #     game.game_id = Game.where(name: "Memory Game").first.id
-  #     game.credits_earned = 0
-  #     game.active = true
-  #     game.save
-  #     if !session[:game_token].nil?
-  #      old_game = UserGameSession.where(token:session[:game_token]).first
-  #      #close previous game game
-  #      if old_game
-  #       old_game.active = false
-  #       old_game.save
-  #      end
-  #     end 
-  #     duration = (Time.now.to_i - game.created_at.to_i).to_i
-  #     if duration > 999.seconds
-  #       duration = 999.seconds
-  #     end
-  #     session[:game_token] = game.token   
-  #     game_json = {
-  #       :status => "success",
-  #       :token => game.token, 
-  #       :duration => duration
-  #     }    
-  #   else
-  #     game_json = {
-  #       :status => "failure"
-  #     }
-  #   end   
-
-  #   render json: game_json     
-  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -519,6 +484,7 @@ class GamesController < ApplicationController
         game.game_id = game_id
         game.credits_earned = 0
         game.active = true
+        game.arrival_id = session[:arrival_id]
         game.save
         if !session[:game_token].nil?
          old_game = UserGameSession.where(token:session[:game_token]).first

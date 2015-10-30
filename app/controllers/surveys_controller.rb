@@ -22,6 +22,7 @@ class SurveysController < ApplicationController
       @user_survey.survey_id = @survey.id
       @user_survey.user_id = current_user.id
       @user_survey.complete = false
+      @user_survey.arrival_id = session[:arrival_id]
       @user_survey.save
     end
     

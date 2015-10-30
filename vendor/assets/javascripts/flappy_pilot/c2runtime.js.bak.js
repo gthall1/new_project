@@ -20851,7 +20851,7 @@ cr.plugins_.Sprite = function(runtime)
 	        url: "/score_update",
 	        data: { token: global_luckee_token, score: this.cur_frame + 1 },
 	        success:function(data) {
-	            $('.credits').html(data.user_total + ' credits');
+	            $('.credits').html(data.total_credits + ' credits');
 	            if(data.token != $("#game_token").val()){
 	            	global_luckee_token = data.token;
 	                $("#game_token").val(data.token);
