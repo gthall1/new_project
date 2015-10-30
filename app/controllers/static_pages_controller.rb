@@ -24,6 +24,7 @@ class StaticPagesController < ApplicationController
   end
 
   def refer
+        @show_back_button = true
     @referal_code = nil
     if signed_in?
       @referal_code = current_user.referral
