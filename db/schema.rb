@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151029024047) do
+ActiveRecord::Schema.define(version: 20151030012041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,17 @@ ActiveRecord::Schema.define(version: 20151029024047) do
   create_table "advertisers", force: true do |t|
     t.string   "name"
     t.string   "logo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "arrivals", force: true do |t|
+    t.string   "landing_url"
+    t.string   "referer"
+    t.string   "user_agent"
+    t.string   "ip"
+    t.string   "mobile"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -32,6 +43,7 @@ ActiveRecord::Schema.define(version: 20151029024047) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "cashout_type"
+    t.integer  "arrival_id"
   end
 
   create_table "feed_games", force: true do |t|
@@ -115,6 +127,7 @@ ActiveRecord::Schema.define(version: 20151029024047) do
     t.integer  "score"
     t.integer  "challenge_id"
     t.integer  "credits_applied", default: 0
+    t.integer  "arrival_id"
   end
 
   create_table "user_surveys", force: true do |t|
@@ -123,6 +136,7 @@ ActiveRecord::Schema.define(version: 20151029024047) do
     t.boolean  "complete"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "arrival_id"
   end
 
   create_table "users", force: true do |t|
@@ -152,6 +166,7 @@ ActiveRecord::Schema.define(version: 20151029024047) do
     t.datetime "reset_sent_at"
     t.string   "firstname"
     t.string   "lastname"
+    t.integer  "arrival_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
