@@ -439,7 +439,7 @@ p {
 }
 
 .mobile-header{
-  position:relative;
+  position: fixed;
   top:-10px;
   width:100%;
   display:block;
@@ -513,11 +513,11 @@ p {
   color: $red;
 }
 .mobile-header{
-    position: relative;
+    position: fixed;
     top: 0px;
     width: 100%;
     display: block;
-    height: 10%;
+    height: 60px;
     background: #F2BB7C;
     min-height: 60px;
     a{
@@ -944,7 +944,10 @@ p {
     }
     .overlay__down-arrow {
       font-size: 2em;
-      margin-top: 10px;
+      position: absolute;
+      bottom: 15%;
+      margin-left: -7px;
+      left: 50%;
     }
     .overlay__opt-out {
       display: inline-block;

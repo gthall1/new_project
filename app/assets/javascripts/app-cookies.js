@@ -16,7 +16,7 @@ var app = {
       console.log('Welcome back!');
     } else {
       Cookies.set('login', 'initial', '/games');
-      $('.js-share-dialog').addClass('show');
+      // $('.js-share-dialog').addClass('show');
     }
   },
 
