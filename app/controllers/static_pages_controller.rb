@@ -44,6 +44,9 @@ class StaticPagesController < ApplicationController
 
   def new_cash_out
     @cash_out = CashOut.new(cash_out_params)
+    if session[:arrival_id]
+      @cash_out.arrival_id = session[:arrival_id]
+    end
     case @cash_out.credits
     when 1000
       @cash_out.cash = 5

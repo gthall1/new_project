@@ -11,6 +11,14 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       sign_in user
+      cookies.permanent[:u] = user.id
+      if session[:arrival_id]
+        a = Arrival.where(id:session[:arrival_id]).first
+        if a
+          a.user_id = user.id
+          a.save
+        end
+      end
       redirect_to root_url
     else
       flash.now[:error] = 'Invalid email/password combination'
@@ -26,6 +34,14 @@ class SessionsController < ApplicationController
     user = User.omniauth(env['omniauth.auth'])
     if user
       sign_in user
+      cookies.permanent[:u] = user.id
+      if session[:arrival_id]
+        a = Arrival.where(id:session[:arrival_id]).first
+        if a
+          a.user_id = user.id
+          a.save
+        end
+      end      
       redirect_to root_url
     else
       flash.now[:error] = 'Invalid email/password combination'
