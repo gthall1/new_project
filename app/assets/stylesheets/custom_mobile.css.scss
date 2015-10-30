@@ -513,11 +513,11 @@ p {
   color: $red;
 }
 .mobile-header{
-    position: relative;
+    position: fixed;
     top: 0px;
     width: 100%;
     display: block;
-    height: 10%;
+    height: 60px;
     background: #F2BB7C;
     min-height: 60px;
     a{
