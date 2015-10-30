@@ -48,14 +48,13 @@ class StaticPagesController < ApplicationController
       @cash_out.arrival_id = session[:arrival_id]
     end
     case @cash_out.credits
-    when 1000
-      @cash_out.cash = 5
-    when 1950
-      @cash_out.cash = 10
-    when 3900
-      @cash_out.cash = 20
+      when 1000
+        @cash_out.cash = 5
+      when 1950
+        @cash_out.cash = 10
+      when 3900
+        @cash_out.cash = 20
     end
-    p @cash_out.cashout_type == 1
 
     if @cash_out.cashout_type == 1 && !params[:first_name].blank? && !params[:last_name].blank? && !params[:email].blank?
       u = current_user
@@ -65,21 +64,18 @@ class StaticPagesController < ApplicationController
       @cash_out.paypal = params[:email]      
     end
 
-    if !@cash_out.cashout_type.nil? && (!@cash_out.paypal.blank? || !@cash_out.venmo.blank?) && @cash_out.save
-      #i guess i can change this later to be cleaner
-      if current_user.credits >= @cash_out.credits
+    if current_user.credits < @cash_out.credits
+      redirect_to redeem_credits_path(credits:@cash_out.credits), alert: "You dont have enough credits to cash that out! This requires #{@cash_out.credits}, and you have #{current_user.credits}."
+    elsif !@cash_out.cashout_type.nil? && (!@cash_out.paypal.blank? || !@cash_out.venmo.blank?) && @cash_out.save
         @current_user.credits = current_user.credits - @cash_out.credits
         current_user.pending_credits = @cash_out.credits
         current_user.save
         if Rails.env.production?
           UserNotifier.send_cash_out_email({user_id:current_user.id}).deliver
         end
-      else
-        redirect_to redeem_credits_path(credits:@cash_out.credits)
-      end
        
     else
-      redirect_to redeem_credits_path(credits:@cash_out.credits)
+      redirect_to redeem_credits_path(credits:@cash_out.credits), alert: "Something went wrong. Please check the fields and try again."
     end    
   end
 
