@@ -40,9 +40,11 @@ class StaticPagesController < ApplicationController
   end
 
   def redeem
+    @show_back_button = true
   end
 
   def new_cash_out
+    @show_back_button = true
     @cash_out = CashOut.new(cash_out_params)
     if session[:arrival_id]
       @cash_out.arrival_id = session[:arrival_id]
@@ -80,6 +82,7 @@ class StaticPagesController < ApplicationController
   end
 
   def redeem_credits
+    @show_back_button = true
     @amount = params[:credits]
     @cash_out = CashOut.new
   end
