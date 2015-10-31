@@ -1,31 +1,23 @@
-<h1>Listing surveys</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Credits</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div class='cash-out'>
+  <p class="page-title">Surveys</p>
+  <ul>
     <% @surveys.each do |survey| %>
-    <tr>
-      <td><%= survey.name %></td>
-      <td><%= survey.credits%></td>
-      <% if UserSurvey.where(survey_id: survey.id,user_id:current_user.id,complete:true).present? %>
-      <td>Survey Completed</td>
-      <% else %>
-      <td><%= link_to 'Take Survey', survey %></td>
-      <% end %>
-    </tr>
-    <% if current_user && current_user.admin %>
-      <tr>
-        <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
-        <td><%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <li><%= survey.name %>
+        <% if UserSurvey.where(survey_id: survey.id,user_id:current_user.id,complete:true).present? %>
+          <span class='cash-out__cost'>Survey Completed</span>
+        <% else %>
+          <span class='cash-out__cost'>+<%= survey.credits%></span>
+          <%= link_to  survey do %>
+            <i class="fa fa-angle-right"></i>
+          <% end %>
+        <% end %>
+          <% if current_user && current_user.admin %>
+              <%= link_to 'Edit', edit_survey_path(survey) %>
+              <%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+      </li>
     <% end %>
-    <% end %>
-  </tbody>
-</table>
+  </ul>
+</div>
+
+
