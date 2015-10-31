@@ -29,25 +29,25 @@
             <i class="fa fa-angle-right cash-choice"></i>
         </li>
       </ul>
-    </div>
-    <div class='paypal-select'>
-    		<%= text_field_tag "first_name", "First Name", :value => current_user.firstname, placeholder: "First Name" %>
+    </div><!--/.cash-out -->
+    <div class="cash-out__wrapper">
 
-    		<%= text_field_tag "last_name","Last Name", :value => current_user.lastname, placeholder: "Last Name" %>
+      <div class='paypal-select'>
+      		<%= text_field_tag "first_name", "First Name", :value => current_user.firstname, placeholder: "First Name" %>
 
-    		<%= text_field_tag "email","email", :value => current_user.email, placeholder: "Email" %>
-        <!-- <div class='back-choice'>Back</div> -->
-    </div> <!--/.paypal-select -->
+      		<%= text_field_tag "last_name","Last Name", :value => current_user.lastname, placeholder: "Last Name" %>
 
-    <div class='venmo-select'>
-	    <label for='cash_out_venmo' >Venmo username </label>
-	    <%= f.text_field "venmo", placeholder: "Venmo username"%>
-      <!-- <div class='back-choice'>Back</div> -->
-    </div> <!--/.venmo-select -->
-	<div class='final-step'>
+      		<%= text_field_tag "email","email", :value => current_user.email, placeholder: "Email" %>
+      </div> <!--/.paypal-select -->
+      <div class='venmo-select'>
+  	    <%= f.text_field "venmo", placeholder: "Venmo username"%>
+      </div> <!--/.venmo-select -->
+      <div class='final-step'>
 
-	    <%= f.submit "Cash out", class: "btn btn-outlined btn-white btn-lg btn-Create create-email" %>
-    </div>
+  	    <%= f.submit "Cash out", class: "btn-submit" %>
+      </div><!--/.final-step -->
+
+    </div><!--/.cash-out__wrapper -->
   <% end %>
 
 </div>

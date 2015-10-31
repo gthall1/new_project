@@ -217,14 +217,7 @@ textarea {
       float: right;
     }
     .btn-submit {
-      margin-top: 20px;
-      background-color: $purple;
-      border: none;
-      box-shadow: none;
-      background-image: none;
-      text-shadow: none;
-      color: white;
-      padding: 10px 0;
+      @include submit-button();
     }
   }
 }
@@ -428,14 +421,34 @@ textarea {
   }
 }
 
-.paypal-select,
-.venmo-select {
+.cash-out__wrapper{
   background-color: $white;
   padding-bottom: 1px;
+  position: absolute;
+  width: 100%;
+  left: 100%;
+  transition: all;
+
+  &.slide-in {
+  -webkit-animation: slide 0.5s forwards;
+  animation: slide 0.5s forwards;
+  }
+  .btn-submit {
+    @include submit-button();
+  }
 }
 
+@-webkit-keyframes slide {
+    100% { left: 0; }
+}
+
+@keyframes slide {
+    100% { left: 0; }
+}
+
+
 .back-choice {
-  margin-left: 10px;
+  // margin-left: 10px;
   margin-bottom: 5px;
 }
 
