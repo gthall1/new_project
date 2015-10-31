@@ -45,7 +45,6 @@ class ApplicationController < ActionController::Base
 			end
 
 			arrival = Arrival.create({landing_url: landing_url, referer: referer, user_agent:user_agent,ip:ip,mobile:mobile,user_id:user_id})
-			p "SETTING ARRIVLA #{arrival.id}"
 			session[:arrival_id] = arrival.id
 
 			cookies[:a_id] = { :value => arrival.id, :expires => 8.hours.from_now }
