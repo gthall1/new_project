@@ -428,6 +428,17 @@ textarea {
   }
 }
 
+.paypal-select,
+.venmo-select {
+  background-color: $white;
+  padding-bottom: 1px;
+}
+
+.back-choice {
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {

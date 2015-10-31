@@ -20,31 +20,28 @@
       <ul>
         <li class="paypal-choice">
         		<img src="/assets/paypal.png">
-            <span class='cash-out__cost'>Link Account</span>
+            <span class='cash-out__cost'>Cashout with PayPal</span>
             <i class="fa fa-angle-right cash-choice"></i>
         </li>
         <li class="venmo-choice">
         		<img src="/assets/venmo.png">
-            <span class='cash-out__cost'>Link Account</span>
+            <span class='cash-out__cost'>Cashout with Venmo</span>
             <i class="fa fa-angle-right cash-choice"></i>
         </li>
       </ul>
     </div>
     <div class='paypal-select'>
-    	<div class='back-choice'>back</div>
-		<label for='cash_out_paypal' >Paypal Details </label>
-		<label for='first_name' >First Name: </label>
-		<%= text_field_tag "first_name", "First Name", :value => current_user.firstname %>
-		<label for='last_name' >Last Name: </label>
-		<%= text_field_tag "last_name","Last Name", :value => current_user.lastname %>
-		<label for='email' >Email: </label>
-		<%= text_field_tag "email","email", :value => current_user.email %>
-	</div>
+    		<%= text_field_tag "first_name", "First Name", :value => current_user.firstname, placeholder: "First Name" %>
+
+    		<%= text_field_tag "last_name","Last Name", :value => current_user.lastname, placeholder: "Last Name" %>
+
+    		<%= text_field_tag "email","email", :value => current_user.email, placeholder: "Email" %>
+        <div class='back-choice'>Back</div>
+    </div> <!--/.paypal-select -->
     <div class='venmo-select'>
-    	<div class='back-choice'>back</div>
-	    <label for='cash_out_venmo' >Venmo name </label>
 	    <%= f.text_field "venmo" %>
-	</div>
+      <div class='back-choice'>Back</div>
+    </div> <!--/.venmo-select -->
 	<div class='final-step'>
 
 	    <%= f.submit "Cash out", class: "btn btn-outlined btn-white btn-lg btn-Create create-email" %>
