@@ -42,33 +42,28 @@ var app = {
   cashOutFlow: function() {
       $( ".paypal-choice" ).click(function() {
         $('.page-title').html('Paypal Details');
-        $('.cash-out__wrapper').addClass('slide-in');
+        $('.cash-out__wrapper').addClass('slide-in cash-out__paypal');
         $('.cash-out').addClass('cash-out--hide-list');
-         $(".back-link").hide();
-         $(".back-choice").show();
-       $(".paypal-select").show();
-       $(".final-step").show();
-       $("#cash_out_cashout_type").val(1);
+        $(".back-link").hide();
+        $(".back-choice").show();
+        $("#cash_out_cashout_type").val(1);
        });
+
       $( ".venmo-choice" ).click(function() {
         $('.page-title').html('Venmo Details');
-        $('.cash-out__wrapper').addClass('slide-in');
+        $('.cash-out__wrapper').addClass('slide-in cash-out__venmo');
         $('.cash-out').addClass('cash-out--hide-list');
-         $(".back-link").hide();
-         $(".back-choice").show();
-       $(".venmo-select").show()
-       $(".final-step").show();
-       $("#cash_out_cashout_type").val(0);
+        $(".back-link").hide();
+        $(".back-choice").show();
+        $("#cash_out_cashout_type").val(0);
        });
+
       $( ".back-choice" ).click(function() {
         $('.page-title').html('Cash Type');
-        $('.cash-out__wrapper').removeClass('slide-in');
+        $('.cash-out__wrapper').removeClass('slide-in cash-out__venmo cash-out__paypal');
         $('.cash-out').removeClass('cash-out--hide-list');
-         $(".back-link").show();
-         $(".back-choice").hide();
-       $(".venmo-select").hide();
-       $(".paypal-select").hide();
-       $(".final-step").hide();
+        $(".back-link").show();
+        $(".back-choice").hide();
        });
   },
 

@@ -75,9 +75,6 @@ textarea {
 .home-page__signin {
   margin-top: 20px;
 }
-.paypal-select,.venmo-select,.final-step{
-  display:none;
-}
 .sign-in{
   font-weight: normal;
   text-align: center;
@@ -426,26 +423,42 @@ textarea {
     width: auto;
   }
 }
-
-// .cash-out__list.slide-out {
-//   @include slide(slideOut);
-// }
-
 .cash-out__wrapper{
   background-color: $white;
   padding-bottom: 1px;
   position: absolute;
   width: 100%;
 
+  .paypal-select,
+  .venmo-select,
+  .final-step{
+    display:none;
+  }
+
   .btn-submit {
     @include submit-button();
   }
 
+  &.cash-out__paypal {
+    .paypal-select {
+      display: block !important;
+    }
+  }
+
+  &.cash-out__venmo {
+    .venmo-select {
+      display: block !important;
+    }
+  }
+
   &.slide-in {
     @include slide();
+
+    .final-step {
+      display: block;
+    }
   }
 }
-
 .back-choice {
   margin-bottom: 5px;
 }
