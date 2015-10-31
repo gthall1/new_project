@@ -17,16 +17,20 @@
     padding: 10px 0;
 }
 
-@mixin slide($start: 0, $end: 50px, $duration: 0.25s, $delay: 0.1s) {
-    -webkit-animation: slideIn $duration $delay forwards ease;
-    -moz-animation: slideIn $duration $delay forwards ease;
-    -o-animation: slideIn $duration $delay forwards ease;
-    -ms-animation: slideIn $duration $delay forwards ease;
-    animation: slideIn $duration $delay forwards ease;
+@mixin slide($function: slideIn, $duration: 0.5s, $delay: 0s) {
+    -webkit-animation: $function $duration $delay forwards ease;
+    -moz-animation: $function $duration $delay forwards ease;
+    -o-animation: $function $duration $delay forwards ease;
+    -ms-animation: $function $duration $delay forwards ease;
+    animation: $function $duration $delay forwards ease;
+}
 
+@keyframes slideIn {
+  0%   {transform:translateX(100%);}
+  100% {transform:translateX(0);}
+}
 
-    @keyframes slideIn {
-      0%   {left: $start;}
-      100% {left: $end;}
-    }
+@keyframes slideOut {
+  0%   {transform:translateX(0);}
+  100% {transform:translateX(100%);}
 }

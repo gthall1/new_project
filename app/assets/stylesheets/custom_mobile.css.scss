@@ -178,6 +178,12 @@ textarea {
       }
     }
   }
+
+  &.cash-out--hide-list {
+    .cash-out__list {
+      display: none;
+    }
+  }
 }
 .page-title {
   font-size: 16px;
@@ -421,34 +427,26 @@ textarea {
   }
 }
 
+// .cash-out__list.slide-out {
+//   @include slide(slideOut);
+// }
+
 .cash-out__wrapper{
   background-color: $white;
   padding-bottom: 1px;
   position: absolute;
   width: 100%;
-  left: 100%;
-  transition: all;
 
-  &.slide-in {
-  -webkit-animation: slide 0.5s forwards;
-  animation: slide 0.5s forwards;
-  }
   .btn-submit {
     @include submit-button();
   }
-}
 
-@-webkit-keyframes slide {
-    100% { left: 0; }
+  &.slide-in {
+    @include slide();
+  }
 }
-
-@keyframes slide {
-    100% { left: 0; }
-}
-
 
 .back-choice {
-  // margin-left: 10px;
   margin-bottom: 5px;
 }
 

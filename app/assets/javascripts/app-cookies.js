@@ -43,10 +43,9 @@ var app = {
       $( ".paypal-choice" ).click(function() {
         $('.page-title').html('Paypal Details');
         $('.cash-out__wrapper').addClass('slide-in');
+        $('.cash-out').addClass('cash-out--hide-list');
          $(".back-link").hide();
          $(".back-choice").show();
-       $(".paypal-choice").hide();
-       $(".venmo-choice").hide();
        $(".paypal-select").show();
        $(".final-step").show();
        $("#cash_out_cashout_type").val(1);
@@ -54,10 +53,9 @@ var app = {
       $( ".venmo-choice" ).click(function() {
         $('.page-title').html('Venmo Details');
         $('.cash-out__wrapper').addClass('slide-in');
+        $('.cash-out').addClass('cash-out--hide-list');
          $(".back-link").hide();
          $(".back-choice").show();
-       $(".venmo-choice").hide();
-       $(".paypal-choice").hide();
        $(".venmo-select").show()
        $(".final-step").show();
        $("#cash_out_cashout_type").val(0);
@@ -65,10 +63,9 @@ var app = {
       $( ".back-choice" ).click(function() {
         $('.page-title').html('Cash Type');
         $('.cash-out__wrapper').removeClass('slide-in');
+        $('.cash-out').removeClass('cash-out--hide-list');
          $(".back-link").show();
          $(".back-choice").hide();
-       $(".venmo-choice").show();
-       $(".paypal-choice").show();
        $(".venmo-select").hide();
        $(".paypal-select").hide();
        $(".final-step").hide();
