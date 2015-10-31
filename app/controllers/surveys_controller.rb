@@ -9,12 +9,14 @@ class SurveysController < ApplicationController
   # GET /surveys
   # GET /surveys.json
   def index
+    @show_back_button = true
     @surveys = Survey.all
   end
 
   # GET /surveys/1
   # GET /surveys/1.json
   def show
+    @show_back_button = true
     if UserSurvey.where(user_id:current_user.id,survey_id:@survey.id).present?
       @user_survey =  UserSurvey.where(user_id:current_user.id,survey_id:@survey.id).first
     else

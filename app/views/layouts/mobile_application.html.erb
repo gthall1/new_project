@@ -145,8 +145,15 @@
             <% if signed_in? %>
                 <div class='mobile-header' <% if @game && Game.where(name:['Traffic','Flappy Pilot']).pluck(:id).include?(@game.id) %> style='display:none;'<% end %>>
                     <% if @show_back_button %>
-                        <%= link_to games_path do %>
-                            <i class="fa fa-chevron-left back-button"></i>
+                        <% if @back_button_action %>
+                            <span class='<%= @back_button_action %>'style='display:none'><i class="fa fa-chevron-left back-button"></i></span>
+                                <%= link_to games_path, :class=>'back-link' do %>
+                                 <i class="fa fa-chevron-left back-button"></i>
+                                <% end %>
+                        <% else @show_back_button %>
+                            <%= link_to games_path do %>
+                             <i class="fa fa-chevron-left back-button"></i>
+                            <% end %>
                         <% end %>
                     <% else %>
                          <div class="ssm-open-nav" title="open nav" >
@@ -172,7 +179,7 @@
 
                         <%= link_to refer_path do %>
                             <i class="fa fa-user-plus">
-                                <span class="earn">+50</span>
+                                <span class="earn">+25</span>
                             </i>
                         <% end %>
                     </div>

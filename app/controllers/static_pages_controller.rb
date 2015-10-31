@@ -83,6 +83,7 @@ class StaticPagesController < ApplicationController
   end
 
   def redeem_credits
+    @back_button_action = "back-choice"
     @show_back_button = true
     @amount = params[:credits]
     @cash_out = CashOut.new

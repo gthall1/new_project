@@ -50,14 +50,14 @@ class GamesController < ApplicationController
       if game_session.game.name == "Sorcerer Game"
         credits = (score/1000.to_f).ceil - 1 #subtract 1 otherwise itll give a credit once anything is scored
       elsif game_session.game.name == "2048"
-        credits = (score/100.to_f).ceil - 1 
+        credits = (score/1000.to_f).ceil - 1 
       elsif game_session.game.name == "Traffic"
         credits = (score/10.to_f).ceil - 1   
       elsif game_session.game.name == "Flappy Pilot"
         credits = (score/10.to_f).ceil - 1                
       elsif game_session.game.name == "Black Hole"
         #credits = score * 5   
-        credits_to_apply = 5
+        credits_to_apply = 3
       end      
       if game_session.active
          credits_to_apply = credits - game_session.credits_applied unless !credits_to_apply.nil?

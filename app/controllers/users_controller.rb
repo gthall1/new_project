@@ -24,6 +24,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if session[:arrival_id]
       @user.arrival_id = session[:arrival_id]
+    elsif cookies[:a_id]
+      @user.arrival_id = cookies[:a_id]
     end
     if @user.save
 
@@ -45,6 +47,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @show_back_button = true
     render "users/edit_mobile" if is_mobile?
   end
 

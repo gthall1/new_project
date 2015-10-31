@@ -17,7 +17,9 @@ class ApplicationController < ActionController::Base
 
 	def record_arrival
 		set_is_bot if session[:bot].nil?
-		if !session[:bot] && (!cookies[:a_id] || !session[:arrival_id])
+		if !session[:arrival_id] && cookies[:a_id]
+			session[:arrival_id] = cookies[:a_id]
+		elsif !session[:bot] && !session[:arrival_id]
 			landing_url = nil
 			referer = nil
 			user_agent = nil
@@ -43,9 +45,9 @@ class ApplicationController < ActionController::Base
 			end
 
 			arrival = Arrival.create({landing_url: landing_url, referer: referer, user_agent:user_agent,ip:ip,mobile:mobile,user_id:user_id})
-			
-			cookies[:a_id] = { :value => arrival.id, :expires => 8.hours.from_now }
 			session[:arrival_id] = arrival.id
+
+			cookies[:a_id] = { :value => arrival.id, :expires => 8.hours.from_now }
 		end
 
 	end  
