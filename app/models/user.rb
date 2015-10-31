@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, length: { minimum: 6 } ,:if => '!password.nil?'
 
-  def self.omniauth(auth)
+  def self.omniauth(auth,arrival_id)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
       user.provider = auth.provider
       user.name = auth.info.name
@@ -31,6 +31,7 @@ class User < ActiveRecord::Base
       res = Net::HTTP.get_response(URI(auth.info.image+'?width=200&height=200'))
       user.oath_image = res["location"]
       user.oath_token = auth.credentials.token
+      user.arrival_id = arrival_id if user.arrival_id.blank?
       user.oath_expires_at = Time.at(auth.credentials.expires_at)
       user.save!
     end

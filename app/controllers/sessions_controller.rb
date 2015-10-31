@@ -31,7 +31,7 @@ class SessionsController < ApplicationController
   end
 
   def create_from_facebook
-    user = User.omniauth(env['omniauth.auth'])
+    user = User.omniauth(env['omniauth.auth'],session[:arrival_id])
     if user
       sign_in user
       cookies.permanent[:u] = user.id
