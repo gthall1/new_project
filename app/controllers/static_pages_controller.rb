@@ -2,6 +2,11 @@ class StaticPagesController < ApplicationController
   include ApplicationHelper
   
   layout :determine_layout
+  before_filter :check_signed_in, :only => [:redeem,:redeem_credits,:refer,:new_cash_out]
+  
+  def check_signed_in
+    redirect_to root_path if !signed_in?
+  end
 
   def home
      if !signed_in? 
