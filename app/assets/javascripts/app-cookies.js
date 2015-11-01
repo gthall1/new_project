@@ -76,3 +76,49 @@ var mobileCheck = {
         return (mobileCheck.Android() || mobileCheck.BlackBerry() || mobileCheck.iOS() || mobileCheck.Opera() || mobileCheck.Windows() || mobileCheck.MobileChrome());
     }
 };
+
+var cashOut = {
+  paypal: function() {
+    $('.page-title').html('Paypal Details');
+    $('.cash-out__wrapper').addClass('slide-in cash-out__paypal');
+    $('.cash-out').addClass('cash-out--hide-list');
+    $(".back-link").hide();
+    $(".back-choice").show();
+    $("#cash_out_cashout_type").val(1);
+  },
+
+  venmo: function() {
+    $('.page-title').html('Venmo Details');
+    $('.cash-out__wrapper').addClass('slide-in cash-out__venmo');
+    $('.cash-out').addClass('cash-out--hide-list');
+    $(".back-link").hide();
+    $(".back-choice").show();
+    $("#cash_out_cashout_type").val(0);
+  },
+
+  restart: function() {
+    $('.page-title').html('Cash Type');
+    $('.cash-out__wrapper').removeClass('slide-in cash-out__venmo cash-out__paypal');
+    $('.cash-out').removeClass('cash-out--hide-list');
+    $(".back-link").show();
+    $(".back-choice").hide();
+  },
+
+  bind: function() {
+    $( ".back-choice" ).click(function() {
+      cashOut.restart();
+    });
+
+    $( ".venmo-choice" ).click(function() {
+      cashOut.venmo();
+    });
+
+    $( ".paypal-choice" ).click(function() {
+      cashOut.paypal();
+    });
+  },
+
+  init: function() {
+    cashOut.bind();
+  }
+};
