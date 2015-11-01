@@ -3,6 +3,8 @@ class SurveysController < ApplicationController
  
   before_action :set_survey, only: [:show, :edit, :update, :destroy]
   before_action :admin_user,     only: [:destroy, :new, :edit]
+  before_filter :check_signed_in
+
 
   layout :determine_layout
 
@@ -11,6 +13,10 @@ class SurveysController < ApplicationController
   def index
     @show_back_button = true
     @surveys = Survey.all
+  end
+
+  def check_signed_in
+    redirect_to root_path if !signed_in?
   end
 
   # GET /surveys/1
