@@ -58,7 +58,7 @@ class GamesController < ApplicationController
           status = "nothingearned"
         end
         game_session.score = score
-        game_session.credits_earned = credits
+        game_session.credits_earned += credits_to_apply 
         game_session.save
       # elsif score < game_session.score && credits < game_session.credits_applied
       #   #this is case when user starts new game and didnt get a new token
@@ -90,7 +90,7 @@ class GamesController < ApplicationController
     case game_session.game.name
       when '2048','Black Hole','Sorcerer Game'
         game_json = {
-           :earned => credits,
+           :earned => game_session.credits_earned,
            :total_credits => user.credits,
            :token => session[:game_token],
            :status => status,
@@ -100,7 +100,7 @@ class GamesController < ApplicationController
         game_json = {
           :c2dictionary => true,
           :data => { 
-           :earned => credits,
+           :earned => game_session.credits_earned,
            :total_credits => user.credits,
            :token => session[:game_token],
            :status => status,
