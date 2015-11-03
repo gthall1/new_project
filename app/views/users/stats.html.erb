@@ -1,0 +1,26 @@
+<h2 style='color:#000'>Weekly Stats - From <%= Time.now.beginning_of_week.strftime("%m/%d/%Y") %> - <%= Time.now.end_of_week.strftime("%m/%d/%Y") %></h2>
+
+<div style='width:900px;margin:auto'>
+	Arrivals: <%= Arrival.where("created_at >= ? ",Time.now.beginning_of_week).size %><br />
+	Active Users: <br />
+	    <% Arrival.select('user_id').where.not(user_id:nil).uniq.each do |a | %>
+			<% user = User.where(id:a.user_id).first %>
+			<% if user %>
+			Name:
+				<%= link_to user do %>
+					 <%= user.name %> 
+				<% end %>
+				| Email: <%= user.email %> 
+				
+				| Arrivals this week: <%= Arrival.where("created_at >= ?", Time.now.beginning_of_week).where(user_id:user.id).size %> | Game Sessions: <%= UserGameSession.where(user_id:user.id).size %> | credits: <%= user.credits %> | Surveys: <%= UserSurvey.where(user_id:user.id,complete:true).where("created_at >= ?",Time.now.beginning_of_week).size %> <br/>
+			<% end %>
+		<% end %> 
+
+
+<br /><br />
+	Games: <br />
+
+	<% Game.where(device_type:1).each do | g | %>
+		<%= g.name %> | sessions: <%= UserGameSession.where('created_at >= ?',Time.now.beginning_of_week).where(game_id:g.id).size %> <br />
+	<% end %>
+</div>
