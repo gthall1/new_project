@@ -3,7 +3,7 @@
 <div style='width:900px;margin:auto'>
 	Arrivals: <%= Arrival.where("created_at >= ? ",Time.now.beginning_of_week).size %><br />
 	Active Users: <br />
-	    <% Arrival.select('user_id').where.not(user_id:nil).uniq.each do |a | %>
+	    <% Arrival.select('user_id').where("created_at >= ?", Time.now.beginning_of_week).where.not(user_id:nil).uniq.each do |a | %>
 			<% user = User.where(id:a.user_id).first %>
 			<% if user %>
 			Name:
