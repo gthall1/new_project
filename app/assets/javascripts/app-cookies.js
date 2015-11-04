@@ -43,10 +43,24 @@ var app = {
     $('.js-share-dialog__close').click(function(){
       $('.js-share-dialog').removeClass('show');
     });
+    // Modal dismiss
+    $('.js-modal__link').click(function(){
+      $('.mobile-container').removeClass('desktop--modal-blur');
+    });
+  },
+
+  showDesktopModal: function() {
+    $('.mobile-home .mobile-container').addClass('desktop--modal-blur');
+  },
+
+  checkDesktop: function() {
+    if(!mobileCheck.any()) {
+      app.showDesktopModal();
+    }
   },
 
   init: function() {
-    app.showShareDialog()
+    app.showShareDialog();
     app.setAddToHomescreen();
     app.bind();
   }

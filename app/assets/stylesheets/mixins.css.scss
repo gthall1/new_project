@@ -25,6 +25,10 @@
     animation: $function $duration $delay forwards ease;
 }
 
+@mixin transition($type: all, $duration: 0.25s, $motion: ease) {
+  transition: $type $duration $motion;
+}
+
 @keyframes slideIn {
   0%   {transform:translateX(100%);}
   100% {transform:translateX(0);}
@@ -33,4 +37,9 @@
 @keyframes slideOut {
   0%   {transform:translateX(0);}
   100% {transform:translateX(100%);}
+}
+
+@keyframes slideUp {
+  0%   {transform:translateY(200%);}
+  100% {transform:translateY(0);}
 }

@@ -5,6 +5,7 @@
 $grayMediumLight: #eaeaea;
 $dark-font: #4A4A4A;
 $dark-blue: #10172B;
+$dark-teal: #4fd1b5;
 $purple: #6f5499;
 $black: #000;
 $credits-red: #D9232B;
@@ -13,6 +14,8 @@ $red: #e74c3c;
 $orange: #F2BB7C;
 $silver: #bdc3c7;
 $clouds: #ecf0f1;
+$teal: #56E7C8;
+
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -52,7 +55,76 @@ textarea {
     background: url('/assets/svgs/mobile_background_w_dollars.svg') #EAF9FC;
     background-size: cover;
   }
+  &::after {
+    display: none;
+    content: '';
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background-image: url(/assets/desktop-blur.jpg);
+    background-size: cover;
+    top: 0;
+    left: 0;
+    z-index: 10;
+  }
 }
+
+.desktop--modal-blur {
+  height: 100vh;
+  overflow: hidden;
+  &::after {
+    display: block;
+  }
+}
+.desktop--modal {
+  position: relative;
+  display: none;
+  z-index: 100;
+  margin: 0 auto;
+  top: 25vh;
+  background-color: #fff;
+  padding: 50px;
+  max-width: 50%;
+  background-image: url(/assets/desktop_overlay_background.jpg);
+  background-size: cover;
+  border-radius: 2px;
+
+  .desktop--modal-blur & {
+    display: inline-block;
+    @include slide(slideUp);
+  }
+}
+.modal__title {
+  color: $white;
+  border-bottom: 2px solid #E6EA4D;
+  margin: 0;
+  padding-bottom: 5px;
+  display: inline-block;
+  font-weight: 300;
+}
+.modal__copy {
+  color: $white;
+  margin: 15px 0 25px;
+  font-size: 14px;
+}
+.modal__link {
+  background-color: $teal;
+  padding: 10px 25px;
+  color: white;
+  text-decoration: none;
+  margin: 0;
+  border-radius: 2px;
+  font-size: 12px;
+  @include transition();
+
+  &:hover {
+    cursor: pointer;
+    text-decoration: none;
+    color: $white;
+    background-color: $dark-teal;
+  }
+}
+
 .survey-container{
   width:90%;
   margin:auto;
