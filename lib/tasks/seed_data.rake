@@ -34,7 +34,12 @@ task :seed_data => :environment do |t,args|
 	jackpot.max_entries = 500
 	jackpot.save
 end
-
+task :add_slug_to_games => :environment do | t, args |
+   Game.all.each do | g |
+      g.slug = g.name.parameterize
+      g.save
+   end
+end
 task :add_referal_to_users  => :environment do | t, args |
    User.all.each do | u |
       u.create_referral_code

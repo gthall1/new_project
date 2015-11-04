@@ -87,6 +87,7 @@ class GamesController < ApplicationController
       create_new_game_session(params[:score],game_id) 
       game_session = UserGameSession.where(token: session[:game_token]).first     
     end
+
     case game_session.game.name
       when '2048','Black Hole','Sorcerer Game'
         game_json = {
@@ -97,6 +98,9 @@ class GamesController < ApplicationController
            :hscore => current_high_score   
           }      
       when 'Flappy Pilot','Traffic'
+        if game_session.game.slug == 'flappy-pilot'
+          current_high_score = current_high_score.to_s.rjust(3, '0')
+        end
         game_json = {
           :c2dictionary => true,
           :data => { 
@@ -417,6 +421,9 @@ class GamesController < ApplicationController
       high_score = UserGameSession.where(user_id:current_user.id,game_id:old_game.game.id).where.not(score: nil).order("score desc").first.score 
     else
       high_score = 0
+    end
+    if old_game.game.slug == 'flappy-pilot'
+        high_score = high_score.to_s.rjust(3, '0')
     end
     game_json = {
       :c2dictionary => true,

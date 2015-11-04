@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     elsif cookies[:a_id]
       @user.arrival_id = cookies[:a_id]
     end
-    
+
     if @user.save
 
       if session[:referred_user_id] 
@@ -85,6 +85,6 @@ class UsersController < ApplicationController
     end
 
     def admin_user
-      redirect_to(root_url) unless current_user.admin?
+      redirect_to(root_url) unless current_user && current_user.admin?
     end
   end
