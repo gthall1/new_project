@@ -111,7 +111,7 @@ var cashOut = {
   },
 
   restart: function() {
-    $('.page-title').html('Cash Type');
+    $('.page-title').html('Cash');
     $('.cash-out__wrapper').removeClass('slide-in cash-out__venmo cash-out__paypal');
     $('.cash-out').removeClass('cash-out--hide-list');
     $(".back-link").show();

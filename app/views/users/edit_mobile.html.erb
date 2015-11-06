@@ -31,13 +31,15 @@
     </div> <!--/.edit-user__container -->
 
 
-    <p class="page-title page-title--password">Change Password</p>
-    <div class="edit-user__container">
-      <div style='clear:both;'></div>
-      <%= f.password_field :password, placeholder: "password" %>
+    <% if current_user.provider != "facebook"%>
+      <p class="page-title page-title--password">Change Password</p>
+      <div class="edit-user__container">
+        <div style='clear:both;'></div>
+        <%= f.password_field :password, placeholder: "password" %>
 
-      <%= f.password_field :password_confirmation, placeholder: "confirm password" %>
-    </div> <!--/.edit-user__container -->
+        <%= f.password_field :password_confirmation, placeholder: "confirm password" %>
+      </div> <!--/.edit-user__container -->
+    <% end %>
 
     <%= f.submit "save changes", class: "btn-submit" %>
 
