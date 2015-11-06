@@ -4117,28 +4117,28 @@ quat4.str=function(a){return"["+a[0]+", "+a[1]+", "+a[2]+", "+a[3]+"]"};
 	};
 	Runtime.prototype.tryLockOrientation = function ()
 	{
-		if (!this.autoLockOrientation || this.orientations === 0)
-			return;
-		var orientation = "portrait";
-		if (this.orientations === 2)
-			orientation = "landscape";
-		try {
-			if (screen["orientation"] && screen["orientation"]["lock"])
-				screen["orientation"]["lock"](orientation);
-			else if (screen["lockOrientation"])
-				screen["lockOrientation"](orientation);
-			else if (screen["webkitLockOrientation"])
-				screen["webkitLockOrientation"](orientation);
-			else if (screen["mozLockOrientation"])
-				screen["mozLockOrientation"](orientation);
-			else if (screen["msLockOrientation"])
-				screen["msLockOrientation"](orientation);
-		}
-		catch (e)
-		{
-			if (console && console.warn)
-				console.warn("Failed to lock orientation: ", e);
-		}
+		// if (!this.autoLockOrientation || this.orientations === 0)
+		// 	return;
+		// var orientation = "portrait";
+		// if (this.orientations === 2)
+		// 	orientation = "landscape";
+		// try {
+		// 	if (screen["orientation"] && screen["orientation"]["lock"])
+		// 		screen["orientation"]["lock"](orientation);
+		// 	else if (screen["lockOrientation"])
+		// 		screen["lockOrientation"](orientation);
+		// 	else if (screen["webkitLockOrientation"])
+		// 		screen["webkitLockOrientation"](orientation);
+		// 	else if (screen["mozLockOrientation"])
+		// 		screen["mozLockOrientation"](orientation);
+		// 	else if (screen["msLockOrientation"])
+		// 		screen["msLockOrientation"](orientation);
+		// }
+		// catch (e)
+		// {
+		// 	if (console && console.warn)
+		// 		console.warn("Failed to lock orientation: ", e);
+		// }
 	};
 	Runtime.prototype.onContextLost = function ()
 	{
@@ -26775,12 +26775,12 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.PhonegapIAP,
 	cr.plugins_.Dictionary,
 	cr.plugins_.Mouse,
-	cr.plugins_.Sprite,
+	cr.plugins_.Text,
 	cr.plugins_.Touch,
-	cr.plugins_.TiledBg,
+	cr.plugins_.Sprite,
 	cr.plugins_.WebStorage,
 	cr.plugins_.progressbar,
-	cr.plugins_.Text,
+	cr.plugins_.TiledBg,
 	cr.behaviors.Fade,
 	cr.behaviors.NoSave,
 	cr.behaviors.Pin,
@@ -26817,10 +26817,13 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.TiledBg.prototype.exps.Width,
 	cr.plugins_.WebStorage.prototype.exps.LocalValue,
 	cr.plugins_.Arr.prototype.acts.JSONLoad,
+	cr.plugins_.Dictionary.prototype.exps.Get,
 	cr.plugins_.Arr.prototype.exps.At,
 	cr.behaviors.Pin.prototype.acts.Pin,
 	cr.plugins_.Text.prototype.acts.SetText,
 	cr.system_object.prototype.exps.projectversion,
+	cr.system_object.prototype.exps.right,
+	cr.system_object.prototype.exps.left,
 	cr.plugins_.Sprite.prototype.acts.SetAnimFrame,
 	cr.plugins_.Sprite.prototype.cnds.CompareY,
 	cr.system_object.prototype.acts.AddVar,
@@ -26841,9 +26844,6 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.Arr.prototype.exps.AsJSON,
 	cr.plugins_.PhonegapGame.prototype.cnds.IsLoggedIn,
 	cr.system_object.prototype.acts.RestartLayout,
-	cr.plugins_.Dictionary.prototype.exps.Get,
-	cr.system_object.prototype.exps.right,
-	cr.system_object.prototype.exps.left,
 	cr.plugins_.Touch.prototype.cnds.OnTouchObject,
 	cr.plugins_.Browser.prototype.acts.GoToURL,
 	cr.system_object.prototype.acts.SetGroupActive,
