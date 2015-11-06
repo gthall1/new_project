@@ -132,6 +132,14 @@ textarea {
     margin-top:20px;
   }
 }
+.survey__question {
+  border-bottom: 1px solid $clouds
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+.survey__question:last-child {
+  border-bottom: none;
+}
 .mobile-home {
   text-align: center;
 }
@@ -509,6 +517,9 @@ textarea {
 
   .btn-submit {
     @include submit-button();
+  }
+  .btn--top-margin {
+    margin-top: 20px;
   }
 
   &.cash-out__paypal {

@@ -41,7 +41,7 @@
 		<%= form_for(@user_survey) do |f| %>
 			<%= f.hidden_field :id %>
 			<%= f.hidden_field :complete, :value => true %>
-			<%= f.submit 'Submit Survey' %>
+			<%= f.submit 'Submit Survey', class: "btn-submit btn--top-margin"%>
 		<% end %>
 	</div> <!--/.refer-friend -->
 
