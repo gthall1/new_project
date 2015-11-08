@@ -19,4 +19,5 @@
 //= require app-cookies
 //= require main
 //= require jquery.slideandswipe.min
+//= require zeroclipboard
 

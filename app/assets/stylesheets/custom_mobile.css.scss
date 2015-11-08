@@ -197,13 +197,30 @@ textarea {
 }
 #session_password,
 #session_email {
-  height: 35px;
+  text-align: center;
+  height: 40px;
   padding: 0;
   border-radius: 100px;
   border: 2px solid #c8ade0;
   background-color: #ddd8e9;
   width: 100%;
   color: #fff;
+
+  ::-webkit-input-placeholder {
+     color: red;
+  }
+
+  :-moz-placeholder { /* Firefox 18- */
+     color: red;
+  }
+
+  ::-moz-placeholder {  /* Firefox 19+ */
+     color: red;
+  }
+
+  :-ms-input-placeholder {
+     color: red;
+  }
 }
 
 .facebook-signup{
@@ -464,6 +481,17 @@ textarea {
   color: $dark-blue;
   margin-bottom: 0;
   font-size: 14px;
+}
+.refer-friend__copy-button {
+  margin-top: 20px;
+  text-align: center;
+}
+.zclip {
+  background-color: $purple;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 2px;
 }
 .my-balance{
 
