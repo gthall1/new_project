@@ -39,6 +39,12 @@ var app = {
     }
   },
 
+  hideCopyBtn: function() {
+    if (mobileCheck.iOS()) {
+      $('.refer-friend__copy-button').addClass('hide');
+    }
+  },
+
   bind: function() {
     $('.js-share-dialog__close').click(function(){
       $('.js-share-dialog').removeClass('show');
@@ -60,6 +66,7 @@ var app = {
   },
 
   init: function() {
+    app.hideCopyBtn();
     app.showShareDialog();
     app.setAddToHomescreen();
     app.bind();

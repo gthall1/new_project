@@ -16,7 +16,7 @@
 //= require bootstrap
 //= require home
 //= require js-cookie
-//= require app-cookies
+//= require app
 //= require main
 //= require jquery.slideandswipe.min
 //= require zeroclipboard

@@ -485,12 +485,17 @@ textarea {
 .refer-friend__copy-button {
   margin-top: 20px;
   text-align: center;
+
+  &.hide {
+    display: none;
+  }
 }
 .zclip {
   background-color: $purple;
   border: none;
   color: white;
-  padding: 10px 20px;
+  height: 40px;
+  width: 125px;
   border-radius: 2px;
 }
 .my-balance{
