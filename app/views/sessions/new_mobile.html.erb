@@ -12,28 +12,26 @@
 <% provide(:title, "Sign in") %>
 <h1>Sign in</h1>
 
-<div class="row">
-  <div class="sign-in">
-    <%= link_to "/auth/facebook" do %>
-      <%= image_tag 'sign_in_facebook.png', :class => 'facebook-signup' %>
-    <% end %>
+<div class="sign-in">
+  <%= link_to "/auth/facebook" do %>
+    <%= image_tag 'sign_in_facebook.png', :class => 'facebook-signup' %>
+  <% end %>
 
-    <div class='form-separator'>
-      <div class='left-separator'></div><div class='or-separator'>or</div><div class='right-separator'></div>
-    </div>
-
-    <%= form_for(:session, url: sessions_path) do |f| %>
-
-      <%= f.label :email %>
-      <%= f.text_field :email %>
-
-      <%= f.label :password %>
-      <%= f.password_field :password %> <br/>
-      <%= link_to "(forgot password)", new_password_reset_path %>
-
-      <%= f.submit "Sign in" %>
-    <% end %>
-
-    <p>New user? <%= link_to "Sign up now!", root_path %></p>
+  <div class='form-separator'>
+    <div class='left-separator'></div><div class='or-separator'>or</div><div class='right-separator'></div>
   </div>
+
+  <%= form_for(:session, url: sessions_path) do |f| %>
+
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+
+    <%= f.label :password %>
+    <%= f.password_field :password %> <br/>
+    <%= link_to "(forgot password)", new_password_reset_path %>
+
+    <%= f.submit "Sign in" %>
+  <% end %>
+
+  <p>New user? <%= link_to "Sign up now!", root_path %></p>
 </div>

@@ -43,6 +43,10 @@ textarea {
   resize: vertical;
 }
 
+.btn-submit {
+  @include submit-button();
+}
+
 .mobile-container{
   width:95%;
   margin:auto;
@@ -81,7 +85,7 @@ textarea {
   display: none;
   z-index: 100;
   margin: 0 auto;
-  top: 25vh;
+  top: 20vh;
   background-color: #fff;
   padding: 50px;
   max-width: 50%;
@@ -161,12 +165,7 @@ textarea {
 .sign-in{
   font-weight: normal;
   text-align: center;
-  width: 95%;
-  margin-left: 10px;
-  margin-right: 10px;
   position: relative;
-  color: #6f5499;
-  font-size: 14px;
   a,a:visited,a:hover{
     color: #6f5499;
     font-weight:bold;
@@ -198,18 +197,17 @@ textarea {
 }
 #session_password,
 #session_email {
-  height: 40px;
+  height: 35px;
   padding: 0;
   border-radius: 100px;
   border: 2px solid #c8ade0;
   background-color: #ddd8e9;
   width: 100%;
-  padding-left: 20px;
   color: #fff;
 }
 
 .facebook-signup{
-  width:85%;
+  width: 80%;
   margin:auto;
   display:block;
   margin-bottom: 10px;
