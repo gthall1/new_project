@@ -50,14 +50,27 @@ textarea {
 .mobile-container{
   width:95%;
   margin:auto;
-  position: absolute;
+  position: relative;
   top:0px;
   min-height:100vh;
-  background: url('/assets/svgs/mobile_bg_wo_dollars.svg') #EAF9FC;
+  background: url('/assets/darker_mobile_background_15.jpg') #EAF9FC;
   background-size: cover;
   &.with-money{
-    background: url('/assets/svgs/mobile_background_w_dollars.svg') #EAF9FC;
+    background: url('/assets/darker_mobile_background_15.jpg') #EAF9FC;
     background-size: cover;
+  }
+  &.beta-version {
+    &::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      background-image: url(/assets/svgs/beta_banner.svg);
+      height: 100px;
+      width: 100px;
+      background-size: 100%;
+      background-repeat: no-repeat;
+    }
   }
   &::after {
     display: none;
