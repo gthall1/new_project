@@ -29,6 +29,11 @@
   transition: $type $duration $motion;
 }
 
+@mixin floating($duration: 2s) {
+  -webkit-animation: Floating $duration infinite ease-in-out;
+  -moz-animation-name: Floating $duration infinite ease-in-out;
+}
+
 @keyframes slideIn {
   0%   {transform:translateX(100%);}
   100% {transform:translateX(0);}
@@ -42,4 +47,22 @@
 @keyframes slideUp {
   0%   {transform:translateY(200%);}
   100% {transform:translateY(0);}
+}
+
+@keyframes Floating{
+    from {transform:translate(0, 0px);}
+    65% {transform:translate(0, 15px);}
+    to {transform: translate(0, -0px);    }
+}
+
+@-webkit-keyframes Floating{
+    from {-webkit-transform:translate(0, 0px);}
+    50% {-webkit-transform:translate(0, 15px);}
+    to {-webkit-transform: translate(0, -0px);    }
+}
+
+@-moz-keyframes Floating{
+    from {-moz-transform:translate(0, 0px);}
+    50% {-moz-transform:translate(0, 15px);}
+    to {-moz-transform: translate(0, -0px);}
 }
