@@ -84,6 +84,23 @@ task :seed_games => :environment do | t, args |
 	# end
 
 end
+task :add_game_order => :environment do | t, args |
+    g = Game.where(slug:"traffic").first 
+    g.sort_order = 1
+    g.save
+    g = Game.where(slug:"flappy-pilot").first 
+    g.sort_order = 2
+    g.save
+    g = Game.where(slug:"black-hole").first 
+    g.sort_order = 3
+    g.save
+    g = Game.where(slug:"2048").first 
+    g.sort_order = 4
+    g.save
+    g = Game.where(slug:"sorcerer-game").first 
+    g.sort_order = 5
+    g.save
+end
 
 task :seed_new_games => :environment do | t, args|
    sorc = Game.new

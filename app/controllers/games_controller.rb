@@ -8,7 +8,7 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.json
   def index
-    @games = Game.all
+    @games = Game.all.order("sort_order asc")
     @current_jackpot = Jackpot.where(open: true).first
 
     render "games/index_mobile" if is_mobile?
