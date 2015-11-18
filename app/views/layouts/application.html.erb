@@ -9,21 +9,16 @@
     <%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>
   </head>
-  <body>
+  <body  <%= "class=#{@body_class}" if @body_class %>>
 
-    <%= render 'layouts/header' %>
-
-    <div class="container-fluid" style="margin-bottom:30px">
-      <span class="subLogo">Play Games. Earn cash.</span>
-    </div>
-
-    <div class="container">
+    <div>
       <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>"><%= value %></div>
       <% end %>
         <%= yield %>
+
       <%= render 'layouts/footer' %>
-      <%= debug(params) if Rails.env.development? %>
+
     </div>
 
     <script type="text/javascript">

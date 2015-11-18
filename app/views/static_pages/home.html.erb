@@ -1,12 +1,34 @@
-<% if is_mobile? %>
-	<div class="sign-up">
-    	<%= render 'users/form_mobile'%>
-	</div>
-<% else %>
-	<div class="sign-up">
-		<%= render 'users/form'%>
-	</div>
-<% end %>
+<% @body_class = "desktop-home" %>
+<%= link_to "Sign In", signin_path, class:"desktop-signin" %>
+<div class="sign-up">
+    <img src="/assets/homescreen-logo.png" class="top-title">
 
+    <%= render 'users/form_mobile'%>
 
+    <div class='footer-links'>
+      <a href="/assets/luckee_privacy_policy.pdf"  target="_blank"  class='privacy-link'>Privacy Policy</a>
+      <a href="/assets/luckee_TOS.pdf"  target="_blank"  class='terms-link'>Terms of Service</a>
+    </div>
+</div><!--/.sign-up -->
+<img src="/assets/luckee_group.png" class="luckee-balloon">
 
+<div class='home-bottom'>
+  <div class='mountain-image'>
+      <%= embedded_svg('svgs/mountains.svg', :class => 'mountains') %>
+  </div>
+  <div class='trees'>
+    <%= embedded_svg('svgs/trees_and_low_hills.svg', :class => 'tree-hills') %>
+  </div>
+  <div class='bottom-content'>
+    <%= image_tag 'white_down.png', :class => 'white-down floating' %>
+      <h2>How it Works </h2>
+        <%= embedded_svg('svgs/bottom_image_1.svg', :class => 'how-it-works-image') %>
+        <p>Play any game to<br/> earn credits</p>
+
+          <%= embedded_svg('svgs/bottom_image_2.svg', :class => 'how-it-works-image') %>
+        <p>Earn enough<br/> credits to cash <br/> out</p>
+
+          <%= embedded_svg('svgs/bottom_image_3.svg', :class => 'how-it-works-image') %>
+        <p>Request a cash out!<br/> We will redeem your <br/> credits and send you <br/> cash within 24 hours.</p>
+  </div>
+</div>
