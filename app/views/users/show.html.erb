@@ -12,4 +12,12 @@
       </ul>
     </section>
   </aside>
+
+  <% if current_user && current_user.admin? %>
+    Total Games Played: <br />
+
+    <% Game.where(device_type:1).each do | g | %>
+      <%= g.name %> | sessions: <%= UserGameSession.where(user_id:@user.id).where(game_id:g.id).size %> <br />
+    <% end %>
+  <% end %>
 </div>

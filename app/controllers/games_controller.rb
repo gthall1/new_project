@@ -8,7 +8,7 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.json
   def index
-    @games = Game.all
+    @games = Game.all.order("sort_order asc")
     @current_jackpot = Jackpot.where(open: true).first
 
     render "games/index_mobile" if is_mobile?
@@ -476,9 +476,9 @@ class GamesController < ApplicationController
       when "Sorcerer Game"
         credits = (score/1000.to_f).ceil - 1 #subtract 1 otherwise itll give a credit once anything is scored
       when "2048"
-        credits = (score/1000.to_f).ceil - 1 
+        credits = (score/750.to_f).ceil - 1 
       when "Traffic"
-        credits = (score/10.to_f).ceil - 1   
+        credits = (score/5.to_f).ceil - 1   
       when "Flappy Pilot"
         credits = (score/10.to_f).ceil - 1                
       when "Black Hole"
