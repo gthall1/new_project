@@ -1,6 +1,20 @@
 /* mixins, variables, etc. */
 @import "bootstrap";
+@import "mixins";
 
+$grayMediumLight: #eaeaea;
+$dark-font: #4A4A4A;
+$dark-blue: #10172B;
+$dark-teal: #4fd1b5;
+$purple: #6f5499;
+$black: #000;
+$credits-red: #D9232B;
+$white: #fff;
+$red: #e74c3c;
+$orange: #F2BB7C;
+$silver: #bdc3c7;
+$clouds: #ecf0f1;
+$teal: #56E7C8;
 $grayMediumLight: #eaeaea;
 
 @mixin box_sizing {
@@ -82,8 +96,26 @@ p {
 
 }
 
-
-
+.luckee-balloon {
+  position: absolute;
+  height: auto;
+  width: 35%;
+  top: -7.5%;
+  right: 15%;
+}
+.desktop-home {
+  &::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-image: url(/assets/svgs/beta_banner.svg);
+    height: 80px;
+    width: 80px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+  }
+}
 /* header */
 
 #logo {
@@ -459,7 +491,7 @@ a:hover {
 html,
 body {
 /*css for full size background image*/
-  background: url(background_adjusted.svg) no-repeat center center fixed;
+  background: url(home_screen.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -746,15 +778,6 @@ li.navbar-links:hover {
 }
 
 /* Rectangle 2: */
-.sign-up {
-  opacity: 0.74;
-  background: #7B80A2;
-  border: 1px solid #979797;
-  width: 400px;
-  margin-left: 650px;
-  margin-top: -20px
-}
-
 .edit-user {
   opacity: 0.74;
   background: #7B80A2;
@@ -991,6 +1014,245 @@ h1.arrow2 { font-size: 55px;
   font-size: 18px;
   color: red;
 }
+
+
+
+// Homescreen Styles
+.top-title {
+  margin-bottom: 20px;
+}
+.sign-up{
+  z-index: 10;
+  text-align: center;
+  width: 30%;
+  position: relative;
+  max-width: 350px;
+  .desktop-home & {
+    margin: 2.5% 7.5% 13%;
+  }
+}
+.desktop-signin {
+  font-size: 20px;
+  position: absolute;
+  right: 2.5%;
+  border: 2px solid $purple;
+  background-color: transparent;
+  padding: 10px 30px;
+  border-radius: 5px;
+  z-index: 100;
+  @include transition();
+
+  &:hover {
+    text-decoration: none;
+    background-color: $purple;
+    color: $white;
+  }
+}
+.home-page__signin {
+  margin: 20px 0 10px;
+
+  a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    @include transition();
+    &:hover{
+      color: #ABABAB;
+    }
+  }
+}
+.footer-links{
+  text-align:center;
+  color:#ABABAB;
+  width:80%;
+  margin:auto;
+  .privacy-link{
+    margin-right:30px;
+  }
+  .terms-link,
+  .privacy-link {
+    color: #ABABAB;
+    text-decoration: none;
+    @include transition();
+    &:hover {
+      color: $purple;
+    }
+  }
+}
+.create-email{
+  border-radius:10px;
+  width:80%;
+  margin:auto;
+  background: #6f5499 !important;
+  color:#fff;
+  font-size:16px;
+}
+.welcome-box-m{
+  font-size:18px;
+  font-weight: 500;
+  margin-bottom:20px;
+
+  .desktop-home & {
+    font-size: 22px;
+  }
+}
+.form-separator{
+  position:relative;
+  display:block;
+  margin:15px 0px 10px 0px;
+
+  .sign-in & {
+    margin: 30px auto 20px;
+    width: 80%;
+  }
+  .left-separator{
+    width:40%;
+    height:12px;
+    border-bottom:1px solid #CBC5C5;
+    left:15px;
+    top:-3px;
+    position:absolute;
+  }
+  .or-separator{
+    color:#5C5C5C;
+    font-size:22px;
+    position:relative;
+    font-weight:bold;
+    top:-4px;
+  }
+  .right-separator{
+    width:40%;
+    height:12px;
+    border-bottom:1px solid #CBC5C5;
+    right:15px;
+    top:-3px;
+    position:absolute;
+  }
+}
+
+.mobile-form{
+  z-index:10;
+  form{
+    margin:0px;
+    z-index:10;
+  }
+  width:100%;
+  margin:auto;
+  input{
+    z-index:10;
+    box-sizing:border-box;
+    height:35px;
+    width:95%;
+    margin:auto;
+    margin-bottom:10px;
+    display:block;
+  }
+  .small-note{
+    color:#ABABAB;
+    position:relative;
+    top:5px;
+  }
+  .email-form{
+    z-index:10;
+    display:none;
+    h2{
+      color:$dark-font;
+    }
+  }
+}
+.game-list-container{
+  width:90%;
+  margin:auto;
+  padding-top:20px;
+  padding-bottom:40px;
+  .game-image{
+    border-radius:10px;
+    width:100%;
+    margin-top:20px;
+  }
+}
+.game-container{
+  min-height:800px;
+  background:#000;
+}
+
+.mobile-home-footer{
+  margin-top: 20px;
+  width:100%;
+  position: relative;
+  z-index: 10;
+  .footer-links{
+    text-align:center;
+    color:#ABABAB;
+    width:80%;
+    margin:auto;
+    .privacy-link{
+      margin-right:30px;
+    }
+  }
+}
+.home-bottom{
+  position:relative;
+  max-height:500px;
+  z-index:1;
+  .mountain-image{
+    position:relative;
+    top:-177px;
+    max-height:300px;
+    z-index:1;
+    .mountains{
+      width:100%;
+      z-index:1;
+      background:transparent;
+    }
+  }
+  .trees{
+    position: absolute;
+    top: -311px;
+    width: 100%;
+     z-index:1;
+    .tree-hills{
+      width:100%;
+      z-index:1;
+      background:transparent;
+    }
+  }
+  .bottom-content{
+    z-index:1;
+    background:url('/assets/bottom_background.jpg') $dark-blue;
+    background-size:contain;
+    position:relative;
+    bottom:150px;
+    width:100%;
+    text-align:center;
+    padding-bottom: 40px;
+    h2{
+      font-size:30px;
+    }
+    .how-it-works-image{
+      margin-top:20px;
+      height:95px;
+      width:95px;
+    }
+    p{
+      margin-top:15px;
+      color:#fff;
+    }
+  }
+
+  .white-down {
+    position: relative;
+    z-index: 1000;
+    width: 60px;
+    height: auto;
+    right: 0%;
+    bottom: 30px;
+  }
+  .floating{
+    @include floating();
+  }
+}
+
 
 /*body {
   background: url(background_decent.svg) no-repeat center center fixed;

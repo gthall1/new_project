@@ -413,7 +413,7 @@ textarea {
   }
   .bottom-content{
     z-index:1;
-    background:url('/assets/svgs/bottom_background.svg') $dark-blue;
+    background:url('/assets/bottom_background.jpg') $dark-blue;
     background-size:contain;
     position:relative;
     bottom:150px;
@@ -817,8 +817,8 @@ p {
   .game-image{
     border-radius:10px;
     width:100%;
-    margin-top:20px;
     max-width:500px;
+    margin-top:20px;
   }
 }
 .game-container{
