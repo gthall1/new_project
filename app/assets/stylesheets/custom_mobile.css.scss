@@ -818,10 +818,10 @@ p {
     border-radius:10px;
     width:100%;
     max-width:500px;
-    margin-top:20px;
   }
   .game-wrapper {
     position: relative;
+    margin-top:20px;
 
     &::after {
       content: 'Earn Credits';
@@ -829,10 +829,11 @@ p {
         padding: 10px 20px;
         position: absolute;
         bottom: 0;
-        right: 0;
+        left: 0;
         color: $red !important;
-        border-bottom-right-radius: 8px;
-        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+        border-top-right-radius: 8px;
+        font-size: 12px;
     }
   }
 }
