@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     end
 
     if @user.save
-      arrival = Arrival.where(session[:arrival_id]).first
+      arrival = Arrival.where(id:session[:arrival_id]).first
       if arrival
         arrival.user_id = @user.id
       end
