@@ -2,7 +2,9 @@
       <% @games.each do | g | %>
       <% next if g.device_type != 1 %>
        <%= link_to game_path(g) do %>
+        <div class="game-wrapper">
         <%= image_tag(g.image, :class=>'game-image') %>
+        </div>
        <% end %>
       <% end %>
   </div>
