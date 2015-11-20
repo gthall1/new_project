@@ -27,7 +27,7 @@ class GamesController < ApplicationController
         @top_scores = UserGameSession.where(game_id:@game.id).where.not(score:nil).order("score asc").limit(10)
       when "Helicopter"
         @top_scores = UserGameSession.where(game_id:@game.id).where.not(score:nil).order("score desc").limit(10)
-      when "Sorcerer Game","2048","Black Hole","Traffic","Flappy Pilot"
+      when "Sorcerer Game","2048","Black Hole","Traffic","Flappy Pilot","Fall Down"
         set_game_token({game_name:@game.name})
     end
 
@@ -48,7 +48,7 @@ class GamesController < ApplicationController
       game_session = UserGameSession.where(token: params[:token]).first
      # p "Score : #{score} | Game SEssion Score: #{game_session.score}"    
       if game_session.active
-         credits_to_apply = get_credits_to_apply(game_session.game.name,score,game_session.credits_applied)
+         credits_to_apply = get_credits_to_apply(game_session.game.slug,score,game_session.credits_applied)
         if user && credits_to_apply > 0
           user.add_credits({credits:credits_to_apply}) 
           game_session.credits_applied += credits_to_apply 
@@ -88,8 +88,8 @@ class GamesController < ApplicationController
       game_session = UserGameSession.where(token: session[:game_token]).first     
     end
 
-    case game_session.game.name
-      when '2048','Black Hole','Sorcerer Game'
+    case game_session.game.slug
+      when '2048','black-hole','sorcerer-game'
         game_json = {
            :earned => game_session.credits_earned,
            :total_credits => user.credits,
@@ -97,7 +97,7 @@ class GamesController < ApplicationController
            :status => status,
            :hscore => current_high_score   
           }      
-      when 'Flappy Pilot','Traffic'
+      when 'flappy-pilot','traffic','fall-down'
         if game_session.game.slug == 'flappy-pilot'
           current_high_score = current_high_score.to_s.rjust(3, '0')
         end
@@ -471,19 +471,21 @@ class GamesController < ApplicationController
 
   private
   
-  def get_credits_to_apply(game_name,score,credits_applied)
-    case game_name
-      when "Sorcerer Game"
+  def get_credits_to_apply(slug,score,credits_applied)
+    case slug
+      when "sorcerer-game"
         credits = (score/1000.to_f).ceil - 1 #subtract 1 otherwise itll give a credit once anything is scored
       when "2048"
         credits = (score/750.to_f).ceil - 1 
-      when "Traffic"
+      when "traffic"
         credits = (score/5.to_f).ceil - 1   
-      when "Flappy Pilot"
+      when "flappy-pilot"
         credits = (score/10.to_f).ceil - 1                
-      when "Black Hole"
+      when "black-hole"
         #credits = score * 5   
         credits_to_apply = 3
+      when "fall-down"
+        credits = (score/10.to_f).ceil - 1 
     end
 
     credits_to_apply = credits - credits_applied unless !credits_to_apply.nil?

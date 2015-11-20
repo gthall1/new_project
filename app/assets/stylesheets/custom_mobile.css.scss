@@ -813,10 +813,12 @@ p {
   margin:auto;
   padding-top:20px;
   padding-bottom:40px;
+  text-align:center;
   .game-image{
     border-radius:10px;
     width:100%;
     margin-top:20px;
+    max-width:500px;
   }
 }
 .game-container{

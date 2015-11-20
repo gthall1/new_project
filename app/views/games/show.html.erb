@@ -3,7 +3,7 @@
 <p class="gameTitle">
   <%= @game.name %>
 </p>
-  <% case @game.name %>
+  <% case @game.slug %>
     <% when 'test' %>
       <h2 class="outcome">Click to play! 1/5 wins a credit!</h2>
       <div class="ad-space">
@@ -11,18 +11,20 @@
       </div>
       <button class="play">Click here!</button>
       <%= javascript_include_tag "game" %>
-    <% when 'Memory Game' %>
+    <% when 'memory-game' %>
       <%= render 'memory' %>
-    <% when 'Helicopter' %>
+    <% when 'helicopter' %>
       <%= render 'helicopter' %>      
-    <% when 'Sorcerer Game' %>
+    <% when 'sorcerer-game' %>
       <%= render 'sorcerer_m' %>
     <% when '2048' %>
       <%= render 'twentyfortyeight_m' %>  
-    <% when 'Flappy Pilot' %>
+    <% when 'flappy-pilot' %>
       <%= render 'flappy_pilot_m' %>            
-    <% when 'Black Hole' %>
-      <%= render 'blackhole_m' %>       
+    <% when 'black-hole' %>
+      <%= render 'blackhole_m' %>  
+    <% when 'fall-down' %>
+      <%= render 'fall_down_m' %>            
   <% end %>
   
 <input type="hidden" id="game_token" name="game_token" value="<%= session[:game_token] %>" />

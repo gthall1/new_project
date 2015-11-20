@@ -1,16 +1,18 @@
 <div class="game-container">
 
-  <% case @game.name %>
-    <% when 'Sorcerer Game' %>
+  <% case @game.slug %>
+    <% when 'sorcerer-game' %>
       <%= render 'sorcerer_m' %>
     <% when '2048' %>
       <%= render 'twentyfortyeight_m' %>     
-    <% when 'Black Hole' %>
+    <% when 'black-hole' %>
       <%= render 'blackhole_m' %>   
-    <% when 'Traffic' %>
+    <% when 'traffic' %>
       <%= render 'traffic_m' %> 
-    <% when 'Flappy Pilot' %>
-      <%= render 'flappy_pilot_m' %>                   
+    <% when 'flappy-pilot' %>
+      <%= render 'flappy_pilot_m' %>  
+    <% when 'fall-down' %>
+      <%= render 'fall_down_m' %>                         
   <% end %>
 </div>
 

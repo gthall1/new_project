@@ -32,7 +32,10 @@ class UsersController < ApplicationController
     end
 
     if @user.save
-
+      arrival = Arrival.where(session[:arrival_id]).first
+      if arrival
+        arrival.user_id = @user.id
+      end
       if session[:referred_user_id] 
         referral_user = User.where(id:session[:referred_user_id]).first
         if referral_user
