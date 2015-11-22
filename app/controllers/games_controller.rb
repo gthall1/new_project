@@ -437,6 +437,14 @@ class GamesController < ApplicationController
     render json: game_json
   end
 
+  def leaderboard
+    @game_id = params[:game_id]
+  end
+
+  def games_leaderboard
+    
+  end
+
   def set_game_token(args={})
     score = args[:score] ||= 0
     game_name = args[:game_name] ||= "Memory Game"
