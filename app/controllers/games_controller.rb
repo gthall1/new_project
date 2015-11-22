@@ -485,7 +485,7 @@ class GamesController < ApplicationController
         #credits = score * 5   
         credits_to_apply = 3
       when "fall-down"
-        credits = (score/10.to_f).ceil - 1 
+        credits = (score/15.to_f).ceil - 1 
     end
 
     credits_to_apply = credits - credits_applied unless !credits_to_apply.nil?
