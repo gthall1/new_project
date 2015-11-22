@@ -177,7 +177,7 @@
                 </div>
             </div>
             <% if signed_in? %>
-                <div class='mobile-header' <% if @game && Game.where(name:['Traffic','Flappy Pilot']).pluck(:id).include?(@game.id) %> style='display:none;'<% end %>>
+                <div class='mobile-header' <% if @game && Game.where(slug:['traffic','flappy-pilot','fall-down']).pluck(:id).include?(@game.id) %> style='display:none;'<% end %>>
                     <% if @show_back_button %>
                         <% if @back_button_action %>
                             <span class='<%= @back_button_action %>'style='display:none'><i class="fa fa-chevron-left back-button"></i></span>

@@ -1,0 +1,3 @@
+<% Game.where(device_type:1).each do | g | %>
+	<%= link_to g.name, game_leaderboard_path(game_id:g.id) %> <br />
+<% end %>
