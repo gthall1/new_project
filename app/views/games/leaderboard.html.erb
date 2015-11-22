@@ -1,3 +1,4 @@
-<% get_alltime_leaderboard({game_id: @game_id} ).each.with_index(1) do | record, rank | %>
+<h3>Name: <%= @game.name %> - Slug:<%= @game.slug %></h3>
+<% get_alltime_leaderboard({game_id: @game.id} ).each.with_index(1) do | record, rank | %>
 	<%= rank %>. <%= record[0] %> : <%= record[1] %> <br />
 <% end %>
