@@ -10,7 +10,16 @@
     <%= render 'layouts/shim' %>
   </head>
   <body  <%= "class=#{@body_class}" if @body_class %>>
-
+    <section class="navigation">
+      <div class="nav-left">
+        <%= link_to root_path do %><img class="nav-logo" src="/assets/small_luckee_font.png"><% end %>
+      </div>
+      <% if current_user %>
+        <div class="nav-right">
+          <%= link_to "Sign out", signout_path, method: "delete" %>
+        </div> <!--/.nav-right -->
+      <% end %>
+    </section>
     <div>
       <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>"><%= value %></div>

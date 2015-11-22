@@ -2,7 +2,11 @@
 <h1>Sign in</h1>
 
 <div class="row">
-  <div class="span6 offset3">
+  <div class="sign-in--desktop">
+    <%= link_to "/auth/facebook" do %>
+      <% image_tag "sign_in_facebook.png", :width => "250px" %>
+    <% end %>
+
     <%= form_for(:session, url: sessions_path) do |f| %>
 
       <%= f.label :email %>

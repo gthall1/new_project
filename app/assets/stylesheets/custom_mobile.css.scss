@@ -1,20 +1,7 @@
 /* mixins, variables, etc. */
 @import "bootstrap";
 @import "mixins";
-
-$grayMediumLight: #eaeaea;
-$dark-font: #4A4A4A;
-$dark-blue: #10172B;
-$dark-teal: #4fd1b5;
-$purple: #6f5499;
-$black: #000;
-$credits-red: #D9232B;
-$white: #fff;
-$red: #e74c3c;
-$orange: #F2BB7C;
-$silver: #bdc3c7;
-$clouds: #ecf0f1;
-$teal: #56E7C8;
+@import "variables";
 
 
 @mixin box_sizing {
@@ -204,7 +191,7 @@ textarea {
       display: block;
       margin: 20px auto;
       &:hover {
-          background-color: #c8ade0;
+          background-color: $purple-border;
         }
     }
   }
@@ -219,8 +206,8 @@ textarea {
   height: 40px;
   padding: 0;
   border-radius: 100px;
-  border: 2px solid #c8ade0;
-  background-color: #ddd8e9;
+  border: 2px solid $purple-border;
+  background-color: $purple-light;
   width: 100%;
   color: #fff;
 

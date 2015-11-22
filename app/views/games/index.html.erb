@@ -1,26 +1,10 @@
-<div class="container">
-  <div class="row">
-    <div style="width:850px;display:block;margin:auto;">
-
-
-      <%= link_to game_path(Game.where(name:"Helicopter").first.id), style: "text-decoration:none;" do %>
-        <div class="heliHome">
-          <p class="gameCover">Helicopter</p>
-          <br />
-          <p class="earnCredits">earn credits</p>
-        </div>
+<div class='game-list-container'>
+    <% @games.each do | g | %>
+    <% next if g.device_type != 1 %>
+    <div class="game-wrapper">
+      <%= link_to game_path(g) do %>
+        <%= image_tag(g.image, :class=>'game-image') %>
       <% end %>
-
     </div>
-    <div style="width:850px;display:block;margin:auto;">
-
-        <%= link_to game_path(Game.where(name:"Memory Game").first.id), style: "text-decoration:none;" do %>
-          <div class="memoryHome">
-            <p class="gameCover">Card Match</p>
-            <br />
-            <p class="earnCredits">earn credits</p>
-          </div>
-        <% end %>
-    </div>
-  </div>
+    <% end %>
 </div>
