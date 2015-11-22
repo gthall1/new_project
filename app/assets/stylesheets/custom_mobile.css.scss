@@ -2,7 +2,7 @@
 @import "bootstrap";
 @import "mixins";
 @import "variables";
-
+@import "leaderboard";
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -240,11 +240,9 @@ textarea {
   margin: 20px auto;
   display:block;
 }
-.cash-out{
-  margin-top: 10px;
+.inner-page__list{
   background-color: $white;
   padding: 10px;
-  // font-weight: 200;
   ul{
     padding:0px;
     margin:0px;
@@ -507,19 +505,7 @@ textarea {
   border-radius: 2px;
 }
 .my-balance{
-
-  .icon-holder{
-    position:relative;
-    width:25%;
-    .payment-icon{
-      width:50px;
-      height:50px;
-      position:relative;
-      left:20px;
-      top:-40px;
-    }
-    display:inline-block;
-  }
+  margin-bottom: 10px;
   .credits{
     color:$credits-red;
   }

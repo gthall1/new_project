@@ -1,0 +1,13 @@
+@import "bootstrap";
+@import "mixins";
+@import "variables";
+
+.leaderboader-head__icon {
+  border: 1px solid $black;
+  border-radius: 100%;
+  padding: 10px;
+  font-size: 18px;
+  float: left;
+  position: relative;
+  top: 7.5px;
+}

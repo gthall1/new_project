@@ -1,3 +1,25 @@
-<% Game.where(device_type:1).each do | g | %>
-	<%= link_to g.name, game_leaderboard_path(game_id:g.id) %> <br />
-<% end %>
+<div class='my-balance'>
+  <div class='redeem'>
+    <i class="fa fa-list leaderboader-head__icon"></i>
+    <div class="redeem__copy">
+      <p class="redeemCredits">Leaderboards</p>
+      <p class="redeemCredits__desc">View the top contenders</p>
+    </div>
+  </p>
+
+  </div>
+</div>
+<div class='inner-page__list'>
+  <p class="page-title">Games</p>
+  <ul>
+    <% Game.where(device_type:1).each do | g | %>
+      <%= link_to game_leaderboard_path(game_id:g.id) do %>
+      <li>
+        <%= g.name %>
+        <span class='cash-out__cost'>View Leaderboard</span>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>

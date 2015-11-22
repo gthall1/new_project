@@ -3,7 +3,6 @@
 @import "mixins";
 @import "variables";
 
-
 @mixin box_sizing {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -989,7 +988,7 @@ h1.arrow2 { font-size: 55px;
   margin-bottom: 10px;
   font-size: 32px;
 }
-.cash-out{
+.inner-page__list{
   ul{
     padding:0px;
     margin:0px;

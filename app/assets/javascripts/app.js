@@ -102,7 +102,7 @@ var cashOut = {
   paypal: function() {
     $('.page-title').html('Paypal Details');
     $('.cash-out__wrapper').addClass('slide-in cash-out__paypal');
-    $('.cash-out').addClass('cash-out--hide-list');
+    $('.inner-page__list').addClass('cash-out--hide-list');
     $(".back-link").hide();
     $(".back-choice").show();
     $("#cash_out_cashout_type").val(1);
@@ -111,7 +111,7 @@ var cashOut = {
   venmo: function() {
     $('.page-title').html('Venmo Details');
     $('.cash-out__wrapper').addClass('slide-in cash-out__venmo');
-    $('.cash-out').addClass('cash-out--hide-list');
+    $('.inner-page__list').addClass('cash-out--hide-list');
     $(".back-link").hide();
     $(".back-choice").show();
     $("#cash_out_cashout_type").val(0);
@@ -120,7 +120,7 @@ var cashOut = {
   restart: function() {
     $('.page-title').html('Cash');
     $('.cash-out__wrapper').removeClass('slide-in cash-out__venmo cash-out__paypal');
-    $('.cash-out').removeClass('cash-out--hide-list');
+    $('.inner-page__list').removeClass('cash-out--hide-list');
     $(".back-link").show();
     $(".back-choice").hide();
   },
