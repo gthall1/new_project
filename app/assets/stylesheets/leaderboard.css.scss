@@ -57,7 +57,7 @@ $falldown-font: #FEE2C7;
   }
 
   .leaderboard-row {
-    color: $white;
+    color: $traffic-font;
   }
 }
 
@@ -67,10 +67,10 @@ $falldown-font: #FEE2C7;
 
   .leaderboard-nav {
     background: $falldown-font;
-    // .leaderboard-back,
-    // .leaderboard__title {
-    //   color: $falldown-bg;
-    // }
+  }
+
+  .leaderboard__subtitle {
+    color: $falldown-bg;
   }
 
   .cat-title {
