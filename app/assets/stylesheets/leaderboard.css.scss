@@ -95,6 +95,9 @@ $falldown-font: #FEE2C7;
     background-color: $white;
     background-image: none;
   }
+  .mobile-header {
+    display: none;
+  }
 }
 .leaderboard-nav {
   padding: 10px 0;
