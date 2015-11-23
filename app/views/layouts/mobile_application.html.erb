@@ -155,7 +155,7 @@
 
         <% end %>
 
-        <div class='mobile-container <% if !signed_in? %>with-money<% end %>' style="width:100%;">
+        <div <%= "id=#{@mobile_container_id}" if @mobile_container_id %> class='mobile-container <% if !signed_in? %>with-money<% end %>' style="width:100%;">
             <div class="desktop--modal">
                 <h1 class="modal__title">Welcome to Luckee</h1>
                 <p class="modal__copy">Our desktop site is currently under construction. We have enabled our mobile site on desktop, so you can proceed, but it may look a little goofy for now. Please visit the site on mobile for the best experience, or continue to the temporary desktop site and we will have our new desktop site up for your ASAP.</p>

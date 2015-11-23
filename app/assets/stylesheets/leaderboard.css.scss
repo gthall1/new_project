@@ -2,6 +2,9 @@
 @import "mixins";
 @import "variables";
 
+div[id^=leaderboard] {
+  padding: 20px 0;
+}
 .leaderboader-head__icon {
   border: 1px solid $black;
   border-radius: 100%;
@@ -10,4 +13,80 @@
   float: left;
   position: relative;
   top: 7.5px;
+}
+.leaderboard__title {
+  margin: 0;
+  font-size: 20px;
+  color: #0051BB;
+}
+.leaderboard__subtitle {
+  text-align: center;
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+#leaderboard--flappy-pilot {
+  background-color: #D1E9F6;
+  background-image: none;
+}
+.leaderboard__cat-wrapper {
+  text-align: center;
+}
+.leaderboard__cat {
+    display: inline-block;
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    border: 2px solid #0051BB;
+    border-radius: 2px;
+}
+.cat-title {
+    font-size: 14px;
+    padding: 5px 5%;
+    margin: 0;
+    display: inline-block;
+    color: #0051BB;
+    width: 40%;
+    &:hover {
+      cursor: pointer;
+    }
+    &.active {
+      background: #0051BB;
+      color: $white;
+    }
+}
+.cat-title:first-child {
+  float: left;
+}
+.cat-title:last-child {
+  float: right;
+}
+.tab-section {
+  &.hidden {
+    display: none;
+  }
+}
+// Leaderboard Category
+.leaderboard--weekly {
+
+}
+.leaderboard-row {
+  color: #0051BB;
+  border-bottom: 1px solid $white;
+  margin: 10px 10%;
+  padding: 0 5px 10px;
+  span {
+    display: inline-block;
+    width: 33.33%;
+  }
+}
+.leaderboard-rank {
+  float: left;
+  text-align: left;
+}
+.leaderboard-user {
+  text-align: center;
+}
+.leaderboard-score {
+  float: right;
+  text-align: right;
 }

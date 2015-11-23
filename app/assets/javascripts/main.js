@@ -1,6 +1,7 @@
 $(document).ready(function(){
   app.init();
   cashOut.init();
+  tabs.init();
   $('.mobile-home .mobile-container').addClass('beta-version');
 
   $("body").on("copy", ".zclip", function(e) {

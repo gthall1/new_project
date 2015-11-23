@@ -1,4 +1,33 @@
-<h3>Name: <%= @game.name %> - Slug:<%= @game.slug %></h3>
-<% get_alltime_leaderboard({game_id: @game.id} ).each.with_index(1) do | record, rank | %>
-	<%= rank %>. <%= record[0] %> : <%= record[1] %> <br />
-<% end %>
+<% @mobile_container_id = "leaderboard--#{@game.slug}" %>
+
+<h1 class="leaderboard__title">Leaderboard</h1>
+<p class="leaderboard__subtitle"><%= @game.name %></p>
+<div class="leaderboard__cat-wrapper">
+  <div class="leaderboard__cat">
+    <h2 class="cat-title tab-toggle active" data-tab-cat=".leaderboard--all-time">All-Time</h2>
+    <h2 class="cat-title tab-toggle" data-tab-cat=".leaderboard--weekly">Weekly</h2>
+  </div>
+</div>
+<section class="game-leaderboard">
+  <div class="tab-section leaderboard leaderboard--all-time">
+    <ul class="list--leaderboard"></ul>
+    <% get_alltime_leaderboard({game_id: @game.id} ).each.with_index(1) do | record, rank | %>
+    	<div class="leaderboard-row">
+        <span class="leaderboard-rank"><%= rank %></span>
+        <span class="leaderboard-user"><%= record[0] %></span>
+        <span class="leaderboard-score"><%= record[1] %></span>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="tab-section leaderboard leaderboard--weekly hidden">
+    <ul class="list--leaderboard"></ul>
+    <% get_weekly_leaderboard({game_id: @game.id} ).each.with_index(1) do | record, rank | %>
+      <div class="leaderboard-row">
+        <span class="leaderboard-rank"><%= rank %></span>
+        <span class="leaderboard-user"><%= record[0] %></span>
+        <span class="leaderboard-score"><%= record[1] %></span>
+      </div>
+    <% end %>
+  </div>
+</section>

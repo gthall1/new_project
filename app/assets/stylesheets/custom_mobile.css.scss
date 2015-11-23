@@ -40,10 +40,12 @@ textarea {
   position: relative;
   top:0px;
   min-height:100vh;
-  background: url('/assets/darker_mobile_background_15.jpg') #EAF9FC;
+  background-image: url('/assets/darker_mobile_background_15.jpg');
+  background-color: #EAF9FC;
   background-size: cover;
   &.with-money{
-    background: url('/assets/darker_mobile_background_15.jpg') #EAF9FC;
+    background-image: url('/assets/darker_mobile_background_15.jpg');
+    background-color: #EAF9FC;
     background-size: cover;
   }
   &.beta-version {
