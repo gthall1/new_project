@@ -1,7 +1,10 @@
 <% @mobile_container_id = "leaderboard--#{@game.slug}" %>
+<section class="leaderboard-nav">
+  <a class="leaderboard-back" href="/games/<%= @game.id %>"><i class="fa fa-chevron-left back-button"></i></a>
+  <h1 class="leaderboard__title">Leaderboard</h1>
+  <p class="leaderboard__subtitle"><%= @game.name %></p>
+</section>
 
-<h1 class="leaderboard__title">Leaderboard</h1>
-<p class="leaderboard__subtitle"><%= @game.name %></p>
 <div class="leaderboard__cat-wrapper">
   <div class="leaderboard__cat">
     <h2 class="cat-title tab-toggle active" data-tab-cat=".leaderboard--all-time">All-Time</h2>
