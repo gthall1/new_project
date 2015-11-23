@@ -5,15 +5,100 @@
 $flappy-bg: #D1E9F6;
 $flappy-font: #0051BB;
 
-$traffic-bg: #8DA339;
-$traffic-font: #fff;
+$traffic-bg: #C4E169;
+$traffic-font: #8DA339;
 
 $falldown-bg: #a2a2a2;
 $falldown-font: #FEE2C7;
 
+#leaderboard--flappy-pilot {
+  background-color: $flappy-bg;
+  background-image: none;
+
+  .leaderboard-nav {
+    background: $flappy-font;
+  }
+
+  .cat-title {
+      color: $flappy-font;
+      &.active {
+        background: $flappy-font;
+        color: $white;
+      }
+  }
+
+  .leaderboard__cat {
+      border: 2px solid $flappy-font;
+  }
+
+  .leaderboard-row {
+    color: $flappy-font;
+  }
+}
+
+#leaderboard--traffic {
+ background-color: $traffic-bg;
+ background-image: none;
+
+  .leaderboard-nav {
+    background: $traffic-font;
+  }
+
+  .cat-title {
+      color: $traffic-font;
+      &.active {
+        background: $traffic-font;
+        color: $white;
+      }
+  }
+
+  .leaderboard__cat {
+      border: 2px solid $traffic-font;
+  }
+
+  .leaderboard-row {
+    color: $white;
+  }
+}
+
+#leaderboard--fall-down {
+ background-color: $falldown-bg;
+ background-image: none;
+
+  .leaderboard-nav {
+    background: $falldown-font;
+    // .leaderboard-back,
+    // .leaderboard__title {
+    //   color: $falldown-bg;
+    // }
+  }
+
+  .cat-title {
+      color: $falldown-font;
+      &.active {
+        background: $falldown-font;
+        color: $falldown-bg;
+      }
+  }
+
+  .leaderboard__cat {
+      border: 2px solid $falldown-font;
+  }
+
+  .leaderboard-row {
+    color: $white;
+  }
+}
+
+.leaderboard-page {
+  .mobile-container {
+    background-color: $white;
+    background-image: none;
+  }
+}
 .leaderboard-nav {
   padding: 10px 0;
-  background: $flappy-font;
+  background: $orange;
   height: 40px;
   margin-bottom: 20px;
   position: relative;
@@ -38,19 +123,15 @@ $falldown-font: #FEE2C7;
   color: $clouds;
   margin-bottom: 20px;
 }
-#leaderboard--flappy-pilot {
-  background-color: $flappy-bg;
-  background-image: none;
-}
 .leaderboard__cat-wrapper {
   text-align: center;
 }
 .leaderboard__cat {
     display: inline-block;
     width: 80%;
-    margin: 0 auto;
+    margin: 0 auto 10px;
     text-align: center;
-    border: 2px solid $flappy-font;
+    border: 2px solid $orange;
     border-radius: 2px;
 }
 .cat-title {
@@ -58,13 +139,13 @@ $falldown-font: #FEE2C7;
     padding: 5px 5%;
     margin: 0;
     display: inline-block;
-    color: $flappy-font;
+    color: $black;
     width: 40%;
     &:hover {
       cursor: pointer;
     }
     &.active {
-      background: $flappy-font;
+      background: $orange;
       color: $white;
     }
 }
@@ -84,10 +165,13 @@ $falldown-font: #FEE2C7;
 
 }
 .leaderboard-row {
-  color: $flappy-font;
+  color: $black;
   border-bottom: 1px solid $clouds;
   margin: 10px 10%;
   padding: 0 5px   10px;
+  &:last-child {
+    border-bottom: none;
+  }
   span {
     display: inline-block;
     width: 33.33%;
