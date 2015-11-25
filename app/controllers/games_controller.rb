@@ -438,7 +438,7 @@ class GamesController < ApplicationController
   end
 
   def leaderboard
-    @game = Game.where(id:params[:game_id]).first
+    @game = Game.where(slug:params[:game_slug]).first
   end
 
   def games_leaderboard
