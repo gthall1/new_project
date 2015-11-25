@@ -24,7 +24,9 @@
     <% when 'black-hole' %>
       <%= render 'blackhole_m' %>  
     <% when 'fall-down' %>
-      <%= render 'fall_down_m' %>            
+      <%= render 'fall_down_m' %> 
+    <% when 'traffic' %>
+      <%= render 'traffic_m' %>
   <% end %>
   
 <input type="hidden" id="game_token" name="game_token" value="<%= session[:game_token] %>" />
