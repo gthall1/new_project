@@ -61,18 +61,87 @@ p {
   font-size: 1.1em;
   line-height: 1.7em;
 }
+.nav-dropdown {
+  width: 100%;
+  position: relative;
+  display: inline-block;
+  padding: 12px 0;
+  cursor: pointer;
+  &.show {
+    .nav-dropdown__name {
+      .fa-angle-down {
+        @include rotate(180deg);
+      }
+    }
+    .nav-dropdown__list {
+      display: block;
+    }
+  }
+}
+.nav-dropdown__name {
+  color: $white;
+  margin-right: 45px;
+  position: relative;
+  top: 4px;
+  .fa-angle-down {
+    margin-right: 5px;
+    font-size: 18px;
+    @include transition();
+  }
+}
+.nav-dropdown__avatar {
+  background-color: $clouds;
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
+  display: inline-block;
+  position: absolute;
+  top: 9px;
+  right: -10px;
+}
+.nav-dropdown__list {
+  position: absolute;
+  top: 60px;
+  list-style: none;
+  width: 100%;
+  margin: 0;
+  text-align: left;
+  padding: 10px;
+  background: $dark-orange;
+  display: none;
+}
+
+.nav-dropdown__item {
+  border-bottom: 1px solid $clouds;
+  padding: 5px 0;
+  a {
+    text-decoration: none;
+    color: $white;
+    &:hover {
+      color: $grayMediumLight;
+    }
+  }
+  &:last-child {
+    border: none;
+  }
+}
 
 .navigation {
   display: inline-block;
   width: 100%;
   height: 60px;
   background-color: $orange;
+  overflow: visible;
+  position: relative;
+  z-index: 10;
   .nav-left {
     float: left;
     margin-left: 2.5%;
     @include vertical-align();
   }
   .nav-right {
+    text-align: right;
+    width: 140px;
     float: right;
     margin-right: 5%;
     @include vertical-align();
@@ -1105,12 +1174,13 @@ h1.arrow2 { font-size: 55px;
   }
 }
 .sign-in--desktop {
-  width: 40%;
+  width: 90%;
+  max-width: 250px;
   margin: 0 auto;
 
   input {
     text-align: center;
-    height: 40px !important;
+    height: 37px !important;
     padding: 0;
     border-radius: 100px;
     border: 2px solid $purple-border;
@@ -1121,6 +1191,13 @@ h1.arrow2 { font-size: 55px;
 
   input[type="submit"] {
     margin-top: 20px;
+    padding: 10px 60px;
+    background-color: #915AB9;
+    border: none;
+    border-radius: 50px;
+    color: #fff;
+    display: block;
+    margin: 20px auto;
   }
 }
 .form-separator{
@@ -1136,7 +1213,7 @@ h1.arrow2 { font-size: 55px;
     width:40%;
     height:12px;
     border-bottom:1px solid #CBC5C5;
-    left:15px;
+    left:5px;
     top:-3px;
     position:absolute;
   }
@@ -1145,13 +1222,14 @@ h1.arrow2 { font-size: 55px;
     font-size:22px;
     position:relative;
     font-weight:bold;
+    margin-top: 30px;
     top:-4px;
   }
   .right-separator{
     width:40%;
     height:12px;
     border-bottom:1px solid #CBC5C5;
-    right:15px;
+    right:5px;
     top:-3px;
     position:absolute;
   }
@@ -1195,15 +1273,13 @@ h1.arrow2 { font-size: 55px;
   .game-image{
     border-radius:10px;
     width:100%;
-    margin-top:20px;
   }
 }
 .game-wrapper {
   position: relative;
   display: inline-block;
   width: 48%;
-  margin: 0 5px;
-
+  margin: 20px 0 0;
 
   &:nth-child(odd) {
     float: left;
