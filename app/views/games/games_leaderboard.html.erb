@@ -13,7 +13,7 @@
   <p class="page-title">Games</p>
   <ul>
     <% Game.where(device_type:1).each do | g | %>
-      <%= link_to game_leaderboard_path(game_id:g.id) do %>
+      <%= link_to game_leaderboard_path(game_slug:g.slug) do %>
       <li>
         <%= g.name %>
         <span class='cash-out__cost'>View Leaderboard</span>
