@@ -49,6 +49,14 @@ var app = {
     $('.js-share-dialog__close').click(function(){
       $('.js-share-dialog').removeClass('show');
     });
+
+    $("body").on("copy", ".zclip", function(e) {
+      e.clipboardData.clearData();
+      e.clipboardData.setData("text/plain", $(this).data("zclip-text"));
+      $(this).html('Copied!');
+      e.preventDefault();
+    });
+
     // Modal dismiss
     $('.js-modal__link').click(function(){
       $('.mobile-container').removeClass('desktop--modal-blur');

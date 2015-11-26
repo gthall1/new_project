@@ -1,25 +1,25 @@
 class StaticPagesController < ApplicationController
   include ApplicationHelper
-  
+
   layout :determine_layout
   before_filter :check_signed_in, :only => [:redeem,:redeem_credits,:refer,:new_cash_out]
-  
+
   def check_signed_in
     redirect_to root_path if !signed_in?
   end
 
   def home
-     if !signed_in? 
+     if !signed_in?
       @current_jackpot = Jackpot.where(open: true).first
       @user = User.new
        if is_mobile?
         render "static_pages/home_mobile"
-       end      
+       end
      else
       redirect_to games_path
      end
   end
-  
+
   def home_invite
     referred_user_id = User.where(referral:params[:referral]).first
     if referred_user_id
@@ -29,12 +29,16 @@ class StaticPagesController < ApplicationController
   end
 
   def refer
-        @show_back_button = true
+    @show_back_button = true
     @referal_code = nil
     if signed_in?
       @referal_code = current_user.referral
     end
-  end 
+
+    if !is_mobile?
+      render "static_pages/refer_desktop"
+    end
+  end
 
   def faq
   end
@@ -69,7 +73,7 @@ class StaticPagesController < ApplicationController
       u.firstname = params[:first_name]
       u.lastname = params[:last_name]
       u.save
-      @cash_out.paypal = params[:email]      
+      @cash_out.paypal = params[:email]
     end
 
     if current_user.credits < @cash_out.credits
@@ -81,10 +85,10 @@ class StaticPagesController < ApplicationController
         if Rails.env.production?
           UserNotifier.send_cash_out_email({user_id:current_user.id}).deliver
         end
-       
+
     else
       redirect_to redeem_credits_path(credits:@cash_out.credits), alert: "Something went wrong. Please check the fields and try again."
-    end    
+    end
   end
 
   def redeem_credits
@@ -94,7 +98,7 @@ class StaticPagesController < ApplicationController
     @cash_out = CashOut.new
   end
 
-  private 
+  private
     def cash_out_params
       params.require(:cash_out).permit(:user_id, :credits, :cash,:venmo,:paypal,:cashout_type)
     end
