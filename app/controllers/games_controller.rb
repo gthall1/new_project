@@ -433,7 +433,7 @@ class GamesController < ApplicationController
     else
       high_score = 0
     end
-    if old_game.game.slug == 'flappy-pilot'
+    if old_game && old_game.game.slug == 'flappy-pilot'
         high_score = high_score.to_s.rjust(3, '0') #for the way this needs it
     end
 
@@ -441,7 +441,7 @@ class GamesController < ApplicationController
       :c2dictionary => true,
       :data => { 
        :earned => 0,
-       :total_credits => old_game.user.credits,
+       :total_credits => current_user.credits,
        :token => session[:game_token],
        :hscore => high_score       
       } 
