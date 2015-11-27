@@ -35,8 +35,8 @@ class StaticPagesController < ApplicationController
       @referal_code = current_user.referral
     end
 
-    if !is_mobile?
-      render "static_pages/refer_desktop"
+    if is_mobile?
+      render "static_pages/refer_mobile"
     end
   end
 

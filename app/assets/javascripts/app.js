@@ -50,10 +50,12 @@ var app = {
       $('.js-share-dialog').removeClass('show');
     });
 
+    // Copy to clipboard
     $("body").on("copy", ".zclip", function(e) {
       e.clipboardData.clearData();
       e.clipboardData.setData("text/plain", $(this).data("zclip-text"));
       $(this).html('Copied!');
+      $(this).addClass('copied')
       e.preventDefault();
     });
 

@@ -1,10 +1,5 @@
-<% @body_class = 'interior-page' %>
-
-<div class="interior-hero">
-  <h1 class="interior-hero__title">Take Surveys, Earn Credits</h1>
-  <p class="interior-hero__desc" >Fill out a simple survey and earn up to <span class='credits'> 100 credits!</span></p>
-</div><!--/.interior-hero -->
-<div class="interior-body">
+<div class='inner-page__list'>
+  <p class="page-title">Surveys</p>
   <ul>
     <% @surveys.each do |survey| %>
       <li><%= survey.name %>
@@ -23,4 +18,6 @@
       </li>
     <% end %>
   </ul>
-</div><!--/.interior-body -->
+</div>
+
+

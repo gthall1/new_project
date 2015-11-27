@@ -4,31 +4,72 @@
 }
 .interior-hero {
   background-color: $orange;
-  padding: 40px 50% 40px 5%;
-  text-align: left;
+  padding: 40px 5% 40px 5%;
+  text-align: center;
   color: $white;
   margin-top: -5px;
 }
 .interior-hero__title {
- font-size: 36px;
- text-align: left;
- font-weight: normal;
- margin: 0 0 10px 0;
+  font-size: 36px;
+  font-weight: 300;
+  letter-spacing: 0.25px;
+  margin: 0 0 10px 0;
 }
 .interior-hero__desc {
   font-size: 20px;
   line-height: 25px;
+
+  .credits {
+    color: $red;
+  }
+}
+.interior-body--section {
+  padding: 30px 5%;
+
+  &.section--two {
+    background-color: $purple-light;
+  }
 }
 .interior-body__title {
  font-size: 36px;
  color: $purple;
 }
+.interior-body__caption {
+  font-size: 14px;
+  color: $purple;
+  font-weight: 400;
+}
 .refer-friend__btn {
-  background: $purple-light;
+  background: $purple;
   border: none;
   border-radius: 4px;
   padding: 15px 20px;
-  min-height: 50px;
-  min-width: 125px;
-  color: white
+  min-height: 45px;
+  min-width: 140px;
+  color: white;
+  outline: 0;
+  @include transition();
+
+  &.copied {
+    background: $purple-border;
+  }
+}
+.interior-body__link {
+  color: $silver;
+  &.share-link {
+    font-size: 34px;
+    font-weight: 200;
+    letter-spacing: .03em;
+    padding: 10px 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .interior-hero {
+    padding: 50px 50% 60px 5%;
+    text-align: left;
+  }
+  .interior-hero__title {
+    text-align: left;
+  }
 }

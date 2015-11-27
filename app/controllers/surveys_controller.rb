@@ -1,6 +1,6 @@
 class SurveysController < ApplicationController
   include ApplicationHelper
- 
+
   before_action :set_survey, only: [:show, :edit, :update, :destroy]
   before_action :admin_user,     only: [:destroy, :new, :edit]
   before_filter :check_signed_in
@@ -13,6 +13,9 @@ class SurveysController < ApplicationController
   def index
     @show_back_button = true
     @surveys = Survey.all
+    if is_mobile?
+      render "surveys/index_mobile"
+    end
   end
 
   def check_signed_in
@@ -33,10 +36,10 @@ class SurveysController < ApplicationController
       @user_survey.arrival_id = session[:arrival_id]
       @user_survey.save
     end
-    
+
     if is_mobile?
       render "surveys/show_mobile"
-    end  
+    end
   end
 
   def user_survey_save
@@ -44,13 +47,13 @@ class SurveysController < ApplicationController
     if @user_survey
       current_user.add_credits({credits:@user_survey.survey.credits})
       @user_survey.complete = true
-      @user_survey.save 
+      @user_survey.save
       flash[:success] = "Thank you for completing the survey!"
     else
       flash[:error] = "Something went wrong saving the survey. Please try again later."
     end
-    
-    redirect_to surveys_path    
+
+    redirect_to surveys_path
   end
 
   # GET /surveys/new
@@ -115,5 +118,5 @@ class SurveysController < ApplicationController
 
     def admin_user
       redirect_to(root_url) unless current_user && current_user.admin?
-    end    
+    end
 end
