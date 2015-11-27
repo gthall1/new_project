@@ -23,7 +23,7 @@ gem 'jbuilder', '1.0.2'
 gem 'nokogiri'
 gem 'httpi', '~> 2.2.4'
 gem 'raygun4ruby'
-
+gem 'activerecord-session_store'
 group :production do
   gem 'rails_12factor'
 
