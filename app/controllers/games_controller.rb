@@ -90,30 +90,41 @@ class GamesController < ApplicationController
       create_new_game_session(params[:score],game_id) 
       game_session = UserGameSession.where(token: session[:game_token]).first     
     end
-
-    case game_session.game.slug
-      when '2048','black-hole','sorcerer-game'
-        game_json = {
-           :earned => game_session.credits_earned,
-           :total_credits => user.credits,
-           :token => session[:game_token],
-           :status => status,
-           :hscore => current_high_score   
-          }      
-      when 'flappy-pilot','traffic','fall-down'
-        if game_session.game.slug == 'flappy-pilot'
-          current_high_score = current_high_score.to_s.rjust(3, '0')
-        end
-        game_json = {
-          :c2dictionary => true,
-          :data => { 
-           :earned => game_session.credits_earned,
-           :total_credits => user.credits,
-           :token => session[:game_token],
-           :status => status,
-           :hscore => current_high_score   
+    
+    #shouldnt happen just a safety check
+    if game_session
+      case game_session.game.slug
+        when '2048','black-hole','sorcerer-game'
+          game_json = {
+             :earned => game_session.credits_earned,
+             :total_credits => user.credits,
+             :token => session[:game_token],
+             :status => status,
+             :hscore => current_high_score   
+            }      
+        when 'flappy-pilot','traffic','fall-down'
+          if game_session.game.slug == 'flappy-pilot'
+            current_high_score = current_high_score.to_s.rjust(3, '0')
+          end
+          game_json = {
+            :c2dictionary => true,
+            :data => { 
+             :earned => game_session.credits_earned,
+             :total_credits => user.credits,
+             :token => session[:game_token],
+             :status => status,
+             :hscore => current_high_score   
+            }
           }
-        }
+      end
+    else
+         game_json = {
+             :earned => "0",
+             :total_credits => user.credits,
+             :token => session[:game_token],
+             :status => status,
+             :hscore => current_high_score   
+            }    
     end
 
     #render text: user.credits
