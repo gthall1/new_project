@@ -186,7 +186,7 @@ DEPENDENCIES
   omniauth-facebook
   pg (= 0.15.1)
   puma
-  rails (~> 4.2)
+  rails (= 4.2.5)
   rails_12factor
   raygun4ruby
   sass-rails (~> 4.0.2)
