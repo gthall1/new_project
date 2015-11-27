@@ -69,9 +69,12 @@ class GamesController < ApplicationController
       #   current_user.add_credits({credits:credits_to_apply})
       #   game_session.credits_earned = credits
       #   game_session.save
-      elsif !game_session.active 
-
+      elsif game_session && !game_session.active 
         status = "closed"
+      elsif !game_session
+        game_id = request.referer.split('/').last.to_i
+        create_new_game_session(params[:score],game_id) 
+        status = "skip"
       else 
         status = "skip"
       end
@@ -419,7 +422,7 @@ class GamesController < ApplicationController
     
     if !old_game
       game_id = request.referer.split('/').last.to_i
-      old_game_name = Game.where(id:game_id).last
+      old_game_name = Game.where(id:game_id).last.name
     else 
       old_game_name = old_game.game.name
       game_id = old_game.id
@@ -467,7 +470,7 @@ class GamesController < ApplicationController
       game = UserGameSession.new
       game.token = SecureRandom.urlsafe_base64
       game.user_id = current_user.id
-      game.game_id = Game.where(name: game_name).first.id
+      game.game_id = Game.where(name: game_name).first.id  
       game.credits_earned = 0
       game.active = true
       game.score = score
