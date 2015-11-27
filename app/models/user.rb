@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6 } ,:if => '!password.nil?'
 
   def self.omniauth(auth,arrival_id)
-    where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
+    where(provider:auth.provider,uid:auth.uid).first_or_initialize.tap do |user|
       user.provider = auth.provider
       user.name = auth.info.name
       user.uid = auth.uid

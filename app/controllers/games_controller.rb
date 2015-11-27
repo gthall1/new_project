@@ -47,7 +47,7 @@ class GamesController < ApplicationController
       score = params[:score].to_i
       game_session = UserGameSession.where(token: params[:token]).first
      # p "Score : #{score} | Game SEssion Score: #{game_session.score}"    
-      if game_session.active
+      if game_session && game_session.active
          credits_to_apply = get_credits_to_apply(game_session.game.slug,score,game_session.credits_applied)
         if user && credits_to_apply > 0
           user.add_credits({credits:credits_to_apply}) 
@@ -416,15 +416,24 @@ class GamesController < ApplicationController
   def reset_game
 
     old_game = UserGameSession.where(token:session[:game_token]).last
-    set_game_token({game_name:old_game.game.name})
-    if UserGameSession.where(user_id:current_user.id,game_id:old_game.game.id).where.not(score: nil).order("score desc").present?
-      high_score = UserGameSession.where(user_id:current_user.id,game_id:old_game.game.id).where.not(score: nil).order("score desc").first.score 
+    
+    if !old_game
+      game_id = request.referer.split('/').last.to_i
+      old_game_name = Game.where(id:game_id).last
+    else 
+      old_game_name = old_game.name
+      game_id = old_game.id
+    end
+    set_game_token({game_name:old_game_name})
+    if old_game && UserGameSession.where(user_id:current_user.id,game_id:game_id).where.not(score: nil).order("score desc").present?
+      high_score = UserGameSession.where(user_id:current_user.id,game_id:game_id).where.not(score: nil).order("score desc").first.score 
     else
       high_score = 0
     end
     if old_game.game.slug == 'flappy-pilot'
-        high_score = high_score.to_s.rjust(3, '0')
+        high_score = high_score.to_s.rjust(3, '0') #for the way this needs it
     end
+
     game_json = {
       :c2dictionary => true,
       :data => { 
@@ -434,6 +443,7 @@ class GamesController < ApplicationController
        :hscore => high_score       
       } 
     }
+    
     render json: game_json
   end
 
