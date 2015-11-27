@@ -421,7 +421,7 @@ class GamesController < ApplicationController
       game_id = request.referer.split('/').last.to_i
       old_game_name = Game.where(id:game_id).last
     else 
-      old_game_name = old_game.name
+      old_game_name = old_game.game.name
       game_id = old_game.id
     end
     set_game_token({game_name:old_game_name})
@@ -443,7 +443,7 @@ class GamesController < ApplicationController
        :hscore => high_score       
       } 
     }
-    
+
     render json: game_json
   end
 
