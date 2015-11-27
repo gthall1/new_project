@@ -78,12 +78,12 @@ class GamesController < ApplicationController
       else 
         status = "skip"
       end
-      if UserGameSession.where(user_id:current_user.id,game_id:game_session.game.id).where.not(score: nil).order("score desc").present?
+      if game_session && UserGameSession.where(user_id:current_user.id,game_id:game_session.game.id).where.not(score: nil).order("score desc").present?
         current_high_score = UserGameSession.where(user_id:current_user.id,game_id:game_session.game.id).where.not(score: nil).order("score desc").first.score 
       else
         current_high_score = 0
       end
-    elsif params[:score] && !params[:score].empty?
+    elsif params[:score] && !params[:score].empty? 
       if request && request.referer
         game_id = request.referer.split('/').last.to_i
       end
