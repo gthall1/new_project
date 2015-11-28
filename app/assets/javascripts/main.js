@@ -1,6 +1,7 @@
 $(document).ready(function(){
   app.init();
   cashOut.init();
+  cashOutDesktop.init();
   tabs.init();
 
   //Remove this line once out of BETA

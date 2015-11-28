@@ -80,6 +80,7 @@
   padding: 15px 20px;
   min-height: 45px;
   min-width: 140px;
+  margin-top: 20px;
   color: white;
   outline: 0;
   display: none;
@@ -96,13 +97,28 @@
   display: block !important;
   font-size: 20px;
   text-align: center;
-
+  margin: 20px 0;
   &:hover {
     cursor: pointer;
   }
   &.hide {
     display: none !important;
   }
+}
+.cash-out__wrapper {
+  display: block;
+  margin: 0 auto;
+  width: 50%;
+  min-width: 300px;
+
+  input[type="text"] {
+    border: 1px solid $silver;
+    border-radius: 2px;
+    min-height: 35px;
+  }
+}
+.cash-out__redo-copy {
+  font-size: 12px;
 }
 .cash-out__fields {
   display: none;
