@@ -1330,13 +1330,10 @@ h1.arrow2 { font-size: 55px;
   margin: 20px 0 0;
 
   &:nth-child(odd) {
-    float: left;
   }
   &:nth-child(even) {
-    float: right;
   }
   &:last-child {
-    float: right;
   }
   &::after {
     content: 'EARN CREDITS';
