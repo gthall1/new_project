@@ -28,8 +28,10 @@
           <!-- <%= link_to 'Games', games_path %> -->
           <div class="nav-dropdown">
             <p class="nav-dropdown__name"><i class="fa fa-caret-down"></i> <%= current_user.name %></p>
-            <span class="nav-dropdown__avatar" style="background-image:url(https://scontent-lga3-1.xx.fbcdn.net/hphotos-xfp1/v/t1.0-9/12046645_10156278484520601_6181728789750839912_n.jpg?oh=a6e53546013f32a7c9563318ca24d5a3&oe=56F798D3);">
-              <i class="fa fa-exclamation notification"></i>
+            <% if current_user.oath_image %>
+              <span class="nav-dropdown__avatar" style="background-image: url(<%= current_user.oath_image %>);">
+            <% end %>
+              <!-- <i class="fa fa-exclamation notification"></i> -->
             </span>
             <ul class="nav-dropdown__list">
               <li class="nav-dropdown__item"><%= link_to 'Redeem Credits', redeem_path %></li>
