@@ -46,15 +46,6 @@ ActiveRecord::Schema.define(version: 20151128041142) do
     t.integer  "arrival_id"
   end
 
-  create_table "challenges", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "challenged_user_id"
-    t.integer  "game_id"
-    t.integer  "winner"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "feed_games", force: :cascade do |t|
     t.string   "name",          limit: 255
     t.string   "description",   limit: 255

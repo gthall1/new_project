@@ -23,6 +23,7 @@
 
   &:hover {
     transform: scale(1.1);
+    cursor: pointer;
   }
 }
 .card-inner {
@@ -43,7 +44,16 @@
     top: 12.5px;
   }
 }
+.card__payout-img {
+  width: 100px;
+  margin-bottom: 20px;
+  .venmo-choice & {
+    width: 135px;
+  }
+}
 .card__credits {
   color: $red;
+}
+.card__lower {
   display: block;
 }
