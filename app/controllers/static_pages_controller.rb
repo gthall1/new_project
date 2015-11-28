@@ -100,6 +100,10 @@ class StaticPagesController < ApplicationController
     @show_back_button = true
     @amount = params[:credits]
     @cash_out = CashOut.new
+
+    if is_mobile?
+      render "static_pages/redeem_credits_mobile"
+    end
   end
 
   private
