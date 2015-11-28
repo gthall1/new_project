@@ -1316,6 +1316,9 @@ h1.arrow2 { font-size: 55px;
   .game-image{
     border-radius:10px;
     width:100%;
+    img{
+      max-width:300px;
+    }
   }
 }
 .game-leaderboard {

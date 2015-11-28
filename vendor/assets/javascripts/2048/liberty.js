@@ -3728,7 +3728,7 @@ function _K2(_X4, _Y4) {
 
 function _L2(_X4, _Y4) {
     {
-        _y7("http://01smile.com");
+        _y7("/games");
     };
 }
 

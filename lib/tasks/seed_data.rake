@@ -131,6 +131,10 @@ task :update_images => :environment do |t,args|
    update_images
 end
 
+task :update_for_desktop => :environment do|t,args|
+ set_device_types
+ update_images
+end
 
 task :seed_new_games => :environment do | t, args|
    sorc = Game.new
@@ -204,29 +208,61 @@ def set_game_order
     g.save  
 end
 
+def set_device_types
+    g = Game.where(slug:"traffic").first 
+    g.device_type = 3
+    g.save
+
+    g = Game.where(slug:"fall-down").first 
+    g.device_type = 3
+    g.save   
+
+    g = Game.where(slug:"flappy-pilot").first 
+    g.device_type = 3
+    g.save
+
+    g = Game.where(slug:"black-hole").first 
+    g.device_type = 3
+    g.save
+
+    g = Game.where(slug:"2048").first 
+    g.device_type = 3
+    g.save
+
+    g = Game.where(slug:"sorcerer-game").first 
+    g.device_type = 1
+    g.save  
+end
+
 def update_images
     g = Game.where(slug:"traffic").first 
     g.image = "bigger_traffic.png"
+    g.desktop_image ="square_traffic.png"
     g.save
 
     g = Game.where(slug:"fall-down").first 
     g.image = "falldown_mobile.jpg"
+    g.desktop_image ="square_fall_down.png"    
     g.save   
 
     g = Game.where(slug:"flappy-pilot").first 
     g.image = "bigger_flappy_pilot.png"
+    g.desktop_image ="square_flappy.png"    
     g.save
 
     g = Game.where(slug:"black-hole").first 
     g.image = "bigger_black_hole.png"
+    g.desktop_image ="square_black_hole.png"    
     g.save
 
     g = Game.where(slug:"2048").first 
     g.image = "bigger_2048.png"
+    g.desktop_image ="square_2048.png"
     g.save
 
     g = Game.where(slug:"sorcerer-game").first 
     g.image = "bigger_sorcerer.png"
+    g.desktop_image ="square_sorcerer.png"    
     g.save 
 end
 
