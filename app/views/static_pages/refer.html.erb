@@ -1,20 +1,31 @@
 <% @body_class = 'interior-page' %>
 
-<% provide(:title, 'Redeem') %>
+<% provide(:title, 'Refer') %>
 <div class="interior-hero">
 <h1 class="interior-hero__title">Invite Friends, Earn Credits</h1>
 <p class="interior-hero__desc" >When you invite a friend and they sign up through your personalized link, you earn <span class='credits'> 25 credits!</span></p>
 </div> <!--/.interior-hero -->
 
 <div class="interior-body">
-  <section class="interior-body--section section--one">
+  <section class="interior-body--section section--one section--refer">
   <!-- <p class="interior-body__title">Copy &amp; Share:</p> -->
   <p class="interior-body__caption">My Referal Link</p>
   <p class="interior-body__link share-link"><%= request.host_with_port %>/invite/<%=@referal_code %></p>
 
   <button class="zclip refer-friend__btn" data-zclip-text="<%= request.host_with_port %>/invite/<%=@referal_code %>">Click to Copy</button>
   </section><!--/.section--one -->
-<!--
-  <section class="interior-body--section section--two"> -->
+
+  <section class="interior-body--section section--two">
+    <p class="interior-body__title">Sharing is caring.</p>
+    <div class="inline-tout">
+      <div class="tout">
+        <h1 class="tout__title"><i class="fa fa-user-plus"></i> Invite your friends</h1>
+        <p class="tout__copy">Share your personal referral link to your social media platforms or send your link directly via text or email.</p>
+      </div>
+      <div class="tout">
+        <h1 class="tout__title"><i class="fa fa-money"></i> Earn free credits</h1>
+        <p class="tout__copy">Every user that creates an account using your personal link earns you 25 credits &amp; credits earn you cash!</p>
+      </div>
+    </div><!--/.inline-tout -->
   </section><!--/.section--two -->
 </div>

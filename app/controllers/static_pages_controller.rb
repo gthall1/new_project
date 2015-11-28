@@ -51,6 +51,10 @@ class StaticPagesController < ApplicationController
 
   def redeem
     @show_back_button = true
+
+    if is_mobile?
+      render "static_pages/redeem_mobile"
+    end
   end
 
   def new_cash_out

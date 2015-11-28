@@ -45,9 +45,17 @@ var app = {
     }
   },
 
+  toggleElementClass: function(el, className) {
+    $(el).toggleClass(className);
+  },
+
   bind: function() {
     $('.js-share-dialog__close').click(function(){
       $('.js-share-dialog').removeClass('show');
+    });
+
+    $('.nav-dropdown').click(function(){
+      app.toggleElementClass(this, 'show');
     });
 
     // Copy to clipboard

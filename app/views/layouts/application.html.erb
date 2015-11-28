@@ -8,6 +8,15 @@
     <link href='http://fonts.googleapis.com/css?family=Capriola' rel='stylesheet' type='text/css'>
     <%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>
+    <% if false && Rails.env.production? %>
+      <script type="text/javascript">
+        !function(a,b,c,d,e,f,g,h){a.RaygunObject=e,a[e]=a[e]||function(){
+        (a[e].o=a[e].o||[]).push(arguments)},f=b.createElement(c),g=b.getElementsByTagName(c)[0],
+        f.async=1,f.src=d,g.parentNode.insertBefore(f,g),h=a.onerror,a.onerror=function(b,c,d,f,g){
+        h&&h(b,c,d,f,g),g||(g=new Error(b)),a[e].q=a[e].q||[],a[e].q.push({
+        e:g})}}(window,document,"script","//cdn.raygun.io/raygun4js/raygun.min.js","rg4js");
+      </script>
+    <% end %>
   </head>
   <body  <%= "class=#{@body_class}" if @body_class %>>
     <section class="navigation">
@@ -16,6 +25,7 @@
       </div>
       <% if current_user %>
         <div class="nav-right">
+          <!-- <%= link_to 'Games', games_path %> -->
           <div class="nav-dropdown">
             <p class="nav-dropdown__name"><i class="fa fa-caret-down"></i> <%= current_user.name %></p>
             <span class="nav-dropdown__avatar" style="background-image:url(https://scontent-lga3-1.xx.fbcdn.net/hphotos-xfp1/v/t1.0-9/12046645_10156278484520601_6181728789750839912_n.jpg?oh=a6e53546013f32a7c9563318ca24d5a3&oe=56F798D3);">
@@ -52,14 +62,7 @@
       }(document, 'script'));
     </script>
 
-
-    <script>
-      $(document).ready(function(){
-        $('.nav-dropdown').click(function(){
-          $(this).toggleClass('show');
-        });
-      });
-    </script>
+ <%= yield(:game_javascript) %>
 <% if Rails.env.production? %>
     <!-- google analytics -->
     <script>
@@ -72,6 +75,11 @@
       ga('send', 'pageview');
 
     </script>
+      <script type="text/javascript">
+          rg4js('apiKey', 'K9ewfiwAigDX1AXxc+lC0Q==');
+          rg4js('attach', true);
+          rg4js('enablePulse', true);
+        </script>
 <% end %>
   </body>
 </html>

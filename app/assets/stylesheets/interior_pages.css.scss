@@ -1,3 +1,4 @@
+@import "reset";
 // Interior Pages
 .interior-page {
   background: $white !important;
@@ -11,14 +12,18 @@
 }
 .interior-hero__title {
   font-size: 36px;
-  font-weight: 300;
+  font-weight: 200;
   letter-spacing: 0.25px;
   margin: 0 0 10px 0;
+
+  .credits {
+    color: $red;
+  }
 }
 .interior-hero__desc {
   font-size: 20px;
   line-height: 25px;
-
+  font-weight: 200;
   .credits {
     color: $red;
   }
@@ -27,7 +32,12 @@
   padding: 30px 5%;
 
   &.section--two {
-    background-color: $purple-light;
+    padding: 40px 5% 50px;
+    background-color: $purple-border;
+    .interior-body__title {
+      color: $purple;
+      font-weight: 200;
+    }
   }
 }
 .interior-body__title {
@@ -38,6 +48,15 @@
   font-size: 14px;
   color: $purple;
   font-weight: 400;
+}
+.interior-body__link {
+  color: $silver;
+  &.share-link {
+    font-size: 34px;
+    font-weight: 200;
+    letter-spacing: .03em;
+    padding: 10px 0;
+  }
 }
 .refer-friend__btn {
   background: $purple;
@@ -51,23 +70,58 @@
   @include transition();
 
   &.copied {
-    background: $purple-border;
+    background-color: $purple-border;
   }
 }
-.interior-body__link {
-  color: $silver;
-  &.share-link {
-    font-size: 34px;
-    font-weight: 200;
-    letter-spacing: .03em;
-    padding: 10px 0;
+.section--refer {
+  .interior-body__caption {
+    margin: 0;
+  }
+  .interior-body__link {
+    padding: 0;
+    margin: 0 0 5px;
   }
 }
+.inline-tout {
+  width: 100%;
+}
+.tout {
+  display: inline-block;
+  width: 50%;
+  margin-top: 25px;
+  text-align: left;
+  padding: 0px 5%;
+  color: $purple;
+}
+.tout:first-child {
 
+  float: left;
+}
+.tout:last-child {
+  float: right;
+}
+.tout__title {
+  font-size: 20px;
+  letter-spacing: 0.25px;
+  font-weight: 200;
+  margin: 0 0 10px;
+  text-align: left;
+  .fa {
+    color: $white;
+    min-width: 25px;
+  }
+}
+.tout__copy {
+  font-size: 16px;
+  font-weight: 200;
+  margin-left: 32px;
+  line-height: 20px;
+}
 @media (min-width: 768px) {
   .interior-hero {
     padding: 50px 50% 60px 5%;
     text-align: left;
+    min-height: 200px;
   }
   .interior-hero__title {
     text-align: left;
