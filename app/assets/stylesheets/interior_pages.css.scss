@@ -1,5 +1,8 @@
 @import "reset";
 // Interior Pages
+.games-page {
+  background: $clouds !important;
+}
 .interior-page {
   background: $white !important;
 }
@@ -110,6 +113,10 @@
   margin: 0 auto;
   width: 50%;
   min-width: 300px;
+
+  .interior-body__caption {
+    margin-bottom: 10px;
+  }
 
   input[type="text"] {
     border: 1px solid $silver;

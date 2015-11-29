@@ -39,6 +39,8 @@
       <%= f.hidden_field :credits, :value => @amount %>
       <%= f.hidden_field :cashout_type %>
         <div class='paypal-select cash-out__fields'>
+            <p class="interior-body__caption">Paypal Info</p>
+
             <%= text_field_tag "first_name", "First Name", :value => current_user.firstname, placeholder: "First Name" %>
 
             <%= text_field_tag "last_name","Last Name", :value => current_user.lastname, placeholder: "Last Name" %>
@@ -47,6 +49,8 @@
         </div> <!--/.paypal-select -->
 
         <div class='venmo-select cash-out__fields'>
+          <p class="interior-body__caption">Venmo Info</p>
+
           <%= f.text_field "venmo", placeholder: "Venmo username"%>
         </div> <!--/.venmo-select -->
 
