@@ -142,6 +142,56 @@ var tabs = {
   }
 };
 
+var cashOutDesktop = {
+  conf: {
+    cashoutForm: '.cash-out__wrapper',
+    cashoutRedo: '.cash-out__redo'
+  },
+
+  hideCheckout: function () {
+    $(cashOutDesktop.conf.cashoutForm).slideUp();
+    $(cashOutDesktop.conf.cashoutRedo).addClass('hide');
+    $('.cash-out__submit').removeClass('show');
+  },
+
+  showAllOptions: function () {
+    $('.venmo-choice, .paypal-choice').fadeIn();
+  },
+
+  showCheckoutType: function(el) {
+    var cashoutType = $(el).attr('data-checkout');
+
+    $('.cash-out__submit').addClass('show');
+    $('.' + cashoutType + '-select').addClass('show');
+    $(cashOutDesktop.conf.cashoutForm).slideDown();
+
+    if (cashoutType === "venmo") {
+      $('.paypal-choice').fadeOut();
+      $(cashOutDesktop.conf.cashoutRedo).removeClass('hide');
+    } else {
+      $('.venmo-choice').fadeOut();
+      $(cashOutDesktop.conf.cashoutRedo).removeClass('hide');
+    }
+  },
+
+  bind: function() {
+    $('.venmo-choice, .paypal-choice').click(function(e){
+      cashOutDesktop.showCheckoutType(this);
+    });
+
+    $(cashOutDesktop.conf.cashoutRedo).click(function() {
+      cashOutDesktop.hideCheckout();
+      cashOutDesktop.showAllOptions();
+      $('.cash-out__fields').removeClass('show');
+    });
+  },
+
+  init: function() {
+    cashOutDesktop.bind();
+    cashOutDesktop.hideCheckout();
+  }
+};
+
 var cashOut = {
   paypal: function() {
     $('.page-title').html('Paypal Details');

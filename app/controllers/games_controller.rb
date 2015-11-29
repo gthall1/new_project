@@ -15,13 +15,15 @@ class GamesController < ApplicationController
     end
     @current_jackpot = Jackpot.where(open: true).first
 
+    @is_mobile = is_mobile?
+
     render "games/index_mobile" if is_mobile?
   end
 
   def check_signed_in
     redirect_to root_path if !signed_in?
   end
- 
+
   # GET /games/1
   # GET /games/1.json
   def show
@@ -41,7 +43,7 @@ class GamesController < ApplicationController
 
     render "games/show_mobile" if is_mobile?
   end
-  
+
   def score_update
     status='fail'
     credits = 0
@@ -50,19 +52,19 @@ class GamesController < ApplicationController
       status = "success"
       score = params[:score].to_i
       game_session = UserGameSession.where(token: params[:token]).first
-     # p "Score : #{score} | Game SEssion Score: #{game_session.score}"    
+     # p "Score : #{score} | Game SEssion Score: #{game_session.score}"
       if game_session && game_session.active
          credits_to_apply = get_credits_to_apply(game_session.game.slug,score,game_session.credits_applied)
         if user && credits_to_apply > 0
-          user.add_credits({credits:credits_to_apply}) 
-          game_session.credits_applied += credits_to_apply 
+          user.add_credits({credits:credits_to_apply})
+          game_session.credits_applied += credits_to_apply
         elsif !user
           status = "error"
         else
           status = "nothingearned"
         end
         game_session.score = score
-        game_session.credits_earned += credits_to_apply 
+        game_session.credits_earned += credits_to_apply
         game_session.save
       # elsif score < game_session.score && credits < game_session.credits_applied
       #   #this is case when user starts new game and didnt get a new token
@@ -73,28 +75,28 @@ class GamesController < ApplicationController
       #   current_user.add_credits({credits:credits_to_apply})
       #   game_session.credits_earned = credits
       #   game_session.save
-      elsif game_session && !game_session.active 
+      elsif game_session && !game_session.active
         status = "closed"
       elsif !game_session
         game_id = request.referer.split('/').last.to_i
-        create_new_game_session(params[:score],game_id) 
+        create_new_game_session(params[:score],game_id)
         status = "skip"
-      else 
+      else
         status = "skip"
       end
       if game_session && UserGameSession.where(user_id:current_user.id,game_id:game_session.game.id).where.not(score: nil).order("score desc").present?
-        current_high_score = UserGameSession.where(user_id:current_user.id,game_id:game_session.game.id).where.not(score: nil).order("score desc").first.score 
+        current_high_score = UserGameSession.where(user_id:current_user.id,game_id:game_session.game.id).where.not(score: nil).order("score desc").first.score
       else
         current_high_score = 0
       end
-    elsif params[:score] && !params[:score].empty? 
+    elsif params[:score] && !params[:score].empty?
       if request && request.referer
         game_id = request.referer.split('/').last.to_i
       end
-      create_new_game_session(params[:score],game_id) 
-      game_session = UserGameSession.where(token: session[:game_token]).first     
+      create_new_game_session(params[:score],game_id)
+      game_session = UserGameSession.where(token: session[:game_token]).first
     end
-    
+
     #shouldnt happen just a safety check
     if game_session
       case game_session.game.slug
@@ -104,20 +106,20 @@ class GamesController < ApplicationController
              :total_credits => user.credits,
              :token => session[:game_token],
              :status => status,
-             :hscore => current_high_score   
-            }      
+             :hscore => current_high_score
+            }
         when 'flappy-pilot','traffic','fall-down'
           if game_session.game.slug == 'flappy-pilot'
             current_high_score = current_high_score.to_s.rjust(3, '0')
           end
           game_json = {
             :c2dictionary => true,
-            :data => { 
+            :data => {
              :earned => game_session.credits_earned,
              :total_credits => user.credits,
              :token => session[:game_token],
              :status => status,
-             :hscore => current_high_score   
+             :hscore => current_high_score
             }
           }
       end
@@ -127,12 +129,12 @@ class GamesController < ApplicationController
              :total_credits => user.credits,
              :token => session[:game_token],
              :status => status,
-             :hscore => current_high_score   
-            }    
+             :hscore => current_high_score
+            }
     end
 
     #render text: user.credits
-    render json: game_json    
+    render json: game_json
   end
 
   def test_game_check
@@ -140,7 +142,7 @@ class GamesController < ApplicationController
     status = "failed"
     if params[:button] && params[:button] == "play" && params[:token] && !params[:token].empty?
       status = "success"
-      
+
       game = UserGameSession.where(token: params[:token]).first
       #dont want people trying to spam old games
       if game.active
@@ -161,7 +163,7 @@ class GamesController < ApplicationController
         ad_image = "none"
       end
 
-      if win 
+      if win
         user = User.find(game.user_id)
         if user.credits.nil?
           user.credits = 1
@@ -191,12 +193,12 @@ class GamesController < ApplicationController
 
     render json: game_json
   end
-  
+
   #returns 10 advertisers, for card game
   def get_advertisers
    # @advertisers = Advertiser.all.select(:id).limit(10)
    ad_json = {
-      :advertisers => Advertiser.all.select(:id).limit(10).pluck(:id) 
+      :advertisers => Advertiser.all.select(:id).limit(10).pluck(:id)
     }
     render json: ad_json
   end
@@ -204,7 +206,7 @@ class GamesController < ApplicationController
   def get_advertiser_logo
     ad_image = "testad2.jpg"
     if params[:id] && !params[:id].blank?
-      ad_image =  Advertiser.find(params[:id]).logo      
+      ad_image =  Advertiser.find(params[:id]).logo
     end
     ad_json = {
       :ad_image => ad_image
@@ -228,11 +230,11 @@ class GamesController < ApplicationController
     end
     if params[:match] && params[:token] && !params[:token].empty?
       status = "success"
- 
+
       game = UserGameSession.where(token: params[:token]).first
       current_high_score = UserGameSession.where(user_id:current_user.id,game_id:game.game_id).where.not(score: nil).order("score desc").first
-      current_high_score = Time.at(current_high_score.score).utc.strftime("%M:%S") if current_high_score     
-      if params[:match].to_i >= 10 
+      current_high_score = Time.at(current_high_score.score).utc.strftime("%M:%S") if current_high_score
+      if params[:match].to_i >= 10
         win = true
         user = User.find(game.user_id)
         earned_credits = 10
@@ -264,7 +266,7 @@ class GamesController < ApplicationController
     end
 
     game_json = {
-      :win => win,  
+      :win => win,
       :earned => earned_credits,
       :total_credits => total_earned_credits,
       :score => high_score,
@@ -282,12 +284,12 @@ class GamesController < ApplicationController
 
     if params[:score] && params[:token] && !params[:token].empty?
       status = "success"
-      
+
       game = UserGameSession.where(token: params[:token]).first
       current_high_score = UserGameSession.where(user_id:current_user.id,game_id:game.game_id).where.not(score: nil).order("score desc").first
       if !current_high_score.blank?
         current_high_score = current_high_score.score
-      else 
+      else
         current_high_score = nil
       end
       score = params[:score].to_i
@@ -303,7 +305,7 @@ class GamesController < ApplicationController
         ad_image = "/assets/testad2.jpg"
       end
 
-      if score >= 100 
+      if score >= 100
         win = true
         user = User.find(game.user_id)
         earned_credits = score/100
@@ -329,7 +331,7 @@ class GamesController < ApplicationController
     end
 
     game_json = {
-      :win => win,  
+      :win => win,
       :earned => earned_credits,
       :total_credits => total_earned_credits,
       :status => status,
@@ -404,17 +406,17 @@ class GamesController < ApplicationController
       old_game.active = false
       old_game.save
      end
-    end 
+    end
     duration = (Time.now.to_i - game.created_at.to_i).to_i
     if duration > 999.seconds
       duration = 999.seconds
     end
-    session[:game_token] = game.token   
+    session[:game_token] = game.token
     game_json = {
       :status => "success",
-      :token => game.token, 
+      :token => game.token,
       :duration => duration
-    }        
+    }
   end
 
 
@@ -426,7 +428,7 @@ class GamesController < ApplicationController
     game_json = {
       :status => "success",
       :token =>  session[:game_token]
-    } 
+    }
 
     render json: game_json
   end
@@ -434,17 +436,17 @@ class GamesController < ApplicationController
   def reset_game
 
     old_game = UserGameSession.where(token:session[:game_token]).last
-    
+
     if !old_game
       game_id = request.referer.split('/').last.to_i
       old_game_name = Game.where(id:game_id).last.name
-    else 
+    else
       old_game_name = old_game.game.name
       game_id = old_game.id
     end
     set_game_token({game_name:old_game_name})
     if old_game && UserGameSession.where(user_id:current_user.id,game_id:game_id).where.not(score: nil).order("score desc").present?
-      high_score = UserGameSession.where(user_id:current_user.id,game_id:game_id).where.not(score: nil).order("score desc").first.score 
+      high_score = UserGameSession.where(user_id:current_user.id,game_id:game_id).where.not(score: nil).order("score desc").first.score
     else
       high_score = 0
     end
@@ -454,12 +456,12 @@ class GamesController < ApplicationController
 
     game_json = {
       :c2dictionary => true,
-      :data => { 
+      :data => {
        :earned => 0,
        :total_credits => current_user.credits,
        :token => session[:game_token],
-       :hscore => high_score       
-      } 
+       :hscore => high_score
+      }
     }
 
     render json: game_json
@@ -470,7 +472,7 @@ class GamesController < ApplicationController
   end
 
   def games_leaderboard
-    
+
   end
 
   def set_game_token(args={})
@@ -485,13 +487,13 @@ class GamesController < ApplicationController
       game = UserGameSession.new
       game.token = SecureRandom.urlsafe_base64
       game.user_id = current_user.id
-      game.game_id = Game.where(name: game_name).first.id  
+      game.game_id = Game.where(name: game_name).first.id
       game.credits_earned = 0
       game.active = true
       game.score = score
       game.arrival_id = session[:arrival_id]
       game.save
-      if !session[:game_token].nil? 
+      if !session[:game_token].nil?
        old_game = UserGameSession.where(token:session[:game_token]).first
 
        #close previous game game
@@ -500,38 +502,38 @@ class GamesController < ApplicationController
         old_game.save
        end
 
-      end 
-      session[:game_token] = game.token      
-    end       
+      end
+      session[:game_token] = game.token
+    end
   end
 
   private
-  
+
   def get_credits_to_apply(slug,score,credits_applied)
     case slug
       when "sorcerer-game"
         credits = (score/1000.to_f).ceil - 1 #subtract 1 otherwise itll give a credit once anything is scored
       when "2048"
-        credits = (score/750.to_f).ceil - 1 
+        credits = (score/750.to_f).ceil - 1
       when "traffic"
-        credits = (score/5.to_f).ceil - 1   
+        credits = (score/5.to_f).ceil - 1
       when "flappy-pilot"
-        credits = (score/10.to_f).ceil - 1                
+        credits = (score/10.to_f).ceil - 1
       when "black-hole"
-        #credits = score * 5   
+        #credits = score * 5
         credits_to_apply = 3
       when "fall-down"
-        credits = (score/15.to_f).ceil - 1 
+        credits = (score/15.to_f).ceil - 1
     end
 
     credits_to_apply = credits - credits_applied unless !credits_to_apply.nil?
-    credits_to_apply 
+    credits_to_apply
   end
 
     def create_new_game_session(score,game_id)
      # old_game = UserGameSession.where(user_id:current_user).last
       set_game_token({game_name:Game.where(id:game_id).first.name,score:score})
-    end 
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_game
       @game = Game.find(params[:id])
@@ -562,13 +564,13 @@ class GamesController < ApplicationController
           old_game.active = false
           old_game.save
          end
-        end 
-        session[:game_token] = game.token   
+        end
+        session[:game_token] = game.token
       else
         redirect_to root_path
       end
-    end 
+    end
 
     def get_traffic_json
-    end     
+    end
 end

@@ -1,3 +1,7 @@
+<% if !is_mobile? %>
+<% @body_class = 'games-page' %>
+<% end %>
+
 <div class='game-list-container'>
     <% @games.each do | g | %>
     <div class="game-wrapper">
