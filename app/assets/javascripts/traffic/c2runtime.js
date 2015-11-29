@@ -4239,7 +4239,7 @@ quat4.str=function(a){return"["+a[0]+", "+a[1]+", "+a[2]+", "+a[3]+"]"};
 		{
 			var loaderImage = new Image();
 			loaderImage.crossOrigin = "anonymous";
-			loaderImage.src = "/assets/traffic/loading-logo.png";
+			loaderImage.src = "loading-logo.png";
 			this.loaderlogos = {
 				logo: loaderImage
 			};
@@ -24055,12 +24055,12 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.Browser,
 	cr.plugins_.Dictionary,
 	cr.plugins_.JSON,
-	cr.plugins_.Touch,
-	cr.plugins_.WebStorage,
 	cr.plugins_.Sprite,
-	cr.plugins_.TiledBg,
+	cr.plugins_.WebStorage,
 	cr.plugins_.Particles,
 	cr.plugins_.Text,
+	cr.plugins_.Touch,
+	cr.plugins_.TiledBg,
 	cr.behaviors.Sin,
 	cr.behaviors.Bullet,
 	cr.behaviors.bound,
