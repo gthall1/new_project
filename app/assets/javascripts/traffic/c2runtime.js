@@ -4239,7 +4239,7 @@ quat4.str=function(a){return"["+a[0]+", "+a[1]+", "+a[2]+", "+a[3]+"]"};
 		{
 			var loaderImage = new Image();
 			loaderImage.crossOrigin = "anonymous";
-			loaderImage.src = "loading-logo.png";
+			loaderImage.src = "/assets/traffic/loading-logo.png";
 			this.loaderlogos = {
 				logo: loaderImage
 			};
