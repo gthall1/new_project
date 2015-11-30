@@ -2,15 +2,23 @@
 <% @body_class = 'games-page' %>
 <% end %>
 
+<h1 class="page__title">All Games</h1>
+
 <div class='game-list-container'>
     <% @games.each do | g | %>
     <div class="game-wrapper">
-      <% if g.slug == "flappy-pilot" %>
-        <img class="game-leaderboard" src="/assets/leaderboard.png">
-      <% end %>
       <%= link_to game_path(g) do %>
         <%= image_tag(g.desktop_image, :class=>'game-image') %>
       <% end %>
+
+      <div class="game__info">
+        <h1 class="game__title"><%= g.name %></h1>
+        <span class="credits">Earn Credits</span>
+        <% if g.slug == "flappy-pilot" ||  g.slug == "fall-down" || g.slug == "traffic" %>
+          <img class="game__leaderboard" src="/assets/leaderboard_button.png">
+        <% end %>
+      </div>
+
     </div>
     <% end %>
 </div>

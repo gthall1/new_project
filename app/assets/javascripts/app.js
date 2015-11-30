@@ -11,6 +11,11 @@ var app = {
     };
   },
 
+  scrollTo: function() {
+    $('html, body').animate({
+        scrollTop: $(document).height()
+    }, 'slow');
+  },
   showShareDialog: function() {
     if (Cookies.get('login') === 'initial') {
       console.log('Welcome back!');
@@ -160,6 +165,7 @@ var cashOutDesktop = {
 
   showCheckoutType: function(el) {
     var cashoutType = $(el).attr('data-checkout');
+    app.scrollTo();
 
     $('.cash-out__submit').addClass('show');
     $('.' + cashoutType + '-select').addClass('show');
