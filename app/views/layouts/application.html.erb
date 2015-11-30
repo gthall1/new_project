@@ -18,7 +18,7 @@
       </script>
     <% end %>
   <%= yield(:game_javascript) %>
-   
+
   </head>
   <body  <%= "class=#{@body_class}" if @body_class %>>
     <div class="desktop-wrapper">
@@ -37,6 +37,7 @@
               <!-- <i class="fa fa-exclamation notification"></i> -->
             </span>
             <ul class="nav-dropdown__list">
+              <li class="nav-dropdown__item"><%= link_to 'Games', games_path %></li>
               <li class="nav-dropdown__item"><%= link_to 'Redeem Credits', redeem_path %></li>
               <li class="nav-dropdown__item"><%= link_to 'Invite Friends', refer_path %></li>
               <li class="nav-dropdown__item"><%= link_to 'Take Survey', surveys_path %></li>

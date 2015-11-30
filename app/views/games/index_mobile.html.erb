@@ -1,9 +1,12 @@
   <div class='game-list-container'>
-      <% @games.each do | g | %>
-       <%= link_to game_path(g) do %>
+    <% @games.each do | g | %>
+      <%= link_to game_path(g) do %>
         <div class="game-wrapper">
+          <% if g.slug == "flappy-pilot" ||  g.slug == "fall-down" || g.slug == "traffic" %>
+            <img class="game__leaderboard" src="/assets/leaderboard_button.png">
+          <% end %>
         <%= image_tag(g.image, :class=>'game-image') %>
         </div>
-       <% end %>
       <% end %>
+    <% end %>
   </div>

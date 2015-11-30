@@ -1,8 +1,4 @@
 <p id="notice"><%= notice %></p>
-
-<p class="gameTitle">
-  <%= @game.name %>
-</p>
   <% case @game.slug %>
     <% when 'test' %>
       <h2 class="outcome">Click to play! 1/5 wins a credit!</h2>
@@ -14,24 +10,19 @@
     <% when 'memory-game' %>
       <%= render 'memory' %>
     <% when 'helicopter' %>
-      <%= render 'helicopter' %>      
+      <%= render 'helicopter' %>
     <% when 'sorcerer-game' %>
       <%= render 'sorcerer_m' %>
     <% when '2048' %>
-      <%= render 'twentyfortyeight_m' %>  
+      <%= render 'twentyfortyeight_m' %>
     <% when 'flappy-pilot' %>
-      <%= render 'flappy_pilot_m' %>            
+      <%= render 'flappy_pilot_m' %>
     <% when 'black-hole' %>
-      <%= render 'blackhole_m' %>  
+      <%= render 'blackhole_m' %>
     <% when 'fall-down' %>
-      <%= render 'fall_down_m' %> 
+      <%= render 'fall_down_m' %>
     <% when 'traffic' %>
       <%= render 'traffic_m' %>
   <% end %>
-  
-<input type="hidden" id="game_token" name="game_token" value="<%= session[:game_token] %>" />
 
-<br />
-<div class="container">
-<%= link_to 'Home', root_path, class: "btn btn-outlined btn-theme btn-lg back" %>
-</div>
+<input type="hidden" id="game_token" name="game_token" value="<%= session[:game_token] %>" />
