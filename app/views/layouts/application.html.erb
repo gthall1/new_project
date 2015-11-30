@@ -17,6 +17,8 @@
         e:g})}}(window,document,"script","//cdn.raygun.io/raygun4js/raygun.min.js","rg4js");
       </script>
     <% end %>
+  <%= yield(:game_javascript) %>
+   
   </head>
   <body  <%= "class=#{@body_class}" if @body_class %>>
     <div class="desktop-wrapper">
@@ -65,7 +67,6 @@
       }(document, 'script'));
     </script>
 
- <%= yield(:game_javascript) %>
   <% if Rails.env.production? %>
       <!-- google analytics -->
       <script>

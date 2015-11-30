@@ -3907,7 +3907,7 @@ quat4.str=function(a){return"["+a[0]+", "+a[1]+", "+a[2]+", "+a[3]+"]"};
 		{
 			this["setSize"](this.original_width, this.original_height, true);
 		}
-		this.tryLockOrientation();
+		//this.tryLockOrientation();
 		this.getready();	// determine things to preload
 		this.go();			// run loading screen
 		this.extra = {};
@@ -4107,7 +4107,7 @@ quat4.str=function(a){return"["+a[0]+", "+a[1]+", "+a[2]+", "+a[3]+"]"};
 			this.ctx["msImageSmoothingEnabled"] = this.linearSampling;
 			this.ctx["imageSmoothingEnabled"] = this.linearSampling;
 		}
-		this.tryLockOrientation();
+		//this.tryLockOrientation();
 		if (!this.isDomFree && (tryHideAddressBar || this.isiPhone))
 		{
 			window.setTimeout(function () {
@@ -24055,12 +24055,12 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.Browser,
 	cr.plugins_.Dictionary,
 	cr.plugins_.JSON,
-	cr.plugins_.Touch,
-	cr.plugins_.WebStorage,
 	cr.plugins_.Sprite,
-	cr.plugins_.TiledBg,
+	cr.plugins_.WebStorage,
 	cr.plugins_.Particles,
 	cr.plugins_.Text,
+	cr.plugins_.Touch,
+	cr.plugins_.TiledBg,
 	cr.behaviors.Sin,
 	cr.behaviors.Bullet,
 	cr.behaviors.bound,
