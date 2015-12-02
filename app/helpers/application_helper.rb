@@ -16,7 +16,6 @@ module ApplicationHelper
     else
       true
     end
-    true
   end
 
   def determine_layout
