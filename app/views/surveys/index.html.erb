@@ -5,11 +5,13 @@
   <p class="interior-hero__desc" >Fill out a simple survey and earn up to <span class='credits'> 100 credits!</span></p>
 </div><!--/.interior-hero -->
 <div class="interior-body">
-  <ul>
+  <div class="surveys-wrapper">
+  <ul class="survey-list">
     <% @surveys.each do |survey| %>
-      <li><%= survey.name %>
+      <li class="survey">
+        <h1 class="survey__title"><%= survey.name %></h1>
         <% if UserSurvey.where(survey_id: survey.id,user_id:current_user.id,complete:true).present? %>
-          <span class='cash-out__cost'>Survey Completed</span>
+          <span class='survey__completed'>Survey Completed</span>
         <% else %>
           <span class='cash-out__cost'>+<%= survey.credits%></span>
           <%= link_to  survey do %>
@@ -23,4 +25,5 @@
       </li>
     <% end %>
   </ul>
+  </div>
 </div><!--/.interior-body -->
