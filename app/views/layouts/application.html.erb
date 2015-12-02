@@ -3,7 +3,6 @@
   <head>
     <title><%= full_title(yield(:title)) %></title>
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link href='http://fonts.googleapis.com/css?family=Capriola' rel='stylesheet' type='text/css'>
     <%= csrf_meta_tags %>
@@ -87,5 +86,7 @@
           </script>
   <% end %>
 </div><!--/.desktop-wrapper -->
+
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   </body>
 </html>

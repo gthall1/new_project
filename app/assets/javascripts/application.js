@@ -12,9 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require bootstrap
 //= require home
+//= require tabs
+//= require cashout
+//= require mobilecheck
 //= require js-cookie
 //= require app
 //= require main
