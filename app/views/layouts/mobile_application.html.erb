@@ -5,6 +5,8 @@
         <%= csrf_meta_tags %>
         <title><%= full_title(yield(:title)) %></title>
 
+        <%= stylesheet_link_tag "mobile", media: "all",
+                                               "data-turbolinks-track" => true %>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link href='http://fonts.googleapis.com/css?family=Capriola' rel='stylesheet' type='text/css'>
         <!-- touchSwipe library -->
@@ -53,6 +55,7 @@
         <link rel="icon" sizes="48x48" href="/assets/android-chrome-48x48.png">
         <link rel="icon" sizes="36x36" href="/assets/android-chrome-36x36.png">
 
+        <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
         <script src="http://labs.rampinteractive.co.uk/touchSwipe/jquery.touchSwipe.min.js"></script>
 
         <meta name="description" content="">
