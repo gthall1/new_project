@@ -8,7 +8,7 @@ gem 'bcrypt-ruby', '3.1.2'
 gem 'faker', '1.1.2'
 gem 'puma'
 gem 'sprockets', '2.11.0'
-gem 'turbolinks', '~> 2.5.3'
+#gem 'turbolinks', '~> 2.5.3'
 
 gem 'pg', '0.15.1'
 gem "koala", "~> 2.0"
