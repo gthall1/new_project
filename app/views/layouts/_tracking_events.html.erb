@@ -1,0 +1,37 @@
+<script type="text/javascript">
+// Google Analytics Event
+var analyticsEvent = function(c, a, l, v, n) {
+    // universal analytics
+    if (typeof window.ga === 'function') {
+        ga('send', 'event', c, a, l, v, {nonInteraction: n});
+    }
+    // async analytics
+    else if (typeof window._gaq === 'object') {
+        _gaq.push(["_trackEvent", c, a, l, v, n]);
+    }
+    return;
+};
+
+
+var analytics = {
+    conf: {
+        weeklyScoreTab: '.ga-tab--weekly'
+    },
+
+    bind: function() {
+        $(analytics.conf.weeklyScoreTab).on('click', function() {
+            var lbname = "Leaderboard Activity";
+            analyticsEvent("Weekly Tab", "Click", lbname, 0, false);
+        });
+    },
+
+    init: function() {
+        analytics.bind();
+    }
+};
+
+
+$(document).ready(function(){
+    analytics.init();
+});
+</script>
