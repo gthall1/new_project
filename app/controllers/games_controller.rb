@@ -516,7 +516,7 @@ class GamesController < ApplicationController
   def get_credits_to_apply(slug,score,credits_applied)
     case slug
       when "sorcerer-game"
-        credits = (score/1000.to_f).ceil - 1 #subtract 1 otherwise itll give a credit once anything is scored
+        credits = (score/1500.to_f).ceil - 1 #subtract 1 otherwise itll give a credit once anything is scored
       when "2048"
         credits = (score/750.to_f).ceil - 1
       when "traffic"
