@@ -12,7 +12,7 @@
 <div class='inner-page__list'>
   <p class="page-title">Games</p>
   <ul>
-    <% Game.where(device_type:1).each do | g | %>
+    <% @games.each do | g | %>
       <%= link_to game_leaderboard_path(game_slug:g.slug) do %>
       <li>
         <%= g.name %>

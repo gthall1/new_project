@@ -472,7 +472,11 @@ class GamesController < ApplicationController
   end
 
   def games_leaderboard
-
+    if is_mobile?
+      @games = Game.where(device_type:[1,3]).order("sort_order asc")
+    else
+      @games = Game.where(device_type:[2,3]).order("sort_order asc")
+    end
   end
 
   def set_game_token(args={})
