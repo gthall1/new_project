@@ -20,6 +20,7 @@ var analytics = {
 
     bind: function() {
         $(analytics.conf.weeklyScoreTab).on('click', function() {
+            console.log('GA weekly tab click');
             var lbname = "Leaderboard Activity";
             analyticsEvent("Weekly Tab", "Click", lbname, 0, false);
         });
