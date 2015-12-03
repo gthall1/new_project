@@ -4,7 +4,7 @@
 @import "variables";
 @import "interior_pages";
 @import "cards";
-// @import "leaderboard";
+@import "leaderboard";
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -77,6 +77,7 @@ p {
       }
     }
     .nav-dropdown__list {
+      box-shadow: 0px 5px 10px rgba(127, 140, 141, 0.5);
       display: block;
       .interior-page & {
         box-shadow: 0 5px 10px #D29A5B;
@@ -93,7 +94,7 @@ p {
       font-size: 0;
       line-height: 0;
       position: absolute;
-      bottom: 0;
+      bottom: 5px;
       margin-left: 50%;
       margin-right: auto;
       left: -10px;
@@ -127,7 +128,7 @@ p {
 }
 .nav-dropdown__list {
   position: absolute;
-  top: 60px;
+  top: 65px;
   list-style: none;
   width: 100%;
   margin: 0;
@@ -154,6 +155,11 @@ p {
   &:first-child {
     border: none;
   }
+}
+.nav-dropdown__credits {
+  float: right;
+  color: $red;
+  font-size: 12px;
 }
 .nav-dropdown__signout {
   border-top: 1px solid $clouds;
@@ -1283,6 +1289,8 @@ h1.arrow2 { font-size: 55px;
 
   .games-page & {
     margin: 30px 0 0;
+    letter-spacing: 0.1px;
+    word-spacing: 0.5px;
   }
 }
 .mobile-form{
@@ -1468,6 +1476,9 @@ h1.arrow2 { font-size: 55px;
     @include floating();
   }
 }
+
+
+
 
 /*body {
   background: url(background_decent.svg) no-repeat center center fixed;

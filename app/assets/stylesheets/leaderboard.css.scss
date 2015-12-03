@@ -90,16 +90,6 @@ $falldown-font: #FEE2C7;
     color: $white;
   }
 }
-
-.leaderboard-page {
-  .mobile-container {
-    background-color: $white;
-    background-image: none;
-  }
-  .mobile-header {
-    display: none;
-  }
-}
 .leaderboard-nav {
   padding: 10px 0;
   background: $orange;
@@ -205,5 +195,46 @@ $falldown-font: #FEE2C7;
     font-size: 28px;
     position:relative;
     margin-right: 5px;
+  }
+}
+.leaderboard-head__title {
+  font-size: 36px;
+  font-weight: 200;
+  letter-spacing: 0.25px;
+  margin-bottom: 0;
+}
+.leaderboard-head__game {
+  font-size: 18px;
+  font-weight: 200;
+  margin-bottom: 20px;
+  letter-spacing: 0.25px;
+}
+
+
+// DESKTOP
+.leaderboard-page {
+  background-color: $white;
+  background-image: none;
+
+  // Desktop Leaderboard
+  .leaderboard-nav {
+    display: none;
+  }
+  .cat-title {
+    width: 50%;
+    letter-spacing: 0.25px;
+  }
+}
+// MOBILE
+.leaderboard-page--mobile {
+  .mobile-container {
+    background-color: $white;
+    background-image: none;
+  }
+  .mobile-header {
+    display: none;
+  }
+  .leaderboard-head {
+    display: none;
   }
 }
