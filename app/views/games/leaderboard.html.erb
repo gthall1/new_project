@@ -46,3 +46,9 @@
     <% end %>
   </div>
 </section>
+
+
+<% if Rails.env.production? %>
+  <!-- GA Tracking Events -->
+  <%= render 'layouts/tracking_events' %>
+<% end %>
