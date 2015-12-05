@@ -46,7 +46,7 @@
         <div class="nav-right">
           <%# link_to 'Games', games_path %>
           <div class="nav-dropdown">
-            <p class="nav-dropdown__user-credits"><%= current_user.lifetime_credits %><span>cc</span></p>
+            <p class="nav-dropdown__user-credits" data-toggle="tooltip" data-placement="bottom" title="Credits Earned"><%= current_user.lifetime_credits %><span>cc</span></p>
             <p class="nav-dropdown__name"><i class="fa fa-caret-down"></i> <%= current_user.name %></p>
 
               <span class="nav-dropdown__avatar" style="<% if current_user.oath_image %>background-image: url(<%= current_user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %> ">

@@ -72,6 +72,9 @@ var app = {
       e.preventDefault();
     });
 
+    // Tooltip
+    $('[data-toggle="tooltip"]').tooltip()
+
     // Modal dismiss
     $('.js-modal__link').click(function(){
       $('.mobile-container').removeClass('desktop--modal-blur');
