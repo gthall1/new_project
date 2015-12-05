@@ -68,10 +68,9 @@ p {
 }
 .nav-dropdown {
   width: 100%;
-  position: relative;
   display: inline-block;
   bottom: 5px;
-  cursor: pointer;
+  position: relative;
   &.show {
     .nav-dropdown__name {
       .fa-caret-down {
@@ -91,7 +90,7 @@ p {
         font-size: 0;
         line-height: 0;
         position: absolute;
-        top: 10px;
+        top: -10px;
         margin-left: 50%;
         margin-right: auto;
         left: -10px;
@@ -104,6 +103,7 @@ p {
   }
 }
 .nav-dropdown__name {
+  cursor: pointer;
   color: $white;
   margin: 0 25px;
   display: inline-block;
@@ -194,6 +194,7 @@ p {
   .nav-right {
     display: inline-block;
     text-align: right;
+    height: 60px;
     width: 350px;
     position: absolute !important;
     right: 0;

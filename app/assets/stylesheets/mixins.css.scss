@@ -1,6 +1,6 @@
-@mixin vertical-align($position: relative) {
+@mixin vertical-align($position: relative, $top: 50%) {
   position: $position;
-  top: 50%;
+  top: $top;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
