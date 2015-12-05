@@ -31,7 +31,9 @@
 
 @mixin floating($duration: 2s) {
   -webkit-animation: Floating $duration infinite ease-in-out;
-  -moz-animation-name: Floating $duration infinite ease-in-out;
+  -moz-animation:    Floating $duration infinite ease-in-out;
+  -o-animation:      Floating $duration infinite ease-in-out;
+  animation:         Floating $duration infinite ease-in-out;
 }
 
 @mixin rotate($degrees) {
