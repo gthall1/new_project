@@ -49,7 +49,7 @@
             <p class="nav-dropdown__user-credits"><%= current_user.lifetime_credits %><span>cc</span></p>
             <p class="nav-dropdown__name"><i class="fa fa-caret-down"></i> <%= current_user.name %></p>
 
-              <span class="nav-dropdown__avatar" style="<% if current_user.oath_image %> 'background-image:''  url(<%= current_user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %> ">
+              <span class="nav-dropdown__avatar" style="<% if current_user.oath_image %>background-image: url(<%= current_user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %> ">
               <!-- <i class="fa fa-exclamation notification"></i> -->
             </span>
             <ul class="nav-dropdown__list">
