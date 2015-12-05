@@ -22,9 +22,16 @@ class User < ActiveRecord::Base
   def self.omniauth(auth,arrival_id)
     where(provider:auth.provider,uid:auth.uid).first_or_initialize.tap do |user|
       user.provider = auth.provider
-      user.name = auth.info.name
-      user.uid = auth.uid
-      user.oath_name = auth.info.namea
+      if user.name.blank?
+       name = auth.info.name.gsub(" ","").downcase
+       name = "#{name}"
+       if User.where(name:name).present?
+         name = "#{name}#{rand(999)}"
+       end 
+       user.name = name
+      end
+      user.uid = auth.uid 
+      user.oath_name = auth.info.namea 
       pass = SecureRandom.urlsafe_base64
       user.password = pass
       user.password_confirmation = pass
