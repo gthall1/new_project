@@ -70,7 +70,7 @@ p {
   width: 100%;
   position: relative;
   display: inline-block;
-  padding: 17px 0;
+  bottom: 5px;
   cursor: pointer;
   &.show {
     .nav-dropdown__name {
@@ -81,32 +81,32 @@ p {
     .nav-dropdown__list {
       box-shadow: 0px 5px 10px rgba(127, 140, 141, 0.5);
       display: block;
+      &::after {
+        content: '';
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid #fff;
+        font-size: 0;
+        line-height: 0;
+        position: absolute;
+        top: 10px;
+        margin-left: 50%;
+        margin-right: auto;
+        left: -10px;
+        z-index: 100;
+      }
       .interior-page & {
         box-shadow: 0 5px 10px #D29A5B;
       }
-    }
-
-    &::after {
-      content: '';
-      width: 0;
-      height: 0;
-      border-left: 10px solid transparent;
-      border-right: 10px solid transparent;
-      border-bottom: 10px solid #fff;
-      font-size: 0;
-      line-height: 0;
-      position: absolute;
-      bottom: 5px;
-      margin-left: 50%;
-      margin-right: auto;
-      left: -10px;
-      z-index: 100;
     }
   }
 }
 .nav-dropdown__name {
   color: $white;
-  margin-right: 45px;
+  margin: 0 25px;
+  display: inline-block;
   position: relative;
   .fa-caret-down {
     margin-right: 5px;
@@ -117,8 +117,8 @@ p {
   }
 }
 .nav-dropdown__user-credits {
-  position: absolute;
-  left: -30px;
+  font-size: 14px;
+  display: inline-block;
   background: $orange-light;
   border-radius: 100px;
   color: $red;
@@ -130,17 +130,17 @@ p {
   width: 40px;
   border-radius: 100%;
   display: inline-block;
-  position: absolute;
-  top: 11px;
-  right: -10px;
+  position: relative;
+  top: 14px;
   background-size: 100%;
   background-position: center;
 }
 .nav-dropdown__list {
   position: absolute;
   top: 65px;
+  right: 0;
   list-style: none;
-  width: 100%;
+  width: 200px;
   margin: 0;
   text-align: left;
   padding: 10px 20px 20px;
@@ -194,7 +194,7 @@ p {
   .nav-right {
     display: inline-block;
     text-align: right;
-    width: 200px;
+    width: 350px;
     position: absolute !important;
     right: 0;
     margin-right: 5%;
