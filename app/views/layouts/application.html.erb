@@ -36,7 +36,7 @@
   <%= yield(:game_javascript) %>
 
   </head>
-  <body  <%= "class=#{@body_class}" if @body_class %>>
+  <body class="<%= yield (:body_class) %>">
     <div class="desktop-wrapper">
     <section class="navigation">
       <div class="nav-left">
@@ -46,6 +46,7 @@
         <div class="nav-right">
           <%# link_to 'Games', games_path %>
           <div class="nav-dropdown">
+            <p class="nav-dropdown__user-credits"><%= current_user.lifetime_credits %><span>cc</span></p>
             <p class="nav-dropdown__name"><i class="fa fa-caret-down"></i> <%= current_user.name %></p>
             <% if current_user.oath_image %>
               <span class="nav-dropdown__avatar" style="background-image: url(<%= current_user.oath_image %>);">
@@ -71,8 +72,6 @@
       <% end %>
         <%= yield %>
 
-      <%# render 'layouts/footer' %>
-
     </div>
 
     <script type="text/javascript">
@@ -95,5 +94,7 @@
     </script>
   <% end %>
 </div><!--/.desktop-wrapper -->
+
+  <%# render 'layouts/footer' %>
   </body>
 </html>

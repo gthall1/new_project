@@ -117,7 +117,7 @@
         <% end %>
         <%= yield(:game_javascript) %>
     </head>
-    <body ondragstart="return false;" ondrop="return false;" <%= "class=#{@body_class}" if @body_class %>>
+    <body ondragstart="return false;" ondrop="return false;" class="<%= yield (:body_class) %>">
         <% if signed_in? %>
         <nav class="nav ssm-nav-visible">
             <div class='side-nav-top'>

@@ -21,7 +21,9 @@ html {
 body {
   padding-top: 0px;
 }
-
+.page-background {
+  background-image: url(home_screen.jpg);
+}
 section {
   overflow: auto;
 }
@@ -114,6 +116,14 @@ p {
     top: 2px;
   }
 }
+.nav-dropdown__user-credits {
+  position: absolute;
+  left: -30px;
+  background: $orange-light;
+  border-radius: 100px;
+  color: $red;
+  padding: 2px 10px;
+}
 .nav-dropdown__avatar {
   background-color: $clouds;
   height: 40px;
@@ -121,7 +131,7 @@ p {
   border-radius: 100%;
   display: inline-block;
   position: absolute;
-  top: 9px;
+  top: 11px;
   right: -10px;
   background-size: 100%;
   background-position: center;
@@ -133,7 +143,7 @@ p {
   width: 100%;
   margin: 0;
   text-align: left;
-  padding: 20px;
+  padding: 10px 20px 20px;
   background: $white;
   display: none;
   border-bottom-left-radius: 4px;
@@ -182,9 +192,11 @@ p {
     @include vertical-align();
   }
   .nav-right {
+    display: inline-block;
     text-align: right;
     width: 200px;
-    float: right;
+    position: absolute !important;
+    right: 0;
     margin-right: 5%;
     @include vertical-align();
   }
@@ -293,21 +305,16 @@ p {
 footer {
   margin-top: 45px;
   padding-top: 5px;
-  color: $grayLight;
-  a {
-    color: $gray;
-    &:hover {
-      color: $grayDarker;
-    }
-  }
-  small {
-    float: left;
-  }
+  background-color: #202121;
+  position:fixed;
+  left:0px;
+  bottom:0px;
+  height:150px;
+  width:100%;
   ul {
-    float: right;
+    display: inline-block;
     list-style: none;
     li {
-      float: left;
       margin-left: 10px;
     }
   }
@@ -609,14 +616,13 @@ a:hover {
 html,
 body {
 /*css for full size background image*/
-  background: url(home_screen.jpg) no-repeat center center fixed;
+  // background: url(home_screen.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 
   height: 100%;
-  background-color: #AADDD6;
   color: #000;
   text-align: center;
   background-position: 0 0;
@@ -1455,8 +1461,8 @@ h1.arrow2 { font-size: 55px;
     }
     .how-it-works-image{
       margin-top:20px;
-      height:95px;
-      width:95px;
+      height: 125px;
+      width: auto;
     }
     p{
       margin-top:15px;
@@ -1476,19 +1482,3 @@ h1.arrow2 { font-size: 55px;
     @include floating();
   }
 }
-
-
-
-
-/*body {
-  background: url(background_decent.svg) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-
-  height: 100%;
-  background-color: #AADDD6;
-  color: #AADDD6;
-  text-align: center;
-  background-position: 0 0; */

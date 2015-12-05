@@ -1,7 +1,7 @@
 <% if is_mobile? %>
-  <% @body_class = "leaderboard-page--mobile" %>
+  <% content_for :body_class, "leaderboard-page--mobile" %>
 <% else %>
-  <% @body_class = "leaderboard-page" %>
+  <% content_for :body_class, "leaderboard-page" %>
 <% end %>
 
 <% @mobile_container_id = "leaderboard--#{@game.slug}" %>
