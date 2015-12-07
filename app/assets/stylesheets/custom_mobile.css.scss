@@ -1136,9 +1136,10 @@ p {
     .overlay__down-arrow {
       font-size: 2em;
       position: absolute;
-      bottom: 15%;
+      bottom: 20%;
       margin-left: -7px;
       left: 50%;
+      @include floating();
     }
     .overlay__opt-out {
       display: inline-block;
@@ -1154,7 +1155,7 @@ p {
 
 .add-to-home {
   .mobile--overlay {
-    background-image: url(/assets/blur.png);
+    background-image: url(/assets/blur.jpg);
   }
 }
 
