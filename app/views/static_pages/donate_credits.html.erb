@@ -1,0 +1,35 @@
+<% content_for :body_class, "interior-page" %>
+
+<% provide(:title, 'Redeem') %>
+<div class='my-balance'>
+  <div class='redeem'>
+    <i class="fa fa-usd redeem__dollars"></i>
+    <div class="redeem__copy">
+      <p class="redeemCredits">My balance: <span class='credits'>
+      <%= current_user.credits.blank? ? "0" : current_user.credits %></span>
+      <p class="redeemCredits__desc">Donate credits to help PAWS</p>
+    </div>
+  </p>
+
+  </div>
+</div>
+<div class='inner-page__list inner-page__list--donate'>
+  <div class="inner-page__banner">
+    <p class="page-title">
+      Your support provides food, shelter, and expert medical care for thousands of animals and allows us to speak out for countless others. Thank you!
+      <span>-PAWS Staff</span>
+    </p>
+  </div>
+
+  <h1 class="inner-page__confirm">Confirm that you would like to donate <%= @amount %> credits to PAWS</h1>
+  <%= form_for(@cash_out, url:{:controller=>'static_pages', :action=>'new_donation'}) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.hidden_field :credits, :value => @amount %>
+    <%= f.hidden_field :cashout_type, :value => 2 %>
+      <div class='final-step'>
+        <%= f.submit "Cash out", class: "btn-submit cash-out__submit" %>
+      </div><!--/.final-step -->
+  <% end %>
+
+</div>

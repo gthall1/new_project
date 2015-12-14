@@ -262,9 +262,9 @@ textarea {
       text-decoration: none;
     }
   }
-  a:last-of-type {
+  a + a {
     li {
-      border: none;
+      border-top: 1px solid $clouds;
     }
   }
   li{
@@ -272,7 +272,6 @@ textarea {
     font-color:$dark-font;
     font-size: 14px;
     position:relative;
-    border-bottom: 1px solid $clouds;
     .fa-angle-right {
       float: right;
       position: relative;
@@ -282,6 +281,71 @@ textarea {
       &.cash-choice {
         bottom: 29px;
       }
+    }
+
+    &.featured-item {
+      font-size: 22px;
+      background-image: url("/assets/paws_1.jpg");
+      min-height: 110px;
+      background-position: 90% center;
+      background-size: 50%;
+      background-repeat: no-repeat;
+
+      .featured-title {
+        font-size: 16px;
+        float: left;
+        width: 40%;
+        text-align: left;
+        position: relative;
+        top: 18px;
+      }
+
+      .cash-out__cost {
+        font-size: 20px;
+        margin-top: 10px;
+      }
+
+      .fa-angle-right {
+        font-size: 30px;
+        bottom: -30px;
+        right: 0;
+      }
+    }
+
+  }
+
+  &.inner-page__list--donate {
+    .page-title {
+      background-color: rgba(86, 86, 86, 0.72);
+      color: white;
+      position: absolute;
+      bottom: 0;
+      padding: 10px;
+      font-size: 14px;
+      line-height: 20px;
+
+      span {
+        float: right;
+        margin-top: 10px;
+      }
+    }
+    .inner-page__confirm {
+      font-size: 16px;
+      margin-bottom: 0;
+    }
+    .final-step {
+      text-align: center;
+      .cash-out__submit {
+        background-color: $red;
+      }
+    }
+    .inner-page__banner {
+      background-image: url(/assets/paws_4.jpg);
+      background-size: 55%;
+      background-position: center -15px;
+      height: 200px;
+      position: relative;
+      background-repeat: no-repeat;
     }
   }
 

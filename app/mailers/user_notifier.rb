@@ -17,25 +17,36 @@ class UserNotifier < ActionMailer::Base
   def send_welcome_email(args)
     @user = User.where(id:args[:user_id]).first
 
-    if @user 
+    if @user
       mail( :to => @user.email,
       :reply_to => 'griffhall1@gmail.com',
       :from => 'Griff Hall via Luckee <griffhall1@gmail.com>',
       :display_name => "Luckee",
       :subject => "Thanks for checking out Luckee!" )
     end
-  end  
+  end
 
   def send_cash_out_email(args)
     @user = User.where(id:args[:user_id]).first
     @cash_out = @user.cash_outs.last
-    if @user 
-      mail( :to => "tylerrules@gmail.com,griffhall1@gmail.com",     
+    if @user
+      mail( :to => "tylerrules@gmail.com,griffhall1@gmail.com,alexmorgan.am@gmail.com",
       :from => 'Lughee MgLuck <support@getluckee.com>',
       :display_name => "Luckee",
       :subject => "Someone is Cashing out on Luckee!" )
     end
-  end  
+  end
+
+  def send_donation_email(args)
+    @user = User.where(id:args[:user_id]).first
+    @cash_out = @user.cash_outs.last
+    if @user
+      mail( :to => "tylerrules@gmail.com,griffhall1@gmail.com,alexmorgan.am@gmail.com",
+      :from => 'Lughee MgLuck <support@getluckee.com>',
+      :display_name => "Luckee",
+      :subject => "Someone is making a donation on Luckee!" )
+    end
+  end
 
   def password_reset(user)
     @user = user

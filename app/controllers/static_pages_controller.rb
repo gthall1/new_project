@@ -2,7 +2,7 @@ class StaticPagesController < ApplicationController
   include ApplicationHelper
 
   layout :determine_layout
-  before_filter :check_signed_in, :only => [:redeem,:redeem_credits,:refer,:new_cash_out]
+  before_filter :check_signed_in, :only => [:redeem,:redeem_credits,:refer,:new_cash_out,:new_donation]
 
   def check_signed_in
     redirect_to root_path if !signed_in?
@@ -57,6 +57,46 @@ class StaticPagesController < ApplicationController
     end
   end
 
+  def donate
+    @show_back_button = true
+
+    # if is_mobile?
+    #   render "static_pages/donate"
+    # end
+  end
+
+  def new_donation
+    @show_back_button = true
+    @cash_out = CashOut.new(cash_out_params)
+    if session[:arrival_id]
+      @cash_out.arrival_id = session[:arrival_id]
+    end
+    case @cash_out.credits
+      when 1000
+        @cash_out.cash = 5
+      when 1950
+        @cash_out.cash = 10
+      when 3900
+        @cash_out.cash = 20
+    end
+
+    if current_user.credits < @cash_out.credits
+      redirect_to donate_credits_path(credits:@cash_out.credits), alert: "You dont have enough credits to cash that out! This requires #{@cash_out.credits}, and you have #{current_user.credits}."
+    elsif !@cash_out.cashout_type.nil? && @cash_out.save
+        @current_user.credits = current_user.credits - @cash_out.credits
+        current_user.pending_credits = @cash_out.credits
+        current_user.save
+        if Rails.env.production?
+          UserNotifier.send_donation_email({user_id:current_user.id}).deliver
+        end
+
+    else
+      redirect_to donate_credits_path(credits:@cash_out.credits), alert: "Something went wrong. Please check the fields and try again."
+    end
+  end
+
+
+
   def new_cash_out
     @show_back_button = true
     @cash_out = CashOut.new(cash_out_params)
@@ -104,6 +144,13 @@ class StaticPagesController < ApplicationController
     if is_mobile?
       render "static_pages/redeem_credits_mobile"
     end
+  end
+
+  def donate_credits
+    @back_button_action = "back-choice"
+    @show_back_button = true
+    @amount = params[:credits]
+    @cash_out = CashOut.new
   end
 
   private
