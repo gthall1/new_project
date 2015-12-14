@@ -510,6 +510,14 @@ class GamesController < ApplicationController
       session[:game_token] = game.token
     end
   end
+    
+  def challenge
+    @game = Game.where(slug:params[:game_slug]).first
+  end
+
+  def pre_challenge
+    @challenge = Challenge.new
+  end
 
   private
 

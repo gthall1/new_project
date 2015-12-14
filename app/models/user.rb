@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
        end 
        user.name = name
       end
+      
       user.uid = auth.uid 
       user.oath_name = auth.info.namea 
       pass = SecureRandom.urlsafe_base64

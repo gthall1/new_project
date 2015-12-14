@@ -34,6 +34,7 @@ Alotto::Application.routes.draw do
   match '/reset_game', to: 'games#reset_game', via: 'get'
   match '/reset_game', to: 'games#reset_game', via: 'post'  
   match '/memorywin', to: 'games#memory_check', via: 'get'
+  match '/challenge/:game_slug', to: 'games#challenge', as: 'game_challenge', via: 'get'  
   match '/leaderboard/:game_slug', to: 'games#leaderboard', as: 'game_leaderboard', via: 'get'
   match '/leaderboard', to: 'games#games_leaderboard', via: 'get' 
   match '/cash_out', to: 'static_pages#new_cash_out', via: 'post'

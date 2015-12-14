@@ -1,0 +1,16 @@
+<h2>Challenge someone to <%= @game.name %>!</h2>
+
+<h3>Challenge Random Opponent </h3>
+<% if session[:auth_token] %>
+  <% graph = Koala::Facebook::API.new(session[:auth_token]) %>
+  <% friends = graph.get_connections("me", "friends")  %>
+  <% if !friends.blank? %>
+    <h3>Challenge Facebook Friends</h3>
+    <% friends.each do | f | %>
+       <% user = User.where(uid:f["id"]).first %>
+      <% if !user.blank? %>
+        <%= f["name"] %> - <%= user.name %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
