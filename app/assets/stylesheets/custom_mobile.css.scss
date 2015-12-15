@@ -3,6 +3,7 @@
 @import "mixins";
 @import "variables";
 @import "leaderboard";
+@import "confirmation";
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -285,7 +286,7 @@ textarea {
 
     &.featured-item {
       font-size: 22px;
-      background-image: url("/assets/paws_1.jpg");
+      background-image: url(/assets/paws_4.jpg);
       min-height: 110px;
       background-position: 90% center;
       background-size: 50%;

@@ -124,11 +124,9 @@
                 <% if signed_in? %>
                     <div class="side-nav__user-info">
                         <h2 class="side-nav__close">Swipe to close</h2>
-                        <% if !current_user.oath_image.blank? %>
-                            <div class="side-nav__avatar" style="background-image: url(<%= current_user.oath_image %>);"></div>
-                        <% end %>
+                            <div class="side-nav__avatar" style="<% if current_user.oath_image %>background-image: url(<%= current_user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %>"></div>
                         <h2 class="side-nav__username"><%= current_user.name %></h2>
-                        <h2 class='lifetime-credits'> <span class='credits'><%= pluralize(current_user.lifetime_credits, 'liftime earning')%></span></h2>
+                        <h2 class='lifetime-credits'> <span class='credits'><%= pluralize(current_user.credits, 'credit')%></span></h2>
                     </div>
                     <ul class="side-nav_links">
                         <%= link_to redeem_path do %>
