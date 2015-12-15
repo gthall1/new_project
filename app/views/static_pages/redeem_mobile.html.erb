@@ -7,14 +7,24 @@
 		<div class="redeem__copy">
 			<p class="redeemCredits">My balance: <span class='credits'>
 			<%= current_user.credits.blank? ? "0" : current_user.credits %></span>
-			<p class="redeemCredits__desc">Redeem your credits for cash</p>
+			<p class="redeemCredits__desc">Redeem your credits</p>
 		</div>
 	</p>
 
 	</div>
 </div>
 <div class='inner-page__list'>
-	<p class="page-title">Rewards</p>
+	<p class="page-title">Donate credits to charity</p>
+	<ul>
+			<a href="/donate">
+				<li class="featured-item">
+					<h1 class="featured-title">Support PAWS for the Holidays</h1>
+					<i class="fa fa-angle-right"></i>
+				</li>
+			</a>
+	</ul>
+
+	<p class="page-title">Redeem credits for cash</p>
 	<ul>
 		<%= link_to redeem_credits_path(credits: 1000) do %>
 			<li>$5

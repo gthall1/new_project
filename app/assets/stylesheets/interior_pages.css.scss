@@ -1,7 +1,8 @@
 @import "reset";
 // Interior Pages
 .games-page {
-  background: $clouds !important;
+  background-image: url(star_background.jpg);
+  background-size: 70%;
 }
 .interior-page {
   background: $white !important;
@@ -36,10 +37,14 @@
 
   &.section--two {
     padding: 40px 5% 50px;
-    background-color: $purple-border;
+    background-color: $orange-light;
     .interior-body__title {
-      color: $purple;
+      color: $orange-flat;
       font-weight: 200;
+    }
+    .tout__copy,
+    .tout__title {
+      color: $orange-flat;
     }
   }
 }
