@@ -150,6 +150,15 @@ class StaticPagesController < ApplicationController
     @back_button_action = "back-choice"
     @show_back_button = true
     @amount = params[:credits]
+
+    if @amount == "1000"
+      @dollar_amt = 5
+    elsif @amount == "1950"
+      @dollar_amt = 10
+    elsif @amount == "3900"
+      @dollar_amt = 20
+    end
+
     @cash_out = CashOut.new
   end
 

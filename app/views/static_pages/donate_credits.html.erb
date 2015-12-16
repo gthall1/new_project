@@ -21,7 +21,7 @@
     </p>
   </div>
 
-  <h1 class="inner-page__confirm">Confirm that you would like to donate <%= @amount %> credits to PAWS</h1>
+  <h1 class="inner-page__confirm">Confirm that you would like to donate <%= @amount %> credits for a donation of $<%= @dollar_amt %> to PAWS</h1>
   <%= form_for(@cash_out, url:{:controller=>'static_pages', :action=>'new_donation'}) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
     <%= f.hidden_field :user_id, :value => current_user.id %>
