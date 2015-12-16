@@ -1,3 +1,6 @@
+@import "variables";
+@import "mixins";
+
 .confirmation--donate {
   background-color: white;
   border-radius: 4px;
@@ -16,9 +19,16 @@
   display: block;
   margin: 0 auto;
   width: 50%;
-  background-color: purple;
-  color: white;
+  background-color: $purple;
+  color: $white;
   padding: 10px;
   border-radius: 4px;
   text-decoration: none;
+  @include transition();
+
+  &:hover {
+    color: $white;
+    background-color: $purple-light;
+    text-decoration: none;
+  }
 }

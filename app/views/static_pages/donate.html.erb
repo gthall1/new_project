@@ -13,28 +13,26 @@
 
   </div>
 </div>
-<div class='inner-page__list inner-page__list--donate'>
-  <div class="inner-page__banner">
-    <p class="page-title">
-      Your support provides food, shelter, and expert medical care for thousands of animals and allows us to speak out for countless others. Thank you!
-      <span>-PAWS</span>
-    </p>
-  </div>
+<div class='inner-page__list inner-page__list-banner'>
+    <p class="page-title">Select donation amount</p>
   <ul>
     <%= link_to donate_credits_path(credits: 1000) do %>
-      <li>$5
+      <li style="background-image: url(/assets/paws_2.jpg);">
+        <h1 class="list-item__title">$5</h1>
         <span class='cash-out__cost'>-1000 credits</span>
         <i class="fa fa-angle-right"></i>
       </li>
     <% end %>
     <%= link_to donate_credits_path(credits: 1950) do %>
-      <li>$10
+      <li style="background-image: url(/assets/paws_1.jpg);">
+        <h1 class="list-item__title">$10</h1>
         <span class='cash-out__cost'>-1950 credits</span>
         <i class="fa fa-angle-right"></i>
       </li>
     <% end %>
     <%= link_to donate_credits_path(credits: 3900) do %>
-      <li>$20
+      <li style="background-image: url(/assets/paws_3.jpg);">
+        <h1 class="list-item__title">$20</h1>
         <span class='cash-out__cost'>-3900 credits</span>
         <i class="fa fa-angle-right"></i>
       </li>
