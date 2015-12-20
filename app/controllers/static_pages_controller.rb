@@ -60,9 +60,9 @@ class StaticPagesController < ApplicationController
   def donate
     @show_back_button = true
 
-    # if is_mobile?
-    #   render "static_pages/donate"
-    # end
+    if is_mobile?
+      render "static_pages/donate_mobile"
+    end
   end
 
   def new_donation
@@ -160,6 +160,10 @@ class StaticPagesController < ApplicationController
     end
 
     @cash_out = CashOut.new
+
+    if is_mobile?
+      render "static_pages/donate_credits_mobile"
+    end
   end
 
   private

@@ -1,41 +1,48 @@
 <% content_for :body_class, "interior-page" %>
 
-<% provide(:title, 'Redeem') %>
-<div class='my-balance'>
-  <div class='redeem'>
-    <i class="fa fa-usd redeem__dollars"></i>
-    <div class="redeem__copy">
-      <p class="redeemCredits">My balance: <span class='credits'>
-      <%= current_user.credits.blank? ? "0" : current_user.credits %></span>
-      <p class="redeemCredits__desc">Donate credits to help PAWS</p>
-    </div>
+<div class="interior-hero">
+  <h1 class="interior-hero__title">Balance: <span class='credits'>
+        <%= current_user.credits.blank? ? "0" : current_user.credits %> credits</span></h1>
+  <p class="interior-hero__desc">
+    Your support provides food, shelter, and expert medical care for thousands of animals and allows us to speak out for countless others. Thank you!
+    <span class="byline">-PAWS</span>
   </p>
 
-  </div>
-</div>
-<div class='inner-page__list inner-page__list-banner'>
-    <p class="page-title">Select donation amount</p>
-  <ul>
+</div> <!--/.interior-hero -->
+
+<!-- <div class='interior-body'>
+  <div class="donations">
+    <div class="donations__wrapper">
+      <h1 class="donations__caption">Get in the spirit of giving and support PAWS for the holidays!</h1>
+      <a class="donations__link donations__link--holiday" href="/donate">Donate Credits</a>
+    </div>
+  </div> -->
+
+  <section class="card-container card-container--donations">
+    <p class="interior-body__caption">Select donation amount</p>
     <%= link_to donate_credits_path(credits: 1000) do %>
-      <li style="background-image: url(/assets/paws_2.jpg);">
-        <h1 class="list-item__title">$5</h1>
-        <span class='cash-out__cost'>-1000 credits</span>
-        <i class="fa fa-angle-right"></i>
-      </li>
+      <div class="card-tout">
+        <div class="card-inner">
+          <h1 class="card__big-title">$5</h1>
+          <span class='card__credits card__lower'>-1000 credits</span>
+        </div>
+      </div>
     <% end %>
     <%= link_to donate_credits_path(credits: 1950) do %>
-      <li style="background-image: url(/assets/paws_1.jpg);">
-        <h1 class="list-item__title">$10</h1>
-        <span class='cash-out__cost'>-1950 credits</span>
-        <i class="fa fa-angle-right"></i>
-      </li>
+      <div class="card-tout">
+        <div class="card-inner">
+          <h1 class="card__big-title">$10</h1>
+          <span class='card__credits card__lower'>-1950 credits</span>
+        </div>
+      </div>
     <% end %>
     <%= link_to donate_credits_path(credits: 3900) do %>
-      <li style="background-image: url(/assets/paws_3.jpg);">
-        <h1 class="list-item__title">$20</h1>
-        <span class='cash-out__cost'>-3900 credits</span>
-        <i class="fa fa-angle-right"></i>
-      </li>
+      <div class="card-tout">
+        <div class="card-inner">
+          <h1 class="card__big-title">$20</h1>
+          <span class='card__credits card__lower'>-3900 credits</span>
+        </div>
+      </div>
     <% end %>
-  </ul>
+  </section>
 </div>
