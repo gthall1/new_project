@@ -31,7 +31,7 @@ var analytics = {
 };
 
 $(document).ready(function(){
-    if (mobileCheck.iOS()) {
+    if (mobileCheck.iOS() && Cookies.get('user') !== "returning") {
         console.log('do analytics');
         analyticsEvent("iOS Home Page Load", "Open", analytics.conf.labelName, 0, true);
         analytics.init();
