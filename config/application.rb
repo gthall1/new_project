@@ -5,6 +5,8 @@
     require "action_controller/railtie"
     require "action_mailer/railtie"
     require "sprockets/railtie"
+    require "csv"
+
     # require "rails/test_unit/railtie"
 
     # Assets should be precompiled for production (so we don't need the gems loaded then)
@@ -25,13 +27,13 @@
         # config.i18n.default_locale = :de
         # I18n.enforce_available_locales = true
         I18n.enforce_available_locales = true
-        
+
         config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif *.js)
         config.before_configuration do
           env_file = File.join(Rails.root, 'config', 'local_env.yml')
           YAML.load(File.open(env_file)).each do |key, value|
             ENV[key.to_s] = value
           end if File.exists?(env_file)
-    end      
+    end
       end
     end
