@@ -47,10 +47,13 @@ class User < ActiveRecord::Base
   end
 
   def self.to_csv(options = {})
+    attributes = %w{id email name lifetime_credits}
+
     CSV.generate(options) do |csv|
-      csv << column_names
+      csv << attributes
+
       all.each do |user|
-        csv << user.attributes.values_at(*column_names)
+        csv << user.attributes.values_at(*attributes)
       end
     end
   end
