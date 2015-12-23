@@ -33,7 +33,9 @@
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
         ga('create', 'UA-58032053-2', 'auto');
-        ga('set', 'userId', strUserId);
+        if (strUserId) {
+          ga('set', 'userId', strUserId);
+        };
         ga('send', 'pageview');
 
       </script>
