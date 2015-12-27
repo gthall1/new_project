@@ -1,16 +1,33 @@
-<h2>Challenge someone to <%= @game.name %>!</h2>
-
-<h3>Challenge Random Opponent </h3>
-<% if session[:auth_token] %>
-  <% graph = Koala::Facebook::API.new(session[:auth_token]) %>
-  <% friends = graph.get_connections("me", "friends")  %>
-  <% if !friends.blank? %>
-    <h3>Challenge Facebook Friends</h3>
-    <% friends.each do | f | %>
-       <% user = User.where(uid:f["id"]).first %>
-      <% if !user.blank? %>
-        <%= f["name"] %> - <%= user.name %>
+<div class='challenge-choice'>
+  <h2>Challenge someone to <%= @game.name %>!</h2>
+  <h3 class='random-user-but'>Challenge Random Opponent </h3>
+  <% if session[:auth_token] %>
+    <% graph = Koala::Facebook::API.new(session[:auth_token]) %>
+    <% friends = graph.get_connections("me", "friends")  %>
+    <% if !friends.blank? %>
+      <h3>Challenge Facebook Friends</h3>
+      <% friends.each do | f | %>
+         <% user = User.where(uid:f["id"]).first %>
+        <% if !user.blank? %>
+          <span class='challenged-user' data-user-id='<%=user.id %>'><%= f["name"] %> - <%= user.name %></span>
+        <% end %>
       <% end %>
     <% end %>
   <% end %>
-<% end %>
+</div>
+<div class='pre-challenge'>
+  <h2>You are challenging <span class='challenged-user-name'></span> to <%= @game.name %></h2>
+  <p>Once you click the button below you will be taken to the game where you will play for your challenge score.  This will be your only chance, and your opponent will be contacted and have their opportunity to score.  They will not know your score until the game is complete.</p>
+
+
+  <div class='challenge-form-box'>
+    <%= form_for(@challenge) do |f| %>
+        <div class="actions">
+            <%= f.hidden_field :user_id, value: current_user.id %>
+            <%= f.hidden_field :game_id, value: @game.id %>
+            <%= f.hidden_field :challenged_user_id %>
+            <%= f.submit "Start Challenge", :class=>"btn btn-primary challenge-btn" %>
+        </div>
+    <% end %>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
   before_action :set_game, only: [:show, :edit, :update, :destroy]
   before_filter :check_signed_in
-  skip_before_filter  :verify_authenticity_token, only:[:score_update,:reset_game]
+  skip_before_filter  :verify_authenticity_token, only:[:score_update,:reset_game,:get_random_challenge_user]
   include ApplicationHelper
   layout :determine_layout
 
@@ -24,6 +24,13 @@ class GamesController < ApplicationController
     redirect_to root_path if !signed_in?
   end
 
+  def get_random_challenge_user
+    @random_user = User.order("RANDOM()").first
+    respond_to do |format|
+      format.js
+    end
+  end
+
   # GET /games/1
   # GET /games/1.json
   def show
@@ -44,6 +51,44 @@ class GamesController < ApplicationController
     render "games/show_mobile" if is_mobile?
   end
 
+  
+  def close_game
+    status = 'error'
+    if params[:token] && !params[:token].empty?
+      status = "success"
+
+      game_session = UserGameSession.where(token: params[:token]).first
+      score = game_session.score
+      game_session.active = false
+      game_session.save
+      current_high_score = UserGameSession.where(user_id:current_user.id,game_id:game_session.game.id).where.not(score: nil).order("score desc").first.score
+      case game_session.game.slug
+        when '2048','black-hole','sorcerer-game'
+          game_json = {
+             :earned => game_session.credits_earned,
+             :total_credits => current_user.credits,
+             :token => game_session.token,
+             :status => status,
+             :hscore => current_high_score
+            }
+        when 'flappy-pilot','traffic','fall-down'
+          if game_session.game.slug == 'flappy-pilot'
+            current_high_score = current_high_score.to_s.rjust(3, '0')
+          end
+          game_json = {
+            :c2dictionary => true,
+            :data => {
+             :earned => game_session.credits_earned,
+             :total_credits => current_user.credits,
+             :token => game_session.token,
+             :status => status,
+             :hscore => current_high_score
+            }
+          }
+      end      
+    end
+  end 
+
   def score_update
     status='fail'
     credits = 0
@@ -62,6 +107,18 @@ class GamesController < ApplicationController
           status = "error"
         else
           status = "nothingearned"
+        end
+        if session[:challenge_id] 
+          p "FPUND SESSION #{session[:challenge_id]}"
+         other_game_session = UserGameSession.where(challenge_id:session[:challenge_id],user_id:current_user.id).where.not(score:[nil,0]).where.not(id:game_session.id)
+         #if already finished challenge game, get rid of session variable
+         if other_game_session.present?
+           session[:challenge_id] = nil       
+         else
+          challenge = Challenge.where(id:session[:challenge_id]).first
+          game_session.challenge_id = challenge.id 
+          p "SETTING THIS #{session[:challenge_id]}"   
+         end
         end
         game_session.score = score
         game_session.credits_earned += credits_to_apply
@@ -90,7 +147,9 @@ class GamesController < ApplicationController
         current_high_score = 0
       end
     elsif params[:score] && !params[:score].empty?
-      if request && request.referer
+      if challenge
+        game_id = challenge.game_id
+      elsif request && request.referer
         game_id = request.referer.split('/').last.to_i
       end
       create_new_game_session(params[:score],game_id)
@@ -434,8 +493,9 @@ class GamesController < ApplicationController
   end
   #for when clicking 'new game' within construct 2 games
   def reset_game
-
+      p "RESETTING GAME"
     old_game = UserGameSession.where(token:session[:game_token]).last
+
 
     if !old_game
       game_id = request.referer.split('/').last.to_i
@@ -450,8 +510,47 @@ class GamesController < ApplicationController
     else
       high_score = 0
     end
-    if old_game && old_game.game.slug == 'flappy-pilot'
-        high_score = high_score.to_s.rjust(3, '0') #for the way this needs it
+    if old_game
+      if !old_game.challenge_id.nil?
+        challenge = Challenge.where(id:old_game.challenge_id).first
+        # if current_user.id == challenge.user_id
+        #   challenge.user_score = old_game.score
+        #   challenge.save
+        # elsif current_user.id == challenge.challenged_user_id
+        #   challenge.challenged_score = old_game.score
+        #   challenge.save
+        # end
+        session[:challenge_id] = nil
+        if challenge
+          save = false
+           challenged_user_session = UserGameSession.where.not(score:[nil,0]).where(challenge_id:challenge.id,user_id:challenge.challenged_user_id).first
+           challenger_user_session = UserGameSession.where.not(score:[nil,0]).where(active:false, challenge_id:challenge.id,user_id:challenge.user_id).first
+          if challenged_user_session
+            challenge.challenged_score = old_game.score
+            save = true
+          end
+          if challenger_user_session
+            challenge.user_score = old_game.score
+            save = true
+          end
+
+          if challenged_user_session.present? && challenger_user_session.present?
+            challenge.winner = challenged_user_session.score > challenger_user_session.score ? challenged_user_session.user_id : challenger_user_session.user_id
+           # challenge.user_score = challenger_user_session.score
+           # challenge.challenged_score = challenged_user_session.score 
+            save = true
+            #TODO: email people the results?
+          end
+          if save
+            challenge.save 
+          end
+        end
+      end
+
+      if old_game.game.slug == 'flappy-pilot'
+          high_score = high_score.to_s.rjust(3, '0') #for the way this needs it
+
+      end
     end
 
     game_json = {
@@ -488,6 +587,7 @@ class GamesController < ApplicationController
         o.active = false
         o.save
       end
+
       game = UserGameSession.new
       game.token = SecureRandom.urlsafe_base64
       game.user_id = current_user.id
@@ -513,6 +613,18 @@ class GamesController < ApplicationController
     
   def challenge
     @game = Game.where(slug:params[:game_slug]).first
+    @challenge = Challenge.new
+  end
+  
+  def challenge_create
+    challenge = Challenge.new(challenge_params)
+    if challenge.save
+      session[:challenge_id] = challenge.id
+      UserNotifier.send_challenge_email({user_id:challenge.challenged_user_id,game_name:challenge.game.name, challenger_id:current_user.id}).deliver
+      redirect_to game_path(challenge.game_id)
+    else
+      redirect_to game_challenge_path(game_slug:Game.find(challenge.game_id).slug)
+    end
   end
 
   def pre_challenge
@@ -548,7 +660,20 @@ class GamesController < ApplicationController
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_game
-      @game = Game.find(params[:id])
+      if params[:c] && !params[:c].blank? && params[:id].blank?
+         challenge = Challenge.where(id:Base64.urlsafe_decode64(params[:c]).to_i).first
+         @game = challenge.game
+         if challenge && current_user.challenges.include?(challenge) 
+          if challenge.user_id == current_user.id && (challenge.user_score.nil? || challenge.user_score == 0)
+            session[:challenge_id] = challenge.id
+          elsif challenge.challenged_user_id == current_user.id && (challenge.challenged_user_score.nil? || challenge.user_score == 0)
+            session[:challenge_id] = challenge.id
+          end
+         end
+      else
+         @game = Game.find(params[:id])
+      end 
+
       if @game.name == "Helicopter"
         set_heli
       end
@@ -557,6 +682,11 @@ class GamesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
       params.require(:game).permit(:name)
+    end
+
+    def challenge_params
+      params.require(:challenge).permit(:user_id,:game_id,:challenged_user_id)
+      
     end
 
     def init_testgame(game_id)

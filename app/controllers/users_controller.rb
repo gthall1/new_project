@@ -56,6 +56,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def challenges
+    if signed_in?
+      @challenges = current_user.challenges
+    end
+  end
+
   def edit
     @show_back_button = true
     render "users/edit_mobile" if is_mobile?

@@ -48,6 +48,18 @@ class UserNotifier < ActionMailer::Base
     end
   end
 
+  def send_challenge_email(args)
+    @challenger = User.where(id:args[:challenger_id]).first
+    @user = User.where(id:args[:user_id]).first
+    @challenge_game = args[:game_name]
+    if @user
+      mail( :to => @user.email,
+      :from => "Challenges via Luckee <support@getluckee.com>",
+      :display_name => "Luckee",
+      :subject => "Someone is challenging you to #{@challenge_game}!" )
+    end
+  end
+
   def password_reset(user)
     @user = user
     mail(to: user.email,:display_name => "Luckee", subject: "Password reset")
