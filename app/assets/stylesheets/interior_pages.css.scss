@@ -31,6 +31,9 @@
   .credits {
     color: $red;
   }
+  .byline {
+    float: right;
+  }
 }
 .interior-body--section {
   padding: 30px 5%;
@@ -192,4 +195,81 @@
   .interior-hero__title {
     text-align: left;
   }
+}
+
+
+// Donations
+.donations{
+  height: 250px;
+  background-image: url(/assets/paws_4.jpg);
+  background-repeat: no-repeat;
+  background-position: 90% center;
+  background-size: 25%;
+  position: relative;
+}
+.donations__caption {
+  font-weight: normal;
+  font-size: 30px;
+  letter-spacing: 0;
+}
+.donations__caption--checkout {
+  margin-top: 50px;
+  width: 50%;
+  display: inline-block;
+}
+.donations__link {
+  background-color: $purple;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 2px;
+  @include transition();
+
+  &:hover {
+    text-decoration: none;
+    color: white;
+    background-color: $red-light;
+  }
+}
+
+.donations__link--holiday {
+  background-color: $red;
+}
+.donations__wrapper {
+  position: absolute;
+  display: inline-block;
+  left: 5%;
+  width: 50%;
+  top: 50px;
+}
+.donations__final-step {
+  .final-step {
+    text-align: center;
+    .cash-out__submit {
+      background-color: $red;
+      display: inline-block;
+      @include transition();
+
+      &:hover {
+        background-color: $red-light;
+      }
+    }
+  }
+}
+
+// ********************** /users *********************
+.export-btn {
+  background-color: $orange;
+  color: $white;
+  padding: 10px 20px;
+  border-radius: 2px;
+  @include transition();
+
+  &:hover {
+    background-color: $orange-flat;
+    text-decoration: none;
+    color: $white;
+  }
+}
+.users.users__info-list {
+  margin-top: 20px;
 }

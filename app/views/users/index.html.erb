@@ -1,6 +1,10 @@
 <% provide(:title, 'All users') %>
 <h1>All users</h1>
 
-<ul class="users">
+<%= link_to "Export CSV", users_path(format: :csv), class: "export-btn" %>
+<%= link_to "Export XLS", users_path(format: :xls), class: "export-btn" %>
+
+
+<ul class="users users__info-list">
   <%= render @users %>
 </ul>

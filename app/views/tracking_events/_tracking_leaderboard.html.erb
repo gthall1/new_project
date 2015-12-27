@@ -11,12 +11,10 @@ var analyticsEvent = function(c, a, l, v, n) {
     }
     return;
 };
-
 var analytics = {
     conf: {
         weeklyScoreTab: '.ga-tab--weekly'
     },
-
     bind: function() {
         $(analytics.conf.weeklyScoreTab).on('click', function() {
             console.log('GA weekly tab click');
@@ -24,17 +22,14 @@ var analytics = {
             analyticsEvent("Weekly Tab", "Click", lbname, 0, false);
         });
     },
-
     init: function() {
         analytics.bind();
     }
 };
-
 $(document).ready(function(){
     var lbname = "Leaderboard Activity";
-
     console.log('Leaderboard page loaded');
-    analyticsEvent("Leaderboard Page Load", "Open", lbname, 0, false);
+    analyticsEvent("Leaderboard Page Load", "Open", lbname, 0, true);
     analytics.init();
 });
 </script>

@@ -36,12 +36,12 @@ class User < ActiveRecord::Base
        name = "#{name}"
        if User.where(name:name).present?
          name = "#{name}#{rand(999)}"
-       end 
+       end
        user.name = name
-      end
-      
+      end      
       user.uid = auth.uid 
       user.oath_name = auth.info.namea 
+      
       pass = SecureRandom.urlsafe_base64
       user.password = pass
       user.password_confirmation = pass
@@ -56,8 +56,20 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.to_csv(options = {})
+    attributes = %w{id email name lifetime_credits}
+
+    CSV.generate(options) do |csv|
+      csv << attributes
+
+      all.each do |user|
+        csv << user.attributes.values_at(*attributes)
+      end
+    end
+  end
+
   def add_credits(args={})
-    credits = args[:credits].to_i 
+    credits = args[:credits].to_i
     if !self.credits.nil? && self.credits >= 0
       self.credits += credits
     else

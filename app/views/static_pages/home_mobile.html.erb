@@ -29,3 +29,9 @@
     		<p>Request a cash out!<br/> We will redeem your <br/> credits and send you <br/> cash within 24 hours.</p>
 	</div>
 </div>
+
+
+<% if Rails.env.production? %>
+  <!-- GA Tracking Events -->
+  <%= render 'tracking_events/tracking_preview' %>
+<% end %>

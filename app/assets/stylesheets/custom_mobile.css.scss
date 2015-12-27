@@ -3,6 +3,7 @@
 @import "mixins";
 @import "variables";
 @import "leaderboard";
+@import "confirmation";
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -285,7 +286,7 @@ textarea {
 
     &.featured-item {
       font-size: 22px;
-      background-image: url("/assets/paws_1.jpg");
+      background-image: url(/assets/paws_4.jpg);
       min-height: 110px;
       background-position: 90% center;
       background-size: 50%;
@@ -314,12 +315,47 @@ textarea {
 
   }
 
+  &.inner-page__list-banner {
+    a {
+      &:first-of-type {
+        li {
+          background-size: 40%;
+          .fa-angle-right {
+            color: $white;
+          }
+        }
+      }
+    }
+    .list-item__title {
+      font-size: 18px;
+      display: inline-block;
+      margin: 20px 0 5px;
+    }
+    .cash-out__cost {
+      font-size: 16px;
+    }
+    li {
+      background-image: url(/assets/paws_4.jpg);
+      height: 90px;
+      background-size: 50%;
+      background-position: center right;
+      background-repeat: no-repeat;
+      padding-left: 15px;
+
+      .fa-angle-right {
+        bottom: 35px;
+        right: -8px;
+        font-size: 22px;
+      }
+    }
+  }
+
   &.inner-page__list--donate {
     .page-title {
       background-color: rgba(86, 86, 86, 0.72);
       color: white;
       position: absolute;
-      bottom: 0;
+      top: 0;
       padding: 10px;
       font-size: 14px;
       line-height: 20px;
@@ -342,8 +378,8 @@ textarea {
     .inner-page__banner {
       background-image: url(/assets/paws_4.jpg);
       background-size: 55%;
-      background-position: center -15px;
-      height: 200px;
+      background-position: center bottom;
+      height: 250px;
       position: relative;
       background-repeat: no-repeat;
     }

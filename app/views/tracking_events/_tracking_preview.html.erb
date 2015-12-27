@@ -1,0 +1,42 @@
+<script type="text/javascript">
+// Google Analytics Event
+var analyticsEvent = function(c, a, l, v, n) {
+    // universal analytics
+    if (typeof window.ga === 'function') {
+        ga('send', 'event', c, a, l, v, {nonInteraction: n});
+    }
+    // async analytics
+    else if (typeof window._gaq === 'object') {
+        _gaq.push(["_trackEvent", c, a, l, v, n]);
+    }
+    return;
+};
+
+var analytics = {
+    conf: {
+        browserPreview: '.ga-preview-event',
+        labelName: 'Preview in Browser'
+    },
+
+    bind: function() {
+        $(analytics.conf.browserPreview).on('click', function() {
+            console.log('track preview click');
+            analyticsEvent("Previewed", "Click", analytics.conf.labelName, 0, false);
+        });
+    },
+
+    init: function() {
+        analytics.bind();
+    }
+};
+
+$(document).ready(function(){
+    if (mobileCheck.iOS() && Cookies.get('user') !== "returning") {
+        console.log('do analytics');
+        analyticsEvent("iOS Home Page Load", "Open", analytics.conf.labelName, 0, true);
+        analytics.init();
+    } else {
+        console.log('Not iOS');
+    }
+});
+</script>

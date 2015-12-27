@@ -104,13 +104,21 @@
 
             <!-- start google analytics -->
             <script>
-              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-              })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+                var strUserId = null;
 
-              ga('create', 'UA-58032053-2', 'auto');
-              ga('send', 'pageview');
+                <% if current_user %>
+                    strUserId = "<%= current_user.id %>";
+                <% end %>
+
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-58032053-2', {'userId': strUserId}); //reset third argument to 'auto'
+                ga('set', 'dimension1', strUserId);
+                // if (strUserId) { ga('set', 'userId', strUserId); };
+                ga('send', 'pageview');
 
             </script>
             <!-- end google analytics -->
@@ -124,11 +132,9 @@
                 <% if signed_in? %>
                     <div class="side-nav__user-info">
                         <h2 class="side-nav__close">Swipe to close</h2>
-                        <% if !current_user.oath_image.blank? %>
-                            <div class="side-nav__avatar" style="background-image: url(<%= current_user.oath_image %>);"></div>
-                        <% end %>
+                            <div class="side-nav__avatar" style="<% if current_user.oath_image %>background-image: url(<%= current_user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %>"></div>
                         <h2 class="side-nav__username"><%= current_user.name %></h2>
-                        <h2 class='lifetime-credits'> <span class='credits'><%= pluralize(current_user.lifetime_credits, 'liftime earning')%></span></h2>
+                        <h2 class='lifetime-credits'> <span class='credits'><%= pluralize(current_user.credits, 'credit')%></span></h2>
                     </div>
                     <ul class="side-nav_links">
                         <%= link_to redeem_path do %>
@@ -190,7 +196,7 @@
                 <span class="modal__link js-modal__link">Proceed to Temporary Site</span>
             </div>
             <div class="mobile--overlay">
-                <a href="/" class="overlay__opt-out">Preview in Browser</a>
+                <a href="/" class="js-overlay__opt-out overlay__opt-out ga-preview-event">Preview in Browser</a>
                 <a href="/" class="overlay__back-to-dash">Return to Dashboard</a>
                 <div class="overlay__content">
                     <img class="overlay__logo" src="/assets/logo-144.png">

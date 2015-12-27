@@ -5,7 +5,6 @@ var app = {
       if (Cookies.get('user') === 'returning') {
         console.log('Welcome home!');
       } else {
-          Cookies.set('user', 'returning', { expires: 1 });
           $('body').addClass('overlay-screen add-to-home');
       }
     };
@@ -70,6 +69,10 @@ var app = {
       $(this).html('Copied!');
       $(this).addClass('copied')
       e.preventDefault();
+    });
+
+    $('.js-overlay__opt-out').click(function(){
+      Cookies.set('user', 'returning', { expires: 1 });
     });
 
     // Tooltip
