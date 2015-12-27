@@ -39,5 +39,5 @@
   <% end %>
 </table>
 <% else %>
-  <h2> You currently have no challenges. How about challenging someone to Flappy Pilot? <%= link_to game_challenge_path(slug:'flappy-pilot') %></h2>
+  <h2> You currently have no challenges. How about challenging someone to Flappy Pilot? <%= link_to "Challenge Here", game_challenge_path(game_slug:'flappy-pilot') %></h2>
 <% end %>
