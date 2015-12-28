@@ -9,7 +9,7 @@
       <% friends.each do | f | %>
          <% user = User.where(uid:f["id"]).first %>
         <% if !user.blank? %>
-          <span class='challenged-user' data-user-id='<%=user.id %>'><%= f["name"] %> - <%= user.name %></span>
+          <span class='challenged-user' data-user-name='<%=user.name%>' data-user-id='<%=user.id %>'><%= f["name"] %> - <%= user.name %></span>
         <% end %>
       <% end %>
     <% end %>
