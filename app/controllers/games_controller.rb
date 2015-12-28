@@ -113,6 +113,7 @@ class GamesController < ApplicationController
          other_game_session = UserGameSession.where(challenge_id:session[:challenge_id],user_id:current_user.id).where.not(score:[nil,0]).where.not(id:game_session.id)
          #if already finished challenge game, get rid of session variable
          if other_game_session.present?
+          p "REMOVING CHALLENGE WHAT"
            session[:challenge_id] = nil       
          else
           challenge = Challenge.where(id:session[:challenge_id]).first
@@ -494,6 +495,9 @@ class GamesController < ApplicationController
   #for when clicking 'new game' within construct 2 games
   def reset_game
       p "RESETTING GAME"
+      if session[:challenge_id]
+        p "STILL SEE CHALLENGE #{session[:challenge_id]}"
+      end
     old_game = UserGameSession.where(token:session[:game_token]).last
 
 
@@ -520,16 +524,15 @@ class GamesController < ApplicationController
         #   challenge.challenged_score = old_game.score
         #   challenge.save
         # end
-        session[:challenge_id] = nil
         if challenge
           save = false
            challenged_user_session = UserGameSession.where.not(score:[nil,0]).where(challenge_id:challenge.id,user_id:challenge.challenged_user_id).first
            challenger_user_session = UserGameSession.where.not(score:[nil,0]).where(active:false, challenge_id:challenge.id,user_id:challenge.user_id).first
-          if challenged_user_session
+          if challenged_user_session && challenged_user_session.user_id == current_user.id
             challenge.challenged_score = old_game.score
             save = true
           end
-          if challenger_user_session
+          if challenger_user_session && challenger_user_session.user_id == current_user.id
             challenge.user_score = old_game.score
             save = true
           end
@@ -543,6 +546,7 @@ class GamesController < ApplicationController
           end
           if save
             challenge.save 
+            session[:challenge_id] = nil
           end
         end
       end
@@ -661,12 +665,13 @@ class GamesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_game
       if params[:c] && !params[:c].blank? && params[:id].blank?
+        p "I SHOULD BE SETTING CHALLEGNE!"
          challenge = Challenge.where(id:Base64.urlsafe_decode64(params[:c]).to_i).first
          @game = challenge.game
          if challenge && current_user.challenges.include?(challenge) 
           if challenge.user_id == current_user.id && (challenge.user_score.nil? || challenge.user_score == 0)
             session[:challenge_id] = challenge.id
-          elsif challenge.challenged_user_id == current_user.id && (challenge.challenged_user_score.nil? || challenge.user_score == 0)
+          elsif challenge.challenged_user_id == current_user.id && (challenge.challenged_score.nil? || challenge.user_score == 0)
             session[:challenge_id] = challenge.id
           end
          end
