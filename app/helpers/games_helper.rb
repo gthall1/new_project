@@ -20,7 +20,7 @@ module GamesHelper
 		users = []
 		scores = []		
 		if game
-			UserGameSession.where(game_id:game.id).where("created_at >= ?",Time.now.beginning_of_week).where.not(score:nil,score:0).order("score desc").each do | u |
+			UserGameSession.where(game_id:game.id).where("created_at >= ?",(Time.now - 1.week).beginning_of_day).where.not(score:nil,score:0).order("score desc").each do | u |
 				next if users.include?(u.user_id)
 				users << u.user_id
 				scores << [User.where(id:u.user_id).first.present? ? User.find(u.user_id).name : "Deleted" ,u.score]
