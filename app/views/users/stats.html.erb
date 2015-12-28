@@ -20,7 +20,7 @@
 <br /><br />
 	Games: <br />
 
-	<% Game.where(device_type:1).each do | g | %>
+	<% Game.where(device_type:[1,3]).each do | g | %>
 		<%= g.name %> | sessions: <%= UserGameSession.where('created_at >= ?',Time.now.beginning_of_week).where(game_id:g.id).size %> <br />
 	<% end %>
 </div>
