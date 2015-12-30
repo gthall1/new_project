@@ -1,0 +1,122 @@
+@import "variables";
+
+#slides {
+  position: relative;
+}
+#slides .slides-container {
+  display: none;
+}
+#slides .scrollable {
+  *zoom: 1;
+  position: relative;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  height: 100%;
+}
+#slides .scrollable:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.slides__title {
+  font-size: 20px;
+  text-align: center;
+  width: 100vw;
+  color: #ffb400;
+  margin: 20px 0;
+  font-size: 14px;
+  text-transform: uppercase;
+
+  &:first-of-type {
+    margin-top: 50px;
+  }
+}
+.slides__tut-img {
+  margin:0 25vw;
+  height:50vw;
+  width:50vw;
+  background-position:center center;
+  background-size:cover;
+  background-repeat:no-repeat;
+}
+.slides-navigation {
+  margin: 0 auto;
+  position: absolute;
+  z-index: 3;
+  top: 46%;
+  width: 100%;
+}
+.slides-navigation a {
+  position: absolute;
+  display: block;
+}
+.slides-navigation a.prev {
+  left: 0;
+}
+.slides-navigation a.next {
+  right: 0;
+}
+.slides__control {
+  // hide
+}
+.fingerpoint {
+  position: relative;
+  &::after {
+  display: inline-block;
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  content: '';
+  bottom: -90px;
+  background-image: url(/assets/2048-finger-point.png);
+  background-size: 100%;
+  right: -10px;
+}
+}
+.slides__link {
+  background-color: #bbada0;
+  color: white;
+  text-transform: uppercase;
+  font-size: 14px;
+  border-radius: 2px;
+  padding: 10px 0;
+  width: 35vw;
+  display: inline-block;
+  margin: 30px 32.5vw;
+  text-align: center;
+
+  &:hover {
+    color: $white;
+    text-decoration: none;
+  }
+}
+.slides-pagination {
+  position: absolute;
+  z-index: 3;
+  bottom: 20vh;
+  text-align: center;
+  width: 100%;
+}
+.slides-pagination a {
+  border: 2px solid #aaa;
+  background-color: #aaa;
+  border-radius: 15px;
+  width: 7px;
+  height: 7px;
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=");
+  margin: 2px;
+  overflow: hidden;
+  text-indent: -100%;
+}
+.slides-pagination a.current {
+  background: #ed995b;
+  border: 2px solid #ed995b;
+}

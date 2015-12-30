@@ -166,6 +166,10 @@ class StaticPagesController < ApplicationController
     end
   end
 
+  # Tutorials
+  def twentyfortyeight_tut
+  end
+
   private
     def cash_out_params
       params.require(:cash_out).permit(:user_id, :credits, :cash,:venmo,:paypal,:cashout_type)
