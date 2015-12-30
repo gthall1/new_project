@@ -6,6 +6,11 @@ class User < ActiveRecord::Base
   has_many :jackpots, through: :user_entries
   has_many :user_game_sessions
   has_many :cash_outs
+  has_many :challenges_as_challenged, :foreign_key => 'challenged_user_id', :class_name => 'Challenge'
+  has_many :challenges_as_challenger, :foreign_key => 'user_id', :class_name => 'Challenge'
+
+
+
   belongs_to :jackpot
 
   before_create :create_remember_token, :create_referral_code
@@ -19,6 +24,10 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, length: { minimum: 6 } ,:if => '!password.nil?'
 
+  def challenges
+    challenges_as_challenged + challenges_as_challenger
+  end
+
   def self.omniauth(auth,arrival_id)
     where(provider:auth.provider,uid:auth.uid).first_or_initialize.tap do |user|
       user.provider = auth.provider
@@ -29,9 +38,10 @@ class User < ActiveRecord::Base
          name = "#{name}#{rand(999)}"
        end
        user.name = name
-      end
-      user.uid = auth.uid
-      user.oath_name = auth.info.namea
+      end      
+      user.uid = auth.uid 
+      user.oath_name = auth.info.namea 
+      
       pass = SecureRandom.urlsafe_base64
       user.password = pass
       user.password_confirmation = pass

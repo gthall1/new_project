@@ -1,0 +1,43 @@
+<% if !@challenges.blank? %>
+  <table border='1'>
+    <tr>
+      <th>Game</th>
+      <th>Challenger</th>
+      <th>Challenger Score</th>
+      <th>Challenged User</th>
+      <th>Challenged Score</th>
+      <th> Winner </th>
+    </tr>
+  <% @challenges.each do | c | %>
+  <tr>
+    <td><%= c.game.name %></td>
+    <td><%= c.user.name %></td>
+    <% if c.user_score %>
+      <td><%= c.user_score %></td>
+    <% elsif c.user == current_user %>
+      <td><%= link_to "Play Now", challenge_accept_path(c:Base64.urlsafe_encode64(c.id.to_s)) %></td>
+    <% else %>
+      <td>TBD</td>
+    <% end %>
+
+    <td><%= c.challenged_user.name %></td>
+    <% if c.challenged_score %>
+        <td><%= c.challenged_score %></td>
+    <% elsif c.challenged_user == current_user %>
+      <td><%= link_to "Play Now", challenge_accept_path(c:Base64.urlsafe_encode64(c.id.to_s)) %></td>
+    <% else %>
+     <td>TBD</td>
+    <% end %>
+    <% if c.winner %>
+      <td><%= c.winner.name %></td>
+    <% else %>
+      <td>TBD</td>
+    <% end %>
+
+  </tr>
+    
+  <% end %>
+</table>
+<% else %>
+  <h2> You currently have no challenges. How about challenging someone to Flappy Pilot? <%= link_to "Challenge Here", game_challenge_path(game_slug:'flappy-pilot') %></h2>
+<% end %>

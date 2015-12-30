@@ -38,6 +38,9 @@ class UsersController < ApplicationController
     end
 
     if @user.save
+      if !@user.oath_token.blank?
+        session[:auth_token] = @user.oath_token
+      end
       arrival = Arrival.where(id:session[:arrival_id]).first
       if arrival
         arrival.user_id = @user.id
@@ -56,6 +59,12 @@ class UsersController < ApplicationController
       redirect_to(root_url)
     else
       render 'new'
+    end
+  end
+
+  def challenges
+    if signed_in?
+      @challenges = current_user.challenges
     end
   end
 

@@ -16,6 +16,7 @@
 //= require home
 //= require tabs
 //= require cashout
+//= require challenge
 //= require mobilecheck
 //= require js-cookie
 //= require app
