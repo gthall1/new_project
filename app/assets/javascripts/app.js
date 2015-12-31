@@ -110,7 +110,7 @@ var app = {
     app.hideCopyBtn();
     app.showShareDialog();
     app.setAddToHomescreen();
-    // app.show2048Tutorial();
+    app.show2048Tutorial();
     app.bind();
   }
 };
