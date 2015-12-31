@@ -85,10 +85,10 @@ var app = {
       e.preventDefault();
     });
 
-    $('.js-game--2048').click(function(){
-      app.show2048Tutorial();
-      return false;
-    });
+    // $('.js-game--2048').click(function(){
+    //   app.show2048Tutorial();
+    //   return false;
+    // });
 
     $('.js-overlay__opt-out').click(function(){
       Cookies.set('user', 'returning', { expires: 1 });
