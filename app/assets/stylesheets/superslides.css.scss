@@ -21,7 +21,6 @@
   clear: both;
 }
 .slides__title {
-  font-size: 20px;
   text-align: center;
   width: 100vw;
   color: #ffb400;
@@ -32,6 +31,13 @@
   &:first-of-type {
     margin-top: 50px;
   }
+}
+.slides__sm-text {
+  text-align: center;
+  width: 100vw;
+  color: #ffb400;
+  margin: -20px 0 20px;
+  font-size: 12px;
 }
 .slides__tut-img {
   margin:0 25vw;
@@ -95,7 +101,7 @@
 .slides-pagination {
   position: absolute;
   z-index: 3;
-  bottom: 20vh;
+  bottom: 15vh;
   text-align: center;
   width: 100%;
 }

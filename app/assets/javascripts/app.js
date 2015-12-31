@@ -53,6 +53,20 @@ var app = {
     $(el).toggleClass(className);
   },
 
+  // Tutorials
+  show2048Tutorial: function() {
+    // Redirect 2048 to tutorial page
+    if (Cookies.get('2048tutorial') !== 'shown') {
+      if (mobileCheck.any()) {
+        Cookies.set('2048tutorial', 'shown', { expires: 365});
+
+        var url = "http://localhost:3000/";
+        window.location = url + "2048_tutorial";
+        return false;
+      }
+    }
+  },
+
   bind: function() {
     $('.js-share-dialog__close').click(function(){
       $('.js-share-dialog').removeClass('show');
@@ -69,6 +83,11 @@ var app = {
       $(this).html('Copied!');
       $(this).addClass('copied')
       e.preventDefault();
+    });
+
+    $('.js-game--2048').click(function(){
+      app.show2048Tutorial();
+      return false;
     });
 
     $('.js-overlay__opt-out').click(function(){
