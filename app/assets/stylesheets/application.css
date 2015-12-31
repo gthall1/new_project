@@ -10,7 +10,8 @@
  *
  *= require bootstrap
  *= require custom
+ *= require superslides
  *= require challenge
- *= require_self 
+ *= require_self
  */
 

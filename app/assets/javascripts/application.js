@@ -21,6 +21,7 @@
 //= require js-cookie
 //= require app
 //= require main
+//= require superslides
 //= require jquery.slideandswipe.min
 //= require zeroclipboard
 

@@ -26,6 +26,7 @@ Alotto::Application.routes.draw do
   match '/donate_credits/(:credits)',   to: 'static_pages#donate_credits',as: 'donate_credits',  via: 'get'
   match '/refer',   to: 'static_pages#refer',   via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
+  match '/2048_tutorial', to: 'static_pages#twentyfortyeight_tut', via: 'get'
   match '/updates', to: 'games#test_game_check', via: 'get'
   match '/user_survey', to: 'surveys#user_survey_save', via: 'patch'
   match '/heliwin', to: 'games#helicopter_check', via: 'get'

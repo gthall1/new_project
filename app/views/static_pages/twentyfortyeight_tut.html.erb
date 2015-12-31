@@ -1,0 +1,46 @@
+<div id="slides">
+  <ul class="slides-container">
+    <li>
+      <img src="/assets/2048-backdrop.jpg" alt="">
+      <div class="container">
+        <h1 class="slides__title">Swipe to move all tiles</h1>
+        <div class="slides__tut-img fingerpoint" style="background-image: url(/assets/2048-gameboard-1.png);">
+        </div>
+      </div>
+    </li>
+    <li>
+      <img src="/assets/2048-backdrop.jpg" alt="">
+      <div class="container">
+        <h1 class="slides__title">When two tiles with the same number touch, they merge into one!</h1>
+        <div class="slides__tut-img" style="background-image: url(/assets/2048-gameboard-2.png);">
+        </div>
+        <h1 class="slides__title">It's over when the board fills up...</h1>
+      </div>
+    </li>
+    <li>
+      <img src="/assets/2048-backdrop.jpg" alt="">
+      <div class="container">
+        <h1 class="slides__title">Join the numbers and get to the 2048 tile</h1>
+        <div class="slides__tut-img" style="background-image: url(/assets/2048-gameboard-3.png);">
+        </div>
+        <a href="/games/14" class="slides__link">Play Now</a>
+      </div>
+    </li>
+  </ul>
+  <nav class="slides-navigation">
+    <a href="#" class="next slides__control">Next</a>
+    <a href="#" class="prev slides__control">Previous</a>
+  </nav>
+</div>
+
+<script>
+  $(function() {
+    if (mobileCheck.any()) {
+      $('.slides__control').hide();
+    }
+
+    $('#slides').superslides({
+      hashchange: true
+    });
+  });
+</script>
