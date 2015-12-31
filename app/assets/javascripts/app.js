@@ -56,11 +56,8 @@ var app = {
   // Tutorials
   show2048Tutorial: function() {
     if (Cookies.get('2048tutorial') !== 'shown' && $('body').hasClass('mobile-games-page')) {
-      // console.log('set tut');
       $('.js-game--2048').parent().attr('href', '/2048_tutorial');
       Cookies.set('2048tutorial', 'shown', { expires: 365});
-    } else {
-      // console.log('no go');
     }
   },
 
@@ -84,6 +81,10 @@ var app = {
 
     $('.js-overlay__opt-out').click(function(){
       Cookies.set('user', 'returning', { expires: 1 });
+    });
+
+    $('.js-game--2048').click(function(){
+      Cookies.set('2048tutorial', 'shown', { expires: 365});
     });
 
     // Tooltip
