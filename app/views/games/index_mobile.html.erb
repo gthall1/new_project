@@ -3,7 +3,7 @@
   <div class='game-list-container'>
     <% @games.each do | g | %>
       <%= link_to game_path(g) do %>
-        <div class="game-wrapper game--<%= g.slug %> js-game--<%= g.slug %>">
+        <div class="game-wrapper game--<%= g.slug %> js-game--<%= g.slug %>" data-game-id="<%= g.id %>">
           <% if g.slug == "flappy-pilot" ||  g.slug == "fall-down" || g.slug == "traffic" %>
             <img class="game__leaderboard" src="/assets/leaderboard_button.png">
           <% end %>
@@ -12,3 +12,4 @@
       <% end %>
     <% end %>
   </div>
+
