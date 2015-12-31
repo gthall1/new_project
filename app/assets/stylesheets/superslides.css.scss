@@ -1,4 +1,5 @@
 @import "variables";
+$orange-2048: #ffb400;
 
 #slides {
   position: relative;
@@ -35,7 +36,7 @@
 .slides__sm-text {
   text-align: center;
   width: 100vw;
-  color: #ffb400;
+  color: $orange-2048;
   margin: -20px 0 20px;
   font-size: 12px;
 }
@@ -51,18 +52,27 @@
   margin: 0 auto;
   position: absolute;
   z-index: 3;
-  top: 46%;
+  bottom: 25vh;
   width: 100%;
 }
 .slides-navigation a {
   position: absolute;
   display: block;
+  background: $orange-2048;
+  color: $white;
+  width: 100px;
+  text-align: center;
+  padding: 5px 0px;
+  border-radius: 2px;
+  &:hover {
+    text-decoration: none;
+  }
 }
 .slides-navigation a.prev {
-  left: 0;
+  left: 10%;
 }
 .slides-navigation a.next {
-  right: 0;
+  right: 10%;
 }
 .slides__control {
   // hide

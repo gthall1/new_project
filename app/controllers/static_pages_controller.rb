@@ -168,6 +168,7 @@ class StaticPagesController < ApplicationController
 
   # Tutorials
   def twentyfortyeight_tut
+    @game = Game.where(name: "2048").first
   end
 
   private

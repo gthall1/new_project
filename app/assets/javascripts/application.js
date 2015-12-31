@@ -23,5 +23,6 @@
 //= require main
 //= require superslides
 //= require jquery.slideandswipe.min
+//= require touchSwipe
 //= require zeroclipboard
 

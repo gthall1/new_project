@@ -1,3 +1,5 @@
+<% content_for :body_class, "tutorial-page" %>
+
 <div id="slides">
   <ul class="slides-container">
     <li>
@@ -24,7 +26,7 @@
         <h1 class="slides__title">Continue swiping and combining tiles until you have no more moves</h1>
         <div class="slides__tut-img" style="background-image: url(/assets/2048-gameboard-3.png);">
         </div>
-        <a href="/games/14" class="slides__link">Play Now</a>
+        <a href="/games/<%= @game.id %>" class="slides__link">Play Now</a>
       </div>
     </li>
   </ul>
@@ -42,6 +44,21 @@
 
     $('#slides').superslides({
       hashchange: true
+    });
+
+
+    $(".tutorial-page").swipe({
+      swipeLeft:function(event, direction, distance, duration, fingerCount) {
+        console.log("You swiped " + direction );
+        $('#slides').superslides('animate','next');
+      }
+    });
+
+    $(".tutorial-page").swipe({
+      swipeRight:function(event, direction, distance, duration, fingerCount) {
+        console.log("You swiped " + direction );
+        $('#slides').superslides('animate','prev');
+      }
     });
   });
 </script>
