@@ -3,7 +3,7 @@ var app = {
   setAddToHomescreen: function() {
     if (mobileCheck.iOS() && !mobileCheck.MobileChrome() && !app.checkAppMode()) {
       if (Cookies.get('user') === 'returning') {
-        console.log('Welcome home!');
+        // console.log('Welcome home!');
       } else {
           $('body').addClass('overlay-screen add-to-home');
       }
@@ -17,7 +17,7 @@ var app = {
   },
   showShareDialog: function() {
     if (Cookies.get('login') === 'initial') {
-      console.log('Welcome back!');
+      // console.log('Welcome back!');
     } else {
       Cookies.set('login', 'initial', '/games');
       // $('.js-share-dialog').addClass('show');
@@ -55,15 +55,12 @@ var app = {
 
   // Tutorials
   show2048Tutorial: function() {
-    // Redirect 2048 to tutorial page
-    if (Cookies.get('2048tutorial') !== 'shown') {
-      if (mobileCheck.any()) {
-        Cookies.set('2048tutorial', 'shown', { expires: 365});
-
-        var url = "http://localhost:3000/";
-        window.location = url + "2048_tutorial";
-        return false;
-      }
+    if (Cookies.get('2048tutorial') !== 'shown' && $('body').hasClass('mobile-games-page')) {
+      // console.log('set tut');
+      $('.js-game--2048').parent().attr('href', '/2048_tutorial');
+      Cookies.set('2048tutorial', 'shown', { expires: 365});
+    } else {
+      // console.log('no go');
     }
   },
 
@@ -84,11 +81,6 @@ var app = {
       $(this).addClass('copied')
       e.preventDefault();
     });
-
-    // $('.js-game--2048').click(function(){
-    //   app.show2048Tutorial();
-    //   return false;
-    // });
 
     $('.js-overlay__opt-out').click(function(){
       Cookies.set('user', 'returning', { expires: 1 });
@@ -117,6 +109,7 @@ var app = {
     app.hideCopyBtn();
     app.showShareDialog();
     app.setAddToHomescreen();
+    app.show2048Tutorial();
     app.bind();
   }
 };
