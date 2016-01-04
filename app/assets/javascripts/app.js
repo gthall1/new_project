@@ -60,7 +60,6 @@ var app = {
       Cookies.set('2048tutorial', 'shown', { expires: 365});
     } else if (mobileCheck.any()) {
       $('.js-game--2048').parent().attr('href', '/2048_home');
-      console.log('add intermediate');
     }
   },
 
