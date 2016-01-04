@@ -235,7 +235,7 @@
   */
   var defaults = {
     fingers: 1,
-    threshold: 75,
+    threshold: 50,
     cancelThreshold: null,
     pinchThreshold: 20,
     maxTimeThreshold: null,

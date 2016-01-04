@@ -1,0 +1,64 @@
+.intermediate .mobile-container {
+  background-image: none;
+}
+
+.intermediate--2048 .mobile-container{
+  background-color: #faf8ef !important;
+  text-align: center;
+}
+
+.intermediate__wrap {
+  padding: 20px 0;
+}
+.game-page__title {
+  margin: 0 0 30px;
+  font-size: 40px;
+  font-weight: 200;
+  color: #ffb400;
+}
+
+.game-page__icon-row {
+  padding: 20px 0;
+}
+
+.game-page__link {
+  display: inline-block;
+  text-align: center;
+  min-width: 100px;
+}
+
+.game-page__icon {
+  background-color: #bbada0;
+  padding: 20px;
+  border-radius: 100%;
+  color: #fff;
+  font-size: 30px !important;
+}
+
+.game-page__subtitle {
+  color: #000;
+  font-size: 16px;
+}
+
+.game-page__how-to {
+  color: white;
+  text-decoration: none;
+  background-color: #BBADA0;
+  padding: 15px 25px;
+  border-radius: 2px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.game-page__play {
+  display: block;
+  margin-top: 40px;
+
+  .fa-play {
+    background: coral;
+    color: white;
+    padding: 20px 21px 20px 28px;
+    border-radius: 100%;
+    font-size: 40px;
+  }
+}

@@ -1,0 +1,24 @@
+<% content_for :body_class, "intermediate intermediate--2048" %>
+
+<div class="intermediate__wrap">
+  <h1 class="game-page__title">2048</h1>
+
+  <div class="game-page__icon-row">
+    <a href="/games" class="game-page__link">
+      <i class="fa fa-home game-page__icon"></i>
+      <h2 class="game-page__subtitle">Home</h2>
+    </a>
+
+    <a href="/leaderboard/<%= @game.name %>" class="game-page__link">
+      <i class="fa fa-list game-page__icon"></i>
+      <h2 class="game-page__subtitle">Leaderboard</h2>
+    </a>
+  </div>
+
+  <a href="/2048_tutorial" class="game-page__how-to">How to Play</a>
+
+  <a href="/games/<%= @game.id %>" class="game-page__play">
+    <i class="fa fa-play"></i>
+    <h2 class="game-page__subtitle">Play now!</h2>
+  </a>
+</div>

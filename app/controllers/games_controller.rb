@@ -51,7 +51,7 @@ class GamesController < ApplicationController
     render "games/show_mobile" if is_mobile?
   end
 
-  
+
   def close_game
     status = 'error'
     if params[:token] && !params[:token].empty?
@@ -85,9 +85,15 @@ class GamesController < ApplicationController
              :hscore => current_high_score
             }
           }
-      end      
+      end
     end
-  end 
+  end
+
+
+  # Intermediate Page
+  def twentyfortyeight_home
+    @game = Game.where(name: "2048").first
+  end
 
   def score_update
     status='fail'
@@ -108,17 +114,17 @@ class GamesController < ApplicationController
         else
           status = "nothingearned"
         end
-        if session[:challenge_id] 
+        if session[:challenge_id]
           p "FPUND SESSION #{session[:challenge_id]}"
          other_game_session = UserGameSession.where(challenge_id:session[:challenge_id],user_id:current_user.id).where.not(score:[nil,0]).where.not(id:game_session.id)
          #if already finished challenge game, get rid of session variable
          if other_game_session.present?
           p "REMOVING CHALLENGE WHAT"
-           session[:challenge_id] = nil       
+           session[:challenge_id] = nil
          else
           challenge = Challenge.where(id:session[:challenge_id]).first
-          game_session.challenge_id = challenge.id 
-          p "SETTING THIS #{session[:challenge_id]}"   
+          game_session.challenge_id = challenge.id
+          p "SETTING THIS #{session[:challenge_id]}"
          end
         end
         game_session.score = score
@@ -540,12 +546,12 @@ class GamesController < ApplicationController
           if challenged_user_session.present? && challenger_user_session.present?
             challenge.winner = challenged_user_session.score > challenger_user_session.score ? challenged_user_session.user_id : challenger_user_session.user_id
            # challenge.user_score = challenger_user_session.score
-           # challenge.challenged_score = challenged_user_session.score 
+           # challenge.challenged_score = challenged_user_session.score
             save = true
             #TODO: email people the results?
           end
           if save
-            challenge.save 
+            challenge.save
             session[:challenge_id] = nil
           end
         end
@@ -614,12 +620,12 @@ class GamesController < ApplicationController
       session[:game_token] = game.token
     end
   end
-    
+
   def challenge
     @game = Game.where(slug:params[:game_slug]).first
     @challenge = Challenge.new
   end
-  
+
   def challenge_create
     challenge = Challenge.new(challenge_params)
     if challenge.save
@@ -668,7 +674,7 @@ class GamesController < ApplicationController
         p "I SHOULD BE SETTING CHALLEGNE!"
          challenge = Challenge.where(id:Base64.urlsafe_decode64(params[:c]).to_i).first
          @game = challenge.game
-         if challenge && current_user.challenges.include?(challenge) 
+         if challenge && current_user.challenges.include?(challenge)
           if challenge.user_id == current_user.id && (challenge.user_score.nil? || challenge.user_score == 0)
             session[:challenge_id] = challenge.id
           elsif challenge.challenged_user_id == current_user.id && (challenge.challenged_score.nil? || challenge.user_score == 0)
@@ -677,7 +683,7 @@ class GamesController < ApplicationController
          end
       else
          @game = Game.find(params[:id])
-      end 
+      end
 
       if @game.name == "Helicopter"
         set_heli
@@ -691,7 +697,7 @@ class GamesController < ApplicationController
 
     def challenge_params
       params.require(:challenge).permit(:user_id,:game_id,:challenged_user_id)
-      
+
     end
 
     def init_testgame(game_id)
