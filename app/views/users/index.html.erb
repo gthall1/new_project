@@ -1,18 +1,21 @@
 <% provide(:title, 'All users') %>
-<h1>All users</h1>
-
-<%= link_to "Export CSV", users_path(format: :csv), class: "export-btn" %>
-<%= link_to "Export XLS", users_path(format: :xls), class: "export-btn" %>
-
-
-<ul class="users users__info-list">
-  <%= render @users %>
-</ul>
 
 <h1>All Time Stats</h1>
 
 <p>Total Users: <span><%= User.count %></span></p>
 
 <p>Total Credits: <span><%= @credits %></span></p>
+
+<hr>
+
+<h1>All users</h1>
+
+<%= link_to "Export CSV", users_path(format: :csv), class: "export-btn" %>
+<%= link_to "Export XLS", users_path(format: :xls), class: "export-btn" %>
+
+<ul class="users users__info-list">
+  <%= render @users %>
+</ul>
+
 
 
