@@ -38,10 +38,10 @@ class User < ActiveRecord::Base
          name = "#{name}#{rand(999)}"
        end
        user.name = name
-      end      
-      user.uid = auth.uid 
-      user.oath_name = auth.info.namea 
-      
+      end
+      user.uid = auth.uid
+      user.oath_name = auth.info.namea
+
       pass = SecureRandom.urlsafe_base64
       user.password = pass
       user.password_confirmation = pass
@@ -66,6 +66,17 @@ class User < ActiveRecord::Base
         csv << user.attributes.values_at(*attributes)
       end
     end
+  end
+
+  def self.total_user_credits
+    users = User.all
+    total_credits = 0
+
+    users.each do |u|
+        total_credits += u.lifetime_credits ||= 0
+    end
+
+    total_credits
   end
 
   def add_credits(args={})

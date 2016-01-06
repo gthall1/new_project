@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @credits = User.total_user_credits
 
     respond_to do |format|
       format.html

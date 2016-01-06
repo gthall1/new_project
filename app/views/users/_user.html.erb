@@ -1,5 +1,8 @@
 <li>
-  <%= link_to user.name, user %> | Email: <%= user.email %> | Credits on hand : <%= user.credits ||=0 %> | Credits Deposited: <%= user.user_entries.size ||= 0 %>
+  <%= link_to user.name, user %> | Email: <%= user.email %> | Game Sessions: <%= UserGameSession.where(user_id: user.id).count %> | Surveys: <%= UserSurvey.where(user_id: user.id, complete: true).count %> | Credits on hand : <span style="color:red;"><%= user.credits ||=0 %></span> | Lifetime Credits: <%= user.lifetime_credits ||= 0 %>
+
+  <!-- Credits Deposited : <%# user.user_entries.size ||= 0 %>-->
+
   <% if current_user.admin? && !current_user?(user) %>
 
     <% if false %><%= link_to "delete", user, method: :delete,
