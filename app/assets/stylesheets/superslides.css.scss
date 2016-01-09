@@ -23,11 +23,12 @@ $orange-2048: #ffb400;
 }
 .slides__title {
   text-align: center;
-  width: 100vw;
   color: #ffb400;
   margin: 20px 0;
   font-size: 14px;
   text-transform: uppercase;
+  letter-spacing: 0px;
+
 
   &:first-of-type {
     margin-top: 50px;
@@ -35,18 +36,17 @@ $orange-2048: #ffb400;
 }
 .slides__sm-text {
   text-align: center;
-  width: 100vw;
   color: $orange-2048;
   margin: -20px 0 20px;
   font-size: 12px;
 }
 .slides__tut-img {
-  margin:0 25vw;
-  height:50vw;
-  width:50vw;
   background-position:center center;
-  background-size:cover;
+  background-size: 90%;
   background-repeat:no-repeat;
+  margin: 0 auto;
+  height: 25vw;
+  width: 25vw;
 }
 .slides-navigation {
   margin: 0 auto;
@@ -69,10 +69,10 @@ $orange-2048: #ffb400;
   }
 }
 .slides-navigation a.prev {
-  left: 10%;
+  left: 20%;
 }
 .slides-navigation a.next {
-  right: 10%;
+  right: 20%;
 }
 .slides__control {
   // hide
@@ -85,10 +85,10 @@ $orange-2048: #ffb400;
   width: 100px;
   position: absolute;
   content: '';
-  bottom: -90px;
+  bottom: -70px;
   background-image: url(/assets/2048-finger-point.png);
   background-size: 100%;
-  right: -10px;
+  right: 0;
 }
 }
 .slides__link {
@@ -100,7 +100,8 @@ $orange-2048: #ffb400;
   padding: 10px 0;
   width: 35vw;
   display: inline-block;
-  margin: 30px 32.5vw;
+  max-width: 200px;
+  margin: auto;
   text-align: center;
 
   &:hover {
@@ -135,4 +136,26 @@ $orange-2048: #ffb400;
 .slides-pagination a.current {
   background: #ed995b;
   border: 2px solid #ed995b;
+}
+
+
+@media only screen and (max-width: 668px) {
+  .slides__sm-text,
+  .slides__title {
+    width: 100vw;
+  }
+  .slides__link {
+    margin: 30px 32.5vw;
+  }
+  .slides__tut-img {
+    margin:0 25vw;
+    height:50vw;
+    width:50vw;
+  }
+  .slides-navigation a.prev {
+    left: 10%;
+  }
+  .slides-navigation a.next {
+    right: 10%;
+  }
 }
