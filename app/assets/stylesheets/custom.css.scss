@@ -5,6 +5,7 @@
 @import "interior_pages";
 @import "cards";
 @import "leaderboard";
+@import "intermediates";
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -1308,7 +1309,7 @@ h1.arrow2 { font-size: 55px;
   font-size: 40px;
   font-weight: 200;
 
-  .games-page & {
+  .desktop-games-page & {
     margin: 30px 0 0;
     letter-spacing: 0.1px;
     word-spacing: 0.5px;

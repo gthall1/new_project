@@ -1,15 +1,14 @@
-<% if !is_mobile? %>
-<% content_for :body_class, "games-page" %>
-<% end %>
+<% content_for :body_class, "desktop-games-page games-page" %>
 
 <h1 class="page__title">Play free games. Earn real cash.</h1>
 
 <div class='game-list-container'>
     <% @games.each do | g | %>
-    <div class="game-wrapper">
-      <%= link_to game_path(g) do %>
+    <%= link_to game_path(g) do %>
+    <div class="game-wrapper game--<%= g.slug %> js-game--<%= g.slug %>">
+
         <%= image_tag(g.desktop_image, :class=>'game-image') %>
-      <% end %>
+
 
       <div class="game__info">
         <h1 class="game__title"><%= g.name %></h1>
@@ -19,6 +18,7 @@
         <% end %>
       </div>
 
-    </div>
+    </div> <!--/ .game-wrapper -->
+    <% end %>
     <% end %>
 </div>

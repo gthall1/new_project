@@ -1,3 +1,4 @@
+@import "mixins";
 @import "variables";
 $orange-2048: #ffb400;
 
@@ -64,8 +65,11 @@ $orange-2048: #ffb400;
   text-align: center;
   padding: 5px 0px;
   border-radius: 2px;
+  text-decoration: none;
+  @include transition();
+
   &:hover {
-    text-decoration: none;
+    background-color: $dark-orange;
   }
 }
 .slides-navigation a.prev {
