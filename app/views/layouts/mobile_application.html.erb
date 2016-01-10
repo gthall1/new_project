@@ -197,7 +197,7 @@
             </div>
             <div class="mobile--overlay">
                 <a href="/" class="js-overlay__opt-out overlay__opt-out ga-preview-event">Preview in Browser</a>
-                <a href="/" class="overlay__back-to-dash">Return to Dashboard</a>
+                <a href="/" class="overlay__back-to-dash"><img class="home-icon--small" src="/assets/home_icon.png"></a>
                 <div class="overlay__content">
                     <img class="overlay__logo" src="/assets/logo-144.png">
                     <h1 class="overlay__title">Luckee</h1>
@@ -231,7 +231,7 @@
                     <% if @game %>
                         <h2 style='font-size:27px;'><%= @game.name %><br /><span class='credits' <% if @game.name == 'Sorcerer Game' %>style='top:0px'<% end %>><%= current_user.credits ||= 0 %> credits</span></h2>
                     <% else %>
-                        <h2><%= link_to games_path do %>Luckee<% end %><br /><span class='credits'><%= current_user.credits ||= 0 %> credits</span></h2>
+                        <h2><%= link_to games_path do %><img src="/assets/luckee-font.png" class="mobile-header__logo"><% end %><br /><span class='credits mobile-header__credits'><%= current_user.credits ||= 0 %> credits</span></h2>
                     <% end %>
                     <div class='referral-link'>
 

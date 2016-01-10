@@ -740,14 +740,6 @@ p {
       color:#fff;
       text-decoration:none;
     }
-    .credits{
-      color:$credits-red;
-      font-size: 14px;
-      // font-weight: 200;
-      // letter-spacing: 0.25px;
-      position:relative;
-      top:-15px;
-    }
   }
   a{
 
@@ -1266,4 +1258,20 @@ p {
 .overlay__opt-out,
 .overlay__back-to-dash {
   display: none;
+}
+.home-icon--small {
+  height: 40px;
+  width: auto;
+}
+.mobile-header__logo {
+  height: 25px;
+  width: auto;
+  position: relative;
+  top: -10px;
+}
+.mobile-header__credits {
+  color:$credits-red;
+  font-size: 14px;
+  position:relative;
+  top:-20px;
 }
