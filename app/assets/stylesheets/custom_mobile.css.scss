@@ -740,6 +740,14 @@ p {
       color:#fff;
       text-decoration:none;
     }
+    .credits{
+      color:$credits-red;
+      font-size: 14px;
+      // font-weight: 200;
+      // letter-spacing: 0.25px;
+      position:relative;
+      top:-15px;
+    }
   }
   a{
 
@@ -1268,6 +1276,10 @@ p {
   width: auto;
   position: relative;
   top: -10px;
+}
+.mobile-header__credits {
+  position: relative;
+  top: -5px;
 }
 .mobile-header__credits {
   color:$credits-red;
