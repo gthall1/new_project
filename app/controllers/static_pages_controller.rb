@@ -168,6 +168,7 @@ class StaticPagesController < ApplicationController
 
   # Tutorials
   def twentyfortyeight_tut
+    @show_back_button = true
     @game = Game.where(name: "2048").first
   end
 
