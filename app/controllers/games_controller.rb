@@ -34,6 +34,7 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.json
   def show
+    p params[:c]
     @show_back_button = true
     case @game.name
       when "Memory Game"
@@ -500,10 +501,10 @@ class GamesController < ApplicationController
   end
   #for when clicking 'new game' within construct 2 games
   def reset_game
-      p "RESETTING GAME"
-      if session[:challenge_id]
-        p "STILL SEE CHALLENGE #{session[:challenge_id]}"
-      end
+    p "RESETTING GAME"
+    if session[:challenge_id]
+      p "STILL SEE CHALLENGE #{session[:challenge_id]}"
+    end
     old_game = UserGameSession.where(token:session[:game_token]).last
 
 
@@ -514,6 +515,7 @@ class GamesController < ApplicationController
       old_game_name = old_game.game.name
       game_id = old_game.id
     end
+
     set_game_token({game_name:old_game_name})
     if old_game && UserGameSession.where(user_id:current_user.id,game_id:game_id).where.not(score: nil).order("score desc").present?
       high_score = UserGameSession.where(user_id:current_user.id,game_id:game_id).where.not(score: nil).order("score desc").first.score
@@ -521,7 +523,7 @@ class GamesController < ApplicationController
       high_score = 0
     end
     if old_game
-      if !old_game.challenge_id.nil?
+      if !old_game.challenge_id.nil? 
         challenge = Challenge.where(id:old_game.challenge_id).first
         # if current_user.id == challenge.user_id
         #   challenge.user_score = old_game.score
@@ -532,19 +534,23 @@ class GamesController < ApplicationController
         # end
         if challenge
           save = false
-           challenged_user_session = UserGameSession.where.not(score:[nil,0]).where(challenge_id:challenge.id,user_id:challenge.challenged_user_id).first
-           challenger_user_session = UserGameSession.where.not(score:[nil,0]).where(active:false, challenge_id:challenge.id,user_id:challenge.user_id).first
+           challenged_user_session = UserGameSession.where.not(score:nil).where.not(score:0).where(challenge_id:challenge.id,user_id:challenge.challenged_user_id).first
+           challenger_user_session = UserGameSession.where.not(score:nil).where.not(score:0).where(active:false, challenge_id:challenge.id,user_id:challenge.user_id).first
+          p "FOUND CHALLENGED USER SESSION #{challenged_user_session.id}"
           if challenged_user_session && challenged_user_session.user_id == current_user.id
             challenge.challenged_score = old_game.score
             save = true
           end
+          
           if challenger_user_session && challenger_user_session.user_id == current_user.id
             challenge.user_score = old_game.score
             save = true
           end
 
           if challenged_user_session.present? && challenger_user_session.present?
-            challenge.winner = challenged_user_session.score > challenger_user_session.score ? challenged_user_session.user_id : challenger_user_session.user_id
+            p challenged_user_session
+            p challenger_user_session
+            challenge.winner_id = ((challenged_user_session.score > challenger_user_session.score.to_i) ? challenged_user_session.user_id : challenger_user_session.user_id)
            # challenge.user_score = challenger_user_session.score
            # challenge.challenged_score = challenged_user_session.score
             save = true
@@ -604,6 +610,9 @@ class GamesController < ApplicationController
       game.game_id = Game.where(name: game_name).first.id
       game.credits_earned = 0
       game.active = true
+      if session[:challenge_id] && UserGameSession.where(user_id:current_user.id,challenge_id:session[:challenge_id])
+        game.challenge_id = session[:challenge_id]
+      end
       game.score = score
       game.arrival_id = session[:arrival_id]
       game.save
@@ -646,16 +655,16 @@ class GamesController < ApplicationController
   def get_credits_to_apply(slug,score,credits_applied)
     case slug
       when "sorcerer-game"
-        credits = (score/10000.to_f).ceil - 1 #subtract 1 otherwise itll give a credit once anything is scored
+        credits = (score/5000.to_f).ceil - 1 #subtract 1 otherwise itll give a credit once anything is scored
       when "2048"
         credits = (score/750.to_f).ceil - 1
       when "traffic"
-        credits = (score/5.to_f).ceil - 1
+        credits = (score/7.to_f).ceil - 1 
       when "flappy-pilot"
         credits = (score/10.to_f).ceil - 1
       when "black-hole"
         #credits = score * 5
-        credits_to_apply = 1
+        credits_to_apply = 3
       when "fall-down"
         credits = (score/15.to_f).ceil - 1
     end
@@ -664,66 +673,66 @@ class GamesController < ApplicationController
     credits_to_apply
   end
 
-    def create_new_game_session(score,game_id)
-     # old_game = UserGameSession.where(user_id:current_user).last
-      set_game_token({game_name:Game.where(id:game_id).first.name,score:score})
-    end
-    # Use callbacks to share common setup or constraints between actions.
-    def set_game
-      if params[:c] && !params[:c].blank? && params[:id].blank?
-        p "I SHOULD BE SETTING CHALLEGNE!"
-         challenge = Challenge.where(id:Base64.urlsafe_decode64(params[:c]).to_i).first
-         @game = challenge.game
-         if challenge && current_user.challenges.include?(challenge)
-          if challenge.user_id == current_user.id && (challenge.user_score.nil? || challenge.user_score == 0)
-            session[:challenge_id] = challenge.id
-          elsif challenge.challenged_user_id == current_user.id && (challenge.challenged_score.nil? || challenge.user_score == 0)
-            session[:challenge_id] = challenge.id
-          end
-         end
-      else
-         @game = Game.find(params[:id])
-      end
-
-      if @game.name == "Helicopter"
-        set_heli
-      end
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def game_params
-      params.require(:game).permit(:name)
-    end
-
-    def challenge_params
-      params.require(:challenge).permit(:user_id,:game_id,:challenged_user_id)
-
-    end
-
-    def init_testgame(game_id)
-      if signed_in?
-        game = UserGameSession.new
-        game.token = SecureRandom.urlsafe_base64
-        game.user_id = current_user.id
-        game.game_id = game_id
-        game.credits_earned = 0
-        game.active = true
-        game.arrival_id = session[:arrival_id]
-        game.save
-        if !session[:game_token].nil?
-         old_game = UserGameSession.where(token:session[:game_token]).first
-         #close previous game game
-         if old_game
-          old_game.active = false
-          old_game.save
-         end
+  def create_new_game_session(score,game_id)
+   # old_game = UserGameSession.where(user_id:current_user).last
+    set_game_token({game_name:Game.where(id:game_id).first.name,score:score})
+  end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_game
+    if params[:c] && !params[:c].blank? && params[:id].blank?
+      p "I SHOULD BE SETTING CHALLEGNE!"
+       challenge = Challenge.where(id:Base64.urlsafe_decode64(params[:c]).to_i).first
+       @game = challenge.game
+       if challenge && current_user.challenges.include?(challenge)
+        if challenge.user_id == current_user.id && (challenge.user_score.nil? || challenge.user_score == 0)
+          session[:challenge_id] = challenge.id
+        elsif challenge.challenged_user_id == current_user.id && (challenge.challenged_score.nil? || challenge.user_score == 0)
+          session[:challenge_id] = challenge.id
         end
-        session[:game_token] = game.token
-      else
-        redirect_to root_path
-      end
+       end
+    else
+       @game = Game.find(params[:id])
     end
 
-    def get_traffic_json
+    if @game.name == "Helicopter"
+      set_heli
     end
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def game_params
+    params.require(:game).permit(:name)
+  end
+
+  def challenge_params
+    params.require(:challenge).permit(:user_id,:game_id,:challenged_user_id)
+
+  end
+
+  def init_testgame(game_id)
+    if signed_in?
+      game = UserGameSession.new
+      game.token = SecureRandom.urlsafe_base64
+      game.user_id = current_user.id
+      game.game_id = game_id
+      game.credits_earned = 0
+      game.active = true
+      game.arrival_id = session[:arrival_id]
+      game.save
+      if !session[:game_token].nil?
+       old_game = UserGameSession.where(token:session[:game_token]).first
+       #close previous game game
+       if old_game
+        old_game.active = false
+        old_game.save
+       end
+      end
+      session[:game_token] = game.token
+    else
+      redirect_to root_path
+    end
+  end
+
+  def get_traffic_json
+  end
 end
