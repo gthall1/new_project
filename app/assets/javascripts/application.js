@@ -25,4 +25,6 @@
 //= require jquery.slideandswipe.min
 //= require touchSwipe
 //= require zeroclipboard
+//= require headroom
+//= require jquery_headroom
 

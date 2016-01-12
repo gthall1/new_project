@@ -25,14 +25,20 @@
   display: inline-block;
   text-align: center;
   min-width: 100px;
+
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 .game-page__icon {
-  background-color: #bbada0;
+  // background-color: #bbada0;
   padding: 20px;
   border-radius: 100%;
   color: #fff;
   font-size: 30px !important;
+  height: 50px;
+  width: auto;
 }
 
 .game-page__subtitle {
@@ -48,17 +54,33 @@
   border-radius: 2px;
   font-size: 12px;
   text-transform: uppercase;
+
+  &:hover{
+    text-decoration: none;
+    color: $white;
+  }
 }
 
 .game-page__play {
   display: block;
   margin-top: 40px;
+  &:hover {
+    text-decoration: none;
+  }
 
   .fa-play {
     background: coral;
     color: white;
-    padding: 20px 21px 20px 28px;
+    padding: 40px 41px 40px 48px;
     border-radius: 100%;
     font-size: 40px;
   }
 }
+
+@media (min-width: 668px) {
+  .game-page__icon {
+    height: 100px;
+    width: auto;
+  }
+}
+

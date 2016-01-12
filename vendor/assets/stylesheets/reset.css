@@ -44,3 +44,7 @@ img {
 embed {
 	vertical-align:top;
 }
+a,
+a:hover {
+  text-decoration: none !important;
+}

@@ -6,6 +6,8 @@
 @import "confirmation";
 @import "superslides";
 @import "intermediates";
+@import "buttons";
+// @import "reset";
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -20,9 +22,13 @@ html {
 }
 
 body {
-  padding-top: 0px;
+  padding-top: 60px;
   position: relative;
   z-index: 1;
+  &.mobile-header--hide,
+  &.mobile-home {
+    padding-top: 0;
+  }
 }
 
 section {
@@ -166,6 +172,9 @@ textarea {
 .mobile-home {
   text-align: center;
 }
+.logo-wrapper {
+  text-align: center;
+}
 .top-title {
     width: 200px;
     height: auto;
@@ -191,59 +200,17 @@ textarea {
   form{
     max-width: 80%;
     margin:auto;
-
-    input[type="submit"] {
-      padding: 10px 60px;
-      margin: 10px 0;
-      background-color: #915AB9;
-      border: none;
-      border-radius: 50px;
-      color: #fff;
-      display: block;
-      margin: 20px auto;
-      &:hover {
-          background-color: $purple-border;
-        }
-    }
   }
   p{
     max-width:200px;
     margin:auto;
   }
 }
-#session_password,
-#session_email {
-  text-align: center;
-  height: 40px;
-  padding: 0;
-  border-radius: 100px;
-  border: 2px solid $purple-border;
-  background-color: $purple-light;
-  width: 100%;
-  color: #fff;
-
-  ::-webkit-input-placeholder {
-     color: red;
-  }
-
-  :-moz-placeholder { /* Firefox 18- */
-     color: red;
-  }
-
-  ::-moz-placeholder {  /* Firefox 19+ */
-     color: red;
-  }
-
-  :-ms-input-placeholder {
-     color: red;
-  }
-}
 
 .facebook-signup{
   width: 80%;
-  margin:auto;
   display:block;
-  margin-bottom: 10px;
+  margin: 10px auto;
 }
 .email-signup{
   width: 80%;
@@ -692,7 +659,6 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 3em;
-  // letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
   color:#4A4A4A;
@@ -700,7 +666,6 @@ h1 {
 
 h2 {
   font-size: 1.2em;
-  // letter-spacing: -1px;
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
@@ -787,13 +752,17 @@ p {
   color: $red;
 }
 .mobile-header{
-    position: relative;
+  .mobile-header--hide & {
+    display: none;
+  }
+    position: fixed;
     top: 0px;
     width: 100%;
     display: block;
     height: 60px;
     background: #F2BB7C;
     min-height: 60px;
+    z-index: 10;
     a{
       z-index:1;
       position:relative;
@@ -1043,13 +1012,17 @@ p {
 }
 .side-nav__user-info {
   background-color: $orange;
-  padding: 10px 0 20px;
+  padding: 20px 0;
 
   h2 {
     color: $white;
     // font-weight: 200;
     // letter-spacing: 0.5px;
   }
+}
+.intro-header--mobile {
+  margin: 0;
+  padding: 20px;
 }
 .side-nav__close {
   text-transform: uppercase;
@@ -1140,7 +1113,6 @@ p {
       color: black;
       text-transform: uppercase;
       font-size: 10px;
-      text-decoration: underline;
       font-weight: 500;
     &:hover {
       cursor: pointer;
@@ -1166,7 +1138,6 @@ p {
       position: absolute;
       right: 20px;
       top: 10px;
-      text-decoration: underline;
     }
     .rotate-dialogue {
       display: block;
@@ -1250,7 +1221,6 @@ p {
       position: absolute;
       right: 20px;
       top: 10px;
-      text-decoration: underline;
     }
   }
 }
