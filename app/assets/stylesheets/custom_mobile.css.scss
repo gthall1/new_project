@@ -890,6 +890,13 @@ p {
         }
     }
 }
+.game--black-hole {
+    &.game-wrapper {
+        &::after {
+            display: none;
+        }
+    }
+}
 .game-container{
     min-height:800px;
     background:#000;
