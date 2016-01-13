@@ -1,275 +1,275 @@
 @import "reset";
 // Interior Pages
 .desktop-games-page {
-  background-image: url(star_background.jpg);
-  background-size: 70%;
+    background-image: url(star_background.jpg);
+    background-size: 70%;
 }
 .interior-page {
-  background: $white !important;
+    background: $white !important;
 }
 .interior-hero {
-  background-color: $purple;
-  padding: 40px 5% 40px 5%;
-  text-align: center;
-  color: $white;
-  margin-top: -5px;
+    background-color: $purple;
+    padding: 40px 5% 40px 5%;
+    text-align: center;
+    color: $white;
+    margin-top: -5px;
 }
 .interior-hero__title {
-  font-size: 36px;
-  font-weight: 200;
-  letter-spacing: 0.25px;
-  margin: 0 0 10px 0;
+    font-size: 36px;
+    font-weight: 200;
+    letter-spacing: 0.25px;
+    margin: 0 0 10px 0;
 
-  .credits {
-    color: $red;
-  }
+    .credits {
+        color: $red;
+    }
 }
 .interior-hero__desc {
-  font-size: 20px;
-  line-height: 25px;
-  font-weight: 200;
-  .credits {
-    color: $red;
-  }
-  .byline {
-    float: right;
-  }
+    font-size: 20px;
+    line-height: 25px;
+    font-weight: 200;
+    .credits {
+        color: $red;
+    }
+    .byline {
+        float: right;
+    }
 }
 .interior-body--section {
-  padding: 30px 5%;
+    padding: 30px 5%;
 
-  &.section--two {
-    padding: 40px 5% 50px;
-    background-color: $orange-light;
-    .interior-body__title {
-      color: $orange-flat;
-      font-weight: 200;
+    &.section--two {
+        padding: 40px 5% 50px;
+        background-color: $orange-light;
+        .interior-body__title {
+            color: $orange-flat;
+            font-weight: 200;
+        }
+        .tout__copy,
+        .tout__title {
+            color: $orange-flat;
+        }
     }
-    .tout__copy,
-    .tout__title {
-      color: $orange-flat;
-    }
-  }
 }
 .interior-body__title {
  font-size: 36px;
  color: $purple;
 }
 .interior-body__caption {
-  font-size: 14px;
-  color: $purple;
-  font-weight: 400;
+    font-size: 14px;
+    color: $purple;
+    font-weight: 400;
 }
 .interior-body__link {
-  color: $silver;
-  &.share-link {
-    font-size: 34px;
-    font-weight: 200;
-    letter-spacing: .03em;
-    padding: 10px 0;
-  }
+    color: $silver;
+    &.share-link {
+        font-size: 34px;
+        font-weight: 200;
+        letter-spacing: .03em;
+        padding: 10px 0;
+    }
 }
 .refer-friend__btn {
-  background: $purple;
-  border: none;
-  border-radius: 4px;
-  padding: 15px 20px;
-  min-height: 45px;
-  min-width: 140px;
-  color: white;
-  outline: 0;
-  @include transition();
+    background: $purple;
+    border: none;
+    border-radius: 4px;
+    padding: 15px 20px;
+    min-height: 45px;
+    min-width: 140px;
+    color: white;
+    outline: 0;
+    @include transition();
 
-  &.copied {
-    background-color: $purple-border;
-  }
+    &.copied {
+        background-color: $purple-border;
+    }
 }
 .cash-out__submit {
-  background: $purple;
-  border: none;
-  border-radius: 4px;
-  padding: 15px 20px;
-  min-height: 45px;
-  min-width: 140px;
-  margin-top: 20px;
-  color: white;
-  outline: 0;
-  display: none;
-  @include transition();
+    background: $purple;
+    border: none;
+    border-radius: 4px;
+    padding: 15px 20px;
+    min-height: 45px;
+    min-width: 140px;
+    margin-top: 20px;
+    color: white;
+    outline: 0;
+    display: none;
+    @include transition();
 
-  &.show {
-    display: inline-block;
-  }
-  &:hover {
-    background-color: $purple-border;
-  }
+    &.show {
+        display: inline-block;
+    }
+    &:hover {
+        background-color: $purple-border;
+    }
 }
 .cash-out__redo {
-  display: block !important;
-  font-size: 20px;
-  text-align: center;
-  margin: 20px 0;
-  &:hover {
-    cursor: pointer;
-  }
-  &.hide {
-    display: none !important;
-  }
+    display: block !important;
+    font-size: 20px;
+    text-align: center;
+    margin: 20px 0;
+    &:hover {
+        cursor: pointer;
+    }
+    &.hide {
+        display: none !important;
+    }
 }
 .cash-out__wrapper {
-  display: block;
-  margin: 0 auto;
-  width: 50%;
-  min-width: 300px;
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+    min-width: 300px;
 
-  .interior-body__caption {
-    margin-bottom: 10px;
-  }
+    .interior-body__caption {
+        margin-bottom: 10px;
+    }
 
-  input[type="text"] {
-    border: 1px solid $silver;
-    border-radius: 2px;
-    min-height: 35px;
-  }
+    input[type="text"] {
+        border: 1px solid $silver;
+        border-radius: 2px;
+        min-height: 35px;
+    }
 }
 .cash-out__redo-copy {
-  font-size: 12px;
+    font-size: 12px;
 }
 .cash-out__fields {
-  display: none;
+    display: none;
 
-  &.show {
-    display: block;
-  }
+    &.show {
+        display: block;
+    }
 }
 .section--refer {
-  .interior-body__caption {
-    margin: 0;
-  }
-  .interior-body__link {
-    padding: 0;
-    margin: 0 0 5px;
-  }
+    .interior-body__caption {
+        margin: 0;
+    }
+    .interior-body__link {
+        padding: 0;
+        margin: 0 0 5px;
+    }
 }
 .inline-tout {
-  width: 100%;
+    width: 100%;
 }
 .tout {
-  display: inline-block;
-  width: 50%;
-  margin-top: 25px;
-  text-align: left;
-  padding: 0px 5%;
-  color: $purple;
+    display: inline-block;
+    width: 50%;
+    margin-top: 25px;
+    text-align: left;
+    padding: 0px 5%;
+    color: $purple;
 }
 .tout:first-child {
 
-  float: left;
+    float: left;
 }
 .tout:last-child {
-  float: right;
+    float: right;
 }
 .tout__title {
-  font-size: 20px;
-  letter-spacing: 0.25px;
-  font-weight: 200;
-  margin: 0 0 10px;
-  text-align: left;
-  .fa {
-    color: $white;
-    min-width: 25px;
-  }
+    font-size: 20px;
+    letter-spacing: 0.25px;
+    font-weight: 200;
+    margin: 0 0 10px;
+    text-align: left;
+    .fa {
+        color: $white;
+        min-width: 25px;
+    }
 }
 .tout__copy {
-  font-size: 16px;
-  font-weight: 200;
-  margin-left: 32px;
-  line-height: 20px;
+    font-size: 16px;
+    font-weight: 200;
+    margin-left: 32px;
+    line-height: 20px;
 }
 @media (min-width: 768px) {
-  .interior-hero {
-    padding: 50px 50% 60px 5%;
-    text-align: left;
-    min-height: 200px;
-  }
-  .interior-hero__title {
-    text-align: left;
-  }
+    .interior-hero {
+        padding: 50px 50% 60px 5%;
+        text-align: left;
+        min-height: 200px;
+    }
+    .interior-hero__title {
+        text-align: left;
+    }
 }
 
 
 // Donations
 .donations{
-  height: 250px;
-  background-image: url(/assets/paws_4.jpg);
-  background-repeat: no-repeat;
-  background-position: 90% center;
-  background-size: 25%;
-  position: relative;
+    height: 250px;
+    background-image: url(/assets/paws_4.jpg);
+    background-repeat: no-repeat;
+    background-position: 90% center;
+    background-size: 25%;
+    position: relative;
 }
 .donations__caption {
-  font-weight: normal;
-  font-size: 30px;
-  letter-spacing: 0;
+    font-weight: normal;
+    font-size: 30px;
+    letter-spacing: 0;
 }
 .donations__caption--checkout {
-  margin-top: 50px;
-  width: 50%;
-  display: inline-block;
+    margin-top: 50px;
+    width: 50%;
+    display: inline-block;
 }
 .donations__link {
-  background-color: $purple;
-  color: white;
-  padding: 15px 30px;
-  border-radius: 2px;
-  @include transition();
-
-  &:hover {
-    text-decoration: none;
+    background-color: $purple;
     color: white;
-    background-color: $red-light;
-  }
+    padding: 15px 30px;
+    border-radius: 2px;
+    @include transition();
+
+    &:hover {
+        text-decoration: none;
+        color: white;
+        background-color: $red-light;
+    }
 }
 
 .donations__link--holiday {
-  background-color: $red;
+    background-color: $red;
 }
 .donations__wrapper {
-  position: absolute;
-  display: inline-block;
-  left: 5%;
-  width: 50%;
-  top: 50px;
+    position: absolute;
+    display: inline-block;
+    left: 5%;
+    width: 50%;
+    top: 50px;
 }
 .donations__final-step {
-  .final-step {
-    text-align: center;
-    .cash-out__submit {
-      background-color: $red;
-      display: inline-block;
-      @include transition();
+    .final-step {
+        text-align: center;
+        .cash-out__submit {
+            background-color: $red;
+            display: inline-block;
+            @include transition();
 
-      &:hover {
-        background-color: $red-light;
-      }
+            &:hover {
+                background-color: $red-light;
+            }
+        }
     }
-  }
 }
 
 // ********************** /users *********************
 .export-btn {
-  background-color: $orange;
-  color: $white;
-  padding: 10px 20px;
-  border-radius: 2px;
-  @include transition();
-
-  &:hover {
-    background-color: $orange-flat;
-    text-decoration: none;
+    background-color: $orange;
     color: $white;
-  }
+    padding: 10px 20px;
+    border-radius: 2px;
+    @include transition();
+
+    &:hover {
+        background-color: $orange-flat;
+        text-decoration: none;
+        color: $white;
+    }
 }
 .users.users__info-list {
-  margin-top: 20px;
+    margin-top: 20px;
 }

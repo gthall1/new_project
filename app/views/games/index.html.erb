@@ -3,22 +3,22 @@
 <h1 class="page__title">Play free games. Earn real cash.</h1>
 
 <div class='game-list-container'>
-    <% @games.each do | g | %>
-    <%= link_to game_path(g) do %>
-    <div class="game-wrapper game--<%= g.slug %> js-game--<%= g.slug %>">
+        <% @games.each do | g | %>
+        <%= link_to game_path(g) do %>
+        <div class="game-wrapper game--<%= g.slug %> js-game--<%= g.slug %>">
 
-        <%= image_tag(g.desktop_image, :class=>'game-image') %>
+                <%= image_tag(g.desktop_image, :class=>'game-image') %>
 
 
-      <div class="game__info">
-        <h1 class="game__title"><%= g.name %></h1>
-        <span class="credits">Earn Credits</span>
-        <% if g.slug == "flappy-pilot" ||  g.slug == "fall-down" || g.slug == "traffic" %>
-          <img class="game__leaderboard" src="/assets/leaderboard_button.png">
+            <div class="game__info">
+                <h1 class="game__title"><%= g.name %></h1>
+                <span class="credits">Earn Credits</span>
+                <% if g.slug == "flappy-pilot" ||  g.slug == "fall-down" || g.slug == "traffic" %>
+                    <img class="game__leaderboard" src="/assets/leaderboard_button.png">
+                <% end %>
+            </div>
+
+        </div> <!--/ .game-wrapper -->
         <% end %>
-      </div>
-
-    </div> <!--/ .game-wrapper -->
-    <% end %>
-    <% end %>
+        <% end %>
 </div>
