@@ -26,7 +26,8 @@ body {
     position: relative;
     z-index: 1;
     &.mobile-header--hide,
-    &.mobile-home {
+    &.mobile-home,
+    &.gameplay-page--2048 {
         padding-top: 0;
     }
 }
