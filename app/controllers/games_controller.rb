@@ -31,6 +31,41 @@ class GamesController < ApplicationController
     end
   end
 
+  def new_game
+    @game = Game.where(slug:params[:slug]).first
+    create_game_session
+    current_high_score = UserGameSession.where(user_id:current_user.id,game_id:@game.id).where.not(score: nil).order("score desc").first.score if UserGameSession.where(user_id:current_user.id,game_id:@game.id).where.not(score: nil).order("score desc").present?
+
+    game_json = {
+      :c2dictionary => true,
+      :data => {
+       :earned => 0,
+       :total_credits => current_user.credits,
+       :token => session[:game_token],
+       :challenge => false,
+       :hscore => current_high_score
+      }
+    }
+
+  end
+
+  def close_game_new
+    game_session = UserGameSession.where(token:params[:game_token]).first
+    game_session.active = false
+    game_session.save
+      game_json = {
+        :c2dictionary => true,
+        :data => {
+         :earned => game_session.credits_earned,
+         :total_credits => current_user.credits,
+         :token => game_session.token,
+         :status => status,
+         :hscore => current_high_score
+        }
+      }
+    game_json
+  end
+
   # GET /games/1
   # GET /games/1.json
   def show
@@ -116,16 +151,13 @@ class GamesController < ApplicationController
           status = "nothingearned"
         end
         if session[:challenge_id]
-          p "FPUND SESSION #{session[:challenge_id]}"
          other_game_session = UserGameSession.where(challenge_id:session[:challenge_id],user_id:current_user.id).where.not(score:[nil,0]).where.not(id:game_session.id)
          #if already finished challenge game, get rid of session variable
          if other_game_session.present?
-          p "REMOVING CHALLENGE WHAT"
            session[:challenge_id] = nil
          else
           challenge = Challenge.where(id:session[:challenge_id]).first
           game_session.challenge_id = challenge.id
-          p "SETTING THIS #{session[:challenge_id]}"
          end
         end
         game_session.score = score
@@ -594,6 +626,30 @@ class GamesController < ApplicationController
     end
   end
 
+  #updated for construct2 games
+  def create_game_session     
+      game_session = UserGameSession.new
+      game_session.token = SecureRandom.urlsafe_base64
+      game_session.user_id = current_user.id
+      game_session.game_id = @game.id
+      game_session.credits_earned = 0
+      game_session.active = true
+      game_session.score = score
+      game_session.arrival_id = session[:arrival_id]
+      game_session.save
+      if !session[:game_token].nil?
+       old_game = UserGameSession.where(token:session[:game_token]).first
+
+       #close previous game game just in case
+       if old_game
+        old_game.active = false
+        old_game.save
+       end
+
+      end
+      session[:game_token] = game.token    
+  end
+
   def set_game_token(args={})
     score = args[:score] ||= 0
     game_name = args[:game_name] ||= "Memory Game"
@@ -664,7 +720,7 @@ class GamesController < ApplicationController
         credits = (score/10.to_f).ceil - 1
       when "black-hole"
         #credits = score * 5
-        credits_to_apply = 3
+        credits_to_apply = 0
       when "fall-down"
         credits = (score/15.to_f).ceil - 1
     end
@@ -680,7 +736,6 @@ class GamesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_game
     if params[:c] && !params[:c].blank? && params[:id].blank?
-      p "I SHOULD BE SETTING CHALLEGNE!"
        challenge = Challenge.where(id:Base64.urlsafe_decode64(params[:c]).to_i).first
        @game = challenge.game
        if challenge && current_user.challenges.include?(challenge)
