@@ -1,27 +1,27 @@
 html body {
-  .form-submit {
-    padding: 10px 60px;
-    margin: 10px 0;
-    background-color: #915AB9;
-    border: none;
-    border-radius: 50px;
-    color: #fff;
-    display: block;
-    margin: 20px auto;
-    &:hover {
-        background-color: $purple-border;
-      }
-  }
+    .form-submit {
+        padding: 10px 60px;
+        margin: 10px 0;
+        background-color: #915AB9;
+        border: none;
+        border-radius: 50px;
+        color: #fff;
+        display: block;
+        margin: 20px auto;
+        &:hover {
+                background-color: $purple-border;
+            }
+    }
 
-  .session__input {
-    text-align: center;
-    height: 40px;
-    padding: 0;
-    border-radius: 100px;
-    border: 2px solid $purple-border;
-    background-color: $purple-light;
-    width: 100%;
-    color: #fff;
-  }
+    .session__input {
+        text-align: center;
+        height: 40px;
+        padding: 0;
+        border-radius: 100px;
+        border: 2px solid $purple-border;
+        background-color: $purple-light;
+        width: 100%;
+        color: #fff;
+    }
 
 }
