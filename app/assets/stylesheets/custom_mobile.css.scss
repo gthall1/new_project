@@ -27,12 +27,20 @@ body {
     z-index: 1;
     &.mobile-header--hide,
     &.mobile-home,
-    &.gameplay-page--2048 {
+    &.gameplay-page--2048,
+    &.leaderboard-page--mobile {
         padding-top: 0;
     }
 
+    &.gameplay-page,
+    &.intermediate {
+        .bottom-navigation {
+            display: none;
+        }
+    }
+
     &.mobile-games-page {
-        padding-bottom: 60px;
+        padding-bottom: 50px;
     }
 }
 
@@ -214,7 +222,7 @@ textarea {
 
 // Homepage
 .bottom-navigation {
-    height: 60px;
+    height: 50px;
     position: fixed;
     left: 0;
     bottom: 0;
@@ -225,7 +233,7 @@ textarea {
 .bottom-nav__item {
     width: 20vw;
     display: block;
-    height: 60px;
+    height: 50px;
     background-color: #26272b;
     color: $white;
     float: left;

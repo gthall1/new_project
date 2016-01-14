@@ -45,7 +45,7 @@ Alotto::Application.routes.draw do
   match '/challenge_user', to: 'games#challenge_create',as: 'challenges', via: 'post'
   match '/ro', to: 'games#get_random_challenge_user', via: 'get'
   match '/leaderboard/:game_slug', to: 'games#leaderboard', as: 'game_leaderboard', via: 'get'
-  match '/leaderboard', to: 'games#games_leaderboard', via: 'get'
+  match '/leaderboards', to: 'games#games_leaderboard', via: 'get'
   match '/cash_out', to: 'static_pages#new_cash_out', via: 'post'
   match '/donation', to: 'static_pages#new_donation', via: 'post'
   match '/get_advertisers', to: 'games#get_advertisers', via: 'get'
