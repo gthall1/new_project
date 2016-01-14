@@ -154,11 +154,13 @@ task :seed_new_games => :environment do | t, args|
    sorc.desktop_image = "square_sorcerer.png"
    sorc.device_type = 3
    sorc.sort_order = 6
+   sorc.slug = "socerer-game"
    sorc.save
 
    tfe = Game.new
    tfe.name = "2048"
    tfe.image = "bigger_2048.png"
+   tfe.slug = '2048'
    tfe.desktop_image = "square_2048.png"
    tfe.sort_order = 4
    tfe.device_type = 3
@@ -167,6 +169,7 @@ task :seed_new_games => :environment do | t, args|
    bh = Game.new
    bh.name = "Black Hole"
    bh.image = "bigger_black_hole.png"
+   bh.slug = "black-hole"
    bh.desktop_image ="square_black_hole.png"      
    bh.device_type = 3
    bh.sort_order = 3
@@ -177,11 +180,13 @@ task :seed_new_games => :environment do | t, args|
    traffic.image = "bigger_traffic.png"
    traffic.desktop_image ="square_traffic.png"   
    traffic.device_type = 3
+   traffic.slug = "traffic"
    traffic.sort_order = 1
    traffic.save
 
    flappy = Game.new
    flappy.name = "Flappy Pilot"
+   flappy.slug = "flappy-pilot"
    flappy.image = "bigger_flappy_pilot.png"
    flappy.desktop_image = "square_flappy.png"
    flappy.device_type = 3
