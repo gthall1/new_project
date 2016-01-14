@@ -142,7 +142,7 @@ task :add_tap_color => :environment do |t,args|
    tc.desktop_image = "tap_desktop.png"
    tc.device_type = 3
    tc.slug = "tap-color"
-   tc.image = "tap_color_mobile.jpg"
+   tc.image = "tap_color_mobile.png"
    tc.sort_order = 3
    tc.save
 end
@@ -150,35 +150,41 @@ end
 task :seed_new_games => :environment do | t, args|
    sorc = Game.new
    sorc.name = "Sorcerer Game"
-   sorc.image = "sorcerer_1.png"
-   sorc.device_type = 1
+   sorc.image = "bigger_sorcerer.png"
+   sorc.desktop_image = "square_sorcerer.png"
+   sorc.device_type = 3
    sorc.sort_order = 6
    sorc.save
 
    tfe = Game.new
    tfe.name = "2048"
-   tfe.image = "2048.png"
+   tfe.image = "bigger_2048.png"
+   tfe.desktop_image = "square_2048.png"
    tfe.sort_order = 4
+   tfe.device_type = 3
    tfe.save
 
    bh = Game.new
    bh.name = "Black Hole"
-   bh.image = "black_hole.png"
-   bh.device_type = 1
+   bh.image = "bigger_black_hole.png"
+   bh.desktop_image ="square_black_hole.png"      
+   bh.device_type = 3
    bh.sort_order = 3
    bh.save
 
    traffic = Game.new
    traffic.name = "Traffic"
-   traffic.image = "traffic.png"
-   traffic.device_type = 1
+   traffic.image = "bigger_traffic.png"
+   traffic.desktop_image ="square_traffic.png"   
+   traffic.device_type = 3
    traffic.sort_order = 1
    traffic.save
 
    flappy = Game.new
    flappy.name = "Flappy Pilot"
-   flappy.image = "flappy_pilot.png"
-   flappy.device_type = 1
+   flappy.image = "bigger_flappy_pilot.png"
+   flappy.desktop_image = "square_flappy.png"
+   flappy.device_type = 3
    flappy.sort_order = 2
    flappy.save
 
