@@ -6,16 +6,16 @@
     <div class="game-page__icon-row">
         <a href="/games" class="game-page__link">
             <img src="/assets/white_home.svg" class="game-page__icon">
-            <h2 class="game-page__subtitle">Home</h2>
+            <h2 class="game-page__subtitle game-page__subtitle--backdrop">Home</h2>
         </a>
 
         <a href="/leaderboard/<%= @game.name %>" class="game-page__link">
             <img src="/assets/white_leaderboard.svg" class="game-page__icon">
-            <h2 class="game-page__subtitle">Leaderboard</h2>
+            <h2 class="game-page__subtitle game-page__subtitle--backdrop">Leaderboard</h2>
         </a>
     </div>
 
-    <a href="/2048_tutorial" class="game-page__how-to">How to Play</a>
+    <a href="/2048_tutorial" class="game-page__tut-btn game-page__tut-btn--2048">How to Play</a>
 
     <a href="/games/<%= @game.id %>" class="game-page__play">
         <i class="fa fa-play"></i>

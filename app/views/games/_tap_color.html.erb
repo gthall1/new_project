@@ -1,4 +1,4 @@
-
+<% content_for :body_class, "gameplay-page gameplay-page--tap-color" %>
     <script>
     // Issue a warning if trying to preview an exported project on disk.
     (function(){
@@ -9,10 +9,10 @@
         }
     })();
     </script>
-    
+
     <!-- The canvas must be inside a div called c2canvasdiv -->
     <div id="c2canvasdiv">
-    
+
         <!-- The canvas the project will render to.  If you change its ID, don't forget to change the
         ID the runtime looks for in the jQuery events above (ready() and cr_sizeCanvas()). -->
         <canvas id="c2canvas" width="320" height="480">
@@ -26,7 +26,7 @@
             <a href="http://www.apple.com/safari/download/">Apple Safari</a><br/>
             <a href="http://www.google.com/chromeframe">Google Chrome Frame for Internet Explorer</a><br/></h1>
         </canvas>
-        
+
     </div>
 
     <script>
@@ -34,14 +34,14 @@
         jQuery(window).resize(function() {
             cr_sizeCanvas(jQuery(window).width(), jQuery(window).height());
         });
-        
+
         // Start the Construct 2 project running on window load.
         jQuery(document).ready(function ()
-        {           
+        {
             // Create new runtime using the c2canvas
             cr_createRuntime("c2canvas");
         });
-        
+
         // Pause and resume on page becoming visible/invisible
         function onVisibilityChanged() {
             if (document.hidden || document.mozHidden || document.webkitHidden || document.msHidden)
@@ -49,12 +49,12 @@
             else
                 cr_setSuspended(false);
         };
-        
+
         document.addEventListener("visibilitychange", onVisibilityChanged, false);
         document.addEventListener("mozvisibilitychange", onVisibilityChanged, false);
         document.addEventListener("webkitvisibilitychange", onVisibilityChanged, false);
         document.addEventListener("msvisibilitychange", onVisibilityChanged, false);
- 
+
     </script>
 
 <%= content_for(:game_javascript) do %>

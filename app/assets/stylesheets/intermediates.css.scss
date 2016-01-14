@@ -3,7 +3,7 @@
 }
 
 .intermediate--2048 .intermediate__wrap {
-    background-color: #faf8ef !important;
+    background-color: #D1D1D1 !important;
     text-align: center;
 }
 
@@ -11,10 +11,10 @@
     padding: 20px 0;
 }
 .game-page__title {
-    margin: 0 0 30px;
-    font-size: 40px;
-    font-weight: 300;
-    color: #ffb400;
+    margin: 0;
+    font-size: 80px;
+    font-weight: 500;
+    color: $clay;
 }
 
 .game-page__icon-row {
@@ -32,24 +32,32 @@
 }
 
 .game-page__icon {
-    // background-color: #bbada0;
-    padding: 20px;
+    padding: 10px 0;
     border-radius: 100%;
     color: #fff;
     font-size: 30px !important;
-    height: 50px;
+    height: 70px;
     width: auto;
 }
 
 .game-page__subtitle {
-    color: #000;
+    color: $white;
     font-size: 16px;
 }
 
-.game-page__how-to {
-    color: white;
+.game-page__subtitle--backdrop {
+    margin-top: 5px;
+    background-color: $white;
+    color: $black;
+    border-radius: 2px;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.game-page__tut-btn--2048 {
+    color: $white;
     text-decoration: none;
-    background-color: #BBADA0;
+    background-color: $clay;
     padding: 15px 25px;
     border-radius: 2px;
     font-size: 12px;
@@ -63,17 +71,18 @@
 
 .game-page__play {
     display: block;
-    margin-top: 40px;
+    margin-top: 50px;
     &:hover {
         text-decoration: none;
     }
 
     .fa-play {
-        background: coral;
-        color: white;
-        padding: 40px 41px 40px 48px;
+        background: $tan;
+        color: $clay;
+        padding: 30px 31px 30px 53px;
         border-radius: 100%;
-        font-size: 40px;
+        font-size: 120px;
+        border: 3px solid $clay;
     }
 }
 
