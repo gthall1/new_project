@@ -202,7 +202,7 @@ task :seed_new_games => :environment do | t, args|
    tc.desktop_image = "tap_desktop.png"
    tc.device_type = 3
    tc.slug = "tap-color"
-   tc.image = "tap_color_mobile.jpg"
+   tc.image = "tap_color_mobile.png"
    tc.sort_order = 3
    tc.save
 end
