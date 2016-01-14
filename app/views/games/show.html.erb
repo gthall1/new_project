@@ -23,6 +23,10 @@
       <%= render 'fall_down_m' %>
     <% when 'traffic' %>
       <%= render 'traffic_m' %>
+    <% when 'tap-color' %>
+      <%= render 'tap_color' %>      
   <% end %>
 
-<input type="hidden" id="game_token" name="game_token" value="<%= session[:game_token] %>" />
+<% if @game.slug != 'tap-color' %>
+  <input type="hidden" id="game_token" name="game_token" value="<%= session[:game_token] %>" />
+<% end %>

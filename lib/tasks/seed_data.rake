@@ -136,6 +136,17 @@ task :update_for_desktop => :environment do|t,args|
  update_images
 end
 
+task :add_tap_color => :environment do |t,args|
+   tc = Game.new
+   tc.name = "Tap The Right Color"
+   tc.desktop_image = "tap_color.png"
+   tc.device_type = 3
+   tc.slug = "tap-color"
+   tc.image = "tap_color_mobile.jpg"
+   tc.sort_order = 3
+   tc.save
+end
+
 task :seed_new_games => :environment do | t, args|
    sorc = Game.new
    sorc.name = "Sorcerer Game"
@@ -180,6 +191,14 @@ task :seed_new_games => :environment do | t, args|
    fd.sort_order = 3
    fd.save
 
+   tc = Game.new
+   tc.name = "Tap The Right Color"
+   tc.desktop_image = "tap_desktop.png"
+   tc.device_type = 3
+   tc.slug = "tap-color"
+   tc.image = "tap_color_mobile.jpg"
+   tc.sort_order = 3
+   tc.save
 end
 
 def set_game_order
@@ -206,6 +225,10 @@ def set_game_order
     g = Game.where(slug:"sorcerer-game").first 
     g.sort_order = 6
     g.save  
+
+    g = Game.where(slug:"tap-color").first 
+    g.sort_order = 7
+    g.save      
 end
 
 def set_device_types
@@ -232,7 +255,12 @@ def set_device_types
     g = Game.where(slug:"sorcerer-game").first 
     g.device_type = 1
     g.save  
+
+    g = Game.where(slug:"tap-color").first 
+    g.device_type = 3
+    g.save     
 end
+
 
 def update_images
     g = Game.where(slug:"traffic").first 

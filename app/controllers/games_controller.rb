@@ -107,7 +107,7 @@ class GamesController < ApplicationController
              :status => status,
              :hscore => current_high_score
             }
-        when 'flappy-pilot','traffic','fall-down'
+        when 'flappy-pilot','traffic','fall-down','tap-color'
           if game_session.game.slug == 'flappy-pilot'
             current_high_score = current_high_score.to_s.rjust(3, '0')
           end
@@ -207,7 +207,7 @@ class GamesController < ApplicationController
              :status => status,
              :hscore => current_high_score
             }
-        when 'flappy-pilot','traffic','fall-down'
+        when 'flappy-pilot','traffic','fall-down','tap-color'
           if game_session.game.slug == 'flappy-pilot'
             current_high_score = current_high_score.to_s.rjust(3, '0')
           end
@@ -723,6 +723,8 @@ class GamesController < ApplicationController
         credits_to_apply = 0
       when "fall-down"
         credits = (score/15.to_f).ceil - 1
+      when "tap-color"
+        credits = (score/15.to_f).ceil - 1        
     end
 
     credits_to_apply = credits - credits_applied unless !credits_to_apply.nil?
@@ -733,6 +735,7 @@ class GamesController < ApplicationController
    # old_game = UserGameSession.where(user_id:current_user).last
     set_game_token({game_name:Game.where(id:game_id).first.name,score:score})
   end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_game
     if params[:c] && !params[:c].blank? && params[:id].blank?
@@ -761,7 +764,6 @@ class GamesController < ApplicationController
 
   def challenge_params
     params.require(:challenge).permit(:user_id,:game_id,:challenged_user_id)
-
   end
 
   def init_testgame(game_id)

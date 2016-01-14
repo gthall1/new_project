@@ -127,7 +127,7 @@
         <% end %>
         <%= yield(:game_javascript) %>
     </head>
-    <body ondragstart="return false;" ondrop="return false;" class="<%= yield (:body_class) %> <% if @game && Game.where(slug:['traffic','flappy-pilot','fall-down']).pluck(:id).include?(@game.id) %> mobile-header--hide <% end %>">
+    <body ondragstart="return false;" ondrop="return false;" class="<%= yield (:body_class) %> <% if @game && Game.where(slug:['traffic','flappy-pilot','fall-down','tap-color']).pluck(:id).include?(@game.id) %> mobile-header--hide <% end %>">
         <% if signed_in? %>
         <nav class="nav ssm-nav-visible">
             <div class='side-nav-top'>
