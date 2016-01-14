@@ -139,7 +139,7 @@ end
 task :add_tap_color => :environment do |t,args|
    tc = Game.new
    tc.name = "Tap The Right Color"
-   tc.desktop_image = "tap_color.png"
+   tc.desktop_image = "tap_desktop.png"
    tc.device_type = 3
    tc.slug = "tap-color"
    tc.image = "tap_color_mobile.jpg"
