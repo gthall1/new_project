@@ -26,8 +26,21 @@ body {
     position: relative;
     z-index: 1;
     &.mobile-header--hide,
-    &.mobile-home {
+    &.mobile-home,
+    &.gameplay-page--2048,
+    &.leaderboard-page--mobile {
         padding-top: 0;
+    }
+
+    &.gameplay-page,
+    &.intermediate {
+        .bottom-navigation {
+            display: none;
+        }
+    }
+
+    &.mobile-games-page {
+        padding-bottom: 50px;
     }
 }
 
@@ -205,6 +218,64 @@ textarea {
         max-width:200px;
         margin:auto;
     }
+}
+
+// Homepage
+.bottom-navigation {
+    height: 50px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+}
+
+.bottom-nav__item {
+    width: 20vw;
+    display: block;
+    height: 50px;
+    background-color: #26272b;
+    color: $white;
+    float: left;
+    text-align: center;
+
+    .bottom-nav__img {
+        height: 20px;
+        width: auto;
+        display: block;
+        margin: 0 auto 5px;
+    }
+
+    .bottom-nav__item-copy {
+        line-height: 12.5px;
+        font-size: 12px;
+        @include vertical-align();
+    }
+
+    &.active {
+        background-color: $black;
+    }
+}
+
+.bottom-nav__item--primary {
+    background-color: $dark-seafoam;
+}
+
+.bottom-nav__item--leaderboard {
+    .bottom-nav__img {
+        height: 17.5px;
+    }
+}
+
+// Headroom.js
+.headroom {
+    transition: transform 200ms linear;
+}
+.headroom--pinned {
+    transform: translateY(0%);
+}
+.headroom--unpinned {
+    transform: translateY(-100%);
 }
 
 .facebook-signup{

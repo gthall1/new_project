@@ -16,7 +16,7 @@
         <!-- touchSwipe library -->
 
         <!-- Hide iOS Status Bar -->
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <!-- <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"> -->
         <!-- iOS Load Screen -->
 
         <!-- iPhone SPLASHSCREEN-->
@@ -213,7 +213,6 @@
                 </div>
             </div>
             <% if signed_in? %>
-                <div class="bottom-navigation bottom-navigation--mobile js-bottom-navigation"></div>
                 <div class="mobile-header js-mobile-header">
                     <% if @show_back_button %>
                         <% if @back_button_action %>
@@ -254,6 +253,38 @@
                         <% end %>
                     </div>
                 </div>
+
+                <div class="bottom-navigation bottom-navigation--mobile js-bottom-navigation">
+                    <%= link_to games_path do %>
+                    <div class="bottom-nav__item active">
+                        <p class="bottom-nav__item-copy"><img class="bottom-nav__img" src="/assets/navbar_2.png">Home</p>
+                    </div>
+                    <% end %>
+
+                    <%= link_to surveys_path do %>
+                        <div class="bottom-nav__item">
+                            <p class="bottom-nav__item-copy"><img class="bottom-nav__img" src="/assets/navbar_1.png">Surveys</p>
+                        </div>
+                    <% end %>
+
+                    <%= link_to redeem_path do %>
+                        <div class="bottom-nav__item bottom-nav__item--primary">
+                            <p class="bottom-nav__item-copy"><img class="bottom-nav__img" src="/assets/navbar_3.png">Redeem</p>
+                        </div>
+                        <% end %>
+
+                    <%= link_to leaderboards_path do %>
+                        <div class="bottom-nav__item bottom-nav__item--leaderboard">
+                            <p class="bottom-nav__item-copy"><img class="bottom-nav__img" src="/assets/navbar_4.png">Leaders</p>
+                        </div>
+                    <% end %>
+
+                    <a href="#" class="bottom-nav__item-link">
+                        <div class="bottom-nav__item">
+                            <p class="bottom-nav__item-copy"><img class="bottom-nav__img" src="/assets/navbar_5.png">Profile</p>
+                        </div>
+                    </a>
+                </div><!-- /.bottom-navigation -->
             <% else %>
             <div class="logo-wrapper">
                 <img src="/assets/homescreen-logo.png" class="top-title">

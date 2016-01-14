@@ -108,11 +108,23 @@ var app = {
         }
     },
 
+    initheadroom: function(offset) {
+            offset = offset || 60;
+        $('.js-mobile-header').headroom({
+            "offset": offset,
+            "tolerance": 2.5,
+            onUnpin: function() {
+                console.log('unpin');
+            }
+        });
+    },
+
     init: function() {
         app.hideCopyBtn();
         app.showShareDialog();
         app.setAddToHomescreen();
         app.show2048Tutorial();
+        app.initheadroom();
         app.bind();
     }
 };

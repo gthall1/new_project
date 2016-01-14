@@ -128,6 +128,8 @@ class GamesController < ApplicationController
 
   # Intermediate Page
   def twentyfortyeight_home
+    @show_back_button = true
+
     @game = Game.where(name: "2048").first
   end
 
@@ -555,7 +557,7 @@ class GamesController < ApplicationController
       high_score = 0
     end
     if old_game
-      if !old_game.challenge_id.nil? 
+      if !old_game.challenge_id.nil?
         challenge = Challenge.where(id:old_game.challenge_id).first
         # if current_user.id == challenge.user_id
         #   challenge.user_score = old_game.score
@@ -573,7 +575,7 @@ class GamesController < ApplicationController
             challenge.challenged_score = old_game.score
             save = true
           end
-          
+
           if challenger_user_session && challenger_user_session.user_id == current_user.id
             challenge.user_score = old_game.score
             save = true
@@ -627,7 +629,7 @@ class GamesController < ApplicationController
   end
 
   #updated for construct2 games
-  def create_game_session     
+  def create_game_session
       game_session = UserGameSession.new
       game_session.token = SecureRandom.urlsafe_base64
       game_session.user_id = current_user.id
@@ -647,7 +649,7 @@ class GamesController < ApplicationController
        end
 
       end
-      session[:game_token] = game.token    
+      session[:game_token] = game.token
   end
 
   def set_game_token(args={})
@@ -715,7 +717,7 @@ class GamesController < ApplicationController
       when "2048"
         credits = (score/750.to_f).ceil - 1
       when "traffic"
-        credits = (score/7.to_f).ceil - 1 
+        credits = (score/7.to_f).ceil - 1
       when "flappy-pilot"
         credits = (score/10.to_f).ceil - 1
       when "black-hole"
