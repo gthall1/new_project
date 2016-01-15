@@ -143,6 +143,10 @@ class GamesController < ApplicationController
       status = "success"
       score = params[:score].to_i
       game_session = UserGameSession.where(token: params[:token]).first
+      if game_session 
+        p "FOUND GAME SESSION"
+        p game_session
+      end
      # p "Score : #{score} | Game SEssion Score: #{game_session.score}"
       if game_session && game_session.active
          credits_to_apply = get_credits_to_apply(game_session.game.slug,score,game_session.credits_applied,game_session.version)
@@ -154,7 +158,7 @@ class GamesController < ApplicationController
         else
           status = "nothingearned"
         end
-        if session[:challenge_id]
+        if false && session[:challenge_id]
          other_game_session = UserGameSession.where(challenge_id:session[:challenge_id],user_id:current_user.id).where.not(score:[nil,0]).where.not(id:game_session.id)
          #if already finished challenge game, get rid of session variable
          if other_game_session.present?
@@ -226,7 +230,7 @@ class GamesController < ApplicationController
             :data => {
              :earned => game_session.credits_earned,
              :total_credits => user.credits,
-             :token => game_session,
+             :token => game_session.token,
              :status => status,
              :hscore => current_high_score
             }
