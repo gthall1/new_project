@@ -237,13 +237,13 @@ class GamesController < ApplicationController
                     }
             end
         else
-                 game_json = {
-                         :earned => "0",
-                         :total_credits => user.credits,
-                         :token => session[:game_token],
-                         :status => status,
-                         :hscore => current_high_score
-                        }
+             game_json = {
+                     :earned => "0",
+                     :total_credits => user.credits,
+                     :token => session[:game_token],
+                     :status => status,
+                     :hscore => current_high_score
+                    }
         end
 
         #render text: user.credits
