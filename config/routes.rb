@@ -34,6 +34,7 @@ Alotto::Application.routes.draw do
   match '/sorcend', to: 'games#sorcerer_end', via: 'get'
   match '/score_update', to: 'games#score_update', via: 'get'
   match '/score_update', to: 'games#score_update', via: 'post'
+  match '/get_high_scores', to: 'games#get_high_scores', via: 'get'
   match '/close_game', to: 'games#close_game', via: 'post'
   match '/close_game', to: 'games#close_game', via: 'get'
   match '/new_game', to: 'games#new_game_session', via: 'get'
