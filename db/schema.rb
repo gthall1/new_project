@@ -51,10 +51,10 @@ ActiveRecord::Schema.define(version: 20160115033151) do
     t.integer  "challenged_user_id"
     t.integer  "game_id"
     t.integer  "winner_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "user_score"
     t.integer  "challenged_score"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "user_score"
   end
 
   create_table "feed_games", force: :cascade do |t|

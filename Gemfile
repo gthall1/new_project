@@ -24,6 +24,11 @@ gem 'nokogiri'
 gem 'httpi', '~> 2.2.4'
 gem 'raygun4ruby'
 gem 'activerecord-session_store'
+
+group :development do
+    # gem 'pry-rails'
+end
+
 group :production do
   gem 'rails_12factor'
 
