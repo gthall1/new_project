@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   include ApplicationHelper
 
   before_action :signed_in_user,
-                only: [:index, :edit, :update, :destroy]
+                only: [:index, :edit, :update, :destroy, :show]
   before_action :correct_user,   only: [:edit, :show, :update]
   before_action :admin_user,     only: [:index,:stats, :destroy]
 
@@ -21,6 +21,23 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @games = {}
+
+
+    # Temp
+    sql = "SELECT credits_earned, game_id FROM user_game_sessions WHERE user_game_sessions.user_id = #{@user.id}"
+    connection = ActiveRecord::Base.connection
+    result = connection.exec_query(sql)
+
+    @sessions = result.count
+
+    result.each do |r|
+        game_slug = Game.find(r["game_id"]).slug
+
+        @games.has_key?(game_slug) ? @games[game_slug] += r["credits_earned"].to_i : @games[game_slug] = 0
+    end
+
+    # Temp
   end
 
   def stats

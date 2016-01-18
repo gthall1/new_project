@@ -1,19 +1,37 @@
 <% provide(:title, @user.name) %>
 <% content_for :body_class, "user-profile user-profile--mobile" %>
 
-<div class="row">
-  <aside class="span4">
-    <section>
-      <h1>
-        <%= @user.name %>
-      </h1>
-      <ul>
-      	<li>Name: <%= @user.name %></li>
-      	<li>Credits on hand: <%= @user.credits %></li>
-      	<li>Credits used: <%= @user.user_entries.size %></li>
-      </ul>
-    </section>
-  </aside>
+  <%= link_to "Edit", edit_user_path(current_user), class: "btn--outline" %>
+
+
+      <div class="profile-section profile__top">
+        <div class="profile__avatar" style="<% if current_user.oath_image %>background-image: url(<%= current_user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %>"></div>
+
+        <h1 class="profile__name"><%= @user.name %></h1>
+      </div><!-- /.profile__top -->
+
+      <div class="profile-section">
+        <div class="profile__inline-tout">
+          <div class="inline-tout__item">
+            <h1 class="inline-tout__title"><%= @user.credits ||= 0 %></h1>
+            <h3 class="inline-tout__sub-title">Current Credits</h3>
+          </div><!-- /.inline-tout__item -->
+
+          <div class="inline-tout__item">
+            <h1 class="inline-tout__title"><%= @user.lifetime_credits ||= 0%></h1>
+            <h3 class="inline-tout__sub-title">Lifetime Credits</h3>
+          </div><!-- /.inline-tout__item -->
+
+          <div class="inline-tout__item">
+            <h1 class="inline-tout__title"><%= @user.credits ||= 0 %></h1>
+            <h3 class="inline-tout__sub-title">Luckee Rank</h3>
+          </div><!-- /.inline-tout__item -->
+        </div><!-- /.profile__inline-tout -->
+      </div><!-- /.profile-section -->
+
+      <div class="profile-section profile__bottom">
+
+      </div><!-- /.profile__bottom -->
 
   <% if current_user && current_user.admin? %>
     Total Games Played: <br />
@@ -22,4 +40,4 @@
       <%= g.name %> | sessions: <%= UserGameSession.where(user_id:@user.id).where(game_id:g.id).size %> <br />
     <% end %>
   <% end %>
-</div>
+

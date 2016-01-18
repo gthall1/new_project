@@ -275,11 +275,11 @@
                         </div>
                     <% end %>
 
-                    <a href="#" class="bottom-nav__item-link">
+                    <%= link_to user_path(current_user.id) do %>
                         <div class="bottom-nav__item">
                             <p class="bottom-nav__item-copy"><img class="bottom-nav__img" src="/assets/navbar_5.png">Profile</p>
                         </div>
-                    </a>
+                    <% end %>
                 </div><!-- /.bottom-navigation -->
             <% else %>
             <div class="logo-wrapper">

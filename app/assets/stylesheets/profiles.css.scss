@@ -1,10 +1,63 @@
+@import "variables";
+
 .user-profile {
     padding-top: 0;
     .mobile-container {
+        position: relative;
         background-image: none;
-        background-color: #2C3E50;
+        background-color: $midnight-blue;
     }
     .mobile-header {
         display: none;
     }
+}
+
+.profile-section {
+    padding: 15px 0;
+}
+
+.profile__top {
+    padding-top: 60px;
+}
+.profile__name {
+    color: white;
+    font-size: 36px;
+    font-weight: 300;
+    margin-bottom: 0;
+}
+.profile__avatar {
+    text-align: center;
+    height: 100px;
+    width: 100px;
+    background-color: white;
+    text-align: center;
+    background-position: center;
+    background-size: 100%;
+    margin: auto;
+    border-radius: 100%;
+}
+
+.inline-tout__item {
+    display: block;
+    width: 33%;
+    height: 60px;
+    float: left;
+    text-align: center;
+    position: relative;
+
+    & + & {
+        border-left: 1px solid $white;
+    }
+}
+.inline-tout__sub-title {
+    color: $white;
+    font-size: 12px;
+    margin: 0;
+    font-weight: 300;
+}
+.inline-tout__title {
+    color: white;
+    font-size: 36px;
+    margin: 0 0 10px;
+    font-weight: 300;
 }

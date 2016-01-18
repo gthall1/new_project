@@ -24,4 +24,22 @@ html body {
         color: #fff;
     }
 
+
+    .btn--outline {
+        border: 1px solid white;
+        padding: 5px 30px;
+        color: white;
+        border-radius: 2px;
+        font-size: 12px;
+        text-transform: uppercase;
+        text-decoration: none;
+    }
+
+    &.user-profile {
+        .btn--outline {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+    }
 }
