@@ -51,6 +51,9 @@
                 <li class="legend__key">
                     <span class="key-color js-key-color"></span> Traffic
                 </li>
+                <li class="legend__key">
+                    <span class="key-color js-key-color"></span> Tap the Color
+                </li>
             </ul>
         </div>
     </div><!-- /.profile__bottom -->
@@ -98,31 +101,24 @@
             return d.count;
         });
 
-        // =============== Legend Code ===============
-        // var legend = canvas.selectAll(".legend")
-        //             .data(color.domain())
-        //             .enter()
-        //                 .append('g')
-        //                 .attr('class', 'legend')
-        //                 .attr('transform', function(d, i) {
-        //                     var height = legendRectSize + legendSpacing;
-        //                     var offset =  height * color.domain().length / 2;
-        //                     var horz = -2 * legendRectSize;
-        //                     var vert = i * height - offset;
-        //                     return 'translate(' + horz + ',' + vert + ')';
-        //                 })
+        var copy = canvas.append("text")
+                    .text(totalGames)
+                    .attr('class', 'js-games-number')
+                    .style('fill', "#fff")
+                    .attr('font-size', "32px")
+                    .attr("transform", function() {
+                        return "translate(" + ((width / 2) - (this.getBBox().width/2)) + "," + ((height / 2) - 10) + ")"
+                    })
+                    .attr('font-family', 'sans-serif');
 
-        // legend.append('rect')
-        //     .attr('width', legendRectSize)
-        //     .attr('height', legendRectSize)
-        //     .style('fill', color)
-        //     .style('stroke', color);
-
-
-        // legend.append('text')
-        //     .attr('x', legendRectSize + legendSpacing)
-        //     .attr('y', legendRectSize - legendSpacing)
-        //     .text(function(d) { return d; });
+        var copy = canvas.append("text")
+                    .text("Total games played")
+                    .style('fill', "#fff")
+                    .attr("transform",function() {
+                        return "translate(" + ((width / 2) - (this.getBBox().width/2)) + "," + ((height / 2) + 20) + ")"
+                    })
+                    .attr('font-size', "14px")
+                    .attr('font-family', 'sans-serif');
 
         $(document).ready(function(){
             $('.js-key-color').each(function(i,val){

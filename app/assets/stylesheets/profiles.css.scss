@@ -4,7 +4,7 @@
     padding-top: 0;
     .mobile-container {
         position: relative;
-        background-image: url("/assets/profile_bg.png");
+        background-image: url("/assets/profile_bg.jpg");
         background-color: $midnight-blue;
     }
     .mobile-header {
@@ -46,6 +46,7 @@
 }
 .profile__legend {
     float: right;
+    width: 33%;
 }
 .legend {
     margin: 0;
