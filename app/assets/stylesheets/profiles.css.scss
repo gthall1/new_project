@@ -4,7 +4,7 @@
     padding-top: 0;
     .mobile-container {
         position: relative;
-        background-image: none;
+        background-image: url("/assets/profile_bg.png");
         background-color: $midnight-blue;
     }
     .mobile-header {
@@ -16,7 +16,9 @@
     padding: 15px 0;
 }
 .profile__bottom {
-    height: 460px;
+    height: 100vw;
+    padding: 15px 6.5%;
+    margin-top: 20px;
 }
 .profile__top {
     padding-top: 60px;
@@ -37,6 +39,29 @@
     background-size: 100%;
     margin: auto;
     border-radius: 100%;
+}
+.profile__inline-tout {
+    display: inline-block;
+    width: 100%;
+}
+.profile__legend {
+    float: right;
+}
+.legend {
+    margin: 0;
+}
+.legend__key {
+    list-style: none;
+    color: $white;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+.key-color {
+    height: 10px;
+    width: 10px;
+    display: inline-block;
+    border-radius: 100%;
+    margin-right: 5px;
 }
 .inline-tout__item {
     display: block;

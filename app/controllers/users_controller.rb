@@ -49,7 +49,6 @@ class UsersController < ApplicationController
     end
 
     @json_arr = @json_arr.to_json
-    @games_played = result.count
   end
 
   def stats

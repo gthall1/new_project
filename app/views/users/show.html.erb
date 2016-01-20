@@ -23,29 +23,47 @@
             </div><!-- /.inline-tout__item -->
 
             <div class="inline-tout__item" data-toggle="tooltip" data-placement="bottom" title="Lorem Ipsum description of Luckee Rank">
-                <h1 class="inline-tout__title"><%= @user.credits ||= 0 %></h1>
+                <h1 class="inline-tout__title">--</h1>
                 <h3 class="inline-tout__sub-title">Luckee Rank <i class="fa fa-info-circle"></i></h3>
             </div><!-- /.inline-tout__item -->
         </div><!-- /.profile__inline-tout -->
     </div><!-- /.profile-section -->
 
-    <div class="profile-section profile__bottom">
 
+    <div class="profile-section profile__bottom">
+        <div class="profile__legend">
+            <ul class="legend">
+                <li class="legend__key">
+                    <span class="key-color js-key-color"></span> 2048
+                </li>
+                <li class="legend__key">
+                    <span class="key-color js-key-color"></span> Black Hole
+                </li>
+                <li class="legend__key">
+                    <span class="key-color js-key-color"></span> Fall Down
+                </li>
+                <li class="legend__key">
+                    <span class="key-color js-key-color"></span> Flappy Pilot
+                </li>
+                <li class="legend__key">
+                    <span class="key-color js-key-color"></span> Sorcerer Game
+                </li>
+                <li class="legend__key">
+                    <span class="key-color js-key-color"></span> Traffic
+                </li>
+            </ul>
+        </div>
     </div><!-- /.profile__bottom -->
 
     <script>
         var json_str = '<%= raw @json_arr %>',
-            // data = JSON.parse(json_str),
-            data = [
-                    {label: "flappy-pilot", count: 300},
-                    {label: "falldown", count: 3990},
-                    {label: "foobar", count: 200},
-            ],
-            r = 100,
+            data = JSON.parse(json_str),
+            color_arr = ['#48d3c3', '#fea962', '#00bcf8', '#ff2b67', '#c176f8', '#ecf0f1', '#da65c1'],
             color = d3.scale.ordinal()
-                        .range(['#48d3c3', '#fea962', '#00bcf8', '#ff2b67', '#c176f8', '#f08e71', '#da65c1']),
-            width = $(window).width(),
+                        .range(color_arr),
+            width = $(window).width()/2,
             height = width,
+            r = width/2,
             legendRectSize = 18,
             legendSpacing = 4;
 
@@ -53,7 +71,7 @@
         var canvas = d3.select(".profile__bottom")
                     .append('svg')
                     .attr('width', width)
-                    .attr('height', height);
+                    .attr('height', height)
                     // .style('background', '#eee');
 
         var group = canvas.append('g')
@@ -76,19 +94,41 @@
                             return color(d.data.label)
                         });
 
+        var totalGames = d3.sum(data, function(d) {
+            return d.count;
+        });
 
-        var legend = canvas.selectAll(".legend")
-                    .data(color.domain())
-                    .enter()
-                        .append('g')
-                        .attr('class', 'legend')
-                        .attr('transform', function(d, i) {
-                            var height = legendRectSize + legendSpacing;
-                            var offset =  height * color.domain().length / 2;
-                            var horz = -2 * legendRectSize;
-                            var vert = i * height - offset;
-                            return 'translate(' + horz + ',' + vert + ')';
-                        })
+        // =============== Legend Code ===============
+        // var legend = canvas.selectAll(".legend")
+        //             .data(color.domain())
+        //             .enter()
+        //                 .append('g')
+        //                 .attr('class', 'legend')
+        //                 .attr('transform', function(d, i) {
+        //                     var height = legendRectSize + legendSpacing;
+        //                     var offset =  height * color.domain().length / 2;
+        //                     var horz = -2 * legendRectSize;
+        //                     var vert = i * height - offset;
+        //                     return 'translate(' + horz + ',' + vert + ')';
+        //                 })
+
+        // legend.append('rect')
+        //     .attr('width', legendRectSize)
+        //     .attr('height', legendRectSize)
+        //     .style('fill', color)
+        //     .style('stroke', color);
+
+
+        // legend.append('text')
+        //     .attr('x', legendRectSize + legendSpacing)
+        //     .attr('y', legendRectSize - legendSpacing)
+        //     .text(function(d) { return d; });
+
+        $(document).ready(function(){
+            $('.js-key-color').each(function(i,val){
+                $(val).css('background-color', color_arr[i])
+            });
+        });
 
     </script>
 
