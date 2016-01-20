@@ -28,4 +28,5 @@
 //= require headroom
 //= require jquery_headroom
 //= require d3
+//= require profiles
 

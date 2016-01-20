@@ -124,7 +124,7 @@ var app = {
         app.showShareDialog();
         app.setAddToHomescreen();
         app.show2048Tutorial();
-        app.initheadroom();
+        // app.initheadroom();
         app.bind();
     }
 };

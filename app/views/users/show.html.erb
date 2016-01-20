@@ -1,43 +1,102 @@
 <% provide(:title, @user.name) %>
 <% content_for :body_class, "user-profile user-profile--mobile" %>
 
-  <%= link_to "Edit", edit_user_path(current_user), class: "btn--outline" %>
+    <%= link_to "Edit", edit_user_path(current_user), class: "btn--outline" %>
 
 
-      <div class="profile-section profile__top">
+    <div class="profile-section profile__top">
         <div class="profile__avatar" style="<% if current_user.oath_image %>background-image: url(<%= current_user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %>"></div>
 
         <h1 class="profile__name"><%= @user.name %></h1>
-      </div><!-- /.profile__top -->
+    </div><!-- /.profile__top -->
 
-      <div class="profile-section">
+    <div class="profile-section">
         <div class="profile__inline-tout">
-          <div class="inline-tout__item">
-            <h1 class="inline-tout__title"><%= @user.credits ||= 0 %></h1>
-            <h3 class="inline-tout__sub-title">Current Credits</h3>
-          </div><!-- /.inline-tout__item -->
+            <div class="inline-tout__item">
+                <h1 class="inline-tout__title"><%= @user.credits ||= 0 %></h1>
+                <h3 class="inline-tout__sub-title">Current Credits</h3>
+            </div><!-- /.inline-tout__item -->
 
-          <div class="inline-tout__item">
-            <h1 class="inline-tout__title"><%= @user.lifetime_credits ||= 0%></h1>
-            <h3 class="inline-tout__sub-title">Lifetime Credits</h3>
-          </div><!-- /.inline-tout__item -->
+            <div class="inline-tout__item">
+                <h1 class="inline-tout__title"><%= @user.lifetime_credits ||= 0%></h1>
+                <h3 class="inline-tout__sub-title">Lifetime Credits</h3>
+            </div><!-- /.inline-tout__item -->
 
-          <div class="inline-tout__item">
-            <h1 class="inline-tout__title"><%= @user.credits ||= 0 %></h1>
-            <h3 class="inline-tout__sub-title">Luckee Rank</h3>
-          </div><!-- /.inline-tout__item -->
+            <div class="inline-tout__item" data-toggle="tooltip" data-placement="bottom" title="Lorem Ipsum description of Luckee Rank">
+                <h1 class="inline-tout__title"><%= @user.credits ||= 0 %></h1>
+                <h3 class="inline-tout__sub-title">Luckee Rank <i class="fa fa-info-circle"></i></h3>
+            </div><!-- /.inline-tout__item -->
         </div><!-- /.profile__inline-tout -->
-      </div><!-- /.profile-section -->
+    </div><!-- /.profile-section -->
 
-      <div class="profile-section profile__bottom">
+    <div class="profile-section profile__bottom">
 
-      </div><!-- /.profile__bottom -->
+    </div><!-- /.profile__bottom -->
 
-  <% if current_user && current_user.admin? %>
-    Total Games Played: <br />
+    <script>
+        var json_str = '<%= raw @json_arr %>',
+            // data = JSON.parse(json_str),
+            data = [
+                    {label: "flappy-pilot", count: 300},
+                    {label: "falldown", count: 3990},
+                    {label: "foobar", count: 200},
+            ],
+            r = 100,
+            color = d3.scale.ordinal()
+                        .range(['#48d3c3', '#fea962', '#00bcf8', '#ff2b67', '#c176f8', '#f08e71', '#da65c1']),
+            width = $(window).width(),
+            height = width,
+            legendRectSize = 18,
+            legendSpacing = 4;
 
-    <% Game.where(device_type:1).each do | g | %>
-      <%= g.name %> | sessions: <%= UserGameSession.where(user_id:@user.id).where(game_id:g.id).size %> <br />
+
+        var canvas = d3.select(".profile__bottom")
+                    .append('svg')
+                    .attr('width', width)
+                    .attr('height', height);
+                    // .style('background', '#eee');
+
+        var group = canvas.append('g')
+                    .attr('transform', "translate(" + width / 2 + "," + height / 2 + ")");
+
+        var arc = d3.svg.arc()
+                    .innerRadius(r - 10)
+                    .outerRadius(r);
+
+        var pie = d3.layout.pie()
+                    .value(function(d) { return d.count })
+                    .sort(null);
+
+        var path = group.selectAll('path')
+                    .data(pie(data))
+                    .enter()
+                        .append('path')
+                        .attr('d', arc)
+                        .attr('fill', function(d, i) {
+                            return color(d.data.label)
+                        });
+
+
+        var legend = canvas.selectAll(".legend")
+                    .data(color.domain())
+                    .enter()
+                        .append('g')
+                        .attr('class', 'legend')
+                        .attr('transform', function(d, i) {
+                            var height = legendRectSize + legendSpacing;
+                            var offset =  height * color.domain().length / 2;
+                            var horz = -2 * legendRectSize;
+                            var vert = i * height - offset;
+                            return 'translate(' + horz + ',' + vert + ')';
+                        })
+
+    </script>
+
+    <% if current_user && current_user.admin? && false%>
+        Total Games Played: <br />
+
+        <% Game.where(device_type:1).each do | g | %>
+            <%= g.name %> | sessions: <%= UserGameSession.where(user_id:@user.id).where(game_id:g.id).size %> <br />
+        <% end %>
     <% end %>
-  <% end %>
 

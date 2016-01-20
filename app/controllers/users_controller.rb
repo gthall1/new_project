@@ -20,24 +20,36 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
+    @user = current_user
     @games = {}
 
+    all_games = Game.all.order(:slug)
 
-    # Temp
-    sql = "SELECT credits_earned, game_id FROM user_game_sessions WHERE user_game_sessions.user_id = #{@user.id}"
-    connection = ActiveRecord::Base.connection
-    result = connection.exec_query(sql)
-
-    @sessions = result.count
-
-    result.each do |r|
-        game_slug = Game.find(r["game_id"]).slug
-
-        @games.has_key?(game_slug) ? @games[game_slug] += r["credits_earned"].to_i : @games[game_slug] = 0
+    all_games.each do |g|
+      @games[g.slug] = 0
     end
 
     # Temp
+    sql = "SELECT game_id, credits_earned FROM user_game_sessions WHERE user_game_sessions.user_id = #{@user.id}"
+    connection = ActiveRecord::Base.connection
+    result = connection.exec_query(sql)
+
+    result.each do |r|
+        game_slug = Game.find(r["game_id"]).slug
+        @games[game_slug] += 1
+    end
+    # Temp End
+
+
+    # Set up json arr
+    @json_arr = []
+    @games.each do |key, val|
+      @json_arr << {label: key, count: val }
+    end
+
+    @json_arr = @json_arr.to_json
+    @games_played = result.count
   end
 
   def stats

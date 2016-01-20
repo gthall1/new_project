@@ -26,7 +26,7 @@ gem 'raygun4ruby'
 gem 'activerecord-session_store'
 
 group :development do
-    # gem 'pry-rails'
+    gem 'pry-rails'
 end
 
 group :production do
