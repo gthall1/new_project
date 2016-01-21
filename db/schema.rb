@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160115033151) do
+ActiveRecord::Schema.define(version: 20160121040018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,10 +51,10 @@ ActiveRecord::Schema.define(version: 20160115033151) do
     t.integer  "challenged_user_id"
     t.integer  "game_id"
     t.integer  "winner_id"
-    t.integer  "challenged_score"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "user_score"
+    t.integer  "challenged_score"
   end
 
   create_table "feed_games", force: :cascade do |t|
@@ -154,6 +154,12 @@ ActiveRecord::Schema.define(version: 20160115033151) do
     t.integer  "arrival_id"
     t.integer  "version"
   end
+
+  add_index "user_game_sessions", ["arrival_id"], name: "index_user_game_sessions_on_arrival_id", using: :btree
+  add_index "user_game_sessions", ["created_at"], name: "index_user_game_sessions_on_created_at", using: :btree
+  add_index "user_game_sessions", ["game_id"], name: "index_user_game_sessions_on_game_id", using: :btree
+  add_index "user_game_sessions", ["updated_at"], name: "index_user_game_sessions_on_updated_at", using: :btree
+  add_index "user_game_sessions", ["user_id"], name: "index_user_game_sessions_on_user_id", using: :btree
 
   create_table "user_surveys", force: :cascade do |t|
     t.integer  "user_id"
