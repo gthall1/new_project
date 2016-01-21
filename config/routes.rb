@@ -55,7 +55,6 @@ Alotto::Application.routes.draw do
   match '/current_jackpot', to:'jackpots#current_jackpot', via: 'get'
   match '/deposit',  to: 'jackpots#show',         via: 'get'
   match '/stats', to: 'users#stats', via: 'get'
-  # match '/breakdown_json', to: 'users#breakdown', via: 'get'
   match '/challenges', to: 'users#challenges',as: 'user_challenges', via: 'get'
   match '/invite/:referral',  to: 'static_pages#home_invite',         via: 'get'
   get 'auth/:provider/callback', to: 'sessions#create_from_facebook'
