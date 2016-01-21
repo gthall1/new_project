@@ -599,7 +599,7 @@ class GamesController < ApplicationController
             set_game_token({game_name:old_game_name})
         end
         # TODO: this is all gettng messy need to clean this up and standardize
-        if game.slug == "tap-color"
+        if game && game.slug == "tap-color"
             version = 1
             if params[:v] && !params[:v].blank?
                 version = params[:v].to_i
