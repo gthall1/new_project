@@ -95,11 +95,28 @@
     font-weight: 300;
 }
 
-
-// Chart Styles
-  .legend {
-    font-size: 12px;
-  }
-  rect {
-    stroke-width: 2;
-  }
+// iPhone 5
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+    .user-profile--mobile {
+        .btn--outline {
+            padding: 2.5px 24px;
+        }
+        .profile__avatar {
+            height: 75px;
+            width: 75px;
+        }
+        .profile__top {
+            padding-top: 50px;
+        }
+        .profile__bottom {
+            margin-top: 0;
+        }
+        .profile__legend {
+            margin-top: 0;
+        }
+    }
+}
