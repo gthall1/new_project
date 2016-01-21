@@ -33,7 +33,8 @@ body {
     }
 
     &.gameplay-page,
-    &.intermediate {
+    &.intermediate,
+    &.tutorial-page  {
         .bottom-navigation {
             display: none;
         }
@@ -259,6 +260,10 @@ textarea {
 
 .bottom-nav__item--primary {
     background-color: $dark-seafoam;
+
+    &.active {
+        background-color: #16a085;
+    }
 }
 
 .bottom-nav__item--leaderboard {

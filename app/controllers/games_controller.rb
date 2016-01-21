@@ -10,6 +10,7 @@ class GamesController < ApplicationController
     # GET /games
     # GET /games.json
     def index
+        @current_page = "games"
         if is_mobile?
             @games = Game.where(device_type:[1,3]).order("sort_order asc")
         else
@@ -190,7 +191,7 @@ class GamesController < ApplicationController
             else
                 status = "skip"
             end
-            if game_session 
+            if game_session
                 if game_session.version
                     current_high_score = get_current_highscore_for_version({game_id:game_session.game_id,version_id:game_session.version})
                 else
@@ -530,7 +531,7 @@ class GamesController < ApplicationController
     end
 
     def get_high_scores
-        if !params[:slug].blank? 
+        if !params[:slug].blank?
          game = Game.where(slug:params[:slug]).first
          game_json = {
             :c2dictionary => true,
@@ -548,7 +549,7 @@ class GamesController < ApplicationController
              :v2score => 0,
              :v3score => 0
             }
-         }  
+         }
         end
         render json: game_json
     end
@@ -674,6 +675,7 @@ class GamesController < ApplicationController
     end
 
     def games_leaderboard
+        @current_page = "leaderboard"
         if is_mobile?
             @games = Game.where(device_type:[1,3]).order("sort_order asc")
         else
@@ -786,15 +788,15 @@ class GamesController < ApplicationController
             when "tap-color"
                 case version
                     when 1
-                        credits = (score/15.to_f).ceil - 1 
+                        credits = (score/15.to_f).ceil - 1
                     when 2
-                        credits = (score/10.to_f).ceil - 1 
+                        credits = (score/10.to_f).ceil - 1
                     when 3
-                        credits = (score/5.to_f).ceil - 1 
+                        credits = (score/5.to_f).ceil - 1
                     else
-                        credits = (score/15.to_f).ceil - 1 
+                        credits = (score/15.to_f).ceil - 1
                 end
-                             
+
         end
 
         credits_to_apply = credits - credits_applied unless !credits_to_apply.nil?

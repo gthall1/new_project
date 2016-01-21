@@ -29,4 +29,5 @@
 //= require jquery_headroom
 //= require d3
 //= require profiles
+//= require fittext
 

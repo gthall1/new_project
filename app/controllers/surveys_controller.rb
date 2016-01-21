@@ -11,6 +11,7 @@ class SurveysController < ApplicationController
   # GET /surveys
   # GET /surveys.json
   def index
+    @current_page = "surveys"
     @show_back_button = true
     @surveys = Survey.all
     if is_mobile?

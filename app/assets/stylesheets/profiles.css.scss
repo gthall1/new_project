@@ -2,6 +2,8 @@
 
 .user-profile {
     padding-top: 0;
+    height: 100vh;
+    overflow-y: hidden;
     .mobile-container {
         position: relative;
         background-image: url("/assets/profile_bg.jpg");
@@ -81,7 +83,6 @@
     color: $white;
     font-size: 12px;
     margin: 0;
-    // font-weight: 300;
 
     .fa-info-circle {
         margin-left: 5px;

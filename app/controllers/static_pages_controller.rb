@@ -50,6 +50,7 @@ class StaticPagesController < ApplicationController
   end
 
   def redeem
+    @current_page = "redeem"
     @show_back_button = true
 
     if is_mobile?
