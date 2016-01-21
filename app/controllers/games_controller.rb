@@ -143,10 +143,7 @@ class GamesController < ApplicationController
             status = "success"
             score = params[:score].to_i
             game_session = UserGameSession.where(token: params[:token]).first
-            if game_session 
-                p "FOUND GAME SESSION"
-                p game_session
-            end
+
          # p "Score : #{score} | Game SEssion Score: #{game_session.score}"
             if game_session && game_session.active
                  credits_to_apply = get_credits_to_apply(game_session.game.slug,score,game_session.credits_applied,game_session.version)

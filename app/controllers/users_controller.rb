@@ -21,31 +21,14 @@ class UsersController < ApplicationController
 
   def show
     # @user = User.find(params[:id])
-    @user = current_user
-    @games = {}
-
-    all_games = Game.all.order(:slug)
-
-    all_games.each do |g|
-      @games[g.slug] = 0
-    end
-
-    # Temp
-    sql = "SELECT game_id, credits_earned FROM user_game_sessions WHERE user_game_sessions.user_id = #{@user.id}"
-    connection = ActiveRecord::Base.connection
-    result = connection.exec_query(sql)
-
-    result.each do |r|
-        game_slug = Game.find(r["game_id"]).slug
-        @games[game_slug] += 1
-    end
-    # Temp End
-
+    all_games = Game.all.order(:slug).pluck(:id)
 
     # Set up json arr
+    # if was still credits UserGameSession.where(user_id:current_user.id,game_id:game_id).where.not(score:nil,score:0).sum(:credits_earned) 
+    # making not score 0 and nil gets rid of weird extra sessions
     @json_arr = []
-    @games.each do |key, val|
-      @json_arr << {label: key, count: val }
+    all_games.each do |game_id|
+      @json_arr << {label: game_id, count: UserGameSession.where(user_id:current_user.id,game_id:game_id).where.not(score:nil,score:0).count }
     end
 
     @json_arr = @json_arr.to_json
