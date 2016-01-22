@@ -1,21 +1,25 @@
 var tabs = {
-    conf: {
-        tab: '.tab-section'
+    selections: {
+        tabContainer: '.js-tab-section',
+        tabControl:   '.js-tab-toggle'
     },
 
-    switch: function($tab) {
+    toggle: function($tab) {
+        // Weekly or All-Time
         var tabCategory = $tab.data('tab-cat');
 
-        $('.tab-toggle').removeClass('active');
+        $(tabs.selections.tabControl).removeClass('active');
         $tab.addClass('active');
-        $(tabs.conf.tab).addClass('hidden');
+        $(tabs.selections.tabContainer).addClass('hidden');
 
         $(tabCategory).removeClass('hidden');
     },
 
     bind: function() {
-        $('.tab-toggle').click(function(e){
-            tabs.switch($(this));
+        $(tabs.selections.tabControl).click(function(e){
+            var $this = $(this);
+
+            tabs.toggle($this);
         });
     },
 
