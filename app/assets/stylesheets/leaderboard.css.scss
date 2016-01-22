@@ -11,230 +11,248 @@ $traffic-font: #8DA339;
 $falldown-bg: #a2a2a2;
 $falldown-font: #FEE2C7;
 
+.leaderboard-svg {
+    height: 20px;
+    width: 20px;
+    padding: 5px;
+    border: 1px solid;
+    border-radius: 100%;
+
+    rect {
+        fill: $black;
+    }
+}
+
 #leaderboard--flappy-pilot {
-  background-color: $flappy-bg;
-  background-image: none;
+    background-color: $flappy-bg;
+    background-image: none;
 
-  .leaderboard-nav {
-    background: $flappy-font;
-  }
-
-  .cat-title {
-      color: $flappy-font;
-      &.active {
+    .leaderboard-nav {
         background: $flappy-font;
-        color: $white;
-      }
-  }
+    }
 
-  .leaderboard__cat {
-      border: 2px solid $flappy-font;
-  }
+    .cat-title {
+            color: $flappy-font;
+            &.active {
+                background: $flappy-font;
+                color: $white;
+            }
+    }
 
-  .leaderboard-row {
-    color: $flappy-font;
-  }
+    .leaderboard__cat {
+            border: 2px solid $flappy-font;
+    }
+    .leaderboard__cat--3 {
+        .cat-title {
+            width: 33%;
+            padding: 5px 0;
+            float: left;
+        }
+    }
+    .leaderboard-row {
+        color: $flappy-font;
+    }
 }
 
 #leaderboard--traffic {
  background-color: $traffic-bg;
  background-image: none;
 
-  .leaderboard-nav {
-    background: $traffic-font;
-  }
-
-  .cat-title {
-      color: $traffic-font;
-      &.active {
+    .leaderboard-nav {
         background: $traffic-font;
-        color: $white;
-      }
-  }
+    }
 
-  .leaderboard__cat {
-      border: 2px solid $traffic-font;
-  }
+    .cat-title {
+            color: $traffic-font;
+            &.active {
+                background: $traffic-font;
+                color: $white;
+            }
+    }
 
-  .leaderboard-row {
-    color: $traffic-font;
-  }
+    .leaderboard__cat {
+            border: 2px solid $traffic-font;
+    }
+
+    .leaderboard-row {
+        color: $traffic-font;
+    }
 }
 
 #leaderboard--fall-down {
  background-color: $falldown-bg;
  background-image: none;
 
-  .leaderboard-nav {
-    background: $falldown-font;
-  }
-
-  .leaderboard__title,
-  .leaderboard__subtitle {
-    color: $falldown-bg;
-  }
-
-  .cat-title {
-      color: $falldown-font;
-      &.active {
+    .leaderboard-nav {
         background: $falldown-font;
+    }
+
+    .leaderboard__title,
+    .leaderboard__subtitle {
         color: $falldown-bg;
-      }
-  }
+    }
 
-  .leaderboard__cat {
-      border: 2px solid $falldown-font;
-  }
+    .cat-title {
+            color: $falldown-font;
+            &.active {
+                background: $falldown-font;
+                color: $falldown-bg;
+            }
+    }
 
-  .leaderboard-row {
-    color: $white;
-  }
+    .leaderboard__cat {
+            border: 2px solid $falldown-font;
+    }
+
+    .leaderboard-row {
+        color: $white;
+    }
 }
 .leaderboard-nav {
-  padding: 10px 0;
-  background: $orange;
-  height: 40px;
-  margin-bottom: 20px;
-  position: relative;
+    padding: 10px 0;
+    background: $orange;
+    height: 40px;
+    margin-bottom: 20px;
+    position: relative;
 }
 .leaderboader-head__icon {
-  border: 1px solid $black;
-  border-radius: 100%;
-  padding: 10px;
-  font-size: 18px;
-  float: left;
-  position: relative;
-  top: 7.5px;
+    border: 1px solid $black;
+    border-radius: 100%;
+    padding: 10px;
+    font-size: 18px;
+    float: left;
+    position: relative;
+    top: 7.5px;
 }
 .leaderboard__title {
-  margin: 0;
-  font-size: 20px;
-  color: $white;
+    margin: 0;
+    font-size: 20px;
+    color: $white;
 }
 .leaderboard__subtitle {
-  text-align: center;
-  font-size: 12px;
-  color: $clouds;
-  margin-bottom: 20px;
+    text-align: center;
+    font-size: 12px;
+    color: $clouds;
+    margin-bottom: 20px;
 }
 .leaderboard__cat-wrapper {
-  text-align: center;
+    text-align: center;
 }
 .leaderboard__cat {
-    display: inline-block;
-    width: 80%;
-    margin: 0 auto 10px;
-    text-align: center;
-    border: 2px solid $orange;
-    border-radius: 2px;
+        display: inline-block;
+        width: 80%;
+        margin: 0 auto 10px;
+        text-align: center;
+        border: 2px solid $orange;
+        border-radius: 2px;
 }
 .cat-title {
-    font-size: 14px;
-    padding: 5px 5%;
-    margin: 0;
-    display: inline-block;
-    color: $black;
-    width: 40%;
-    &:hover {
-      cursor: pointer;
-    }
-    &.active {
-      background: $orange;
-      color: $white;
-    }
+        font-size: 14px;
+        padding: 5px 5%;
+        margin: 0;
+        display: inline-block;
+        color: $black;
+        width: 40%;
+        &:hover {
+            cursor: pointer;
+        }
+        &.active {
+            background: $orange;
+            color: $white;
+        }
 }
 .cat-title:first-child {
-  float: left;
+    float: left;
 }
 .cat-title:last-child {
-  float: right;
+    float: right;
 }
 .tab-section {
-  &.hidden {
-    display: none;
-  }
+    &.hidden {
+        display: none;
+    }
 }
 // Leaderboard Category
 .leaderboard--weekly {
 
 }
 .leaderboard-row {
-  color: $black;
-  border-bottom: 1px solid $clouds;
-  margin: 10px 10%;
-  padding: 0 5px   10px;
-  &:last-child {
-    border-bottom: none;
-  }
-  span {
-    display: inline-block;
-    width: 33.33%;
-  }
+    color: $black;
+    border-bottom: 1px solid $clouds;
+    margin: 10px 10%;
+    padding: 0 5px   10px;
+    &:last-child {
+        border-bottom: none;
+    }
+    span {
+        display: inline-block;
+        width: 33.33%;
+    }
 }
 .leaderboard-rank {
-  float: left;
-  text-align: left;
+    float: left;
+    text-align: left;
 }
 .leaderboard-user {
-  text-align: center;
+    text-align: center;
 }
 .leaderboard-score {
-  float: right;
-  text-align: right;
+    float: right;
+    text-align: right;
 }
 .leaderboard-back {
-  position: absolute;
-  color: $white;
-  top: 16px;
-  left: 10px;
-  &:hover {
-    text-decoration: none;
+    position: absolute;
     color: $white;
-  }
-  .fa {
-    font-size: 28px;
-    position:relative;
-    margin-right: 5px;
-  }
+    top: 16px;
+    left: 10px;
+    &:hover {
+        text-decoration: none;
+        color: $white;
+    }
+    .fa {
+        font-size: 28px;
+        position:relative;
+        margin-right: 5px;
+    }
 }
 .leaderboard-head__title {
-  font-size: 36px;
-  font-weight: 200;
-  letter-spacing: 0.25px;
-  margin-bottom: 0;
+    font-size: 36px;
+    font-weight: 200;
+    letter-spacing: 0.25px;
+    margin-bottom: 0;
 }
 .leaderboard-head__game {
-  font-size: 18px;
-  font-weight: 200;
-  margin-bottom: 20px;
-  letter-spacing: 0.25px;
+    font-size: 18px;
+    font-weight: 200;
+    margin-bottom: 20px;
+    letter-spacing: 0.25px;
 }
 
 
 // DESKTOP
 .leaderboard-page {
-  background-color: $white;
-  background-image: none;
+    background-color: $white;
+    background-image: none;
 
-  // Desktop Leaderboard
-  .leaderboard-nav {
-    display: none;
-  }
-  .cat-title {
-    width: 50%;
-    letter-spacing: 0.25px;
-  }
+    // Desktop Leaderboard
+    .leaderboard-nav {
+        display: none;
+    }
+    .cat-title {
+        width: 50%;
+        letter-spacing: 0.25px;
+    }
 }
 // MOBILE
 .leaderboard-page--mobile {
-  .mobile-container {
-    background-color: $white;
-    background-image: none;
-  }
-  .mobile-header {
-    display: none;
-  }
-  .leaderboard-head {
-    display: none;
-  }
+    .mobile-container {
+        background-color: $white;
+        background-image: none;
+    }
+    .mobile-header {
+        display: none;
+    }
+    .leaderboard-head {
+        display: none;
+    }
 }

@@ -108,6 +108,10 @@ var app = {
         }
     },
 
+    fitToContainer: function(selector, ratio) {
+        $(selector).fitText(ratio);
+    },
+
     initheadroom: function(offset) {
             offset = offset || 60;
         $('.js-mobile-header').headroom({
@@ -125,6 +129,7 @@ var app = {
         app.setAddToHomescreen();
         app.show2048Tutorial();
         // app.initheadroom();
+        app.fitToContainer(".inline-tout__title", 0.5);
         app.bind();
     }
 };

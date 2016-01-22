@@ -2,8 +2,6 @@
 
 .user-profile {
     padding-top: 0;
-    // height: 100vh;
-    // overflow-y: hidden;
     .mobile-container {
         position: relative;
         background-image: url("/assets/profile_bg.jpg");
@@ -33,8 +31,6 @@
 }
 .profile__avatar {
     text-align: center;
-    height: 100px;
-    width: 100px;
     background-color: white;
     text-align: center;
     background-position: center;
@@ -95,6 +91,17 @@
     font-weight: 300;
 }
 
+/* Portrait */
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+    .user-profile--mobile {
+        overflow: scroll;
+    }
+}
+
 // iPhone 5
 @media only screen
   and (min-device-width: 320px)
@@ -102,12 +109,10 @@
   and (-webkit-min-device-pixel-ratio: 2)
   and (orientation: portrait) {
     .user-profile--mobile {
+        height: 100vh;
+        overflow: hidden;
         .btn--outline {
             padding: 2.5px 24px;
-        }
-        .profile__avatar {
-            height: 75px;
-            width: 75px;
         }
         .profile__top {
             padding-top: 50px;
@@ -117,6 +122,26 @@
         }
         .profile__legend {
             margin-top: 0;
+        }
+        .profile__avatar {
+            height: 75px;
+            width: 75px;
+        }
+    }
+}
+
+/* iPhone 6 */
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 667px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+    .user-profile--mobile {
+        height: 100vh;
+        overflow: hidden;
+        .profile__avatar {
+            height: 100px;
+            width: 100px;
         }
     }
 }

@@ -59,75 +59,74 @@
     </div><!-- /.profile__bottom -->
 
     <script>
-        var json_str = '<%= raw @json_arr %>',
-            data = JSON.parse(json_str),
-            color_arr = ['#48d3c3', '#fea962', '#00bcf8', '#ff2b67', '#c176f8', '#ecf0f1', '#da65c1'],
-            color = d3.scale.ordinal()
-                        .range(color_arr),
-            width = $(window).width()/2,
-            height = width,
-            r = width/2,
-            legendRectSize = 18,
-            legendSpacing = 4;
+        $(function() {
+            var json_str = '<%= raw @json_arr %>',
+                screenWidth = $(window).width(),
+                data = JSON.parse(json_str),
+                color_arr = ['#48d3c3', '#fea962', '#00bcf8', '#ff2b67', '#c176f8', '#ecf0f1', '#da65c1'],
+                color = d3.scale.ordinal()
+                            .range(color_arr),
+                width = screenWidth/2,
+                height = width,
+                r = width/2,
+                legendRectSize = 18,
+                legendSpacing = 4;
 
 
-        var canvas = d3.select(".profile__bottom")
-                    .append('svg')
-                    .attr('width', width)
-                    .attr('height', height)
-                    // .style('background', '#eee');
+            var canvas = d3.select(".profile__bottom")
+                        .append('svg')
+                        .attr('width', width)
+                        .attr('height', height)
+                        // .style('background', '#eee');
 
-        var group = canvas.append('g')
-                    .attr('transform', "translate(" + width / 2 + "," + height / 2 + ")");
+            var group = canvas.append('g')
+                        .attr('transform', "translate(" + width / 2 + "," + height / 2 + ")");
 
-        var arc = d3.svg.arc()
-                    .innerRadius(r - 10)
-                    .outerRadius(r);
+            var arc = d3.svg.arc()
+                        .innerRadius(r - 10)
+                        .outerRadius(r);
 
-        var pie = d3.layout.pie()
-                    .value(function(d) { return d.count })
-                    .sort(null);
+            var pie = d3.layout.pie()
+                        .value(function(d) { return d.count })
+                        .sort(null);
 
-        var path = group.selectAll('path')
-                    .data(pie(data))
-                    .enter()
-                        .append('path')
-                        .attr('d', arc)
-                        .attr('fill', function(d, i) {
-                            return color(d.data.label)
-                        });
+            var path = group.selectAll('path')
+                        .data(pie(data))
+                        .enter()
+                            .append('path')
+                            .attr('d', arc)
+                            .attr('fill', function(d, i) {
+                                return color(d.data.label)
+                            });
 
-        var totalGames = d3.sum(data, function(d) {
-            return d.count;
-        });
+            var totalGames = d3.sum(data, function(d) {
+                return d.count;
+            });
 
-        var copy = canvas.append("text")
-                    .text(totalGames)
-                    .attr('class', 'js-games-number')
-                    .style('fill', "#fff")
-                    .attr('font-size', "32px")
-                    .attr("transform", function() {
-                        return "translate(" + ((width / 2) - (this.getBBox().width/2)) + "," + ((height / 2) - 10) + ")"
-                    })
-                    .attr('font-family', 'sans-serif');
+            var copy = canvas.append("text")
+                        .text(totalGames)
+                        .attr('class', 'js-games-number')
+                        .style('fill', "#fff")
+                        .attr('font-size', "32px")
+                        .attr("transform", function() {
+                            return "translate(" + ((width / 2) - (this.getBBox().width/2)) + "," + ((height / 2) - 10) + ")"
+                        })
+                        .attr('font-family', 'sans-serif');
 
-        var copy = canvas.append("text")
-                    .text("Total games played")
-                    .style('fill', "#fff")
-                    .attr("transform",function() {
-                        return "translate(" + ((width / 2) - (this.getBBox().width/2)) + "," + ((height / 2) + 20) + ")"
-                    })
-                    .attr('font-size', "14px")
-                    .attr('font-family', 'sans-serif');
+            var copy = canvas.append("text")
+                        .text("Total games played")
+                        .style('fill', "#fff")
+                        .attr("transform",function() {
+                            return "translate(" + ((width / 2) - (this.getBBox().width/2)) + "," + ((height / 2) + 20) + ")"
+                        })
+                        .attr('font-size', "14px")
+                        .attr('font-family', 'sans-serif');
 
-        $(document).ready(function(){
+            // Create keys for ring chart legend
             $('.js-key-color').each(function(i,val){
                 $(val).css('background-color', color_arr[i])
             });
-
-            $(".inline-tout__title").fitText(.5);
         });
-
     </script>
 
     <% if current_user && current_user.admin? && false%>
