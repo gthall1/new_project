@@ -5,7 +5,7 @@
 
 
     <div class="profile-section profile__top">
-        <div class="profile__avatar" style="<% if current_user.oath_image %>background-image: url(<%= current_user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %>"></div>
+        <div class="profile__avatar" style="<% if current_user.oath_image %> background-image: url(<%= current_user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %>"></div>
 
         <h1 class="profile__name"><%= @user.name %></h1>
     </div><!-- /.profile__top -->
@@ -22,7 +22,7 @@
                 <h3 class="inline-tout__sub-title">Lifetime Credits</h3>
             </div><!-- /.inline-tout__item -->
 
-            <div class="inline-tout__item" data-toggle="tooltip" data-placement="bottom" title="Lorem Ipsum description of Luckee Rank">
+            <div class="inline-tout__item" data-toggle="tooltip" data-placement="bottom" title="Coming Soon!">
                 <h1 class="inline-tout__title">--</h1>
                 <h3 class="inline-tout__sub-title">Luckee Rank <i class="fa fa-info-circle"></i></h3>
             </div><!-- /.inline-tout__item -->
