@@ -36,10 +36,9 @@
 <% if @game.slug == 'tap-color' %>
  <h2>EASY </h2>
     <section class="game-leaderboard">
-        <div class="tab-section js-tab-section leaderboard leaderboard--all-time">
-            <ul class="list--leaderboard"></ul>
+        <div class="tab-section js-tab-section">
             <% get_alltime_leaderboard({game_id: @game.id,version:1} ).each.with_index(1) do | record, rank | %>
-                <div class="leaderboard-row">
+                <div class="leaderboard-row leadboard--easy leadboard--easy-alltime">
                     <span class="leaderboard-rank"><%= rank %></span>
                     <span class="leaderboard-user"><%= record[0] %></span>
                     <span class="leaderboard-score"><%= record[1] %></span>
@@ -47,8 +46,7 @@
             <% end %>
         </div>
 
-        <div class="tab-section js-tab-section leaderboard leaderboard--weekly hidden">
-            <ul class="list--leaderboard"></ul>
+        <div class="tab-section js-tab-section leaderboard leaderboard--weekly leadboard--easy leadboard--easy-weekly hidden">
             <% get_weekly_leaderboard({game_id: @game.id,version:1} ).each.with_index(1) do | record, rank | %>
                 <div class="leaderboard-row">
                     <span class="leaderboard-rank"><%= rank %></span>
@@ -61,9 +59,8 @@
  <h2>MEDIUM </h2>
     <section class="game-leaderboard">
         <div class="tab-section js-tab-section leaderboard leaderboard--all-time">
-            <ul class="list--leaderboard"></ul>
             <% get_alltime_leaderboard({game_id: @game.id,version:2} ).each.with_index(1) do | record, rank | %>
-                <div class="leaderboard-row">
+                <div class="leaderboard-row ">
                     <span class="leaderboard-rank"><%= rank %></span>
                     <span class="leaderboard-user"><%= record[0] %></span>
                     <span class="leaderboard-score"><%= record[1] %></span>
@@ -72,7 +69,6 @@
         </div>
 
         <div class="tab-section js-tab-section leaderboard leaderboard--weekly hidden">
-            <ul class="list--leaderboard"></ul>
             <% get_weekly_leaderboard({game_id: @game.id,version:2} ).each.with_index(1) do | record, rank | %>
                 <div class="leaderboard-row">
                     <span class="leaderboard-rank"><%= rank %></span>
@@ -85,7 +81,6 @@
      <h2>HARD </h2>
     <section class="game-leaderboard">
         <div class="tab-section js-tab-section leaderboard leaderboard--all-time">
-            <ul class="list--leaderboard"></ul>
             <% get_alltime_leaderboard({game_id: @game.id,version:3} ).each.with_index(1) do | record, rank | %>
                 <div class="leaderboard-row">
                     <span class="leaderboard-rank"><%= rank %></span>
@@ -96,7 +91,6 @@
         </div>
 
         <div class="tab-section js-tab-section leaderboard leaderboard--weekly hidden">
-            <ul class="list--leaderboard"></ul>
             <% get_weekly_leaderboard({game_id: @game.id,version:3} ).each.with_index(1) do | record, rank | %>
                 <div class="leaderboard-row">
                     <span class="leaderboard-rank"><%= rank %></span>
@@ -109,7 +103,6 @@
 <% else %>
     <section class="game-leaderboard">
         <div class="tab-section js-tab-section leaderboard leaderboard--all-time">
-            <ul class="list--leaderboard"></ul>
             <% get_alltime_leaderboard({game_id: @game.id} ).each.with_index(1) do | record, rank | %>
                 <div class="leaderboard-row">
                     <span class="leaderboard-rank"><%= rank %></span>
@@ -120,7 +113,6 @@
         </div>
 
         <div class="tab-section js-tab-section leaderboard leaderboard--weekly hidden">
-            <ul class="list--leaderboard"></ul>
             <% get_weekly_leaderboard({game_id: @game.id} ).each.with_index(1) do | record, rank | %>
                 <div class="leaderboard-row">
                     <span class="leaderboard-rank"><%= rank %></span>
