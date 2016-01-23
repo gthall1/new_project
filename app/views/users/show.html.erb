@@ -49,10 +49,10 @@
                     <span class="key-color js-key-color"></span> Sorcerer Game
                 </li>
                 <li class="legend__key">
-                    <span class="key-color js-key-color"></span> Traffic
+                    <span class="key-color js-key-color"></span> Tap the Color
                 </li>
                 <li class="legend__key">
-                    <span class="key-color js-key-color"></span> Tap the Color
+                    <span class="key-color js-key-color"></span> Traffic
                 </li>
             </ul>
         </div>
@@ -63,7 +63,7 @@
             var json_str = '<%= raw @json_arr %>',
                 screenWidth = $(window).width(),
                 data = JSON.parse(json_str),
-                color_arr = ['#48d3c3', '#fea962', '#00bcf8', '#ff2b67', '#c176f8', '#ecf0f1', '#da65c1'],
+                color_arr = ['#48d3c3', '#fea962', '#00bcf8', '#ff2b67', '#c176f8', '#da65c1', '#c8f7c5'],
                 color = d3.scale.ordinal()
                             .range(color_arr),
                 width = screenWidth/2,
