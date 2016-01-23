@@ -21,10 +21,10 @@ module GamesHelper
         users = []
         scores = []     
         if game
-        	 if version.nil?
-            	game_sessions = UserGameSession.where(game_id:game.id).where("created_at >= ?",(Time.now - 1.week).beginning_of_day).where.not(score:nil,score:0).order("score desc")
+             if version.nil?
+                game_sessions = UserGameSession.where(game_id:game.id).where("created_at >= ?",(Time.now - 1.week).beginning_of_day).where.not(score:nil,score:0).order("score desc")
              else
-            	game_sessions = UserGameSession.where(game_id:game.id,version:version).where("created_at >= ?",(Time.now - 1.week).beginning_of_day).where.not(score:nil,score:0).order("score desc")             	
+                game_sessions = UserGameSession.where(game_id:game.id,version:version).where("created_at >= ?",(Time.now - 1.week).beginning_of_day).where.not(score:nil,score:0).order("score desc")               
              end
             
             game_sessions.each do | u |
@@ -67,5 +67,14 @@ module GamesHelper
         end
     end
     
-    
+    def get_current_highscore_for_version(args={})
+         game_id = args[:game_id]
+         version_id = args[:version_id]
+         if UserGameSession.where(user_id:current_user.id,game_id:game_id,version:version_id).where.not(score: nil).order("score desc").present?
+             return UserGameSession.where(user_id:current_user.id,game_id:game_id,version:version_id).where.not(score: nil).order("score desc").first.score
+         else
+             return 0
+         end
+     end
+        
 end
