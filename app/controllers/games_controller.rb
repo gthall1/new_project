@@ -671,6 +671,7 @@ class GamesController < ApplicationController
     end
 
     def leaderboard
+        @current_page = "leaderboard"
         @game = Game.where(slug:params[:game_slug]).first
     end
 

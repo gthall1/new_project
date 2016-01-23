@@ -1,25 +1,31 @@
 var tabs = {
     selections: {
         tabContainer: '.js-tab-section',
-        tabControl:   '.js-tab-toggle'
+        tabContainerDifficulty: '.js-leaderboard-diff',
+        categoryControl:   '.js-tab--cat',
+        difficultyControl: '.js-tab--difficulty'
     },
 
-    toggle: function($tab) {
-        // Weekly or All-Time
+    toggle: function($tab, container) {
         var tabCategory = $tab.data('tab-cat');
 
-        $(tabs.selections.tabControl).removeClass('active');
+        $tab.siblings().removeClass('active');
         $tab.addClass('active');
-        $(tabs.selections.tabContainer).addClass('hidden');
-
-        $(tabCategory).removeClass('hidden');
+        $(container).removeClass('active');
+        $(tabCategory).addClass('active');
     },
 
     bind: function() {
-        $(tabs.selections.tabControl).click(function(e){
+        $(tabs.selections.categoryControl).click(function(e){
             var $this = $(this);
 
-            tabs.toggle($this);
+            tabs.toggle($this, tabs.selections.tabContainer);
+        });
+
+        $(tabs.selections.difficultyControl).click(function(e) {
+            var $this = $(this);
+
+            tabs.toggle($this, tabs.selections.tabContainerDifficulty);
         });
     },
 

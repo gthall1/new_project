@@ -22,7 +22,16 @@ $falldown-font: #FEE2C7;
         fill: $black;
     }
 }
+.leaderboard-diff {
+    display: none;
 
+    &.active {
+        display: block;
+    }
+}
+.leaderboard-diff__title {
+    color: $black;
+}
 #leaderboard--flappy-pilot {
     background-color: $flappy-bg;
     background-image: none;
@@ -31,7 +40,7 @@ $falldown-font: #FEE2C7;
         background: $flappy-font;
     }
 
-    .cat-title {
+    .tab-control__title {
             color: $flappy-font;
             &.active {
                 background: $flappy-font;
@@ -55,7 +64,7 @@ $falldown-font: #FEE2C7;
         background: $traffic-font;
     }
 
-    .cat-title {
+    .tab-control__title {
             color: $traffic-font;
             &.active {
                 background: $traffic-font;
@@ -85,7 +94,7 @@ $falldown-font: #FEE2C7;
         color: $falldown-bg;
     }
 
-    .cat-title {
+    .tab-control__title {
             color: $falldown-font;
             &.active {
                 background: $falldown-font;
@@ -139,21 +148,14 @@ $falldown-font: #FEE2C7;
         border: 2px solid $orange;
         border-radius: 2px;
 }
-.leaderboard__cat--3 {
-    .cat-title {
-        width: 33%;
-        padding: 5px 0;
-        float: left;
-        display: block;
-    }
-}
-.cat-title {
+.tab-control__title {
         font-size: 14px;
-        padding: 5px 5%;
+        padding: 5px 0;
         margin: 0;
-        display: inline-block;
+        display: block;
+        float: left;
         color: $black;
-        width: 40%;
+        width: 50%;
         &:hover {
             cursor: pointer;
         }
@@ -162,15 +164,18 @@ $falldown-font: #FEE2C7;
             color: $white;
         }
 }
-.cat-title:first-child {
-    float: left;
-}
-.cat-title:last-child {
-    float: right;
+.leaderboard__cat--3 {
+    .tab-control__title {
+        width: 33.33%;
+        padding: 5px 0;
+        float: left;
+        display: block;
+    }
 }
 .tab-section {
-    &.hidden {
-        display: none;
+    display: none;
+    &.active {
+        display: block;
     }
 }
 // Leaderboard Category
@@ -239,7 +244,7 @@ $falldown-font: #FEE2C7;
     .leaderboard-nav {
         display: none;
     }
-    .cat-title {
+    .tab-control__title {
         width: 50%;
         letter-spacing: 0.25px;
     }
