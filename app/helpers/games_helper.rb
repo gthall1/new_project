@@ -16,11 +16,18 @@ module GamesHelper
 
     def get_weekly_leaderboard(args={})
         game_id = args[:game_id]
+        version = args[:version] ||= nil
         game = Game.where(id:game_id).first
         users = []
         scores = []     
         if game
-            UserGameSession.where(game_id:game.id).where("created_at >= ?",(Time.now - 1.week).beginning_of_day).where.not(score:nil,score:0).order("score desc").each do | u |
+        	 if version.nil?
+            	game_sessions = UserGameSession.where(game_id:game.id).where("created_at >= ?",(Time.now - 1.week).beginning_of_day).where.not(score:nil,score:0).order("score desc")
+             else
+            	game_sessions = UserGameSession.where(game_id:game.id,version:version).where("created_at >= ?",(Time.now - 1.week).beginning_of_day).where.not(score:nil,score:0).order("score desc")             	
+             end
+            
+            game_sessions.each do | u |
                 next if users.include?(u.user_id)
                 users << u.user_id
                 scores << [User.where(id:u.user_id).first.present? ? User.find(u.user_id).name : "Deleted" ,u.score]
