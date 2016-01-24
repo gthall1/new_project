@@ -21,15 +21,16 @@ class UsersController < ApplicationController
 
     def show
         @current_page = "profile"
-        all_games = Game.all.order(:slug).pluck(:id)
+        all_games = Game.all.order(:slug)
 
 
         # Set up json arr
         # if was still credits UserGameSession.where(user_id:current_user.id,game_id:game_id).sum(:credits_earned)
         # making not score 0 and nil gets rid of weird extra sessions
         @json_arr = []
-        all_games.each do |game_id|
-            @json_arr << {label: game_id, count: UserGameSession.where(user_id:current_user.id,game_id:game_id).where.not(score:nil,score:0).count }
+
+        all_games.each do |game|
+            @json_arr << {label: game.name, count: UserGameSession.where(user_id:current_user.id,game_id:game.id).where.not(score:nil,score:0).count }
         end
 
         @json_arr = @json_arr.to_json
