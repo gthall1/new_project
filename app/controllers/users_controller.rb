@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
     def show
         @current_page = "profile"
-        all_games = Game.where.not(devie_type:nil).order(:slug)
+        all_games = Game.where.not(device_type:nil).order(:slug)
 
 
         # Set up json arr
