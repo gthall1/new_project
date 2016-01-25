@@ -45,11 +45,15 @@ class SurveysController < ApplicationController
 
   def user_survey_save
     @user_survey = UserSurvey.where(id:params[:user_survey][:id]).first
-    if @user_survey
-      current_user.add_credits({credits:@user_survey.survey.credits})
+    if @user_survey && @user_survey.complete != true
+     
       @user_survey.complete = true
-      @user_survey.save
+      if @user_survey.save
+         current_user.add_credits({credits:@user_survey.survey.credits})
+      end
       flash[:success] = "Thank you for completing the survey!"
+    elsif @user_survey.complete == true
+      flash[:notice] = "This survey has been completed."
     else
       flash[:error] = "Something went wrong saving the survey. Please try again later."
     end
