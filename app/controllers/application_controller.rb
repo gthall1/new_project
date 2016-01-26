@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
 			end
 
 			if request
-				landing_page = request.fullpath.truncate(250) if request.fullpath
+				landing_url = request.fullpath.truncate(250) if request.fullpath
 				if request.user_agent
 					user_agent = request.user_agent.truncate(250) 
 					mobile = is_mobile_device? ? 1 : 0
