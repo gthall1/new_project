@@ -2,82 +2,85 @@
 <% content_for :body_id, "onboarding-walkthrough" %>
 
 <div id="slides">
-  <ul class="slides-container">
-    <li>
-      <img src="/assets/onboarding-backdrop.jpg" alt="">
-      <div class="container">
-        <h1 class="slides__title">Play free games. Earn real cash.</h1>
-        <div class="slides__tut-img" style="background-image: url(/assets/onboarding_1.png);">
-        </div>
-        <div class="secondary-copy">
-            <h2 class="secondary__cap">Play Free Games</h2>
-            <p class="secondary__desc">Play all your favorite games here, in one place. You earn our currency in the form of credits by playing any of our games on any device.</p>
-            <button class="nav-btn js-next-slide">Next</button>
-        </div><!-- /.secondary-copy -->
-      </div>
-    </li>
-    <li>
-      <img src="/assets/onboarding-backdrop.jpg" alt="">
-      <div class="container">
-        <h1 class="slides__title">Play free games. Earn real cash.</h1>
-        <div class="slides__tut-img dial" style="background-image: url(/assets/onboarding_2.png);">
-        </div>
-        <div class="secondary-copy">
-            <h2 class="secondary__cap">Earn Credits</h2>
-            <p class="secondary__desc">Accumulate credits by playing games. Once you have earned enough credits you can redeem them for rewards.</p>
-            <button class="nav-btn js-next-slide">Next</button>
-        </div><!-- /.secondary-copy -->
-      </div>
-    </li>
-    <li>
-      <img src="/assets/onboarding-backdrop.jpg" alt="">
-      <div class="container">
-        <h1 class="slides__title">Play free games. Earn real cash.</h1>
-        <div class="slides__tut-img dollars" style="background-image: url(/assets/onboarding_3.png);">
-        </div>
-        <div class="secondary-copy">
-            <h2 class="secondary__cap">Redeem Credits</h2>
-            <p class="secondary__desc">Redeem your credits for rewards such as cash, or even better, you can donate the value of your credits to charity!</p>
-            <%= link_to root_path do %><button class="nav-btn">Get Started</button><% end %>
-        </div><!-- /.secondary-copy -->
-      </div>
-    </li>
-  </ul>
-  <nav class="slides-navigation">
-    <a href="#" class="next slides__control">Next</a>
-    <a href="#" class="prev slides__control">Previous</a>
-  </nav>
+    <ul class="slides-container">
+        <li>
+            <img src="/assets/onboarding-backdrop.jpg" alt="">
+            <div class="container">
+                <h1 class="slides__title">Play free games. Earn real cash.</h1>
+                <div class="slides__tut-img" style="background-image: url(/assets/onboarding_1.png);">
+                </div>
+                <div class="secondary-copy">
+                        <h2 class="secondary__cap">Play Free Games</h2>
+                        <p class="secondary__desc">Play all your favorite games here, in one place. You earn our currency in the form of credits by playing any of our games on any device.</p>
+                        <button class="nav-btn js-next-slide">Next</button>
+                </div><!-- /.secondary-copy -->
+            </div>
+        </li>
+        <li>
+            <img src="/assets/onboarding-backdrop.jpg" alt="">
+            <div class="container">
+                <h1 class="slides__title">Play free games. Earn real cash.</h1>
+                <div class="slides__tut-img dial" style="background-image: url(/assets/onboarding_2.png);">
+                </div>
+                <div class="secondary-copy">
+                        <h2 class="secondary__cap">Earn Credits</h2>
+                        <p class="secondary__desc">Accumulate credits by playing games. Once you have earned enough credits you can redeem them for rewards.</p>
+                        <button class="nav-btn js-next-slide">Next</button>
+                </div><!-- /.secondary-copy -->
+            </div>
+        </li>
+        <li>
+            <img src="/assets/onboarding-backdrop.jpg" alt="">
+            <div class="container">
+                <h1 class="slides__title">Play free games. Earn real cash.</h1>
+                <div class="slides__tut-img dollars" style="background-image: url(/assets/onboarding_3.png);">
+                </div>
+                <div class="secondary-copy">
+                        <h2 class="secondary__cap">Redeem Credits</h2>
+                        <p class="secondary__desc">Redeem your credits for rewards such as cash, or even better, you can donate the value of your credits to charity!</p>
+                        <%= link_to root_path do %><button class="nav-btn js-complete-slide">Get Started</button><% end %>
+                </div><!-- /.secondary-copy -->
+            </div>
+        </li>
+    </ul>
+    <nav class="slides-navigation">
+        <a href="#" class="next slides__control">Next</a>
+        <a href="#" class="prev slides__control">Previous</a>
+    </nav>
 </div>
 
 <script>
-  $(function() {
-    if (mobileCheck.any()) {
-      $('.slides__control').hide();
-    }
-
-    $('#slides').superslides({
-      hashchange: true
-    });
-
-
-    $(".tutorial-page").swipe({
-      swipeLeft:function(event, direction, distance, duration, fingerCount) {
-        if ($('.slides-container li').last().css('z-index') !== "2") {
-          $('#slides').superslides('animate','next');
+    $(function() {
+        if (mobileCheck.any()) {
+            $('.slides__control').hide();
         }
-      }
-    });
 
-    $('.js-next-slide').click(function(){
-      $('#slides').superslides('animate','next');
-    })
+        $('#slides').superslides({
+            hashchange: true
+        });
 
-    $(".tutorial-page").swipe({
-      swipeRight:function(event, direction, distance, duration, fingerCount) {
-        if ($('.slides-container li').first().css('z-index') !== "2") {
-          $('#slides').superslides('animate','prev');
-        }
-      }
+        $('.js-complete-slide').click(function(){
+            Cookies.set('onboarding-complete', 'true', { expires: 365 });
+        });
+
+        $(".tutorial-page").swipe({
+            swipeLeft:function(event, direction, distance, duration, fingerCount) {
+                if ($('.slides-container li').last().css('z-index') !== "2") {
+                    $('#slides').superslides('animate','next');
+                }
+            }
+        });
+
+        $('.js-next-slide').click(function(){
+            $('#slides').superslides('animate','next');
+        })
+
+        $(".tutorial-page").swipe({
+            swipeRight:function(event, direction, distance, duration, fingerCount) {
+                if ($('.slides-container li').first().css('z-index') !== "2") {
+                    $('#slides').superslides('animate','prev');
+                }
+            }
+        });
     });
-  });
 </script>
