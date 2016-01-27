@@ -7,7 +7,7 @@
     <div class="redeem__copy">
       <p class="redeemCredits">My balance: <span class='credits'>
       <%= current_user.credits.blank? ? "0" : current_user.credits %></span>
-      <p class="redeemCredits__desc">Donate credits to help PAWS</p>
+      <p class="redeemCredits__desc">Donate credits to help The American Red Cross</p>
     </div>
   </p>
 
@@ -17,22 +17,22 @@
     <p class="page-title">Select donation amount</p>
   <ul>
     <%= link_to donate_credits_path(credits: 1000) do %>
-      <li style="background-image: url(/assets/paws_2.jpg);">
-        <h1 class="list-item__title">$5</h1>
+      <li>
+        <h1 class="list-item__title list-item__title--sm">$5</h1>
         <span class='cash-out__cost'>-1000 credits</span>
         <i class="fa fa-angle-right"></i>
       </li>
     <% end %>
     <%= link_to donate_credits_path(credits: 1950) do %>
-      <li style="background-image: url(/assets/paws_1.jpg);">
-        <h1 class="list-item__title">$10</h1>
+      <li>
+        <h1 class="list-item__title list-item__title--sm">$10</h1>
         <span class='cash-out__cost'>-1950 credits</span>
         <i class="fa fa-angle-right"></i>
       </li>
     <% end %>
     <%= link_to donate_credits_path(credits: 3900) do %>
-      <li style="background-image: url(/assets/paws_3.jpg);">
-        <h1 class="list-item__title">$20</h1>
+      <li>
+        <h1 class="list-item__title list-item__title--sm">$20</h1>
         <span class='cash-out__cost'>-3900 credits</span>
         <i class="fa fa-angle-right"></i>
       </li>

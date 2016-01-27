@@ -7,7 +7,7 @@
     <div class="redeem__copy">
       <p class="redeemCredits">My balance: <span class='credits'>
       <%= current_user.credits.blank? ? "0" : current_user.credits %></span>
-      <p class="redeemCredits__desc">Donate credits to help PAWS</p>
+      <p class="redeemCredits__desc">Donate credits to help The American Red Cross</p>
     </div>
   </p>
 
@@ -16,12 +16,12 @@
 <div class='inner-page__list inner-page__list--donate'>
   <div class="inner-page__banner">
     <p class="page-title">
-      Your support provides food, shelter, and expert medical care for thousands of animals and allows us to speak out for countless others. Thank you!
-      <span>-PAWS</span>
+      The American Red Cross is a humanitarian organization that provides emergency assistance, disaster relief and education inside the United States.
+      <span></span><!-- /name of charity goes here -->
     </p>
   </div>
 
-  <h1 class="inner-page__confirm">Confirm that you would like to redeem <%= @amount %> credits for a $<%= @dollar_amt %> donation to PAWS.</h1>
+  <h1 class="inner-page__confirm">Confirm that you would like to redeem <%= @amount %> credits for a $<%= @dollar_amt %> donation to The American Red Cross.</h1>
   <%= form_for(@cash_out, url:{:controller=>'static_pages', :action=>'new_donation'}) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
     <%= f.hidden_field :user_id, :value => current_user.id %>

@@ -201,16 +201,17 @@
 // Donations
 .donations{
     height: 250px;
-    background-image: url(/assets/paws_4.jpg);
+    background-image: url(/assets/red_cross.png);
     background-repeat: no-repeat;
     background-position: 90% center;
-    background-size: 25%;
+    background-size: 15%;
     position: relative;
 }
 .donations__caption {
     font-weight: normal;
     font-size: 30px;
     letter-spacing: 0;
+    margin-bottom: 20px;
 }
 .donations__caption--checkout {
     margin-top: 50px;
