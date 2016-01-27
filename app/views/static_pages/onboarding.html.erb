@@ -62,8 +62,9 @@
 
     $(".tutorial-page").swipe({
       swipeLeft:function(event, direction, distance, duration, fingerCount) {
-        console.log("You swiped " + direction );
-        $('#slides').superslides('animate','next');
+        if ($('.slides-container li').last().css('z-index') !== "2") {
+          $('#slides').superslides('animate','next');
+        }
       }
     });
 
@@ -73,8 +74,9 @@
 
     $(".tutorial-page").swipe({
       swipeRight:function(event, direction, distance, duration, fingerCount) {
-        console.log("You swiped " + direction );
-        $('#slides').superslides('animate','prev');
+        if ($('.slides-container li').first().css('z-index') !== "2") {
+          $('#slides').superslides('animate','prev');
+        }
       }
     });
   });
