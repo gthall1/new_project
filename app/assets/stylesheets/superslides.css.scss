@@ -158,17 +158,33 @@ $orange-2048: #ffb400;
     font-size: 18px;
     margin-bottom: 10px;
 }
+.nav-btn {
+    padding: 7.5px 0;
+    width: 175px;
+    background-color: $lavender;
+    border: none;
+    color: $white;
+    border-radius: 100px;
+    margin-top: 20px;
+    outline: 0;
+    a{
+        color: $white;
+        text-decoration: none;
+    }
+}
 #onboarding-walkthrough {
     .slides__title {
         text-transform: none;
         color: #A8A4E2;
         font-weight: 400;
         font-size: 18px;
+        margin: 30px 0;
     }
     .slides__tut-img {
         height: 40vw;
     }
     .slides-pagination {
+        bottom: 2.5vh;
         a {
             background-color: transparent;
             border-color: $clouds;
@@ -190,9 +206,6 @@ $orange-2048: #ffb400;
         &.dollars {
             background-size: 60%;
         }
-    }
-    .slides-pagination {
-        bottom: 5vh;
     }
 }
 

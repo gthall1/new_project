@@ -1268,10 +1268,13 @@ p {
         .overlay__content {
             display: block;
             // @include vertical-align();
-            padding: 20% 0 25%;
+            padding: 20% 10px 25%;
             font-size: 16px;
             &.hide {
                 display: none;
+            }
+            p {
+                font-size: 1em;
             }
         }
         .overlay__logo {
