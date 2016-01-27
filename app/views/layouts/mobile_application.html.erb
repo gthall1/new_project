@@ -123,7 +123,7 @@
         <% end %>
         <%= yield(:game_javascript) %>
     </head>
-    <body ondragstart="return false;" ondrop="return false;" class="<%= yield (:body_class) %> <% if @game && Game.where(slug:['traffic','flappy-pilot','fall-down','tap-color']).pluck(:id).include?(@game.id) %> mobile-header--hide <% end %>">
+    <body ondragstart="return false;" ondrop="return false;" id="<%= yield (:body_id) %>" class="<%= yield (:body_class) %> <% if @game && Game.where(slug:['traffic','flappy-pilot','fall-down','tap-color']).pluck(:id).include?(@game.id) %> mobile-header--hide <% end %>">
         <% if signed_in? %>
         <nav class="nav ssm-nav-visible">
             <div class='side-nav-top'>
@@ -135,29 +135,11 @@
                         <h2 class='lifetime-credits'> <span class='credits'><%= pluralize(current_user.credits, 'credit')%></span></h2>
                     </div>
                     <ul class="side-nav_links">
-                        <%= link_to redeem_path do %>
-                        <li>
-                            <%= embedded_svg('svgs/icons/redeem.svg', :class => 'settings-icon') %>
-
-                                Redeem Credits
-
-                            <span class='survey-credits'><%= current_user.credits ||= 0%> </span>
-                        </li>
-                        <% end %>
-
                         <%= link_to refer_path do %>
                         <li>
                             <i class="fa fa-user-plus survey-icon"></i>
                             Invite Friends
                             <span class='survey-credits'>+25</span>
-                        </li>
-                        <% end %>
-
-                        <%= link_to surveys_path do %>
-                        <li>
-                            <%= embedded_svg('svgs/icons/homework.svg', :class => 'survey-icon') %>
-                            Take Survey
-                            <span class='survey-credits'>+100</span>
                         </li>
                         <% end %>
                         <a href="mailto:support@getluckee.com" target="_top">

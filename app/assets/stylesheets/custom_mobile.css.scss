@@ -40,6 +40,13 @@ body {
         }
     }
 
+    &#onboarding-walkthrough {
+        padding-top: 0;
+        .logo-wrapper {
+            display: none;
+        }
+    }
+
     &.leaderboard-index-page--mobile,
     &.leaderboard-page--mobile,
     &.mobile-games-page {
