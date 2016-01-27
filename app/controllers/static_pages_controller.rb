@@ -28,6 +28,9 @@ class StaticPagesController < ApplicationController
     redirect_to root_path
   end
 
+  def onboarding
+  end
+
   def refer
     @show_back_button = true
     @referal_code = nil
