@@ -79,7 +79,7 @@ class GamesController < ApplicationController
                 @top_scores = UserGameSession.where(game_id:@game.id).where.not(score:nil).order("score asc").limit(10)
             when "Helicopter"
                 @top_scores = UserGameSession.where(game_id:@game.id).where.not(score:nil).order("score desc").limit(10)
-            when "Sorcerer Game","2048","Black Hole","Flappy Pilot","Fall Down"
+            when "Sorcerer Game","2048","Black Hole","Fall Down"
                 set_game_token({game_name:@game.name})
         end
 
@@ -166,7 +166,11 @@ class GamesController < ApplicationController
                     game_session.challenge_id = challenge.id
                  end
                 end
-                game_session.score = score
+                if score > 0
+                    game_session.score = score
+                else 
+                    game_session.score = 0
+                end
                 game_session.credits_earned += credits_to_apply
                 if !params[:finish].blank?
                     game_session.active = false
@@ -772,6 +776,7 @@ class GamesController < ApplicationController
     private
 
     def get_credits_to_apply(slug,score,credits_applied,version=nil)
+
         case slug
             when "sorcerer-game"
                 credits = (score/5000.to_f).ceil - 1 #subtract 1 otherwise itll give a credit once anything is scored
@@ -799,7 +804,9 @@ class GamesController < ApplicationController
                 end
 
         end
-
+        if credits < 0
+            credits = 0
+        end
         credits_to_apply = credits - credits_applied unless !credits_to_apply.nil?
         credits_to_apply
     end
