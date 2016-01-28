@@ -184,13 +184,13 @@
                     <h1 class="overlay__title">Luckee</h1>
                     <p>To install, tap <img class="overlay__bookmark" src="/assets/bookmark.png"> and choose</p>
                     <p>"Add to Home Screen"</p>
-                    <i class="overlay__down-arrow ios fa fa-long-arrow-down"></i>
-                </div>
+                </div><!-- /.overlay__content -->
                 <div class="rotate-dialogue">
                             <i class="fa fa-repeat rotate__icon"></i>
                             <h1 class="rotate__title">Please rotate your screen to play!</h1>
                 </div>
-            </div>
+                <i class="overlay__down-arrow ios fa fa-long-arrow-down"></i>
+            </div><!-- /.mobile--overlay -->
             <% if signed_in? %>
                 <div class="mobile-header js-mobile-header">
                     <% if @show_back_button %>
