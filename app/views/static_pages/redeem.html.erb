@@ -3,19 +3,19 @@
 <div class="interior-hero">
   <h1 class="interior-hero__title">Balance: <span class='credits'>
         <%= current_user.credits.blank? ? "0" : current_user.credits %> credits</span></h1>
-  <p class="interior-hero__desc">Redeem your credits. Once you've earned enough credits, trade them in for cash!</p>
+  <p class="interior-hero__desc">Redeem your credits. Once you have earned enough credits, trade them in for cash or donate their value to charity!</p>
 </div> <!--/.interior-hero -->
 
 <div class='interior-body'>
   <div class="donations">
     <div class="donations__wrapper">
-      <h1 class="donations__caption">Get in the spirit of giving and support PAWS for the holidays!</h1>
+      <h1 class="donations__caption">Get in the spirit of giving and support The American Red Cross</h1>
       <a class="donations__link donations__link--holiday" href="/donate">Donate Credits</a>
     </div>
   </div>
 
   <section class="card-container">
-    <p class="interior-body__caption">Choose credits for cashout</p>
+    <p class="interior-body__caption">Or​ redeem your credits for cash</p>
     <%= link_to redeem_credits_path(credits: 1000) do %>
       <div class="card-tout">
         <div class="card-inner">
