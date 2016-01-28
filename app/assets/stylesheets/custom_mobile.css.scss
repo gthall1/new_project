@@ -507,6 +507,13 @@ textarea {
 .genderButtonRight {
     float: right;
 }
+.bottom-content__container {
+    position: absolute;
+    margin: auto;
+    right: 0;
+    left: 0;
+    top: 10vh;
+}
 .btn--homepage {
     width: 35vw;
     background-color: $teal;
