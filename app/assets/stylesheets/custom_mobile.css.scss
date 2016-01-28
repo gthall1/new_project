@@ -194,9 +194,12 @@ textarea {
 }
 .mobile-home {
     text-align: center;
+    height: 100vh;
+    overflow: hidden;
 }
 .logo-wrapper {
     text-align: center;
+    padding-top: 10vh;
 }
 .top-title {
         width: 200px;
@@ -504,6 +507,24 @@ textarea {
 .genderButtonRight {
     float: right;
 }
+.btn--homepage {
+    width: 35vw;
+    background-color: $teal;
+    color: white;
+    padding: 10px 0;
+    display: inline-block;
+    border-radius: 4px;
+    margin: 0 5px;
+    border: 2px solid $teal;
+
+    &:hover {
+        text-decoration: none;
+        color: $white;
+    }
+}
+.btn--no-fill {
+    background-color: transparent;
+}
 .mobile-home-footer{
     margin-top: 20px;
     width:100%;
@@ -528,9 +549,11 @@ textarea {
     }
 }
 .home-bottom{
-    position:relative;
-    max-height:500px;
-    z-index:1;
+    position: absolute;
+    max-height: 500px;
+    z-index: 1;
+    width: 100%;
+    top: 45vh;
     .mountain-image{
         position:relative;
         top:-177px;
@@ -555,13 +578,14 @@ textarea {
     }
     .bottom-content{
         z-index:1;
-        background:url('/assets/bottom_background.jpg') $dark-blue;
-        background-size:contain;
-        position:relative;
-        bottom:150px;
-        width:100%;
-        text-align:center;
+        background-color: #10162C;
+        background-size: contain;
+        position: relative;
+        bottom: 150px;
+        width: 100%;
+        text-align: center;
         padding-bottom: 40px;
+        height: 100vh;
         h2{
             font-size:30px;
         }
