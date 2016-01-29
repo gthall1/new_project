@@ -8,6 +8,7 @@
 @import "intermediates";
 @import "buttons";
 @import "profiles";
+@import "forms";
 
 @mixin box_sizing {
     -moz-box-sizing: border-box;
@@ -28,7 +29,8 @@ body {
     &.mobile-header--hide,
     &.mobile-home,
     &.gameplay-page--2048,
-    &.leaderboard-page--mobile {
+    &.leaderboard-page--mobile,
+    &.no-top-padding {
         padding-top: 0;
     }
 
@@ -51,6 +53,22 @@ body {
     &.leaderboard-page--mobile,
     &.mobile-games-page {
         padding-bottom: 50px;
+    }
+
+    &.no-bg {
+        .mobile-container {
+            background-image: none;
+            background-color: $white;
+        }
+    }
+    &.register-page {
+        padding: 0 7.5% 20px;
+        .logo-wrapper {
+            padding-top:0;
+        }
+        .top-title {
+            margin: 20px auto 15px;
+        }
     }
 }
 
@@ -194,9 +212,18 @@ textarea {
 }
 .mobile-home {
     text-align: center;
+    height: 100vh;
+    overflow: hidden;
+
+    .mobile-container {
+        height: 100vh;
+        overflow: hidden;
+        position: relative;
+    }
 }
 .logo-wrapper {
     text-align: center;
+    padding-top: 10vh;
 }
 .top-title {
         width: 200px;
@@ -504,6 +531,36 @@ textarea {
 .genderButtonRight {
     float: right;
 }
+.bottom-content__container {
+    position: absolute;
+    margin: auto;
+    right: 0;
+    left: 0;
+    bottom: 15vh;
+    z-index: 10;
+
+    &.wam {
+        bottom: 5vh;
+    }
+}
+.btn--homepage {
+    width: 35vw;
+    background-color: $teal;
+    color: white;
+    padding: 10px 0;
+    display: inline-block;
+    border-radius: 4px;
+    margin: 0 5px;
+    border: 2px solid $teal;
+
+    &:hover {
+        text-decoration: none;
+        color: $white;
+    }
+}
+.btn--no-fill {
+    background-color: transparent;
+}
 .mobile-home-footer{
     margin-top: 20px;
     width:100%;
@@ -528,9 +585,11 @@ textarea {
     }
 }
 .home-bottom{
-    position:relative;
-    max-height:500px;
-    z-index:1;
+    position: absolute;
+    max-height: 500px;
+    z-index: 1;
+    width: 100%;
+    top: 50vh;
     .mountain-image{
         position:relative;
         top:-177px;
@@ -555,13 +614,14 @@ textarea {
     }
     .bottom-content{
         z-index:1;
-        background:url('/assets/bottom_background.jpg') $dark-blue;
-        background-size:contain;
-        position:relative;
-        bottom:150px;
-        width:100%;
-        text-align:center;
+        background-color: #10162C;
+        background-size: contain;
+        position: relative;
+        bottom: 150px;
+        width: 100%;
+        text-align: center;
         padding-bottom: 40px;
+        height: 100vh;
         h2{
             font-size:30px;
         }
@@ -1268,15 +1328,6 @@ p {
             z-index: 100;
             text-align: center;
 
-            .overlay__down-arrow {
-                font-size: 2em;
-                position: absolute;
-                bottom: 20%;
-                margin-left: -7px;
-                left: 50%;
-                display: inline-block !important;
-                @include floating();
-            }
         }
         .overlay__content {
             display: block;
@@ -1289,7 +1340,7 @@ p {
                 display: none;
             }
             p {
-                font-size: 0.9em;
+                font-size: 1em;
                 line-height: 1.25em;
             }
         }
@@ -1332,6 +1383,15 @@ p {
 .add-to-home {
     .mobile--overlay {
         background-image: url(/assets/blur.jpg);
+    }
+    .overlay__down-arrow {
+        font-size: 2em;
+        position: absolute;
+        bottom: 20%;
+        margin-left: -7px;
+        left: 50%;
+        display: inline-block !important;
+        @include floating();
     }
 }
 

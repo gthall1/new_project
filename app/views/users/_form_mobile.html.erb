@@ -1,35 +1,76 @@
-<div class='mobile-form'>
-    <div class="welcome-box-m">Play free games. Earn real cash.</div>
-    <%= link_to "/auth/facebook" do %>
-      <%= image_tag 'facebook_button.png', :class => 'facebook-signup' %>
-    <% end %>
-    <span class='small-note'>We do not post anything to facebook.</span>
+<% content_for :body_class, "no-top-padding no-bg register-page" %>
+
+<section class="session-form session-form--mobile">
+        <!-- <div class="welcome-box-m">Play free games. Earn real cash.</div> -->
+        <div class="js-foo">
+        <div class="facebook-login-wrap js-facebook-btn">
+            <%= link_to "/auth/facebook" do %>
+                <button class="btn--form btn--form-fb">
+                    <i class="fa fa-facebook btn--form__icon"></i>
+                    <h1 class="btn--form__copy">Sign up with Facebook</h1>
+                </button><!-- /.btn--form -->
+            <% end %>
+            <p class="form-disclaimer">We won't post anything to Facebook. Promise.</p>
+        </div>
+
+        <button class="btn--form btn--form-prime js-show-form">
+            <i class="fa fa-envelope btn--form__icon"></i>
+            <h1 class="btn--form__copy">Sign up with Email</h1>
+        </button><!-- /.btn--form -->
+        </div>
 
 
-    <div class='form-separator'>
-      <div class='left-separator'></div><div class='or-separator'>or</div><div class='right-separator'></div>
-    </div>
+        <%# image_tag 'email_button.png', :class => 'email-signup' %>
 
-    <%= image_tag 'email_button.png', :class => 'email-signup' %>
+        <div class='form-register js-form-register hidden'>
+            <%= form_for(@user) do |f| %>
+                <%= render 'shared/error_messages', object: f.object %>
+                <div class="form-input--wrap">
+                    <i class="fa fa-user"></i>
+                    <%= f.text_field :name, placeholder: 'Username', class: "form-input" %>
+                </div><!-- /.form-input--wrap -->
 
-    <div class='email-form'>
-      <h2> Register with email </h2>
-      <%= form_for(@user) do |f| %>
-        <%= render 'shared/error_messages', object: f.object %>
+                <div class="form-input--wrap">
+                    <i class="fa fa-envelope"></i>
+                    <%= f.text_field :email, placeholder: 'Email', class: "form-input" %>
+                </div><!-- /.form-input--wrap -->
 
-        <%= f.text_field :name, placeholder: 'Username' %>
+                <div class="form-input--wrap">
+                    <i class="fa fa-lock"></i>
+                    <%= f.password_field :password, placeholder: "Password", class: "form-input" %>
+                </div><!-- /.form-input--wrap -->
 
-        <%= f.text_field :email, placeholder: 'Email' %>
+                <div class="form-input--wrap">
+                    <i class="fa fa-lock"></i>
+                    <%= f.password_field :password_confirmation, placeholder: "Confirm Password", class: "form-input" %>
+                </div><!-- /.form-input--wrap -->
 
-        <%= f.password_field :password, placeholder: "Password" %>
+                <div class="form-input--wrap form-input--wrap-submit">
+                    <%= f.submit "Create my account", class: "form-input" %>
+                </div><!-- /.form-input--wrap -->
 
-        <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %>
 
-        <%= f.submit "Create my account", class: "btn btn-outlined btn-white btn-lg btn-Create create-email" %>
+            <% end %>
+        </div>
+</section>
 
-      <% end %>
-    </div>
-      <div class='sign-in home-page__signin'>
-        Already have an account?  <%= link_to "Sign In", signin_path %>
-      </div>
+<div class='form-swap js-form-swap'>
+    <p class="form-swap__copy">Already have an account?</p>  <%= link_to "Sign In", signin_path, class: "form-swap__link" %>
 </div>
+
+
+<script>
+    $(function() {
+        $('.js-show-form').click(function(){
+            $('.js-foo').fadeOut(function(){
+                $('.js-form-register').fadeIn();
+            });
+        });
+
+        if (app.isWebAppMode()) {
+            $('.js-form-swap').addClass('wam');
+        } else {
+            console.log('not wam');
+        }
+    });
+</script>

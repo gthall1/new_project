@@ -1,7 +1,8 @@
 <% content_for :body_class, "mobile-home" %>
 
 <div class="sign-up">
-	  <%= render 'users/form_mobile'%>
+    <div class="welcome-box-m">Play free games. Earn real cash.</div>
+	  <%# render 'users/form_mobile'%>
 </div>
 <div class='mobile-home-footer'>
 	<div class='footer-links'>
@@ -17,17 +18,11 @@
 		<%= embedded_svg('svgs/trees_and_low_hills.svg', :class => 'tree-hills') %>
 	</div>
 	<div class='bottom-content'>
-    <%= image_tag 'white_down.png', :class => 'white-down floating' %>
-			<h2>How it Works </h2>
-    		<%= embedded_svg('svgs/bottom_image_1.svg', :class => 'how-it-works-image') %>
-    		<p>Play any game to<br/> earn credits</p>
-
-      		<%= embedded_svg('svgs/bottom_image_2.svg', :class => 'how-it-works-image') %>
-    		<p>Earn enough<br/> credits to cash <br/> out</p>
-
-      		<%= embedded_svg('svgs/bottom_image_3.svg', :class => 'how-it-works-image') %>
-    		<p>Request a cash out!<br/> We will redeem your <br/> credits and send you <br/> cash within 24 hours.</p>
-	</div>
+    </div>
+</div>
+<div class="bottom-content__container js-bottom-content__container">
+    <a href="/signup" class="btn--homepage"> Sign up </a>
+    <a href="/signin" class="btn--homepage btn--no-fill"> Log in </a>
 </div>
 
 
@@ -35,3 +30,9 @@
   <!-- GA Tracking Events -->
   <%= render 'tracking_events/tracking_preview' %>
 <% end %>
+
+<script>
+    if (app.isWebAppMode()) {
+        $('.js-bottom-content__container').addClass('wam');
+    }
+</script>
