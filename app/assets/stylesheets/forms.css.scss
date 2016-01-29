@@ -46,7 +46,15 @@ button {
     text-align: center;
     margin: auto;
 }
-
+.form-subcopy {
+    text-align: center;
+    padding-top: 10px;
+    margin-bottom: 25px;
+    .form-swap__link {
+        font-size: 12px;
+        text-transform: none;
+    }
+}
 .form-swap {
     position: absolute;
     bottom: 15vh;
@@ -114,4 +122,12 @@ button {
     box-shadow: none !important;
     display:block !important;
     border-width:0 !important;
+}
+.form-separator .or-split {
+    color: #5C5C5C;
+    font-size: 14px;
+    position: relative;
+    font-weight: bold;
+    top: -2px;
+    text-align: center;
 }
