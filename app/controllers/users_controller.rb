@@ -41,6 +41,7 @@ class UsersController < ApplicationController
 
     def new
         @user = User.new
+        @is_mobile = is_mobile?
     end
 
     def create

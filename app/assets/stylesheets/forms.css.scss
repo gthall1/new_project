@@ -1,0 +1,117 @@
+@import "mixins";
+@import "variables";
+
+$input-fill: #f6f7f9;
+$fb-blue: #448ccb;
+$blue-steel: #a5b0bd;
+button {
+    outline: 0 !important;
+}
+.session-form--mobile {
+    // margin-top: 10vh;
+}
+.btn--form {
+    background-color: $input-fill;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    // padding: 2.5vh 0;
+    height: 10vh;
+
+    @include transition();
+}
+.btn--form-fb {
+    background-color: $fb-blue;
+}
+.btn--form__icon {
+    font-size: 16px !important;
+    color: $white;
+    margin-right: 4px;
+    position: relative;
+    top: 1px;
+}
+.btn--form__copy {
+    margin: 0;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    color: $white;
+}
+.btn--form-prime {
+    background-color: $lavender;
+}
+.form-disclaimer {
+    font-size: 12px;
+    color: $blue-steel;
+    text-align: center;
+    margin: auto;
+}
+
+.form-swap {
+    position: absolute;
+    bottom: 15vh;
+    margin: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+.form-swap__copy {
+    margin-bottom: 0;
+    font-size: 14px;
+    color: $blue-steel;
+}
+.form-swap__link {
+    text-transform: uppercase;
+    color: $lavender;
+    font-size: 14px;
+    font-weight: bold;
+}
+.form-register {
+    margin-top: 4vh;
+    &.hidden {
+        display: none;
+    }
+}
+.facebook-login-wrap {
+    margin-top: 10vh;
+    & + .btn--form {
+        margin-top: 30px;
+    }
+}
+.form-input--wrap {
+    position: relative;
+    height: 7.5vh;
+    width: 100%;
+    & + & {
+        margin-top: 15px;
+    }
+
+    .fa {
+        position: absolute;
+        left: 20px;
+        top: 2.5vh;
+        color: $blue-steel;
+    }
+}
+.form-input--wrap-submit {
+    height: 10vh;
+
+    .form-input {
+        background-color: $lavender !important;
+        color: $white;
+        width: 100% !important;
+        padding-left: 0 !important;
+    }
+}
+.form-input {
+    height: 100% !important;
+    padding: 0 0 0 40px !important;
+    width: calc(100% - 40px) !important;
+    border: none !important;
+    background-color: $input-fill !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+    display:block !important;
+    border-width:0 !important;
+}

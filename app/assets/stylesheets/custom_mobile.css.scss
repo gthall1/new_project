@@ -8,6 +8,7 @@
 @import "intermediates";
 @import "buttons";
 @import "profiles";
+@import "forms";
 
 @mixin box_sizing {
     -moz-box-sizing: border-box;
@@ -28,7 +29,8 @@ body {
     &.mobile-header--hide,
     &.mobile-home,
     &.gameplay-page--2048,
-    &.leaderboard-page--mobile {
+    &.leaderboard-page--mobile,
+    &.no-top-padding {
         padding-top: 0;
     }
 
@@ -51,6 +53,22 @@ body {
     &.leaderboard-page--mobile,
     &.mobile-games-page {
         padding-bottom: 50px;
+    }
+
+    &.no-bg {
+        .mobile-container {
+            background-image: none;
+            background-color: $white;
+        }
+    }
+    &.register-page {
+        padding: 0 7.5% 20px;
+        .logo-wrapper {
+            padding-top:0;
+        }
+        .top-title {
+            margin: 20px auto 15px;
+        }
     }
 }
 
@@ -196,6 +214,12 @@ textarea {
     text-align: center;
     height: 100vh;
     overflow: hidden;
+
+    .mobile-container {
+        height: 100vh;
+        overflow: hidden;
+        position: relative;
+    }
 }
 .logo-wrapper {
     text-align: center;
@@ -512,7 +536,8 @@ textarea {
     margin: auto;
     right: 0;
     left: 0;
-    top: 10vh;
+    bottom: 15vh;
+    z-index: 10;
 }
 .btn--homepage {
     width: 35vw;
@@ -560,7 +585,7 @@ textarea {
     max-height: 500px;
     z-index: 1;
     width: 100%;
-    top: 45vh;
+    top: 50vh;
     .mountain-image{
         position:relative;
         top:-177px;
