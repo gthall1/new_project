@@ -54,15 +54,23 @@
         </div>
 </section>
 
-<div class='form-swap'>
+<div class='form-swap js-form-swap'>
     <p class="form-swap__copy">Already have an account?</p>  <%= link_to "Sign In", signin_path, class: "form-swap__link" %>
 </div>
 
 
 <script>
-    $('.js-show-form').click(function(){
-        $('.js-foo').fadeOut(function(){
-            $('.js-form-register').fadeIn();
+    $(function() {
+        $('.js-show-form').click(function(){
+            $('.js-foo').fadeOut(function(){
+                $('.js-form-register').fadeIn();
+            });
         });
+
+        if (app.isWebAppMode()) {
+            $('.js-form-swap').addClass('wam');
+        } else {
+            console.log('not wam');
+        }
     });
 </script>

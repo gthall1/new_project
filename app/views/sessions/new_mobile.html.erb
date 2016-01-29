@@ -33,7 +33,16 @@
         </div><!-- /.form-input--wrap -->
     <% end %>
 
-    <div class='form-swap'>
+    <div class='form-swap js-form-swap'>
         <p class="form-swap__copy">Don't have an account?</p>  <%= link_to "Sign up now!", signup_path, class: "form-swap__link" %>
     </div>
 </section>
+
+
+<script>
+    $(function() {
+        if (app.isWebAppMode()) {
+            $('.js-form-swap').addClass('wam');
+        }
+    });
+</script>

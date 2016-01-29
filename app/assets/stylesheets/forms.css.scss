@@ -65,6 +65,10 @@ button {
     left: 0;
     right: 0;
     text-align: center;
+
+    &.wam {
+        bottom: 5vh;
+    }
 }
 .form-swap__copy {
     margin-bottom: 0;
