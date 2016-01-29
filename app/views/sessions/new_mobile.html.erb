@@ -1,14 +1,13 @@
 <% content_for :body_class, "no-top-padding no-bg register-page" %>
 <% provide(:title, "Sign in") %>
 
-    <div class="">
-        <%= link_to "/auth/facebook" do %>
-            <button class="btn--form btn--form-fb">
-                <i class="fa fa-facebook btn--form__icon"></i>
-                <h1 class="btn--form__copy">Sign in with Facebook</h1>
-            </button><!-- /.btn--form -->
-        <% end %>
-    </div><!-- /.facebook-login-wrap -->
+<section class="session-form session-form--mobile padding-top">
+    <%= link_to "/auth/facebook" do %>
+        <button class="btn--form btn--form-fb">
+            <i class="fa fa-facebook btn--form__icon"></i>
+            <h1 class="btn--form__copy">Sign in with Facebook</h1>
+        </button><!-- /.btn--form -->
+    <% end %>
 
     <div class='form-separator'>
         <div class='left-separator'></div><div class='or-split'>or</div><div class='right-separator'></div>
@@ -37,3 +36,4 @@
     <div class='form-swap'>
         <p class="form-swap__copy">Don't have an account?</p>  <%= link_to "Sign up now!", signup_path, class: "form-swap__link" %>
     </div>
+</section>

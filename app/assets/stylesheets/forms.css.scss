@@ -8,6 +8,9 @@ button {
     outline: 0 !important;
 }
 .session-form--mobile {
+    &.padding-top {
+        margin-top: 3vh;
+    }
     // margin-top: 10vh;
 }
 .btn--form {
