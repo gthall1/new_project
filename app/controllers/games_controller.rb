@@ -79,7 +79,7 @@ class GamesController < ApplicationController
                 @top_scores = UserGameSession.where(game_id:@game.id).where.not(score:nil).order("score asc").limit(10)
             when "Helicopter"
                 @top_scores = UserGameSession.where(game_id:@game.id).where.not(score:nil).order("score desc").limit(10)
-            when "Sorcerer Game","2048","Black Hole","Fall Down"
+            when "Sorcerer Game","2048","Black Hole"
                 set_game_token({game_name:@game.name})
         end
 
