@@ -538,6 +538,10 @@ textarea {
     left: 0;
     bottom: 15vh;
     z-index: 10;
+
+    &.wam {
+        bottom: 5vh;
+    }
 }
 .btn--homepage {
     width: 35vw;

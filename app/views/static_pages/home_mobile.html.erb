@@ -20,7 +20,7 @@
 	<div class='bottom-content'>
     </div>
 </div>
-<div class="bottom-content__container">
+<div class="bottom-content__container js-bottom-content__container">
     <a href="/signup" class="btn--homepage"> Sign up </a>
     <a href="/signin" class="btn--homepage btn--no-fill"> Log in </a>
 </div>
@@ -30,3 +30,9 @@
   <!-- GA Tracking Events -->
   <%= render 'tracking_events/tracking_preview' %>
 <% end %>
+
+<script>
+    if (app.isWebAppMode()) {
+        $('.js-bottom-content__container').addClass('wam');
+    }
+</script>
