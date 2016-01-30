@@ -2,6 +2,8 @@
 
 <img src="/assets/homescreen-logo.png" class="header-img--logo">
 
+<span class="js-go-back go-back"><i class="fa fa-chevron-left"></i></span>
+
 <div class="form-wrap js-form-wrap">
     <div class="facebook-login-wrap js-facebook-btn">
         <%= link_to "/auth/facebook" do %>
@@ -60,10 +62,19 @@
 <script>
     $(function() {
         $('.js-show-form').click(function(){
+            $('.js-go-back').addClass('show');
             $('.js-form-wrap').fadeOut(function(){
                 $('.js-form-register').fadeIn();
             });
         });
+
+        $('.js-go-back').click(function(){
+            $(this).removeClass('show');
+
+            $('.js-form-register').fadeOut(function(){
+                $('.js-form-wrap').fadeIn();
+            });
+        })
 
         if (app.isWebAppMode()) {
             $('.js-form-swap').addClass('wam');

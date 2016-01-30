@@ -97,6 +97,22 @@ body {
     right: 0;
 }
 
+.go-back {
+    position: absolute;
+    left: -10px;
+    top: 10px;
+    color: $blue-steel;
+    font-size: 24px;
+    opacity: 0;
+    outline: 0;
+
+    @include transition(opacity, 0.4s);
+
+    &.show {
+        opacity: 1;
+    }
+}
+
 section {
     overflow: auto;
 }
