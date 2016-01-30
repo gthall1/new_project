@@ -19,6 +19,12 @@ var app = {
         };
     },
 
+    isWAM: function() {
+        if (app.isWebAppMode()) {
+            $('body').addClass('wam');
+        }
+    },
+
     scrollTo: function() {
         $('html, body').animate({
                 scrollTop: $(document).height()
@@ -141,5 +147,6 @@ var app = {
         // app.initheadroom();
         app.fitToContainer(".inline-tout__title", 0.5);
         app.bind();
+        app.isWAM();
     }
 };

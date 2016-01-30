@@ -1,7 +1,9 @@
 <% content_for :body_class, "no-top-padding no-bg register-page" %>
 <% provide(:title, "Sign in") %>
 
-<section class="session-form session-form--mobile padding-top">
+<img src="/assets/homescreen-logo.png" class="header-img--logo">
+
+<div class="form-wrap">
     <%= link_to "/auth/facebook" do %>
         <button class="btn--form btn--form-fb">
             <i class="fa fa-facebook btn--form__icon"></i>
@@ -32,11 +34,11 @@
             <%= f.submit "Create my account", class: "form-input" %>
         </div><!-- /.form-input--wrap -->
     <% end %>
+</div><!-- /.form-wrap -->
 
-    <div class='form-swap js-form-swap'>
-        <p class="form-swap__copy">Don't have an account?</p>  <%= link_to "Sign up now!", signup_path, class: "form-swap__link" %>
-    </div>
-</section>
+<div class='form-swap js-form-swap'>
+    <p class="form-swap__copy">Don't have an account?</p>  <%= link_to "Sign up now!", signup_path, class: "form-swap__link" %>
+</div>
 
 
 <script>

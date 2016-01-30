@@ -65,11 +65,33 @@ body {
         padding: 0 7.5% 20px;
         .logo-wrapper {
             padding-top:0;
+            display: none;
         }
         .top-title {
             margin: 20px auto 15px;
         }
     }
+    &.wam {
+        .bottom-content__container {
+            bottom: 5vh;
+        }
+        .form-swap {
+            bottom: 5vh;
+        }
+        .form-wrap {
+            @include vertical-align();
+        }
+    }
+}
+
+.header-img--logo {
+    position: absolute;
+    top: 20px;
+    height: 8vh;
+    width: auto;
+    margin: auto;
+    left: 0;
+    right: 0;
 }
 
 section {
@@ -538,10 +560,6 @@ textarea {
     left: 0;
     bottom: 15vh;
     z-index: 10;
-
-    &.wam {
-        bottom: 5vh;
-    }
 }
 .btn--homepage {
     width: 35vw;

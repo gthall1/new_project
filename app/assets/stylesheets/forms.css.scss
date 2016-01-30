@@ -65,10 +65,6 @@ button {
     left: 0;
     right: 0;
     text-align: center;
-
-    &.wam {
-        bottom: 5vh;
-    }
 }
 .form-swap__copy {
     margin-bottom: 0;
@@ -80,6 +76,11 @@ button {
     color: $lavender;
     font-size: 14px;
     font-weight: bold;
+
+    &:hover {
+        text-decoration: none;
+        color: $lavender;
+    }
 }
 .form-register {
     margin-top: 4vh;
@@ -88,10 +89,16 @@ button {
     }
 }
 .facebook-login-wrap {
-    margin-top: 10vh;
+    // margin-top: 10vh;
     & + .btn--form {
         margin-top: 30px;
     }
+}
+.mobile-container {
+    height: 100vh;
+}
+.form-wrap {
+    @include vertical-align(relative, 45vh);
 }
 .form-input--wrap {
     position: relative;
