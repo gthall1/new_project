@@ -138,7 +138,12 @@ var app = {
         });
     },
 
+    bind: function() {
+        document.addEventListener("touchstart", function(){}, true);
+    },
+
     init: function() {
+        app.bind();
         app.hideCopyBtn();
         app.showShareDialog();
         app.setAddToHomescreen();

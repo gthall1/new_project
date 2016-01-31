@@ -582,22 +582,6 @@ textarea {
     bottom: 15vh;
     z-index: 10;
 }
-.btn--homepage {
-    width: 35vw;
-    background-color: $teal;
-    color: $white;
-    padding: 10px 0 12px;
-    display: inline-block;
-    border-radius: 4px;
-    margin: 0 5px;
-    border: 2px solid $teal;
-    font-weight: 500;
-    font-size: 16px;
-
-    &:hover {
-        text-decoration: none;
-    }
-}
 .btn--no-fill {
     background-color: transparent;
 }
@@ -982,7 +966,7 @@ p {
     width: 100%;
     margin:auto;
     position:relative;
-    padding-top: 12vh;
+    padding-top: 15vh;
 }
 .create-email{
     border-radius:10px;
@@ -1478,6 +1462,13 @@ p {
     position:relative;
     top:-20px;
 }
+
+a,
+.fa,
+button {
+    -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+}
+
 
 /* iPhone 6 */
 @media only screen
