@@ -642,6 +642,10 @@ textarea {
     z-index: 1;
     width: 100%;
     top: 57.5vh;
+
+    .wam & {
+        top: 67.5vh;
+    }
     .mountain-image{
         position:relative;
         top:-177px;
