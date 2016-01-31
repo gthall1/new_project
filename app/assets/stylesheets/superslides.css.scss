@@ -145,9 +145,9 @@ $orange-2048: #ffb400;
 .secondary-copy {
     text-align: center;
     color: white;
-    margin: 20px 20vw;
+    margin: 20px 10vw;
     font-size: 14px;
-    width: 60vw;
+    width: 80vw;
 }
 .secondary__desc {
     color: $clouds;
@@ -160,7 +160,7 @@ $orange-2048: #ffb400;
 }
 .nav-btn {
     padding: 10px 0;
-    width: 100%;
+    width: 75%;
     background-color: $lavender;
     border: none;
     color: $white;
@@ -197,7 +197,9 @@ $orange-2048: #ffb400;
         }
     }
     .slides__tut-img {
-        height: 40vw;
+        margin: 0 15vw;
+        width: 70vw;
+        height: 60vw;
     }
     .slides-pagination {
         bottom: 2.5vh;
