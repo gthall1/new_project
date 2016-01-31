@@ -1481,6 +1481,14 @@ p {
   and (max-device-width: 667px)
   and (-webkit-min-device-pixel-ratio: 2)
   and (orientation: portrait) {
+    .wam {
+        .sign-up {
+            padding-top: 15vh;
+        }
+        .home-bottom{
+            top: 70vh;
+        }
+    }
     .home-bottom{
         top: 60vh;
     }
