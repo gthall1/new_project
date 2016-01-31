@@ -3,7 +3,7 @@ var app = {
     setAddToHomescreen: function() {
         if (mobileCheck.iOS() && !mobileCheck.MobileChrome() && !app.isWebAppMode() && Cookies.get('onboarding-complete') === 'true') {
             if (Cookies.get('user') === 'returning') {
-                // console.log('Welcome home!');
+                console.log('Welcome home!');
             } else {
                     $('body').addClass('overlay-screen add-to-home');
             }
@@ -111,6 +111,8 @@ var app = {
         $('.js-modal__link').click(function(){
             $('.mobile-container').removeClass('desktop--modal-blur');
         });
+
+        document.addEventListener("touchstart", function(){}, true);
     },
 
     showDesktopModal: function() {
@@ -136,10 +138,6 @@ var app = {
                 console.log('unpin');
             }
         });
-    },
-
-    bind: function() {
-        document.addEventListener("touchstart", function(){}, true);
     },
 
     init: function() {
