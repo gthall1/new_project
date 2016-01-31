@@ -144,3 +144,14 @@ button {
     top: -2px;
     text-align: center;
 }
+.app-legal--signup {
+    padding: 10px 0;
+    text-align: center;
+}
+.legal-link {
+    color: $blue-steel;
+
+    & + .legal-link {
+        margin-left: 10px;
+    }
+}

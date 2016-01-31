@@ -89,7 +89,7 @@ body {
 
 .header-img--logo {
     position: absolute;
-    top: 20px;
+    top: 30px;
     height: 8vh;
     width: auto;
     margin: auto;
@@ -264,13 +264,15 @@ textarea {
 }
 .logo-wrapper {
     text-align: center;
-    padding-top: 10vh;
 }
 .top-title {
         width: 200px;
         height: auto;
-        display: inline-block;
+        display: block;
         margin: 25px auto 15px;
+        // text  {
+        //     fill: white;
+        // }
         .hide-top-title & {
             display: none;
         }
@@ -583,16 +585,17 @@ textarea {
 .btn--homepage {
     width: 35vw;
     background-color: $teal;
-    color: white;
-    padding: 10px 0;
+    color: $white;
+    padding: 10px 0 12px;
     display: inline-block;
     border-radius: 4px;
     margin: 0 5px;
     border: 2px solid $teal;
+    font-weight: 500;
+    font-size: 16px;
 
     &:hover {
         text-decoration: none;
-        color: $white;
     }
 }
 .btn--no-fill {
@@ -619,6 +622,18 @@ textarea {
     &:hover {
         text-decoration: none;
         color: $purple;
+    }
+}
+.mobile-home {
+    .home-bottom {
+        .trees{
+            top: -200px;
+        }
+    }
+    .mobile-container {
+        background-image: url('/assets/star_home_background.jpg');
+        background-size: 100%;
+        background-color: #bdb4d4;
     }
 }
 .home-bottom{
@@ -960,9 +975,10 @@ p {
 .sign-up{
     z-index:10;
     text-align:center;
-    width:95%;
+    width: 100%;
     margin:auto;
     position:relative;
+    padding-top: 10vh;
 }
 .create-email{
     border-radius:10px;
@@ -973,9 +989,9 @@ p {
     font-size:16px;
 }
 .welcome-box-m{
+    color: $white;
     font-size:18px;
     font-weight: 500;
-    margin-bottom:20px;
 }
 .form-separator{
     position:relative;

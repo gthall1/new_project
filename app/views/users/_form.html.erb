@@ -1,32 +1,35 @@
-<% content_for :body_class, "page-background" %>
-
-<div class="row">
-  <div class="span5">
-    <div class="welcomeBox">Welcome</div>
-  <%= link_to "/auth/facebook" do %>
-    <% image_tag "facebook_sign_in.png", :width => "250px" %>
-  <% end %>
-    <br/> Or
-    <%= form_for(@user) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-
-      <%= f.label :username, class: "obscure" %>
-      <%= f.text_field :name, placeholder: 'username' %>
-
-      <%= f.label :email, class: "obscure" %>
-      <%= f.text_field :email, placeholder: 'email' %>
-
-      <%= f.label :password, class: "obscure" %>
-      <%= f.password_field :password, placeholder: "password" %>
-
-      <%= f.label :password_confirmation, class: "obscure" %>
-      <%= f.password_field :password_confirmation, placeholder: "confirm password" %>
-
-      <p class="termsOfService">by registering you agree to our <em><b>Privacy Policy</b></em> and <em><b>Terms of Service</b></em></p>
-
-      <%= f.submit "Create my account", class: "btn btn-outlined btn-white btn-lg btn-Create" %>
+<div class='mobile-form'>
+    <div class="welcome-box-m">Play Games. Earn Cash.</div>
+    <%= link_to "/auth/facebook" do %>
+      <%= image_tag 'facebook_button.png', :class => 'facebook-signup' %>
     <% end %>
-  </div>
+    <span class='small-note'>We do not post anything to facebook.</span>
+
+
+    <div class='form-separator'>
+      <div class='left-separator'></div><div class='or-separator'>or</div><div class='right-separator'></div>
+    </div>
+
+    <%= image_tag 'email_button.png', :class => 'email-signup' %>
+
+    <div class='email-form'>
+      <h2> Register with email </h2>
+      <%= form_for(@user) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+
+        <%= f.text_field :name, placeholder: 'Username' %>
+
+        <%= f.text_field :email, placeholder: 'Email' %>
+
+        <%= f.password_field :password, placeholder: "Password" %>
+
+        <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %>
+
+        <%= f.submit "Create my account", class: "btn btn-outlined btn-white btn-lg btn-Create create-email" %>
+
+      <% end %>
+    </div>
+      <div class='sign-in'>
+        Already have an account?  <%= link_to "Sign In", signin_path %>
+      </div>
 </div>
-
-

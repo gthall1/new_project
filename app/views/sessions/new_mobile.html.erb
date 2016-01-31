@@ -1,7 +1,7 @@
 <% content_for :body_class, "no-top-padding no-bg register-page" %>
 <% provide(:title, "Sign in") %>
 
-<img src="/assets/homescreen-logo.png" class="header-img--logo">
+<%= link_to root_path do %><img src="/assets/homescreen-logo.png" class="header-img--logo"><% end %>
 
 <div class="form-wrap">
     <%= link_to "/auth/facebook" do %>

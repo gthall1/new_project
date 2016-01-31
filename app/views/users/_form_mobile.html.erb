@@ -1,6 +1,6 @@
 <% content_for :body_class, "no-top-padding no-bg register-page" %>
 
-<img src="/assets/homescreen-logo.png" class="header-img--logo">
+<%= link_to root_path do %><img src="/assets/homescreen-logo.png" class="header-img--logo"><% end %>
 
 <span class="js-go-back go-back"><i class="fa fa-chevron-left"></i></span>
 
@@ -19,6 +19,11 @@
         <i class="fa fa-envelope btn--form__icon"></i>
         <h1 class="btn--form__copy">Sign up with Email</h1>
     </button><!-- /.btn--form -->
+
+    <div class='app-legal--signup'>
+        <a href="/assets/luckee_privacy_policy.pdf"  target="_blank"  class='legal-link'>Privacy Policy</a>
+        <a href="/assets/luckee_TOS.pdf"  target="_blank"  class='legal-link'>Terms of Service</a>
+    </div>
 </div><!-- /.form-wrap -->
 
 <div class="form-wrap">
@@ -62,8 +67,8 @@
 <script>
     $(function() {
         $('.js-show-form').click(function(){
-            $('.js-go-back').addClass('show');
             $('.js-form-wrap').fadeOut(function(){
+                $('.js-go-back').addClass('show');
                 $('.js-form-register').fadeIn();
             });
         });
