@@ -641,7 +641,7 @@ textarea {
     max-height: 500px;
     z-index: 1;
     width: 100%;
-    top: 50vh;
+    top: 57.5vh;
     .mountain-image{
         position:relative;
         top:-177px;
@@ -1473,4 +1473,15 @@ p {
     font-size: 14px;
     position:relative;
     top:-20px;
+}
+
+/* iPhone 6 */
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 667px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+    .home-bottom{
+        top: 60vh;
+    }
 }
