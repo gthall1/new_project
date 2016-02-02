@@ -62,7 +62,9 @@ Alotto::Application.routes.draw do
                 match '/users', to: 'users#get_users', via: 'get'
                 match '/user_games', to: 'users#get_game_sessions', via: 'get'
                 match '/games', to: 'games#get_games', via: 'get'
-                match '/surveys', to: 'games#get_surveys', via: 'get'
+                match '/arrivals', to: 'arrivals#get_arrivals', via: 'get'                
+                match '/surveys', to: 'surveys#get_surveys', via: 'get'
+                match '/user_surveys', to: 'surveys#get_user_surveys', via: 'get'
                 match '/cashouts', to: 'users#get_cash_outs', via: 'get'
             end
         end
