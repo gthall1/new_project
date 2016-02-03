@@ -1,7 +1,7 @@
 $(document).ready(function(){
     // General app scripts
     app.init();
-
+    siteCookies.init();
     // Cashout process
     if (mobileCheck.any()) {
         cashOut.init();

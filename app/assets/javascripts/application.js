@@ -20,6 +20,7 @@
 //= require mobilecheck
 //= require js-cookie
 //= require app
+//= require siteCookies
 //= require main
 //= require superslides
 //= require jquery.slideandswipe.min
