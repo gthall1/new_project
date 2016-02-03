@@ -25,7 +25,7 @@ task :seed_data => :environment do |t,args|
         a.save
     end
 
-        #SEED JACKPOT
+    #SEED JACKPOT
     jackpot = Jackpot.new
     jackpot.name = "Test"
     jackpot.draw_date = Time.now + 2.months
@@ -34,6 +34,15 @@ task :seed_data => :environment do |t,args|
     jackpot.max_entries = 500
     jackpot.save
 end
+
+task :add_api_user => :environment do | t, args | 
+    if Rails.env.production?
+        ApiUser.create({user_id: 93,token: SecureRandom.urlsafe_base64(nil, false)})
+    else
+        ApiUser.create({user_id: User.last,token: SecureRandom.urlsafe_base64(nil, false)})
+    end
+end
+
 task :add_slug_to_games => :environment do | t, args |
      Game.all.each do | g |
             g.slug = g.name.parameterize
