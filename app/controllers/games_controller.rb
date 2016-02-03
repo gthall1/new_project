@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
     before_action :set_game, only: [:show, :edit, :update, :destroy]
-    before_filter :check_signed_in
+    before_filter :check_signed_in,:set_notifications
     skip_before_filter  :verify_authenticity_token, only:[:score_update,:reset_game,:get_random_challenge_user]
     include ApplicationHelper
     include GamesHelper
@@ -10,13 +10,14 @@ class GamesController < ApplicationController
     # GET /games
     # GET /games.json
     def index
+
+        
         @current_page = "games"
         if is_mobile?
             @games = Game.where(device_type:[1,3]).order("sort_order asc")
         else
             @games = Game.where(device_type:[2,3]).order("sort_order asc")
         end
-        @current_jackpot = Jackpot.where(open: true).first
 
         @is_mobile = is_mobile?
 
@@ -25,6 +26,17 @@ class GamesController < ApplicationController
 
     def check_signed_in
         redirect_to root_path if !signed_in?
+    end
+
+    #sets notifications for surveys not taken
+    def set_notifications
+        if !cookies[:survey] 
+            if current_user && !current_user.surveys.include?(Survey.last)
+                cookies.permanent[:survey] = 0
+            elsif current_user.surveys.include?(Survey.last)
+                cookies.permanent[:survey] = 1
+            end
+        end
     end
 
     def get_random_challenge_user

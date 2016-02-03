@@ -4,7 +4,7 @@ var siteCookies = {
     },
 
     surveyCookie: function() {
-        if(Cookies.get('survey_0') !== 'clicked') {
+        if(Cookies.get('survey') !== "1") {
             app.notify(siteCookies.settings.surveyNotification);
         }
     },

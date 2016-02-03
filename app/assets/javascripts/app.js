@@ -143,9 +143,9 @@ var app = {
             $('.mobile-container').removeClass('desktop--modal-blur');
         });
 
-        $('.js-survery-link').click(function() {
-            Cookies.set('survey_0', 'clicked', { expires: 365 });
-        })
+        // $('.js-survery-link').click(function() {
+        //     Cookies.set('survey_0', 'clicked', { expires: 365 });
+        // })
 
         document.addEventListener("touchstart", function(){}, true);
     },

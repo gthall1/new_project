@@ -11,6 +11,8 @@ class SurveysController < ApplicationController
   # GET /surveys
   # GET /surveys.json
   def index
+    cookies[:survey] = 1 
+    
     @current_page = "surveys"
     @show_back_button = true
     @surveys = Survey.all

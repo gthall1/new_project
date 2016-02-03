@@ -6,9 +6,11 @@ class User < ActiveRecord::Base
   has_many :jackpots, through: :user_entries
   has_many :user_game_sessions
   has_many :cash_outs
+  has_many :user_surveys
+  has_many :surveys, :through => :user_surveys
+
   has_many :challenges_as_challenged, :foreign_key => 'challenged_user_id', :class_name => 'Challenge'
   has_many :challenges_as_challenger, :foreign_key => 'user_id', :class_name => 'Challenge'
-
 
 
   belongs_to :jackpot
