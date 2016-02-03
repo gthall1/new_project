@@ -8,7 +8,7 @@
     background: $white !important;
 }
 .interior-hero {
-    background-color: $purple;
+    background-color: $lavender;
     padding: 40px 5% 40px 5%;
     text-align: center;
     color: $white;
@@ -21,7 +21,7 @@
     margin: 0 0 10px 0;
 
     .credits {
-        color: $red;
+        color: $white; //$red
     }
 }
 .interior-hero__desc {
@@ -29,7 +29,7 @@
     line-height: 25px;
     font-weight: 200;
     .credits {
-        color: $red;
+        color: $white; //$red
     }
     .byline {
         float: right;

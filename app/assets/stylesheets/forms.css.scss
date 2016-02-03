@@ -1,9 +1,6 @@
 @import "mixins";
 @import "variables";
 
-$input-fill: #f6f7f9;
-$fb-blue: #448ccb;
-$blue-steel: #a5b0bd;
 button {
     outline: 0 !important;
 }
@@ -92,9 +89,6 @@ button {
     & + .btn--form {
         margin-top: 30px;
     }
-}
-.mobile-container {
-    height: 100vh;
 }
 .form-wrap {
     @include vertical-align(relative, 45vh);

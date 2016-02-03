@@ -231,15 +231,16 @@
                 <div class="bottom-navigation bottom-navigation--mobile js-bottom-navigation">
                     <%= link_to games_path do %>
                     <div class="bottom-nav__item <%= "active" if @current_page == "games" %>">
-                        <p class="bottom-nav__item-copy"><img class="bottom-nav__img" src="/assets/navbar_2.png">Home</p>
+                        <p class="bottom-nav__item-copy"><img class="bottom-nav__img" src="/assets/navbar_2.png">Games</p>
                     </div>
                     <% end %>
 
-                    <%= link_to surveys_path do %>
+                    <a href="/surveys" class="js-survery-link">
                         <div class="bottom-nav__item <%= "active" if @current_page == "surveys" %>">
+                            <i class="fa fa-exclamation js-survey-notification notification"></i>
                             <p class="bottom-nav__item-copy"><img class="bottom-nav__img" src="/assets/navbar_1.png">Surveys</p>
                         </div>
-                    <% end %>
+                    </a>
 
                     <%= link_to redeem_path do %>
                         <div class="bottom-nav__item bottom-nav__item--primary <%= "active" if @current_page == "redeem" %>">
