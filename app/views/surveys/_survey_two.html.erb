@@ -11,18 +11,23 @@
 	 	<div class="survey__question">
 			<p class="survey__question-copy">1. How often do you drink coffee? </p>
 
-			<label class="control control--radio">0 times per week
-			<%= radio_button 'coffee', 'frequency', '0 times per week', :required => true %>
+			<label class="control control--radio">0 days per week
+			<%= radio_button 'coffee', 'frequency', '0 days per week', :required => true %>
 			<div class="control__indicator"></div>
 			</label><!-- /.control .control--radio -->
 
-			<label class="control control--radio">1-3 times per week
-			<%= radio_button 'coffee', 'frequency', '1-3 times per week' %>
+			<label class="control control--radio">1-2 days per week
+			<%= radio_button 'coffee', 'frequency', '1-2 days per week' %>
 			<div class="control__indicator"></div>
 			</label><!-- /.control .control--radio -->
 
-			<label class="control control--radio"> 4+
-			<%= radio_button 'coffee', 'frequency', '4+ times per week' %>
+			<label class="control control--radio"> 3-5
+			<%= radio_button 'coffee', 'frequency', '3-5 days per week' %>
+			<div class="control__indicator"></div>
+			</label><!-- /.control .control--radio -->
+
+			<label class="control control--radio"> Every. Single. Day.
+			<%= radio_button 'coffee', 'frequency', 'Every. Single. Day.' %>
 			<div class="control__indicator"></div>
 			</label><!-- /.control .control--radio -->
 		</div>
@@ -30,13 +35,13 @@
 		<div class="survey__question">
 			<p class="survey__question-copy">2. If you are at a coffee shop, which are you more likely to order?</p>
 
-			<label class="control control--radio">In a home/personal gym
-			<%= radio_button 'workout', 'location', 'home/personal gym' %>
+			<label class="control control--radio">Coffee
+			<%= radio_button 'workout', 'location', 'coffee' %>
 			<div class="control__indicator"></div>
 			</label><!-- /.control .control--radio -->
 
-			<label class="control control--radio">In a local gym
-			<%= radio_button 'workout', 'location', 'local gym' %>
+			<label class="control control--radio">Specialty Drink (latte, cappuccino, etc.)
+			<%= radio_button 'workout', 'location', 'specialty drink' %>
 			<div class="control__indicator"></div>
 			</label><!-- /.control .control--radio -->
 
@@ -47,48 +52,43 @@
 		</div>
 
 		<div class="survey__question">
-			<p class="survey__question-copy">3. Have you ever tried CrossFit or Iron Tribe?</p>
+			<p class="survey__question-copy">3. Which do you prefer?</p>
 
-			<label class="control control--radio">Yes
-			<%= radio_button 'cross-iron', 'yesno', 'yes' %>
+			<label class="control control--radio">Starbucks
+			<%= radio_button 'cross-iron', 'yesno', 'starbucks' %>
 			<div class="control__indicator"></div>
 			</label><!-- /.control .control--radio -->
 
-			<label class="control control--radio">No
-			<%= radio_button 'cross-iron', 'yesno', 'no' %>
-			<div class="control__indicator"></div>
-			</label><!-- /.control .control--radio -->
-		</div>
-
-		<div class="survey__question">
-			<p class="survey__question-copy">4. What is your experience with health / workout supplements?</p>
-
-			<label class="control control--radio">Never taken any
-			<%= radio_button 'supplements', 'taken', 'never' %>
-			<div class="control__indicator"></div>
-			</label><!-- /.control .control--radio -->
-
-			<label class="control control--radio">I have taken them in the past but do not now
-			<%= radio_button 'supplements', 'taken', 'past' %>
-			<div class="control__indicator"></div>
-			</label><!-- /.control .control--radio -->
-
-			<label class="control control--radio">I currently take a vitamin/supplement
-			<%= radio_button 'supplements', 'taken', 'current' %>
+			<label class="control control--radio">Dunkin Donuts
+			<%= radio_button 'cross-iron', 'yesno', 'dunkin donuts' %>
 			<div class="control__indicator"></div>
 			</label><!-- /.control .control--radio -->
 		</div>
 
 		<div class="survey__question">
-			<p class="survey__question-copy">5. Have you ever heard of ClassPass?</p>
+			<p class="survey__question-copy">4. Do you make coffee at home?</p>
 
 			<label class="control control--radio">Yes
-			<%= radio_button 'classpass', 'yesno', 'yes' %>
+			<%= radio_button 'supplements', 'taken', 'yes' %>
 			<div class="control__indicator"></div>
 			</label><!-- /.control .control--radio -->
 
 			<label class="control control--radio">No
-			<%= radio_button 'classpass', 'yesno', 'no' %>
+			<%= radio_button 'supplements', 'taken', 'no' %>
+			<div class="control__indicator"></div>
+			</label><!-- /.control .control--radio -->
+		</div>
+
+		<div class="survey__question">
+			<p class="survey__question-copy">5. Are you aware of the Starbucks loyalty award program?</p>
+
+			<label class="control control--radio">Yes
+			<%= radio_button 'awards', 'yesno', 'yes' %>
+			<div class="control__indicator"></div>
+			</label><!-- /.control .control--radio -->
+
+			<label class="control control--radio">No
+			<%= radio_button 'awards', 'yesno', 'no' %>
 			<div class="control__indicator"></div>
 			</label><!-- /.control .control--radio -->
 		</div>
