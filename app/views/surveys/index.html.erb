@@ -5,25 +5,26 @@
   <p class="interior-hero__desc" >Fill out a simple survey and earn up to <span class='credits'> 100 credits!</span></p>
 </div><!--/.interior-hero -->
 <div class="interior-body">
-  <div class="surveys-wrapper">
-  <ul class="survey-list">
+  <section class="card-container">
     <% @surveys.each do |survey| %>
-      <li class="survey">
-        <h1 class="survey__title"><%= survey.name %></h1>
-        <% if UserSurvey.where(survey_id: survey.id,user_id:current_user.id,complete:true).present? %>
-          <span class='survey__completed'>Survey Completed</span>
-        <% else %>
-          <span class='cash-out__cost'>+<%= survey.credits%></span>
-          <%= link_to  survey do %>
-            <i class="fa fa-angle-right"></i>
-          <% end %>
+
+        <%= link_to  survey do %>
+          <div class="card-tout">
+            <div class="card-inner">
+              <h1 class="survey__title"><%= survey.name %></h1>
+              <span class='card__credits card__lower'>+<%= survey.credits%></span>
+              <% if UserSurvey.where(survey_id: survey.id,user_id:current_user.id,complete:true).present? %>
+                <span class='survey__completed'>Survey Completed</span>
+              <% end %>
+
+              <% if current_user && current_user.admin %>
+                  <%= link_to 'Edit', edit_survey_path(survey) %>
+                  <%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <% end %>
+            </div>
+          </div>
         <% end %>
-          <% if current_user && current_user.admin %>
-              <%= link_to 'Edit', edit_survey_path(survey) %>
-              <%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %>
-          <% end %>
-      </li>
+
     <% end %>
-  </ul>
-  </div>
+  </section>
 </div><!--/.interior-body -->

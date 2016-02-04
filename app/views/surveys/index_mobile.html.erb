@@ -2,18 +2,20 @@
   <p class="page-title">Surveys</p>
   <ul>
     <% @surveys.each do |survey| %>
-      <li><%= survey.name %>
+      <li>
+        <%= link_to  survey do %>
+        <%= survey.name %>
         <% if UserSurvey.where(survey_id: survey.id,user_id:current_user.id,complete:true).present? %>
           <span class='cash-out__cost'>Survey Completed</span>
         <% else %>
           <span class='cash-out__cost'>+<%= survey.credits%></span>
-          <%= link_to  survey do %>
+
             <i class="fa fa-angle-right"></i>
-          <% end %>
         <% end %>
           <% if current_user && current_user.admin %>
               <%= link_to 'Edit', edit_survey_path(survey) %>
               <%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
           <% end %>
       </li>
     <% end %>

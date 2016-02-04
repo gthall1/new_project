@@ -44,6 +44,14 @@
   transform: rotate($degrees);
 }
 
+@mixin bgColorAndHover($baseColor, $duration: 0.25s) {
+    background-color: $baseColor;
+    transition: background-color $duration linear;
+    &:hover {
+        background-color: darken($baseColor, 5%);
+    }
+}
+
 @keyframes slideIn {
   0%   {transform:translateX(100%);}
   100% {transform:translateX(0);}
