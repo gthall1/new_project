@@ -17,9 +17,12 @@ class ApplicationController < ActionController::Base
 
 	def record_arrival
 		set_is_bot if session[:bot].nil?
-		if !session[:arrival_id] && cookies[:a_id]
+       
+        skip = request && request.fullpath.include?('/api/v1')
+        
+		if !skip && !session[:arrival_id] && cookies[:a_id]
 			session[:arrival_id] = cookies[:a_id]
-		elsif !session[:bot] && !session[:arrival_id]
+		elsif !skip && !session[:bot] && !session[:arrival_id]
 			landing_url = nil
 			referer = nil
 			user_agent = nil
