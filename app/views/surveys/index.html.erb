@@ -2,7 +2,7 @@
 
 <div class="interior-hero">
     <h1 class="interior-hero__title">Take Surveys, Earn Credits</h1>
-    <p class="interior-hero__desc" >Fill out a quick survey to earn credits<span class='credits'> 100 credits!</span></p>
+    <p class="interior-hero__desc" >Fill out a quick survey to earn 50-100 credits!</p>
 </div><!--/.interior-hero -->
 
 <div class="interior-body">
@@ -21,11 +21,6 @@
                     <% end %>
                     <% if UserSurvey.where(survey_id: survey.id,user_id:current_user.id,complete:true).present? %>
                         <span class='survey__completed'>Survey Completed</span>
-                    <% end %>
-
-                    <% if current_user && current_user.admin %>
-                        <%= link_to 'Edit', edit_survey_path(survey), class: "survery__admin-control" %> |
-                        <%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' }, class: "survery__admin-control" %>
                     <% end %>
                 </div>
             </div>
