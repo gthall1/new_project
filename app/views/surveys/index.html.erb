@@ -1,30 +1,34 @@
-<% content_for :body_class, "interior-page" %>
+<% content_for :body_class, "interior-page survey-landing" %>
 
 <div class="interior-hero">
-  <h1 class="interior-hero__title">Take Surveys, Earn Credits</h1>
-  <p class="interior-hero__desc" >Fill out a simple survey and earn up to <span class='credits'> 100 credits!</span></p>
+    <h1 class="interior-hero__title">Take Surveys, Earn Credits</h1>
+    <p class="interior-hero__desc" >Fill out a quick survey to earn credits<span class='credits'> 100 credits!</span></p>
 </div><!--/.interior-hero -->
+
 <div class="interior-body">
-  <section class="card-container">
-    <% @surveys.each do |survey| %>
+    <section class="card-container">
+        <% @surveys.each do |survey| %>
+            <div class="card-tout <% if UserSurvey.where(survey_id: survey.id,user_id:current_user.id,complete:true).present? %> disabled <% end %>">
+                <div class="card-inner">
+                    <% if UserSurvey.where(survey_id: survey.id,user_id:current_user.id,complete:true).present? %>
+                        <h1 class="survey__title"><%= survey.name %></h1>
+                        <span class='card__credits card__lower'>+<%= survey.credits%> credits</span>
+                    <% else %>
+                    <%= link_to  survey do %>
+                        <h1 class="survey__title"><%= survey.name %></h1>
+                        <span class='card__credits card__lower'>+<%= survey.credits%> credits</span>
+                    <% end %>
+                    <% end %>
+                    <% if UserSurvey.where(survey_id: survey.id,user_id:current_user.id,complete:true).present? %>
+                        <span class='survey__completed'>Survey Completed</span>
+                    <% end %>
 
-        <%= link_to  survey do %>
-          <div class="card-tout">
-            <div class="card-inner">
-              <h1 class="survey__title"><%= survey.name %></h1>
-              <span class='card__credits card__lower'>+<%= survey.credits%></span>
-              <% if UserSurvey.where(survey_id: survey.id,user_id:current_user.id,complete:true).present? %>
-                <span class='survey__completed'>Survey Completed</span>
-              <% end %>
-
-              <% if current_user && current_user.admin %>
-                  <%= link_to 'Edit', edit_survey_path(survey) %>
-                  <%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %>
-              <% end %>
+                    <% if current_user && current_user.admin %>
+                        <%= link_to 'Edit', edit_survey_path(survey), class: "survery__admin-control" %> |
+                        <%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' }, class: "survery__admin-control" %>
+                    <% end %>
+                </div>
             </div>
-          </div>
         <% end %>
-
-    <% end %>
-  </section>
+    </section><!-- /.card-container -->
 </div><!--/.interior-body -->

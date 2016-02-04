@@ -115,3 +115,31 @@
         background: #7b7b7b;
     }
 }
+
+
+// Surveys Landing
+.survey__title {
+    font-size: $xl;
+    margin-bottom: 2px;
+    color: $black;
+}
+.survey__completed {
+    // margin-top: 10px;
+    display: block;
+    color: $teal;
+}
+.survery__admin-control {
+    color: $black;
+}
+
+.survey-landing {
+    .card-tout {
+        &:last-child {
+            position: relative;
+            top: 20px;
+        }
+    }
+    .card__credits {
+        margin-bottom: 10px;
+    }
+}

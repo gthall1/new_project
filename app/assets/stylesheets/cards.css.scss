@@ -39,6 +39,14 @@
         transform: scale(1.1);
         cursor: pointer;
     }
+
+    &.disabled {
+        background-color: $clouds;
+        &:hover {
+            transform: scale(1);
+            cursor: default;
+        }
+    }
 }
 .card-inner {
     @include vertical-align();
