@@ -1,27 +1,6 @@
-<p id="notice"><%= notice %></p>
-
-Answer these questions and receive <%= @survey.credits %> credits! <br />
-
-<p>1. How frequently do you work out? </p>
-Pepsi: <%= radio_button 'workout', 'frequency', '0 times per week', :required => true %>
-Coke: <%= radio_button 'workout', 'frequency', '1-3 times per week' %>
-Other: <%= radio_button 'workout', 'frequency', '4+ times per week' %>
-
-<p>2. What is your favorite type of soda? </p>
-Pepsi: <%= radio_button 'soda', 'type', 'pepsi' %>
-Coke: <%= radio_button 'soda', 'type', 'coke' %>
-Other: <%= radio_button 'soda', 'type', 'other' %>
-
-<p>3. What is your favorite type of soda? </p>
-Pepsi: <%= radio_button 'soda', 'type', 'pepsi' %>
-Coke: <%= radio_button 'soda', 'type', 'coke' %>
-Other: <%= radio_button 'soda', 'type', 'other' %>
-<%= form_for(@user_survey) do |f| %>
-	<%= f.hidden_field :id %>
-	<%= f.hidden_field :complete, :value => true %>
-	<%= f.submit 'Submit Survey' %>
+ <% case @survey.slug %>
+  <% when "fitness-survey" %>
+    <%= render 'survey_one' %>
+  <% when "coffee-survey" %>
+    <%= render 'survey_two' %>
 <% end %>
-
-<br />
-<%= link_to 'Back', surveys_path %>
-

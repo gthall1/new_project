@@ -35,6 +35,15 @@ task :seed_data => :environment do |t,args|
     jackpot.save
 end
 
+task :update_surveys => :environment do | t, args | 
+  a=  Survey.first
+  a.name = "Fitness Survey"
+  a.slug = "fitness-survey"
+  a.save
+
+  b = Survey.create({name: "Coffee Survey", slug:"coffee-survey",credits:50})
+end
+
 task :add_api_user => :environment do | t, args | 
     if Rails.env.production?
         ApiUser.create({user_id: 93,token: SecureRandom.urlsafe_base64(nil, false)})
