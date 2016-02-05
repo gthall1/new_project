@@ -22,6 +22,7 @@ html {
     overflow-y: scroll;
 }
 
+// Change these selectors to one body class that can be added to templates, rather than listing out new classes for the same outcome
 body {
     padding-top: 60px;
     position: relative;
@@ -49,6 +50,7 @@ body {
         }
     }
 
+    // Add padding to bottom of page
     &.leaderboard-index-page--mobile,
     &.leaderboard-page--mobile,
     &.mobile-games-page,

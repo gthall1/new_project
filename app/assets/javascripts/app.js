@@ -108,6 +108,11 @@ var app = {
         $(el).addClass('show');
     },
 
+    validateEmail: function (email) {
+        var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    },
+
     bind: function() {
         $('.js-share-dialog__close').click(function(){
             $('.js-share-dialog').removeClass('show');
@@ -141,6 +146,44 @@ var app = {
         // Modal dismiss
         $('.js-modal__link').click(function(){
             $('.mobile-container').removeClass('desktop--modal-blur');
+        });
+
+        // Validate New User Emaik
+        $('.js-validate').blur(function(e){
+            var email = $(this).val();
+
+            $.ajax({
+                type: "GET",
+                url: window.location.origin + '/validate_email',
+                data: {email: email},
+                dataType: "json",
+                success: function(data) {
+                    var isValid = app.validateEmail(email),
+                        isAvailable = data.available;
+
+                        if (isValid && isAvailable) {
+                            $('.js-invalid--email').removeClass('show');
+                            $('.js-valid--email').addClass('show');
+                        } else if (!isValid && isAvailable) {
+                            $('.js-valid--email').removeClass('show');
+                            $('.js-error-case').hide();
+                            $('.js-error-case--invalid').show();
+
+                            $('.js-invalid--email').addClass('show');
+                        } else if (isValid && !isAvailable) {
+                            $('.js-valid--email').removeClass('show');
+                            $('.js-error-case').hide();
+                            $('.js-error-case--taken').show();
+
+                            $('.js-invalid--email').addClass('show');
+                        }
+                },
+                error: function(data) {
+                    console.dir(data);
+                }
+            });
+
+
         });
 
         // $('.js-survery-link').click(function() {

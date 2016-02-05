@@ -39,6 +39,16 @@ class UsersController < ApplicationController
     def stats
     end
 
+    def validate_email
+        email = params[:email]
+
+        if User.where(email: email).present?
+            render json: email = {:available => false}
+        else
+            render json: email = {:available => true}
+        end
+    end
+
     def new
         @user = User.new
         @is_mobile = is_mobile?
