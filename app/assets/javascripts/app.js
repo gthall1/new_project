@@ -113,6 +113,13 @@ var app = {
         return re.test(email);
     },
 
+    preventSubmission: function() {
+        $('.js-prevent-form').one('submit', function(e) {
+            e.preventDefault();
+            return false;
+        })
+    },
+
     bind: function() {
         $('.js-share-dialog__close').click(function(){
             $('.js-share-dialog').removeClass('show');
@@ -176,6 +183,13 @@ var app = {
                             $('.js-error-case--taken').show();
 
                             $('.js-invalid--email').addClass('show');
+                        }
+
+                        if (!isValid || !isAvailable) {
+                            $('.new_user').addClass('js-prevent-form');
+                            app.preventSubmission();
+                        } else {
+                            $('.new_user').removeClass('js-prevent-form');
                         }
                 },
                 error: function(data) {
