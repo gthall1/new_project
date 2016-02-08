@@ -107,6 +107,32 @@ button {
         top: 2.5vh;
         color: $blue-steel;
     }
+
+    .input-validation {
+        position: absolute;
+        right: 5%;
+        left: inherit;
+        font-size: $lg;
+        opacity: 0;
+        @include transition();
+
+        &.error-msg {
+            font-size: $xs;
+            top: 25%;
+        }
+
+        &.valid-input {
+            color: $teal;
+        }
+
+        &.invalid-input {
+            color: $red;
+        }
+
+        &.show {
+            opacity: 1;
+        }
+    }
 }
 .form-input--wrap-submit {
     height: 10vh;

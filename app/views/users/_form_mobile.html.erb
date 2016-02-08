@@ -37,7 +37,12 @@
 
             <div class="form-input--wrap">
                 <i class="fa fa-envelope"></i>
-                <%= f.text_field :email, placeholder: 'Email', class: "form-input" %>
+                <i class="fa fa-check-circle-o input-validation valid-input js-valid--email"></i>
+                <span class="input-validation invalid-input error-msg js-invalid--email">
+                    <span class="js-error-case js-error-case--invalid">invalid email</span>
+                    <span class="js-error-case js-error-case--taken">email taken</span>
+                </span>
+                <%= f.text_field :email, placeholder: 'Email', class: "form-input js-validate js-validate--email" %>
             </div><!-- /.form-input--wrap -->
 
             <div class="form-input--wrap">
@@ -51,7 +56,7 @@
             </div><!-- /.form-input--wrap -->
 
             <div class="form-input--wrap form-input--wrap-submit">
-                <%= f.submit "Create my account", class: "form-input" %>
+                <%= f.submit "Create my account", class: "form-input js-form-submit" %>
             </div><!-- /.form-input--wrap -->
 
 
@@ -80,11 +85,5 @@
                 $('.js-form-wrap').fadeIn();
             });
         })
-
-        if (app.isWebAppMode()) {
-            $('.js-form-swap').addClass('wam');
-        } else {
-            console.log('not wam');
-        }
     });
 </script>

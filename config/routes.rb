@@ -55,19 +55,22 @@ Alotto::Application.routes.draw do
     match '/invite/:referral',  to: 'static_pages#home_invite',         via: 'get'
     get 'auth/:provider/callback', to: 'sessions#create_from_facebook'
 
+    # JSON Routes
+    match '/validate_email', to: 'users#validate_email', via: 'get'
+
     #For analytics to grab some data
-    namespace :api, defaults: { format: :json } do 
+    namespace :api, defaults: { format: :json } do
         namespace :v1 do
             scope ':token' do
                 match '/users', to: 'users#get_users', via: 'get'
                 match '/user_games', to: 'users#get_game_sessions', via: 'get'
                 match '/games', to: 'games#get_games', via: 'get'
-                match '/arrivals', to: 'arrivals#get_arrivals', via: 'get'                
+                match '/arrivals', to: 'arrivals#get_arrivals', via: 'get'
                 match '/surveys', to: 'surveys#get_surveys', via: 'get'
                 match '/user_surveys', to: 'surveys#get_user_surveys', via: 'get'
                 match '/cashouts', to: 'users#get_cash_outs', via: 'get'
             end
         end
     end
-    
+
 end
