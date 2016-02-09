@@ -41,6 +41,7 @@ class UsersController < ApplicationController
 
     def validate_email
         email = params[:email]
+        email = email.downcase
 
         if User.where(email: email).present?
             render json: email = {:available => false}
