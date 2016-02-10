@@ -16,7 +16,9 @@ $(document).ready(function(){
     $('.mobile-home .mobile-container').addClass('beta-version');
 
     // goo.gl/mGZagf - staging shortened URL
-    alert(navigator.userAgent);
+    var foo = navigator.userAgent;
+    $('.secondary__desc').text(foo);
+    // alert(navigator.userAgent);
 });
 
 $(window).load(function(){
