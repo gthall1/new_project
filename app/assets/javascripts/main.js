@@ -17,7 +17,7 @@ $(document).ready(function(){
 
     // goo.gl/mGZagf - staging shortened URL
     var foo = navigator.userAgent;
-    $('.secondary__desc').text(foo);
+    $('.welcome-box-m').text(foo);
     // alert(navigator.userAgent);
 });
 
