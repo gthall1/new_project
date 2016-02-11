@@ -12,9 +12,9 @@ class StaticPagesController < ApplicationController
         user_agent = request.user_agent
 
         if user_agent.include?("FBIOS" && "iPhone")
-            redirect_to about_path
+            render 'static_pages#about'
         elsif user_agent.include?("Twitter for iPhone")
-            redirect_to about_path
+            render 'static_pages#about'
         end
 
         if !signed_in?
