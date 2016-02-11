@@ -1,0 +1,48 @@
+<% content_for :body_class, "survey-page" %>
+<div class="page-container">
+
+<!-- <h1 class="survey-title">Survey</h1> -->
+<section class="survey-wrapper">
+    <p id="notice"><%= notice %></p>
+
+    <p class="intro-copy">Complete this survey and receive <%= @survey.credits %> credits!</p>
+
+    <div class="refer-friend">
+
+        <div class="survey__question">
+            <p class="survey__question-copy">1. Do you play golf?</p>
+
+            <label class="control control--radio">Yes
+            <%= radio_button 'supplements', 'taken', 'yes' %>
+            <div class="control__indicator"></div>
+            </label><!-- /.control .control--radio -->
+
+            <label class="control control--radio">No
+            <%= radio_button 'supplements', 'taken', 'no' %>
+            <div class="control__indicator"></div>
+            </label><!-- /.control .control--radio -->
+        </div><!-- /.control -->
+
+        <div class="survey__question">
+            <p class="survey__question-copy">2. Do you watch golf on TV?</p>
+
+            <label class="control control--radio">Yes
+            <%= radio_button 'awards', 'yesno', 'yes' %>
+            <div class="control__indicator"></div>
+            </label><!-- /.control .control--radio -->
+
+            <label class="control control--radio">No
+            <%= radio_button 'awards', 'yesno', 'no' %>
+            <div class="control__indicator"></div>
+            </label><!-- /.control .control--radio -->
+        </div><!-- /.control -->
+
+        <%= form_for(@user_survey) do |f| %>
+            <%= f.hidden_field :id %>
+            <%= f.hidden_field :complete, :value => true %>
+            <%= f.submit 'Submit Survey', class: "btn-submit btn--top-margin"%>
+        <% end %>
+    </div> <!--/.refer-friend -->
+
+</section><!-- /.section-wrapper -->
+</div>
