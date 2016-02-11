@@ -44,8 +44,12 @@ class SessionsController < ApplicationController
           a.user_id = user.id
           a.save
         end
-      end      
-      redirect_to root_path
+      end  
+      if user.created_at > Time.now-5.minutes
+        redirect_to set_username_path
+      else    
+        redirect_to root_path
+      end
     else
       flash.now[:error] = 'Invalid email/password combination'
       render 'new'
