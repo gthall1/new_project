@@ -9,13 +9,7 @@ class StaticPagesController < ApplicationController
   end
 
   def home
-    user_agent = request.user_agent
 
-    if user_agent.include?("FBIOS" && "iPhone")
-        binding.pry
-    elsif user_agent.include?("Twitter for iPhone")
-        binding.pry
-    end
 
      if !signed_in?
       @current_jackpot = Jackpot.where(open: true).first
