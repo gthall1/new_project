@@ -65,6 +65,7 @@ class UsersController < ApplicationController
 
     def create
         @user = User.new(user_params)
+        user_agent = request.user_agent
         if session[:arrival_id]
             @user.arrival_id = session[:arrival_id]
         elsif cookies[:a_id]
@@ -87,10 +88,17 @@ class UsersController < ApplicationController
                     session[:referred_user_id] = nil
                 end
             end
-            sign_in @user
-            cookies.permanent[:u] = @user.id
-            flash[:success] = "Welcome to Luckee!"
-            redirect_to(root_url)
+
+            if user_agent.include?("FBIOS" && "iPhone")
+                binding.pry
+            elsif user_agent.include?("Twitter for iPhone")
+                binding.pry
+            else
+                sign_in @user
+                cookies.permanent[:u] = @user.id
+                flash[:success] = "Welcome to Luckee!"
+                redirect_to(root_url)
+            end
         else
             render 'new'
         end
