@@ -11,7 +11,7 @@ class StaticPagesController < ApplicationController
     def home
         user_agent = request.user_agent
 
-        if user_agent.include?("FBIOS" && "iPhone")
+        if user_agent.include?("FBAN" && "iPhone")
             flash[:success] = "FB Browser"
         elsif user_agent.include?("Twitter for iPhone")
             flash[:success] = "Twitter Browser"
