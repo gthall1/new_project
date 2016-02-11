@@ -53,6 +53,10 @@ Alotto::Application.routes.draw do
     match '/stats', to: 'users#stats', via: 'get'
     match '/challenges', to: 'users#challenges',as: 'user_challenges', via: 'get'
     match '/invite/:referral',  to: 'static_pages#home_invite',         via: 'get'
+    match '/update_username',  to: 'users#update_username',         via: 'patch'
+    match '/set_username',  to: 'static_pages#set_username',         via: 'get'
+
+
     get 'auth/:provider/callback', to: 'sessions#create_from_facebook'
 
     # JSON Routes

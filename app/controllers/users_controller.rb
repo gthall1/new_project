@@ -50,6 +50,14 @@ class UsersController < ApplicationController
         end
     end
 
+    def update_username
+        if current_user && params[:user] && params[:user][:name]
+            current_user.name = params[:user][:name]
+            current_user.save
+        end
+        redirect_to games_path
+    end
+
     def new
         @user = User.new
         @is_mobile = is_mobile?
