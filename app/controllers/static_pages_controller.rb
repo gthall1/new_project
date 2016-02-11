@@ -12,9 +12,9 @@ class StaticPagesController < ApplicationController
         user_agent = request.user_agent
 
         if user_agent.include?("FBIOS" && "iPhone")
-            render 'static_pages#about'
+            flash[:success] = "FB Browser"
         elsif user_agent.include?("Twitter for iPhone")
-            render 'static_pages#about'
+            flash[:success] = "Twitter Browser"
         end
 
         if !signed_in?
