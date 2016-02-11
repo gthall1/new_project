@@ -159,7 +159,8 @@ class GamesController < ApplicationController
 
          # p "Score : #{score} | Game SEssion Score: #{game_session.score}"
             if game_session && game_session.active
-                 credits_to_apply = get_credits_to_apply(game_session.game.slug,score,game_session.credits_applied,game_session.version)
+                game_session.last_score_update = Time.now
+                credits_to_apply = get_credits_to_apply(game_session.game.slug,score,game_session.credits_applied,game_session.version)
                 if user && credits_to_apply > 0
                     user.add_credits({credits:credits_to_apply})
                     game_session.credits_applied += credits_to_apply
