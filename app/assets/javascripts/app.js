@@ -120,6 +120,16 @@ var app = {
         })
     },
 
+    testSocialBrowser: function() {
+        if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
+            if (navigator.userAgent.match(/FBAV/i)) {
+                return "facebook";
+            } else if (navigator.userAgent.match(/Twitter/i)){
+                return "twitter";
+            }
+        }
+    },
+
     bind: function() {
         $('.js-share-dialog__close').click(function(){
             $('.js-share-dialog').removeClass('show');

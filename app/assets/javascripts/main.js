@@ -15,14 +15,6 @@ $(document).ready(function(){
     //Remove this line once out of BETA
     $('.mobile-home .mobile-container').addClass('beta-version');
 
-    // goo.gl/mGZagf - staging shortened URL
-    if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
-        if (navigator.userAgent.match(/FBAV/i)) {
-            $('.welcome-box-m').text("FACEBOOK FOR iOS");
-        } else if (navigator.userAgent.match(/Twitter/i)){
-            $('.welcome-box-m').text("TWITTER FOR iOS");
-        }
-    }
 });
 
 $(window).load(function(){
