@@ -9,6 +9,7 @@ class StaticPagesController < ApplicationController
   end
 
   def home
+    binding.pry
      if !signed_in?
       @current_jackpot = Jackpot.where(open: true).first
       @user = User.new
@@ -27,7 +28,7 @@ class StaticPagesController < ApplicationController
       redirect_to root_path
     end
   end
-  
+
   def home_invite
     referred_user_id = User.where(referral:params[:referral]).first
     if referred_user_id
