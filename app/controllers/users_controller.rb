@@ -65,7 +65,7 @@ class UsersController < ApplicationController
 
     def create
         @user = User.new(user_params)
-        user_agent = request.user_agent
+
         if session[:arrival_id]
             @user.arrival_id = session[:arrival_id]
         elsif cookies[:a_id]
@@ -89,10 +89,16 @@ class UsersController < ApplicationController
                 end
             end
 
-            if user_agent.include?("FBIOS" && "iPhone")
-                binding.pry
-            elsif user_agent.include?("Twitter for iPhone")
-                binding.pry
+            user_agent = request.user_agent
+
+            if user_agent.include?("iPhone" || "iPad" || "iPod")
+                if user_agent.include?("FBAN")
+                    flash[:success] = "FB Browser"
+                    render "static_pages/confirm_email"
+                elsif user_agent.include?("Twitter for iPhone")
+                    flash[:success] = "Twitter Browser"
+                    render "static_pages/confirm_email"
+                end
             else
                 sign_in @user
                 cookies.permanent[:u] = @user.id
