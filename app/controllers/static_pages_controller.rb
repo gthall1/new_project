@@ -13,7 +13,7 @@ class StaticPagesController < ApplicationController
         binding.pry
     elsif user_agent.include?("Twitter for iPhone")
         binding.pry
-    else
+    end
 
      if !signed_in?
       @current_jackpot = Jackpot.where(open: true).first
