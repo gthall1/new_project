@@ -94,10 +94,10 @@ class UsersController < ApplicationController
             if user_agent.include?("iPhone" || "iPad" || "iPod")
                 if user_agent.include?("FBAN")
                     flash[:success] = "FB Browser"
-                    render "static_pages/confirm_email"
+                    redirect_to url_for(:controller => :static_pages, :action => :confirm_email)
                 elsif user_agent.include?("Twitter for iPhone")
                     flash[:success] = "Twitter Browser"
-                    render "static_pages/confirm_email"
+                    redirect_to url_for(:controller => :static_pages, :action => :confirm_email)
                 end
             else
                 sign_in @user
