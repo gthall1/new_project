@@ -130,6 +130,25 @@ var app = {
         }
     },
 
+    getParams: function(param) {
+      var get = (function(){
+          var map = {};
+          location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, k, v){
+              map[k] = v;
+          });
+          return map;
+      }());
+
+      var result = param ? get[param] : get
+      return result
+    },
+
+    is_confirmed: function() {
+        if (app.getParams("confirmed") == "true") {
+            $('body').addClass('confirmed');
+        }
+    },
+
     bind: function() {
         $('.js-share-dialog__close').click(function(){
             $('.js-share-dialog').removeClass('show');
@@ -224,6 +243,7 @@ var app = {
         app.show2048Tutorial();
         app.showOnboarding();
         app.notify();
+        app.is_confirmed();
         // app.initheadroom();
         app.fitToContainer(".inline-tout__title", 0.5);
         app.bind();

@@ -45,7 +45,7 @@ class UserNotifier < ActionMailer::Base
       :reply_to => 'griffhall1@gmail.com',
       :from => 'Griff Hall via Luckee <griff@getluckee.com>',
       :display_name => "Luckee",
-      :subject => "Luckee: Confrim Email" )
+      :subject => "Luckee: Confirm Email" )
     end
   end
 
