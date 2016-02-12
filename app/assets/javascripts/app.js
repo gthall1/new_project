@@ -143,9 +143,14 @@ var app = {
       return result
     },
 
+    setBannerCopy: function(copy) {
+        $('.js-notification-banner__copy').text(copy);
+    },
+
     is_confirmed: function() {
         if (app.getParams("confirmed") == "true") {
-            $('body').addClass('confirmed');
+            app.setBannerCopy('Email Confirmed!');
+            $('body').addClass('show-banner');
         }
     },
 

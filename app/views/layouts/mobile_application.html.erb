@@ -124,6 +124,8 @@
         <%= yield(:game_javascript) %>
     </head>
     <body ondragstart="return false;" ondrop="return false;" id="<%= yield (:body_id) %>" class="<%= yield (:body_class) %> <% if @game && Game.where(slug:['traffic','flappy-pilot','fall-down','tap-color']).pluck(:id).include?(@game.id) %> mobile-header--hide <% end %>">
+
+        <div class="js-notification-banner notification-banner"> <span class="js-notification-banner__copy notification-banner__copy">[set copy]</span></div>
         <% if signed_in? %>
         <nav class="nav ssm-nav-visible">
             <div class='side-nav-top'>

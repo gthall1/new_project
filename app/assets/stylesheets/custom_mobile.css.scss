@@ -93,6 +93,24 @@ body {
     }
 }
 
+.notification-banner {
+    background-color: #4FD2C2;
+    color: white;
+    position: absolute;
+    padding: 15px 0;
+    top: -50px;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    margin: auto;
+    opacity: 0.9;
+    @include transition(top, 0.25s, ease, 1.5s);
+
+    .show-banner & {
+        top: 0;
+    }
+}
+
 .header-img--logo {
     position: absolute;
     top: 30px;
