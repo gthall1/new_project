@@ -94,7 +94,7 @@ body {
             margin-top: -5vh;
         }
         .form-wrap {
-            @include vertical-align();
+            @include vertical-align(relative, 50vh);
         }
     }
 
