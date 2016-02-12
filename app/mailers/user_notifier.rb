@@ -37,6 +37,18 @@ class UserNotifier < ActionMailer::Base
     end
   end
 
+  def send_confirmation_email
+    @user = User.where(id:args[:user_id]).first
+
+    if @user
+      mail( :to => @user.email,
+      :reply_to => 'griffhall1@gmail.com',
+      :from => 'Griff Hall via Luckee <griff@getluckee.com>',
+      :display_name => "Luckee",
+      :subject => "Luckee: Confrim Email" )
+    end
+  end
+
   def send_donation_email(args)
     @user = User.where(id:args[:user_id]).first
     @cash_out = @user.cash_outs.last
