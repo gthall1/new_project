@@ -93,10 +93,10 @@ class UsersController < ApplicationController
 
             if user_agent.include?("iPhone" || "iPad" || "iPod")
                 if user_agent.include?("FBAN")
-                    UserNotifier.send_confirmation_email({user_id:current_user.id}).deliver
+                    UserNotifier.send_confirmation_email({user_id: @user.id}).deliver
                     redirect_to url_for(:controller => :static_pages, :action => :confirm_email)
                 elsif user_agent.include?("Twitter for iPhone")
-                    UserNotifier.send_confirmation_email({user_id:current_user.id}).deliver
+                    UserNotifier.send_confirmation_email({user_id: @user.id}).deliver
                     redirect_to url_for(:controller => :static_pages, :action => :confirm_email)
                 end
             else
