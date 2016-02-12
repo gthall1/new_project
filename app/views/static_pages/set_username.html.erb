@@ -1,12 +1,15 @@
-<% content_for :body_class, "interior-page" %>
-
+<% content_for :body_class, "set-username-page interior-page no-bg" %>
 <% provide(:title, 'Set Username') %>
-<div>
 
-  <h2>Set a Username.</h2>
+<div class="form-wrap">
+    <h1 class="form__title">One last step. Please pick a username:</h1>
    <%= form_for(@user, :url => update_username_path) do |f| %>
-        <%= f.label :name, "Username" %>
-        <%= f.text_field :name %>
-        <%= f.submit "Continue" %>
+        <div class="form-input--wrap">
+            <i class="fa fa-user"></i>
+            <%= f.text_field :name, placeholder: 'Username', class: "form-input" %>
+        </div><!-- /.form-input--wrap -->
+        <div class="form-input--wrap form-input--wrap-submit">
+            <%= f.submit "Continue", class: "form-input js-form-submit" %>
+        </div><!-- /.form-input--wrap -->
     <% end %>
-</div>
+</div><!-- /.form-wrap -->

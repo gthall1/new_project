@@ -27,11 +27,14 @@ body {
     padding-top: 60px;
     position: relative;
     z-index: 1;
+
+    &.confirmation-page,
     &.mobile-header--hide,
     &.mobile-home,
     &.gameplay-page--2048,
     &.leaderboard-page--mobile,
-    &.no-top-padding {
+    &.no-top-padding,
+    &.set-username-page {
         padding-top: 0;
     }
 
@@ -87,9 +90,38 @@ body {
         .form-swap {
             bottom: 5vh;
         }
+        .confirmation-page__content {
+            margin-top: -5vh;
+        }
         .form-wrap {
             @include vertical-align();
         }
+    }
+
+    &.set-username-page {
+        overflow: hidden;
+
+        .mobile-header,
+        .bottom-navigation {
+            display: none;
+        }
+        .form-wrap {
+            padding: 0 7.5%;
+        }
+    }
+}
+
+.confirmation-page {
+    height: 100vh;
+    .mobile-container {
+        height: 100vh;
+    }
+    .confirmation-page__content {
+        @include vertical-align();
+    }
+    .confirmation-page__title {
+        font-weight: 400;
+        margin: 0;
     }
 }
 
@@ -99,15 +131,17 @@ body {
     position: absolute;
     padding: 15px 0;
     top: -50px;
+    text-align: center;
     left: 0;
     z-index: 10;
     width: 100%;
     margin: auto;
-    opacity: 0.9;
+    opacity: 0;
     @include transition(top, 0.25s, ease, 1.5s);
 
     .show-banner & {
         top: 0;
+        opacity: 0.9;
     }
 }
 

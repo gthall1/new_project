@@ -134,8 +134,16 @@ button {
         }
     }
 }
+.form__title {
+    font-size: 16px;
+    margin: 0 0 20px;
+    text-align: center;
+    font-weight: 400;
+}
 .form-input--wrap-submit {
     height: 10vh;
+    border-radius: 4px;
+    overflow: hidden;
 
     .form-input {
         background-color: $lavender !important;
