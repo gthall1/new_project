@@ -37,7 +37,7 @@ class UserNotifier < ActionMailer::Base
     end
   end
 
-  def send_confirmation_email
+  def send_confirmation_email(args)
     @user = User.where(id:args[:user_id]).first
 
     if @user
