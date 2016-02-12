@@ -18,7 +18,7 @@
     <%= form_for(:session, url: sessions_path) do |f| %>
         <div class="form-input--wrap">
             <i class="fa fa-envelope"></i>
-            <%= f.text_field :email, placeholder: 'Email', class: "form-input" %>
+            <%= f.email_field :email, placeholder: 'Email', class: "form-input" %>
         </div><!-- /.form-input--wrap -->
 
         <div class="form-input--wrap">

@@ -50,6 +50,14 @@ class UsersController < ApplicationController
         end
     end
 
+    def update_username
+        if current_user && params[:user] && params[:user][:name]
+            current_user.name = params[:user][:name]
+            current_user.save
+        end
+        redirect_to games_path
+    end
+
     def new
         @user = User.new
         @is_mobile = is_mobile?
@@ -57,6 +65,7 @@ class UsersController < ApplicationController
 
     def create
         @user = User.new(user_params)
+
         if session[:arrival_id]
             @user.arrival_id = session[:arrival_id]
         elsif cookies[:a_id]
@@ -79,10 +88,23 @@ class UsersController < ApplicationController
                     session[:referred_user_id] = nil
                 end
             end
-            sign_in @user
-            cookies.permanent[:u] = @user.id
-            flash[:success] = "Welcome to Luckee!"
-            redirect_to(root_url)
+
+            user_agent = request.user_agent
+
+            if user_agent.include?("iPhone" || "iPad" || "iPod")
+                if user_agent.include?("FBAN")
+                    UserNotifier.send_confirmation_email({user_id: @user.id}).deliver
+                    redirect_to url_for(:controller => :static_pages, :action => :confirm_email)
+                elsif user_agent.include?("Twitter for iPhone")
+                    UserNotifier.send_confirmation_email({user_id: @user.id}).deliver
+                    redirect_to url_for(:controller => :static_pages, :action => :confirm_email)
+                end
+            else
+                sign_in @user
+                cookies.permanent[:u] = @user.id
+                flash[:success] = "Welcome to Luckee!"
+                redirect_to(root_url)
+            end
         else
             render 'new'
         end

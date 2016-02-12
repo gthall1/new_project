@@ -1,0 +1,12 @@
+<% content_for :body_class, "interior-page" %>
+
+<% provide(:title, 'Set Username') %>
+<div>
+
+  <h2>Set a Username.</h2>
+   <%= form_for(@user, :url => update_username_path) do |f| %>
+        <%= f.label :name, "Username" %>
+        <%= f.text_field :name %>
+        <%= f.submit "Continue" %>
+    <% end %>
+</div>

@@ -31,7 +31,7 @@
 <% end %>
 
 <script>
-    if (app.isWebAppMode()) {
-        $('.js-bottom-content__container').addClass('wam');
-    }
+    $(document).ready(function(){
+        $('.welcome-box-m').text(navigator.userAgent);
+    });
 </script>
