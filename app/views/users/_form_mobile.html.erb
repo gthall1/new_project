@@ -32,7 +32,7 @@
             <%= render 'shared/error_messages', object: f.object %>
             <div class="form-input--wrap">
                 <i class="fa fa-user"></i>
-                <%= f.text_field :name, placeholder: 'Username', class: "form-input" %>
+                <%= f.text_field :name, required: true, min: 2, placeholder: 'Username', class: "form-input" %>
             </div><!-- /.form-input--wrap -->
 
             <div class="form-input--wrap">
@@ -47,12 +47,12 @@
 
             <div class="form-input--wrap">
                 <i class="fa fa-lock"></i>
-                <%= f.password_field :password, placeholder: "Password", class: "form-input" %>
+                <%= f.password_field :password, required: true, placeholder: "Password", class: "form-input" %>
             </div><!-- /.form-input--wrap -->
 
             <div class="form-input--wrap">
                 <i class="fa fa-lock"></i>
-                <%= f.password_field :password_confirmation, placeholder: "Confirm Password", class: "form-input" %>
+                <%= f.password_field :password_confirmation, required: true, placeholder: "Confirm Password", class: "form-input" %>
             </div><!-- /.form-input--wrap -->
 
             <div class="form-input--wrap form-input--wrap-submit">

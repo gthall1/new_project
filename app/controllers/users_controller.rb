@@ -102,14 +102,12 @@ class UsersController < ApplicationController
 
             user_agent = request.user_agent
 
-            if user_agent.include?("iPhone" || "iPad" || "iPod")
-                if user_agent.include?("FBAN")
-                    UserNotifier.send_confirmation_email({user_id: @user.id}).deliver
-                    redirect_to url_for(:controller => :static_pages, :action => :confirm_email)
-                elsif user_agent.include?("Twitter for iPhone")
-                    UserNotifier.send_confirmation_email({user_id: @user.id}).deliver
-                    redirect_to url_for(:controller => :static_pages, :action => :confirm_email)
-                end
+            if user_agent.include?("iPhone" || "iPad" || "iPod") && user_agent.include?("FBAN")
+                UserNotifier.send_confirmation_email({user_id: @user.id}).deliver
+                redirect_to url_for(:controller => :static_pages, :action => :confirm_email)
+            elsif user_agent.include?("iPhone" || "iPad" || "iPod") && user_agent.include?("Twitter for iPhone")
+                UserNotifier.send_confirmation_email({user_id: @user.id}).deliver
+                redirect_to url_for(:controller => :static_pages, :action => :confirm_email)
             else
                 sign_in @user
                 cookies.permanent[:u] = @user.id

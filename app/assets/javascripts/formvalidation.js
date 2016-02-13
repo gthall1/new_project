@@ -1,7 +1,8 @@
 var formValidation = {
     selections: {
         requiredField: 'input[required]',
-        emailField : 'input[type="email"]'
+        emailField : 'input[type="email"]',
+        requiredError: '.js-form__required'
     },
 
     conf: {
@@ -16,9 +17,12 @@ var formValidation = {
     preventSubmission: function() {
         $('.js-prevent-form').one('submit', function(e) {
             e.preventDefault();
-            console.log('prevent submit');
             return false;
         })
+    },
+
+    prepareReqFields: function() {
+        $('input[required]').after('<span class="js-form__required form__required">required</span>');
     },
 
     bind: function() {
@@ -28,11 +32,11 @@ var formValidation = {
                 minVal = $this.attr('min') || 2;
 
             if ($this.val().length >= minVal) {
-                $('.js-valid--input').addClass('show');
+                $this.siblings(formValidation.selections.requiredError).removeClass('show');
                 $form.removeClass('js-prevent-form');
             } else {
                 $form.addClass('js-prevent-form');
-                $('.js-valid--input').removeClass('show');
+                $this.siblings(formValidation.selections.requiredError).addClass('show');
             }
         });
 
@@ -40,7 +44,7 @@ var formValidation = {
             // consolidate email validation
         });
 
-        $('.js-validate-name').blur(function(e){
+        $('.js-validate--name').blur(function(e){
             var name = $(this).val();
 
             $.ajax({
@@ -78,7 +82,7 @@ var formValidation = {
         });
 
         // Validate New User Email
-        $('.js-validate').blur(function(e){
+        $('.js-validate--email').blur(function(e){
             var email = $(this).val();
 
             $.ajax({
@@ -123,5 +127,6 @@ var formValidation = {
 
     init: function() {
         formValidation.bind();
+        formValidation.prepareReqFields();
     }
 }

@@ -175,6 +175,19 @@ button {
     padding: 10px 0;
     text-align: center;
 }
+.form__required {
+    position: absolute;
+    right: 5%;
+    font-size: 12px;
+    opacity: 0;
+    top: 25%;
+    color: $red;
+    @include transition();
+
+    &.show {
+        opacity: 1;
+    }
+}
 .legal-link {
     color: $blue-steel;
 
