@@ -20,6 +20,7 @@
 //= require mobilecheck
 //= require js-cookie
 //= require app
+//= require formvalidation
 //= require siteCookies
 //= require main
 //= require superslides

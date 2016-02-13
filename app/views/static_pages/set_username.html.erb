@@ -6,7 +6,12 @@
    <%= form_for(@user, :url => update_username_path) do |f| %>
         <div class="form-input--wrap">
             <i class="fa fa-user"></i>
-            <%= f.text_field :name, placeholder: 'Username', class: "form-input" %>
+            <i class="fa fa-check-circle-o input-validation valid-input js-valid--name"></i>
+            <span class="input-validation invalid-input error-msg js-invalid--name">
+                <span class="js-error-case js-error-case--invalid">required</span>
+                <span class="js-error-case js-error-case--taken">username taken</span>
+            </span>
+            <%= f.text_field :name, min: 2, placeholder: 'Username', class: "form-input js-validate-name" %>
         </div><!-- /.form-input--wrap -->
         <div class="form-input--wrap form-input--wrap-submit">
             <%= f.submit "Continue", class: "form-input js-form-submit" %>

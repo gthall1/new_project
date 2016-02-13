@@ -50,6 +50,17 @@ class UsersController < ApplicationController
         end
     end
 
+    def validate_name
+        name = params[:name]
+        name = name.downcase
+
+        if User.where(name: name).present? && current_user.name != name
+            render json: data = {:available => false, :name => name}
+        else
+            render json: data = {:available => true, :name => name}
+        end
+    end
+
     def update_username
         if current_user && params[:user] && params[:user][:name]
             current_user.name = params[:user][:name]
