@@ -1,6 +1,8 @@
 <% content_for :body_class, "set-username-page interior-page no-bg" %>
 <% provide(:title, 'Set Username') %>
 
+<img src="/assets/homescreen-logo.png" class="header-img--logo">
+
 <div class="form-wrap">
     <h1 class="form__title">One last step. Please pick a username:</h1>
    <%= form_for(@user, :url => update_username_path) do |f| %>
