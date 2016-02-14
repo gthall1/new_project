@@ -114,10 +114,13 @@ body {
         height: 100vh;
     }
     .confirmation-page__content {
+        text-align: center;
+        padding: 0 7.5%;
         @include vertical-align();
     }
     .confirmation-page__title {
         font-weight: 400;
+        font-size: $lg;
         margin: 0;
     }
 }
