@@ -11,7 +11,7 @@ button {
     // margin-top: 10vh;
 }
 .btn--form {
-    background-color: $input-fill;
+    background-color: $clouds;
     border: none;
     border-radius: 5px;
     width: 100%;
@@ -156,7 +156,7 @@ button {
     padding: 0 0 0 40px !important;
     width: calc(100% - 40px) !important;
     border: none !important;
-    background-color: $input-fill !important;
+    background-color: $clouds !important;
     -webkit-box-shadow: none !important;
     -moz-box-shadow: none !important;
     box-shadow: none !important;

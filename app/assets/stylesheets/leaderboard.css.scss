@@ -110,11 +110,15 @@ $falldown-font: #FEE2C7;
         color: $white;
     }
 }
+.game-leaderboard {
+    position: relative;
+    height: calc(100vh - 160px);
+    overflow: scroll;
+}
 .leaderboard-nav {
     padding: 10px 0;
     background: $lavender;
     height: 40px;
-    margin-bottom: 20px;
     position: relative;
 }
 .leaderboader-head__icon {
@@ -200,6 +204,7 @@ $falldown-font: #FEE2C7;
 }
 .tab-section {
     display: none;
+    padding: 0 7.5%;
     &.active {
         display: block;
     }
@@ -209,27 +214,43 @@ $falldown-font: #FEE2C7;
 
 }
 .leaderboard-row {
-    color: $black;
-    border-bottom: 1px solid $clouds;
-    margin: 10px 10%;
-    padding: 0 5px   10px;
-    &:last-child {
-        border-bottom: none;
+    color: $charcoal;
+    padding: 15px 5px;
+    display: block;
+    overflow: hidden;
+    & + .leaderboard-row {
+        border-top: 1px solid $clouds;
     }
     span {
-        display: inline-block;
+        display: block;
         width: 33.33%;
+        float: left;
+    }
+}
+.leaderboard-row__wrap {
+    padding: 0 7.5%;
+}
+.leaderboard-row--current-user {
+    position: absolute;
+    bottom: 50px;
+    width: 100vw;
+    padding: 15px 0;
+    background-color: $lavender;
+
+    span {
+        color: $white;
     }
 }
 .leaderboard-rank {
-    float: left;
+    font-weight: 500;
     text-align: left;
 }
 .leaderboard-user {
     text-align: center;
 }
 .leaderboard-score {
-    float: right;
+    color: $lavender;
+    text-transform: capitalize;
     text-align: right;
 }
 .leaderboard-back {
