@@ -112,7 +112,7 @@ $falldown-font: #FEE2C7;
 }
 .leaderboard-nav {
     padding: 10px 0;
-    background: $orange;
+    background: $lavender;
     height: 40px;
     margin-bottom: 20px;
     position: relative;
@@ -127,9 +127,10 @@ $falldown-font: #FEE2C7;
     top: 7.5px;
 }
 .leaderboard__title {
-    margin: 0;
-    font-size: 20px;
+    margin: 2px 0 0;
+    font-size: 18px;
     color: $white;
+    font-weight: 400;
 }
 .leaderboard__subtitle {
     text-align: center;
@@ -137,32 +138,57 @@ $falldown-font: #FEE2C7;
     color: $clouds;
     margin-bottom: 20px;
 }
-.leaderboard__cat-wrapper {
-    text-align: center;
-}
 .leaderboard__cat {
-        display: inline-block;
-        width: 80%;
-        margin: 0 auto 10px;
-        text-align: center;
-        border: 2px solid $orange;
-        border-radius: 2px;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+
+    &#leaderboard__cat--0 {
+        &::after {
+            left: 0;
+        }
+    }
+
+    &#leaderboard__cat--1 {
+        &::after {
+            left: 33.33%;
+        }
+    }
+
+    &#leaderboard__cat--2 {
+        &::after {
+            left: 66.66%;
+        }
+    }
+
+    &::after {
+        content: "";
+        width: 33.33%;
+        height: 4px;
+        background-color: #aaa7df;
+        bottom: 0;
+        position: absolute;
+
+        @include transition();
+    }
 }
 .tab-control__title {
-        font-size: 14px;
-        padding: 5px 0;
+        font-size: 12px;
+        text-transform: uppercase;
+        padding: 5px 0 7.5px;
         margin: 0;
         display: block;
         float: left;
-        color: $black;
-        width: 50%;
+        color: $white;
+        width: 33.33%;
         &:hover {
             cursor: pointer;
         }
-        &.active {
-            background: $orange;
-            color: $white;
-        }
+        // &.active {
+        //     background: $orange;
+        //     color: $white;
+        // }
 }
 .leaderboard__cat--3 {
     .tab-control__title {

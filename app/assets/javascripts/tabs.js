@@ -19,6 +19,7 @@ var tabs = {
         $(tabs.selections.categoryControl).click(function(e){
             var $this = $(this);
 
+            $('.js-leaderboard__cat').attr('id', 'leaderboard__cat--' + $this.index());
             tabs.toggle($this, tabs.selections.tabContainer);
         });
 

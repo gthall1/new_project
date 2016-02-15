@@ -11,7 +11,7 @@ class GamesController < ApplicationController
     # GET /games.json
     def index
 
-        
+
         @current_page = "games"
         if is_mobile?
             @games = Game.where(device_type:[1,3]).order("sort_order asc")
@@ -30,7 +30,7 @@ class GamesController < ApplicationController
 
     #sets notifications for surveys not taken
     def set_notifications
-        if !cookies[:survey] 
+        if !cookies[:survey]
             if current_user && !current_user.surveys.include?(Survey.last)
                 cookies.permanent[:survey] = 0
             elsif current_user.surveys.include?(Survey.last)
@@ -180,7 +180,7 @@ class GamesController < ApplicationController
                 end
                 if score > 0
                     game_session.score = score
-                else 
+                else
                     game_session.score = 0
                 end
                 game_session.credits_earned += credits_to_apply
@@ -689,6 +689,9 @@ class GamesController < ApplicationController
     def leaderboard
         @current_page = "leaderboard"
         @game = Game.where(slug:params[:game_slug]).first
+    end
+
+    def leaderboard_new
     end
 
     def games_leaderboard

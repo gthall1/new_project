@@ -1,0 +1,190 @@
+<% if is_mobile? %>
+    <% content_for :body_class, "leaderboard-page--mobile" %>
+<% else %>
+    <% content_for :body_class, "leaderboard-page" %>
+<% end %>
+
+<% @mobile_container_id = "leaderboard--placeholder" %>
+
+<section class="leaderboard-nav">
+    <h1 class="leaderboard__title">Flappy Pilot</h1>
+
+    <div id="leaderboard__cat--0" class="js-leaderboard__cat leaderboard__cat">
+        <h2 class="tab-control__title js-tab--cat ga-tab--myfriends active" data-tab-cat=".leaderboard--my-friends">My Friends</h2>
+        <h2 class="tab-control__title js-tab--cat ga-tab--alltime" data-tab-cat=".leaderboard--all-time">All-Time</h2>
+        <h2 class="tab-control__title js-tab--cat ga-tab--weekly" data-tab-cat=".leaderboard--weekly" >Weekly</h2>
+    </div>
+</section>
+<% if false %>
+    <div class="leaderboard__cat-wrapper">
+        <div class="leaderboard__cat leaderboard__cat--3">
+            <h2 class="tab-control__title js-tab--difficulty active" data-tab-cat=".js-leaderboard--easy">Easy</h2>
+            <h2 class="tab-control__title js-tab--difficulty" data-tab-cat=".js-leaderboard--medium">Medium</h2>
+            <h2 class="tab-control__title js-tab--difficulty" data-tab-cat=".js-leaderboard--hard">Hard</h2>
+        </div>
+    </div>
+<% end %>
+
+<% if false %>
+ <div class="js-leaderboard--easy js-leaderboard-diff leaderboard-diff active">
+    <h2 class="leaderboard-diff__title">EASY </h2>
+    <section class="game-leaderboard">
+        <div class="tab-section js-tab-section leaderboard leaderboard--all-time active">
+            <!-- Start Loop -->
+            <div class="leaderboard-row">
+                <span class="leaderboard-rank">1</span>
+                <span class="leaderboard-user">Alex Morgan</span>
+                <span class="leaderboard-score">687</span>
+            </div><!-- /.leaderboard-row -->
+            <!-- End Loop -->
+        </div>
+
+        <div class="tab-section js-tab-section leaderboard leaderboard--weekly">
+            <!-- Start Loop -->
+                <div class="leaderboard-row">
+                    <span class="leaderboard-rank">1</span>
+                    <span class="leaderboard-user">John Doe</span>
+                    <span class="leaderboard-score">687</span>
+                </div><!-- /.leaderboard-row -->
+            <!-- End Loop -->
+        </div>
+    </section>
+</div><!-- /.leaderboard-diff -->
+
+ <div class="js-leaderboard--medium js-leaderboard-diff leaderboard-diff">
+    <h2 class="leaderboard-diff__title">MEDIUM </h2>
+    <section class="game-leaderboard">
+        <div class="tab-section js-tab-section leaderboard leaderboard--all-time active">
+            <!-- Start Loop -->
+                <div class="leaderboard-row">
+                    <span class="leaderboard-rank">1</span>
+                    <span class="leaderboard-user">John Doe</span>
+                    <span class="leaderboard-score">687</span>
+                </div><!-- /.leaderboard-row -->
+
+                <div class="leaderboard-row">
+                    <span class="leaderboard-rank">2</span>
+                    <span class="leaderboard-user">Joe Shmoe</span>
+                    <span class="leaderboard-score">320</span>
+                </div><!-- /.leaderboard-row -->
+            <!-- End Loop -->
+        </div>
+
+        <div class="tab-section js-tab-section leaderboard leaderboard--weekly">
+            <!-- Start Loop -->
+                <div class="leaderboard-row">
+                    <span class="leaderboard-rank">1</span>
+                    <span class="leaderboard-user">John Doe</span>
+                    <span class="leaderboard-score">687</span>
+                </div><!-- /.leaderboard-row -->
+
+                <div class="leaderboard-row">
+                    <span class="leaderboard-rank">2</span>
+                    <span class="leaderboard-user">Joe Shmoe</span>
+                    <span class="leaderboard-score">320</span>
+                </div><!-- /.leaderboard-row -->
+
+                <div class="leaderboard-row">
+                    <span class="leaderboard-rank">3</span>
+                    <span class="leaderboard-user">Griff Hall</span>
+                    <span class="leaderboard-score">107</span>
+                </div><!-- /.leaderboard-row -->
+            <!-- End Loop -->
+        </div>
+    </section>
+</div><!-- /.leaderboard-diff -->
+
+<div class="js-leaderboard--hard js-leaderboard-diff leaderboard-diff">
+    <h2 class="leaderboard-diff__title">HARD </h2>
+    <section class="game-leaderboard">
+        <div class="tab-section js-tab-section leaderboard leaderboard--all-time active">
+            <!-- Start Loop -->
+                <div class="leaderboard-row">
+                    <span class="leaderboard-rank">1</span>
+                    <span class="leaderboard-user">John Doe</span>
+                    <span class="leaderboard-score">687</span>
+                </div><!-- /.leaderboard-row -->
+
+                <div class="leaderboard-row">
+                    <span class="leaderboard-rank">2</span>
+                    <span class="leaderboard-user">Joe Shmoe</span>
+                    <span class="leaderboard-score">320</span>
+                </div><!-- /.leaderboard-row -->
+
+                <div class="leaderboard-row">
+                    <span class="leaderboard-rank">3</span>
+                    <span class="leaderboard-user">Griff Hall</span>
+                    <span class="leaderboard-score">107</span>
+                </div><!-- /.leaderboard-row -->
+
+                <div class="leaderboard-row">
+                    <span class="leaderboard-rank">4</span>
+                    <span class="leaderboard-user">Tyler Cone</span>
+                    <span class="leaderboard-score">90</span>
+                </div><!-- /.leaderboard-row -->
+            <!-- End Loop -->
+        </div>
+
+        <div class="tab-section js-tab-section leaderboard leaderboard--weekly">
+            <!-- Start Loop -->
+            <div class="leaderboard-row">
+                <span class="leaderboard-rank">1</span>
+                <span class="leaderboard-user">John Doe</span>
+                <span class="leaderboard-score">687</span>
+            </div><!-- /.leaderboard-row -->
+
+            <div class="leaderboard-row">
+                <span class="leaderboard-rank">2</span>
+                <span class="leaderboard-user">Joe Shmoe</span>
+                <span class="leaderboard-score">320</span>
+            </div><!-- /.leaderboard-row -->
+            <!-- End Loop -->
+        </div>
+    </section>
+</div><!-- /.leaderboard-diff -->
+<% else %> <!--  ********************* Normal Leaderboard *********************  -->
+    <section class="game-leaderboard">
+        <div class="tab-section js-tab-section leaderboard leaderboard--my-friends active">
+            <!-- Start Loop -->
+                <div class="leaderboard-row">
+                    <span class="leaderboard-rank">1</span>
+                    <span class="leaderboard-user">Alex Morgan</span>
+                    <span class="leaderboard-score">687</span>
+                </div><!-- /.leaderboard-row -->
+
+                <div class="leaderboard-row">
+                    <span class="leaderboard-rank">2</span>
+                    <span class="leaderboard-user">Joe Shmoe</span>
+                    <span class="leaderboard-score">320</span>
+                </div><!-- /.leaderboard-row -->
+            <!-- End Loop -->
+        </div>
+
+        <div class="tab-section js-tab-section leaderboard leaderboard--all-time">
+            <!-- Start Loop -->
+                <div class="leaderboard-row">
+                    <span class="leaderboard-rank">1</span>
+                    <span class="leaderboard-user">John Doe</span>
+                    <span class="leaderboard-score">687</span>
+                </div><!-- /.leaderboard-row -->
+
+                <div class="leaderboard-row">
+                    <span class="leaderboard-rank">2</span>
+                    <span class="leaderboard-user">Joe Shmoe</span>
+                    <span class="leaderboard-score">320</span>
+                </div><!-- /.leaderboard-row -->
+            <!-- End Loop -->
+        </div>
+
+        <div class="tab-section js-tab-section leaderboard leaderboard--weekly">
+            <!-- Start Loop -->
+                <div class="leaderboard-row">
+                    <span class="leaderboard-rank">1</span>
+                    <span class="leaderboard-user">John Doe</span>
+                    <span class="leaderboard-score">687</span>
+                </div><!-- /.leaderboard-row -->
+            <!-- End Loop -->
+        </div>
+    </section>
+
+<% end %>
