@@ -112,15 +112,15 @@ $falldown-font: #FEE2C7;
 }
 .game-leaderboard {
     position: relative;
-    height: calc(100vh - 160px);
+    height: calc(100vh - 110px);
     overflow: scroll;
     padding-top: 60px;
+    padding-bottom: 92px;
 }
 .leaderboard-nav {
     padding: 10px 0;
     background: $lavender;
     height: 40px;
-    position: relative;
     position: fixed;
     top: 0;
     width: 100%;
@@ -236,11 +236,17 @@ $falldown-font: #FEE2C7;
     padding: 0 7.5%;
 }
 .leaderboard-row--current-user {
-    position: absolute;
-    bottom: 50px;
+    position: fixed;
+    bottom: 0px;
     width: 100vw;
+    z-index: 9;
     padding: 15px 0;
     background-color: $lavender;
+    @include transition(bottom, 0.15s, ease-in, 1s);
+
+    &.animate {
+        bottom: 50px;
+    }
 
     span {
         color: $white;
