@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160204021255) do
+ActiveRecord::Schema.define(version: 20160215041508) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,10 +58,10 @@ ActiveRecord::Schema.define(version: 20160204021255) do
     t.integer  "challenged_user_id"
     t.integer  "game_id"
     t.integer  "winner_id"
-    t.integer  "challenged_score"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "user_score"
+    t.integer  "challenged_score"
   end
 
   create_table "feed_games", force: :cascade do |t|
@@ -149,7 +149,7 @@ ActiveRecord::Schema.define(version: 20160204021255) do
   end
 
   create_table "user_game_sessions", force: :cascade do |t|
-    t.string   "token",           limit: 255
+    t.string   "token",             limit: 255
     t.integer  "user_id"
     t.integer  "game_id"
     t.integer  "credits_earned"
@@ -158,9 +158,10 @@ ActiveRecord::Schema.define(version: 20160204021255) do
     t.datetime "updated_at"
     t.integer  "score"
     t.integer  "challenge_id"
-    t.integer  "credits_applied",             default: 0
+    t.integer  "credits_applied",               default: 0
     t.integer  "arrival_id"
     t.integer  "version"
+    t.datetime "last_score_update"
   end
 
   add_index "user_game_sessions", ["arrival_id"], name: "index_user_game_sessions_on_arrival_id", using: :btree
@@ -206,6 +207,8 @@ ActiveRecord::Schema.define(version: 20160204021255) do
     t.string   "firstname",        limit: 255
     t.string   "lastname",         limit: 255
     t.integer  "arrival_id"
+    t.boolean  "email_verified",               default: false
+    t.string   "verify_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

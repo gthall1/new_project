@@ -100,14 +100,20 @@ class UsersController < ApplicationController
                 end
             end
 
-            user_agent = request.user_agent
+            #some weird things, the request doesnt exist
+            if request && request.user_agent
+                user_agent = request.user_agent
+            else
+                user_agent = ""
+            end
 
+            #only sending confirmation email as a way around native browses from twitter and facebook
             if user_agent.include?("iPhone" || "iPad" || "iPod") && user_agent.include?("FBAN")
-                UserNotifier.send_confirmation_email({user_id: @user.id}).deliver
-                redirect_to url_for(:controller => :static_pages, :action => :confirm_email)
+                UserNotifier.send_confirmation_email({user_id: @user.id,verify_token:@user.verify_token}).deliver
+                redirect_to confirm_email_path
             elsif user_agent.include?("iPhone" || "iPad" || "iPod") && user_agent.include?("Twitter for iPhone")
-                UserNotifier.send_confirmation_email({user_id: @user.id}).deliver
-                redirect_to url_for(:controller => :static_pages, :action => :confirm_email)
+                UserNotifier.send_confirmation_email({user_id: @user.id,verify_token:@user.verify_token}).deliver
+                redirect_to confirm_email_path
             else
                 sign_in @user
                 cookies.permanent[:u] = @user.id
