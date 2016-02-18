@@ -93,7 +93,7 @@ html body {
         }
 
         .fa {
-            // @include vertical-align();
+            font-size: $md;
             color: $white;
         }
     }
