@@ -138,14 +138,14 @@ $falldown-font: #FEE2C7;
 .leaderboard__social-share {
     position: absolute;
     margin: 0 auto;
-    width: 80%;
+    width: 85%;
     bottom: 100px;
     left: 0;
     right: 0;
 }
 .leaderboard__title {
     margin: 2px 0 0;
-    font-size: $lg;
+    font-size: $md;
     color: $white;
     font-weight: 400;
     line-height: 1.3;
@@ -289,7 +289,21 @@ $falldown-font: #FEE2C7;
 }
 .leaderboard-rank {
     font-weight: 500;
+    position: relative;
     text-align: left;
+
+    .leaderboard__avatar {
+        height: 35px;
+        width: 35px;
+        position: absolute;
+        border-radius: 100%;
+        background-position: center;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        float: none;
+        left: 30px;
+        top: -7.5px;
+    }
 }
 .leaderboard-user {
     text-align: center;
