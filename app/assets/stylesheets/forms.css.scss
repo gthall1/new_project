@@ -15,7 +15,7 @@ button {
     border: none;
     border-radius: 5px;
     width: 100%;
-    // padding: 2.5vh 0;
+    min-height: 40px;
     height: 10vh;
 
     @include transition();
@@ -162,6 +162,7 @@ button {
     box-shadow: none !important;
     display:block !important;
     border-width:0 !important;
+    min-height: 30px;
 }
 .form-separator .or-split {
     color: #5C5C5C;
