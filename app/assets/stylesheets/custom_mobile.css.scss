@@ -970,7 +970,7 @@ p {
             text-decoration:none;
         }
         .credits{
-            color:$credits-red;
+            color:$white;
             font-size: 14px;
             position:relative;
             top:-15px;
@@ -1314,7 +1314,7 @@ p {
         left: 0;
         background-color: rgba(0,0,0,0.2);
         display: none;
-        z-index: 1;
+        z-index: 11;
 }
 .ssm-open-nav{
     background: transparent;
