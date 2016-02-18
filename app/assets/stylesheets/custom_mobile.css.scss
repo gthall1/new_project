@@ -1022,7 +1022,7 @@ p {
         width: 100%;
         display: block;
         height: 60px;
-        background: #F2BB7C;
+        background: $lavender;
         min-height: 60px;
         z-index: 10;
         a{
@@ -1281,7 +1281,7 @@ p {
     text-transform: capitalize;
 }
 .side-nav__user-info {
-    background-color: $orange;
+    background-color: $lavender;
     padding: 20px 0;
 
     h2 {
