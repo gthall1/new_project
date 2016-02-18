@@ -153,10 +153,36 @@
 </div><!-- /.leaderboard-diff -->
 <% else %> <!--  ********************* Normal Leaderboard *********************  -->
     <section class="game-leaderboard">
-        <div class="tab-section js-tab-section leaderboard leaderboard--my-friends active not-fb-connected">  <!-- create conditional to check foor whether or not user is connected with FB  -->
+        <div class="tab-section js-tab-section leaderboard leaderboard--my-friends active fb-connected">  <!-- create conditional to check foor whether or not user is connected with FB  => add this class: not-fb-connected -->
             <!-- Start Loop -->
             <!-- If Connected with Facebook -->
-            <% if false %>
+            <% if true %>
+                <div class="leaderboard-row">
+                    <span class="leaderboard-rank">1</span>
+                    <span class="leaderboard-user">Alex M.</span>
+                    <span class="leaderboard-score">365</span>
+                </div><!-- /.leaderboard-row -->
+
+                <div class="leaderboard-row">
+                    <span class="leaderboard-rank">5</span>
+                    <span class="leaderboard-user">Tyler C.</span>
+                    <span class="leaderboard-score">211</span>
+                </div><!-- /.leaderboard-row -->
+
+                <% if true %>
+                    <div class="leaderboard__social-share">
+                        <h1 class="leaderboard__title">Things are looking a bit empty in here. Invite some friends to Luckee &amp; earn <span class="credits">25 credits</span> for every friend that signs up.</h1>
+
+                        <input placeholder="Your referral link" class="form-input" type="text" value="<%= request.host_with_port %>/invite/<%=@referal_code %>">
+
+                        <div class="social-share__wrap">
+                            <a href="/" class="social-btn social-btn--fb"><i class="fa fa-facebook"></i></a>
+                            <a href="/" class="social-btn social-btn--twitter"><i class="fa fa-twitter"></i></a>
+                            <a href="/" class="social-btn social-btn--mail"><i class="fa fa-envelope"></i></a>
+                        </div>
+                    </div>
+                <% end %>
+
             <% else %> <!-- If not connected with Facebook -->
                 <h1 class="leaderboard__title">Connect with Facebook to see how your friends' scores stack up against yours!</h1>
                 <%= link_to "/auth/facebook" do %>

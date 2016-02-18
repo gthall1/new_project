@@ -76,4 +76,34 @@ html body {
     .btn--no-fill {
         background-color: transparent;
     }
+
+    .social-share__wrap {
+        text-align: center;
+    }
+    .social-btn {
+        // height: 40px;
+        padding: 10px   0;
+        width: 40px;
+        display: inline-block;
+        border-radius: 100%;
+        text-align: center;
+
+        & + .social-btn {
+            margin-left: 15px;
+        }
+
+        .fa {
+            // @include vertical-align();
+            color: $white;
+        }
+    }
+    .social-btn--fb {
+        background-color: $fb-blue;
+    }
+    .social-btn--twitter {
+        background-color: $tw-blue;
+    }
+    .social-btn--mail {
+        background-color: $lavender;
+    }
 }
