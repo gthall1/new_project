@@ -211,23 +211,23 @@
                     <% else %>
                         <h2><%= link_to games_path do %><img src="/assets/luckee-font.png" class="mobile-header__logo"><% end %><br /><span class='credits mobile-header__credits'><%= current_user.credits ||= 0 %> credits</span></h2>
                     <% end %>
-                    <div class='referral-link'>
+<!--                     <div class='referral-link'>
 
                         <div class="share-dialog js-share-dialog">
                             <div class="arrow-up"></div>
                             <p>When you invite a friend and they sign up through your personalized link, you earn <span>25 credits</span></p>
                             <p>Copy &amp; share:</p>
-                            <p class="share-dialog__link"><%= request.host_with_port %>/invite/<%=@referal_code %></p>
+                            <p class="share-dialog__link"><%# request.host_with_port %>/invite/<%=@referal_code %></p>
                             <div class="share-dialog__close-container">
                                 <p class="share-dialog__close js-share-dialog__close">Got it</p>
                             </div>
-                        </div> <!--/.share-dialog -->
+                        </div>
 
-                        <%= link_to refer_path do %>
+                        <%# link_to refer_path do %>
                             <i class="fa fa-user-plus"></i>
                             <span class="earn">+25</span>
-                        <% end %>
-                    </div>
+                        <%# end %>
+                    </div> -->
                 </div>
 
                 <div class="bottom-navigation bottom-navigation--mobile js-bottom-navigation">
