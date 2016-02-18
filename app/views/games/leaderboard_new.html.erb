@@ -9,7 +9,9 @@
 <!-- Current User -->
 <div class="leaderboard-row leaderboard-row--current-user">
     <div class="leaderboard-row__wrap">
-        <span class="leaderboard-rank">1</span>
+        <span class="leaderboard-rank">1
+            <span class="leaderboard__avatar" style="<% if current_user.oath_image %>background-image: url(<%= current_user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %>"></span>
+        </span>
         <span class="leaderboard-user"><%= current_user.name %></span>
         <span class="leaderboard-score">687</span>
     </div>
