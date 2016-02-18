@@ -188,7 +188,7 @@ $falldown-font: #FEE2C7;
     &::after {
         content: "";
         width: 33.33%;
-        height: 5px;
+        height: 4px;
         background-color: #aaa7df;
         bottom: 0;
         position: absolute;
@@ -255,7 +255,7 @@ $falldown-font: #FEE2C7;
 }
 .leaderboard-row {
     color: $charcoal;
-    padding: 15px 5px;
+    padding: 20px 5px;
     display: block;
     overflow: hidden;
     & + .leaderboard-row {
@@ -265,6 +265,7 @@ $falldown-font: #FEE2C7;
         display: block;
         width: 33.33%;
         float: left;
+        font-size: $sm;
     }
 }
 .leaderboard-row__wrap {
@@ -293,8 +294,8 @@ $falldown-font: #FEE2C7;
     text-align: left;
 
     .leaderboard__avatar {
-        height: 35px;
-        width: 35px;
+        height: 40px;
+        width: 40px;
         position: absolute;
         border-radius: 100%;
         background-position: center;
@@ -302,7 +303,7 @@ $falldown-font: #FEE2C7;
         background-repeat: no-repeat;
         float: none;
         left: 30px;
-        top: -7.5px;
+        top: -10px;
     }
 }
 .leaderboard-user {
