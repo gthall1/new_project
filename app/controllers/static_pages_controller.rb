@@ -9,6 +9,15 @@ class StaticPagesController < ApplicationController
     end
 
     def home
+       #if someone coming with vid they just lcicked verify token
+        if params[:vid] && User.find_by_verify_token(params[:vid])
+            user = User.find_by_verify_token(params[:vid])
+            sign_in user
+            user.email_activate
+        end
+        if current_user
+            p "I SEE CURRENT USER AS #{current_user}"
+        end
         if !signed_in?
             # @current_jackpot = Jackpot.where(open: true).first
             @user = User.new
@@ -21,6 +30,15 @@ class StaticPagesController < ApplicationController
     end
 
     def set_username
+        if params[:vid] && User.find_by_verify_token(params[:vid])
+            @user = User.find_by_verify_token(params[:vid])
+            sign_in @user
+            @user.email_activate
+        elsif !signed_in?
+            #someone doing something weird
+            redirect_to root_path
+        end
+
         if current_user
             @user = current_user
         else

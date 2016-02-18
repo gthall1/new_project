@@ -11,7 +11,6 @@ class GamesController < ApplicationController
     # GET /games.json
     def index
 
-
         @current_page = "games"
         if is_mobile?
             @games = Game.where(device_type:[1,3]).order("sort_order asc")
@@ -25,7 +24,10 @@ class GamesController < ApplicationController
     end
 
     def check_signed_in
-        redirect_to root_path if !signed_in?
+        if params[:vid] && User.find_by_verify_token(params[:vid])
+            verify_link = true
+        end
+        redirect_to root_path if !signed_in? && !verify_link
     end
 
     #sets notifications for surveys not taken

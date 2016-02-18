@@ -1,3 +1,7 @@
 Thanks for signing up for Luckee. Click the link below to verify your email:<br><br>
 
-<a href="https://luckee-staging.herokuapp.com?confirmed=true">Confirm your email</a>
+<% if @user.provider == 'facebook' %>
+    <%= link_to "Confirm your email", set_username_url(vid: @user.verify_token,confirmed:"true") %>
+<% else %>
+    <%= link_to "Confirm your email", root_url(vid: @user.verify_token,confirmed:"true") %>
+<% end %>

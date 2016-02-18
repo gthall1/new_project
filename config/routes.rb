@@ -5,6 +5,11 @@ Alotto::Application.routes.draw do
     resources :surveys
     resources :games
     resources :users
+    resources :users do
+        member do
+          get :verify_email
+        end
+    end
     resources :sessions,      only: [:new, :create, :destroy]
     resources :password_resets,     only: [:new, :create, :edit, :update]
     resources :cash_outs, only: [:create]
