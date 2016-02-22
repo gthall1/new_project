@@ -1,0 +1,58 @@
+<% content_for :body_class, "survey-page" %>
+<div class="page-container">
+
+<!-- <h1 class="survey-title">Survey</h1> -->
+<section class="survey-wrapper">
+    <p id="notice"><%= notice %></p>
+
+    <p class="intro-copy">Complete this survey and receive <%= @survey.credits %> credits!</p>
+
+    <div class="refer-friend">
+
+        <div class="survey__question">
+            <p class="survey__question-copy">1. What is your favorite category of movie?</p>
+
+            <label class="control control--radio">Comedy
+            <%= radio_button 'genre', 'taken', 'comedy' %>
+            <div class="control__indicator"></div>
+            </label><!-- /.control .control--radio -->
+
+            <label class="control control--radio">Horror
+            <%= radio_button 'genre', 'taken', 'horror' %>
+            <div class="control__indicator"></div>
+            </label><!-- /.control .control--radio -->
+
+            <label class="control control--radio">Drama
+            <%= radio_button 'genre', 'taken', 'drama' %>
+            <div class="control__indicator"></div>
+            </label><!-- /.control .control--radio -->
+
+            <label class="control control--radio">Action
+            <%= radio_button 'genre', 'taken', 'action' %>
+            <div class="control__indicator"></div>
+            </label><!-- /.control .control--radio -->
+        </div><!-- /.control -->
+
+        <div class="survey__question">
+            <p class="survey__question-copy">2. Do you prefer to watch a movie in theatres of at home?</p>
+
+            <label class="control control--radio">Theatres
+            <%= radio_button 'venue', 'yesno', 'theatres' %>
+            <div class="control__indicator"></div>
+            </label><!-- /.control .control--radio -->
+
+            <label class="control control--radio">Home
+            <%= radio_button 'venue', 'yesno', 'home' %>
+            <div class="control__indicator"></div>
+            </label><!-- /.control .control--radio -->
+        </div><!-- /.control -->
+
+        <%= form_for(@user_survey) do |f| %>
+            <%= f.hidden_field :id %>
+            <%= f.hidden_field :complete, :value => true %>
+            <%= f.submit 'Submit Survey', class: "btn-submit btn--top-margin"%>
+        <% end %>
+    </div> <!--/.refer-friend -->
+
+</section><!-- /.section-wrapper -->
+</div>
