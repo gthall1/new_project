@@ -47,7 +47,12 @@ class User < ActiveRecord::Base
       pass = SecureRandom.urlsafe_base64
       user.password = pass
       user.password_confirmation = pass
-      user.email = auth.info.email
+      if auth.info.email
+        user.email = auth.info.email
+      # else
+      #   user.email = "a#{rand(1000000)}@change.me"
+      end
+
       user.gender = auth.extra.raw_info.gender == "male" ? 1 : auth.extra.raw_info.gender == "female" ? 2 : nil
       res = Net::HTTP.get_response(URI(auth.info.image+'?width=200&height=200'))
       user.oath_image = res["location"]
