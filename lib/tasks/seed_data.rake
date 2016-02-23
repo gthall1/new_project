@@ -69,6 +69,10 @@ task :add_golf_survey => :environment do | t, args|
     Survey.create({credits:25,name: "Golf Survey", slug: "golf-survey"})
 end
 
+task :add_movie_survey => :environment do | t, args|
+    Survey.create({credits:25, name: "Movie Survey", slug: "movie-survey"})
+end
+
 task :seed_games => :environment do | t, args |
     require 'net/http'
      source = 'http://api.famobi.com/feed/'

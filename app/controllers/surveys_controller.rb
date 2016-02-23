@@ -11,8 +11,8 @@ class SurveysController < ApplicationController
   # GET /surveys
   # GET /surveys.json
   def index
-    cookies[:survey] = 1 
-    
+    cookies[:survey] = 1
+
     @current_page = "surveys"
     @show_back_button = true
     @surveys = Survey.all
@@ -39,16 +39,12 @@ class SurveysController < ApplicationController
       @user_survey.arrival_id = session[:arrival_id]
       @user_survey.save
     end
-
-    if is_mobile?
-      render "surveys/show_mobile"
-    end
   end
 
   def user_survey_save
     @user_survey = UserSurvey.where(id:params[:user_survey][:id]).first
     if @user_survey && @user_survey.complete != true
-     
+
       @user_survey.complete = true
       if @user_survey.save
          current_user.add_credits({credits:@user_survey.survey.credits})
