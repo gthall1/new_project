@@ -25,8 +25,8 @@
     animation: $function $duration $delay forwards ease;
 }
 
-@mixin transition($type: all, $duration: 0.25s, $motion: ease) {
-  transition: $type $duration $motion;
+@mixin transition($type: all, $duration: 0.25s, $motion: ease, $delay: 0) {
+  transition: $type $duration $motion $delay;
 }
 
 @mixin floating($duration: 2s) {

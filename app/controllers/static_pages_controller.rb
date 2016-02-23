@@ -11,13 +11,13 @@ class StaticPagesController < ApplicationController
     def home
         user_agent = request.user_agent
 
-        if user_agent.include?("iPhone" || "iPad" || "iPod")
-            if user_agent.include?("FBAN")
-                flash[:success] = "FB Browser"
-            elsif user_agent.include?("Twitter for iPhone")
-                flash[:success] = "Twitter Browser"
-            end
-        end
+        # if user_agent.include?("iPhone" || "iPad" || "iPod")
+        #     if user_agent.include?("FBAN")
+        #         flash[:success] = "FB Browser"
+        #     elsif user_agent.include?("Twitter for iPhone")
+        #         flash[:success] = "Twitter Browser"
+        #     end
+        # end
 
         if !signed_in?
             # @current_jackpot = Jackpot.where(open: true).first

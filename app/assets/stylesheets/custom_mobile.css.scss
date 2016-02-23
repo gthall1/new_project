@@ -92,7 +92,30 @@ body {
         }
     }
 }
+.alert {
+    position: absolute;
+    display: inline-block;
+    width: 100%;
+    left: 0;
+    top: -40px;
+    z-index: 1000;
+    color: $white;
+    border: none;
+    padding: 10px 0;
+    border-radius: 0;
+    @include transition(top, 0.25s, ease, 1s);
 
+    &.show {
+        top: 0;
+    }
+
+    &.alert-error {
+        background-color: rgba(192, 57, 43, 0.9);
+    }
+    &.alert-success {
+        background-color: rgba(79,210,194,0.9);
+    }
+}
 .header-img--logo {
     position: absolute;
     top: 30px;
