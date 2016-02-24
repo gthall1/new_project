@@ -1,6 +1,10 @@
- <% case @survey.slug %>
-  <% when "fitness-survey" %>
-    <%= render 'survey_one' %>
-  <% when "coffee-survey" %>
-    <%= render 'survey_two' %>
+<% case @survey.slug %>
+    <% when "fitness-survey" %>
+        <%= render 'survey_one' %>
+    <% when "coffee-survey" %>
+        <%= render 'survey_two' %>
+    <% when "golf-survey" %>
+        <%= render 'survey_three' %>
+    <% when "movie-survey" %>
+        <%= render 'survey_movie' %>
 <% end %>

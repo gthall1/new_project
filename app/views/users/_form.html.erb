@@ -1,8 +1,15 @@
 <div class='mobile-form'>
     <div class="welcome-box-m">Play Games. Earn Cash.</div>
-    <%= link_to "/auth/facebook" do %>
-      <%= image_tag 'facebook_button.png', :class => 'facebook-signup' %>
+    <% if @facebook_link %>
+      <%= link_to @facebook_link do %>
+        <%= image_tag 'facebook_button.png', :class => 'facebook-signup' %>
+      <% end %>
+    <% else %>
+      <%= link_to "/auth/facebook" do %>
+        <%= image_tag 'facebook_button.png', :class => 'facebook-signup' %>
+      <% end %>
     <% end %>
+
     <span class='small-note'>We do not post anything to facebook.</span>
 
 

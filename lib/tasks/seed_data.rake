@@ -35,7 +35,7 @@ task :seed_data => :environment do |t,args|
     jackpot.save
 end
 
-task :update_surveys => :environment do | t, args | 
+task :update_surveys => :environment do | t, args |
   a=  Survey.first
   a.name = "Fitness Survey"
   a.slug = "fitness-survey"
@@ -44,7 +44,7 @@ task :update_surveys => :environment do | t, args |
   b = Survey.create({name: "Coffee Survey", slug:"coffee-survey",credits:50})
 end
 
-task :add_api_user => :environment do | t, args | 
+task :add_api_user => :environment do | t, args |
     if Rails.env.production?
         ApiUser.create({user_id: 93,token: SecureRandom.urlsafe_base64(nil, false)})
     else
@@ -63,6 +63,14 @@ task :add_referal_to_users  => :environment do | t, args |
             u.create_referral_code
             u.save
      end
+end
+
+task :add_golf_survey => :environment do | t, args|
+    Survey.create({credits:25,name: "Golf Survey", slug: "golf-survey"})
+end
+
+task :add_movie_survey => :environment do | t, args|
+    Survey.create({credits:25, name: "Movie Survey", slug: "movie-survey"})
 end
 
 task :seed_games => :environment do | t, args |
@@ -174,7 +182,7 @@ task :seed_new_games => :environment do | t, args|
      bh.name = "Black Hole"
      bh.image = "bigger_black_hole.png"
      bh.slug = "black-hole"
-     bh.desktop_image ="square_black_hole.png"      
+     bh.desktop_image ="square_black_hole.png"
      bh.device_type = 3
      bh.sort_order = 3
      bh.save
@@ -182,7 +190,7 @@ task :seed_new_games => :environment do | t, args|
      traffic = Game.new
      traffic.name = "Traffic"
      traffic.image = "bigger_traffic.png"
-     traffic.desktop_image ="square_traffic.png"   
+     traffic.desktop_image ="square_traffic.png"
      traffic.device_type = 3
      traffic.slug = "traffic"
      traffic.sort_order = 1
@@ -217,96 +225,96 @@ task :seed_new_games => :environment do | t, args|
 end
 
 def set_game_order
-        g = Game.where(slug:"traffic").first 
+        g = Game.where(slug:"traffic").first
         g.sort_order = 4
         g.save
 
-        g = Game.where(slug:"fall-down").first 
+        g = Game.where(slug:"fall-down").first
         g.sort_order = 1
-        g.save   
+        g.save
 
-        g = Game.where(slug:"flappy-pilot").first 
+        g = Game.where(slug:"flappy-pilot").first
         g.sort_order = 5
         g.save
 
-        g = Game.where(slug:"black-hole").first 
+        g = Game.where(slug:"black-hole").first
         g.sort_order = 8
         g.save
 
-        g = Game.where(slug:"2048").first 
+        g = Game.where(slug:"2048").first
         g.sort_order = 3
         g.save
 
-        g = Game.where(slug:"sorcerer-game").first 
+        g = Game.where(slug:"sorcerer-game").first
         g.sort_order = 6
-        g.save  
+        g.save
 
-        g = Game.where(slug:"tap-color").first 
+        g = Game.where(slug:"tap-color").first
         g.sort_order = 2
-        g.save      
+        g.save
 end
 
 def set_device_types
-        g = Game.where(slug:"traffic").first 
+        g = Game.where(slug:"traffic").first
         g.device_type = 3
         g.save
 
-        g = Game.where(slug:"fall-down").first 
-        g.device_type = 3
-        g.save   
-
-        g = Game.where(slug:"flappy-pilot").first 
+        g = Game.where(slug:"fall-down").first
         g.device_type = 3
         g.save
 
-        g = Game.where(slug:"black-hole").first 
+        g = Game.where(slug:"flappy-pilot").first
         g.device_type = 3
         g.save
 
-        g = Game.where(slug:"2048").first 
+        g = Game.where(slug:"black-hole").first
         g.device_type = 3
         g.save
 
-        g = Game.where(slug:"sorcerer-game").first 
+        g = Game.where(slug:"2048").first
+        g.device_type = 3
+        g.save
+
+        g = Game.where(slug:"sorcerer-game").first
         g.device_type = 1
-        g.save  
+        g.save
 
-        g = Game.where(slug:"tap-color").first 
+        g = Game.where(slug:"tap-color").first
         g.device_type = 3
-        g.save     
+        g.save
 end
 
 
 def update_images
-        g = Game.where(slug:"traffic").first 
+        g = Game.where(slug:"traffic").first
         g.image = "bigger_traffic.png"
         g.desktop_image ="square_traffic.png"
         g.save
 
-        g = Game.where(slug:"fall-down").first 
+        g = Game.where(slug:"fall-down").first
         g.image = "falldown_mobile.jpg"
-        g.desktop_image ="square_fall_down.png"    
-        g.save   
+        g.desktop_image ="square_fall_down.png"
+        g.save
 
-        g = Game.where(slug:"flappy-pilot").first 
+        g = Game.where(slug:"flappy-pilot").first
         g.image = "bigger_flappy_pilot.png"
-        g.desktop_image ="square_flappy.png"    
+        g.desktop_image ="square_flappy.png"
         g.save
 
-        g = Game.where(slug:"black-hole").first 
+        g = Game.where(slug:"black-hole").first
         g.image = "bigger_black_hole.png"
-        g.desktop_image ="square_black_hole.png"    
+        g.desktop_image ="square_black_hole.png"
         g.save
 
-        g = Game.where(slug:"2048").first 
+        g = Game.where(slug:"2048").first
         g.image = "bigger_2048.png"
         g.desktop_image ="square_2048.png"
         g.save
 
-        g = Game.where(slug:"sorcerer-game").first 
+        g = Game.where(slug:"sorcerer-game").first
         g.image = "bigger_sorcerer.png"
-        g.desktop_image ="square_sorcerer.png"    
-        g.save 
+        g.desktop_image ="square_sorcerer.png"
+        g.save
 end
 
 #stock names
