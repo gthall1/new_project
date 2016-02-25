@@ -14,6 +14,7 @@ class StaticPagesController < ApplicationController
             user = User.find_by_verify_token(params[:vid])
             sign_in user
             user.email_activate
+            flash[:success] = "Email confirmed!"
         end
         if current_user
             p "I SEE CURRENT USER AS #{current_user}"
@@ -34,6 +35,7 @@ class StaticPagesController < ApplicationController
             @user = User.find_by_verify_token(params[:vid])
             sign_in @user
             @user.email_activate
+            flash[:success] = "Email confirmed!"
         elsif !signed_in?
             #someone doing something weird
             redirect_to root_path

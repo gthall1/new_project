@@ -115,7 +115,7 @@ body {
     .confirmation-page__content {
         text-align: center;
         padding: 0 7.5%;
-        @include vertical-align();
+        @include vertical-align(relative, 45vh);
     }
     .confirmation-page__title {
         font-weight: 400;
