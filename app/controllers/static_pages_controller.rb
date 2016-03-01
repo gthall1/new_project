@@ -16,9 +16,7 @@ class StaticPagesController < ApplicationController
             user.email_activate
             flash[:success] = "Email confirmed!"
         end
-        if current_user
-            p "I SEE CURRENT USER AS #{current_user}"
-        end
+
         if !signed_in?
             # @current_jackpot = Jackpot.where(open: true).first
             @user = User.new
@@ -49,9 +47,13 @@ class StaticPagesController < ApplicationController
     end
 
     def home_invite
+
         referred_user_id = User.where(referral:params[:referral]).first
         if referred_user_id
+            arrival = Arrival.find(session["arrival_id"])
             session[:referred_user_id] = referred_user_id.id
+            arrival.referred_by = session[:referred_user_id]
+            arrival.save
         end
         redirect_to root_path
     end

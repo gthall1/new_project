@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   include SessionsHelper
 
- private
+  private
     def set_is_bot
 	    if request && request.user_agent 
 	      session[:bot] = !request.user_agent.match(/\(.*https?:\/\/.*\)/).blank? || !request.user_agent.match(/Twitterbot\/1.0/).blank?  

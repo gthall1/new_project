@@ -75,6 +75,10 @@ Alotto::Application.routes.draw do
     match '/validate_email', to: 'users#validate_email', via: 'get'
     match '/validate_name', to: 'users#validate_name', via: 'get'
 
+    #reps
+    #same as referral but we giving this to them for ease and use of custom urls and tracking
+    get '/r-:referral',to: 'static_pages#home_invite', via: 'get'
+
     #For analytics to grab some data
     namespace :api, defaults: { format: :json } do
         namespace :v1 do
