@@ -77,7 +77,7 @@ module GamesHelper
             #     scores << [User.where(id:u.user_id).first.present? ? User.find(u.user_id).name : "Deleted" ,u.score]
             # end     
         end 
-        scores[0..9].sort_by {|k,v| v}
+        scores[0..9].sort_by {|k,v,l| l}.reverse!
     end 
 
     def get_alltime_leaderboard(args={})
