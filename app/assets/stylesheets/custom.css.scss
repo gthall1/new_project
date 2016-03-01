@@ -8,6 +8,7 @@
 @import "intermediates";
 @import "reset";
 @import "surveys";
+@import "forms";
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -110,6 +111,9 @@ p {
       }
     }
   }
+}
+.header-img--logo {
+  display: none;
 }
 .nav-dropdown__name {
   cursor: pointer;

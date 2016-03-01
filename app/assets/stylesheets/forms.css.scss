@@ -91,11 +91,26 @@ button {
 }
 .form-wrap {
     @include vertical-align(relative, 45vh);
+
+    @media (min-width: $iphone6) {
+        padding: 0 35%;
+        @include vertical-align(relative, 40vh);
+
+        #user_name, #user_email, #user_zipcode, #user_password, #user_password_confirmation {
+            margin: 0;
+            width: 100% !important;
+        }
+    }
 }
 .form-input--wrap {
     position: relative;
     height: 7.5vh;
     width: 100%;
+
+    @media (min-width: $iphone6) {
+        height: 60px;
+    }
+
     & + & {
         margin-top: 15px;
     }
@@ -103,7 +118,8 @@ button {
     .fa {
         position: absolute;
         left: 20px;
-        top: 2.5vh;
+        top: 50%;
+        margin-top: -5.5px;
         color: $blue-steel;
     }
 
@@ -111,13 +127,14 @@ button {
         position: absolute;
         right: 5%;
         left: inherit;
+        top: 50%;
+        margin-top: -7.5px;
         font-size: $lg;
         opacity: 0;
         @include transition();
 
         &.error-msg {
             font-size: $xs;
-            top: 25%;
         }
 
         &.valid-input {
@@ -143,6 +160,10 @@ button {
     height: 10vh;
     border-radius: 4px;
     overflow: hidden;
+
+    @media (min-width: $iphone6) {
+        height: 60px;
+    }
 
     .form-input {
         background-color: $lavender !important;
