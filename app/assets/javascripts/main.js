@@ -16,9 +16,9 @@ $(document).ready(function(){
 
     //Remove this line once out of BETA
     $('.mobile-home .mobile-container').addClass('beta-version');
-
 });
 
 $(window).load(function(){
     app.checkDesktop();
+    $('.alert').addClass('show');
 });

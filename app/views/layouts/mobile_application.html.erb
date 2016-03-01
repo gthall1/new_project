@@ -15,6 +15,12 @@
         <link href='http://fonts.googleapis.com/css?family=Capriola' rel='stylesheet' type='text/css'>
         <!-- touchSwipe library -->
 
+        <!-- FB Open Graph Data -->
+        <meta property="og:url" content="http://www.getluckee.com/" />
+        <meta property="og:title" content="Luckee" />
+        <meta property="og:description" content="Play free games. Earn Real Cash" />
+        <meta property="og:image" content="http://www.getluckee.com/assets/getluckee.jpg" />
+
         <!-- iPhone SPLASHSCREEN-->
         <link href="/assets/apple-touch-startup-image-320x460.png" media="(device-width: 320px)" rel="apple-touch-startup-image">
         <!-- iPhone (Retina) SPLASHSCREEN-->
@@ -125,7 +131,9 @@
     </head>
     <body ondragstart="return false;" ondrop="return false;" id="<%= yield (:body_id) %>" class="<%= yield (:body_class) %> <% if @game && Game.where(slug:['traffic','flappy-pilot','fall-down','tap-color']).pluck(:id).include?(@game.id) %> mobile-header--hide <% end %>">
 
-        <div class="js-notification-banner notification-banner"> <span class="js-notification-banner__copy notification-banner__copy">[set copy]</span></div>
+        <% flash.each do |key, value| %>
+          <div class="alert alert-<%= key %>"><%= value %></div>
+        <% end %>
         <% if signed_in? %>
         <nav class="nav ssm-nav-visible">
             <div class='side-nav-top'>
@@ -263,9 +271,6 @@
                     <% end %>
                 </div><!-- /.bottom-navigation -->
             <% end %>
-          <% flash.each do |key, value| %>
-            <div class="alert alert-<%= key %>"><%= value %></div>
-          <% end %>
           <%= yield %>
         </div>
         <% if signed_in? %>

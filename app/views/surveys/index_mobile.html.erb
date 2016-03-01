@@ -3,16 +3,16 @@
     <ul>
         <% @surveys.each do |survey| %>
             <li>
-                <%= link_to  survey do %>
-                <%= survey.name %>
-                    <% if UserSurvey.where(survey_id: survey.id,user_id:current_user.id,complete:true).present? %>
-                        <span class='cash-out__cost'>Survey Completed</span>
-                    <% else %>
+               
+                <% if UserSurvey.where(survey_id: survey.id,user_id:current_user.id,complete:true).present? %>
+                    <%= survey.name %>
+                    <span class='cash-out__cost'>Survey Completed</span>
+                <% else %>
+                    <%= link_to  survey do %>
+                        <%= survey.name %>
                         <span class='cash-out__cost'>+<%= survey.credits%></span>
-
-                            <i class="fa fa-angle-right"></i>
+                        <i class="fa fa-angle-right"></i>
                     <% end %>
-
                 <% end %>
             </li>
         <% end %>
