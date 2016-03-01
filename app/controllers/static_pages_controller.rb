@@ -26,6 +26,7 @@ class StaticPagesController < ApplicationController
         else
             redirect_to games_path
         end
+
     end
 
     def set_username
