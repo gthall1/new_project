@@ -99,11 +99,14 @@ html body {
     }
     .social-btn--fb {
         background-color: $fb-blue;
+        @include bgColorAndHover($fb-blue);
     }
     .social-btn--twitter {
         background-color: $tw-blue;
+        @include bgColorAndHover($tw-blue);
     }
     .social-btn--mail {
         background-color: $lavender;
+        @include bgColorAndHover($lavender);
     }
 }
