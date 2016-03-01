@@ -155,11 +155,12 @@
 </div><!-- /.leaderboard-diff -->
 <% else %> <!--  ********************* Normal Leaderboard *********************  -->
     <section class="game-leaderboard">
-        <div class="tab-section js-tab-section leaderboard leaderboard--my-friends active fb-connected">  <!-- create conditional to check foor whether or not user is connected with FB  => add this class: not-fb-connected -->
+        <div class="tab-section js-tab-section leaderboard leaderboard--my-friends active <% if current_user.provider == 'facebook' %>fb-connected <% else %> not-fb-connected <% end %>">  <!-- create conditional to check foor whether or not user is connected with FB  => add this class: not-fb-connected -->
             <!-- Start Loop -->
             <!-- If Connected with Facebook -->
             <% if true %>
-               <% get_friend_leaderboard({game_id: @game.id} ).each.with_index(1) do | record, rank | %>
+               <% leaderboard_ranks = get_friend_leaderboard({game_id: @game.id} ) %>
+               <% leaderboard_ranks.each.with_index(1) do | record, rank | %>
                <% name = record[0] %>
                <% image = record[1] %>
                <% score = record[2] %>
@@ -173,11 +174,11 @@
                     </div><!-- /.leaderboard-row -->
 
                 <% end %>
-                <% if current_user.provider.blank? %>
+                <% if current_user.provider.blank? || leaderboard_ranks.size <= 3 %>
                     <div class="leaderboard__social-share">
                         <h1 class="leaderboard__title">Things are looking a bit empty in here. Invite some friends to Luckee &amp; earn <span class="credits">25 credits</span> for every friend that signs up.</h1>
 
-                        <input placeholder="Your referral link" class="form-input" type="text" value="<%= request.host_with_port %>/invite/<%=@referal_code %>">
+                        <input placeholder="Your referral link" class="form-input" type="text" value="<%= request.host_with_port %>/invite/<%=current_user.referral %>">
 
                         <div class="social-share__wrap">
                             <a href="https://www.facebook.com/dialog/feed?app_id=<%=ENV['FACEBOOK_KEY']%>&description=Check%20out%20Luckee%20and%20earn%20cash%20for%20playing%20free%20games&link=http%3A%2F%2Fwww.getluckee.com&name=Play%20free%20games.%20Earn%20real%20cash.&redirect_uri=<%=root_url%>" class="social-btn social-btn--fb"><i class="fa fa-facebook"></i></a>
