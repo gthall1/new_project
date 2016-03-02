@@ -37,6 +37,10 @@ class ApplicationController < ActionController::Base
 				cookies.permanent[:u] = user_id    	
 			end
 
+            #delete survey cookie within a week of survey, TEMPORARY SOLUTION MUST FIX
+            if cookies[:survey] && Time.now <= Survey.last.created_at + 1.week
+                cookies.delete :survey
+            end
 			if request
 				landing_url = request.fullpath.truncate(250) if request.fullpath
 				if request.user_agent

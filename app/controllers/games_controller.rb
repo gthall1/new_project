@@ -32,10 +32,13 @@ class GamesController < ApplicationController
     def set_notifications
         if !cookies[:survey] 
             if current_user && !current_user.surveys.include?(Survey.last)
-                cookies.permanent[:survey] = 0
-            elsif current_user.surveys.include?(Survey.last)
-                cookies.permanent[:survey] = 1
-            end
+                cookies[:survey] = { value: 0, expires: 1.week.from_now }
+            elsif current_user
+                cookies[:survey] = {value: 1, expires: 1.week.from_now}
+            end  
+        else 
+            #fix expiring permanent show once a week
+            cookies[:survey] = { value: cookies[:survey], expires: 1.week.from_now }
         end
     end
 
