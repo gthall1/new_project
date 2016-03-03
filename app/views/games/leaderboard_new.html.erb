@@ -160,7 +160,7 @@
         <div class="tab-section js-tab-section leaderboard leaderboard--my-friends active <% if current_user.provider == 'facebook' %>fb-connected <% else %> not-fb-connected <% end %>">  <!-- create conditional to check foor whether or not user is connected with FB  => add this class: not-fb-connected -->
             <!-- Start Loop -->
             <!-- If Connected with Facebook -->
-            <% if true %>
+            <% if current_user.provider == 'facebook' %>
                <% leaderboard_ranks = get_friend_leaderboard({game_id: @game.id} ) %>
                <% leaderboard_ranks.each.with_index(1) do | record, rank | %>
                <% name = record[0] %>
