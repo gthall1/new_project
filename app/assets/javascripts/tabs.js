@@ -3,7 +3,8 @@ var tabs = {
         tabContainer: '.js-tab-section',
         tabContainerDifficulty: '.js-leaderboard-diff',
         categoryControl:   '.js-tab--cat',
-        difficultyControl: '.js-tab--difficulty'
+        difficultyControl: '.js-tab--difficulty',
+        tabSelectContainer: '.js-leaderboard__cat'
     },
 
     toggle: function($tab, container) {
@@ -16,10 +17,12 @@ var tabs = {
     },
 
     bind: function() {
-        $(tabs.selections.categoryControl).click(function(e){
+        var self = this;
+
+        $(self.selections.tabSelectContainer).on('click', tabs.selections.categoryControl, function(e){
             var $this = $(this);
 
-            $('.js-leaderboard__cat').attr('id', 'leaderboard__cat--' + $this.index());
+            $(self.selections.tabSelectContainer).attr('id', 'leaderboard__cat--' + $this.index());
             tabs.toggle($this, tabs.selections.tabContainer);
         });
 

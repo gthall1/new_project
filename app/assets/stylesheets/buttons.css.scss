@@ -1,3 +1,5 @@
+@import 'social_btn';
+
 html body {
     .form-submit {
         padding: 10px 60px;
@@ -75,38 +77,5 @@ html body {
 
     .btn--no-fill {
         background-color: transparent;
-    }
-
-    .social-share__wrap {
-        text-align: center;
-    }
-    .social-btn {
-        // height: 40px;
-        padding: 15px 0;
-        width: 50px;
-        display: inline-block;
-        border-radius: 100%;
-        text-align: center;
-
-        & + .social-btn {
-            margin-left: 15px;
-        }
-
-        .fa {
-            font-size: $md;
-            color: $white;
-        }
-    }
-    .social-btn--fb {
-        background-color: $fb-blue;
-        @include bgColorAndHover($fb-blue);
-    }
-    .social-btn--twitter {
-        background-color: $tw-blue;
-        @include bgColorAndHover($tw-blue);
-    }
-    .social-btn--mail {
-        background-color: $lavender;
-        @include bgColorAndHover($lavender);
     }
 }
