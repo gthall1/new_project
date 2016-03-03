@@ -106,20 +106,6 @@ body {
         }
     }
 }
-.alert {
-    position: absolute;
-    display: inline-block;
-    width: 100%;
-    left: 0;
-    top: -40px;
-    z-index: 1000;
-    color: $white;
-    border: none;
-    padding: 10px 0;
-    border-radius: 0;
-    text-align: center;
-    @include transition(top, 0.25s, ease, 1s);
-
 .confirmation-page {
     height: 100vh;
     .mobile-container {
@@ -136,26 +122,20 @@ body {
         margin: 0;
     }
 }
-
-.notification-banner {
-    background-color: #4FD2C2;
-    color: white;
+.alert {
     position: absolute;
-    padding: 15px 0;
-    top: -50px;
-    text-align: center;
-    left: 0;
-    z-index: 10;
+    display: inline-block;
     width: 100%;
-    margin: auto;
-    opacity: 0;
-    @include transition(top, 0.25s, ease, 1.5s);
+    left: 0;
+    top: -40px;
+    z-index: 1000;
+    color: $white;
+    border: none;
+    padding: 10px 0;
+    border-radius: 0;
+    text-align: center;
+    @include transition(top, 0.25s, ease, 1s);
 
-    .show-banner & {
-        top: 0;
-        opacity: 0.9;
-    }
-}
 
     &.show {
         top: 0;
