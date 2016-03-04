@@ -2,6 +2,7 @@ class GamesController < ApplicationController
     before_action :set_game, only: [:show, :edit, :update, :destroy]
     before_filter :check_signed_in,:set_notifications
     skip_before_filter  :verify_authenticity_token, only:[:score_update,:reset_game,:get_random_challenge_user]
+    
     include ApplicationHelper
     include GamesHelper
 
@@ -699,6 +700,13 @@ class GamesController < ApplicationController
 
     def leaderboard_new
         @current_page = "leaderboard"
+        @current_user_highscore = 0
+        if current_user
+            current_user_best_game = current_user.user_game_sessions.where(game_id:7).order('score desc').first
+            if !current_user_best_game.nil?
+                @current_user_highscore = current_user_best_game.score
+            end
+        end
         @game = Game.where(slug:params[:game_slug]).first
     end
 
