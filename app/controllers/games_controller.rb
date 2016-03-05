@@ -220,6 +220,11 @@ class GamesController < ApplicationController
                 else
                     current_high_score = get_current_highscore({game_id:game_session.game_id})
                 end
+                #need = since when high score it will actually be current
+                if score >= current_high_score
+                    $redis.del("at_#{game_session.game.slug}_#{game_session.version}")
+                    $redis.del("w_#{game_session.game.slug}_#{game_session.version}")
+                end
             end
         elsif params[:score] && !params[:score].empty?
             if challenge

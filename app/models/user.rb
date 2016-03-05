@@ -63,6 +63,16 @@ class User < ActiveRecord::Base
     end
   end
 
+  def omniauth_connect(auth)
+    self.provider = auth.provider
+    self.uid = auth.uid
+    res = Net::HTTP.get_response(URI(auth.info.image+'?width=200&height=200'))
+    self.oath_image = res["location"]
+    self.oath_token = auth.credentials.token
+    self.oath_expires_at = Time.at(auth.credentials.expires_at)
+    self.save!
+  end
+
    def self.to_csv(options = {})
         attributes = %w{id email name lifetime_credits}
 
