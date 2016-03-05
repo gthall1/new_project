@@ -220,7 +220,7 @@
                     </div>
                 </div><!-- /.leaderboard-row -->
             <% end %>
-        <% if current_user_record({slug:@game.slug,timeframe:'alltime'})["rank"] > 10 %>
+        <% if current_user_record({slug:@game.slug,timeframe:'alltime'})["rank"].to_i > 10 %>
             <!-- Current User -->
             <div class="leaderboard-row leaderboard-row--current-user" id="leaderboard-row--current-user">
                 <div class="leaderboard-row__wrap">
@@ -242,7 +242,7 @@
                     <span class="leaderboard-score"><%= record[1]["score"] %></span>
                 </div><!-- /.leaderboard-row -->
             <% end %>
-            <% if current_user_record({slug:@game.slug,timeframe:'alltime'})["rank"] > 10 %>
+            <% if current_user_record({slug:@game.slug,timeframe:'alltime'})["rank"].to_i > 10 %>
             <!-- Current User -->
             <div class="leaderboard-row leaderboard-row--current-user">
                 <div class="leaderboard-row__wrap">
