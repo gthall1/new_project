@@ -33,3 +33,15 @@
 59559:M 05 Mar 08:23:21.476 * Background saving started by pid 61540
 61540:C 05 Mar 08:23:21.489 * DB saved on disk
 59559:M 05 Mar 08:23:21.581 * Background saving terminated with success
+59559:M 05 Mar 09:23:22.029 * 1 changes in 3600 seconds. Saving...
+59559:M 05 Mar 09:23:22.030 * Background saving started by pid 62451
+62451:C 05 Mar 09:23:22.115 * DB saved on disk
+59559:M 05 Mar 09:23:22.132 * Background saving terminated with success
+59559:M 05 Mar 10:23:23.101 * 1 changes in 3600 seconds. Saving...
+59559:M 05 Mar 10:23:23.102 * Background saving started by pid 63369
+63369:C 05 Mar 10:23:23.311 * DB saved on disk
+59559:M 05 Mar 10:23:23.407 * Background saving terminated with success
+59559:M 05 Mar 12:57:14.367 * 1 changes in 3600 seconds. Saving...
+59559:M 05 Mar 12:57:14.368 * Background saving started by pid 63618
+63618:C 05 Mar 12:57:14.470 * DB saved on disk
+59559:M 05 Mar 12:57:14.574 * Background saving terminated with success

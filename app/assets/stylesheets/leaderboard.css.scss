@@ -189,7 +189,6 @@ $falldown-font: #FEE2C7;
 }
 .leaderboard-row {
     // padding: 20px 5px;
-    border-top: none;
     padding: 15px 0;
     width: 90%;
     color: $charcoal;
@@ -205,35 +204,38 @@ $falldown-font: #FEE2C7;
         float: left;
         font-size: $sm;
     }
+
+    &.leaderboard-row--current-user {
+        .fb-connected & {
+            display: none;
+        }
+        // position: fixed;
+        // bottom: -10px;
+        // z-index: 9;
+
+        border-top: none;
+        width: 100vw;
+        padding: 15px 0;
+        background-color: $lavender;
+        @include transition(bottom, 0.15s, ease-in, 1s);
+
+        .leaderboard-row__wrap {
+            padding: 0 10px;
+            width: calc(90% - 20px);
+            margin: auto;
+        }
+
+        &.animate {
+            bottom: 50px;
+        }
+
+        span {
+            color: $white;
+        }
+    }
 }
 .leaderboard-row__wrap {
     padding: 0 10px;
-}
-.leaderboard-row--current-user {
-    .fb-connected & {
-        display: none;
-    }
-    // position: fixed;
-    // bottom: -10px;
-    // z-index: 9;
-    width: 100vw;
-    padding: 15px 0;
-    background-color: $lavender;
-    @include transition(bottom, 0.15s, ease-in, 1s);
-
-    .leaderboard-row__wrap {
-        padding: 0 10px;
-        width: calc(90% - 20px);
-        margin: auto;
-    }
-
-    &.animate {
-        bottom: 50px;
-    }
-
-    span {
-        color: $white;
-    }
 }
 .leaderboard-rank {
     font-weight: 500;

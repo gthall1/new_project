@@ -8,12 +8,15 @@ var tabs = {
     },
 
     toggle: function($tab, container) {
-        var tabCategory = $tab.data('tab-cat');
+        var tabCategory = $tab.data('tab-cat'),
+            toCurrentUser = window.location.origin + window.location.pathname + '#leaderboard-row--current-user';
 
         $tab.siblings().removeClass('active');
         $tab.addClass('active');
         $(container).removeClass('active');
         $(tabCategory).addClass('active');
+
+        window.location.href = toCurrentUser;
     },
 
     bind: function() {

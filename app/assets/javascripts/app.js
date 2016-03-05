@@ -25,6 +25,12 @@ var app = {
         }
     },
 
+    scrollToBottom: function() {
+        $('html, body').animate({
+                scrollTop: $(document).height()
+        }, 'slow');
+    },
+
     scrollToElement: function(element, addSpace, animDuration) {
         var space = addSpace || 0,
             duration = animDuration || 500;
