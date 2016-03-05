@@ -45,3 +45,7 @@
 59559:M 05 Mar 12:57:14.368 * Background saving started by pid 63618
 63618:C 05 Mar 12:57:14.470 * DB saved on disk
 59559:M 05 Mar 12:57:14.574 * Background saving terminated with success
+59559:M 05 Mar 16:34:16.005 * 1 changes in 3600 seconds. Saving...
+59559:M 05 Mar 16:34:16.007 * Background saving started by pid 64312
+64312:C 05 Mar 16:34:20.811 * DB saved on disk
+59559:M 05 Mar 16:34:20.906 * Background saving terminated with success
