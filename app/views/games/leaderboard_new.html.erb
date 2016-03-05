@@ -203,7 +203,7 @@
                 <%= link_to "/auth/facebook" do %>
                     <button class="btn--form btn--form-fb">
                         <i class="fa fa-facebook btn--form__icon"></i>
-                        <h1 class="btn--form__copy">Sign up with Facebook</h1>
+                        <h1 class="btn--form__copy">Connect with Facebook</h1>
                     </button><!-- /.btn--form -->
                 <% end %>
             <% end %>
@@ -220,7 +220,7 @@
                     </div>
                 </div><!-- /.leaderboard-row -->
             <% end %>
-
+        <% if current_user_record({slug:@game.slug,timeframe:'alltime'})["rank"] > 10 %>
             <!-- Current User -->
             <div class="leaderboard-row leaderboard-row--current-user" id="leaderboard-row--current-user">
                 <div class="leaderboard-row__wrap">
@@ -232,7 +232,7 @@
                 </div>
             </div><!-- /.leaderboard-row--current-user -->
         </div>
-
+        <% end %>
         <div class="tab-section js-tab-section leaderboard leaderboard--weekly">
             <% get_leaderboard_hash({game_id:@game.id,version: nil,timeframe: 'weekly'}).each_with_index do | record, i | %>
                  <% break if i > 9 %>
@@ -242,6 +242,7 @@
                     <span class="leaderboard-score"><%= record[1]["score"] %></span>
                 </div><!-- /.leaderboard-row -->
             <% end %>
+            <% if current_user_record({slug:@game.slug,timeframe:'alltime'})["rank"] > 10 %>
             <!-- Current User -->
             <div class="leaderboard-row leaderboard-row--current-user">
                 <div class="leaderboard-row__wrap">
@@ -252,6 +253,7 @@
                     <span class="leaderboard-score"><%= current_user_record({slug:@game.slug,timeframe:'alltime'})["score"] %></span>
                 </div>
             </div><!-- /.leaderboard-row--current-user -->
+            <% end %>
         </div>
     </section>
 

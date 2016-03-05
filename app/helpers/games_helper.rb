@@ -53,22 +53,25 @@ module GamesHelper
             end
             scores << [current_user.name,current_user.oath_image,own_best_score]
             if session[:auth_token] 
+                p session[:auth_token]
                 graph = Koala::Facebook::API.new(session[:auth_token]) 
-                friends = graph.get_connections("me", "friends")  
-                if !friends.blank? 
-                    friends.each do | f | 
-                        friend = User.where(uid:f["id"]).first 
-                        if !friend.blank?
-                            friend_best_session = UserGameSession.where(game_id:game_id,version:version,user_id:friend.id).order('score desc').first
-                            if friend_best_session.blank?
-                                friend_score = 0
-                            else
-                                friend_score = friend_best_session.score
-                            end
-                            scores << [friend.name,friend.oath_image,friend_score]
+                if graph.app_secret
+                    friends = graph.get_connections("me", "friends")  
+                    if !friends.blank? 
+                        friends.each do | f | 
+                            friend = User.where(uid:f["id"]).first 
+                            if !friend.blank?
+                                friend_best_session = UserGameSession.where(game_id:game_id,version:version,user_id:friend.id).order('score desc').first
+                                if friend_best_session.blank?
+                                    friend_score = 0
+                                else
+                                    friend_score = friend_best_session.score
+                                end
+                                scores << [friend.name,friend.oath_image,friend_score]
+                            end 
                         end 
-                    end 
-                end 
+                    end
+                end
             end 
             
             # game_sessions.each do | u |
