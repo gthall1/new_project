@@ -6,17 +6,6 @@
 
 <% @mobile_container_id = "leaderboard--placeholder" %>
 
-<!-- Current User -->
-<div class="leaderboard-row leaderboard-row--current-user">
-    <div class="leaderboard-row__wrap">
-        <span class="leaderboard-rank"><%= current_user_record({slug:@game.slug,timeframe:'alltime'})["rank"] %>
-            <span class="leaderboard__avatar" style="<% if current_user.oath_image %>background-image: url(<%= current_user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %>"></span>
-        </span>
-        <span class="leaderboard-user"><%= current_user.name %></span>
-        <span class="leaderboard-score"><%= current_user_record({slug:@game.slug,timeframe:'alltime'})["score"] %></span>
-    </div>
-</div><!-- /.leaderboard-row -->
-
 <section class="leaderboard-nav">
     <h1 class="leaderboard__title leaderboard__title--headline"><%= @game.name %></h1>
 
@@ -36,7 +25,7 @@
         </div>
     </div>
 <% end %>
-       
+
 <!-- If game is tap the right color -->
 <% if @game.slug == 'tap-color' %>
  <div class="js-leaderboard--easy js-leaderboard-diff leaderboard-diff active">
@@ -163,10 +152,10 @@
 </div><!-- /.leaderboard-diff -->
 <% else %> <!--  ********************* Normal Leaderboard *********************  -->
     <section class="game-leaderboard">
-        <div class="tab-section js-tab-section leaderboard leaderboard--my-friends active <% if current_user.provider == 'facebook' %>fb-connected <% else %> not-fb-connected <% end %>">  <!-- create conditional to check foor whether or not user is connected with FB  => add this class: not-fb-connected -->
+        <div class="tab-section js-tab-section leaderboard leaderboard--my-friends active <% if true  %>fb-connected <% else %> not-fb-connected <% end %>"> <!-- current_user.provider == 'facebook' --> <!-- create conditional to check foor whether or not user is connected with FB  => add this class: not-fb-connected -->
             <!-- Start Loop -->
             <!-- If Connected with Facebook -->
-            <% if current_user.provider == 'facebook' %>
+            <% if true %> <!--  current_user.provider == 'facebook' -->
                <% leaderboard_ranks = get_friend_leaderboard({game_id: @game.id} ) %>
                <% leaderboard_ranks.each.with_index(1) do | record, rank | %>
                <% name = record[0] %>
@@ -174,14 +163,26 @@
                <% score = record[2] %>
 
                     <div class="leaderboard-row">
-                        <span class="leaderboard-rank"><%= rank %>
-                            <span class="leaderboard__avatar" style="<% if !image.blank? %>background-image: url(<%= image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %>"></span>
-                        </span>
-                        <span class="leaderboard-user"><%= name %></span>
-                        <span class="leaderboard-score"><%= score %></span>
+                        <div class="leaderboard-row__wrap">
+                            <span class="leaderboard-rank"><%= rank %>
+                                <span class="leaderboard__avatar" style="<% if !image.blank? %>background-image: url(<%= image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %>"></span>
+                            </span>
+                            <span class="leaderboard-user"><%= name %></span>
+                            <span class="leaderboard-score"><%= score %></span>
+                        </div>
                     </div><!-- /.leaderboard-row -->
 
                 <% end %>
+                <!-- Current User -->
+                <div class="leaderboard-row leaderboard-row--current-user">
+                    <div class="leaderboard-row__wrap">
+                        <span class="leaderboard-rank"><%= current_user_record({slug:@game.slug,timeframe:'alltime'})["rank"] %>
+                            <span class="leaderboard__avatar" style="<% if current_user.oath_image %>background-image: url(<%= current_user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %>"></span>
+                        </span>
+                        <span class="leaderboard-user"><%= current_user.name %></span>
+                        <span class="leaderboard-score"><%= current_user_record({slug:@game.slug,timeframe:'alltime'})["score"] %></span>
+                    </div>
+                </div><!-- /.leaderboard-row--current-user -->
                 <% if current_user.provider.blank? || leaderboard_ranks.size <= 3 %>
                     <div class="leaderboard__social-share">
                         <h1 class="leaderboard__title">Things are looking a bit empty in here. Invite some friends to Luckee &amp; earn <span class="credits">25 credits</span> for every friend that signs up.</h1>
@@ -212,11 +213,99 @@
             <% get_leaderboard_hash({game_id:@game.id,version: nil,timeframe: 'alltime'}).each_with_index do | record, i | %>
                  <% break if i > 9 %>
                 <div class="leaderboard-row">
-                    <span class="leaderboard-rank"><%= record[0] %><span class="leaderboard__avatar" style="background-image: url('<%= record[1]["image"] %>'); "></span></span>
-                    <span class="leaderboard-user"><%= record[1]["name"] %></span>
-                    <span class="leaderboard-score"><%= record[1]["score"] %></span>
+                    <div class="leaderboard-row__wrap">
+                        <span class="leaderboard-rank"><%= record[0] %><span class="leaderboard__avatar" style="background-image: url('<%= record[1]["image"] %>'); "></span></span>
+                        <span class="leaderboard-user"><%= record[1]["name"] %></span>
+                        <span class="leaderboard-score"><%= record[1]["score"] %></span>
+                    </div>
                 </div><!-- /.leaderboard-row -->
             <% end %>
+            <!-- Current User -->
+            <div class="leaderboard-row">
+                <div class="leaderboard-row__wrap">
+                    <span class="leaderboard-rank"><%= current_user_record({slug:@game.slug,timeframe:'alltime'})["rank"] %>
+                        <span class="leaderboard__avatar" style="<% if current_user.oath_image %>background-image: url(<%= current_user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %>"></span>
+                    </span>
+                    <span class="leaderboard-user"><%= current_user.name %></span>
+                    <span class="leaderboard-score"><%= current_user_record({slug:@game.slug,timeframe:'alltime'})["score"] %></span>
+                </div>
+            </div><!-- /.leaderboard-row--current-user -->
+
+            <div class="leaderboard-row">
+                <div class="leaderboard-row__wrap">
+                    <span class="leaderboard-rank"><%= current_user_record({slug:@game.slug,timeframe:'alltime'})["rank"] %>
+                        <span class="leaderboard__avatar" style="<% if current_user.oath_image %>background-image: url(<%= current_user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %>"></span>
+                    </span>
+                    <span class="leaderboard-user"><%= current_user.name %></span>
+                    <span class="leaderboard-score"><%= current_user_record({slug:@game.slug,timeframe:'alltime'})["score"] %></span>
+                </div>
+            </div><!-- /.leaderboard-row--current-user -->
+
+            <div class="leaderboard-row">
+                <div class="leaderboard-row__wrap">
+                    <span class="leaderboard-rank"><%= current_user_record({slug:@game.slug,timeframe:'alltime'})["rank"] %>
+                        <span class="leaderboard__avatar" style="<% if current_user.oath_image %>background-image: url(<%= current_user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %>"></span>
+                    </span>
+                    <span class="leaderboard-user"><%= current_user.name %></span>
+                    <span class="leaderboard-score"><%= current_user_record({slug:@game.slug,timeframe:'alltime'})["score"] %></span>
+                </div>
+            </div><!-- /.leaderboard-row--current-user -->
+
+            <div class="leaderboard-row">
+                <div class="leaderboard-row__wrap">
+                    <span class="leaderboard-rank"><%= current_user_record({slug:@game.slug,timeframe:'alltime'})["rank"] %>
+                        <span class="leaderboard__avatar" style="<% if current_user.oath_image %>background-image: url(<%= current_user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %>"></span>
+                    </span>
+                    <span class="leaderboard-user"><%= current_user.name %></span>
+                    <span class="leaderboard-score"><%= current_user_record({slug:@game.slug,timeframe:'alltime'})["score"] %></span>
+                </div>
+            </div><!-- /.leaderboard-row--current-user -->
+            <div class="leaderboard-row">
+                <div class="leaderboard-row__wrap">
+                    <span class="leaderboard-rank"><%= current_user_record({slug:@game.slug,timeframe:'alltime'})["rank"] %>
+                        <span class="leaderboard__avatar" style="<% if current_user.oath_image %>background-image: url(<%= current_user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %>"></span>
+                    </span>
+                    <span class="leaderboard-user"><%= current_user.name %></span>
+                    <span class="leaderboard-score"><%= current_user_record({slug:@game.slug,timeframe:'alltime'})["score"] %></span>
+                </div>
+            </div><!-- /.leaderboard-row--current-user -->
+            <div class="leaderboard-row">
+                <div class="leaderboard-row__wrap">
+                    <span class="leaderboard-rank"><%= current_user_record({slug:@game.slug,timeframe:'alltime'})["rank"] %>
+                        <span class="leaderboard__avatar" style="<% if current_user.oath_image %>background-image: url(<%= current_user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %>"></span>
+                    </span>
+                    <span class="leaderboard-user"><%= current_user.name %></span>
+                    <span class="leaderboard-score"><%= current_user_record({slug:@game.slug,timeframe:'alltime'})["score"] %></span>
+                </div>
+            </div><!-- /.leaderboard-row--current-user -->
+            <div class="leaderboard-row">
+                <div class="leaderboard-row__wrap">
+                    <span class="leaderboard-rank"><%= current_user_record({slug:@game.slug,timeframe:'alltime'})["rank"] %>
+                        <span class="leaderboard__avatar" style="<% if current_user.oath_image %>background-image: url(<%= current_user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %>"></span>
+                    </span>
+                    <span class="leaderboard-user"><%= current_user.name %></span>
+                    <span class="leaderboard-score"><%= current_user_record({slug:@game.slug,timeframe:'alltime'})["score"] %></span>
+                </div>
+            </div><!-- /.leaderboard-row--current-user -->
+                        <div class="leaderboard-row">
+                <div class="leaderboard-row__wrap">
+                    <span class="leaderboard-rank"><%= current_user_record({slug:@game.slug,timeframe:'alltime'})["rank"] %>
+                        <span class="leaderboard__avatar" style="<% if current_user.oath_image %>background-image: url(<%= current_user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %>"></span>
+                    </span>
+                    <span class="leaderboard-user"><%= current_user.name %></span>
+                    <span class="leaderboard-score"><%= current_user_record({slug:@game.slug,timeframe:'alltime'})["score"] %></span>
+                </div>
+            </div><!-- /.leaderboard-row--current-user -->
+
+            <div class="leaderboard-row leaderboard-row--current-user" id="leaderboard-row--current-user">
+                <div class="leaderboard-row__wrap">
+                    <span class="leaderboard-rank"><%= current_user_record({slug:@game.slug,timeframe:'alltime'})["rank"] %>
+                        <span class="leaderboard__avatar" style="<% if current_user.oath_image %>background-image: url(<%= current_user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %>"></span>
+                    </span>
+                    <span class="leaderboard-user"><%= current_user.name %></span>
+                    <span class="leaderboard-score"><%= current_user_record({slug:@game.slug,timeframe:'alltime'})["score"] %></span>
+                </div>
+            </div><!-- /.leaderboard-row--current-user -->
         </div>
 
         <div class="tab-section js-tab-section leaderboard leaderboard--weekly">
@@ -228,13 +317,23 @@
                     <span class="leaderboard-score"><%= record[1]["score"] %></span>
                 </div><!-- /.leaderboard-row -->
             <% end %>
+            <!-- Current User -->
+            <div class="leaderboard-row leaderboard-row--current-user">
+                <div class="leaderboard-row__wrap">
+                    <span class="leaderboard-rank"><%= current_user_record({slug:@game.slug,timeframe:'alltime'})["rank"] %>
+                        <span class="leaderboard__avatar" style="<% if current_user.oath_image %>background-image: url(<%= current_user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %>"></span>
+                    </span>
+                    <span class="leaderboard-user"><%= current_user.name %></span>
+                    <span class="leaderboard-score"><%= current_user_record({slug:@game.slug,timeframe:'alltime'})["score"] %></span>
+                </div>
+            </div><!-- /.leaderboard-row--current-user -->
         </div>
     </section>
 
 <% end %>
 
 <script>
-    $(window).load(function(){
-        $('.leaderboard-row--current-user').addClass('animate');
-    })
+    // $(window).load(function(){
+    //     $('.leaderboard-row--current-user').addClass('animate');
+    // })
 </script>

@@ -25,11 +25,14 @@ var app = {
         }
     },
 
-    scrollTo: function() {
+    scrollToElement: function(element, addSpace, animDuration) {
+        var space = addSpace || 0,
+            duration = animDuration || 500;
         $('html, body').animate({
-                scrollTop: $(document).height()
-        }, 'slow');
+            scrollTop: $(element).offset().top - space
+        }, duration);
     },
+
     showShareDialog: function() {
         if (Cookies.get('login') === 'initial') {
             // console.log('Welcome back!');

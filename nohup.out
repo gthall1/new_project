@@ -1,0 +1,35 @@
+59559:C 04 Mar 22:11:31.420 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+59559:M 04 Mar 22:11:31.422 * Increased maximum number of open files to 10032 (it was originally set to 2560).
+                _._                                                  
+           _.-``__ ''-._                                             
+      _.-``    `.  `_.  ''-._           Redis 3.0.4 (00000000/0) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._                                   
+ (    '      ,       .-`  | `,    )     Running in standalone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 59559
+  `-._    `-._  `-./  _.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |           http://redis.io        
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+ |`-._`-._    `-.__.-'    _.-'_.-'|                                  
+ |    `-._`-._        _.-'_.-'    |                                  
+  `-._    `-._`-.__.-'_.-'    _.-'                                   
+      `-._    `-.__.-'    _.-'                                       
+          `-._        _.-'                                           
+              `-.__.-'                                               
+
+59559:M 04 Mar 22:11:31.429 # Server started, Redis version 3.0.4
+59559:M 04 Mar 22:11:31.451 * DB loaded from disk: 0.022 seconds
+59559:M 04 Mar 22:11:31.451 * The server is now ready to accept connections on port 6379
+59559:M 04 Mar 23:11:32.046 * 1 changes in 3600 seconds. Saving...
+59559:M 04 Mar 23:11:32.054 * Background saving started by pid 60579
+60579:C 04 Mar 23:11:32.106 * DB saved on disk
+59559:M 04 Mar 23:11:32.155 * Background saving terminated with success
+59559:M 05 Mar 00:11:33.073 * 1 changes in 3600 seconds. Saving...
+59559:M 05 Mar 00:11:33.144 * Background saving started by pid 61456
+61456:C 05 Mar 00:11:33.146 * DB saved on disk
+59559:M 05 Mar 00:11:33.244 * Background saving terminated with success
+59559:M 05 Mar 08:23:21.410 * 1 changes in 3600 seconds. Saving...
+59559:M 05 Mar 08:23:21.476 * Background saving started by pid 61540
+61540:C 05 Mar 08:23:21.489 * DB saved on disk
+59559:M 05 Mar 08:23:21.581 * Background saving terminated with success

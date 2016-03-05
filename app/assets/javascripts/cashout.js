@@ -17,11 +17,11 @@ var cashOutDesktop = {
 
     showCheckoutType: function(el) {
         var cashoutType = $(el).attr('data-checkout');
-        app.scrollTo();
 
         $('.cash-out__submit').addClass('show');
         $('.' + cashoutType + '-select').addClass('show');
         $(cashOutDesktop.conf.cashoutForm).slideDown();
+        app.scrollToElement('.cash-out__submit', 0, 'slow');
 
         if (cashoutType === "venmo") {
             $('.paypal-choice').fadeOut();
@@ -33,11 +33,11 @@ var cashOutDesktop = {
     },
 
     bind: function() {
-        $('.venmo-choice, .paypal-choice').click(function(e){
+        $('.venmo-choice, .paypal-choice').on('click', function(e){
             cashOutDesktop.showCheckoutType(this);
         });
 
-        $(cashOutDesktop.conf.cashoutRedo).click(function() {
+        $(cashOutDesktop.conf.cashoutRedo).on('click', function() {
             cashOutDesktop.hideCheckout();
             cashOutDesktop.showAllOptions();
             $('.cash-out__fields').removeClass('show');
@@ -78,15 +78,15 @@ var cashOut = {
     },
 
     bind: function() {
-        $( ".back-choice" ).click(function() {
+        $( ".back-choice" ).on('click', function() {
             cashOut.restart();
         });
 
-        $( ".venmo-choice" ).click(function() {
+        $( ".venmo-choice" ).on('click', function() {
             cashOut.venmo();
         });
 
-        $( ".paypal-choice" ).click(function() {
+        $( ".paypal-choice" ).on('click', function() {
             cashOut.paypal();
         });
     },
