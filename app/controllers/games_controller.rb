@@ -2,7 +2,7 @@ class GamesController < ApplicationController
     before_action :set_game, only: [:show, :edit, :update, :destroy]
     before_filter :check_signed_in,:set_notifications
     skip_before_filter  :verify_authenticity_token, only:[:score_update,:reset_game,:get_random_challenge_user]
-    
+
     include ApplicationHelper
     include GamesHelper
 
@@ -38,8 +38,8 @@ class GamesController < ApplicationController
                 cookies[:survey] = { value: 0, expires: 1.week.from_now }
             elsif current_user
                 cookies[:survey] = {value: 1, expires: 1.week.from_now}
-            end  
-        else 
+            end
+        else
             #fix expiring permanent show once a week
             cookies[:survey] = { value: cookies[:survey], expires: 1.week.from_now }
         end
@@ -705,14 +705,21 @@ class GamesController < ApplicationController
 
     def leaderboard_new
         @current_page = "leaderboard"
+        @game = Game.where(slug:params[:game_slug]).first
         @current_user_highscore = 0
+
         if current_user
             current_user_best_game = current_user.user_game_sessions.where(game_id:7).order('score desc').first
             if !current_user_best_game.nil?
                 @current_user_highscore = current_user_best_game.score
             end
         end
-        @game = Game.where(slug:params[:game_slug]).first
+
+        if is_mobile?
+            render "games/leaderboard_new"
+        else
+            render "games/leaderboard"
+        end
     end
 
     def games_leaderboard
