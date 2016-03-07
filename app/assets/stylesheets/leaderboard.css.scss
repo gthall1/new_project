@@ -210,18 +210,25 @@ $falldown-font: #FEE2C7;
     }
 
     &:first-child {
-        margin-top: 5px;
+        // margin-top: 5px;
     }
 
     &.leaderboard-row--current-user {
-        .leaderboard--include-current & {
-            display: block;
+        .leaderboard--omit-current &.leaderboard-row--current-user-default {
+            display: none;
         }
 
+        .leaderboard--my-friends & {
+            display: none;
+
+            &.leaderboard-row--current-user {
+                display: block;
+            }
+        }
         // position: fixed;
         // bottom: -10px;
         // z-index: 9;
-        display: none;
+        // display: none;
         border-top: none;
         width: 100vw;
         padding: 15px 0;

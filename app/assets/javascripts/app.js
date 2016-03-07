@@ -1,7 +1,7 @@
 var app = {
     // Script to prompt user to add Luckee App shortcut to homescreen
     setAddToHomescreen: function() {
-        if (mobileCheck.iOS() && !mobileCheck.MobileChrome() && !app.isWebAppMode() && Cookies.get('onboarding-complete') === 'true' && !app.testSocialBrowser() ) {
+        if (mobileCheck.iOS() && !mobileCheck.MobileChrome() && !app.isWebAppMode() && Cookies.get('onboarding-complete') === 'true' && !app.isSocialBrowser() ) {
             if (Cookies.get('user') === 'returning') {
                 console.log('Welcome home!');
             } else {
@@ -117,7 +117,7 @@ var app = {
         $(el).addClass('show');
     },
 
-    testSocialBrowser: function() {
+    isSocialBrowser: function() {
         if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
             if (navigator.userAgent.match(/FBAV/i)) {
                 return "facebook";
@@ -152,6 +152,12 @@ var app = {
         if (app.getParams("confirmed") == "true") {
             app.setBannerCopy('Email Confirmed!');
             $('body').addClass('show-banner');
+        }
+    },
+
+    addSocialMediaClass: function() {
+        if (app.isSocialBrowser()) {
+            $('body').addClass('social-media-browser');
         }
     },
 
@@ -208,10 +214,7 @@ var app = {
         app.fitToContainer(".inline-tout__title", 0.5);
         app.bind();
         app.isWAM();
+        app.addSocialMediaClass();
         // app.initheadroom();
-
-        if (app.testSocialBrowser()) {
-            $('body').addClass('social-media-browser');
-        }
     }
 };
