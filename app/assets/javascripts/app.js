@@ -1,7 +1,7 @@
 var app = {
     // Script to prompt user to add Luckee App shortcut to homescreen
     setAddToHomescreen: function() {
-        if (mobileCheck.iOS() && !mobileCheck.MobileChrome() && !app.isWebAppMode() && Cookies.get('onboarding-complete') === 'true') {
+        if (mobileCheck.iOS() && !mobileCheck.MobileChrome() && !app.isWebAppMode() && Cookies.get('onboarding-complete') === 'true' && !app.testSocialBrowser) {
             if (Cookies.get('user') === 'returning') {
                 console.log('Welcome home!');
             } else {
@@ -123,6 +123,8 @@ var app = {
                 return "facebook";
             } else if (navigator.userAgent.match(/Twitter/i)){
                 return "twitter";
+            } else {
+                return "false";
             }
         }
     },

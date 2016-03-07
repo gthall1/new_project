@@ -216,7 +216,7 @@
         <div class="tab-section js-tab-section leaderboard leaderboard--all-time <% if current_user_record({slug:@game.slug,timeframe:'alltime'})["rank"].to_i > 10 %> leaderboard--include-current <% end %>">
             <% get_leaderboard_hash({game_id:@game.id,version: nil,timeframe: 'alltime'}).each_with_index do | record, i | %>
                  <% break if i > 9 %>
-                <div class="leaderboard-row">
+                <div class="leaderboard-row <% if current_user.name == record[1]["name"] %> leaderboard-row--current-user <% end %>">
                     <div class="leaderboard-row__wrap">
                         <span class="leaderboard-rank"><%= record[0] %><span class="leaderboard__avatar" style="background-image: url('<%= record[1]["image"] %>'); "></span></span>
                         <span class="leaderboard-user"><%= record[1]["name"] %></span>
@@ -238,13 +238,16 @@
 
         </div> <!-- /.leaderboard--all-time -->
 
-        <div class="tab-section js-tab-section leaderboard leaderboard--weekly <% if current_user_record({slug:@game.slug,timeframe:'alltime'})["rank"].to_i > 10 %> leaderboard--include-current <% end %>">
+        <div class="tab-section js-tab-section leaderboard leaderboard--weekly <% if true %> leaderboard--include-current <% end %>"><!-- current_user_record({slug:@game.slug,timeframe:'alltime'})["rank"].to_i > 10 -->
             <% get_leaderboard_hash({game_id:@game.id,version: nil,timeframe: 'weekly'}).each_with_index do | record, i | %>
+                <% current = true if current_user.name == record[1]["name"] %>
                  <% break if i > 9 %>
-                <div class="leaderboard-row">
-                    <span class="leaderboard-rank"><%= record[0] %><span class="leaderboard__avatar" style="background-image: url('<%= record[1]["image"] %>'); "></span></span>
-                    <span class="leaderboard-user"><%= record[1]["name"] %></span>
-                    <span class="leaderboard-score"><%= record[1]["score"] %></span>
+                <div class="leaderboard-row <% if current %> leaderboard-row--current-user <% end %>" <% if current %> id="leaderboard-row--current-user" <% end %>>
+                    <div class="leaderboard-row__wrap">
+                        <span class="leaderboard-rank"><%= record[0] %><span class="leaderboard__avatar" style="background-image: url('<%= record[1]["image"] %>'); "></span></span>
+                        <span class="leaderboard-user"><%= record[1]["name"] %></span>
+                        <span class="leaderboard-score"><%= record[1]["score"] %></span>
+                    </div><!-- /.leaderboard-row__wrap -->
                 </div><!-- /.leaderboard-row -->
             <% end %>
 
@@ -256,7 +259,7 @@
                     </span>
                     <span class="leaderboard-user"><%= current_user.name %></span>
                     <span class="leaderboard-score"><%= current_user_record({slug:@game.slug,timeframe:'alltime'})["score"] %></span>
-                </div>
+                </div><!-- /.leaderboard-row__wrap -->
             </div><!-- /.leaderboard-row--current-user -->
 
         </div> <!-- /.leaderboard--weekly -->

@@ -209,6 +209,10 @@ $falldown-font: #FEE2C7;
         font-size: $sm;
     }
 
+    &:first-child {
+        margin-top: 5px;
+    }
+
     &.leaderboard-row--current-user {
         .leaderboard--include-current & {
             display: block;
