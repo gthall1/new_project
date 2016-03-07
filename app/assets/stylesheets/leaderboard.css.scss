@@ -73,6 +73,10 @@ $falldown-font: #FEE2C7;
     left: 0;
     right: 0;
 }
+.leaderboard__social-sync {
+    width: 85%;
+    margin: auto;
+}
 .leaderboard__title {
     margin: 0;
     font-size: $md;
@@ -206,13 +210,14 @@ $falldown-font: #FEE2C7;
     }
 
     &.leaderboard-row--current-user {
-        .fb-connected & {
-            display: none;
+        .leaderboard--include-current & {
+            display: block;
         }
+
         // position: fixed;
         // bottom: -10px;
         // z-index: 9;
-
+        display: none;
         border-top: none;
         width: 100vw;
         padding: 15px 0;

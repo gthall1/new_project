@@ -28,42 +28,113 @@
 
 <!-- If game is tap the right color -->
 <% if @game.slug == 'tap-color' %>
- <div class="js-leaderboard--easy js-leaderboard-diff leaderboard-diff active">
-    <h2 class="leaderboard-diff__title">EASY </h2>
-    <section class="game-leaderboard">
-        <div class="tab-section js-tab-section leaderboard leaderboard--all-time active">
-            <!-- Start Loop -->
-            <% get_leaderboard_hash({game_id:@game.id,version: 1,timeframe: 'alltime'}).each_with_index do | record, i | %>
-                <% break if i > 9 %>
-                <div class="leaderboard-row">
-                    <span class="leaderboard-rank"><%= record[0] %><span class="leaderboard__avatar" style="background-image: url('<%= record[1]["image"] %>'); "></span></span>
-                    <span class="leaderboard-user"><%= record[1]["name"] %></span>
-                    <span class="leaderboard-score"><%= record[1]["score"] %></span>
-                </div><!-- /.leaderboard-row -->
-            <% end %>
-            <!-- End Loop -->
-        </div>
+     <div class="js-leaderboard--easy js-leaderboard-diff leaderboard-diff active">
+        <h2 class="leaderboard-diff__title">EASY </h2>
+        <section class="game-leaderboard">
+            <div class="tab-section js-tab-section leaderboard leaderboard--all-time active">
+                <!-- Start Loop -->
+                <% get_leaderboard_hash({game_id:@game.id,version: 1,timeframe: 'alltime'}).each_with_index do | record, i | %>
+                    <% break if i > 9 %>
+                    <div class="leaderboard-row">
+                        <span class="leaderboard-rank"><%= record[0] %><span class="leaderboard__avatar" style="background-image: url('<%= record[1]["image"] %>'); "></span></span>
+                        <span class="leaderboard-user"><%= record[1]["name"] %></span>
+                        <span class="leaderboard-score"><%= record[1]["score"] %></span>
+                    </div><!-- /.leaderboard-row -->
+                <% end %>
+                <!-- End Loop -->
+            </div>
 
-        <div class="tab-section js-tab-section leaderboard leaderboard--weekly">
-            <!-- Start Loop -->
-            <% get_leaderboard_hash({game_id:@game.id,version: 1,timeframe: 'weekly'}).each_with_index do | record, i | %>
-                <% break if i > 9 %>
-                <div class="leaderboard-row">
-                    <span class="leaderboard-rank"><%= record[0] %><span class="leaderboard__avatar" style="background-image: url('<%= record[1]["image"] %>'); "></span></span>
-                    <span class="leaderboard-user"><%= record[1]["name"] %></span>
-                    <span class="leaderboard-score"><%= record[1]["score"] %></span>
-                </div><!-- /.leaderboard-row -->
-            <% end %>
-            <!-- End Loop -->
-        </div>
-    </section>
-</div><!-- /.leaderboard-diff -->
+            <div class="tab-section js-tab-section leaderboard leaderboard--weekly">
+                <!-- Start Loop -->
+                <% get_leaderboard_hash({game_id:@game.id,version: 1,timeframe: 'weekly'}).each_with_index do | record, i | %>
+                    <% break if i > 9 %>
+                    <div class="leaderboard-row">
+                        <span class="leaderboard-rank"><%= record[0] %><span class="leaderboard__avatar" style="background-image: url('<%= record[1]["image"] %>'); "></span></span>
+                        <span class="leaderboard-user"><%= record[1]["name"] %></span>
+                        <span class="leaderboard-score"><%= record[1]["score"] %></span>
+                    </div><!-- /.leaderboard-row -->
+                <% end %>
+                <!-- End Loop -->
+            </div>
+        </section>
+    </div><!-- /.leaderboard-diff -->
 
- <div class="js-leaderboard--medium js-leaderboard-diff leaderboard-diff">
-    <h2 class="leaderboard-diff__title">MEDIUM </h2>
-    <section class="game-leaderboard">
-        <div class="tab-section js-tab-section leaderboard leaderboard--all-time active">
-            <!-- Start Loop -->
+     <div class="js-leaderboard--medium js-leaderboard-diff leaderboard-diff">
+        <h2 class="leaderboard-diff__title">MEDIUM </h2>
+        <section class="game-leaderboard">
+            <div class="tab-section js-tab-section leaderboard leaderboard--all-time active">
+                <!-- Start Loop -->
+                    <div class="leaderboard-row">
+                        <span class="leaderboard-rank">1</span>
+                        <span class="leaderboard-user">John Doe</span>
+                        <span class="leaderboard-score">687</span>
+                    </div><!-- /.leaderboard-row -->
+
+                    <div class="leaderboard-row">
+                        <span class="leaderboard-rank">2</span>
+                        <span class="leaderboard-user">Joe Shmoe</span>
+                        <span class="leaderboard-score">320</span>
+                    </div><!-- /.leaderboard-row -->
+                <!-- End Loop -->
+            </div>
+
+            <div class="tab-section js-tab-section leaderboard leaderboard--weekly">
+                <!-- Start Loop -->
+                    <div class="leaderboard-row">
+                        <span class="leaderboard-rank">1</span>
+                        <span class="leaderboard-user">John Doe</span>
+                        <span class="leaderboard-score">687</span>
+                    </div><!-- /.leaderboard-row -->
+
+                    <div class="leaderboard-row">
+                        <span class="leaderboard-rank">2</span>
+                        <span class="leaderboard-user">Joe Shmoe</span>
+                        <span class="leaderboard-score">320</span>
+                    </div><!-- /.leaderboard-row -->
+
+                    <div class="leaderboard-row">
+                        <span class="leaderboard-rank">3</span>
+                        <span class="leaderboard-user">Griff Hall</span>
+                        <span class="leaderboard-score">107</span>
+                    </div><!-- /.leaderboard-row -->
+                <!-- End Loop -->
+            </div>
+        </section>
+    </div><!-- /.leaderboard-diff -->
+
+    <div class="js-leaderboard--hard js-leaderboard-diff leaderboard-diff">
+        <h2 class="leaderboard-diff__title">HARD </h2>
+        <section class="game-leaderboard">
+            <div class="tab-section js-tab-section leaderboard leaderboard--all-time active">
+                <!-- Start Loop -->
+                    <div class="leaderboard-row">
+                        <span class="leaderboard-rank">1</span>
+                        <span class="leaderboard-user">John Doe</span>
+                        <span class="leaderboard-score">687</span>
+                    </div><!-- /.leaderboard-row -->
+
+                    <div class="leaderboard-row">
+                        <span class="leaderboard-rank">2</span>
+                        <span class="leaderboard-user">Joe Shmoe</span>
+                        <span class="leaderboard-score">320</span>
+                    </div><!-- /.leaderboard-row -->
+
+                    <div class="leaderboard-row">
+                        <span class="leaderboard-rank">3</span>
+                        <span class="leaderboard-user">Griff Hall</span>
+                        <span class="leaderboard-score">107</span>
+                    </div><!-- /.leaderboard-row -->
+
+                    <div class="leaderboard-row">
+                        <span class="leaderboard-rank">4</span>
+                        <span class="leaderboard-user">Tyler Cone</span>
+                        <span class="leaderboard-score">90</span>
+                    </div><!-- /.leaderboard-row -->
+                <!-- End Loop -->
+            </div>
+
+            <div class="tab-section js-tab-section leaderboard leaderboard--weekly">
+                <!-- Start Loop -->
                 <div class="leaderboard-row">
                     <span class="leaderboard-rank">1</span>
                     <span class="leaderboard-user">John Doe</span>
@@ -75,87 +146,16 @@
                     <span class="leaderboard-user">Joe Shmoe</span>
                     <span class="leaderboard-score">320</span>
                 </div><!-- /.leaderboard-row -->
-            <!-- End Loop -->
-        </div>
-
-        <div class="tab-section js-tab-section leaderboard leaderboard--weekly">
-            <!-- Start Loop -->
-                <div class="leaderboard-row">
-                    <span class="leaderboard-rank">1</span>
-                    <span class="leaderboard-user">John Doe</span>
-                    <span class="leaderboard-score">687</span>
-                </div><!-- /.leaderboard-row -->
-
-                <div class="leaderboard-row">
-                    <span class="leaderboard-rank">2</span>
-                    <span class="leaderboard-user">Joe Shmoe</span>
-                    <span class="leaderboard-score">320</span>
-                </div><!-- /.leaderboard-row -->
-
-                <div class="leaderboard-row">
-                    <span class="leaderboard-rank">3</span>
-                    <span class="leaderboard-user">Griff Hall</span>
-                    <span class="leaderboard-score">107</span>
-                </div><!-- /.leaderboard-row -->
-            <!-- End Loop -->
-        </div>
-    </section>
-</div><!-- /.leaderboard-diff -->
-
-<div class="js-leaderboard--hard js-leaderboard-diff leaderboard-diff">
-    <h2 class="leaderboard-diff__title">HARD </h2>
-    <section class="game-leaderboard">
-        <div class="tab-section js-tab-section leaderboard leaderboard--all-time active">
-            <!-- Start Loop -->
-                <div class="leaderboard-row">
-                    <span class="leaderboard-rank">1</span>
-                    <span class="leaderboard-user">John Doe</span>
-                    <span class="leaderboard-score">687</span>
-                </div><!-- /.leaderboard-row -->
-
-                <div class="leaderboard-row">
-                    <span class="leaderboard-rank">2</span>
-                    <span class="leaderboard-user">Joe Shmoe</span>
-                    <span class="leaderboard-score">320</span>
-                </div><!-- /.leaderboard-row -->
-
-                <div class="leaderboard-row">
-                    <span class="leaderboard-rank">3</span>
-                    <span class="leaderboard-user">Griff Hall</span>
-                    <span class="leaderboard-score">107</span>
-                </div><!-- /.leaderboard-row -->
-
-                <div class="leaderboard-row">
-                    <span class="leaderboard-rank">4</span>
-                    <span class="leaderboard-user">Tyler Cone</span>
-                    <span class="leaderboard-score">90</span>
-                </div><!-- /.leaderboard-row -->
-            <!-- End Loop -->
-        </div>
-
-        <div class="tab-section js-tab-section leaderboard leaderboard--weekly">
-            <!-- Start Loop -->
-            <div class="leaderboard-row">
-                <span class="leaderboard-rank">1</span>
-                <span class="leaderboard-user">John Doe</span>
-                <span class="leaderboard-score">687</span>
-            </div><!-- /.leaderboard-row -->
-
-            <div class="leaderboard-row">
-                <span class="leaderboard-rank">2</span>
-                <span class="leaderboard-user">Joe Shmoe</span>
-                <span class="leaderboard-score">320</span>
-            </div><!-- /.leaderboard-row -->
-            <!-- End Loop -->
-        </div>
-    </section>
-</div><!-- /.leaderboard-diff -->
+                <!-- End Loop -->
+            </div>
+        </section>
+    </div><!-- /.leaderboard-diff --> <!-- end of ttrc conditional -->
 <% else %> <!--  ********************* Normal Leaderboard *********************  -->
     <section class="game-leaderboard">
-        <div class="tab-section js-tab-section leaderboard leaderboard--my-friends active <% if true  %>fb-connected <% else %> not-fb-connected <% end %>"> <!-- current_user.provider == 'facebook' --> <!-- create conditional to check foor whether or not user is connected with FB  => add this class: not-fb-connected -->
+        <div class="tab-section js-tab-section leaderboard leaderboard--my-friends active <% if current_user.provider == 'facebook'  %>fb-connected <% else %> not-fb-connected <% end %>"> <!-- current_user.provider == 'facebook' --> <!-- create conditional to check foor whether or not user is connected with FB  => add this class: not-fb-connected -->
             <!-- Start Loop -->
             <!-- If Connected with Facebook -->
-            <% if true %> <!--  current_user.provider == 'facebook' -->
+            <% if current_user.provider == 'facebook' %> <!--  current_user.provider == 'facebook' -->
                <% leaderboard_ranks = get_friend_leaderboard({game_id: @game.id} ) %>
                <% leaderboard_ranks.each.with_index(1) do | record, rank | %>
                <% name = record[0] %>
@@ -183,6 +183,7 @@
                         <span class="leaderboard-score"><%= current_user_record({slug:@game.slug,timeframe:'alltime'})["score"] %></span>
                     </div>
                 </div><!-- /.leaderboard-row--current-user -->
+
                 <% if current_user.provider.blank? || leaderboard_ranks.size <= 3 %>
                     <div class="leaderboard__social-share">
                         <h1 class="leaderboard__title">Things are looking a bit empty in here. Invite some friends to Luckee &amp; earn <span class="credits">25 credits</span> for every friend that signs up.</h1>
@@ -199,17 +200,20 @@
                 <% end %>
 
             <% else %> <!-- If not connected with Facebook -->
-                <h1 class="leaderboard__title">Connect with Facebook to see how your friends' scores stack up against yours!</h1>
-                <%= link_to "/auth/facebook" do %>
-                    <button class="btn--form btn--form-fb">
-                        <i class="fa fa-facebook btn--form__icon"></i>
-                        <h1 class="btn--form__copy">Connect with Facebook</h1>
-                    </button><!-- /.btn--form -->
-                <% end %>
+                <div class="leaderboard__social-sync">
+                    <h1 class="leaderboard__title">Connect with Facebook to see how your friends' scores stack up against yours!</h1>
+                    <%= link_to "/auth/facebook" do %>
+                        <button class="btn--form btn--form-fb">
+                            <i class="fa fa-facebook btn--form__icon"></i>
+                            <h1 class="btn--form__copy">Connect with Facebook</h1>
+                        </button><!-- /.btn--form -->
+                    <% end %>
+                </div><!-- /.leaderboard__social-sync -->
             <% end %>
             <!-- End Loop -->
-        </div>
-        <div class="tab-section js-tab-section leaderboard leaderboard--all-time">
+        </div> <!-- /.leaderboard--my-friends -->
+
+        <div class="tab-section js-tab-section leaderboard leaderboard--all-time <% if current_user_record({slug:@game.slug,timeframe:'alltime'})["rank"].to_i > 10 %> leaderboard--include-current <% end %>">
             <% get_leaderboard_hash({game_id:@game.id,version: nil,timeframe: 'alltime'}).each_with_index do | record, i | %>
                  <% break if i > 9 %>
                 <div class="leaderboard-row">
@@ -220,7 +224,7 @@
                     </div>
                 </div><!-- /.leaderboard-row -->
             <% end %>
-        <% if current_user_record({slug:@game.slug,timeframe:'alltime'})["rank"].to_i > 10 %>
+
             <!-- Current User -->
             <div class="leaderboard-row leaderboard-row--current-user" id="leaderboard-row--current-user">
                 <div class="leaderboard-row__wrap">
@@ -231,9 +235,10 @@
                     <span class="leaderboard-score"><%= current_user_record({slug:@game.slug,timeframe:'alltime'})["score"] %></span>
                 </div>
             </div><!-- /.leaderboard-row--current-user -->
-        </div>
-        <% end %>
-        <div class="tab-section js-tab-section leaderboard leaderboard--weekly">
+
+        </div> <!-- /.leaderboard--all-time -->
+
+        <div class="tab-section js-tab-section leaderboard leaderboard--weekly <% if current_user_record({slug:@game.slug,timeframe:'alltime'})["rank"].to_i > 10 %> leaderboard--include-current <% end %>">
             <% get_leaderboard_hash({game_id:@game.id,version: nil,timeframe: 'weekly'}).each_with_index do | record, i | %>
                  <% break if i > 9 %>
                 <div class="leaderboard-row">
@@ -242,7 +247,7 @@
                     <span class="leaderboard-score"><%= record[1]["score"] %></span>
                 </div><!-- /.leaderboard-row -->
             <% end %>
-            <% if current_user_record({slug:@game.slug,timeframe:'alltime'})["rank"].to_i > 10 %>
+
             <!-- Current User -->
             <div class="leaderboard-row leaderboard-row--current-user">
                 <div class="leaderboard-row__wrap">
@@ -253,8 +258,8 @@
                     <span class="leaderboard-score"><%= current_user_record({slug:@game.slug,timeframe:'alltime'})["score"] %></span>
                 </div>
             </div><!-- /.leaderboard-row--current-user -->
-            <% end %>
-        </div>
+
+        </div> <!-- /.leaderboard--weekly -->
     </section>
 
 <% end %>
