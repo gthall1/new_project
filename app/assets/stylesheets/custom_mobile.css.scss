@@ -94,6 +94,12 @@ body {
         }
     }
 
+    &.social-media-browser {
+        .bottom-content__container {
+            bottom: 20vh;
+        }
+    }
+
     &.set-username-page {
         overflow: hidden;
 

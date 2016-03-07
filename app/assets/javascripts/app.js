@@ -124,8 +124,10 @@ var app = {
             } else if (navigator.userAgent.match(/Twitter/i)){
                 return "twitter";
             } else {
-                return "false";
+                return false;
             }
+        } else {
+            return false;
         }
     },
 
@@ -203,9 +205,13 @@ var app = {
         app.showOnboarding();
         app.notify();
         app.is_confirmed();
-        // app.initheadroom();
         app.fitToContainer(".inline-tout__title", 0.5);
         app.bind();
         app.isWAM();
+        // app.initheadroom();
+
+        if (app.testSocialBrowser()) {
+            $('body').addClass('social-media-browser');
+        }
     }
 };

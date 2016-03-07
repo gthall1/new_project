@@ -173,6 +173,15 @@ $orange-2048: #ffb400;
     }
 }
 #onboarding-walkthrough {
+    &.social-media-browser {
+        .container {
+            margin-top: -30px;
+        }
+
+        .slides-pagination {
+            bottom: 10vh;
+        }
+    }
     .container {
         @include vertical-align();
     }
