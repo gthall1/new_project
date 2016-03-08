@@ -29,16 +29,18 @@
 <!-- If game is tap the right color -->
 <% if @game.slug == 'tap-color' %>
      <div class="js-leaderboard--easy js-leaderboard-diff leaderboard-diff active">
-        <h2 class="leaderboard-diff__title">EASY </h2>
+        <h2 class="leaderboard-diff__title">Easy</h2>
         <section class="game-leaderboard">
             <div class="tab-section js-tab-section leaderboard leaderboard--all-time active">
                 <!-- Start Loop -->
                 <% get_leaderboard_hash({game_id:@game.id,version: 1,timeframe: 'alltime'}).each_with_index do | record, i | %>
                     <% break if i > 9 %>
                     <div class="leaderboard-row">
-                        <span class="leaderboard-rank"><%= record[0] %><span class="leaderboard__avatar" style="background-image: url('<%= record[1]["image"] %>'); "></span></span>
-                        <span class="leaderboard-user"><%= record[1]["name"] %></span>
-                        <span class="leaderboard-score"><%= record[1]["score"] %></span>
+                        <div class="leaderboard-row__wrap">
+                            <span class="leaderboard-rank"><%= record[0] %><span class="leaderboard__avatar" style="background-image: url('<%= record[1]["image"] %>'); "></span></span>
+                            <span class="leaderboard-user"><%= record[1]["name"] %></span>
+                            <span class="leaderboard-score"><%= record[1]["score"] %></span>
+                        </div><!-- /.leaderboard-row__wrap -->
                     </div><!-- /.leaderboard-row -->
                 <% end %>
                 <!-- End Loop -->
@@ -49,9 +51,11 @@
                 <% get_leaderboard_hash({game_id:@game.id,version: 1,timeframe: 'weekly'}).each_with_index do | record, i | %>
                     <% break if i > 9 %>
                     <div class="leaderboard-row">
-                        <span class="leaderboard-rank"><%= record[0] %><span class="leaderboard__avatar" style="background-image: url('<%= record[1]["image"] %>'); "></span></span>
-                        <span class="leaderboard-user"><%= record[1]["name"] %></span>
-                        <span class="leaderboard-score"><%= record[1]["score"] %></span>
+                        <div class="leaderboard-row__wrap">
+                            <span class="leaderboard-rank"><%= record[0] %><span class="leaderboard__avatar" style="background-image: url('<%= record[1]["image"] %>'); "></span></span>
+                            <span class="leaderboard-user"><%= record[1]["name"] %></span>
+                            <span class="leaderboard-score"><%= record[1]["score"] %></span>
+                        </div><!-- /leaderboard-row__wrap -->
                     </div><!-- /.leaderboard-row -->
                 <% end %>
                 <!-- End Loop -->
@@ -60,7 +64,7 @@
     </div><!-- /.leaderboard-diff -->
 
      <div class="js-leaderboard--medium js-leaderboard-diff leaderboard-diff">
-        <h2 class="leaderboard-diff__title">MEDIUM </h2>
+        <h2 class="leaderboard-diff__title">Medium</h2>
         <section class="game-leaderboard">
             <div class="tab-section js-tab-section leaderboard leaderboard--all-time active">
                 <!-- Start Loop -->
@@ -103,7 +107,7 @@
     </div><!-- /.leaderboard-diff -->
 
     <div class="js-leaderboard--hard js-leaderboard-diff leaderboard-diff">
-        <h2 class="leaderboard-diff__title">HARD </h2>
+        <h2 class="leaderboard-diff__title">Hard</h2>
         <section class="game-leaderboard">
             <div class="tab-section js-tab-section leaderboard leaderboard--all-time active">
                 <!-- Start Loop -->
@@ -152,108 +156,20 @@
     </div><!-- /.leaderboard-diff --> <!-- end of ttrc conditional -->
 <% else %> <!--  ********************* Normal Leaderboard *********************  -->
     <section class="game-leaderboard">
-        <div class="tab-section js-tab-section leaderboard leaderboard--my-friends active <% if current_user.provider == 'facebook'  %>fb-connected <% else %> not-fb-connected <% end %>"> <!-- current_user.provider == 'facebook' --> <!-- create conditional to check foor whether or not user is connected with FB  => add this class: not-fb-connected -->
-            <!-- Start Loop -->
-            <!-- If Connected with Facebook -->
-            <% if current_user.provider == 'facebook' %> <!--  current_user.provider == 'facebook' -->
-               <% leaderboard_ranks = get_friend_leaderboard({game_id: @game.id} ) %>
-               <% leaderboard_ranks.each.with_index(1) do | record, rank | %>
-               <% name = record[0] %>
-               <% image = record[1] %>
-               <% score = record[2] %>
-
-                    <div class="leaderboard-row <% if current_user.name == name %> leaderboard-row--current-user <% end %>">
-                        <div class="leaderboard-row__wrap">
-                            <span class="leaderboard-rank"><%= rank %>
-                                <span class="leaderboard__avatar" style="<% if !image.blank? %>background-image: url(<%= image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %>"></span>
-                            </span>
-                            <span class="leaderboard-user"><%= name %></span>
-                            <span class="leaderboard-score"><%= score %></span>
-                        </div>
-                    </div><!-- /.leaderboard-row -->
-
-                <% end %>
-
-                <% if current_user.provider.blank? || leaderboard_ranks.size <= 3 %>
-                    <div class="leaderboard__social-share">
-                        <h1 class="leaderboard__title">Things are looking a bit empty in here. Invite some friends to Luckee &amp; earn <span class="credits">25 credits</span> for every friend that signs up.</h1>
-
-                        <input placeholder="Your referral link" class="form-input" type="text" value="<%= request.host_with_port %>/invite/<%=current_user.referral %>">
-
-                        <div class="social-share__wrap">
-                            <a href="https://www.facebook.com/dialog/feed?app_id=<%=ENV['FACEBOOK_KEY']%>&description=Check%20out%20Luckee%20and%20earn%20cash%20for%20playing%20free%20games&link=http%3A%2F%2Fwww.getluckee.com&name=Play%20free%20games.%20Earn%20real%20cash.&redirect_uri=<%=root_url%>" class="social-btn social-btn--fb"><i class="fa fa-facebook"></i></a>
-                            <a href="http://twitter.com/home?status=Play%20free%20games.%20Earn%20real%20cash.%20www.getluckee.com%2Finvite%2F<%= current_user.referral %>" class="social-btn social-btn--twitter"><i class="fa fa-twitter"></i></a>
-                            <a href="mailto:someone@example.com?subject=Play%20free%20games.%20Earn%20real%20cash.&body=Play%20free%20games.%20Earn%20real%20cash.%20www.getluckee.com%2Finvite%2F<%= current_user.referral %>" target="_top" class="social-btn social-btn--mail"><i class="fa fa-envelope"></i></a>
-
-                        </div>
-                    </div>
-                <% end %>
-
-            <% else %> <!-- If not connected with Facebook -->
-                <div class="leaderboard__social-sync">
-                    <h1 class="leaderboard__title">Connect with Facebook to see how your friends' scores stack up against yours!</h1>
-                    <%= link_to "/auth/facebook" do %>
-                        <button class="btn--form btn--form-fb">
-                            <i class="fa fa-facebook btn--form__icon"></i>
-                            <h1 class="btn--form__copy">Connect with Facebook</h1>
-                        </button><!-- /.btn--form -->
-                    <% end %>
-                </div><!-- /.leaderboard__social-sync -->
-            <% end %>
-            <!-- End Loop -->
-        </div> <!-- /.leaderboard--my-friends -->
+        <%= render 'games/friends_leaderboard' %>
 
         <div class="tab-section js-tab-section leaderboard leaderboard--all-time <% if current_user_record({slug:@game.slug,timeframe:'alltime'})["rank"].to_i <= 10 %> leaderboard--omit-current <% end %>">
-            <% get_leaderboard_hash({game_id:@game.id,version: nil,timeframe: 'alltime'}).each_with_index do | record, i | %>
-                 <% break if i > 9 %>
-                <div class="leaderboard-row <% if current_user.name == record[1]["name"] %> leaderboard-row--current-user <% end %>">
-                    <div class="leaderboard-row__wrap">
-                        <span class="leaderboard-rank"><%= record[0] %><span class="leaderboard__avatar" style="background-image: url('<%= record[1]["image"] %>'); "></span></span>
-                        <span class="leaderboard-user"><%= record[1]["name"] %></span>
-                        <span class="leaderboard-score"><%= record[1]["score"] %></span>
-                    </div>
-                </div><!-- /.leaderboard-row -->
-            <% end %>
+            <%= render 'games/leaderboard_row', leaderboard_type: "all-time"  %>
 
-            <!-- Current User -->
-            <div class="leaderboard-row leaderboard-row--current-user leaderboard-row--current-user-default" id="leaderboard-row--current-user">
-                <div class="leaderboard-row__wrap">
-                    <span class="leaderboard-rank"><%= current_user_record({slug:@game.slug,timeframe:'alltime'})["rank"] %>
-                        <span class="leaderboard__avatar" style="<% if current_user.oath_image %>background-image: url(<%= current_user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %>"></span>
-                    </span>
-                    <span class="leaderboard-user"><%= current_user.name %></span>
-                    <span class="leaderboard-score"><%= current_user_record({slug:@game.slug,timeframe:'alltime'})["score"] %></span>
-                </div>
-            </div><!-- /.leaderboard-row--current-user -->
-
+            <%= render 'games/current_user_row', leaderboard_type: "all-time" %>
         </div> <!-- /.leaderboard--all-time -->
 
         <div class="tab-section js-tab-section leaderboard leaderboard--weekly <% if current_user_record({slug:@game.slug,timeframe:'alltime'})["rank"].to_i <= 10 %> leaderboard--omit-current <% end %>"><!-- current_user_record({slug:@game.slug,timeframe:'alltime'})["rank"].to_i > 10 -->
-            <% get_leaderboard_hash({game_id:@game.id,version: nil,timeframe: 'weekly'}).each_with_index do | record, i | %>
-                <% current = true if current_user.name == record[1]["name"] %>
-                 <% break if i > 9 %>
-                <div class="leaderboard-row <% if current %> leaderboard-row--current-user <% end %>">
-                    <div class="leaderboard-row__wrap">
-                        <span class="leaderboard-rank"><%= record[0] %><span class="leaderboard__avatar" style="background-image: url('<%= record[1]["image"] %>'); "></span></span>
-                        <span class="leaderboard-user"><%= record[1]["name"] %></span>
-                        <span class="leaderboard-score"><%= record[1]["score"] %></span>
-                    </div><!-- /.leaderboard-row__wrap -->
-                </div><!-- /.leaderboard-row -->
-            <% end %>
+            <%= render 'games/leaderboard_row', leaderboard_type: "weekly"  %>
 
-            <!-- Current User -->
-            <div class="leaderboard-row leaderboard-row--current-user leaderboard-row--current-user-default" id="leaderboard-row--current-user">
-                <div class="leaderboard-row__wrap">
-                    <span class="leaderboard-rank"><%= current_user_record({slug:@game.slug,timeframe:'alltime'})["rank"] %>
-                        <span class="leaderboard__avatar" style="<% if current_user.oath_image %>background-image: url(<%= current_user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %>"></span>
-                    </span>
-                    <span class="leaderboard-user"><%= current_user.name %></span>
-                    <span class="leaderboard-score"><%= current_user_record({slug:@game.slug,timeframe:'alltime'})["score"] %></span>
-                </div><!-- /.leaderboard-row__wrap -->
-            </div><!-- /.leaderboard-row--current-user -->
-
+            <%= render 'games/current_user_row', leaderboard_type: "weekly" %>
         </div> <!-- /.leaderboard--weekly -->
-    </section>
+    </section><!-- /.game-leaderboard -->
 
 <% end %>
 

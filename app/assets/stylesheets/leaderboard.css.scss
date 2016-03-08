@@ -37,6 +37,9 @@ $falldown-font: #FEE2C7;
 }
 .leaderboard-diff__title {
     color: $black;
+    margin: 0;
+    position: relative;
+    top: 100px;
 }
 
 .game-leaderboard {
@@ -45,6 +48,11 @@ $falldown-font: #FEE2C7;
     overflow: scroll;
     padding-top: 60px;
     padding-bottom: 92px;
+
+    .leaderboard-diff &{
+        padding: 0 0 20px;
+        top: 100px;
+    }
 }
 .leaderboard-nav {
     padding: 10px 0;
@@ -152,11 +160,19 @@ $falldown-font: #FEE2C7;
         // }
 }
 .leaderboard__cat--3 {
+    top: 60px;
+    bottom: inherit;
+    z-index: 100;
+    background-color: $clouds;
+    width: 100%;
+    position: fixed;
+
     .tab-control__title {
         width: 33.33%;
-        padding: 5px 0;
+        padding: 10px 0;
         float: left;
         display: block;
+        color: $lavender;
     }
 }
 .tab-section {
@@ -326,6 +342,8 @@ $falldown-font: #FEE2C7;
 }
 // MOBILE
 .leaderboard-page--mobile {
+    width: 100vw;
+    overflow-x: hidden;
     .mobile-container {
         background-color: $white;
         background-image: none;
