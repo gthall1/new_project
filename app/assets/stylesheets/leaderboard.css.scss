@@ -39,7 +39,7 @@ $falldown-font: #FEE2C7;
     color: $black;
     margin: 0;
     position: relative;
-    top: 100px;
+    top: 110px;
 }
 
 .game-leaderboard {
@@ -51,7 +51,7 @@ $falldown-font: #FEE2C7;
 
     .leaderboard-diff &{
         padding: 0 0 20px;
-        top: 110px;
+        top: 120px;
     }
 }
 .leaderboard-nav {
@@ -173,7 +173,7 @@ $falldown-font: #FEE2C7;
 
     .tab-control__title {
         width: 33.33%;
-        padding: 10px 0;
+        padding: 15px 0;
         float: left;
         display: block;
         color: $lavender;
