@@ -36,9 +36,9 @@ module ApplicationHelper
       when "rep"
         100
       when "user"
-        50
+        25
       else
-        50
+        25
     end
   end
 
