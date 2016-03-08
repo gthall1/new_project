@@ -706,14 +706,6 @@ class GamesController < ApplicationController
     def leaderboard_new
         @current_page = "leaderboard"
         @game = Game.where(slug:params[:game_slug]).first
-        @current_user_highscore = 0
-
-        if current_user
-            current_user_best_game = current_user.user_game_sessions.where(game_id:7).order('score desc').first
-            if !current_user_best_game.nil?
-                @current_user_highscore = current_user_best_game.score
-            end
-        end
 
         if is_mobile?
             render "games/leaderboard_new"

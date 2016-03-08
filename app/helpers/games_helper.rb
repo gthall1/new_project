@@ -55,7 +55,7 @@ module GamesHelper
             if session[:auth_token] 
                 p session[:auth_token]
                 graph = Koala::Facebook::API.new(session[:auth_token]) 
-                if graph.app_secret
+                if graph
                     friends = graph.get_connections("me", "friends")  
                     if !friends.blank? 
                         friends.each do | f | 
