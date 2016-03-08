@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   end
 
   def self.omniauth(auth,arrival_id)
-    where(provider:auth.provider,uid:auth.uid).first_or_initialize.tap do |user|
+    where(provider:auth.provider,uid:auth.uid).first_or_initialize do |user|
       user.provider = auth.provider
       if user.name.blank?
        name = auth.info.name.gsub(" ","").downcase
@@ -57,6 +57,18 @@ class User < ActiveRecord::Base
         user.email = auth.info.email
       # else
       #   user.email = "a#{rand(1000000)}@change.me"
+      end
+      arrival = Arrival.where(id:arrival_id).last
+
+      if arrival && !arrival.referred_by.blank? 
+          referral_user = User.unscoped.where(id:arrival.referred_by).first
+          if referral_user
+              if referral_user.user_type_name == 'rep'
+                referral_user.add_credits({credits: 100})
+              else
+                referral_user.add_credits({credits: 50})
+              end
+          end
       end
 
       user.gender = auth.extra.raw_info.gender == "male" ? 1 : auth.extra.raw_info.gender == "female" ? 2 : nil
@@ -109,6 +121,7 @@ class User < ActiveRecord::Base
     end
 
     def add_credits(args={})
+        p " adding credits to referrer"
         credits = args[:credits].to_i
         if !self.credits.nil? && self.credits >= 0
             self.credits += credits
