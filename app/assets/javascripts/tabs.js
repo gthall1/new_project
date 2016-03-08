@@ -16,7 +16,9 @@ var tabs = {
         $(container).removeClass('active');
         $(tabCategory).addClass('active');
 
-        window.location.href = toCurrentUser;
+        if ($('body').hasClass('leaderboard-page--mobile')) {
+            window.location.href = toCurrentUser;
+        }
     },
 
     bind: function() {
