@@ -15,7 +15,7 @@
   <p class="page-title">Games</p>
   <ul>
     <% @games.each do | g | %>
-      <%= link_to game_leaderboard_new_path(game_slug:g.slug) do %>
+      <%= link_to game_leaderboard_path(game_slug:g.slug) do %>
       <li>
         <%= g.name %>
         <span class='cash-out__cost'>View Leaderboard</span>

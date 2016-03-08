@@ -4,14 +4,19 @@
     <% content_for :body_class, "leaderboard-page" %>
 <% end %>
 
-<% @mobile_container_id = "leaderboard--#{@game.slug}" %>
+<% @mobile_container_id = "leaderboard--placeholder" %>
 
 <section class="leaderboard-nav">
-    <a class="leaderboard-back" href="/games/<%= @game.id %>"><i class="fa fa-chevron-left back-button"></i></a>
-    <h1 class="leaderboard__title">Leaderboard</h1>
-    <p class="leaderboard__subtitle"><%= @game.name %></p>
+    <h1 class="leaderboard__title leaderboard__title--headline"><%= @game.name %></h1>
+
+    <div id="leaderboard__cat--0" class="js-leaderboard__cat leaderboard__cat">
+        <h2 class="tab-control__title js-tab--cat ga-tab--myfriends active" data-tab-cat=".leaderboard--my-friends">My Friends</h2>
+        <h2 class="tab-control__title js-tab--cat ga-tab--alltime" data-tab-cat=".leaderboard--all-time">All-Time</h2>
+        <h2 class="tab-control__title js-tab--cat ga-tab--weekly" data-tab-cat=".leaderboard--weekly" >Weekly</h2>
+    </div>
 </section>
-<% if @game.slug == "tap-color" %>
+<!-- If game is tap the right color -->
+<% if @game.slug == 'tap-color' %>
     <div class="leaderboard__cat-wrapper">
         <div class="leaderboard__cat leaderboard__cat--3">
             <h2 class="tab-control__title js-tab--difficulty active" data-tab-cat=".js-leaderboard--easy">Easy</h2>
@@ -21,119 +26,87 @@
     </div>
 <% end %>
 
-<section class="leaderboard-head">
-    <h1 class="leaderboard-head__title">Leaderboard</h1>
-    <p class="leaderboard-head__game"><%= @game.name %></p>
-</section>
-
-<div class="leaderboard__cat-wrapper">
-    <div class="leaderboard__cat js-leaderboard__cat">
-        <h2 class="tab-control__title js-tab--cat ga-tab--alltime active" data-tab-cat=".leaderboard--all-time">All-Time</h2>
-        <h2 class="tab-control__title js-tab--cat ga-tab--weekly" data-tab-cat=".leaderboard--weekly">Weekly</h2>
-    </div>
-</div>
-
+<!-- If game is tap the right color -->
 <% if @game.slug == 'tap-color' %>
- <div class="js-leaderboard--easy js-leaderboard-diff leaderboard-diff active">
-    <h2 class="leaderboard-diff__title">EASY </h2>
-    <section class="game-leaderboard">
-        <div class="tab-section js-tab-section leaderboard leaderboard--all-time active">
-            <% get_alltime_leaderboard({game_id: @game.id,version:1} ).each.with_index(1) do | record, rank | %>
-                <div class="leaderboard-row leadboard--easy leadboard--easy-alltime">
-                    <span class="leaderboard-rank"><%= rank %></span>
-                    <span class="leaderboard-user"><%= record[0] %></span>
-                    <span class="leaderboard-score"><%= record[1] %></span>
-                </div>
-            <% end %>
-        </div>
+     <div class="js-leaderboard--easy js-leaderboard-diff leaderboard-diff active">
+        <h2 class="leaderboard-diff__title">Easy</h2>
+        <section class="game-leaderboard">
+            <%= render 'games/leaderboard_friends_row', leaderboard_version: 1 %>
 
-        <div class="tab-section js-tab-section leaderboard leaderboard--weekly">
-            <% get_weekly_leaderboard({game_id: @game.id,version:1} ).each.with_index(1) do | record, rank | %>
-                <div class="leaderboard-row">
-                    <span class="leaderboard-rank"><%= rank %></span>
-                    <span class="leaderboard-user"><%= record[0] %></span>
-                    <span class="leaderboard-score"><%= record[1] %></span>
-                </div>
-            <% end %>
-        </div>
-    </section>
-</div><!-- /.leaderboard-diff -->
+            <div class="tab-section js-tab-section leaderboard leaderboard--all-time <% if current_user_record({slug:@game.slug, version: 1, timeframe:'alltime'})["rank"].to_i <= 10 %> leaderboard--omit-current <% end %>">
+                <%= render 'games/leaderboard_row', { leaderboard_type: "all-time", leaderboard_version: 1} %>
 
- <div class="js-leaderboard--medium js-leaderboard-diff leaderboard-diff">
-    <h2 class="leaderboard-diff__title">MEDIUM </h2>
-    <section class="game-leaderboard">
-        <div class="tab-section js-tab-section leaderboard leaderboard--all-time active">
-            <% get_alltime_leaderboard({game_id: @game.id,version:2} ).each.with_index(1) do | record, rank | %>
-                <div class="leaderboard-row ">
-                    <span class="leaderboard-rank"><%= rank %></span>
-                    <span class="leaderboard-user"><%= record[0] %></span>
-                    <span class="leaderboard-score"><%= record[1] %></span>
-                </div>
-            <% end %>
-        </div>
+                <%= render 'games/leaderboard_current_user_row', { leaderboard_type: "all-time", leaderboard_version: 1 } %>
+            </div>
 
-        <div class="tab-section js-tab-section leaderboard leaderboard--weekly">
-            <% get_weekly_leaderboard({game_id: @game.id,version:2} ).each.with_index(1) do | record, rank | %>
-                <div class="leaderboard-row">
-                    <span class="leaderboard-rank"><%= rank %></span>
-                    <span class="leaderboard-user"><%= record[0] %></span>
-                    <span class="leaderboard-score"><%= record[1] %></span>
-                </div>
-            <% end %>
-        </div>
-    </section>
-</div><!-- /.leaderboard-diff -->
+            <div class="tab-section js-tab-section leaderboard leaderboard--weekly <% if current_user_record({slug:@game.slug, version: 1, timeframe:'weekly'})["rank"].to_i <= 10 %> leaderboard--omit-current <% end %>">
+                <%= render 'games/leaderboard_row', { leaderboard_type: "weekly", leaderboard_version: 1} %>
 
-<div class="js-leaderboard--hard js-leaderboard-diff leaderboard-diff">
-    <h2 class="leaderboard-diff__title">HARD </h2>
-    <section class="game-leaderboard">
-        <div class="tab-section js-tab-section leaderboard leaderboard--all-time active">
-            <% get_alltime_leaderboard({game_id: @game.id,version:3} ).each.with_index(1) do | record, rank | %>
-                <div class="leaderboard-row">
-                    <span class="leaderboard-rank"><%= rank %></span>
-                    <span class="leaderboard-user"><%= record[0] %></span>
-                    <span class="leaderboard-score"><%= record[1] %></span>
-                </div>
-            <% end %>
-        </div>
+                <%= render 'games/leaderboard_current_user_row', { leaderboard_type: "weekly", leaderboard_version: 1 } %>
+            </div>
+        </section>
+    </div><!-- /.leaderboard-diff -->
 
-        <div class="tab-section js-tab-section leaderboard leaderboard--weekly">
-            <% get_weekly_leaderboard({game_id: @game.id,version:3} ).each.with_index(1) do | record, rank | %>
-                <div class="leaderboard-row">
-                    <span class="leaderboard-rank"><%= rank %></span>
-                    <span class="leaderboard-user"><%= record[0] %></span>
-                    <span class="leaderboard-score"><%= record[1] %></span>
-                </div>
-            <% end %>
-        </div>
-    </section>
-</div><!-- /.leaderboard-diff -->
+     <div class="js-leaderboard--medium js-leaderboard-diff leaderboard-diff">
+        <h2 class="leaderboard-diff__title">Medium</h2>
+        <section class="game-leaderboard">
+            <%= render 'games/leaderboard_friends_row', leaderboard_version: 2 %>
+
+            <div class="tab-section js-tab-section leaderboard leaderboard--all-time <% if current_user_record({slug:@game.slug, version: 2, timeframe:'alltime'})["rank"].to_i <= 10 %> leaderboard--omit-current <% end %>">
+                <%= render 'games/leaderboard_row', { leaderboard_type: "all-time", leaderboard_version: 2 } %>
+
+                <%= render 'games/leaderboard_current_user_row', { leaderboard_type: "all-time", leaderboard_version: 2 } %>
+            </div>
+
+            <div class="tab-section js-tab-section leaderboard leaderboard--weekly <% if current_user_record({slug:@game.slug, version: 2, timeframe:'weekly'})["rank"].to_i <= 10 %> leaderboard--omit-current <% end %>">
+                <%= render 'games/leaderboard_row', { leaderboard_type: "weekly", leaderboard_version: 2 } %>
+
+                <%= render 'games/leaderboard_current_user_row', { leaderboard_type: "weekly", leaderboard_version: 2 } %>
+            </div>
+
+        </section>
+    </div><!-- /.leaderboard-diff -->
+
+    <div class="js-leaderboard--hard js-leaderboard-diff leaderboard-diff">
+        <h2 class="leaderboard-diff__title">Hard</h2>
+        <section class="game-leaderboard">
+            <%= render 'games/leaderboard_friends_row', leaderboard_version: 3 %>
+
+            <div class="tab-section js-tab-section leaderboard leaderboard--all-time <% if current_user_record({slug:@game.slug, version: 3, timeframe:'alltime'})["rank"].to_i <= 10 %> leaderboard--omit-current <% end %>">
+                <%= render 'games/leaderboard_row', { leaderboard_type: "all-time", leaderboard_version: 3 } %>
+
+                <%= render 'games/leaderboard_current_user_row', { leaderboard_type: "all-time", leaderboard_version: 3 } %>
+            </div>
+
+            <div class="tab-section js-tab-section leaderboard leaderboard--weekly <% if current_user_record({slug:@game.slug, version: 3, timeframe:'weekly'})["rank"].to_i <= 10 %> leaderboard--omit-current <% end %>">
+                <%= render 'games/leaderboard_row', { leaderboard_type: "weekly", leaderboard_version: 3 } %>
+
+                <%= render 'games/leaderboard_current_user_row', { leaderboard_type: "weekly", leaderboard_version: 3 } %>
+            </div>
+
+        </section>
+    </div><!-- /.leaderboard-diff --> <!-- end of ttrc conditional -->
 <% else %> <!--  ********************* Normal Leaderboard *********************  -->
     <section class="game-leaderboard">
-        <div class="tab-section js-tab-section leaderboard leaderboard--all-time active">
-            <% get_alltime_leaderboard({game_id: @game.id} ).each.with_index(1) do | record, rank | %>
-                <div class="leaderboard-row">
-                    <span class="leaderboard-rank"><%= rank %></span>
-                    <span class="leaderboard-user"><%= record[0] %></span>
-                    <span class="leaderboard-score"><%= record[1] %></span>
-                </div><!-- /.leaderboard-row -->
-            <% end %>
-        </div>
+        <%= render 'games/leaderboard_friends_row' %>
 
-        <div class="tab-section js-tab-section leaderboard leaderboard--weekly">
-            <% get_weekly_leaderboard({game_id: @game.id} ).each.with_index(1) do | record, rank | %>
-                <div class="leaderboard-row">
-                    <span class="leaderboard-rank"><%= rank %></span>
-                    <span class="leaderboard-user"><%= record[0] %></span>
-                    <span class="leaderboard-score"><%= record[1] %></span>
-                </div>
-            <% end %>
-        </div>
-    </section>
+        <div class="tab-section js-tab-section leaderboard leaderboard--all-time <% if current_user_record({slug:@game.slug,timeframe:'alltime'})["rank"].to_i <= 10 %> leaderboard--omit-current <% end %>">
+            <%= render 'games/leaderboard_row', leaderboard_type: "all-time" %>
+
+            <%= render 'games/leaderboard_current_user_row', leaderboard_type: "all-time" %>
+        </div> <!-- /.leaderboard--all-time -->
+
+        <div class="tab-section js-tab-section leaderboard leaderboard--weekly <% if current_user_record({slug:@game.slug,timeframe:'weekly'})["rank"].to_i <= 10 %> leaderboard--omit-current <% end %>"><!-- current_user_record({slug:@game.slug,timeframe:'alltime'})["rank"].to_i > 10 -->
+            <%= render 'games/leaderboard_row', leaderboard_type: "weekly" %>
+
+            <%= render 'games/leaderboard_current_user_row', leaderboard_type: "weekly" %>
+        </div> <!-- /.leaderboard--weekly -->
+    </section><!-- /.game-leaderboard -->
 
 <% end %>
 
-<% if Rails.env.production? %>
-    <!-- GA Tracking Events -->
-    <%= render 'tracking_events/tracking_leaderboard' %>
-<% end %>
+<script>
+    // $(window).load(function(){
+    //     $('.leaderboard-row--current-user').addClass('animate');
+    // })
+</script>
