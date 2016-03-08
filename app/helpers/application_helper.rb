@@ -31,4 +31,15 @@ module ApplicationHelper
     raw doc
   end
 
+  def get_refer_credits(user_type)
+    case user_type
+      when "rep"
+        100
+      when "user"
+        50
+      else
+        50
+    end
+  end
+
 end

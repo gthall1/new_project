@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160301165656) do
+ActiveRecord::Schema.define(version: 20160308175918) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,10 +59,10 @@ ActiveRecord::Schema.define(version: 20160301165656) do
     t.integer  "challenged_user_id"
     t.integer  "game_id"
     t.integer  "winner_id"
-    t.integer  "challenged_score"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "user_score"
+    t.integer  "challenged_score"
   end
 
   create_table "feed_games", force: :cascade do |t|
@@ -178,6 +178,7 @@ ActiveRecord::Schema.define(version: 20160301165656) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "arrival_id"
+    t.integer  "credits"
   end
 
   create_table "users", force: :cascade do |t|
@@ -210,6 +211,7 @@ ActiveRecord::Schema.define(version: 20160301165656) do
     t.integer  "arrival_id"
     t.boolean  "email_verified",               default: false
     t.string   "verify_token"
+    t.integer  "user_type"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

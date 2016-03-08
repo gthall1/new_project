@@ -25,9 +25,15 @@ class User < ActiveRecord::Base
 
   has_secure_password
   validates :password, length: { minimum: 6 } ,:if => '!password.nil?'
+  
+  USER_TYPES = { nil => 'user', 1 => "rep" , 2 => "admin" } 
 
   def challenges
     challenges_as_challenged + challenges_as_challenger
+  end
+
+  def user_type_name
+   USER_TYPES[self.user_type]
   end
 
   def self.omniauth(auth,arrival_id)
