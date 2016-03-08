@@ -51,7 +51,7 @@ $falldown-font: #FEE2C7;
 
     .leaderboard-diff &{
         padding: 0 0 20px;
-        top: 100px;
+        top: 110px;
     }
 }
 .leaderboard-nav {
@@ -80,6 +80,10 @@ $falldown-font: #FEE2C7;
     // bottom: 100px;
     left: 0;
     right: 0;
+
+    .leaderboard-diff & {
+        bottom: 90px;
+    }
 }
 .leaderboard__social-sync {
     width: 85%;

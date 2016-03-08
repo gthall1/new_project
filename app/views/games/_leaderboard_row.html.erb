@@ -1,4 +1,4 @@
-<% get_leaderboard_hash({game_id:@game.id,version: nil,timeframe: leaderboard_type}).each_with_index do | record, i | %>
+<% get_leaderboard_hash({game_id:@game.id,version: leaderboard_version ||= nil, timeframe: leaderboard_type}).each_with_index do | record, i | %>
     <% current = true if current_user.name == record[1]["name"] %>
     <% break if i > 9 %>
     <div class="leaderboard-row <% if current %> leaderboard-row--current-user <% end %>">
