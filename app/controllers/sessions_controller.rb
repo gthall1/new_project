@@ -33,8 +33,8 @@ class SessionsController < ApplicationController
     def create_from_facebook
         #this is when they connect later
         if signed_in? && current_user
-            current_user.omniauth_connect
-            redirect_to game_leaderboard_new_path
+            current_user.omniauth_connect(env['omniauth.auth'])
+            redirect_to leaderboards_path
         else
             if env['omniauth.auth'].info.email
                 user = User.omniauth(env['omniauth.auth'],session[:arrival_id])
