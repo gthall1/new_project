@@ -174,7 +174,7 @@ module GamesHelper
         prefix = get_leaderboard_key_prefix({timeframe: timeframe})
         return {} if game.nil?
 
-        if $redis.get("#{prefix}_#{game.slug}_#{args[:version]}").blank? ||  JSON.parse($redis.get "#{prefix}_#{game.slug}_#{args[:version]}").blank?
+        if $redis.get("#{prefix}_#{game.slug}_#{args[:version]}").blank? || JSON.parse($redis.get "#{prefix}_#{game.slug}_#{args[:version]}").blank?
             $redis.set "#{prefix}_#{game.slug}_#{args[:version]}", get_game_ranks({slug: game.slug,game_id: game.id,version: args[:version],timeframe: timeframe}).to_json
         end
          
