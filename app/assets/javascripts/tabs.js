@@ -7,6 +7,15 @@ var tabs = {
         tabSelectContainer: '.js-leaderboard__cat'
     },
 
+
+    jumpToPos: function(href) {
+        if ( $('body').hasClass('leaderboard-page--mobile') && !$('.js-leaderboard__cat').is('#leaderboard__cat--0') ) {
+            window.location.href = href;
+        } else if ( $('.js-leaderboard__cat').is('#leaderboard__cat--0') ){
+            $("html, body").animate({ scrollTop: 0 }, 0);
+        }
+    },
+
     toggle: function($tab, container) {
         var tabCategory = $tab.data('tab-cat'),
             toCurrentUser = window.location.origin + window.location.pathname + '#leaderboard-row--current-user';
@@ -16,9 +25,7 @@ var tabs = {
         $(container).removeClass('active');
         $(tabCategory).addClass('active');
 
-        if ($('body').hasClass('leaderboard-page--mobile')) {
-            window.location.href = toCurrentUser;
-        }
+        tabs.jumpToPos(toCurrentUser);
     },
 
     bind: function() {
