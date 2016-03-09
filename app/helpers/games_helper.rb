@@ -203,9 +203,11 @@ module GamesHelper
         end
         game_rank_hash = {}
 
-        rankings.each.with_index(1) do | r, i | 
-            $redis.set "#{prefix}_#{args[:slug]}_v#{args[:version]}_user_#{r.user_id}", { :rank => i, :score => r.max_score }.to_json
-            game_rank_hash[i] = get_user_hash({user_id: r.user_id, score: r.max_score})
+        if rankings
+            rankings.each.with_index(1) do | r, i | 
+                $redis.set "#{prefix}_#{args[:slug]}_v#{args[:version]}_user_#{r.user_id}", { :rank => i, :score => r.max_score }.to_json
+                game_rank_hash[i] = get_user_hash({user_id: r.user_id, score: r.max_score})
+            end
         end
 
         game_rank_hash
