@@ -94,7 +94,7 @@ class UsersController < ApplicationController
             if session[:referred_user_id]
                 referral_user = User.where(id:session[:referred_user_id]).first
                 if referral_user
-                    referral_user.add_credits({credits:50})
+                    referral_user.add_credits({credits:get_refer_credits(referral_user.user_type_name)})
                     referral_user.save
                     session[:referred_user_id] = nil
                 end

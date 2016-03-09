@@ -698,19 +698,19 @@ class GamesController < ApplicationController
         render json: game_json
     end
 
-    def leaderboard
-        @current_page = "leaderboard"
-        @game = Game.where(slug:params[:game_slug]).first
-    end
+    # def leaderboard
+    #     @current_page = "leaderboard"
+    #     @game = Game.where(slug:params[:game_slug]).first
+    # end
 
-    def leaderboard_new
+    def leaderboard
         @current_page = "leaderboard"
         @game = Game.where(slug:params[:game_slug]).first
 
         if is_mobile?
-            render "games/leaderboard_new"
-        else
             render "games/leaderboard"
+        else
+            render "games/leaderboard_old"
         end
     end
 

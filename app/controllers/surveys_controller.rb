@@ -44,7 +44,7 @@ class SurveysController < ApplicationController
   def user_survey_save
     @user_survey = UserSurvey.where(id:params[:user_survey][:id]).first
     if @user_survey && @user_survey.complete != true
-
+      @user_survey.credits = @user_survey.survey.credits
       @user_survey.complete = true
       if @user_survey.save
          current_user.add_credits({credits:@user_survey.survey.credits})
