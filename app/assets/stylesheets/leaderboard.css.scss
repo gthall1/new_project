@@ -345,6 +345,7 @@ $falldown-font: #FEE2C7;
         position: relative;
         top: -5px;
         height: 80px;
+        z-index: 1;
     }
     .game-leaderboard {
         padding-top: 20px;
@@ -385,6 +386,10 @@ $falldown-font: #FEE2C7;
     .leaderboard-diff__title {
         font-size: $lg;
         top: 0;
+    }
+    .leaderboard__social-share,
+    .leaderboard__social-sync {
+        max-width: 350px;
     }
 }
 
