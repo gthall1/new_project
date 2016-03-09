@@ -375,6 +375,10 @@ $falldown-font: #FEE2C7;
     .leaderboard-row {
         &.leaderboard-row--current-user {
             width: 90%;
+
+            .leaderboard-row__wrap {
+                width: 100%;
+            }
         }
     }
 
