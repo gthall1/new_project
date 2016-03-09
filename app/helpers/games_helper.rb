@@ -53,7 +53,6 @@ module GamesHelper
             end
             scores << [current_user.name,current_user.oath_image,own_best_score]
             if session[:auth_token] 
-                p session[:auth_token]
                 graph = Koala::Facebook::API.new(session[:auth_token]) 
                 if graph
                     friends = graph.get_connections("me", "friends")  
@@ -80,7 +79,12 @@ module GamesHelper
             #     scores << [User.where(id:u.user_id).first.present? ? User.find(u.user_id).name : "Deleted" ,u.score]
             # end     
         end 
-        scores[0..9].sort_by {|k,v,l| l}.reverse!
+        p scores
+        if scores
+            scores[0..9].sort_by {|k,v,l| l}.reverse!
+        else
+            scores[0..9]
+        end
     end 
 
     #DEPRECATED REMOVE AFTER TEST
