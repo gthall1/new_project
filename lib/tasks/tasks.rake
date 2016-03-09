@@ -31,3 +31,14 @@ task :make_highscores => :environment do | t, args |
         
     end
 end
+
+task :backfill_usersurvey_credits => :environment do | t, args |
+    if !Rails.env.production? 
+        Survey.all.each do | s |
+            s.user_surveys.each do | us| 
+                us.credits = s.credits
+                us.save
+            end
+        end
+    end
+end
