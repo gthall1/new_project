@@ -16,9 +16,14 @@ button {
     border-radius: 5px;
     width: 100%;
     min-height: 50px;
+    max-height: 65px;
     height: 10vh;
 
     @include transition();
+
+    @media (min-width: $ipad) {
+        height: 6vh;
+    }
 }
 .btn--form-fb {
     background-color: $fb-blue;
@@ -101,6 +106,12 @@ button {
             width: 100% !important;
         }
     }
+
+    @media (min-width: $ipad) {
+        padding: 5%;
+    }
+
+
 }
 .form-input--wrap {
     position: relative;
