@@ -46,7 +46,7 @@ module GamesHelper
         scores = []     
         if game && current_user
             own_best_session = UserGameSession.where(game_id:game_id,version:version,user_id:current_user.id).order('score desc').first
-            if own_best_session.blank?
+            if own_best_session.blank? || own_best_sesssion.score.blank?
                 own_best_score = 0
             else
                 own_best_score = own_best_session.score
@@ -79,6 +79,7 @@ module GamesHelper
             #     scores << [User.where(id:u.user_id).first.present? ? User.find(u.user_id).name : "Deleted" ,u.score]
             # end     
         end 
+        p scores
         if scores
             scores[0..9].sort_by {|k,v,l| l}.reverse!
         else
