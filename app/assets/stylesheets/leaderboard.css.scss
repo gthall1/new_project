@@ -368,6 +368,7 @@ $falldown-font: #FEE2C7;
         position: relative;
         display: inline-block;
         top: -5px;
+        z-index: 1;
 
         .tab-control__title {
             padding: 0;
