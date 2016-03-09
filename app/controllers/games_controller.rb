@@ -707,11 +707,13 @@ class GamesController < ApplicationController
         @current_page = "leaderboard"
         @game = Game.where(slug:params[:game_slug]).first
 
-        if is_mobile?
-            render "games/leaderboard"
-        else
-            render "games/leaderboard_old"
-        end
+        # if is_mobile?
+        #     render "games/leaderboard"
+        # else
+        #     render "games/leaderboard_old"
+        # end
+
+        render "games/leaderboard"
     end
 
     def games_leaderboard

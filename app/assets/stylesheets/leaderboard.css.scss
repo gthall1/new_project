@@ -177,6 +177,11 @@ $falldown-font: #FEE2C7;
         float: left;
         display: block;
         color: $lavender;
+        font-weight: 500;
+    }
+
+    &::after {
+        display: none;
     }
 }
 .tab-section {
@@ -337,13 +342,48 @@ $falldown-font: #FEE2C7;
 
     // Desktop Leaderboard
     .leaderboard-nav {
-        display: none;
+        position: relative;
+        top: -5px;
+        height: 80px;
+    }
+    .game-leaderboard {
+        padding-top: 20px;
+        padding-bottom: 0;
+        overflow: hidden;
+        max-width: 900px;
+        margin: auto;
+    }
+    .leaderboard-diff .game-leaderboard {
+        top: -10px;
     }
     .tab-control__title {
-        width: 50%;
+        width: 33%;
         letter-spacing: 0.25px;
     }
+    .leaderboard__social-share {
+        bottom: 25vh;
+    }
+    .leaderboard__cat--3 {
+        position: relative;
+        display: inline-block;
+        top: -5px;
+
+        .tab-control__title {
+            padding: 0;
+        }
+    }
+    .leaderboard-row {
+        &.leaderboard-row--current-user {
+            width: 90%;
+        }
+    }
+
+    .leaderboard-diff__title {
+        font-size: $lg;
+        top: 0;
+    }
 }
+
 // MOBILE
 .leaderboard-page--mobile {
     width: 100vw;
