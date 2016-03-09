@@ -46,7 +46,7 @@ module GamesHelper
         scores = []     
         if game && current_user
             own_best_session = UserGameSession.where(game_id:game_id,version:version,user_id:current_user.id).order('score desc').first
-            if own_best_session.blank? || own_best_sesssion.score.blank?
+            if own_best_session.blank? || own_best_session.score.blank?
                 own_best_score = 0
             else
                 own_best_score = own_best_session.score
