@@ -90,6 +90,7 @@ class UsersController < ApplicationController
             arrival = Arrival.where(id:session[:arrival_id]).first
             if arrival
                 arrival.user_id = @user.id
+                arrival.save
             end
             if session[:referred_user_id]
                 referral_user = User.where(id:session[:referred_user_id]).first
