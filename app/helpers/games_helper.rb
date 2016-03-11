@@ -45,15 +45,14 @@ module GamesHelper
         users = []
         scores = []     
         if game && current_user
-            own_best_session = UserGameSession.where(game_id:game_id,version:version,user_id:current_user.id).order('score desc').first
-            if own_best_session.blank?
+            own_best_session = UserGameSession.where(game_id:game_id,version:version,user_id:current_user.id).where.not(score:nil).order('score desc').first
+            if own_best_session.blank? || own_best_session.score.blank?
                 own_best_score = 0
             else
                 own_best_score = own_best_session.score
             end
             scores << [current_user.name,current_user.oath_image,own_best_score]
             if session[:auth_token] 
-                p session[:auth_token]
                 graph = Koala::Facebook::API.new(session[:auth_token]) 
                 if graph
                     friends = graph.get_connections("me", "friends")  
@@ -61,8 +60,8 @@ module GamesHelper
                         friends.each do | f | 
                             friend = User.where(uid:f["id"]).first 
                             if !friend.blank?
-                                friend_best_session = UserGameSession.where(game_id:game_id,version:version,user_id:friend.id).order('score desc').first
-                                if friend_best_session.blank?
+                                friend_best_session = UserGameSession.where(game_id:game_id,version:version,user_id:friend.id).where.not(score:nil).order('score desc').first
+                                if friend_best_session.blank? || friend_best_session.score.blank?
                                     friend_score = 0
                                 else
                                     friend_score = friend_best_session.score
@@ -80,7 +79,11 @@ module GamesHelper
             #     scores << [User.where(id:u.user_id).first.present? ? User.find(u.user_id).name : "Deleted" ,u.score]
             # end     
         end 
-        scores[0..9].sort_by {|k,v,l| l}.reverse!
+        if scores
+            scores.sort_by {|k,v,l| l}.reverse!
+        else
+            scores
+        end
     end 
 
     #DEPRECATED REMOVE AFTER TEST
@@ -171,7 +174,7 @@ module GamesHelper
         prefix = get_leaderboard_key_prefix({timeframe: timeframe})
         return {} if game.nil?
 
-        if $redis.get("#{prefix}_#{game.slug}_#{args[:version]}").blank? ||  JSON.parse($redis.get "#{prefix}_#{game.slug}_#{args[:version]}").blank?
+        if $redis.get("#{prefix}_#{game.slug}_#{args[:version]}").blank? || JSON.parse($redis.get "#{prefix}_#{game.slug}_#{args[:version]}").blank?
             $redis.set "#{prefix}_#{game.slug}_#{args[:version]}", get_game_ranks({slug: game.slug,game_id: game.id,version: args[:version],timeframe: timeframe}).to_json
         end
          
@@ -203,9 +206,11 @@ module GamesHelper
         end
         game_rank_hash = {}
 
-        rankings.each.with_index(1) do | r, i | 
-            $redis.set "#{prefix}_#{args[:slug]}_v#{args[:version]}_user_#{r.user_id}", { :rank => i, :score => r.max_score }.to_json
-            game_rank_hash[i] = get_user_hash({user_id: r.user_id, score: r.max_score})
+        if rankings
+            rankings.each.with_index(1) do | r, i | 
+                $redis.set "#{prefix}_#{args[:slug]}_v#{args[:version]}_user_#{r.user_id}", { :rank => i, :score => r.max_score }.to_json
+                game_rank_hash[i] = get_user_hash({user_id: r.user_id, score: r.max_score})
+            end
         end
 
         game_rank_hash
