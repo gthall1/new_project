@@ -219,7 +219,8 @@
                     <% else %>
                         <h2><%= link_to games_path do %><img src="/assets/luckee-font.png" class="mobile-header__logo"><% end %><br /><span class='credits mobile-header__credits'><%= current_user.credits ||= 0 %> credits</span></h2>
                     <% end %>
-<!--                     <div class='referral-link'>
+
+                    <div class='referral-link'>
 
                         <div class="share-dialog js-share-dialog">
                             <div class="arrow-up"></div>
@@ -231,11 +232,11 @@
                             </div>
                         </div>
 
-                        <%# link_to refer_path do %>
+                        <%= link_to refer_path do %>
                             <i class="fa fa-user-plus"></i>
-                            <span class="earn">+25</span>
-                        <%# end %>
-                    </div> -->
+                            <!-- <span class="earn">+25</span> -->
+                        <% end %>
+                    </div> <!-- /.referral-link -->
                 </div>
 
                 <div class="bottom-navigation bottom-navigation--mobile js-bottom-navigation">

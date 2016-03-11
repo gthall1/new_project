@@ -72,14 +72,27 @@ $falldown-font: #FEE2C7;
     position: relative;
     top: 7.5px;
 }
-.leaderboard__social-share {
-    position: absolute;
+.social-share {
     margin: 0 auto;
     width: 85%;
-    bottom: 50px;
-    // bottom: 100px;
-    left: 0;
-    right: 0;
+
+    .game-leaderboard & {
+        position: absolute;
+        bottom: 50px;
+        left: 0;
+        right: 0;
+        // bottom: 100px;
+    }
+
+    .refer-page--mobile & {
+        @include vertical-align();
+
+        .form-input {
+            margin: 25px auto;
+            text-align: center;
+            padding-left: 0 !important;
+        }
+    }
 
     .leaderboard-diff & {
         bottom: 90px;
@@ -100,9 +113,17 @@ $falldown-font: #FEE2C7;
         font-size: $lg;
     }
 
-    .game-leaderboard & {
-        color: $charcoal;
+    // .game-leaderboard & {
+    //     color: $charcoal;
 
+    // }
+}
+.social-share__title {
+    @extend .leaderboard__title;
+    color: $charcoal;
+
+    .credits {
+        color: $red;
     }
 }
 .leaderboard__subtitle {
@@ -361,7 +382,7 @@ $falldown-font: #FEE2C7;
         width: 33%;
         letter-spacing: 0.25px;
     }
-    .leaderboard__social-share {
+    .social-share {
         bottom: 25vh;
     }
     .leaderboard__cat--3 {
@@ -388,7 +409,7 @@ $falldown-font: #FEE2C7;
         font-size: $lg;
         top: 0;
     }
-    .leaderboard__social-share,
+    .social-share,
     .leaderboard__social-sync {
         max-width: 350px;
     }
