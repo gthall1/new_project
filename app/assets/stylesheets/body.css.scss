@@ -1,0 +1,101 @@
+/* mixins, variables, etc. */
+@import "bootstrap";
+@import "mixins";
+@import "variables";
+
+// Change these selectors to one body class that can be added to templates, rather than listing out new classes for the same outcome
+body {
+    padding-top: 60px;
+    position: relative;
+    z-index: 1;
+
+    &.confirmation-page,
+    &.mobile-header--hide,
+    &.mobile-home,
+    &.gameplay-page--2048,
+    &.leaderboard-page--mobile,
+    &.no-top-padding,
+    &.set-username-page {
+        padding-top: 0;
+    }
+
+    &.gameplay-page,
+    &.intermediate,
+    &.tutorial-page  {
+        .bottom-navigation {
+            display: none;
+        }
+    }
+
+    &#onboarding-walkthrough {
+        padding-top: 0;
+        .logo-wrapper {
+            display: none;
+        }
+    }
+
+    // Add padding to bottom of page
+    &.leaderboard-index-page--mobile,
+    &.mobile-games-page,
+    &.survey-page {
+        padding-bottom: 50px;
+    }
+
+    &.no-bg {
+        .mobile-container {
+            background-image: none;
+            background-color: $white;
+        }
+    }
+    &.register-page {
+        .mobile-container {
+            height: 100vh;
+        }
+        padding: 0 7.5% 20px;
+        .logo-wrapper {
+            padding-top:0;
+            display: none;
+        }
+        .top-title {
+            margin: 20px auto 15px;
+        }
+        form {
+            margin: 0;
+        }
+    }
+    &.wam {
+        .bottom-content__container {
+            bottom: 5vh;
+        }
+        .form-swap {
+            bottom: 5vh;
+        }
+        .form-wrap {
+            @include vertical-align(relative, 50vh);
+        }
+    }
+
+    &.social-media-browser {
+        .bottom-content__container {
+            bottom: 20vh;
+        }
+    }
+
+    &.refer-page--mobile {
+        .mobile-container {
+            height: calc(100vh - 110px);
+        }
+    }
+
+    &.set-username-page {
+        overflow: hidden;
+
+        .mobile-header,
+        .bottom-navigation {
+            display: none;
+        }
+        .form-wrap {
+            padding: 0 7.5%;
+        }
+    }
+}

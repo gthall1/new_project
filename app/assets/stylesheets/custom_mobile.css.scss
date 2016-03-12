@@ -2,6 +2,7 @@
 @import "bootstrap";
 @import "mixins";
 @import "variables";
+@import "body";
 @import "leaderboard";
 @import "confirmation";
 @import "superslides";
@@ -20,97 +21,6 @@
 
 html {
     overflow-y: scroll;
-}
-
-// Change these selectors to one body class that can be added to templates, rather than listing out new classes for the same outcome
-body {
-    padding-top: 60px;
-    position: relative;
-    z-index: 1;
-
-    &.confirmation-page,
-    &.mobile-header--hide,
-    &.mobile-home,
-    &.gameplay-page--2048,
-    &.leaderboard-page--mobile,
-    &.no-top-padding,
-    &.set-username-page {
-        padding-top: 0;
-    }
-
-    &.gameplay-page,
-    &.intermediate,
-    &.tutorial-page  {
-        .bottom-navigation {
-            display: none;
-        }
-    }
-
-    &#onboarding-walkthrough {
-        padding-top: 0;
-        .logo-wrapper {
-            display: none;
-        }
-    }
-
-    // Add padding to bottom of page
-    &.leaderboard-index-page--mobile,
-    &.mobile-games-page,
-    &.survey-page {
-        padding-bottom: 50px;
-    }
-
-    &.no-bg {
-        .mobile-container {
-            background-image: none;
-            background-color: $white;
-        }
-    }
-    &.register-page {
-        .mobile-container {
-            height: 100vh;
-        }
-        padding: 0 7.5% 20px;
-        .logo-wrapper {
-            padding-top:0;
-            display: none;
-        }
-        .top-title {
-            margin: 20px auto 15px;
-        }
-        form {
-            margin: 0;
-        }
-    }
-    &.wam {
-        .bottom-content__container {
-            bottom: 5vh;
-        }
-        .form-swap {
-            bottom: 5vh;
-        }
-        .form-wrap {
-            @include vertical-align(relative, 50vh);
-        }
-    }
-
-    &.social-media-browser {
-        .bottom-content__container {
-            bottom: 20vh;
-        }
-    }
-
-    &.set-username-page {
-        overflow: hidden;
-
-        .mobile-header,
-        .bottom-navigation {
-            display: none;
-        }
-        .form-wrap {
-            padding: 0 7.5%;
-        }
-    }
 }
 .confirmation-page {
     height: 100vh;
@@ -197,7 +107,7 @@ textarea {
     margin:auto;
     position: relative;
     top:0px;
-    min-height:100vh;
+    min-height: calc(100vh - 110px); // subtract top & bottom nav
     background-image: url('/assets/darker_mobile_background_15.jpg');
     background-color: #EAF9FC;
     background-size: cover;
@@ -997,16 +907,19 @@ p {
         top:0px;
         z-index:1;
         a {
-            padding: 7px 23px 2px 4px;
-            border-radius: 5px;
-            border: 2px solid white;
-            top: 24px;
+            // padding: 7px 23px 2px 4px;
+            // border-radius: 5px;
+            // border: 2px solid white;
+            // top: 24px;
             color: $white;
-            font-size: 20px;
-            position: relative;
+            // font-size: 20px;
+            // position: relative;
 
             .fa {
-                font-size: 20px;
+                font-size: 25px;
+                position: relative;
+                right: 0;
+                top: 18px;
             }
         }
         .refer-link-icon{
