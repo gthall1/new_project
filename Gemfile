@@ -8,6 +8,7 @@ gem 'faker', '1.1.2'
 gem 'puma'
 gem 'sprockets', '2.11.0'
 #gem 'turbolinks', '~> 2.5.3'
+gem 'airbrake'
 
 gem "redis-rails"
 gem 'pg', '0.15.1'
