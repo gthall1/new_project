@@ -52,6 +52,7 @@ $falldown-font: #FEE2C7;
     .leaderboard-diff &{
         padding: 0 0 20px;
         top: 120px;
+        margin-bottom: 50px;
     }
 }
 .leaderboard-nav {
@@ -371,7 +372,7 @@ $falldown-font: #FEE2C7;
     .game-leaderboard {
         padding-top: 20px;
         padding-bottom: 0;
-        overflow: hidden;
+        overflow-x: hidden;
         max-width: 900px;
         margin: auto;
     }
@@ -384,6 +385,11 @@ $falldown-font: #FEE2C7;
     }
     .social-share {
         bottom: 25vh;
+    }
+    .leaderboard__cat {
+        &::after {
+            height: 6px
+        }
     }
     .leaderboard__cat--3 {
         position: relative;
@@ -404,7 +410,9 @@ $falldown-font: #FEE2C7;
             }
         }
     }
-
+    .tab-control__title {
+        padding: 5px 0 0;
+    }
     .leaderboard-diff__title {
         font-size: $lg;
         top: 0;
