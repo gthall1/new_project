@@ -3,7 +3,7 @@
 
 <% provide(:title, 'Refer') %>
 <div class="social-share">
-    <h1 class="social-share__title">Things are looking a bit empty in here. Invite some friends to Luckee &amp; earn <span class="credits">25 credits</span> for every friend that signs up through your link.</h1>
+    <h1 class="social-share__title">Get paid just for telling your friends! Earn <span class="credits">25 credits</span> for every friend that signs up with your referral link.</h1>
 
     <input placeholder="Your referral link" class="form-input" type="text" value="<%= request.host_with_port %>/invite/<%=current_user.referral %>">
 
@@ -12,6 +12,6 @@
 
         <a href="http://twitter.com/home?status=Play%20free%20games.%20Earn%20real%20cash.%20www.getluckee.com%2Finvite%2F<%= current_user.referral %>" class="social-btn social-btn--twitter"><i class="fa fa-twitter"></i></a>
 
-        <a href="sms:12345678?body=TEXT" target="_top" class="social-btn social-btn--mail"><i class="fa fa-envelope"></i></a>
+        <a href="mailto:someone@example.com?subject=Play%20free%20games.%20Earn%20real%20cash.&body=Play%20free%20games.%20Earn%20real%20cash.%20www.getluckee.com%2Finvite%2F<%= current_user.referral %>" target="_top" class="social-btn social-btn--mail"><i class="fa fa-envelope"></i></a>
     </div>
 </div>
