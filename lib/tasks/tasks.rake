@@ -32,6 +32,20 @@ task :make_highscores => :environment do | t, args |
     end
 end
 
+task :fix_origin_arrival_with_no_user => :environment do | t, args |
+    User.all.each do | u | 
+        if u.arrival_id
+            a = Arrival.where(id:u.arrival_id).first
+            if a.user_id.nil?
+                p "fixing arrival #{a.id} to add #{u.id}"
+                a.user_id = u.id
+                a.save
+            end
+        end
+    end
+
+end
+
 task :backfill_usersurvey_credits => :environment do | t, args |
     if !Rails.env.production? 
         Survey.all.each do | s |

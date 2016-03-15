@@ -64,7 +64,7 @@ class User < ActiveRecord::Base
           referral_user = User.unscoped.where(id:arrival.referred_by).first
           if referral_user
               if referral_user.user_type_name == 'rep'
-                referral_user.add_credits({credits: 100})
+                referral_user.add_credits({credits: 0})
               else
                 referral_user.add_credits({credits: 50})
               end
