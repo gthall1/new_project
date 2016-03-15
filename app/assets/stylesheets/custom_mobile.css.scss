@@ -284,7 +284,7 @@ textarea {
     left: 0;
     bottom: 0;
     right: 0;
-    z-index: 1000;
+    z-index: 99;
 }
 
 .bottom-nav__item {
@@ -1098,7 +1098,7 @@ p {
         top: 0;
         color:$dark-font;
         background-color: $white;
-        z-index: 20;
+        z-index: 100;
         position: fixed;
         overflow-y: auto;
         overflow-x: visible;
