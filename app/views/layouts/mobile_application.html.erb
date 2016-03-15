@@ -179,7 +179,7 @@
 
         <% end %>
 
-        <div <%= "id=#{@mobile_container_id}" if @mobile_container_id %> class='mobile-container <% if !signed_in? %>with-money<% end %>' style="width:100%;">
+        <div <%= "id=#{@mobile_container_id}" if @mobile_container_id %> class='scrollable mobile-container <% if !signed_in? %>with-money<% end %>' style="width:100%;">
             <div class="mobile--overlay">
                 <a href="/" class="js-overlay__opt-out overlay__opt-out ga-preview-event">Preview in Browser</a>
                 <a href="/" class="overlay__back-to-dash"><img class="home-icon--small" src="/assets/home_icon.png"></a>
@@ -304,33 +304,23 @@
 
 
         <script>
-            var overscroll = function(el) {
-              el.addEventListener('touchstart', function() {
-                var top = el.scrollTop,
-                    totalScroll = el.scrollHeight,
-                    currentScroll = top + el.offsetHeight;
-
-                if(top === 0) {
-                  el.scrollTop = 1;
-                } else if(currentScroll === totalScroll) {
-                  el.scrollTop = top - 1;
-                }
-              })
-              el.addEventListener('touchmove', function(evt) {
-                //if the content is actually scrollable, i.e. the content is long enough
-                //that scrolling can occur
-                if(el.offsetHeight < el.scrollHeight)
-                  evt._isScroller = true;
-              })
-            }
-            overscroll(document.querySelector('.scroll'));
-            document.body.addEventListener('touchmove', function(evt) {
-              //In this case, the default behavior is scrolling the body, which
-              //would result in an overflow.  Since we don't want that, we preventDefault.
-              if(!evt._isScroller) {
-                evt.preventDefault();
+            //uses document because document will be topmost level in bubbling
+            $(document).on('touchmove',function(e){
+              e.preventDefault();
+            });
+            //uses body because jquery on events are called off of the element they are
+            //added to, so bubbling would not work if we used document instead.
+            $('body').on('touchstart','.scrollable',function(e) {
+              if (e.currentTarget.scrollTop === 0) {
+                e.currentTarget.scrollTop = 1;
+              } else if (e.currentTarget.scrollHeight === e.currentTarget.scrollTop + e.currentTarget.offsetHeight) {
+                e.currentTarget.scrollTop -= 1;
               }
-            })
+            });
+            //prevents preventDefault from being called on document if it sees a scrollable div
+            $('body').on('touchmove','.scrollable',function(e) {
+              e.stopPropagation();
+            });
         </script>
     </body>
 </html>
