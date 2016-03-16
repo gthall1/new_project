@@ -1053,7 +1053,7 @@ p {
     padding-bottom:40px;
     text-align:center;
     .game-image{
-        border-radius:10px;
+        border-radius: 5px;
         width:100%;
         max-width:500px;
     }
@@ -1064,14 +1064,13 @@ p {
 
         &::after {
             content: 'Earn Credits';
-                background: rgba(43, 42, 42, 0.85);
+                background: rgba(43, 42, 42, 0.75);
                 padding: 10px 20px;
                 position: absolute;
                 bottom: 0;
                 left: 0;
-                color: $red !important;
-                border-bottom-left-radius: 8px;
-                border-top-right-radius: 8px;
+                color: $white !important;
+                border-bottom-left-radius: 5px;
                 font-size: 12px;
         }
     }

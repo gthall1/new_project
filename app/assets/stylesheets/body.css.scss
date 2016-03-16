@@ -41,6 +41,15 @@ body {
         padding-bottom: 50px;
     }
 
+    &.mobile-games-page {
+        .mobile-container {
+            background-image: url("/assets/blurred-bg.jpg");
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    }
+
     &.no-bg {
         .mobile-container {
             background-image: none;
