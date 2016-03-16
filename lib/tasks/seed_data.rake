@@ -128,6 +128,20 @@ task :add_fall_down => :environment do | t, args |
      update_images
 end
 
+task :add_gold_runner => :environment do | t, args |
+     game = Game.new
+     game.name = "Gold Runner"
+     game.device_type = 3 #5 will be locked game
+     game.slug = "gold-runner"
+     game.image = "goldrun_mobile.jpg"
+     game.desktop_image ="goldrun_desktop.png"
+     game.sort_order = 2
+     game.save
+
+     # set_game_order
+     # update_images
+end
+
 #fixing tracking of initial arrival signup should be a one and done thing
 task :fix_arrivals => :environment do | t, args|
      User.where.not(arrival_id:nil).each do | u |

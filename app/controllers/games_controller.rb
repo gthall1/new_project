@@ -252,7 +252,7 @@ class GamesController < ApplicationController
                          :status => status,
                          :hscore => current_high_score
                         }
-                when 'flappy-pilot','traffic','fall-down','tap-color'
+                when 'flappy-pilot','traffic','fall-down','tap-color','gold-runner'
                     if game_session.game.slug == 'flappy-pilot'
                         current_high_score = current_high_score.to_s.rjust(3, '0')
                     end
@@ -844,6 +844,8 @@ class GamesController < ApplicationController
                     else
                         credits = (score/15.to_f).ceil - 1
                 end
+            when 'gold-runner'
+                credits = (score/3.to_f).ceil - 1
 
         end
         if credits < 0
