@@ -21,4 +21,5 @@ $(document).ready(function(){
 $(window).load(function(){
     app.checkDesktop();
     $('.alert').addClass('show');
+    window.setTimeout(function(){$('.alert').removeClass('show');}, 9000);
 });
