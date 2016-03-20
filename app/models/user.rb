@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :user_entries
   has_many :jackpots, through: :user_entries
   has_many :user_game_sessions
+  has_many :game_purchases, -> { where purchase_type: 1 }, class_name: "Purchase"
   has_many :cash_outs
   has_many :user_surveys
   has_many :surveys, :through => :user_surveys
@@ -28,8 +29,13 @@ class User < ActiveRecord::Base
   
   USER_TYPES = { nil => 'user', 1 => "rep" , 2 => "admin" } 
 
+
   def challenges
     challenges_as_challenged + challenges_as_challenger
+  end
+
+  def has_purchased_game(game_id)
+    self.game_purchases.where(purchase_record_id:game_id).present?
   end
 
   def user_type_name
@@ -121,7 +127,6 @@ class User < ActiveRecord::Base
     end
 
     def add_credits(args={})
-        p " adding credits to referrer"
         credits = args[:credits].to_i
         if !self.credits.nil? && self.credits >= 0
             self.credits += credits

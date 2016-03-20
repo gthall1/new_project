@@ -32,6 +32,10 @@ task :make_highscores => :environment do | t, args |
     end
 end
 
+task :create_purchase_type => :environment do | t, args | 
+    PurchaseType.create({name:'game'})
+end
+
 task :fix_origin_arrival_with_no_user => :environment do | t, args |
     User.all.each do | u | 
         if u.arrival_id

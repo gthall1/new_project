@@ -136,6 +136,7 @@ task :add_gold_runner => :environment do | t, args |
      game.image = "goldrun_mobile.jpg"
      game.desktop_image ="goldrun_desktop.png"
      game.sort_order = 2
+     game.credit_cost = 3500
      game.save
 
      # set_game_order

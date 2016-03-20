@@ -1,5 +1,7 @@
 class GamesController < ApplicationController
     before_action :set_game, only: [:show, :edit, :update, :destroy]
+    before_action :check_purchase, only: [:show]
+
     before_filter :check_signed_in,:set_notifications
     skip_before_filter  :verify_authenticity_token, only:[:score_update,:reset_game,:get_random_challenge_user]
 
@@ -8,15 +10,19 @@ class GamesController < ApplicationController
 
     layout :determine_layout
 
+    def check_purchase
+        redirect_to root_path if @game.device_type == 5 && !current_user.has_purchased_game(@game.id)
+        true
+    end
+
     # GET /games
     # GET /games.json
     def index
-
         @current_page = "games"
         if is_mobile?
-            @games = Game.where(device_type:[1,3]).order("sort_order asc")
+            @games = Game.mobile.order("sort_order asc")
         else
-            @games = Game.where(device_type:[2,3]).order("sort_order asc")
+            @games = Game.desktop.order("sort_order asc")
         end
 
         @is_mobile = is_mobile?
@@ -90,7 +96,6 @@ class GamesController < ApplicationController
     # GET /games/1
     # GET /games/1.json
     def show
-        p params[:c]
         @show_back_button = true
         case @game.name
             when "Memory Game"
