@@ -7,6 +7,7 @@
 @import "confirmation";
 @import "superslides";
 @import "intermediates";
+@import "interior-update";
 @import "buttons";
 @import "profiles";
 @import "forms";
@@ -39,7 +40,7 @@ html {
     }
 }
 .alert {
-    position: absolute;
+    position: fixed;
     display: inline-block;
     width: 100%;
     left: 0;
@@ -284,7 +285,7 @@ textarea {
     left: 0;
     bottom: 0;
     right: 0;
-    z-index: 1000;
+    z-index: 99;
 }
 
 .bottom-nav__item {
@@ -862,10 +863,6 @@ p {
             top: -10px;
         }
     }
-    position: relative;
-    top:-10px;
-    width:100%;
-    display:block;
     a:hover {
         text-decoration: none !important;
     }
@@ -899,8 +896,6 @@ p {
     a{
 
     }
-    height:10%;
-    background:#F2BB7C;
     .referral-link{
         position:absolute;
         right:15px;
@@ -1053,7 +1048,7 @@ p {
     padding-bottom:40px;
     text-align:center;
     .game-image{
-        border-radius:10px;
+        border-radius: 5px;
         width:100%;
         max-width:500px;
     }
@@ -1064,14 +1059,13 @@ p {
 
         &::after {
             content: 'Earn Credits';
-                background: rgba(43, 42, 42, 0.85);
+                background: rgba(43, 42, 42, 0.75);
                 padding: 10px 20px;
                 position: absolute;
                 bottom: 0;
                 left: 0;
-                color: $red !important;
-                border-bottom-left-radius: 8px;
-                border-top-right-radius: 8px;
+                color: $white !important;
+                border-bottom-left-radius: 5px;
                 font-size: 12px;
         }
     }
@@ -1098,7 +1092,7 @@ p {
         top: 0;
         color:$dark-font;
         background-color: $white;
-        z-index: 20;
+        z-index: 100;
         position: fixed;
         overflow-y: auto;
         overflow-x: visible;
