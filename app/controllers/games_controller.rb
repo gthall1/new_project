@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-    before_action :set_game, only: [:show, :edit, :update, :destroy]
+    before_action :set_game, only: [:show, :purchase_confirm, :edit, :update, :destroy]
     before_action :check_purchase, only: [:show]
 
     before_filter :check_signed_in,:set_notifications
@@ -28,6 +28,14 @@ class GamesController < ApplicationController
         @is_mobile = is_mobile?
 
         render "games/index_mobile" if is_mobile?
+    end
+
+    def purchase_confirm
+        if @game.device_type == 5 && current_user && !current_user.has_purchased_game(@game.id)  
+            @purchase = Purchase.new
+        else
+            redirect_to root_path, :notice => "You have already unlocked #{@game.name}!"
+        end
     end
 
     def check_signed_in
@@ -877,6 +885,8 @@ class GamesController < ApplicationController
                     session[:challenge_id] = challenge.id
                 end
              end
+        elsif params[:slug] && !params[:slug].blank?
+             @game = Game.where(slug:params[:slug]).first
         else
              @game = Game.find(params[:id])
         end

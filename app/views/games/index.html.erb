@@ -13,25 +13,25 @@
                     <div class="game__info">
                         <h1 class="game__title"><%= g.name %></h1>
                         <span class="credits">Earn Credits</span>
-                        <% if g.slug == "flappy-pilot" ||  g.slug == "fall-down" || g.slug == "traffic" || g.slug == "tap-color" || g.slug == "2048" %>
-                            <img class="game__leaderboard" src="/assets/leaderboard_button.png">
-                        <% end %>
+                        <img class="game__leaderboard" src="/assets/leaderboard_button.png">
                     </div>
 
                 </div> <!--/ .game-wrapper -->
             <% end %>
             <% else %>
-                <div class="game-wrapper game--<%= g.slug %> js-game--<%= g.slug %>">
+                <%= link_to unlock_game_path(g.slug) do %>
+                    <div class="game-wrapper game--<%= g.slug %> js-game--<%= g.slug %>">
 
-                    <%= image_tag(g.desktop_image, :class=>'game-image') %>
+                        <%= image_tag('game_lock.png', :class=>'game-image') %>
 
-                    <div class="game__info">
-                        <h1 class="game__title"><%= g.name %></h1>
-                        <span class="credits">Purchase Game</span>
-                        <img class="game__leaderboard" src="/assets/leaderboard_button.png">
-                    </div>
+                        <div class="game__info">
+                            <h1 class="game__title"><%= g.name %></h1>
+                            <span class="credits">Unlock Game</span>
+                            <img class="game__leaderboard" src="/assets/leaderboard_button.png">
+                        </div>
 
-                </div> <!--/ .game-wrapper -->
+                    </div> <!--/ .game-wrapper -->
+                <% end %>
             <% end %>
         <% end %>
 </div>
