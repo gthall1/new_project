@@ -34,6 +34,27 @@ class User < ActiveRecord::Base
     challenges_as_challenged + challenges_as_challenger
   end
 
+  def get_highscore(args={})
+    version = args[:version]
+    case args[:timeframe]
+      when 'weekly'
+        prefix = 'w'
+      when 'alltime'
+        prefix = 'at'
+      else 
+        prefix = 'at'
+    end
+
+    if $redis.get("#{prefix}_#{args[:slug]}_v#{version}_user_#{self.id}")
+      return JSON.parse($redis.get("#{prefix}_#{args[:slug]}_v#{version}_user_#{self.id}"))["score"]
+    else
+      game = Game.where(slug:args[:slug]).first
+      return UserGameSession.where(user_id:self.id,game_id:game.id,version:version).where.not(score: nil).order("score desc").first.score if UserGameSession.where(user_id:self.id,game_id:game.id).where.not(score: nil).order("score desc").present?
+    end
+
+    return 0
+  end
+
   def has_purchased_game(game_id)
     self.game_purchases.where(purchase_record_id:game_id).present?
   end

@@ -115,7 +115,7 @@ class GamesController < ApplicationController
         end
 
         @current_high_score = UserGameSession.where(user_id:current_user.id,game_id:@game.id).where.not(score: nil).order("score desc").first.score if UserGameSession.where(user_id:current_user.id,game_id:@game.id).where.not(score: nil).order("score desc").present?
-        @current_high_score = Time.at(@current_high_score).utc.strftime("%M:%S") if @current_high_score && @game.name == "Memory Game"
+        #@current_high_score = Time.at(@current_high_score).utc.strftime("%M:%S") if @current_high_score && @game.name == "Memory Game"
 
 
         render "games/show_mobile" if is_mobile?
@@ -131,7 +131,10 @@ class GamesController < ApplicationController
             score = game_session.score
             game_session.active = false
             game_session.save
-            current_high_score = UserGameSession.where(user_id:current_user.id,game_id:game_session.game.id).where.not(score: nil).order("score desc").first.score
+            #current_high_score = UserGameSession.where(user_id:current_user.id,game_id:game_session.game.id).where.not(score: nil).order("score desc").first.score
+            
+            current_high_score = current_user.get_highscore({timeframe:'at',slug: game_session.game.slug,version:game_session.version})
+
             case game_session.game.slug
                 when '2048','black-hole','sorcerer-game'
                     game_json = {
@@ -228,12 +231,10 @@ class GamesController < ApplicationController
                 status = "skip"
             end
             if game_session
-                if game_session.version
-                    current_high_score = get_current_highscore_for_version({game_id:game_session.game_id,version_id:game_session.version})
-                else
-                    current_high_score = get_current_highscore({game_id:game_session.game_id})
-                end
-                #need = since when high score it will actually be current
+                
+                current_high_score = current_user.get_highscore({timeframe:'at',slug: game_session.game.slug,version:game_session.version})
+   
+                #need = since when high score it will actually be current, maybe add background job to run calcs?
                 if score >= current_high_score
                     $redis.del("at_#{game_session.game.slug}_#{game_session.version}")
                     $redis.del("w_#{game_session.game.slug}_#{game_session.version}")
@@ -737,9 +738,9 @@ class GamesController < ApplicationController
     def games_leaderboard
         @current_page = "leaderboard"
         if is_mobile?
-            @games = Game.where(device_type:[1,3]).order("sort_order asc")
+            @games = Game.mobile.order("sort_order asc")
         else
-            @games = Game.where(device_type:[2,3]).order("sort_order asc")
+            @games = Game.desktop.order("sort_order asc")
         end
     end
 
