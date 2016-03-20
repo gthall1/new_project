@@ -20970,7 +20970,7 @@ cr.plugins_.Text = function(runtime)
 		wf.rel = "stylesheet";
 		wf.type = "text/css";
 		wf.onload = refreshFunc;
-		document.getElementsByTagName('head')[0].appendChild(wf);
+		//document.getElementsByTagName('head')[0].appendChild(wf);
 		requestedWebFonts[cssurl_] = true;
 		this.facename = "'" + familyname_ + "'";
 		this.updateFont();
@@ -22728,8 +22728,8 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.Mouse,
 	cr.plugins_.TextBox,
 	cr.plugins_.Text,
-	cr.plugins_.WebStorage,
 	cr.plugins_.Sprite,
+	cr.plugins_.WebStorage,
 	cr.plugins_.Touch,
 	cr.system_object.prototype.cnds.OnLayoutStart,
 	cr.plugins_.Sprite.prototype.acts.SetAnimFrame,
