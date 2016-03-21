@@ -1,27 +1,27 @@
-<% content_for :body_class, "leaderboard-index-page leaderboard-index-page--mobile" %>
+<% content_for :body_class, "list-page list-page--mobile" %>
 
-<div class='my-balance'>
-  <div class='redeem'>
-    <%= embedded_svg('svgs/leaderboard.svg', :class => 'leaderboard-svg') %>
-    <div class="redeem__copy">
-      <p class="redeemCredits">Leaderboards</p>
-      <p class="redeemCredits__desc">View the top contenders</p>
-    </div>
-  </p>
+<div class='list-page__container'>
+        <section class="list-page__upper">
+                <img src="/assets/wave1.png" class="wave wave--1">
+                <img src="/assets/wave2.png" class="wave wave--2">
+                <img src="/assets/wave3.png" class="wave wave--3">
+                <p class="list-page__title">Leaderboards</p>
+                <%# embedded_svg('svgs/wave.svg', :class => 'wave') %>
+        </section><!-- /.list-page__upper -->
 
-  </div>
-</div>
-<div class='inner-page__list'>
-  <p class="page-title">Games</p>
-  <ul>
-    <% @games.each do | g | %>
-      <%= link_to game_leaderboard_path(game_slug:g.slug) do %>
-      <li>
-        <%= g.name %>
-        <span class='cash-out__cost'>View Leaderboard</span>
-        <i class="fa fa-angle-right"></i>
-      </li>
-      <% end %>
-    <% end %>
-  </ul>
+        <section class="list-page__lower">
+            <ul class="list-page__list">
+                <% @games.each do | g | %>
+                    <li class="list-page__list-item">
+                        <%= link_to game_leaderboard_path(game_slug:g.slug) do %>
+                            <div class='list-item__icon'><h3 class="list-item__icon-title"><span class="title--mini"></div>
+                            <div class="list-item__wrapper">
+                                    <p class="list-item__title"><%= g.name %></p>
+                            </div>
+                            <i class="fa fa-angle-right"></i>
+                        <% end %>
+                    </li>
+                <% end %>
+            </ul>
+        </section>
 </div>

@@ -16,7 +16,11 @@
     color: $white;
     font-size: 32px;
     font-weight: 300;
-    margin: 10px 0 0;
+    margin: 5px 0 0;
+
+    @media screen and (min-width: $iphone5) {
+        margin: 10px 0 0;
+    }
 }
 .list-page__upper {
     height: calc(30vh - 60px);
@@ -32,14 +36,14 @@
     width: 100%;
 
     &.wave--1 {
-        opacity: .70;
+        opacity: .75;
         z-index: 3;
-        left: -20vw;
+        // left: -20vw;
     }
     &.wave--2 {
         opacity: .50;
         z-index: 3;
-        left: 25vw;
+        // left: 25vw;
     }
     &.wave--3 {
         opacity: .35;
