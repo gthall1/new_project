@@ -131,7 +131,7 @@ end
 task :add_gold_runner => :environment do | t, args |
      game = Game.new
      game.name = "Gold Runner"
-     game.device_type = 3 #5 will be locked game
+     game.device_type = 5 #5 will be locked game
      game.slug = "gold-runner"
      game.image = "goldrun_mobile.jpg"
      game.desktop_image ="goldrun_desktop.png"
