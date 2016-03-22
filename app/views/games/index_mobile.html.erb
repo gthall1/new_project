@@ -2,10 +2,18 @@
 
     <div class='game-list-container'>
         <% @games.each do | g | %>
-            <%= link_to game_path(g) do %>
-                <div class="game-wrapper game--<%= g.slug %> js-game--<%= g.slug %>" data-game-id="<%= g.id %>">
-                <%= image_tag(g.image, :class=>'game-image') %>
-                </div>
+            <% if g.device_type != 5 || current_user.has_purchased_game(g.id) %>
+                <%= link_to game_path(g) do %>
+                    <div class="game-wrapper game--<%= g.slug %> js-game--<%= g.slug %>" data-game-id="<%= g.id %>">
+                    <%= image_tag(g.image, :class=>'game-image') %>
+                    </div>
+                <% end %>
+            <% else %>
+                <%= link_to unlock_game_path(g.slug) do %>
+                    <div class="game-wrapper game--<%= g.slug %> js-game--<%= g.slug %>" data-game-id="<%= g.id %>">
+                        <%= image_tag('game_lock.png', :class=>'game-image') %> Unlock Game
+                    </div>      
+                <% end %>     
             <% end %>
         <% end %>
     </div>
