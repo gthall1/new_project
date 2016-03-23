@@ -1,22 +1,32 @@
-<h1>Unlock <%= @game.name %></h1>
+<% content_for :body_class, "refer-page--mobile no-bg" %>
 
-<% if current_user.credits.nil? || current_user.credits < @game.credit_cost %>
-    <p> 
-        Sorry you need at least <%= @game.credit_cost %> to unlock this game! You currently have <%= current_user.credits.nil? ? 0 :   current_user.credits %>!  
-        <br/> 
-        <%= link_to root_path do %>        
-            Get Playing!
-        <% end %> 
-    </p>
-<% else %>
-    <p> Use <%= @game.credit_cost %> of your <%= current_user.credits %> credits to unlock this game!</p>
-    <%= form_for(@purchase) do |f| %>
-        <%= render 'shared/error_messages', object: f.object %>
 
-        <%= f.hidden_field :purchase_record_id, value: @game.id %>
-        <%= f.hidden_field :purchase_type_id, value: PurchaseType.where(name:'game').first.id %>
+<% provide(:title, "Unlock  #{@game.name}") %>
+<div class="social-share">
+    <h1 class="social-share__title">Unlock <%= @game.name %></h1>
 
-        <%= f.submit "Unlock Now", class: "btn btn-outlined btn-white btn-lg btn-Create create-email" %>
+    <% if current_user.credits.nil? || current_user.credits < @game.credit_cost %>
+        <p>
+            Sorry you need at least <%= @game.credit_cost %> to unlock this game! You currently have <%= current_user.credits.nil? ? 0 :   current_user.credits %>!
+            <br/>
+            <%= link_to root_path do %>
+                Get Playing!
+            <% end %>
+        </p>
+    <% else %>
+        <p> Use <%= @game.credit_cost %> of your <%= current_user.credits %> credits to unlock this game!</p>
+        <%= form_for(@purchase) do |f| %>
+            <%= render 'shared/error_messages', object: f.object %>
 
+            <%= f.hidden_field :purchase_record_id, value: @game.id %>
+            <%= f.hidden_field :purchase_type_id, value: PurchaseType.where(name:'game').first.id %>
+
+            <%= f.submit "Unlock Now", class: "btn btn-outlined btn-white btn-lg btn-Create create-email" %>
+
+        <% end %>
     <% end %>
-<% end %>
+
+
+</div>
+
+

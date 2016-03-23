@@ -22,7 +22,7 @@
                 <%= link_to unlock_game_path(g.slug) do %>
                     <div class="game-wrapper game--<%= g.slug %> js-game--<%= g.slug %>">
 
-                        <%= image_tag('game_lock.png', :class=>'game-image') %>
+                        <%= image_tag(g.desktop_image, :class=>'game-image') %>
 
                         <div class="game__info">
                             <h1 class="game__title"><%= g.name %></h1>
