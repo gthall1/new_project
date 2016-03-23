@@ -51,6 +51,7 @@ html {
     padding: 10px 0;
     border-radius: 0;
     text-align: center;
+    background-color: rgba(230, 126, 34,0.9);
     @include transition(top, 0.25s, ease, 1s);
 
 
@@ -1059,16 +1060,36 @@ p {
 
         &::after {
             content: 'Earn Credits';
-                background: rgba(43, 42, 42, 0.75);
+                background-color: rgba(43, 42, 42, 0.75);
                 padding: 10px 20px;
                 position: absolute;
                 bottom: 0;
                 left: 0;
-                color: $white !important;
+                color: $white;
                 border-bottom-left-radius: 5px;
                 font-size: 12px;
         }
+        &.game-wrapper--locked {
+            &::after {
+                content: 'Unlock Game';
+                border-radius: 5px;
+                color: $dark-gray;
+                padding: 35px 0 0;
+                width: 100%;
+                height: calc(100% - 35px);
+                font-size: 20px;
+                font-weight: 500;
+                background-color: rgba(208, 208, 208, 0.75);
+            }
+        }
     }
+}
+.locks {
+    position: absolute;
+    top: 15%;
+    left: 0;
+    width: 100%;
+    z-index: 9;
 }
 .game--black-hole {
     &.game-wrapper {

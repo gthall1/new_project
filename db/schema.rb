@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160308175918) do
+ActiveRecord::Schema.define(version: 20160320151933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 20160308175918) do
     t.string   "slug",          limit: 255
     t.integer  "sort_order"
     t.string   "desktop_image"
+    t.integer  "credit_cost"
   end
 
   create_table "identities", force: :cascade do |t|
@@ -122,6 +123,21 @@ ActiveRecord::Schema.define(version: 20160308175918) do
     t.integer  "winner_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "purchase_types", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "purchases", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "purchase_type_id"
+    t.integer  "purchase_record_id"
+    t.integer  "credits_spent"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "sessions", force: :cascade do |t|
