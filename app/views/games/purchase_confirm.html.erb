@@ -1,27 +1,35 @@
-<% content_for :body_class, "refer-page--mobile no-bg" %>
+<% if is_mobile? %>
+    <% content_for :body_class, "purchase-page--mobile no-bg" %>
+<% else %>
+    <% content_for :body_class, "purchase-page" %>
+<% end %>
 
 
 <% provide(:title, "Unlock  #{@game.name}") %>
-<div class="social-share">
-    <h1 class="social-share__title">Unlock <%= @game.name %></h1>
+<div class="purchase-page__wrap">
+    <%= image_tag(@game.image, :class=>'game-image game-image--unlock') %>
+
+    <h1 class="intemediary-title">Unlock <%= @game.name %>!</h1>
 
     <% if current_user.credits.nil? || current_user.credits < @game.credit_cost %>
-        <p>
+        <p class="intermediary-desc">
             Sorry you need at least <%= @game.credit_cost %> to unlock this game! You currently have <%= current_user.credits.nil? ? 0 :   current_user.credits %>!
-            <br/>
+
             <%= link_to root_path do %>
                 Get Playing!
             <% end %>
         </p>
     <% else %>
-        <p> Use <%= @game.credit_cost %> of your <%= current_user.credits %> credits to unlock this game!</p>
+        <p class="intermediary-desc"> Use <%= @game.credit_cost %> of your <%= current_user.credits %> credits to unlock this game!</p>
         <%= form_for(@purchase) do |f| %>
             <%= render 'shared/error_messages', object: f.object %>
 
             <%= f.hidden_field :purchase_record_id, value: @game.id %>
             <%= f.hidden_field :purchase_type_id, value: PurchaseType.where(name:'game').first.id %>
 
-            <%= f.submit "Unlock Now", class: "btn btn-outlined btn-white btn-lg btn-Create create-email" %>
+            <div class="form-input--wrap form-input--wrap-submit">
+                <%= f.submit "Unlock Now", class: "form-input" %>
+            </div><!-- /.form-input--wrap -->
 
         <% end %>
     <% end %>

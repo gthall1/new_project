@@ -90,7 +90,8 @@ body {
         }
     }
 
-    &.refer-page--mobile {
+    &.refer-page--mobile,
+    &.purchase-page--mobile  {
         .mobile-container {
             height: calc(100vh - 110px);
         }

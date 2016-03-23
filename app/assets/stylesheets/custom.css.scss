@@ -1433,26 +1433,34 @@ h1.arrow2 { font-size: 55px;
     transform: scale(1.1);
     cursor: pointer;
   }
-
-
-  &:nth-child(odd) {
+  .game__cost {
+    float: right;
   }
-  &:nth-child(even) {
+}
+.game-img-wrap {
+  position: relative;
+  .game-wrapper--locked & {
+      &::after {
+        content: 'Unlock Game';
+        color: #26272b;
+        padding: 65px 0 0;
+        width: 100%;
+        height: calc(100% - 65px);
+        font-size: 20px;
+        font-weight: 500;
+        background-color: rgba(208, 208, 208, 0.75);
+        top: 0;
+        left: 0;
+        position: absolute;
+      }
   }
-  &:last-child {
-  }
-  // &::after {
-  //   content: 'EARN CREDITS';
-  //     background: rgba(43, 42, 42, 0.85);
-  //     padding: 10px 20px;
-  //     position: absolute;
-  //     bottom: 0;
-  //     left: 0;
-  //     color: $red !important;
-  //     border-bottom-left-radius: 8px;
-  //     border-top-right-radius: 8px;
-  //     font-size: 11px;
-  // }
+}
+.locks {
+    position: absolute;
+    top: 40%;
+    left: 0;
+    width: 100%;
+    z-index: 9;
 }
 .game-container{
   min-height:800px;
