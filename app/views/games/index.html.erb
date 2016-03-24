@@ -4,21 +4,36 @@
 
 <div class='game-list-container'>
         <% @games.each do | g | %>
-        <%= link_to game_path(g) do %>
-        <div class="game-wrapper game--<%= g.slug %> js-game--<%= g.slug %>">
+            <% if g.device_type != 5 || current_user.has_purchased_game(g.id) %>
+            <%= link_to game_path(g) do %>
+                <div class="game-wrapper game--<%= g.slug %> js-game--<%= g.slug %>">
 
-                <%= image_tag(g.desktop_image, :class=>'game-image') %>
+                    <%= image_tag(g.desktop_image, :class=>'game-image') %>
 
+                    <div class="game__info">
+                        <h1 class="game__title"><%= g.name %></h1>
+                        <span class="credits">Earn Credits</span>
+                    </div>
 
-            <div class="game__info">
-                <h1 class="game__title"><%= g.name %></h1>
-                <span class="credits">Earn Credits</span>
-                <% if g.slug == "flappy-pilot" ||  g.slug == "fall-down" || g.slug == "traffic" || g.slug == "tap-color" || g.slug == "2048" %>
-                    <img class="game__leaderboard" src="/assets/leaderboard_button.png">
+                </div> <!--/ .game-wrapper -->
+            <% end %>
+            <% else %>
+                <%= link_to unlock_game_path(g.slug) do %>
+                    <div class="game-wrapper--locked game-wrapper game--<%= g.slug %> js-game--<%= g.slug %>">
+
+                        <div class="game-img-wrap">
+                            <%= image_tag(g.desktop_image, :class=>'game-image') %>
+                            <img src="/assets/locked.png" class="locks">
+                        </div><!-- /.game-img-wrap -->
+
+                        <div class="game__info">
+                            <h1 class="game__title"><%= g.name %></h1>
+                            <span class="credits">Unlock Game:</span>
+                            <span class="game__cost"><%= g.credit_cost %> credits</span>
+                        </div>
+
+                    </div> <!--/ .game-wrapper -->
                 <% end %>
-            </div>
-
-        </div> <!--/ .game-wrapper -->
-        <% end %>
+            <% end %>
         <% end %>
 </div>

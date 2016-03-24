@@ -1,5 +1,7 @@
 class GamesController < ApplicationController
-    before_action :set_game, only: [:show, :edit, :update, :destroy]
+    before_action :set_game, only: [:show, :purchase_confirm, :edit, :update, :destroy]
+    before_action :check_purchase, only: [:show]
+
     before_filter :check_signed_in,:set_notifications
     skip_before_filter  :verify_authenticity_token, only:[:score_update,:reset_game,:get_random_challenge_user]
 
@@ -8,20 +10,32 @@ class GamesController < ApplicationController
 
     layout :determine_layout
 
+    def check_purchase
+        redirect_to root_path if @game.device_type == 5 && !current_user.has_purchased_game(@game.id)
+        true
+    end
+
     # GET /games
     # GET /games.json
     def index
-
         @current_page = "games"
         if is_mobile?
-            @games = Game.where(device_type:[1,3]).order("sort_order asc")
+            @games = Game.mobile.order("sort_order asc")
         else
-            @games = Game.where(device_type:[2,3]).order("sort_order asc")
+            @games = Game.desktop.order("sort_order asc")
         end
 
         @is_mobile = is_mobile?
 
         render "games/index_mobile" if is_mobile?
+    end
+
+    def purchase_confirm
+        if @game.device_type == 5 && current_user && !current_user.has_purchased_game(@game.id)  
+            @purchase = Purchase.new
+        else
+            redirect_to root_path, :notice => "You have already unlocked #{@game.name}!"
+        end
     end
 
     def check_signed_in
@@ -90,7 +104,6 @@ class GamesController < ApplicationController
     # GET /games/1
     # GET /games/1.json
     def show
-        p params[:c]
         @show_back_button = true
         case @game.name
             when "Memory Game"
@@ -102,7 +115,7 @@ class GamesController < ApplicationController
         end
 
         @current_high_score = UserGameSession.where(user_id:current_user.id,game_id:@game.id).where.not(score: nil).order("score desc").first.score if UserGameSession.where(user_id:current_user.id,game_id:@game.id).where.not(score: nil).order("score desc").present?
-        @current_high_score = Time.at(@current_high_score).utc.strftime("%M:%S") if @current_high_score && @game.name == "Memory Game"
+        #@current_high_score = Time.at(@current_high_score).utc.strftime("%M:%S") if @current_high_score && @game.name == "Memory Game"
 
 
         render "games/show_mobile" if is_mobile?
@@ -118,7 +131,10 @@ class GamesController < ApplicationController
             score = game_session.score
             game_session.active = false
             game_session.save
-            current_high_score = UserGameSession.where(user_id:current_user.id,game_id:game_session.game.id).where.not(score: nil).order("score desc").first.score
+            #current_high_score = UserGameSession.where(user_id:current_user.id,game_id:game_session.game.id).where.not(score: nil).order("score desc").first.score
+            
+            current_high_score = current_user.get_highscore({timeframe:'at',slug: game_session.game.slug,version:game_session.version})
+
             case game_session.game.slug
                 when '2048','black-hole','sorcerer-game'
                     game_json = {
@@ -215,12 +231,10 @@ class GamesController < ApplicationController
                 status = "skip"
             end
             if game_session
-                if game_session.version
-                    current_high_score = get_current_highscore_for_version({game_id:game_session.game_id,version_id:game_session.version})
-                else
-                    current_high_score = get_current_highscore({game_id:game_session.game_id})
-                end
-                #need = since when high score it will actually be current
+                
+                current_high_score = current_user.get_highscore({timeframe:'at',slug: game_session.game.slug,version:game_session.version})
+   
+                #need = since when high score it will actually be current, maybe add background job to run calcs?
                 if score >= current_high_score
                     $redis.del("at_#{game_session.game.slug}_#{game_session.version}")
                     $redis.del("w_#{game_session.game.slug}_#{game_session.version}")
@@ -252,7 +266,7 @@ class GamesController < ApplicationController
                          :status => status,
                          :hscore => current_high_score
                         }
-                when 'flappy-pilot','traffic','fall-down','tap-color'
+                when 'flappy-pilot','traffic','fall-down','tap-color','gold-runner'
                     if game_session.game.slug == 'flappy-pilot'
                         current_high_score = current_high_score.to_s.rjust(3, '0')
                     end
@@ -724,9 +738,9 @@ class GamesController < ApplicationController
     def games_leaderboard
         @current_page = "leaderboard"
         if is_mobile?
-            @games = Game.where(device_type:[1,3]).order("sort_order asc")
+            @games = Game.mobile.order("sort_order asc")
         else
-            @games = Game.where(device_type:[2,3]).order("sort_order asc")
+            @games = Game.desktop.order("sort_order asc")
         end
     end
 
@@ -844,6 +858,8 @@ class GamesController < ApplicationController
                     else
                         credits = (score/15.to_f).ceil - 1
                 end
+            when 'gold-runner'
+                credits = (score/3.to_f).ceil - 1
 
         end
         if credits < 0
@@ -870,6 +886,8 @@ class GamesController < ApplicationController
                     session[:challenge_id] = challenge.id
                 end
              end
+        elsif params[:slug] && !params[:slug].blank?
+             @game = Game.where(slug:params[:slug]).first
         else
              @game = Game.find(params[:id])
         end

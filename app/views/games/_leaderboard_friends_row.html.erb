@@ -1,4 +1,4 @@
-<div class="tab-section js-tab-section leaderboard leaderboard--my-friends active <% if current_user.provider == 'facebook'  %>fb-connected <% else %> not-fb-connected <% end %>"> <!-- current_user.provider == 'facebook' --> <!-- create conditional to check foor whether or not user is connected with FB  => add this class: not-fb-connected -->
+<div class="tab-section js-tab-section leaderboard leaderboard--my-friends <% if current_user.provider == 'facebook'  %>fb-connected <% else %> not-fb-connected <% end %>"> <!-- current_user.provider == 'facebook' --> <!-- create conditional to check foor whether or not user is connected with FB  => add this class: not-fb-connected -->
     <!-- Start Loop -->
     <!-- If Connected with Facebook -->
     <% if current_user.provider == 'facebook' %> <!--  current_user.provider == 'facebook' -->

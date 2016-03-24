@@ -128,6 +128,21 @@ task :add_fall_down => :environment do | t, args |
      update_images
 end
 
+task :add_gold_runner => :environment do | t, args |
+     game = Game.new
+     game.name = "Gold Runner"
+     game.device_type = 5 #5 will be locked game
+     game.slug = "gold-runner"
+     game.image = "goldrun_mobile.png"
+     game.desktop_image ="goldrun_desktop.png"
+     game.sort_order = 2
+     game.credit_cost = 3500
+     game.save
+
+     # set_game_order
+     # update_images
+end
+
 #fixing tracking of initial arrival signup should be a one and done thing
 task :fix_arrivals => :environment do | t, args|
      User.where.not(arrival_id:nil).each do | u |
@@ -225,33 +240,32 @@ task :seed_new_games => :environment do | t, args|
 end
 
 def set_game_order
-        g = Game.where(slug:"traffic").first
-        g.sort_order = 4
-        g.save
 
-        g = Game.where(slug:"fall-down").first
+        g = Game.where(slug:"traffic").first
         g.sort_order = 1
         g.save
 
-        g = Game.where(slug:"flappy-pilot").first
-        g.sort_order = 5
-        g.save
-
-        g = Game.where(slug:"black-hole").first
-        g.sort_order = 8
+        g = Game.where(slug:"gold-runner").first
+        g.sort_order = 2
         g.save
 
         g = Game.where(slug:"2048").first
         g.sort_order = 3
         g.save
 
-        g = Game.where(slug:"sorcerer-game").first
+        g = Game.where(slug:"tap-color").first
+        g.sort_order = 4
+        g.save
+
+        g = Game.where(slug:"fall-down").first
+        g.sort_order = 5
+        g.save
+
+        g = Game.where(slug:"flappy-pilot").first
         g.sort_order = 6
         g.save
 
-        g = Game.where(slug:"tap-color").first
-        g.sort_order = 2
-        g.save
+
 end
 
 def set_device_types

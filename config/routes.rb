@@ -1,7 +1,9 @@
 Alotto::Application.routes.draw do
+ 
 
     root to: 'static_pages#home'
 
+    resources :purchases
     resources :surveys
     resources :games
     resources :users
@@ -67,6 +69,8 @@ Alotto::Application.routes.draw do
     match '/reset_timer', to: 'games#reset_game', via: 'get'
     match '/get_advertiser_logo', to: 'games#get_advertiser_logo', via: 'get'
     match '/games', to: 'games#get_games', via: 'get'
+    match '/unlock_game/:slug', to: 'games#purchase_confirm', as: 'unlock_game', via: 'get'
+
 
 
     get 'auth/:provider/callback', to: 'sessions#create_from_facebook'

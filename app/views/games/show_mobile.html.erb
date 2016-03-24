@@ -15,10 +15,12 @@
       <%= render 'fall_down_m' %>  
     <% when 'tap-color' %>
      <%= render 'tap_color' %>  
+    <% when 'gold-runner' %>
+      <%= render 'gold_runner' %>      
   <% end %>
 </div>
 
-<% if @game.slug != 'tap-color' %>
+<% if @game.slug == '2048' %>
 <input type="hidden" id="game_token" name="game_token" value="<%= session[:game_token] %>" />
 <input type="hidden" id="credits_earned" name="credits_earned" value=0 />
 <% end %>

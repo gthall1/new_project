@@ -1,0 +1,90 @@
+<% content_for :body_class, "survey-page" %>
+<div class="page-container">
+
+<!-- <h1 class="survey-title">Survey</h1> -->
+<section class="survey-wrapper">
+    <p id="notice"><%= notice %></p>
+
+    <p class="intro-copy">Complete this survey and receive <%= @survey.credits %> credits!</p>
+
+    <div class="refer-friend">
+
+        <div class="survey__question">
+            <p class="survey__question-copy">1. Do you prefer visiting the mountains or beach? </p>
+
+            <label class="control control--radio">Mountains
+            <%= radio_button 'supplements', 'beachmtn', 'mountains' %>
+            <div class="control__indicator"></div>
+            </label><!-- /.control .control--radio -->
+
+            <label class="control control--radio">Beach
+            <%= radio_button 'outside', 'beachmtn', 'beach' %>
+            <div class="control__indicator"></div>
+            </label><!-- /.control .control--radio -->
+        </div><!-- /.control -->
+
+        <div class="survey__question">
+            <p class="survey__question-copy">2. Do you ever travel by bus (ex. Greyhound)? </p>
+
+            <label class="control control--radio">Yes
+            <%= radio_button 'bus', 'yesno', 'yes' %>
+            <div class="control__indicator"></div>
+            </label><!-- /.control .control--radio -->
+
+            <label class="control control--radio">No
+            <%= radio_button 'bus', 'yesno', 'no' %>
+            <div class="control__indicator"></div>
+            </label><!-- /.control .control--radio -->
+        </div><!-- /.control -->
+
+        <div class="survey__question">
+            <p class="survey__question-copy">3. Have you ever travelled outside of the United States? </p>
+
+            <label class="control control--radio">Yes
+            <%= radio_button 'travelexport', 'yesno', 'yes' %>
+            <div class="control__indicator"></div>
+            </label><!-- /.control .control--radio -->
+
+            <label class="control control--radio">No
+            <%= radio_button 'travelexport', 'yesno', 'no' %>
+            <div class="control__indicator"></div>
+            </label><!-- /.control .control--radio -->
+        </div><!-- /.control -->
+
+        <div class="survey__question">
+            <p class="survey__question-copy">4. Are you a member of a frequent flyer rewards program?  </p>
+
+            <label class="control control--radio">Yes
+            <%= radio_button 'fflyer', 'yesno', 'yes' %>
+            <div class="control__indicator"></div>
+            </label><!-- /.control .control--radio -->
+
+            <label class="control control--radio">No
+            <%= radio_button 'fflyer', 'yesno', 'no' %>
+            <div class="control__indicator"></div>
+            </label><!-- /.control .control--radio -->
+        </div><!-- /.control -->
+
+        <div class="survey__question">
+            <p class="survey__question-copy">5. Do you ever travel by train (ex. Amtrak)?  </p>
+
+            <label class="control control--radio">Yes
+            <%= radio_button 'train', 'yesno', 'yes' %>
+            <div class="control__indicator"></div>
+            </label><!-- /.control .control--radio -->
+
+            <label class="control control--radio">No
+            <%= radio_button 'train', 'yesno', 'no' %>
+            <div class="control__indicator"></div>
+            </label><!-- /.control .control--radio -->
+        </div><!-- /.control -->
+
+        <%= form_for(@user_survey) do |f| %>
+            <%= f.hidden_field :id %>
+            <%= f.hidden_field :complete, :value => true %>
+            <%= f.submit 'Submit Survey', class: "btn-submit btn--top-margin"%>
+        <% end %>
+    </div> <!--/.refer-friend -->
+
+</section><!-- /.section-wrapper -->
+</div>

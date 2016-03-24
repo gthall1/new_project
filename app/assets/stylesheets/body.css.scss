@@ -37,16 +37,17 @@ body {
     // Add padding to bottom of page
     &.leaderboard-index-page--mobile,
     &.mobile-games-page,
-    &.survey-page {
+    &.survey-page,
+    &.redeem-page--mobile {
         padding-bottom: 50px;
     }
 
     &.mobile-games-page {
         .mobile-container {
-            background-image: url("/assets/blurred-bg.jpg");
+            // background-image: url("/assets/blurred-bg.jpg");
             background-size: 100%;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
+            // background-repeat: no-repeat;
+            // background-attachment: fixed;
         }
     }
 
@@ -90,7 +91,8 @@ body {
         }
     }
 
-    &.refer-page--mobile {
+    &.refer-page--mobile,
+    &.purchase-page--mobile  {
         .mobile-container {
             height: calc(100vh - 110px);
         }

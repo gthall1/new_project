@@ -25,9 +25,11 @@ var cashOutDesktop = {
 
         if (cashoutType === "venmo") {
             $('.paypal-choice').fadeOut();
+            $("#cash_out_cashout_type").val(0);
             $(cashOutDesktop.conf.cashoutRedo).removeClass('hide');
         } else {
             $('.venmo-choice').fadeOut();
+            $("#cash_out_cashout_type").val(1);
             $(cashOutDesktop.conf.cashoutRedo).removeClass('hide');
         }
     },
