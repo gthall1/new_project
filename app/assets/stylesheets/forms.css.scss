@@ -97,7 +97,7 @@ button {
 .form-wrap {
     @include vertical-align(relative, 45vh);
 
-    @media (min-width: $iphone6) {
+    @media (min-width: 416px) {
         padding: 0 35%;
         @include vertical-align(relative, 40vh);
 
