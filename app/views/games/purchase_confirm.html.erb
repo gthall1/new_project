@@ -5,6 +5,10 @@
 <% end %>
 
 
+<a href="/games" class="back-to-home">
+    <i class="fa fa-times"></i>
+</a>
+
 <% provide(:title, "Unlock  #{@game.name}") %>
 <div class="purchase-page__wrap">
     <%= image_tag(@game.image, :class=>'game-image game-image--unlock') %>

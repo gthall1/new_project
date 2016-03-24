@@ -91,10 +91,27 @@ body {
         }
     }
 
-    &.refer-page--mobile,
-    &.purchase-page--mobile  {
+    &.refer-page--mobile {
         .mobile-container {
             height: calc(100vh - 110px);
+        }
+    }
+
+    &.purchase-page--mobile  {
+        .back-to-home {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+
+            .fa {
+                color: $blue-steel;
+                font-size: $xl;
+            }
+        }
+
+        .mobile-container {
+            position: relative;
+            height: calc(100vh - 50px);
         }
     }
 
