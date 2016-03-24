@@ -17,7 +17,7 @@ class SurveysController < ApplicationController
     @show_back_button = true
     @surveys = Survey.all
     if is_mobile?
-      render "surveys/index_mobile_new"
+      render "surveys/index_mobile"
     end
   end
 
