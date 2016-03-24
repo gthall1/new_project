@@ -37,7 +37,8 @@ body {
     // Add padding to bottom of page
     &.leaderboard-index-page--mobile,
     &.mobile-games-page,
-    &.survey-page {
+    &.survey-page,
+    &.redeem-page--mobile {
         padding-bottom: 50px;
     }
 
