@@ -240,33 +240,32 @@ task :seed_new_games => :environment do | t, args|
 end
 
 def set_game_order
-        g = Game.where(slug:"traffic").first
-        g.sort_order = 4
-        g.save
 
-        g = Game.where(slug:"fall-down").first
+        g = Game.where(slug:"traffic").first
         g.sort_order = 1
         g.save
 
-        g = Game.where(slug:"flappy-pilot").first
-        g.sort_order = 5
-        g.save
-
-        g = Game.where(slug:"black-hole").first
-        g.sort_order = 8
+        g = Game.where(slug:"gold-runner").first
+        g.sort_order = 2
         g.save
 
         g = Game.where(slug:"2048").first
         g.sort_order = 3
         g.save
 
-        g = Game.where(slug:"sorcerer-game").first
+        g = Game.where(slug:"tap-color").first
+        g.sort_order = 4
+        g.save
+
+        g = Game.where(slug:"fall-down").first
+        g.sort_order = 5
+        g.save
+
+        g = Game.where(slug:"flappy-pilot").first
         g.sort_order = 6
         g.save
 
-        g = Game.where(slug:"tap-color").first
-        g.sort_order = 2
-        g.save
+
 end
 
 def set_device_types
