@@ -738,7 +738,6 @@ class GamesController < ApplicationController
     def games_leaderboard
         @current_page = "leaderboard"
         if is_mobile?
-            @show_back_button = true
             @games = Game.mobile.order("sort_order asc")
             render "games/games_leaderboard_new"
         else

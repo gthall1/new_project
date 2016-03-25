@@ -14,7 +14,6 @@ class SurveysController < ApplicationController
     cookies[:survey] = 1
 
     @current_page = "surveys"
-    @show_back_button = true
     @surveys = Survey.all
     if is_mobile?
       render "surveys/index_mobile_new"
