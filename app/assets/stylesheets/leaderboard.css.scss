@@ -37,9 +37,9 @@ $falldown-font: #FEE2C7;
 }
 .leaderboard-diff__title {
     color: $black;
-    margin: 0;
-    position: relative;
-    top: 110px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
 }
 
 .game-leaderboard {
@@ -211,6 +211,10 @@ $falldown-font: #FEE2C7;
     // padding: 0 7.5%;
     &.active {
         display: block;
+    }
+
+    .ttrc-leaderboard__container & {
+        margin-top: 10px;
     }
 }
 // Leaderboard Category
