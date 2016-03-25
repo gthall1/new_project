@@ -1,8 +1,4 @@
 .list-page--mobile {
-    background-image: url(/assets/background.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-
     .mobile-header {
         background: transparent;
     }
@@ -17,14 +13,22 @@
     font-size: 32px;
     font-weight: 300;
     margin: 5px 0 0;
+    @include vertical-align;
+    // padding: 60px 0 0;
 
-    @media screen and (min-width: $iphone5) {
-        margin: 10px 0 0;
-    }
+    // @media screen and (min-width: $iphone5) {
+    //     margin: 10px 0 0;
+    // }
 }
 .list-page__upper {
-    height: calc(30vh - 60px);
-    position: relative;
+    height: 30vh;
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    background-image: url(/assets/background.jpg);
+    background-position-y: 0;
+    background-size: cover;
+    z-index: 1;
 }
 .wave {
     position: absolute;
@@ -51,11 +55,13 @@
     }
 }
 .list-page__lower {
-    position: relative;
+    position: absolute;
     min-height: calc(70vh - 50px);
-    background-color: $off-white;
-    // overflow-y: scroll;
+    background-color: #fbf8f4;
     padding-bottom: 50px;
+    top: calc(30vh - 60px);
+    z-index: 0;
+    width: 100%;
 }
 .list-page__list {
     list-style: none;
