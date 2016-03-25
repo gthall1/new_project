@@ -30,9 +30,16 @@
     background-size: cover;
     z-index: 1;
 }
+.list-page__upper-bar {
+    position: absolute;
+    bottom: -1px;
+    width: 100%;
+    background-color: $off-white;
+    height: 20px;
+}
 .wave {
     position: absolute;
-    bottom: -2px;
+    bottom: 18px;
     // left: 0;
     // height: 30px;
     left: 0px;
@@ -66,7 +73,7 @@
 .list-page__list {
     list-style: none;
     margin: 0 auto;
-    padding: 20px 7.5%;
+    padding: 0 7.5% 20px;
 }
 .list-page__list-item {
     color: $dark-gray;
