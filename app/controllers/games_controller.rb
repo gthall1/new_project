@@ -31,7 +31,7 @@ class GamesController < ApplicationController
     end
 
     def purchase_confirm
-        if @game.device_type == 5 && current_user && !current_user.has_purchased_game(@game.id)  
+        if @game.device_type == 5 && current_user && !current_user.has_purchased_game(@game.id)
             @purchase = Purchase.new
         else
             redirect_to root_path, :notice => "You have already unlocked #{@game.name}!"
@@ -132,7 +132,7 @@ class GamesController < ApplicationController
             game_session.active = false
             game_session.save
             #current_high_score = UserGameSession.where(user_id:current_user.id,game_id:game_session.game.id).where.not(score: nil).order("score desc").first.score
-            
+
             current_high_score = current_user.get_highscore({timeframe:'at',slug: game_session.game.slug,version:game_session.version})
 
             case game_session.game.slug
@@ -231,9 +231,9 @@ class GamesController < ApplicationController
                 status = "skip"
             end
             if game_session
-                
+
                 current_high_score = current_user.get_highscore({timeframe:'at',slug: game_session.game.slug,version:game_session.version})
-   
+
                 #need = since when high score it will actually be current, maybe add background job to run calcs?
                 if score >= current_high_score
                     $redis.del("at_#{game_session.game.slug}_#{game_session.version}")
@@ -739,6 +739,7 @@ class GamesController < ApplicationController
         @current_page = "leaderboard"
         if is_mobile?
             @games = Game.mobile.order("sort_order asc")
+            render "games/games_leaderboard_new"
         else
             @games = Game.desktop.order("sort_order asc")
         end

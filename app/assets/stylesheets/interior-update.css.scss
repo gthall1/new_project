@@ -87,7 +87,7 @@
         margin-top: 15px;
     }
 
-    &:nth-child(1n) {
+    &:nth-child(3n + 1) {
         .list-item__icon {
             background-color: $icon-gray;
         }
@@ -96,7 +96,7 @@
         }
     }
 
-    &:nth-child(2n) {
+    &:nth-child(3n + 2) {
         .list-item__icon {
             background-color: $icon-orange;
         }
@@ -105,7 +105,7 @@
         }
     }
 
-    &:nth-child(3n) {
+    &:nth-child(3n + 3) {
         .list-item__icon {
             background-color: $icon-purple;
         }
@@ -135,6 +135,8 @@
     width: 55px;
     background-color: $clouds;
     border-radius: 2px;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .list-item__icon-title {
     margin: 0;
