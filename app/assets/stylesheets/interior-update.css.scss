@@ -12,13 +12,7 @@
     color: $white;
     font-size: 32px;
     font-weight: 300;
-    margin: 5px 0 0;
     @include vertical-align;
-    // padding: 60px 0 0;
-
-    // @media screen and (min-width: $iphone5) {
-    //     margin: 10px 0 0;
-    // }
 }
 .list-page__upper {
     height: 30vh;
