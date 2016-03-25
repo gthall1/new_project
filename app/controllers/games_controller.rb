@@ -11,7 +11,7 @@ class GamesController < ApplicationController
     layout :determine_layout
 
     def check_purchase
-        redirect_to root_path if @game.device_type == 5 && !current_user.has_purchased_game(@game.id)
+        redirect_to root_path if (@game.device_type == 5 && current_user && !current_user.has_purchased_game(@game.id)) || current_user.nil?
         true
     end
 
