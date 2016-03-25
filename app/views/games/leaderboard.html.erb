@@ -34,7 +34,7 @@
         <section class="game-leaderboard">
             <%= render 'games/leaderboard_friends_row', leaderboard_version: 1 %>
 
-            <div class="tab-section js-tab-section leaderboard leaderboard--all-time <% if current_user_record({slug:@game.slug, version: 1, timeframe:'alltime'})["rank"].to_i <= 10 %> leaderboard--omit-current <% end %>">
+            <div class="tab-section js-tab-section leaderboard leaderboard--all-time active <% if current_user_record({slug:@game.slug, version: 1, timeframe:'alltime'})["rank"].to_i <= 10 %> leaderboard--omit-current <% end %>">
                 <%= render 'games/leaderboard_row', { leaderboard_type: "alltime", leaderboard_version: 1} %>
 
                 <%= render 'games/leaderboard_current_user_row', { leaderboard_type: "alltime", leaderboard_version: 1 } %>
@@ -53,7 +53,7 @@
         <section class="game-leaderboard">
             <%= render 'games/leaderboard_friends_row', leaderboard_version: 2 %>
 
-            <div class="tab-section js-tab-section leaderboard leaderboard--all-time <% if current_user_record({slug:@game.slug, version: 2, timeframe:'alltime'})["rank"].to_i <= 10 %> leaderboard--omit-current <% end %>">
+            <div class="tab-section js-tab-section leaderboard leaderboard--all-time active  <% if current_user_record({slug:@game.slug, version: 2, timeframe:'alltime'})["rank"].to_i <= 10 %> leaderboard--omit-current <% end %>">
                 <%= render 'games/leaderboard_row', { leaderboard_type: "alltime", leaderboard_version: 2 } %>
 
                 <%= render 'games/leaderboard_current_user_row', { leaderboard_type: "alltime", leaderboard_version: 2 } %>
@@ -73,7 +73,7 @@
         <section class="game-leaderboard">
             <%= render 'games/leaderboard_friends_row', leaderboard_version: 3 %>
 
-            <div class="tab-section js-tab-section leaderboard leaderboard--all-time <% if current_user_record({slug:@game.slug, version: 3, timeframe:'alltime'})["rank"].to_i <= 10 %> leaderboard--omit-current <% end %>">
+            <div class="tab-section js-tab-section leaderboard leaderboard--all-time active  <% if current_user_record({slug:@game.slug, version: 3, timeframe:'alltime'})["rank"].to_i <= 10 %> leaderboard--omit-current <% end %>">
                 <%= render 'games/leaderboard_row', { leaderboard_type: "alltime", leaderboard_version: 3 } %>
 
                 <%= render 'games/leaderboard_current_user_row', { leaderboard_type: "alltime", leaderboard_version: 3 } %>
