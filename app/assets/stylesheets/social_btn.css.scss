@@ -31,4 +31,7 @@ html body {
         background-color: $lavender;
         @include bgColorAndHover($lavender);
     }
+    .social-btn--sms {
+        background-color: $msg-green;
+    }
 }
