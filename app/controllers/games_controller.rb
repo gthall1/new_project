@@ -11,7 +11,7 @@ class GamesController < ApplicationController
     layout :determine_layout
 
     def check_purchase
-        redirect_to root_path if @game.device_type == 5 && !current_user.has_purchased_game(@game.id)
+        redirect_to root_path if (@game.device_type == 5 && current_user && !current_user.has_purchased_game(@game.id)) || current_user.nil?
         true
     end
 
@@ -840,7 +840,7 @@ class GamesController < ApplicationController
             when "2048"
                 credits = (score/750.to_f).ceil - 1
             when "traffic"
-                credits = (score/7.to_f).ceil - 1
+                credits = (score/14.to_f).ceil - 1
             when "flappy-pilot"
                 credits = (score/10.to_f).ceil - 1
             when "black-hole"
