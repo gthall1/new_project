@@ -1,8 +1,4 @@
 .list-page--mobile {
-    background-image: url(/assets/background.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-
     .mobile-header {
         background: transparent;
     }
@@ -16,19 +12,29 @@
     color: $white;
     font-size: 32px;
     font-weight: 300;
-    margin: 5px 0 0;
-
-    @media screen and (min-width: $iphone5) {
-        margin: 10px 0 0;
-    }
+    @include vertical-align;
 }
 .list-page__upper {
-    height: calc(30vh - 60px);
-    position: relative;
+    height: 30vh;
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    background-color: $lavender;
+    background-image: url(/assets/background.jpg);
+    background-position-y: 0;
+    background-size: cover;
+    z-index: 1;
+}
+.list-page__upper-bar {
+    position: absolute;
+    bottom: -1px;
+    width: 100%;
+    background-color: $off-white;
+    height: 20px;
 }
 .wave {
     position: absolute;
-    bottom: -2px;
+    bottom: 18px;
     // left: 0;
     // height: 30px;
     left: 0px;
@@ -51,16 +57,18 @@
     }
 }
 .list-page__lower {
-    position: relative;
+    position: absolute;
     min-height: calc(70vh - 50px);
-    background-color: $off-white;
-    // overflow-y: scroll;
+    background-color: #fbf8f4;
     padding-bottom: 50px;
+    top: calc(30vh - 60px);
+    z-index: 0;
+    width: 100%;
 }
 .list-page__list {
     list-style: none;
     margin: 0 auto;
-    padding: 20px 7.5%;
+    padding: 0 7.5% 20px;
 }
 .list-page__list-item {
     color: $dark-gray;
@@ -81,7 +89,7 @@
         margin-top: 15px;
     }
 
-    &:nth-child(1n) {
+    &:nth-child(3n + 1) {
         .list-item__icon {
             background-color: $icon-gray;
         }
@@ -90,7 +98,7 @@
         }
     }
 
-    &:nth-child(2n) {
+    &:nth-child(3n + 2) {
         .list-item__icon {
             background-color: $icon-orange;
         }
@@ -99,7 +107,7 @@
         }
     }
 
-    &:nth-child(3n) {
+    &:nth-child(3n + 3) {
         .list-item__icon {
             background-color: $icon-purple;
         }
@@ -129,6 +137,8 @@
     width: 55px;
     background-color: $clouds;
     border-radius: 2px;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .list-item__icon-title {
     margin: 0;

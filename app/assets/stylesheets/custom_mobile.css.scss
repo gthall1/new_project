@@ -341,11 +341,11 @@ textarea {
 }
 
 .bottom-nav__item--primary {
-    // background-color: $dark-seafoam;
+    background-color: $lavender;
 
-    // &.active {
-    //     background-color: #16a085;
-    // }
+    &.active {
+        background-color: darken($lavender, 5%);
+    }
 }
 
 .bottom-nav__item--leaderboard {

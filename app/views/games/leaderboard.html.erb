@@ -29,12 +29,14 @@
 
 <!-- If game is tap the right color -->
 <% if @game.slug == 'tap-color' %>
+<section class="ttrc-leaderboard__container">
      <div class="js-leaderboard--easy js-leaderboard-diff leaderboard-diff active">
-        <h2 class="leaderboard-diff__title">Easy</h2>
         <section class="game-leaderboard">
+            <h2 class="leaderboard-diff__title">Easy</h2>
+
             <%= render 'games/leaderboard_friends_row', leaderboard_version: 1 %>
 
-            <div class="tab-section js-tab-section leaderboard leaderboard--all-time <% if current_user_record({slug:@game.slug, version: 1, timeframe:'alltime'})["rank"].to_i <= 10 %> leaderboard--omit-current <% end %>">
+            <div class="tab-section js-tab-section leaderboard leaderboard--all-time active <% if current_user_record({slug:@game.slug, version: 1, timeframe:'alltime'})["rank"].to_i <= 10 %> leaderboard--omit-current <% end %>">
                 <%= render 'games/leaderboard_row', { leaderboard_type: "alltime", leaderboard_version: 1} %>
 
                 <%= render 'games/leaderboard_current_user_row', { leaderboard_type: "alltime", leaderboard_version: 1 } %>
@@ -49,11 +51,12 @@
     </div><!-- /.leaderboard-diff -->
 
      <div class="js-leaderboard--medium js-leaderboard-diff leaderboard-diff">
-        <h2 class="leaderboard-diff__title">Medium</h2>
         <section class="game-leaderboard">
+            <h2 class="leaderboard-diff__title">Medium</h2>
+
             <%= render 'games/leaderboard_friends_row', leaderboard_version: 2 %>
 
-            <div class="tab-section js-tab-section leaderboard leaderboard--all-time <% if current_user_record({slug:@game.slug, version: 2, timeframe:'alltime'})["rank"].to_i <= 10 %> leaderboard--omit-current <% end %>">
+            <div class="tab-section js-tab-section leaderboard leaderboard--all-time active  <% if current_user_record({slug:@game.slug, version: 2, timeframe:'alltime'})["rank"].to_i <= 10 %> leaderboard--omit-current <% end %>">
                 <%= render 'games/leaderboard_row', { leaderboard_type: "alltime", leaderboard_version: 2 } %>
 
                 <%= render 'games/leaderboard_current_user_row', { leaderboard_type: "alltime", leaderboard_version: 2 } %>
@@ -69,11 +72,12 @@
     </div><!-- /.leaderboard-diff -->
 
     <div class="js-leaderboard--hard js-leaderboard-diff leaderboard-diff">
-        <h2 class="leaderboard-diff__title">Hard</h2>
         <section class="game-leaderboard">
+            <h2 class="leaderboard-diff__title">Hard</h2>
+
             <%= render 'games/leaderboard_friends_row', leaderboard_version: 3 %>
 
-            <div class="tab-section js-tab-section leaderboard leaderboard--all-time <% if current_user_record({slug:@game.slug, version: 3, timeframe:'alltime'})["rank"].to_i <= 10 %> leaderboard--omit-current <% end %>">
+            <div class="tab-section js-tab-section leaderboard leaderboard--all-time active  <% if current_user_record({slug:@game.slug, version: 3, timeframe:'alltime'})["rank"].to_i <= 10 %> leaderboard--omit-current <% end %>">
                 <%= render 'games/leaderboard_row', { leaderboard_type: "alltime", leaderboard_version: 3 } %>
 
                 <%= render 'games/leaderboard_current_user_row', { leaderboard_type: "alltime", leaderboard_version: 3 } %>
@@ -87,6 +91,8 @@
 
         </section>
     </div><!-- /.leaderboard-diff --> <!-- end of ttrc conditional -->
+</section><!-- /.ttrc-leaderboard__container -->
+
 <% else %> <!--  ********************* Normal Leaderboard *********************  -->
     <section class="game-leaderboard">
         <%= render 'games/leaderboard_friends_row' %> <!-- Fix: add class .active  -->
