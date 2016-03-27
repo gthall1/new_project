@@ -26,20 +26,19 @@
 
                 <input placeholder="Your referral link" class="form-input" type="text" value="<%= request.host_with_port %>/invite/<%=current_user.referral %>">
 
-                    <div class="social-share__wrap">
-                        <a href="https://www.facebook.com/dialog/feed?app_id=<%=ENV['FACEBOOK_KEY']%>&description=Check%20out%20Luckee%20and%20earn%20cash%20for%20playing%20free%20games&link=http%3A%2F%2Fwww.getluckee.com&name=Play%20free%20games.%20Earn%20real%20cash.&redirect_uri=<%=root_url%>" class="social-btn social-btn--fb"><i class="fa fa-facebook"></i></a>
+                <div class="social-share__wrap">
+                    <a href="https://www.facebook.com/dialog/feed?app_id=<%=ENV['FACEBOOK_KEY']%>&description=Check%20out%20Luckee%20and%20earn%20cash%20for%20playing%20free%20games&link=http%3A%2F%2Fwww.getluckee.com&name=Play%20free%20games.%20Earn%20real%20cash.&redirect_uri=<%=root_url%>" class="social-btn social-btn--fb"><i class="fa fa-facebook"></i></a>
 
-                        <a href="http://twitter.com/home?status=Play%20free%20games.%20Earn%20real%20cash.%20www.getluckee.com%2Finvite%2F<%= current_user.referral %>" class="social-btn social-btn--twitter"><i class="fa fa-twitter"></i></a>
+                    <a href="http://twitter.com/home?status=Play%20free%20games.%20Earn%20real%20cash.%20www.getluckee.com%2Finvite%2F<%= current_user.referral %>" class="social-btn social-btn--twitter"><i class="fa fa-twitter"></i></a>
 
 
-                        <% if request.env["HTTP_USER_AGENT"].match(/iPhone OS/) || request.env["HTTP_USER_AGENT"].match(/iPad/) %>
-                            <a href="sms:&body=Play%20free%20games.%20Earn%20Real%20Cash.%20Check%20out%20www.getluckee.com/invite/<%= current_user.referral %>" target="_top" class="social-btn social-btn--sms"><i class="fa fa-comment"></i></a>
-                        <% elsif request.env["HTTP_USER_AGENT"].match(/Android/) %>
-                            <a href="sms:?body=Play%20free%20games.%20Earn%20Real%20Cash.%20Check%20out%20www.getluckee.com/invite/<%= current_user.referral %>" target="_top" class="social-btn social-btn--sms"><i class="fa fa-comment"></i></a>
-                        <% else %>
-                            <a href="mailto:someone@example.com?subject=Play%20free%20games.%20Earn%20real%20cash.&body=Play%20free%20games.%20Earn%20real%20cash.%20www.getluckee.com%2Finvite%2F<%= current_user.referral %>" target="_top" class="social-btn social-btn--mail"><i class="fa fa-envelope"></i></a>
-                        <% end %>
-                    </div>
+                    <% if request.env["HTTP_USER_AGENT"].match(/iPhone OS 9/) || request.env["HTTP_USER_AGENT"].match(/iPad/) %>
+                        <a href="sms:&body=Play%20free%20games.%20Earn%20Real%20Cash.%20Check%20out%20www.getluckee.com/invite/<%= current_user.referral %>" target="_top" class="social-btn social-btn--sms"><i class="fa fa-comment"></i></a>
+                    <% elsif request.env["HTTP_USER_AGENT"].match(/Android/) %>
+                        <a href="sms:?body=Play%20free%20games.%20Earn%20Real%20Cash.%20Check%20out%20www.getluckee.com/invite/<%= current_user.referral %>" target="_top" class="social-btn social-btn--sms"><i class="fa fa-comment"></i></a>
+                    <% else %>
+                        <a href="mailto:someone@example.com?subject=Play%20free%20games.%20Earn%20real%20cash.&body=Play%20free%20games.%20Earn%20real%20cash.%20www.getluckee.com%2Finvite%2F<%= current_user.referral %>" target="_top" class="social-btn social-btn--mail"><i class="fa fa-envelope"></i></a>
+                    <% end %>
                 </div>
             </div>
         <% end %>
