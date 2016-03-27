@@ -840,7 +840,7 @@ class GamesController < ApplicationController
             when "2048"
                 credits = (score/750.to_f).ceil - 1
             when "traffic"
-                credits = (score/7.to_f).ceil - 1
+                credits = (score/14.to_f).ceil - 1
             when "flappy-pilot"
                 credits = (score/10.to_f).ceil - 1
             when "black-hole"
