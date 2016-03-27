@@ -12,6 +12,13 @@
 
         <a href="http://twitter.com/home?status=Play%20free%20games.%20Earn%20real%20cash.%20www.getluckee.com%2Finvite%2F<%= current_user.referral %>" class="social-btn social-btn--twitter"><i class="fa fa-twitter"></i></a>
 
-        <a href="sms:1234567890&body=Play%20free%20games.%20Earn%20Real%20Cash.%20Check%20out%20www.getluckee.com/<%= current_user.referral %>" target="_top" class="social-btn social-btn--mail"><i class="fa fa-envelope"></i></a>
+
+        <% if request.env["HTTP_USER_AGENT"].match(/iPhone OS 9/) || request.env["HTTP_USER_AGENT"].match(/iPad/) %>
+            <a href="sms:1234567890&body=Play%20free%20games.%20Earn%20Real%20Cash.%20Check%20out%20www.getluckee.com/invite/<%= current_user.referral %>" target="_top" class="social-btn social-btn--mail"><i class="fa fa-comment"></i></a>
+        <% elsif request.env["HTTP_USER_AGENT"].match(/Android/) %>
+            <a href="sms:1234567890&body=Play%20free%20games.%20Earn%20Real%20Cash.%20Check%20out%20www.getluckee.com/invite/<%= current_user.referral %>" target="_top" class="social-btn social-btn--mail"><i class="fa fa-comment"></i></a>
+        <% else %>
+            <a href="mailto:someone@example.com?subject=Play%20free%20games.%20Earn%20real%20cash.&body=Play%20free%20games.%20Earn%20real%20cash.%20www.getluckee.com%2Finvite%2F<%= current_user.referral %>" target="_top" class="social-btn social-btn--mail"><i class="fa fa-envelope"></i></a>
+        <% end %>
     </div>
 </div>
