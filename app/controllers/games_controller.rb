@@ -853,9 +853,9 @@ class GamesController < ApplicationController
                     when 1
                         credits = (score/15.to_f).ceil - 1
                     when 2
-                        credits = (score/10.to_f).ceil - 1
+                        credits = (score/15.to_f).ceil - 1
                     when 3
-                        credits = (score/5.to_f).ceil - 1
+                        credits = (score/15.to_f).ceil - 1
                     else
                         credits = (score/15.to_f).ceil - 1
                 end

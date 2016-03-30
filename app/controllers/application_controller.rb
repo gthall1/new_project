@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   def check_country
     if request && request.ip 
       ip = request.ip
-      #ip = "78.62.183.39"
+      ip = "77.231.132.42"
       redirect_to country_path unless $geo.country(ip).country_code2 == 'US' || $geo.country(ip).country_code == 0
     end
   end
