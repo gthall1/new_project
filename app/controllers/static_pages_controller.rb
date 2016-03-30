@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
 
     layout :determine_layout
     before_filter :check_signed_in, :only => [:redeem,:redeem_credits,:refer,:new_cash_out,:new_donation]
-
+    skip_before_filter :check_country, :only => [:country]
     def check_signed_in
         redirect_to root_path if !signed_in?
     end
@@ -26,6 +26,10 @@ class StaticPagesController < ApplicationController
         else
             redirect_to games_path
         end
+
+    end
+
+    def country
 
     end
 
