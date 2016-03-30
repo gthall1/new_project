@@ -3,7 +3,8 @@ class StaticPagesController < ApplicationController
 
     layout :determine_layout
     before_filter :check_signed_in, :only => [:redeem,:redeem_credits,:refer,:new_cash_out,:new_donation]
-    skip_before_filter :check_country, :only => [:country]
+    skip_before_filter :check_country, :only => [:country,:waitlist_user]
+    
     def check_signed_in
         redirect_to root_path if !signed_in?
     end
@@ -30,7 +31,16 @@ class StaticPagesController < ApplicationController
     end
 
     def country
+        @waitlist_user = WaitlistUser.new
+    end
 
+    def waitlist_user
+        waitlist_user = WaitlistUser.new(waitlist_user_params)
+        if !WaitlistUser.where(email:waitlist_user.email).present?
+            waitlist_user.save
+        end
+        flash[:success] = "Successfully subscribed!"
+        redirect_to country_path
     end
 
     def set_username
@@ -219,4 +229,7 @@ class StaticPagesController < ApplicationController
         def cash_out_params
             params.require(:cash_out).permit(:user_id, :credits, :cash,:venmo,:paypal,:cashout_type)
         end
+        def waitlist_user_params
+            params.require(:waitlist_user).permit(:email, :arrival_id, :country)
+        end        
 end

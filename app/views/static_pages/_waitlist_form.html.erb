@@ -1,0 +1,17 @@
+
+    <div style='max-width:300px;margin:auto;'>
+      <p> Get contacted when <br/>
+        we open to new countries! </p>
+      <%= form_for(@waitlist_user,url:{:controller=>'static_pages', :action=>'waitlist_user'}) do |f| %>
+
+        <%= f.text_field :email, placeholder: 'Email' %>
+
+        <%= f.hidden_field :arrival_id, :value => session[:arrival_id] %>
+
+        <%= f.hidden_field :country, :value => $geo.country(Arrival.find(session[:arrival_id]).ip).country_name %>
+
+        <%= f.submit "Submit", class: "btn btn-outlined btn-white btn-lg btn-Create create-email" %>
+
+      <% end %>
+    </div>
+</div>

@@ -34,6 +34,10 @@ class User < ActiveRecord::Base
     challenges_as_challenged + challenges_as_challenger
   end
 
+  def origin_arrival
+    Arrival.where(id:self.arrival_id).first
+  end
+
   def get_highscore(args={})
     version = args[:version]
     case args[:timeframe]
