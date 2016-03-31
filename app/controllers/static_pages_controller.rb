@@ -177,7 +177,7 @@ class StaticPagesController < ApplicationController
         end
 
         if CashOut.where(user_id:current_user.id).last.created_at >= (Time.now-24.hours)
-            redirect_to redeem_credits_path(credits:@cash_out.credits), alert: "We're sorry you must wait 24 hours between cash outs! You are eligible to donate again after #{CashOut.where(user_id:current_user.id).last.created_at.strftime('%m/%d/%Y at %I:%M%p')}."
+            redirect_to redeem_credits_path(credits:@cash_out.credits), alert: "We're sorry you must wait 24 hours between cash outs! You are eligible to cash out again after #{CashOut.where(user_id:current_user.id).last.created_at.strftime('%m/%d/%Y at %I:%M%p')}."
         elsif current_user.credits < @cash_out.credits
             redirect_to redeem_credits_path(credits:@cash_out.credits), alert: "You dont have enough credits to cash that out! This requires #{@cash_out.credits}, and you have #{current_user.credits}."
         elsif !@cash_out.cashout_type.nil? && (!@cash_out.paypal.blank? || !@cash_out.venmo.blank?) && @cash_out.save
