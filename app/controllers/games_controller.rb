@@ -251,6 +251,7 @@ class GamesController < ApplicationController
             elsif request && request.referer
                 game_id = request.referer.split('/').last.to_i
             end
+
             create_new_game_session(params[:score],game_id)
             game_session = UserGameSession.where(token: session[:game_token]).first
         end
@@ -639,6 +640,11 @@ class GamesController < ApplicationController
         elsif old_game
             old_game_name = old_game.game.name
             game_id = old_game.id
+            if old_game_name == '2048'
+                # if old_game.created_at >= Time.now-2.minutes
+                #     redirect_to root_path, notice: 'Rate limit on games hit. Please play check back later.'
+                # end
+            end
         end
 
         if newgame
@@ -771,11 +777,15 @@ class GamesController < ApplicationController
 
     #TODO: CLEAN THIS UP! SHITS GETTN CRAZY!
     def set_game_token(args={})
+
         score = args[:score] ||= 0
         game_name = args[:game_name] ||= "Memory Game"
         version = args[:version] ||= nil
         if current_user
             old_games = UserGameSession.where(user_id:current_user.id,active:true)
+            # if old_games && old_games.last.created_at >= (Time.now-1.minutes-30.seconds)
+            #     redirect_to root_path, notice: 'Rate limit on games hit. Please play check back later.'
+            # end
             old_games.each do | o |
                 o.active = false
                 o.save
@@ -838,7 +848,16 @@ class GamesController < ApplicationController
             when "sorcerer-game"
                 credits = (score/5000.to_f).ceil - 1 #subtract 1 otherwise itll give a credit once anything is scored
             when "2048"
-                credits = (score/750.to_f).ceil - 1
+                case 
+                    when score > 3000
+                        credits = 1
+                    when score > 10000
+                        credits = 2
+                    when score >= 14000
+                        credits = (score/3000.to_f).ceil - 1
+                    else 
+                        credits = 0
+                end
             when "traffic"
                 credits = (score/14.to_f).ceil - 1
             when "flappy-pilot"
