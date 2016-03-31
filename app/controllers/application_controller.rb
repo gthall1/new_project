@@ -18,7 +18,11 @@ class ApplicationController < ActionController::Base
   def check_country
     if request && request.ip
       ip = request.ip
-      # ip = "77.231.132.42"
+
+      if Rails.env.development?
+        # ip = "77.231.132.42" 
+      end
+
       redirect_to country_path unless $geo.country(ip).country_code2 == 'US' || $geo.country(ip).country_code == 0
     end
   end
@@ -45,10 +49,10 @@ class ApplicationController < ActionController::Base
 				cookies.permanent[:u] = user_id
 			end
 
-            #delete survey cookie within a week of survey, TEMPORARY SOLUTION MUST FIX
-            if cookies[:survey] && Time.now <= Survey.last.created_at + 1.week
-                cookies.delete :survey
-            end
+      #delete survey cookie within a week of survey, TEMPORARY SOLUTION MUST FIX
+      if cookies[:survey] && Time.now <= Survey.last.created_at + 1.week
+          cookies.delete :survey
+      end
 			if request
 				landing_url = request.fullpath.truncate(250) if request.fullpath
 				if request.user_agent
@@ -67,7 +71,6 @@ class ApplicationController < ActionController::Base
 		end
 
 	end
-
 
 
   def is_mobile_device?
