@@ -64,6 +64,7 @@ GEM
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     geocoder (1.2.11)
+    geoip (1.6.1)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     hashie (3.4.2)
@@ -210,6 +211,7 @@ DEPENDENCIES
   coffee-rails (= 4.0.1)
   faker (= 1.1.2)
   geocoder
+  geoip
   httpi (~> 2.2.4)
   jbuilder (= 1.0.2)
   jquery-rails (= 3.0.4)
