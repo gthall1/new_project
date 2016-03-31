@@ -132,19 +132,19 @@ class StaticPagesController < ApplicationController
             when 3900
                 @cash_out.cash = 20
         end
-
-        if CashOut.where(user_id:current_user.id).last.created_at >= (Time.now-24.hours)
+        
+        prev_cash_out = CashOut.where(user_id:current_user.id).last
+        if prev_cash_out && prev_cash_out.created_at >= (Time.now-24.hours)
             redirect_to redeem_credits_path(credits:@cash_out.credits), alert: "We're sorry you must wait 24 hours between donations/cash outs! You are eligible to donate again after #{CashOut.where(user_id:current_user.id).last.created_at.strftime('%m/%d/%Y at %I:%M%p')}."
-
         elsif current_user.credits < @cash_out.credits
             redirect_to donate_credits_path(credits:@cash_out.credits), alert: "You dont have enough credits to cash that out! This requires #{@cash_out.credits}, and you have #{current_user.credits}."
         elsif !@cash_out.cashout_type.nil? && @cash_out.save
-                @current_user.credits = current_user.credits - @cash_out.credits
-                current_user.pending_credits = @cash_out.credits
-                current_user.save
-                if Rails.env.production?
-                    UserNotifier.send_donation_email({user_id:current_user.id}).deliver
-                end
+            @current_user.credits = current_user.credits - @cash_out.credits
+            current_user.pending_credits = @cash_out.credits
+            current_user.save
+            if Rails.env.production?
+                UserNotifier.send_donation_email({user_id:current_user.id}).deliver
+            end
 
         else
             redirect_to donate_credits_path(credits:@cash_out.credits), alert: "Something went wrong. Please check the fields and try again."
@@ -175,8 +175,8 @@ class StaticPagesController < ApplicationController
             u.save
             @cash_out.paypal = params[:email]
         end
-
-        if CashOut.where(user_id:current_user.id).last.created_at >= (Time.now-24.hours)
+        prev_cash_out = CashOut.where(user_id:current_user.id).last
+        if prev_cash_out && prev_cash_out.created_at >= (Time.now-24.hours)
             redirect_to redeem_credits_path(credits:@cash_out.credits), alert: "We're sorry you must wait 24 hours between cash outs! You are eligible to cash out again after #{CashOut.where(user_id:current_user.id).last.created_at.strftime('%m/%d/%Y at %I:%M%p')}."
         elsif current_user.credits < @cash_out.credits
             redirect_to redeem_credits_path(credits:@cash_out.credits), alert: "You dont have enough credits to cash that out! This requires #{@cash_out.credits}, and you have #{current_user.credits}."
