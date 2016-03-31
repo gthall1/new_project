@@ -111,7 +111,9 @@ button {
         padding: 5%;
     }
 
-
+    .waitlist-page & {
+        padding: 0 7.5%;
+    }
 }
 .form-input--wrap {
     position: relative;
@@ -166,6 +168,10 @@ button {
     margin: 0 0 20px;
     text-align: center;
     font-weight: 400;
+
+    &.form__title--us-only {
+        color: $white;
+    }
 }
 .form-input--wrap-submit {
     height: 10vh;
@@ -205,7 +211,7 @@ button {
     text-align: center;
 }
 .app-legal--signup {
-    padding: 10px 0;
+    padding: 10px 0 0;
     text-align: center;
 }
 .form__required {
@@ -226,5 +232,51 @@ button {
 
     & + .legal-link {
         margin-left: 10px;
+    }
+}
+.new_waitlist_user {
+    text-align: center;
+
+    input {
+        background-color: rgba(236, 240, 241, 0.25);
+        border: none;
+        box-shadow: none;
+        padding: 10px;
+        width: 100%;
+        font-weight: 500;
+        color: white;
+        font-size: $sm;
+        max-height: 40px;
+        -webkit-font-smoothing: antialiased;
+
+        &::-webkit-input-placeholder {
+           color: $white;
+        }
+
+        &:-moz-placeholder { /* Firefox 18- */
+           color: $white;
+        }
+
+        &::-moz-placeholder {  /* Firefox 19+ */
+           color: $white;
+        }
+
+        &:-ms-input-placeholder {
+           color: $white;
+        }
+    }
+
+    input[type="text"] {
+        width: calc(100% - 20px) !important;
+    }
+
+    input[type="submit"] {
+        background-color: transparent;
+        border: 2px solid rgba(236, 240, 241, 0.25);
+        border-radius: 4px;
+        color: rgba(236, 240, 241, 0.6);
+        -webkit-font-smoothing: antialiased;
+        text-shadow: none;
+        padding-top: 7px;
     }
 }

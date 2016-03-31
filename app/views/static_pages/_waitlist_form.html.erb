@@ -1,8 +1,5 @@
-
-    <div style='max-width:300px;margin:auto;'>
-      <p> Get contacted when <br/>
-        we open to new countries! </p>
-      <%= form_for(@waitlist_user,url:{:controller=>'static_pages', :action=>'waitlist_user'}) do |f| %>
+<div >
+    <%= form_for(@waitlist_user,url:{:controller=>'static_pages', :action=>'waitlist_user'}) do |f| %>
 
         <%= f.text_field :email, placeholder: 'Email' %>
 
@@ -12,6 +9,5 @@
 
         <%= f.submit "Submit", class: "btn btn-outlined btn-white btn-lg btn-Create create-email" %>
 
-      <% end %>
-    </div>
+    <% end %>
 </div>

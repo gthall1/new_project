@@ -585,6 +585,16 @@ textarea {
     bottom: 15vh;
     z-index: 10;
 }
+.disclaimer--us-only {
+    font-size: $xs;
+    text-transform: uppercase;
+    color: $blue-steel;
+    margin-bottom: 0;
+
+    &.disclaimer--us-only-home {
+        color: $teal;
+    }
+}
 .mobile-home-footer{
     margin-top: 20px;
     width:100%;
