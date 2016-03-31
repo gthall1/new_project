@@ -110,10 +110,6 @@ button {
     @media (min-width: $ipad) {
         padding: 5%;
     }
-
-    .waitlist-page & {
-        padding: 0 7.5%;
-    }
 }
 .form-input--wrap {
     position: relative;
@@ -232,55 +228,5 @@ button {
 
     & + .legal-link {
         margin-left: 10px;
-    }
-}
-.new_waitlist_user {
-    text-align: center;
-
-    input {
-        background-color: rgba(236, 240, 241, 0.25);
-        border: none;
-        box-shadow: none;
-        padding: 0 15px;
-        width: 100%;
-        font-weight: 500;
-        color: white;
-        font-size: $sm;
-        height: 45px;
-        max-height: 45px;
-        -webkit-font-smoothing: antialiased;
-
-        &::-webkit-input-placeholder {
-           color: $white;
-        }
-
-        &:-moz-placeholder { /* Firefox 18- */
-           color: $white;
-        }
-
-        &::-moz-placeholder {  /* Firefox 19+ */
-           color: $white;
-        }
-
-        &:-ms-input-placeholder {
-           color: $white;
-        }
-
-        & + input {
-            margin-top: 5px;
-        }
-    }
-
-    input[type="text"] {
-        width: calc(100% - 30px) !important;
-    }
-
-    input[type="submit"] {
-        background-color: transparent;
-        border: 2px solid rgba(236, 240, 241, 0.25);
-        border-radius: 4px;
-        color: rgba(236, 240, 241, 0.6);
-        -webkit-font-smoothing: antialiased;
-        text-shadow: none;
     }
 }

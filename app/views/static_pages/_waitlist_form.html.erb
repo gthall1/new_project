@@ -1,13 +1,13 @@
 <div >
     <%= form_for(@waitlist_user,url:{:controller=>'static_pages', :action=>'waitlist_user'}) do |f| %>
 
-        <%= f.text_field :email, placeholder: 'Email' %>
+        <%= f.text_field :email, placeholder: 'Email', class: "trans-input trans-input--text" %>
 
         <%= f.hidden_field :arrival_id, :value => session[:arrival_id] %>
 
         <%= f.hidden_field :country, :value => $geo.country(Arrival.find(session[:arrival_id]).ip).country_name %>
 
-        <%= f.submit "Submit", class: "btn btn-outlined btn-white btn-lg btn-Create create-email" %>
+        <%= f.submit "Submit", class: "trans-input trans-input--submit" %>
 
     <% end %>
 </div>
