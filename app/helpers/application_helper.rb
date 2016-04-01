@@ -12,6 +12,7 @@ module ApplicationHelper
 
   def show_ads
     !is_mobile?
+    false
   end
 
   def is_mobile?
