@@ -848,12 +848,12 @@ class GamesController < ApplicationController
             when "sorcerer-game"
                 credits = (score/5000.to_f).ceil - 1 #subtract 1 otherwise itll give a credit once anything is scored
             when "2048"
-                case 
-                    when score > 3000
+                case score
+                    when 3000..9999
                         credits = 1
-                    when score > 10000
+                    when 10000..13999
                         credits = 2
-                    when score >= 14000
+                    when 14000..99999999999999
                         credits = (score/3000.to_f).ceil - 1
                     else 
                         credits = 0
@@ -861,12 +861,12 @@ class GamesController < ApplicationController
             when "traffic"
                 credits = (score/14.to_f).ceil - 1
             when "flappy-pilot"
-                credits = (score/10.to_f).ceil - 1
+                credits = (score/16.to_f).ceil - 1
             when "black-hole"
                 #credits = score * 5
                 credits_to_apply = 0
             when "fall-down"
-                credits = (score/15.to_f).ceil - 1
+                credits = (score/25.to_f).ceil - 1
             when "tap-color"
                 case version
                     when 1
@@ -879,8 +879,22 @@ class GamesController < ApplicationController
                         credits = (score/15.to_f).ceil - 1
                 end
             when 'gold-runner'
-                credits = (score/3.to_f).ceil - 1
-
+                case score
+                    when 5..14
+                        credits = 1
+                    when 11..18
+                        credits = 2
+                    when 19..27
+                        credits = 3
+                    when 28..37
+                        credits = 4
+                    when 37..99999
+                        credits = (score/10.to_f).ceil + 1 
+                    else 
+                        credits = 0
+                end                
+                #credits = (score/3.to_f).ceil - 1
+                credits
         end
         if credits < 0
             credits = 0
