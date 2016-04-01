@@ -77,52 +77,57 @@ class UsersController < ApplicationController
     def create
         @user = User.new(user_params)
 
-        if session[:arrival_id]
-            @user.arrival_id = session[:arrival_id]
-        elsif cookies[:a_id]
-            @user.arrival_id = cookies[:a_id]
-        end
-
-        if @user.save
-            if !@user.oath_token.blank?
-                session[:auth_token] = @user.oath_token
-            end
-            arrival = Arrival.where(id:session[:arrival_id]).first
-            if arrival
-                arrival.user_id = @user.id
-                arrival.save
-            end
-            if session[:referred_user_id]
-                referral_user = User.where(id:session[:referred_user_id]).first
-                if referral_user
-                    referral_user.add_credits({credits:get_refer_credits(referral_user.user_type_name)})
-                    referral_user.save
-                    session[:referred_user_id] = nil
-                end
-            end
-
-            #some weird things, the request doesnt exist
-            if request && request.user_agent
-                user_agent = request.user_agent
-            else
-                user_agent = ""
-            end
-
-            #only sending confirmation email as a way around native browses from twitter and facebook
-            if user_agent.include?("iPhone" || "iPad" || "iPod") && user_agent.include?("FBAN")
-                UserNotifier.send_confirmation_email({user_id: @user.id,verify_token:@user.verify_token}).deliver
-                redirect_to confirm_email_path
-            elsif user_agent.include?("iPhone" || "iPad" || "iPod") && user_agent.include?("Twitter for iPhone")
-                UserNotifier.send_confirmation_email({user_id: @user.id,verify_token:@user.verify_token}).deliver
-                redirect_to confirm_email_path
-            else
-                sign_in @user
-                cookies.permanent[:u] = @user.id
-                flash[:success] = "Welcome to Luckee!"
-                redirect_to(root_url)
-            end
+        if !signups_allowed?
+            flash[:notice] = 'We are currently restricting new users for our closed beta. Please join our wait list to receive an invite in the future!'
+            redirect_to root_path
         else
-            render 'new'
+            if session[:arrival_id]
+                @user.arrival_id = session[:arrival_id]
+            elsif cookies[:a_id]
+                @user.arrival_id = cookies[:a_id]
+            end
+
+            if @user.save
+                if !@user.oath_token.blank?
+                    session[:auth_token] = @user.oath_token
+                end
+                arrival = Arrival.where(id:session[:arrival_id]).first
+                if arrival
+                    arrival.user_id = @user.id
+                    arrival.save
+                end
+                if session[:referred_user_id]
+                    referral_user = User.where(id:session[:referred_user_id]).first
+                    if referral_user
+                        referral_user.add_credits({credits:get_refer_credits(referral_user.user_type_name)})
+                        referral_user.save
+                        session[:referred_user_id] = nil
+                    end
+                end
+
+                #some weird things, the request doesnt exist
+                if request && request.user_agent
+                    user_agent = request.user_agent
+                else
+                    user_agent = ""
+                end
+
+                #only sending confirmation email as a way around native browses from twitter and facebook
+                if user_agent.include?("iPhone" || "iPad" || "iPod") && user_agent.include?("FBAN")
+                    UserNotifier.send_confirmation_email({user_id: @user.id,verify_token:@user.verify_token}).deliver
+                    redirect_to confirm_email_path
+                elsif user_agent.include?("iPhone" || "iPad" || "iPod") && user_agent.include?("Twitter for iPhone")
+                    UserNotifier.send_confirmation_email({user_id: @user.id,verify_token:@user.verify_token}).deliver
+                    redirect_to confirm_email_path
+                else
+                    sign_in @user
+                    cookies.permanent[:u] = @user.id
+                    flash[:success] = "Welcome to Luckee!"
+                    redirect_to(root_url)
+                end
+            else
+                render 'new'
+            end
         end
     end
 
