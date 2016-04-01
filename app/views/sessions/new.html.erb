@@ -24,7 +24,9 @@
             <%= f.submit "Sign in" %>
         <% end %>
 
-        <p>New user? <%= link_to "Sign up now!", signup_path %></p>
-        <%= link_to "(forgot password)", new_password_reset_path %>
+        <% if signups_allowed? %>
+            <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+            <%= link_to "(forgot password)", new_password_reset_path %>
+        <% end %>
     </div>
 </div>

@@ -168,6 +168,11 @@ button {
     &.form__title--us-only {
         color: $white;
     }
+
+    .desktop-home & {
+        line-height: 24px;
+        text-align: left;
+    }
 }
 .form-input--wrap-submit {
     height: 10vh;

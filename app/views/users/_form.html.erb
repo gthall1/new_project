@@ -1,3 +1,4 @@
+<% if signups_allowed? %>
 <div class='mobile-form'>
     <div class="welcome-box-m">Play Games. Earn Cash.</div>
     <% if @facebook_link %>
@@ -40,3 +41,7 @@
         Already have an account?  <%= link_to "Sign In", signin_path %>
       </div>
 </div>
+<% else %>
+  <img style="margin-top: 20px;" src="http://i.giphy.com/3xz2BtrwQ2wIBeciAw.gif">
+<% end %>
+

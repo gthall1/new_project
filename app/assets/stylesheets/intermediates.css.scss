@@ -195,6 +195,25 @@ body.waitlist-page {
 .new_waitlist_user {
     text-align: center;
 
+    .desktop-home & {
+        .trans-input {
+            background-color: rgba(129, 123, 223, 0.5);
+
+            &.trans-input--submit {
+                border: 2px solid rgba(129, 123, 223, 0.5);
+                color: rgba(129, 123, 223, 0.7);
+                margin-bottom: 10px;
+                @include transition;
+
+                &:hover {
+                    background-color: rgba(129, 123, 223, 1);
+                    color: $white;
+                    border: 2px solid transparent;
+                }
+            }
+        }
+    }
+
     .trans-input {
         background-color: rgba(236, 240, 241, 0.25);
         border: none;

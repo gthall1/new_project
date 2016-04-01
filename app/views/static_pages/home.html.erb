@@ -2,34 +2,40 @@
 
 <a href="/signin" class="desktop-signin">Sign In</a>
 <div class="sign-up">
-    <img src="/assets/homescreen-logo.png" class="top-title">
+        <img src="/assets/homescreen-logo.png" class="top-title">
+        <div class="welcome-box-m">Play free games. Earn real cash.</div>
 
-    <%= render 'users/form'%>
+        <% if signups_allowed? %>
+            <%= render 'users/form'%>
+        <% else %>
+            <h1 class="form__title">Thanks for visiting Luckee.  We are in private beta right now, but we invite new users on a first come, first served basis.  Sign up below to gain early access!</h1>
+            <%= render 'static_pages/waitlist_form' %>
+        <% end %>
 
-    <div class='footer-links'>
-      <a href="/assets/luckee_privacy_policy.pdf"  target="_blank"  class='privacy-link'>Privacy Policy</a>
-      <a href="/assets/luckee_TOS.pdf"  target="_blank"  class='terms-link'>Terms of Service</a>
-    </div>
+        <div class='footer-links'>
+            <a href="/assets/luckee_privacy_policy.pdf"  target="_blank"  class='privacy-link'>Privacy Policy</a>
+            <a href="/assets/luckee_TOS.pdf"  target="_blank"  class='terms-link'>Terms of Service</a>
+        </div>
 </div><!--/.sign-up -->
 <img src="/assets/luckee_group.png" class="luckee-balloon">
 
 <div class='home-bottom'>
-  <div class='mountain-image'>
-      <%= embedded_svg('svgs/mountains.svg', :class => 'mountains') %>
-  </div>
-  <div class='trees'>
-    <%= embedded_svg('svgs/trees_and_low_hills.svg', :class => 'tree-hills') %>
-  </div>
-  <div class='bottom-content'>
-    <%= image_tag 'white_down.png', :class => 'white-down floating' %>
-      <h2>How it Works </h2>
-        <img src="/assets/landing_icon_1.png" class="how-it-works-image">
-        <p>Play any game to<br/> earn credits</p>
+    <div class='mountain-image'>
+            <%= embedded_svg('svgs/mountains.svg', :class => 'mountains') %>
+    </div>
+    <div class='trees'>
+        <%= embedded_svg('svgs/trees_and_low_hills.svg', :class => 'tree-hills') %>
+    </div>
+    <div class='bottom-content'>
+        <%= image_tag 'white_down.png', :class => 'white-down floating' %>
+            <h2>How it Works </h2>
+                <img src="/assets/landing_icon_1.png" class="how-it-works-image">
+                <p>Play any game to<br/> earn credits</p>
 
-        <img src="/assets/landing_icon_2.png" class="how-it-works-image">
-        <p>Earn enough<br/> credits to cash <br/> out</p>
+                <img src="/assets/landing_icon_2.png" class="how-it-works-image">
+                <p>Earn enough<br/> credits to cash <br/> out</p>
 
-        <img src="/assets/landing_icon_3.png" class="how-it-works-image">
-        <p>Request a cash out!<br/> We will redeem your <br/> credits and send you <br/> cash within 24 hours.</p>
-  </div>
+                <img src="/assets/landing_icon_3.png" class="how-it-works-image">
+                <p>Request a cash out!<br/> We will redeem your <br/> credits and send you <br/> cash within 24 hours.</p>
+    </div>
 </div>

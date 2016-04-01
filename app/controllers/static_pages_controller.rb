@@ -4,12 +4,14 @@ class StaticPagesController < ApplicationController
     layout :determine_layout
     before_filter :check_signed_in, :only => [:redeem,:redeem_credits,:refer,:new_cash_out,:new_donation]
     skip_before_filter :check_country, :only => [:country,:waitlist_user]
-    
+
     def check_signed_in
         redirect_to root_path if !signed_in?
     end
 
     def home
+        @waitlist_user = WaitlistUser.new
+
        #if someone coming with vid they just lcicked verify token
         if params[:vid] && User.find_by_verify_token(params[:vid])
             user = User.find_by_verify_token(params[:vid])
@@ -63,7 +65,7 @@ class StaticPagesController < ApplicationController
 
     def home_invite
         referred_user_id = User.where(referral:params[:referral]).first
-        if referred_user_id 
+        if referred_user_id
             arrival = Arrival.where(id:session["arrival_id"]).first
             if arrival
                 session[:referred_user_id] = referred_user_id.id
@@ -132,7 +134,7 @@ class StaticPagesController < ApplicationController
             when 3900
                 @cash_out.cash = 20
         end
-        
+
         prev_cash_out = CashOut.where(user_id:current_user.id).last
         if prev_cash_out && prev_cash_out.created_at >= (Time.now-24.hours)
             redirect_to redeem_credits_path(credits:@cash_out.credits), alert: "We're sorry you must wait 24 hours between donations/cash outs! You are eligible to donate again after #{CashOut.where(user_id:current_user.id).last.created_at.strftime('%m/%d/%Y at %I:%M%p')}."
@@ -235,5 +237,5 @@ class StaticPagesController < ApplicationController
         end
         def waitlist_user_params
             params.require(:waitlist_user).permit(:email, :arrival_id, :country)
-        end        
+        end
 end
