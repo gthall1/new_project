@@ -36,7 +36,7 @@ class SessionsController < ApplicationController
             current_user.omniauth_connect(env['omniauth.auth'])
             redirect_to leaderboards_path
         else
-            if env['omniauth.auth'].info.email
+            if env['omniauth.auth'].info.email && (signups_allowed? || User.where(email:env['omniauth.auth'].info.email).present?)
                 user = User.omniauth(env['omniauth.auth'],session[:arrival_id])
             end
             if user
@@ -57,6 +57,9 @@ class SessionsController < ApplicationController
                 else    
                     redirect_to root_path
                 end
+            elsif !signups_allowed?
+                flash[:notice] = 'We are currently restricting new users for our closed beta. Please join our wait list to receive an invite in the future!'
+                redirect_to root_path                
             elsif env['omniauth.auth'].info.email.nil?
                 flash.now[:error] = 'Email is required in order to contact you for cash outs.'
                 @facebook_link = "/auth/facebook?auth_type=rerequest&scope=email"
