@@ -1,3 +1,6 @@
+<% if show_ads %>
+    <%= render partial: "/ad_units/ad_wide", :locals => {ad_slot: "3917225076"} %>
+<% end %>
 <p id="notice"><%= notice %></p>
   <% case @game.slug %>
     <% when 'test' %>
