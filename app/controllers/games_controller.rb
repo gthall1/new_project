@@ -849,12 +849,12 @@ class GamesController < ApplicationController
                 credits = (score/5000.to_f).ceil - 1 #subtract 1 otherwise itll give a credit once anything is scored
             when "2048"
                 case score
-                    when 3000..9999
+                    when 5000..9999
                         credits = 1
                     when 10000..13999
                         credits = 2
                     when 14000..99999999999999
-                        credits = (score/3000.to_f).ceil - 1
+                        credits = (score/3000.to_f).ceil - 2
                     else 
                         credits = 0
                 end
