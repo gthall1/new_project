@@ -70,6 +70,7 @@ class UsersController < ApplicationController
     end
 
     def new
+        @waitlist_user = WaitlistUser.new
         @user = User.new
         @is_mobile = is_mobile?
     end
