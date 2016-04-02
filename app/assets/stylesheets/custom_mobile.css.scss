@@ -51,6 +51,7 @@ html {
     padding: 10px 0;
     border-radius: 0;
     text-align: center;
+    text-shadow: none;
     background-color: rgba(230, 126, 34,0.9);
     @include transition(top, 0.25s, ease, 1s);
 

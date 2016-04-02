@@ -16,7 +16,7 @@ module ApplicationHelper
   end
 
   def signups_allowed?
-      false
+      true
   end
 
   def is_mobile?
