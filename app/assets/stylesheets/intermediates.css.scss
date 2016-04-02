@@ -203,7 +203,6 @@ body.waitlist-page {
                 border: 2px solid rgba(129, 123, 223, 0.5);
                 color: rgba(129, 123, 223, 0.7);
                 margin-bottom: 10px;
-                @include transition;
 
                 &:hover {
                     background-color: rgba(129, 123, 223, 1);
@@ -215,44 +214,10 @@ body.waitlist-page {
     }
 
     .trans-input {
-        background-color: rgba(236, 240, 241, 0.25);
-        border: none;
-        box-shadow: none;
-        padding: 0 15px;
-        width: 100%;
-        font-weight: 500;
-        color: white;
-        font-size: $sm;
-        height: 45px !important;
-        max-height: 45px;
-        -webkit-font-smoothing: antialiased;
-
-        &::-webkit-input-placeholder {
-           color: $white;
-        }
-
-        &:-moz-placeholder { /* Firefox 18- */
-           color: $white;
-        }
-
-        &::-moz-placeholder {  /* Firefox 19+ */
-           color: $white;
-        }
-
-        &:-ms-input-placeholder {
-           color: $white;
-        }
-
-        & + input {
-            margin-top: 5px;
-        }
+        @extend %transparent-input;
 
         &.trans-input--submit {
-            background-color: transparent;
-            border: 2px solid rgba(236, 240, 241, 0.25);
-            border-radius: 4px;
-            color: rgba(236, 240, 241, 0.6);
-            text-shadow: none;
+            @extend %transparent-submit;
         }
 
         @media screen and (max-width: 1024px) {

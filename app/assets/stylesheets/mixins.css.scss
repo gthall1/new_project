@@ -1,3 +1,5 @@
+@import "variables";
+
 @mixin vertical-align($position: relative, $top: 50%) {
   position: $position;
   top: $top;
@@ -50,6 +52,49 @@
     &:hover {
         background-color: darken($baseColor, 5%);
     }
+}
+
+%transparent-input {
+  background-color: rgba(236, 240, 241, 0.25);
+  border: none;
+  box-shadow: none;
+  padding: 0 15px;
+  width: 100%;
+  font-weight: 500;
+  color: white;
+  font-size: $sm;
+  height: 45px !important;
+  max-height: 45px;
+  -webkit-font-smoothing: antialiased;
+
+  &::-webkit-input-placeholder {
+     color: $white;
+  }
+
+  &:-moz-placeholder { /* Firefox 18- */
+     color: $white;
+  }
+
+  &::-moz-placeholder {  /* Firefox 19+ */
+     color: $white;
+  }
+
+  &:-ms-input-placeholder {
+     color: $white;
+  }
+
+  & + input {
+      margin-top: 5px;
+  }
+}
+
+%transparent-submit {
+  background-color: transparent;
+  border: 2px solid rgba(236, 240, 241, 0.25);
+  border-radius: 4px;
+  color: rgba(236, 240, 241, 0.6);
+  text-shadow: none;
+  @include transition;
 }
 
 @keyframes slideIn {
