@@ -15,7 +15,7 @@ Cash Out Type: <%= @cash_out.cashout_type == 1 ? 'Paypal' : 'Venmo' %><br />
 
 	Lastname : <%= @user.lastname %><br />
 
-	Email : <%= @user.email %><br />
+	Email : <%= @cash_out.paypal %><br />
 
 <% else %>
 	venmo account: <%= @cash_out.venmo %><br />
