@@ -64,6 +64,13 @@ textarea {
 //   text-align: center;
 // }
 
+body.waitlist-page--construction {
+    .app-wrapper {
+        position: relative;
+        height: 100vh;
+    }
+}
+
 h2 {
   font-size: 1.2em;
   letter-spacing: -1px;
