@@ -164,7 +164,9 @@ class User < ActiveRecord::Base
         else
             self.lifetime_credits = credits
         end
-        self.save
+        if self.enabled != false
+          self.save
+        end
     end
 
     def User.new_remember_token
