@@ -24,6 +24,7 @@
 //= require siteCookies
 //= require main
 //= require superslides
+//= require jackhammer
 //= require jquery.slideandswipe.min
 //= require touchSwipe
 //= require zeroclipboard

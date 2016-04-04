@@ -23,12 +23,6 @@ ActiveRecord::Schema.define(version: 20160404001430) do
     t.datetime "updated_at"
   end
 
-  create_table "answers", force: :cascade do |t|
-    t.string   "text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "api_users", force: :cascade do |t|
     t.string   "token"
     t.integer  "user_id"
@@ -65,10 +59,10 @@ ActiveRecord::Schema.define(version: 20160404001430) do
     t.integer  "challenged_user_id"
     t.integer  "game_id"
     t.integer  "winner_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "user_score"
     t.integer  "challenged_score"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "user_score"
   end
 
   create_table "feed_games", force: :cascade do |t|
@@ -146,13 +140,6 @@ ActiveRecord::Schema.define(version: 20160404001430) do
     t.datetime "updated_at",         null: false
   end
 
-  create_table "questions", force: :cascade do |t|
-    t.string   "text"
-    t.string   "question_type"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
   create_table "sessions", force: :cascade do |t|
     t.string   "session_id", null: false
     t.text     "data"
@@ -162,20 +149,6 @@ ActiveRecord::Schema.define(version: 20160404001430) do
 
   add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
   add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
-
-  create_table "survey_question_answers", force: :cascade do |t|
-    t.integer  "survey_question_id"
-    t.integer  "answer_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-  end
-
-  create_table "survey_questions", force: :cascade do |t|
-    t.integer  "survey_id"
-    t.integer  "question_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
 
   create_table "surveys", force: :cascade do |t|
     t.integer  "credits"
@@ -213,15 +186,6 @@ ActiveRecord::Schema.define(version: 20160404001430) do
   add_index "user_game_sessions", ["game_id"], name: "index_user_game_sessions_on_game_id", using: :btree
   add_index "user_game_sessions", ["updated_at"], name: "index_user_game_sessions_on_updated_at", using: :btree
   add_index "user_game_sessions", ["user_id"], name: "index_user_game_sessions_on_user_id", using: :btree
-
-  create_table "user_survey_answers", force: :cascade do |t|
-    t.integer  "user_survey_id"
-    t.integer  "user_id"
-    t.integer  "question_id"
-    t.integer  "answer_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
 
   create_table "user_surveys", force: :cascade do |t|
     t.integer  "user_id"

@@ -1,3 +1,18 @@
+.vertical-align {
+    position: relative;
+    height: calc(100vh - 110px);
+}
+
+.vertical-align__wrap {
+    @include vertical-align;
+    padding: 0 7.5%;
+    text-align: center;
+}
+
+.return-home--link {
+    text-align: center;
+}
+
 .intermediate .mobile-container {
     background-image: none;
 }
@@ -163,6 +178,15 @@ body.waitlist-page {
         max-width: 900px;
         margin: auto;
     }
+
+    &.waitlist-page--construction {
+        .mobile-header {
+            display: none;
+        }
+        .bottom-navigation {
+            display: none;
+        }
+    }
 }
 
 .gradient-container {
@@ -189,13 +213,14 @@ body.waitlist-page {
     .welcome-box-m {
         font-size: $md;
         color: $white;
+        margin-top: -15px;
     }
 }
 
 .cash-out__title {
     color: $black;
     font-size: $xl;
-    margin-top: 20px;
+    margin-top: 0;
 }
 
 .new_waitlist_user {
