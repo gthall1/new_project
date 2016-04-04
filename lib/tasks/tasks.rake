@@ -10,6 +10,13 @@ task :fix_old_fb_names => :environment do | t, args |
     end
 end
 
+task :disable_new_users => :environment do |t,args|
+    User.where("created_at >= '2016-03-29'").each do | u | 
+        u.enabled = false
+        p "setting #{u.name} disabled"
+        u.save
+    end
+end
 
 task :make_highscores => :environment do | t, args |
     if !Rails.env.production? 
