@@ -10,6 +10,7 @@ body {
     z-index: 1;
 
     &.waitlist-page--construction {
+        .desktop-wrapper,
         .mobile-container {
             position: relative;
             height: 100vh;
