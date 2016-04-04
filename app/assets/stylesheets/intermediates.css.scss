@@ -178,6 +178,15 @@ body.waitlist-page {
         max-width: 900px;
         margin: auto;
     }
+
+    &.waitlist-page--construction {
+        .mobile-header {
+            display: none;
+        }
+        .bottom-navigation {
+            display: none;
+        }
+    }
 }
 
 .gradient-container {
@@ -204,6 +213,7 @@ body.waitlist-page {
     .welcome-box-m {
         font-size: $md;
         color: $white;
+        margin-top: -15px;
     }
 }
 
