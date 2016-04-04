@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  before_filter :record_arrival, :check_country
+  before_filter :record_arrival, :check_country, :check_enabled
 
   include SessionsHelper
 
@@ -24,6 +24,12 @@ class ApplicationController < ActionController::Base
       end
 
       redirect_to country_path unless $geo.country(ip).country_code2 == 'US' || $geo.country(ip).country_code == 0
+    end
+  end
+
+  def check_enabled
+    if signed_in? && current_user && current_user.enabled == false
+      redirect_to closed_beta_path
     end
   end
 
