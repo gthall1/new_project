@@ -5,8 +5,10 @@
 var frameNumber = 0;
 
 window.addEventListener('load', function () {
-    initJackhammer();
-    animateIn();
+    if ($('body').hasClass('waitlist-page--construction')) {
+        initJackhammer();
+        animateIn();
+    }
 }, false);
 
 
