@@ -4,6 +4,7 @@ class StaticPagesController < ApplicationController
     layout :determine_layout
     before_filter :check_signed_in, :only => [:redeem,:redeem_credits,:refer,:new_cash_out,:new_donation]
     skip_before_filter :check_country, :only => [:country,:waitlist_user]
+    skip_before_filter :check_enabled, :only => [:closed_beta]
 
     def check_signed_in
         redirect_to root_path if !signed_in?
@@ -34,6 +35,9 @@ class StaticPagesController < ApplicationController
 
     def country
         @waitlist_user = WaitlistUser.new
+    end
+
+    def closed_beta
     end
 
     def waitlist_user

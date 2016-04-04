@@ -72,6 +72,8 @@ Alotto::Application.routes.draw do
     match '/unlock_game/:slug', to: 'games#purchase_confirm', as: 'unlock_game', via: 'get'
     
     match '/us_only', to: 'static_pages#country', as: 'country', via: 'get'
+    match '/closed_beta', to: 'static_pages#closed_beta', as: 'closed_beta', via: 'get'
+    
     match '/waitlist_user', to: 'static_pages#waitlist_user', via: 'post'
 
 
