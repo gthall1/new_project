@@ -50,7 +50,7 @@ function animateIn()
 
     TweenMax.to(jackhammerSVG, 1, {delay:.2, opacity:1});
     TweenMax.from(jackhammer_title, 1, {alpha:0});
-    TweenMax.from(jackhammer_socialmedia, 1, {alpha:0});
+    // TweenMax.from(jackhammer_socialmedia, 1, {alpha:0}); //Uncomment for social media interaction
 
     var jackhammerCountdown = document.getElementById("svg_countdown");
 

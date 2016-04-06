@@ -40,6 +40,11 @@ class StaticPagesController < ApplicationController
     def closed_beta
     end
 
+    def kd_home
+
+    end
+
+
     def waitlist_user
         waitlist_user = WaitlistUser.new(waitlist_user_params)
         if !WaitlistUser.where(email:waitlist_user.email).present?

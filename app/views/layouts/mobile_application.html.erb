@@ -184,20 +184,8 @@
 
         <div <%= "id=#{@mobile_container_id}" if @mobile_container_id %> class='mobile-container <% if !signed_in? %>with-money<% end %>' style="width:100%;">
             <div class="mobile--overlay">
-                <a href="/" class="js-overlay__opt-out overlay__opt-out ga-preview-event">Preview in Browser</a>
-                <a href="/" class="overlay__back-to-dash"><img class="home-icon--small" src="/assets/home_icon.png"></a>
-                <div class="overlay__content">
-                    <p>Adding Luckee to your home screen makes our site full screen &amp; improves the gaming experience</p>
-                    <img class="overlay__logo" src="/assets/logo-144.png">
-                    <h1 class="overlay__title">Luckee</h1>
-                    <p>To install, tap <img class="overlay__bookmark" src="/assets/bookmark.png"> and choose</p>
-                    <p>"Add to Home Screen"</p>
-                </div><!-- /.overlay__content -->
-                <div class="rotate-dialogue">
-                            <i class="fa fa-repeat rotate__icon"></i>
-                            <h1 class="rotate__title">Please rotate your screen to play!</h1>
-                </div>
-                <i class="overlay__down-arrow ios fa fa-long-arrow-down"></i>
+                <%= render 'static_pages/overlay_add_to_home' %>
+                <%= render 'static_pages/overlay_rotate_to_play' %>
             </div><!-- /.mobile--overlay -->
             <% if signed_in? %>
                 <div class="mobile-header js-mobile-header">
