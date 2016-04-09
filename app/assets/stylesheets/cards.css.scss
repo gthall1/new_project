@@ -36,21 +36,23 @@
     transition: transform .2s ease-in-out;
     outline: 0;
 
-    position: relative;
-    background-size: 100%;
-    background-position: center center;
+    .leaderboard-landing & {
+        position: relative;
+        background-size: 100%;
+        background-position: center center;
 
-    &::after {
-        content: '';
-        height: 100%;
-        width: 100%;
-        left: 0;
-        top: 0;
-        background-color: rgba(80, 80, 80, 0.75);
-        position: absolute;
-        z-index: 1;
-        border-radius: 4px;
-        z-index: 0;
+        &::after {
+            content: '';
+            height: 100%;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background-color: rgba(80, 80, 80, 0.75);
+            position: absolute;
+            z-index: 1;
+            border-radius: 4px;
+            z-index: 0;
+        }
     }
 
 
