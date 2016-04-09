@@ -127,6 +127,10 @@
     font-size: $xl;
     margin-bottom: 2px;
     color: $black;
+
+    .leaderboard-landing & {
+        color: $white;
+    }
 }
 .survey__completed {
     // margin-top: 10px;
