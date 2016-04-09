@@ -84,6 +84,20 @@ p {
   font-size: 1.1em;
   line-height: 1.7em;
 }
+.nav-dropdown__icon {
+  height: 20px;
+  width: auto;
+  position: relative;
+
+  &.nav-dropdown__icon--survey {
+    right: 5px;
+    bottom: 1px;
+  }
+
+  &.nav-dropdown__icon--leaders {
+    height: 22px;
+  }
+}
 .nav-dropdown {
   width: 100%;
   display: inline-block;
@@ -127,7 +141,7 @@ p {
 .nav-dropdown__name {
   cursor: pointer;
   color: $white;
-  margin: 0 25px;
+  margin: 0 10px 0 25px;
   display: inline-block;
   position: relative;
   .fa-caret-down {
@@ -143,9 +157,10 @@ p {
   display: inline-block;
   background: $purple-light;
   border-radius: 100px;
-  color: $red;
+  color: $white;
   padding: 10px 20px 10px 50px;
   position: relative;
+  margin-left: 20px;
 
   &::before {
     content: '';
@@ -200,10 +215,10 @@ p {
     display: block;
     padding: 5px 0;
     text-decoration: none;
-    color: $purple;
+    color: $lavender;
     @include transition();
     &:hover {
-      color: $purple-light;
+      color: $purple;
     }
   }
   &:first-child {
@@ -239,7 +254,6 @@ p {
     display: inline-block;
     text-align: right;
     height: 60px;
-    width: 40vw;
     position: absolute !important;
     right: 0;
     margin-right: 5%;
@@ -251,11 +265,13 @@ p {
   .nav-logo {
     height: 35px;
     width: auto;
+    position: relative;
+    bottom: 5px;
   }
   .nav-dropdown {
     & > a {
       color: $white;
-      margin-left: 25px;
+      margin-left: 30px;
 
       &:hover {
         color: $white;

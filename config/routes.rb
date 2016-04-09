@@ -27,7 +27,7 @@ Alotto::Application.routes.draw do
     match '/update_username',  to: 'users#update_username',         via: 'patch'
 
     # Static Pages
-    match '/kd', to: 'static_pages#kd_home', via: 'get'
+    # match '/kd', to: 'static_pages#kd_home', via: 'get'
     match '/faq',    to: 'static_pages#faq',    via: 'get'
     match '/onboarding', to: 'static_pages#onboarding', via: 'get'
     match '/how_it_works', to: 'static_pages#how_it_works', via: 'get'
