@@ -34,6 +34,11 @@ class StaticPagesController < ApplicationController
     end
 
     def country
+        if session[:arrival_id]
+           @country = $geo.country(Arrival.find(session[:arrival_id]).ip).country_name
+        else
+           @country = "Unknown"
+        end
         @waitlist_user = WaitlistUser.new
     end
 

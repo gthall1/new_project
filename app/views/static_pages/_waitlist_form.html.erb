@@ -5,7 +5,7 @@
 
         <%= f.hidden_field :arrival_id, :value => session[:arrival_id] %>
 
-        <%= f.hidden_field :country, :value => $geo.country(Arrival.find(session[:arrival_id]).ip).country_name %>
+        <%= f.hidden_field :country, :value => @country %>
 
         <%= f.submit "Submit", class: "trans-input trans-input--submit" %>
 
