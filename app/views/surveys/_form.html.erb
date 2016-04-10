@@ -1,4 +1,5 @@
-<%= form_for(@survey) do |f| %>
+<div style='width:280px;margin:auto;' >
+<%= semantic_form_for(@survey) do |f| %>
   <% if @survey.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@survey.errors.count, "error") %> prohibited this survey from being saved:</h2>
@@ -20,8 +21,20 @@
     <%= f.label :credits %><br>
     <%= f.text_field :credits %>
   </div>
+  <h3>Questions </h3>
+  <div id='survey-questions' class='field'>
 
+    <ol class='question-list'>
+      <%= f.fields_for :survey_questions do |sq| %>
+        <%= render 'survey_question_fields', f: sq %>
+      <% end %>
+    </ol>
+    
+    <%= link_to_add_association 'add question', f, :survey_questions, 'data-association-insertion-node' => "#survey-questions .question-list", 'data-association-insertion-method' => "append", :wrap_object => Proc.new {|survey_question| survey_question.build_question; survey_question } %>
+
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+</div>

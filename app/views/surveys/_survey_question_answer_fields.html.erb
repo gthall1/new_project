@@ -1,0 +1,10 @@
+<li class="control-group nested-fields">
+  <div class="controls">
+    <h2> Answer </h2>
+    <%= f.semantic_fields_for :answer do |answer| %>
+      <%= answer.text_field :text %>
+    <% end %>
+
+  </div>
+    <%= link_to_remove_association "remove", f %>
+</li>

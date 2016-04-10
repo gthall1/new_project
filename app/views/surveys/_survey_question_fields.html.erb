@@ -1,0 +1,19 @@
+<% uuid_contain = rand(1000) %>
+<% uuid_list = rand(1000) %>
+<li class="control-group nested-fields">
+  <div class="controls">
+    <h2> Question </h2>
+    <%= f.semantic_fields_for :question do |question| %>
+      <%= question.text_field :text %>
+      <%= question.input :question_type,  :as => :select,       :collection =>["yes-no","nps","multiple-choice"] %>
+    <% end %>
+
+  </div>
+  <%= link_to_remove_association "remove", f %>
+
+ <div id='survey-question-answers-<%= uuid_contain %>'>
+  <ol class='answer-list-<%= uuid_list %>'>
+  </ol>
+</div>
+  <%= link_to_add_association 'add answer', f, :survey_question_answers, 'data-association-insertion-node' => "#survey-question-answers-#{uuid_contain} .answer-list-#{uuid_list}", 'data-association-insertion-method' => "append", :wrap_object => Proc.new {|survey_question_answer| survey_question_answer.build_answer; survey_question_answer } %>
+</li>

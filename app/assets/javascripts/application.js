@@ -32,4 +32,5 @@
 //= require d3
 //= require profiles
 //= require fittext
+//= require cocoon
 

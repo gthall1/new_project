@@ -9,7 +9,8 @@ gem 'puma'
 gem 'sprockets', '2.11.0'
 #gem 'turbolinks', '~> 2.5.3'
 gem 'airbrake'
-
+gem 'formtastic'
+gem 'cocoon'
 gem "redis-rails"
 gem 'pg', '0.15.1'
 gem "koala", "~> 2.0"
