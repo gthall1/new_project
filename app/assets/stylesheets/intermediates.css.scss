@@ -139,6 +139,9 @@
 }
 
 .purchase-page {
+    .back-to-home {
+        display: none;
+    }
     .purchase-page__wrap {
         max-width: 900px;
         margin: 5vh auto 0;
