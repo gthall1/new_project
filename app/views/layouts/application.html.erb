@@ -73,11 +73,12 @@
             <%= link_to leaderboards_path do %><img class="nav-dropdown__icon nav-dropdown__icon--leaders" src="/assets/navbar_6.png"> Leaders <% end %>
             <p class="js-nav-dropdown__name nav-dropdown__name"><i class="fa fa-caret-down"></i> <%= current_user.name %></p>
 
-              <span class="nav-dropdown__avatar" style="<% if current_user.oath_image %>background-image: url(<%= current_user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %> ">
+              <%= link_to user_path(current_user) do %><span class="nav-dropdown__avatar" style="<% if current_user.oath_image %>background-image: url(<%= current_user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %> "> <% end %>
               <i class="fa fa-exclamation js-notification notification"></i>
             </span>
             <ul class="nav-dropdown__list">
               <li class="nav-dropdown__item"><%= link_to 'Games', games_path %></li>
+              <li class="nav-dropdown__item"><%= link_to 'Profile', user_path(current_user) %></li>
               <li class="nav-dropdown__item"><%= link_to refer_path do %>Invite Friends <span class="nav-dropdown__credits">+25</span> <% end %></li>
               <li class="nav-dropdown__item"><a href="mailto:support@getluckee.com" target="_top">Contact Us</a></li>
               <li class="nav-dropdown__item"><%= link_to 'Settings', edit_user_path(current_user) %></li>

@@ -211,7 +211,7 @@ var app = {
         app.showOnboarding();
         app.notify();
         app.is_confirmed();
-        app.fitToContainer(".inline-tout__title", 0.5);
+        app.fitToContainer(".js-inline-tout__title", 0.5);
         app.bind();
         app.isWAM();
         app.addSocialMediaClass();

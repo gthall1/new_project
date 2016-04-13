@@ -94,6 +94,11 @@
   border-radius: 4px;
   color: rgba(236, 240, 241, 0.6);
   text-shadow: none;
+
+  &:hover {
+    color: $white;
+    border-color: $white;
+  }
   @include transition;
 }
 

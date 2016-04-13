@@ -1,9 +1,10 @@
 class SessionsController < ApplicationController
     include ApplicationHelper
-    
+
     layout :determine_layout
 
     def new
+        @waitlist_user = WaitlistUser.new
         render "sessions/new_mobile" if is_mobile?
     end
 
@@ -23,9 +24,9 @@ class SessionsController < ApplicationController
         else
             flash.now[:error] = 'Invalid email/password combination'
             if is_mobile?
-                render "sessions/new_mobile" 
+                render "sessions/new_mobile"
             else
-                render 'new' 
+                render 'new'
             end
         end
     end
@@ -51,15 +52,15 @@ class SessionsController < ApplicationController
                         a.user_id = user.id
                         a.save
                     end
-                end  
+                end
                 if user.created_at > Time.now-5.minutes
                     redirect_to set_username_path
-                else    
+                else
                     redirect_to root_path
                 end
             elsif !signups_allowed?
                 flash[:notice] = 'We are currently restricting new users for our closed beta. Please join our wait list to receive an invite in the future!'
-                redirect_to root_path                
+                redirect_to root_path
             elsif env['omniauth.auth'].info.email.nil?
                 flash.now[:error] = 'Email is required in order to contact you for cash outs.'
                 @facebook_link = "/auth/facebook?auth_type=rerequest&scope=email"

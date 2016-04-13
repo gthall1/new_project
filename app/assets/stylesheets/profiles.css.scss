@@ -66,8 +66,9 @@
     margin-right: 5px;
 }
 .inline-tout__item {
+    box-sizing: border-box;
     display: block;
-    width: 33%;
+    width: 33.33%;
     height: 60px;
     float: left;
     text-align: center;
@@ -91,6 +92,54 @@
     font-size: 36px;
     margin: 0 0 10px;
     font-weight: 300;
+}
+
+
+// Desktop Styles
+.user-profile--desktop {
+    .profile__top {
+        top: -5px;
+        position: relative;
+        background-color: $lavender;
+    }
+
+    .profile__middle {
+        top: -5px;
+        position: relative;
+        background-color: $off-white;
+        padding: 30px 0;
+    }
+
+    .inline-tout__item {
+        & + .inline-tout__item {
+            border-color: $dark-gray;
+        }
+    }
+
+    .inline-tout__title {
+        margin-bottom: -10px;
+    }
+
+    .inline-tout__title,
+    .inline-tout__sub-title {
+        color: $dark-gray;
+    }
+
+    .profile__bottom {
+        height: initial;
+    }
+
+    .legend {
+        text-align: left;
+    }
+
+    .legend__key {
+        color: $dark-gray;
+    }
+
+    .profile__legend {
+        margin-top: 5vh;
+    }
 }
 
 /* Portrait */

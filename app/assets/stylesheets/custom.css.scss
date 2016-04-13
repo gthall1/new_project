@@ -11,6 +11,7 @@
 @import "forms";
 @import "social_btn";
 @import "jackhammer";
+@import "profiles";
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -141,7 +142,7 @@ p {
 .nav-dropdown__name {
   cursor: pointer;
   color: $white;
-  margin: 0 10px 0 25px;
+  margin: 0 -15px 0 25px;
   display: inline-block;
   position: relative;
   .fa-caret-down {
@@ -184,6 +185,11 @@ p {
   top: 14px;
   background-size: 100%;
   background-position: center;
+  @include transition;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 .nav-dropdown__list {
   position: absolute;
@@ -1253,6 +1259,7 @@ h1.arrow2 { font-size: 55px;
   position: absolute;
   right: 2.5%;
   border: 2px solid $purple;
+  color: $purple;
   background-color: transparent;
   padding: 10px 30px;
   border-radius: 5px;

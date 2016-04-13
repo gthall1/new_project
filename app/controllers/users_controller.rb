@@ -23,7 +23,6 @@ class UsersController < ApplicationController
         @current_page = "profile"
         all_games = Game.where.not(device_type:nil).order(:slug)
 
-
         # Set up json arr
         # if was still credits UserGameSession.where(user_id:current_user.id,game_id:game_id).sum(:credits_earned)
         # making not score 0 and nil gets rid of weird extra sessions
@@ -34,6 +33,8 @@ class UsersController < ApplicationController
         end
 
         @json_arr = @json_arr.to_json
+
+        render "show_mobile" if is_mobile?
     end
 
     def stats
