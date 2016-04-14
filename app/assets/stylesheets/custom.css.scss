@@ -86,7 +86,7 @@ p {
   line-height: 1.7em;
 }
 .nav-dropdown__icon {
-  height: 20px;
+  height: 23px;
   width: auto;
   position: relative;
 
@@ -96,7 +96,7 @@ p {
   }
 
   &.nav-dropdown__icon--leaders {
-    height: 22px;
+    height: 25px;
   }
 }
 .nav-dropdown {
@@ -140,6 +140,7 @@ p {
   display: none;
 }
 .nav-dropdown__name {
+  font-size: $md;
   cursor: pointer;
   color: $white;
   margin: 0 -15px 0 25px;
@@ -278,6 +279,7 @@ p {
     & > a {
       color: $white;
       margin-left: 30px;
+      font-size: 13px;
 
       &:hover {
         color: $white;

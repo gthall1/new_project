@@ -112,11 +112,11 @@ textarea {
     position: relative;
     top:0px;
     min-height: calc(100vh - 110px); // subtract top & bottom nav
-    background-image: url('/assets/darker_mobile_background_15.jpg');
-    background-color: #EAF9FC;
+    // background-image: url('/assets/darker_mobile_background_15.jpg');
+    // background-color: #EAF9FC;
     background-size: cover;
     &.with-money{
-        background-image: url('/assets/darker_mobile_background_15.jpg');
+        // background-image: url('/assets/darker_mobile_background_15.jpg');
         background-color: #EAF9FC;
         background-size: cover;
     }
@@ -1551,4 +1551,35 @@ button {
     .home-bottom{
         top: 60vh;
     }
+}
+
+// SnowFfakes
+.mobile-games-page {
+    background-color:#333;
+
+    .mobile-container {
+        padding: 60px 0 50px;
+        background-color: #333;
+        font-family: Androgyne;
+        background-image: url('http://www.wearewebstars.dk/codepen/img/s1.png'), url('http://www.wearewebstars.dk/codepen/img//s2.png'), url('http://www.wearewebstars.dk/codepen/img//s3.png');
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index:1;
+        -webkit-animation: snow 15s linear infinite;
+        -moz-animation: snow 15s linear infinite;
+        -ms-animation: snow 15s linear infinite;
+        animation: snow 15s linear infinite;
+    }
+}
+
+.se-pre-con {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999999;
+    background: url(/assets/gifs/loader.gif) center no-repeat #fff;
 }

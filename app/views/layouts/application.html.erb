@@ -73,7 +73,7 @@
             <%= link_to leaderboards_path do %><img class="nav-dropdown__icon nav-dropdown__icon--leaders" src="/assets/navbar_6.png"> Leaders <% end %>
             <p class="js-nav-dropdown__name nav-dropdown__name"><i class="fa fa-caret-down"></i> <%= current_user.name %></p>
 
-              <%= link_to user_path(current_user) do %><span class="nav-dropdown__avatar" style="<% if current_user.oath_image %>background-image: url(<%= current_user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %> "> <% end %>
+              <%= link_to user_path(current_user) do %><span class="nav-dropdown__avatar" data-toggle="tooltip" data-placement="bottom" title="View Profile" style="<% if current_user.oath_image %>background-image: url(<%= current_user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %> "> <% end %>
               <i class="fa fa-exclamation js-notification notification"></i>
             </span>
             <ul class="nav-dropdown__list">

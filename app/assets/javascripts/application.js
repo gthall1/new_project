@@ -25,6 +25,7 @@
 //= require main
 //= require superslides
 //= require jackhammer
+//= require modernizr
 //= require jquery.slideandswipe.min
 //= require touchSwipe
 //= require zeroclipboard
