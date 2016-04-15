@@ -12,6 +12,7 @@
 @import "profiles";
 @import "forms";
 @import "jackhammer";
+@import "loading";
 
 @mixin box_sizing {
     -moz-box-sizing: border-box;
@@ -1572,14 +1573,4 @@ button {
         -ms-animation: snow 15s linear infinite;
         animation: snow 15s linear infinite;
     }
-}
-
-.se-pre-con {
-    position: fixed;
-    left: 0px;
-    top: 0px;
-    width: 100vw;
-    height: 100vh;
-    z-index: 999999;
-    background: url(/assets/gifs/loader.gif) center no-repeat #fff;
 }
