@@ -180,7 +180,7 @@ class GamesController < ApplicationController
             game_session = UserGameSession.where(token: params[:token]).first
 
          # p "Score : #{score} | Game SEssion Score: #{game_session.score}"
-            if game_session && game_session.active
+            if game_session && game_session.active && user.enabled != false
                 game_session.last_score_update = Time.now
                 credits_to_apply = get_credits_to_apply(game_session.game.slug,score,game_session.credits_applied,game_session.version)
                 if user && credits_to_apply > 0
@@ -221,6 +221,8 @@ class GamesController < ApplicationController
             #   current_user.add_credits({credits:credits_to_apply})
             #   game_session.credits_earned = credits
             #   game_session.save
+            elsif user.enabled != false
+                status = "user not active"
             elsif game_session && !game_session.active
                 status = "closed"
             elsif !game_session
@@ -251,6 +253,7 @@ class GamesController < ApplicationController
             elsif request && request.referer
                 game_id = request.referer.split('/').last.to_i
             end
+
             create_new_game_session(params[:score],game_id)
             game_session = UserGameSession.where(token: session[:game_token]).first
         end
@@ -639,6 +642,11 @@ class GamesController < ApplicationController
         elsif old_game
             old_game_name = old_game.game.name
             game_id = old_game.id
+            if old_game_name == '2048'
+                # if old_game.created_at >= Time.now-2.minutes
+                #     redirect_to root_path, notice: 'Rate limit on games hit. Please play check back later.'
+                # end
+            end
         end
 
         if newgame
@@ -771,11 +779,15 @@ class GamesController < ApplicationController
 
     #TODO: CLEAN THIS UP! SHITS GETTN CRAZY!
     def set_game_token(args={})
+
         score = args[:score] ||= 0
         game_name = args[:game_name] ||= "Memory Game"
         version = args[:version] ||= nil
         if current_user
             old_games = UserGameSession.where(user_id:current_user.id,active:true)
+            # if old_games && old_games.last.created_at >= (Time.now-1.minutes-30.seconds)
+            #     redirect_to root_path, notice: 'Rate limit on games hit. Please play check back later.'
+            # end
             old_games.each do | o |
                 o.active = false
                 o.save
@@ -838,30 +850,53 @@ class GamesController < ApplicationController
             when "sorcerer-game"
                 credits = (score/5000.to_f).ceil - 1 #subtract 1 otherwise itll give a credit once anything is scored
             when "2048"
-                credits = (score/750.to_f).ceil - 1
+                case score
+                    when 5000..9999
+                        credits = 1
+                    when 10000..13999
+                        credits = 2
+                    when 14000..99999999999999
+                        credits = (score/3000.to_f).ceil - 2
+                    else 
+                        credits = 0
+                end
             when "traffic"
                 credits = (score/14.to_f).ceil - 1
             when "flappy-pilot"
-                credits = (score/10.to_f).ceil - 1
+                credits = (score/16.to_f).ceil - 1
             when "black-hole"
                 #credits = score * 5
                 credits_to_apply = 0
             when "fall-down"
-                credits = (score/15.to_f).ceil - 1
+                credits = (score/25.to_f).ceil - 1
             when "tap-color"
                 case version
                     when 1
                         credits = (score/15.to_f).ceil - 1
                     when 2
-                        credits = (score/10.to_f).ceil - 1
+                        credits = (score/15.to_f).ceil - 1
                     when 3
-                        credits = (score/5.to_f).ceil - 1
+                        credits = (score/15.to_f).ceil - 1
                     else
                         credits = (score/15.to_f).ceil - 1
                 end
             when 'gold-runner'
-                credits = (score/3.to_f).ceil - 1
-
+                case score
+                    when 5..14
+                        credits = 1
+                    when 11..18
+                        credits = 2
+                    when 19..27
+                        credits = 3
+                    when 28..37
+                        credits = 4
+                    when 37..99999
+                        credits = (score/10.to_f).ceil + 1 
+                    else 
+                        credits = 0
+                end                
+                #credits = (score/3.to_f).ceil - 1
+                credits
         end
         if credits < 0
             credits = 0

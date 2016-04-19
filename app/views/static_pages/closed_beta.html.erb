@@ -1,0 +1,16 @@
+<% content_for :body_class, "waitlist-page no-bg waitlist-page--construction" %>
+
+<div class="brand-header">
+        <div class="logo-wrapper">
+                <%= link_to root_path do %><img src="/assets/white_luckee.png" class="top-title"></a> <% end %>
+        </div>
+        <div class="welcome-box-m">Play free games. Earn real cash.</div>
+            <%# render 'users/form_mobile'%>
+</div><!-- /.sign-up -->
+
+<div class="jackhammer-wrap">
+<%= render 'static_pages/jackhammer' %>
+
+<div id="jackhammer_title">Thanks for participating during Luckee's beta trial. Due to overwhelming demand, we have exceeded capacity and are now in closed beta. Look out for an email when we re-open the beta!</div>
+<h1 class="jackhammer__disclaimer">*any credits earned will be valid once beta is reopened;  any pending cash outs will be paid on schedule</h1>
+</div><!-- /.jackhammer-wrap -->

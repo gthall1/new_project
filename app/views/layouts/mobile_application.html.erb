@@ -66,6 +66,8 @@
 
         <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
         <script src="http://labs.rampinteractive.co.uk/touchSwipe/jquery.touchSwipe.min.js"></script>
+        <!-- Greensock for jackhammer -->
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"/></script>
 
         <meta name="description" content="">
         <meta name="HandheldFriendly" content="True">
@@ -132,6 +134,13 @@
     </head>
     <body ondragstart="return false;" ondrop="return false;" id="<%= yield (:body_id) %>" class="<%= yield (:body_class) %> <% if @game && Game.where(slug:['traffic','flappy-pilot','fall-down','tap-color','gold-runner']).pluck(:id).include?(@game.id) %> mobile-header--hide <% end %>">
 
+        <div class="se-pre-con">
+            <div class='circle circle--1'></div>
+            <div class='circle circle--2'></div>
+            <div class='circle circle--3'></div>
+            <div class='circle circle--4'></div>
+        </div>
+
         <% flash.each do |key, value| %>
           <div class="alert alert-<%= key %>"><%= value %></div>
         <% end %>
@@ -180,22 +189,10 @@
 
         <% end %>
 
-        <div <%= "id=#{@mobile_container_id}" if @mobile_container_id %> class='mobile-container <% if !signed_in? %>with-money<% end %>' style="width:100%;">
+        <div <%= "id=#{@mobile_container_id}" if @mobile_container_id %> class='mobile-container' style="width:100%;">
             <div class="mobile--overlay">
-                <a href="/" class="js-overlay__opt-out overlay__opt-out ga-preview-event">Preview in Browser</a>
-                <a href="/" class="overlay__back-to-dash"><img class="home-icon--small" src="/assets/home_icon.png"></a>
-                <div class="overlay__content">
-                    <p>Adding Luckee to your home screen makes our site full screen &amp; improves the gaming experience</p>
-                    <img class="overlay__logo" src="/assets/logo-144.png">
-                    <h1 class="overlay__title">Luckee</h1>
-                    <p>To install, tap <img class="overlay__bookmark" src="/assets/bookmark.png"> and choose</p>
-                    <p>"Add to Home Screen"</p>
-                </div><!-- /.overlay__content -->
-                <div class="rotate-dialogue">
-                            <i class="fa fa-repeat rotate__icon"></i>
-                            <h1 class="rotate__title">Please rotate your screen to play!</h1>
-                </div>
-                <i class="overlay__down-arrow ios fa fa-long-arrow-down"></i>
+                <%= render 'static_pages/overlay_add_to_home' %>
+                <%= render 'static_pages/overlay_rotate_to_play' %>
             </div><!-- /.mobile--overlay -->
             <% if signed_in? %>
                 <div class="mobile-header js-mobile-header">

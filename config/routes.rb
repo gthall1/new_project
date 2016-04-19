@@ -1,5 +1,5 @@
 Alotto::Application.routes.draw do
- 
+
 
     root to: 'static_pages#home'
 
@@ -27,6 +27,7 @@ Alotto::Application.routes.draw do
     match '/update_username',  to: 'users#update_username',         via: 'patch'
 
     # Static Pages
+    # match '/kd', to: 'static_pages#kd_home', via: 'get'
     match '/faq',    to: 'static_pages#faq',    via: 'get'
     match '/onboarding', to: 'static_pages#onboarding', via: 'get'
     match '/how_it_works', to: 'static_pages#how_it_works', via: 'get'
@@ -70,6 +71,11 @@ Alotto::Application.routes.draw do
     match '/get_advertiser_logo', to: 'games#get_advertiser_logo', via: 'get'
     match '/games', to: 'games#get_games', via: 'get'
     match '/unlock_game/:slug', to: 'games#purchase_confirm', as: 'unlock_game', via: 'get'
+
+    match '/us_only', to: 'static_pages#country', as: 'country', via: 'get'
+    match '/closed_beta', to: 'static_pages#closed_beta', as: 'closed_beta', via: 'get'
+
+    match '/waitlist_user', to: 'static_pages#waitlist_user', via: 'post'
 
 
 

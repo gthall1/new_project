@@ -1,0 +1,45 @@
+.se-pre-con {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999999;
+    background-color: $lavender;
+    // background: url(/assets/gifs/loader.gif) center no-repeat $lavender;
+}
+
+.circle {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 15px;
+    height: 15px;
+    background: white;
+    border-radius: 50%;
+    margin-left: -7.5px;
+    margin-top: -40px;
+    transform-origin: 50% 30px;
+    animation: turn 1.3s infinite;
+}
+
+.circle--5 {
+    animation-delay: 0.1s;
+}
+
+.circle--4 {
+    animation-delay: 0.2s;
+}
+
+.circle--3 {
+    animation-delay: 0.3s;
+}
+
+.circle--2 {
+    animation-delay: 0.4s;
+}
+
+.circle--1 {
+    animation-delay: 0.5s;
+}
+

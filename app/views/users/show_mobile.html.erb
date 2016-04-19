@@ -1,0 +1,138 @@
+<% provide(:title, @user.name) %>
+<% content_for :body_class, "user-profile user-profile--mobile" %>
+
+    <%= link_to "Edit", edit_user_path(current_user), class: "btn--outline" %>
+
+
+    <div class="profile-section profile__top">
+        <div class="profile__avatar" style="<% if current_user.oath_image %> background-image: url(<%= current_user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %>"></div>
+
+        <h1 class="profile__name"><%= @user.name %></h1>
+    </div><!-- /.profile__top -->
+
+    <div class="profile-section">
+        <div class="profile__inline-tout">
+            <div class="inline-tout__item">
+                <h1 class="js-inline-tout__title inline-tout__title"><%= @user.credits ||= 0 %></h1>
+                <h3 class="inline-tout__sub-title">Current Credits</h3>
+            </div><!-- /.inline-tout__item -->
+
+            <div class="inline-tout__item">
+                <h1 class="js-inline-tout__title inline-tout__title"><%= @user.lifetime_credits ||= 0%></h1>
+                <h3 class="inline-tout__sub-title">Lifetime Credits</h3>
+            </div><!-- /.inline-tout__item -->
+
+            <div class="inline-tout__item" data-toggle="tooltip" data-placement="bottom" title="Coming Soon!">
+                <h1 class="js-inline-tout__title inline-tout__title">--</h1>
+                <h3 class="inline-tout__sub-title">Luckee Rank <i class="fa fa-info-circle"></i></h3>
+            </div><!-- /.inline-tout__item -->
+        </div><!-- /.profile__inline-tout -->
+    </div><!-- /.profile-section -->
+
+
+    <div class="profile-section profile__bottom">
+        <div class="profile__legend">
+            <ul class="legend">
+                <li class="legend__key">
+                    <span class="key-color js-key-color"></span> 2048
+                </li>
+                <li class="legend__key">
+                    <span class="key-color js-key-color"></span> Black Hole
+                </li>
+                <li class="legend__key">
+                    <span class="key-color js-key-color"></span> Fall Down
+                </li>
+                <li class="legend__key">
+                    <span class="key-color js-key-color"></span> Flappy Pilot
+                </li>
+                <li class="legend__key">
+                    <span class="key-color js-key-color"></span> Sorcerer
+                </li>
+                <li class="legend__key">
+                    <span class="key-color js-key-color"></span> Tap the Color
+                </li>
+                <li class="legend__key">
+                    <span class="key-color js-key-color"></span> Traffic
+                </li>
+            </ul>
+        </div>
+    </div><!-- /.profile__bottom -->
+
+    <script>
+        $(function() {
+            var json_str = '<%= raw @json_arr %>',
+                screenWidth = $(window).width(),
+                data = JSON.parse(json_str),
+                color_arr = ['#48d3c3', '#fea962', '#00bcf8', '#ff2b67', '#c176f8', '#da65c1', '#c8f7c5'],
+                color = d3.scale.ordinal()
+                            .range(color_arr),
+                width = screenWidth/2,
+                height = width,
+                r = width/2,
+                legendRectSize = 18,
+                legendSpacing = 4;
+
+            var canvas = d3.select(".profile__bottom")
+                        .append('svg')
+                        .attr('width', width)
+                        .attr('height', height)
+                        // .style('background', '#eee');
+
+            var group = canvas.append('g')
+                        .attr('transform', "translate(" + width / 2 + "," + height / 2 + ")");
+
+            var arc = d3.svg.arc()
+                        .innerRadius(r - 10)
+                        .outerRadius(r);
+
+            var pie = d3.layout.pie()
+                        .value(function(d) { return d.count })
+                        .sort(null);
+
+            var path = group.selectAll('path')
+                        .data(pie(data))
+                        .enter()
+                            .append('path')
+                            .attr('d', arc)
+                            .attr('fill', function(d, i) {
+                                return color(d.data.label)
+                            });
+
+            var totalGames = d3.sum(data, function(d) {
+                return d.count;
+            });
+
+            var copy = canvas.append("text")
+                        .text(totalGames)
+                        .attr('class', 'js-games-number')
+                        .style('fill', "#fff")
+                        .attr('font-size', "32px")
+                        .attr("transform", function() {
+                            return "translate(" + ((width / 2) - (this.getBBox().width/2)) + "," + ((height / 2) - 10) + ")"
+                        })
+                        .attr('font-family', 'sans-serif');
+
+            var copy = canvas.append("text")
+                        .text("Total games played")
+                        .style('fill', "#fff")
+                        .attr("transform",function() {
+                            return "translate(" + ((width / 2) - (this.getBBox().width/2)) + "," + ((height / 2) + 20) + ")"
+                        })
+                        .attr('font-size', "14px")
+                        .attr('font-family', 'sans-serif');
+
+            // Create keys for ring chart legend
+            $('.js-key-color').each(function(i,val){
+                $(val).css('background-color', color_arr[i])
+            });
+        });
+    </script>
+
+    <% if current_user && current_user.admin? && false%>
+        Total Games Played: <br />
+
+        <% Game.where(device_type:1).each do | g | %>
+            <%= g.name %> | sessions: <%= UserGameSession.where(user_id:@user.id).where(game_id:g.id).size %> <br />
+        <% end %>
+    <% end %>
+

@@ -1,7 +1,7 @@
 /* mixins, variables, etc. */
 @import "bootstrap";
-@import "mixins";
 @import "variables";
+@import "mixins";
 @import "body";
 @import "leaderboard";
 @import "confirmation";
@@ -11,6 +11,8 @@
 @import "buttons";
 @import "profiles";
 @import "forms";
+@import "jackhammer";
+@import "loading";
 
 @mixin box_sizing {
     -moz-box-sizing: border-box;
@@ -51,6 +53,7 @@ html {
     padding: 10px 0;
     border-radius: 0;
     text-align: center;
+    text-shadow: none;
     background-color: rgba(230, 126, 34,0.9);
     @include transition(top, 0.25s, ease, 1s);
 
@@ -110,11 +113,11 @@ textarea {
     position: relative;
     top:0px;
     min-height: calc(100vh - 110px); // subtract top & bottom nav
-    background-image: url('/assets/darker_mobile_background_15.jpg');
-    background-color: #EAF9FC;
+    // background-image: url('/assets/darker_mobile_background_15.jpg');
+    // background-color: #EAF9FC;
     background-size: cover;
     &.with-money{
-        background-image: url('/assets/darker_mobile_background_15.jpg');
+        // background-image: url('/assets/darker_mobile_background_15.jpg');
         background-color: #EAF9FC;
         background-size: cover;
     }
@@ -585,6 +588,19 @@ textarea {
     bottom: 15vh;
     z-index: 10;
 }
+.disclaimer--us-only {
+    font-size: $xs;
+    text-transform: uppercase;
+    color: $blue-steel;
+    margin-bottom: 0;
+
+    &.disclaimer--us-only-home {
+        .kd-campaign & {
+            color: $kd-green-dark;
+        }
+        color: $teal;
+    }
+}
 .mobile-home-footer{
     margin-top: 20px;
     width:100%;
@@ -618,6 +634,19 @@ textarea {
         background-image: url('/assets/star_home_background.jpg');
         background-size: 100%;
         background-color: #bdb4d4;
+    }
+
+    &.kd-campaign {
+        .mobile-container {
+            background-image: none;
+            background-color: $kd-green;
+        }
+        .sign-up {
+            .welcome-box-m {
+                padding: 0 40px;
+                color: $kd-green-dark;
+            }
+        }
     }
 }
 .home-bottom{
@@ -1340,7 +1369,7 @@ p {
 @media (max-width: 768px) {
     .overlay-screen--rotate {
         .mobile--overlay {
-            background-image: url(/assets/rotate_screen_2.jpg)
+            background-color: $lavender !important;
         }
         .overlay__back-to-dash {
             display: inline-block;
@@ -1379,18 +1408,30 @@ p {
             width: 100%;
             height: 100vh;
             position: absolute;
-            background-color: rgba(117,117,117,0.5);
             background-position: center;
             background-size: cover;
             z-index: 100;
             text-align: center;
 
         }
+        &.kd-campaign {
+            .overlay__content {
+                color: $kd-green-dark;
+            }
+            .overlay__title {
+                color: $kd-green-dark;
+            }
+            .overlay__down-arrow {
+                color: $kd-green-dark;
+            }
+            .overlay__opt-out {
+                color: $white;
+            }
+        }
         .overlay__content {
             display: block;
             @include vertical-align();
             padding: 0 5%;
-            // padding: 20% 10px 25%;
             font-size: 16px;
             margin-top: -40px;
             &.hide {
@@ -1438,6 +1479,12 @@ p {
 }
 
 .add-to-home {
+    &.kd-campaign {
+        .mobile--overlay {
+            background-image: none;
+            background-color: $kd-green;
+        }
+    }
     .mobile--overlay {
         background-image: url(/assets/blur.jpg);
     }
@@ -1504,5 +1551,26 @@ button {
     }
     .home-bottom{
         top: 60vh;
+    }
+}
+
+// SnowFfakes
+.mobile-games-page {
+    background-color:#333;
+
+    .mobile-container {
+        padding: 60px 0 50px;
+        background-color: #333;
+        font-family: Androgyne;
+        background-image: url('http://www.wearewebstars.dk/codepen/img/s1.png'), url('http://www.wearewebstars.dk/codepen/img//s2.png'), url('http://www.wearewebstars.dk/codepen/img//s3.png');
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index:1;
+        -webkit-animation: snow 15s linear infinite;
+        -moz-animation: snow 15s linear infinite;
+        -ms-animation: snow 15s linear infinite;
+        animation: snow 15s linear infinite;
     }
 }

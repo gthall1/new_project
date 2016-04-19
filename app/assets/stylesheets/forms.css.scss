@@ -110,8 +110,6 @@ button {
     @media (min-width: $ipad) {
         padding: 5%;
     }
-
-
 }
 .form-input--wrap {
     position: relative;
@@ -166,6 +164,16 @@ button {
     margin: 0 0 20px;
     text-align: center;
     font-weight: 400;
+
+    &.form__title--us-only {
+        color: $white;
+        line-height: $lg;
+    }
+
+    .desktop-home & {
+        line-height: 24px;
+        text-align: left;
+    }
 }
 .form-input--wrap-submit {
     height: 10vh;
@@ -205,7 +213,7 @@ button {
     text-align: center;
 }
 .app-legal--signup {
-    padding: 10px 0;
+    padding: 10px 0 0;
     text-align: center;
 }
 .form__required {

@@ -2,24 +2,42 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  before_filter :record_arrival
+  before_filter :record_arrival, :check_country, :check_enabled
 
   include SessionsHelper
 
   private
     def set_is_bot
-	    if request && request.user_agent 
-	      session[:bot] = !request.user_agent.match(/\(.*https?:\/\/.*\)/).blank? || !request.user_agent.match(/Twitterbot\/1.0/).blank?  
+	    if request && request.user_agent
+	      session[:bot] = !request.user_agent.match(/\(.*https?:\/\/.*\)/).blank? || !request.user_agent.match(/Twitterbot\/1.0/).blank?
 	    elsif session[:bot].blank?
 	      session[:bot] = false
 	    end
     end
 
+  def check_country
+    if request && request.ip
+      ip = request.ip
+
+      if Rails.env.development?
+        # ip = "77.231.132.42" 
+      end
+
+      redirect_to country_path unless $geo.country(ip).country_code2 == 'US' || $geo.country(ip).country_code == 0
+    end
+  end
+
+  def check_enabled
+    if signed_in? && current_user && current_user.enabled == false
+      redirect_to closed_beta_path
+    end
+  end
+
 	def record_arrival
 		set_is_bot if session[:bot].nil?
-       
+
         skip = request && request.fullpath.include?('/api/v1')
-        
+
 		if !skip && !session[:arrival_id] && cookies[:a_id]
 			session[:arrival_id] = cookies[:a_id]
 		elsif !skip && !session[:bot] && !session[:arrival_id]
@@ -30,21 +48,21 @@ class ApplicationController < ActionController::Base
 			ip = nil
 			mobile = 0
 
-			if cookies[:u] 
+			if cookies[:u]
 				user_id = cookies[:u]
 			elsif signed_in? && current_user
 				user_id = current_user.id
-				cookies.permanent[:u] = user_id    	
+				cookies.permanent[:u] = user_id
 			end
 
-            #delete survey cookie within a week of survey, TEMPORARY SOLUTION MUST FIX
-            if cookies[:survey] && Time.now <= Survey.last.created_at + 1.week
-                cookies.delete :survey
-            end
+      #delete survey cookie within a week of survey, TEMPORARY SOLUTION MUST FIX
+      if cookies[:survey] && Time.now <= Survey.last.created_at + 1.week
+          cookies.delete :survey
+      end
 			if request
 				landing_url = request.fullpath.truncate(250) if request.fullpath
 				if request.user_agent
-					user_agent = request.user_agent.truncate(250) 
+					user_agent = request.user_agent.truncate(250)
 					mobile = is_mobile_device? ? 1 : 0
 				end
 				referer = request.referer.truncate(250) if request.referer
@@ -58,8 +76,7 @@ class ApplicationController < ActionController::Base
 
 		end
 
-	end  
-
+	end
 
 
   def is_mobile_device?

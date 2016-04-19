@@ -1,8 +1,5 @@
 <% provide(:title, @user.name) %>
-<% content_for :body_class, "user-profile user-profile--mobile" %>
-
-    <%= link_to "Edit", edit_user_path(current_user), class: "btn--outline" %>
-
+<% content_for :body_class, "user-profile user-profile--desktop" %>
 
     <div class="profile-section profile__top">
         <div class="profile__avatar" style="<% if current_user.oath_image %> background-image: url(<%= current_user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %>"></div>
@@ -10,7 +7,7 @@
         <h1 class="profile__name"><%= @user.name %></h1>
     </div><!-- /.profile__top -->
 
-    <div class="profile-section">
+    <div class="profile-section profile__middle">
         <div class="profile__inline-tout">
             <div class="inline-tout__item">
                 <h1 class="inline-tout__title"><%= @user.credits ||= 0 %></h1>
@@ -66,7 +63,7 @@
                 color_arr = ['#48d3c3', '#fea962', '#00bcf8', '#ff2b67', '#c176f8', '#da65c1', '#c8f7c5'],
                 color = d3.scale.ordinal()
                             .range(color_arr),
-                width = screenWidth/2,
+                width = screenWidth/4,
                 height = width,
                 r = width/2,
                 legendRectSize = 18,
@@ -105,7 +102,7 @@
             var copy = canvas.append("text")
                         .text(totalGames)
                         .attr('class', 'js-games-number')
-                        .style('fill', "#fff")
+                        .style('fill', "#000")
                         .attr('font-size', "32px")
                         .attr("transform", function() {
                             return "translate(" + ((width / 2) - (this.getBBox().width/2)) + "," + ((height / 2) - 10) + ")"
@@ -114,7 +111,7 @@
 
             var copy = canvas.append("text")
                         .text("Total games played")
-                        .style('fill', "#fff")
+                        .style('fill', "#000")
                         .attr("transform",function() {
                             return "translate(" + ((width / 2) - (this.getBBox().width/2)) + "," + ((height / 2) + 20) + ")"
                         })

@@ -21,99 +21,100 @@
 
         @include transition();
     }
-    .control {
-        font-size: 18px;
-        position: relative;
-        display: block;
-        margin-bottom: 15px;
-        padding-left: 20px;
-        cursor: pointer;
-    }
+}
 
-    .control input {
-        position: absolute;
-        z-index: -1;
-        opacity: 0;
-    }
+.control {
+    font-size: 18px;
+    position: relative;
+    display: block;
+    margin-bottom: 15px;
+    padding-left: 20px;
+    cursor: pointer;
+}
 
-    .control__indicator {
-        position: absolute;
-        top: 3px;
-        left: 0;
-        width: 15px;
-        height: 15px;
-        background: #e6e6e6;
-    }
+.control input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
 
-    .control--radio .control__indicator {
-        border-radius: 50%;
-    }
-    /* Hover and focus states */
-    .control:hover input ~ .control__indicator,
-    .control input:focus ~ .control__indicator {
-        background: #ccc;
-    }
+.control__indicator {
+    position: absolute;
+    top: 3px;
+    left: 0;
+    width: 15px;
+    height: 15px;
+    background: #e6e6e6;
+}
 
-    /* Checked state */
-    .control input:checked ~ .control__indicator {
-        background: $lavender;
-    }
+.control--radio .control__indicator {
+    border-radius: 50%;
+}
+/* Hover and focus states */
+.control:hover input ~ .control__indicator,
+.control input:focus ~ .control__indicator {
+    background: #ccc;
+}
 
-    /* Hover state whilst checked */
-    .control:hover input:not([disabled]):checked ~ .control__indicator,
-    .control input:checked:focus ~ .control__indicator {
-        background: $lavender;
-    }
+/* Checked state */
+.control input:checked ~ .control__indicator {
+    background: $lavender;
+}
 
-    /* Disabled state */
-    .control input:disabled ~ .control__indicator {
-        pointer-events: none;
-        opacity: .6;
-        background: #e6e6e6;
-    }
+/* Hover state whilst checked */
+.control:hover input:not([disabled]):checked ~ .control__indicator,
+.control input:checked:focus ~ .control__indicator {
+    background: $lavender;
+}
 
-    /* Check mark */
-    .control__indicator:after {
-        position: absolute;
-        display: none;
-        content: '';
-    }
+/* Disabled state */
+.control input:disabled ~ .control__indicator {
+    pointer-events: none;
+    opacity: .6;
+    background: #e6e6e6;
+}
 
-    /* Show check mark */
-    .control input:checked ~ .control__indicator:after {
-        display: block;
-    }
+/* Check mark */
+.control__indicator:after {
+    position: absolute;
+    display: none;
+    content: '';
+}
 
-    /* Checkbox tick */
-    .control--checkbox .control__indicator:after {
-        top: 4px;
-        left: 8px;
-        width: 3px;
-        height: 8px;
-        transform: rotate(45deg);
-        border: solid #fff;
-        border-width: 0 2px 2px 0;
-    }
+/* Show check mark */
+.control input:checked ~ .control__indicator:after {
+    display: block;
+}
 
-    /* Disabled tick colour */
-    .control--checkbox input:disabled ~ .control__indicator:after {
-        border-color: #7b7b7b;
-    }
+/* Checkbox tick */
+.control--checkbox .control__indicator:after {
+    top: 4px;
+    left: 8px;
+    width: 3px;
+    height: 8px;
+    transform: rotate(45deg);
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+}
 
-    /* Radio button inner circle */
-    .control--radio .control__indicator:after {
-        top: 5px;
-        left: 5px;
-        width: 5px;
-        height: 5px;
-        border-radius: 50%;
-        background: #fff;
-    }
+/* Disabled tick colour */
+.control--checkbox input:disabled ~ .control__indicator:after {
+    border-color: #7b7b7b;
+}
 
-    /* Disabled circle colour */
-    .control--radio input:disabled ~ .control__indicator:after {
-        background: #7b7b7b;
-    }
+/* Radio button inner circle */
+.control--radio .control__indicator:after {
+    top: 5px;
+    left: 5px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #fff;
+}
+
+/* Disabled circle colour */
+.control--radio input:disabled ~ .control__indicator:after {
+    background: #7b7b7b;
 }
 
 .survey__question-copy {
@@ -126,6 +127,10 @@
     font-size: $xl;
     margin-bottom: 2px;
     color: $black;
+
+    .leaderboard-landing & {
+        color: $white;
+    }
 }
 .survey__completed {
     // margin-top: 10px;

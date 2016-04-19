@@ -1,0 +1,22 @@
+<% if controller_name == 'static_pages' && action_name == 'kd_home' %>
+    <a href="/kd" class="js-overlay__opt-out overlay__opt-out ga-preview-event">Preview in Browser</a>
+
+    <div class="overlay__content">
+        <p>Play free games to help Kappa Delta raise money for charity!</p>
+        <img class="overlay__logo" src="/assets/logo-144.png">
+        <h1 class="overlay__title">Luckee</h1>
+        <p>To install, tap <img class="overlay__bookmark" src="/assets/bookmark-kd.png"> and choose</p>
+        <p>"Add to Home Screen"</p>
+    </div><!-- /.overlay__content -->
+<% else %>
+    <a href="/" class="js-overlay__opt-out overlay__opt-out ga-preview-event">Preview in Browser</a>
+    <div class="overlay__content">
+        <p>Adding Luckee to your home screen makes our site full screen &amp; improves the gaming experience</p>
+        <img class="overlay__logo" src="/assets/logo-144.png">
+        <h1 class="overlay__title">Luckee</h1>
+        <p>To install, tap <img class="overlay__bookmark" src="/assets/bookmark.png"> and choose</p>
+        <p>"Add to Home Screen"</p>
+    </div><!-- /.overlay__content -->
+<% end %>
+
+<i class="overlay__down-arrow ios fa fa-long-arrow-down"></i>

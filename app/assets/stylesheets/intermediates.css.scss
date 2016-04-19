@@ -1,3 +1,18 @@
+.vertical-align {
+    position: relative;
+    height: calc(100vh - 110px);
+}
+
+.vertical-align__wrap {
+    @include vertical-align;
+    padding: 0 7.5%;
+    text-align: center;
+}
+
+.return-home--link {
+    text-align: center;
+}
+
 .intermediate .mobile-container {
     background-image: none;
 }
@@ -124,6 +139,9 @@
 }
 
 .purchase-page {
+    .back-to-home {
+        display: none;
+    }
     .purchase-page__wrap {
         max-width: 900px;
         margin: 5vh auto 0;
@@ -141,6 +159,106 @@
     .game-page__icon {
         height: 100px;
         width: auto;
+    }
+}
+
+// Waitlist
+body.waitlist-page {
+    background-color: $lavender;
+    padding: 0px;
+    margin: 0px;
+
+    .mobile-container {
+        background-color: $lavender;
+    }
+
+    .navigation {
+        display: none;
+    }
+
+    .form-wrap {
+        padding: 0 7.5%;
+        max-width: 500px;
+        margin: auto;
+    }
+
+    &.waitlist-page--construction {
+        .mobile-header {
+            display: none;
+        }
+        .bottom-navigation {
+            display: none;
+        }
+    }
+}
+
+.gradient-container {
+  width: 100%;
+  height: 100vh;
+  padding: 0px;
+  margin: 0px;
+}
+
+.brand-header {
+    z-index: 10;
+    text-align: center;
+    width: 100%;
+    margin: auto;
+    position: absolute;
+    top: 5vh;
+    width: 85%;
+    left: 0;
+    right: 0;
+    .top-title {
+        width: 200px;
+        margin-top: 0;
+    }
+    .welcome-box-m {
+        font-size: $md;
+        color: $white;
+        margin-top: -15px;
+    }
+}
+
+.cash-out__title {
+    color: $black;
+    font-size: $xl;
+    margin-top: 0;
+}
+
+.new_waitlist_user {
+    text-align: center;
+
+    .desktop-home & {
+        .trans-input {
+            background-color: rgba(129, 123, 223, 0.5);
+
+            &.trans-input--submit {
+                border: 2px solid rgba(129, 123, 223, 0.5);
+                color: rgba(129, 123, 223, 0.7);
+                margin-bottom: 10px;
+
+                &:hover {
+                    background-color: rgba(129, 123, 223, 1);
+                    color: $white;
+                    border: 2px solid transparent;
+                }
+            }
+        }
+    }
+
+    .trans-input {
+        @extend %transparent-input;
+
+        &.trans-input--submit {
+            @extend %transparent-submit;
+        }
+
+        @media screen and (max-width: 1024px) {
+            &.trans-input--text {
+                width: calc(100% - 30px) !important;
+            }
+        }
     }
 }
 

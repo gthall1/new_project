@@ -34,6 +34,10 @@ class User < ActiveRecord::Base
     challenges_as_challenged + challenges_as_challenger
   end
 
+  def origin_arrival
+    Arrival.where(id:self.arrival_id).first
+  end
+
   def get_highscore(args={})
     version = args[:version]
     case args[:timeframe]
@@ -160,7 +164,9 @@ class User < ActiveRecord::Base
         else
             self.lifetime_credits = credits
         end
-        self.save
+        if self.enabled != false
+          self.save
+        end
     end
 
     def User.new_remember_token

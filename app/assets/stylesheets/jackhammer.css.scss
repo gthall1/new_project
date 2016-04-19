@@ -1,0 +1,230 @@
+@CHARSET "UTF-8";
+
+// Settings
+
+.skinColor{
+    fill:#FDD1A2;
+}
+
+.vestColor{
+    fill:$off-white;
+}
+
+.vestStipeColor{
+    fill: #FABB48;
+}
+
+.armHairColor{
+    stroke:#D6A070;
+}
+
+.chestColor{
+    fill:#E8B276;
+}
+
+.chestHairColor{
+    stroke:#C99669;
+}
+
+.jackhammerShaftColor{
+    fill:#C1C1C0;
+}
+
+.jackhammerTipColor{
+    fill:#999999;
+}
+
+.jackhammerMainColor{
+    fill:#FAA31C;
+}
+
+.jackhammerHandleColorLt{
+    fill:#333333;
+}
+
+.jackhammerHandleColorDk{
+    fill:#262626;
+}
+
+.hatColorLt{
+    fill:#FABB48;
+}
+
+.hatColorDk{
+    fill:#FAA31C;
+}
+
+.pantsColor{
+    fill:#566275;
+}
+
+.feetColor{
+    fill:#333333;
+}
+
+.shadowColor{
+    fill:#364545;
+    opacity:0;
+}
+
+.maskColor{
+    fill:#FFFFFF;
+}
+
+.maskVentColor{
+    fill:#D8D8D8;
+}
+
+
+#jackhammer_cube1 {
+    opacity:0;
+}
+
+#jackhammer_cube2 {
+    opacity:0;
+}
+
+#jackhammer_cube3 {
+    opacity:0;
+}
+
+#jackhammer_cube4 {
+    opacity:0;
+}
+
+#jackhammer_cube1 .boxSide{
+    fill: #c3802a;
+}
+
+#jackhammer_cube1 .boxTop{
+    fill: #F9A31C;
+}
+
+
+#jackhammer_cube2 .boxSide{
+    fill: #b98b33;
+}
+
+#jackhammer_cube2 .boxTop{
+    fill: #fabb48;
+}
+
+#jackhammer_cube3 .boxSide{
+    fill: #97a339;
+}
+
+#jackhammer_cube3 .boxTop{
+    fill: #bcc935;
+}
+
+#jackhammer_cube4 .boxSide{
+    fill: #475261;
+}
+
+#jackhammer_cube4 .boxTop{
+    fill: #556276;
+}
+
+.jackhammer{
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    text-align: center;
+}
+
+#jackhammerSVG{
+    height:275px;
+    width:100%;
+    opacity: 0;
+    margin: 0 auto;
+
+     @media screen and (max-width: $ipad) {
+        height: 200px;
+        width: auto;
+     }
+
+     @media screen and (max-width: $iphone5) {
+         height: 150px;
+         width: auto;
+     }
+}
+
+#jackhammer_title{
+    font-size: $md;
+    font-weight: normal;
+    margin-top: 1em;
+    line-height: 125%;
+    color: $white;
+    padding: 0 7.5%;
+    text-align: center;
+
+    @media screen and (min-width: $ipad) {
+        font-size: $xl;
+    }
+}
+
+.jackhammer__disclaimer {
+    font-size: $xs;
+    color: $purple-light;
+    text-transform: uppercase;
+    padding: 0 7.5%;
+}
+
+#jackhammer_countdown{
+    color:#ffffff;
+    fill:#ffffff;
+}
+
+.jhcount{
+    font-size: 4em;
+}
+
+.jhtime{
+    fill:#ffffff;
+     text-anchor:middle;
+}
+
+.jackhammer_clear{
+    clear:both;
+}
+
+#svg_countdown{
+    overflow: visible;
+}
+
+#jackhammer_socialmedia{
+    margin-top: 1.75em;
+    text-align: center;
+}
+
+#jackhammer_socialmedia ul{
+    list-style: none;
+    padding: 0;
+}
+
+#jackhammer_socialmedia li{
+    display: inline;
+}
+
+#jackhammer_socialmedia img{
+    height:3em;
+    width:3em;
+    margin: 0 .25em;
+    opacity: 1;
+    border:0;
+}
+
+#jackhammer_socialmedia a {
+    outline:none;
+}
+
+#jackhammer_socialmedia a img{
+    outline:none;
+}
+
+#jackhammer_socialmedia img:hover{
+    opacity: .75;
+}
+.jackhammer-wrap {
+    @include vertical-align;
+}

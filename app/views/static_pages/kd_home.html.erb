@@ -1,0 +1,21 @@
+<% content_for :body_class, "mobile-home kd-campaign" %>
+
+<div class="sign-up">
+    <div class="logo-wrapper">
+        <img src="/assets/kd_luckee.png" class="top-title">
+    </div>
+    <div class="welcome-box-m">Play free games to help Kappa Delta raise money for charity!</div>
+      <%# render 'users/form_mobile'%>
+</div><!-- /.sign-up -->
+<div class="bottom-content__container js-bottom-content__container">
+    <a href="/signup" class="btn--homepage"> Sign up </a>
+    <a href="/signin" class="btn--homepage btn--no-fill"> Log in </a>
+
+    <h1 class="disclaimer--us-only disclaimer--us-only-home">Welcome Kappa Delta family &amp; friends!</h1>
+</div>
+
+
+<% if Rails.env.production? %>
+  <!-- GA Tracking Events -->
+  <%= render 'tracking_events/tracking_preview' %>
+<% end %>

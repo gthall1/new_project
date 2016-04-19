@@ -67,6 +67,7 @@ GEM
     formtastic (3.1.4)
       actionpack (>= 3.2.13)
     geocoder (1.2.11)
+    geoip (1.6.1)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     hashie (3.4.2)
@@ -215,6 +216,7 @@ DEPENDENCIES
   faker (= 1.1.2)
   formtastic
   geocoder
+  geoip
   httpi (~> 2.2.4)
   jbuilder (= 1.0.2)
   jquery-rails (= 3.0.4)

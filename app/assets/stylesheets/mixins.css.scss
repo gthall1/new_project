@@ -1,3 +1,5 @@
+@import "variables";
+
 @mixin vertical-align($position: relative, $top: 50%) {
   position: $position;
   top: $top;
@@ -52,6 +54,54 @@
     }
 }
 
+%transparent-input {
+  background-color: rgba(236, 240, 241, 0.25);
+  border: none;
+  box-shadow: none;
+  padding: 0 15px;
+  width: 100%;
+  font-weight: 500;
+  color: white;
+  font-size: $sm;
+  height: 45px !important;
+  max-height: 45px;
+  -webkit-font-smoothing: antialiased;
+
+  &::-webkit-input-placeholder {
+     color: $white;
+  }
+
+  &:-moz-placeholder { /* Firefox 18- */
+     color: $white;
+  }
+
+  &::-moz-placeholder {  /* Firefox 19+ */
+     color: $white;
+  }
+
+  &:-ms-input-placeholder {
+     color: $white;
+  }
+
+  & + input {
+      margin-top: 5px;
+  }
+}
+
+%transparent-submit {
+  background-color: transparent;
+  border: 2px solid rgba(236, 240, 241, 0.25);
+  border-radius: 4px;
+  color: rgba(236, 240, 241, 0.6);
+  text-shadow: none;
+
+  &:hover {
+    color: $white;
+    border-color: $white;
+  }
+  @include transition;
+}
+
 @keyframes slideIn {
   0%   {transform:translateX(100%);}
   100% {transform:translateX(0);}
@@ -83,4 +133,45 @@
     from {-moz-transform:translate(0, 0px);}
     50% {-moz-transform:translate(0, 15px);}
     to {-moz-transform: translate(0, -0px);}
+}
+
+
+// Snow
+@keyframes snow {
+  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+  100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
+}
+@-moz-keyframes snow {
+  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+  100% {background-position: 400px 1000px, 200px 400px, 100px 300px;}
+}
+@-webkit-keyframes snow {
+  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+  100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
+}
+@-ms-keyframes snow {
+  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+  100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
+}
+
+
+// Loading Animation
+
+@keyframes turn {
+    from {
+        transform: rotate(0deg);
+        background: white;
+    }
+    80% {
+        transform: rotate(360deg);
+        background:rgba(255,255,255,0.75);
+    }
+    100% {
+        transform: rotate(360deg);
+        background:white;
+    }
 }

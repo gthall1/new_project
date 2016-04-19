@@ -56,6 +56,12 @@ html body {
         margin: 20px 0;
         border-radius: 4px;
     }
+    &.kd-campaign {
+        .btn--homepage {
+            background-color: $kd-green-dark;
+            border: 2px solid $kd-green-dark;
+        }
+    }
     .btn--homepage {
         width: 40vw;
         background-color: $teal;

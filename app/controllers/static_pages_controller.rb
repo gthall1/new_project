@@ -3,12 +3,16 @@ class StaticPagesController < ApplicationController
 
     layout :determine_layout
     before_filter :check_signed_in, :only => [:redeem,:redeem_credits,:refer,:new_cash_out,:new_donation]
+    skip_before_filter :check_country, :only => [:country,:waitlist_user]
+    skip_before_filter :check_enabled, :only => [:closed_beta]
 
     def check_signed_in
         redirect_to root_path if !signed_in?
     end
 
     def home
+        @waitlist_user = WaitlistUser.new
+
        #if someone coming with vid they just lcicked verify token
         if params[:vid] && User.find_by_verify_token(params[:vid])
             user = User.find_by_verify_token(params[:vid])
@@ -27,6 +31,32 @@ class StaticPagesController < ApplicationController
             redirect_to games_path
         end
 
+    end
+
+    def country
+        if session[:arrival_id]
+           @country = $geo.country(Arrival.find(session[:arrival_id]).ip).country_name
+        else
+           @country = "Unknown"
+        end
+        @waitlist_user = WaitlistUser.new
+    end
+
+    def closed_beta
+    end
+
+    def kd_home
+
+    end
+
+
+    def waitlist_user
+        waitlist_user = WaitlistUser.new(waitlist_user_params)
+        if !WaitlistUser.where(email:waitlist_user.email).present?
+            waitlist_user.save
+        end
+        flash[:success] = "Successfully subscribed!"
+        redirect_to country_path
     end
 
     def set_username
@@ -49,7 +79,7 @@ class StaticPagesController < ApplicationController
 
     def home_invite
         referred_user_id = User.where(referral:params[:referral]).first
-        if referred_user_id 
+        if referred_user_id
             arrival = Arrival.where(id:session["arrival_id"]).first
             if arrival
                 session[:referred_user_id] = referred_user_id.id
@@ -119,15 +149,18 @@ class StaticPagesController < ApplicationController
                 @cash_out.cash = 20
         end
 
-        if current_user.credits < @cash_out.credits
+        prev_cash_out = CashOut.where(user_id:current_user.id).last
+        if prev_cash_out && prev_cash_out.created_at >= (Time.now-24.hours)
+            redirect_to redeem_credits_path(credits:@cash_out.credits), alert: "We're sorry you must wait 24 hours between donations/cash outs! You are eligible to donate again after #{CashOut.where(user_id:current_user.id).last.created_at.strftime('%m/%d/%Y at %I:%M%p')}."
+        elsif current_user.credits < @cash_out.credits
             redirect_to donate_credits_path(credits:@cash_out.credits), alert: "You dont have enough credits to cash that out! This requires #{@cash_out.credits}, and you have #{current_user.credits}."
         elsif !@cash_out.cashout_type.nil? && @cash_out.save
-                @current_user.credits = current_user.credits - @cash_out.credits
-                current_user.pending_credits = @cash_out.credits
-                current_user.save
-                if Rails.env.production?
-                    UserNotifier.send_donation_email({user_id:current_user.id}).deliver
-                end
+            @current_user.credits = current_user.credits - @cash_out.credits
+            current_user.pending_credits = @cash_out.credits
+            current_user.save
+            if Rails.env.production?
+                UserNotifier.send_donation_email({user_id:current_user.id}).deliver
+            end
 
         else
             redirect_to donate_credits_path(credits:@cash_out.credits), alert: "Something went wrong. Please check the fields and try again."
@@ -158,17 +191,18 @@ class StaticPagesController < ApplicationController
             u.save
             @cash_out.paypal = params[:email]
         end
-
-        if current_user.credits < @cash_out.credits
+        prev_cash_out = CashOut.where(user_id:current_user.id).last
+        if prev_cash_out && prev_cash_out.created_at >= (Time.now-24.hours)
+            redirect_to redeem_credits_path(credits:@cash_out.credits), alert: "We're sorry you must wait 24 hours between cash outs! You are eligible to cash out again after #{CashOut.where(user_id:current_user.id).last.created_at.strftime('%m/%d/%Y at %I:%M%p')}."
+        elsif current_user.credits < @cash_out.credits
             redirect_to redeem_credits_path(credits:@cash_out.credits), alert: "You dont have enough credits to cash that out! This requires #{@cash_out.credits}, and you have #{current_user.credits}."
         elsif !@cash_out.cashout_type.nil? && (!@cash_out.paypal.blank? || !@cash_out.venmo.blank?) && @cash_out.save
-                @current_user.credits = current_user.credits - @cash_out.credits
-                current_user.pending_credits = @cash_out.credits
-                current_user.save
-                if Rails.env.production?
-                    UserNotifier.send_cash_out_email({user_id:current_user.id}).deliver
-                end
-
+            @current_user.credits = current_user.credits - @cash_out.credits
+            current_user.pending_credits = @cash_out.credits
+            current_user.save
+            if Rails.env.production?
+                UserNotifier.send_cash_out_email({user_id:current_user.id}).deliver
+            end
         else
             redirect_to redeem_credits_path(credits:@cash_out.credits), alert: "Something went wrong. Please check the fields and try again."
         end
@@ -214,5 +248,8 @@ class StaticPagesController < ApplicationController
     private
         def cash_out_params
             params.require(:cash_out).permit(:user_id, :credits, :cash,:venmo,:paypal,:cashout_type)
+        end
+        def waitlist_user_params
+            params.require(:waitlist_user).permit(:email, :arrival_id, :country)
         end
 end
