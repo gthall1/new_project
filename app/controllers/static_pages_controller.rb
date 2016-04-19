@@ -33,6 +33,9 @@ class StaticPagesController < ApplicationController
 
     end
 
+    def bellhops_affiliate
+    end
+
     def country
         if session[:arrival_id]
            @country = $geo.country(Arrival.find(session[:arrival_id]).ip).country_name

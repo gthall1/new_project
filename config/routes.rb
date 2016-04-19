@@ -39,6 +39,7 @@ Alotto::Application.routes.draw do
     match '/donate_credits/(:credits)',   to: 'static_pages#donate_credits',as: 'donate_credits',  via: 'get'
     match '/refer',   to: 'static_pages#refer',   via: 'get'
     match '/contact', to: 'static_pages#contact', via: 'get'
+    match '/join_bellhops', to: 'static_pages#bellhops_affiliate', as:  "bellhops_affiliate", via: 'get'
     match '/2048_tutorial', to: 'static_pages#twentyfortyeight_tut', via: 'get'
     match '/cash_out', to: 'static_pages#new_cash_out', via: 'post'
     match '/donation', to: 'static_pages#new_donation', via: 'post'

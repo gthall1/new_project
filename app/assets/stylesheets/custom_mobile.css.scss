@@ -13,6 +13,7 @@
 @import "forms";
 @import "jackhammer";
 @import "loading";
+@import "surveys";
 
 @mixin box_sizing {
     -moz-box-sizing: border-box;
@@ -227,12 +228,7 @@ textarea {
             bottom: 4px;
     }
 }
-.survey__question-copy {
-    margin: 0;
-}
-.survey__question:last-child {
-    border-bottom: none;
-}
+
 .mobile-home {
     text-align: center;
     height: 100vh;

@@ -1,13 +1,14 @@
 @import "variables";
 @import "mixins";
 
-.survey-wrapper {
+.survey-page {
     padding: 30px 0;
     text-align: left;
 
     .intro-copy {
         font-size: $xxl;
         margin-bottom: 20px;
+        line-height: $xxxl;
     }
     .survey__question {
         font-size: $md;
@@ -20,6 +21,10 @@
         @include bgColorAndHover($lavender);
 
         @include transition();
+    }
+
+    .mobile-container {
+        top: 30px;
     }
 }
 
@@ -119,9 +124,11 @@
 
 .survey__question-copy {
     font-weight: bold;
+    margin: 0 0 10px;
 }
-
-
+.survey__question:last-child {
+    border-bottom: none;
+}
 // Surveys Landing
 .survey__title {
     font-size: $xl;
@@ -150,5 +157,15 @@
     }
     .card__credits {
         margin-bottom: 10px;
+    }
+}
+
+.survey-wrapper {
+    @media screen and (max-width: 968px) {
+        padding: 0 7.5%;
+    }
+
+    .hide {
+        display: none;
     }
 }

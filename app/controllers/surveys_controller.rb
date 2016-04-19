@@ -14,9 +14,9 @@ class SurveysController < ApplicationController
     cookies[:survey] = 1
 
     @current_page = "surveys"
-    @surveys = Survey.all
+    @surveys = Survey.order(created_at: "desc").all
     if is_mobile?
-      render "surveys/index_mobile_new"
+      render "index_mobile"
     end
   end
 
@@ -55,7 +55,11 @@ class SurveysController < ApplicationController
       flash[:error] = "Something went wrong saving the survey. Please try again later."
     end
 
-    redirect_to surveys_path
+    if Survey.find(@user_survey.survey_id).slug == "bellhops"
+      redirect_to bellhops_affiliate_path
+    else
+      redirect_to surveys_path
+    end
   end
 
   # GET /surveys/new
