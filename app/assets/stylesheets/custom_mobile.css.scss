@@ -1552,21 +1552,22 @@ button {
 
 // SnowFfakes
 .mobile-games-page {
-    background-color: $off-white;
+    // background-color: $off-white;
+    background-color: #333;
 
-    // .mobile-container {
-    //     padding: 60px 0 50px;
-    //     background-color: #333;
-    //     font-family: Androgyne;
-    //     background-image: url('http://www.wearewebstars.dk/codepen/img/s1.png'), url('http://www.wearewebstars.dk/codepen/img//s2.png'), url('http://www.wearewebstars.dk/codepen/img//s3.png');
-    //     left: 0;
-    //     position: absolute;
-    //     top: 0;
-    //     width: 100%;
-    //     z-index:1;
-    //     -webkit-animation: snow 15s linear infinite;
-    //     -moz-animation: snow 15s linear infinite;
-    //     -ms-animation: snow 15s linear infinite;
-    //     animation: snow 15s linear infinite;
-    // }
+    .mobile-container {
+        padding: 60px 0 50px;
+        background-color: #333;
+        font-family: Androgyne;
+        background-image: url('http://www.wearewebstars.dk/codepen/img/s1.png'), url('http://www.wearewebstars.dk/codepen/img//s2.png'), url('http://www.wearewebstars.dk/codepen/img//s3.png');
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index:1;
+        -webkit-animation: snow 15s linear infinite;
+        -moz-animation: snow 15s linear infinite;
+        -ms-animation: snow 15s linear infinite;
+        animation: snow 15s linear infinite;
+    }
 }
