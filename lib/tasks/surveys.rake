@@ -12,9 +12,9 @@ end
 task :add_bellhop_survey => :environment do | t, args | 
   b = Survey.create({name: "Bellhops", slug:"bellhops",credits:25, survey_type:"video"})
   
-  qv =  Question.create({text:"KoGTWwV0YE8",question_type:"video",display_order: 3})
+  qv =  Question.create({text:"KoGTWwV0YE8",question_type:"video"})
 
-  sqv = SurveyQuestion.create({survey_id: b.id, question_id: qv.id})
+  sqv = SurveyQuestion.create({survey_id: b.id, question_id: qv.id, display_order: 3})
   a = Answer.create({text:"watched video"})
   
   sqa =  SurveyQuestionAnswer.create({survey_question_id: sqv.id,answer_id:a.id})
