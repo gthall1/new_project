@@ -46,6 +46,14 @@
   transform: rotate($degrees);
 }
 
+@mixin linkColorAndHover($baseColor, $duration: 0.25s) {
+    color: $baseColor;
+    transition: color $duration linear;
+    &:hover {
+        color: darken($baseColor, 5%);
+    }
+}
+
 @mixin bgColorAndHover($baseColor, $duration: 0.25s) {
     background-color: $baseColor;
     transition: background-color $duration linear;

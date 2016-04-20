@@ -262,3 +262,54 @@ body.waitlist-page {
     }
 }
 
+
+// Ad Affiliate
+.ad-wrapper {
+    text-align: center;
+    padding: 0 7.5%;
+
+    &.hide {
+        display: none;
+    }
+}
+.affiliate {
+    text-align: center;
+}
+.affiliate__msg {
+    font-size: $lg;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.affiliate__name {
+    color: $black;
+    float: right;
+}
+.affiliate__logo {
+    height: 50px;
+    width: auto;
+}
+.affiliate-page__copy {
+    margin: 20px 0;
+}
+.affiliate-page {
+    text-align: center;
+}
+.affiliate-page__logo {
+    width: 50%;
+    max-width: 200px;
+    display: block;
+    margin: 10px auto;
+}
+.affiliate-page__link {
+    display: block;
+    margin: 15px 0 30px;
+    font-size: $lg;
+}
+.affiliate-page__link--bh {
+    color: #37b554;
+    @include linkColorAndHover(#37b554);
+}
+.affiliate-page__copy {
+    font-size: $xl;
+    font-weight: 500;
+}
