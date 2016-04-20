@@ -79,6 +79,11 @@ html body {
         &:hover {
             text-decoration: none;
         }
+
+        &.btn--homepage-purple {
+            background-color: $lavender;
+            border: none;
+        }
     }
 
     .btn--no-fill {

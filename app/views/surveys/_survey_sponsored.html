@@ -1,8 +1,12 @@
-<% content_for :body_class, "survey-page" %>
+<% if is_mobile? %>
+    <% content_for :body_class, "survey-page survey-page--mobile" %>
+<% else %>
+    <% content_for :body_class, "survey-page" %>
+<% end %>
 
 <div class="page-container">
     <section class="ad-wrapper js-ad-wrapper">
-        <p class="intro-copy">Watch the clip below and answer the questions to receive 25 credits!</p>
+        <p class="intro-copy">Watch the clip below &amp; answer the questions to receive <%= @survey.credits %> credits!</p>
         <div id="player"></div>
         <div class="affiliate">
             <h1 class="affiliate__msg">"Earn cash in your free time."</h1>
@@ -19,7 +23,7 @@
         <div class="refer-friend">
 
             <div class="survey__question">
-                <p class="survey__question-copy">1. Do you play golf?</p>
+                <p class="survey__question-copy">1. Which feature would you rather have in a college job</p>
 
                 <label class="control control--radio">$13-$15 per hour plus tips
                 <%= radio_button 'feature', 'job', 'pay' %>
@@ -49,7 +53,17 @@
 
 <script>
     // Load API Async
-    var tag = document.createElement('script');
+    var tag = document.createElement('script'),
+        vidHeight,
+        vidWidth;
+
+    if ($('body').hasClass('survey-page--mobile')) {
+        vidHeight = 'auto';
+        vidWidth = '100%';
+    } else {
+        vidHeight = 315;
+        vidWidth = 560;
+    }
 
     tag.src = "https://www.youtube.com/iframe_api";
     var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -60,8 +74,8 @@
     var player;
     function onYouTubePlayerAPIReady() {
         player = new YT.Player('player', {
-            height: 'auto',
-            width: '100%',
+            height: vidHeight,
+            width: vidWidth,
             videoId: 'KoGTWwV0YE8',
             events: {
                 'onReady': onPlayerReady,
