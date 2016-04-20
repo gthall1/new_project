@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407040331) do
+ActiveRecord::Schema.define(version: 20160420194645) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -173,17 +173,19 @@ ActiveRecord::Schema.define(version: 20160407040331) do
   create_table "survey_questions", force: :cascade do |t|
     t.integer  "survey_id"
     t.integer  "question_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "display_order"
   end
 
   create_table "surveys", force: :cascade do |t|
     t.integer  "credits"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name",       limit: 255
+    t.string   "name",        limit: 255
     t.string   "slug"
     t.boolean  "active"
+    t.string   "survey_type"
   end
 
   create_table "user_entries", force: :cascade do |t|
@@ -220,8 +222,10 @@ ActiveRecord::Schema.define(version: 20160407040331) do
     t.integer  "user_id"
     t.integer  "question_id"
     t.integer  "answer_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "survey_question_id"
+    t.integer  "survey_question_answer_id"
   end
 
   create_table "user_surveys", force: :cascade do |t|

@@ -1,0 +1,90 @@
+<% content_for :body_class, "survey-page" %>
+
+<div class="page-container">
+    <section class="ad-wrapper js-ad-wrapper">
+        <p class="intro-copy">Watch the clip below and answer the questions to receive 25 credits!</p>
+        <div id="player"></div>
+        <div class="affiliate">
+            <h1 class="affiliate__msg">"Earn cash in your free time."</h1>
+            <img class="affiliate__logo" src="/assets/bellhops_logo.png">
+            <!-- <h2 class="affiliate__name">-Bellhops</h2> -->
+        </div>
+    </section>
+
+    <section class="survey-wrapper js-survey-wrapper hide">
+        <p id="notice"><%= notice %></p>
+
+        <p class="intro-copy">Complete this survey and receive <%= @survey.credits %> credits!</p>
+
+        <div class="refer-friend">
+        <%= form_for(@user_survey) do |f| %>
+                <% @survey.survey_questions.order('display_order asc').each.with_index(1) do | sq, i |  %>
+                    <% if sq.question.question_type != "video" %>
+                        <div class="survey__question">
+                            <p class="survey__question-copy"> <%= sq.question.text %></p>
+                            <% sq.survey_question_answers.each.with_index(1) do | a, j | %>
+                                <label class="control control--radio"><%= a.answer.text %>
+                                <%= radio_button 'question', sq.id, a.id %>
+                                <div class="control__indicator"></div>
+                                </label><!-- /.control .control--radio -->
+                            <% end %>
+                        </div><!-- /.control -->
+                    <% end %>
+                <% end %>
+
+                <%= f.hidden_field :id %>
+                <%= f.hidden_field :complete, :value => true %>
+                <%= f.submit 'Submit Survey', class: "btn-submit btn--top-margin"%>
+            <% end %>
+        </div> <!--/.refer-friend -->
+    </section><!-- /.section-wrapper -->
+</div>
+
+<script>
+    // Load API Async
+    var tag = document.createElement('script');
+
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+
+    // create youtube player
+    var player;
+    function onYouTubePlayerAPIReady() {
+        player = new YT.Player('player', {
+            height: 'auto',
+            width: '100%',
+            videoId: '<%= @survey.questions.where(question_type:"video").first.text %>',
+            events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+            },
+            playerVars: {
+                'autoplay': 0,
+                'controls': 0,
+                'rel' : 0,
+                'showinfo': 0
+            }
+        });
+    }
+
+    // autoplay video
+    function onPlayerReady(event) {
+        console.log('player ready');
+        // event.target.playVideo();
+    }
+
+    // when video ends
+    function onPlayerStateChange(event) {
+        if(event.data === 0) {
+            console.log('video complete');
+            $('.js-ad-wrapper').fadeOut(function fadeIn() {
+                $('.js-survey-wrapper').fadeIn();
+            });
+            // window.location.replace(window.location.origin);
+        } else {
+            console.dir(event);
+        }
+    }
+</script>

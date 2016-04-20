@@ -13,6 +13,7 @@
 @import "forms";
 @import "jackhammer";
 @import "loading";
+@import "surveys";
 
 @mixin box_sizing {
     -moz-box-sizing: border-box;
@@ -227,12 +228,7 @@ textarea {
             bottom: 4px;
     }
 }
-.survey__question-copy {
-    margin: 0;
-}
-.survey__question:last-child {
-    border-bottom: none;
-}
+
 .mobile-home {
     text-align: center;
     height: 100vh;
@@ -1556,21 +1552,21 @@ button {
 
 // SnowFfakes
 .mobile-games-page {
-    background-color:#333;
+    background-color: $off-white;
 
-    .mobile-container {
-        padding: 60px 0 50px;
-        background-color: #333;
-        font-family: Androgyne;
-        background-image: url('http://www.wearewebstars.dk/codepen/img/s1.png'), url('http://www.wearewebstars.dk/codepen/img//s2.png'), url('http://www.wearewebstars.dk/codepen/img//s3.png');
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 100%;
-        z-index:1;
-        -webkit-animation: snow 15s linear infinite;
-        -moz-animation: snow 15s linear infinite;
-        -ms-animation: snow 15s linear infinite;
-        animation: snow 15s linear infinite;
-    }
+    // .mobile-container {
+    //     padding: 60px 0 50px;
+    //     background-color: #333;
+    //     font-family: Androgyne;
+    //     background-image: url('http://www.wearewebstars.dk/codepen/img/s1.png'), url('http://www.wearewebstars.dk/codepen/img//s2.png'), url('http://www.wearewebstars.dk/codepen/img//s3.png');
+    //     left: 0;
+    //     position: absolute;
+    //     top: 0;
+    //     width: 100%;
+    //     z-index:1;
+    //     -webkit-animation: snow 15s linear infinite;
+    //     -moz-animation: snow 15s linear infinite;
+    //     -ms-animation: snow 15s linear infinite;
+    //     animation: snow 15s linear infinite;
+    // }
 }

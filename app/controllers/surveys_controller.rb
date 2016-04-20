@@ -14,9 +14,9 @@ class SurveysController < ApplicationController
     cookies[:survey] = 1
 
     @current_page = "surveys"
-    @surveys = Survey.all
+    @surveys = Survey.order(created_at: "desc").all
     if is_mobile?
-      render "surveys/index_mobile_new"
+      render "index_mobile"
     end
   end
 
@@ -46,8 +46,16 @@ class SurveysController < ApplicationController
       @user_survey.credits = @user_survey.survey.credits
       @user_survey.complete = true
       if @user_survey.save
-         current_user.add_credits({credits:@user_survey.survey.credits})
+        current_user.add_credits({credits:@user_survey.survey.credits})
+        if params[:question] && !params[:question].blank?
+          p params[:question].first
+          p params[:question]
+          params[:question].each do | q  | 
+             user_survey_answer = UserSurveyAnswer.create({user_id: current_user.id,survey_question_id: q[0], user_survey_id: @user_survey.id,survey_question_answer_id: q[1]})
+          end
+        end
       end
+
       flash[:success] = "Thank you for completing the survey!"
     elsif @user_survey.complete == true
       flash[:notice] = "This survey has been completed."
@@ -55,7 +63,11 @@ class SurveysController < ApplicationController
       flash[:error] = "Something went wrong saving the survey. Please try again later."
     end
 
-    redirect_to surveys_path
+    if Survey.find(@user_survey.survey_id).slug == "bellhops"
+      redirect_to bellhops_affiliate_path
+    else
+      redirect_to surveys_path
+    end
   end
 
   # GET /surveys/new

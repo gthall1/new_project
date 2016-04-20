@@ -10,7 +10,11 @@
     <% when "oscars-survey" %>
         <%= render 'survey_oscars' %>        
     <% when "travel-survey" %>
-        <%= render 'survey_four' %>  
+        <%= render 'survey_four' %>      
     <% else %>
-        <%= render 'survey_new'  %>          
+        <% if @survey.survey_type == "video" %>
+            <%= render 'survey_video' %> 
+        <% else %>
+            <%= render 'survey_new'  %>          
+        <% end %>
 <% end %> 
