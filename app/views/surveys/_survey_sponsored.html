@@ -5,7 +5,7 @@
 <% end %>
 
 <div class="page-container">
-    <section class="ad-wrapper js-ad-wrapper">
+    <section class="affiliate-wrapper js-affiliate-wrapper">
         <p class="intro-copy">Watch the clip below &amp; answer the questions to receive <%= @survey.credits %> credits!</p>
         <div id="player"></div>
         <div class="affiliate">
@@ -100,7 +100,7 @@
     function onPlayerStateChange(event) {
         if(event.data === 0) {
             console.log('video complete');
-            $('.js-ad-wrapper').fadeOut(function fadeIn() {
+            $('.js-affiliate-wrapper').fadeOut(function fadeIn() {
                 $('.js-survey-wrapper').fadeIn();
             });
             // window.location.replace(window.location.origin);

@@ -1,0 +1,15 @@
+<!-- Detect AdBlock -->
+<section class="adblock js-adblock hide">
+    <h1 class="adblock__message">Looks like you are running adblock on this page. Please disable adblock and refresh the page.</h1>
+</section><!-- /.adblock -->
+
+<script type="text/javascript">
+    var adblock = true;
+</script>
+<script type="text/javascript" src="/assets/adframe.js"></script>
+<script type="text/javascript">
+    if(adblock) {
+          console.log('This user has adblock');
+          $('.js-adblock').removeClass('hide');
+    }
+</script>

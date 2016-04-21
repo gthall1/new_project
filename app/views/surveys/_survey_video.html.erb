@@ -1,7 +1,11 @@
-<% content_for :body_class, "survey-page" %>
+<% if is_mobile? %>
+    <% content_for :body_class, "survey-page survey-page--mobile" %>
+<% else %>
+    <% content_for :body_class, "survey-page" %>
+<% end %>
 
 <div class="page-container">
-    <section class="ad-wrapper js-ad-wrapper">
+    <section class="affiliate-wrapper js-affiliate-wrapper">
         <p class="intro-copy">Watch the clip below and answer the questions to receive 25 credits!</p>
         <div id="player"></div>
         <div class="affiliate">
@@ -42,7 +46,17 @@
 
 <script>
     // Load API Async
-    var tag = document.createElement('script');
+    var tag = document.createElement('script'),
+        vidHeight,
+        vidWidth;
+
+    if ($('body').hasClass('survey-page--mobile')) {
+        vidHeight = 'auto';
+        vidWidth = '100%';
+    } else {
+        vidHeight = 315;
+        vidWidth = 560;
+    }
 
     tag.src = "https://www.youtube.com/iframe_api";
     var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -53,8 +67,8 @@
     var player;
     function onYouTubePlayerAPIReady() {
         player = new YT.Player('player', {
-            height: 'auto',
-            width: '100%',
+            height: vidHeight,
+            width: vidWidth,
             videoId: '<%= @survey.questions.where(question_type:"video").first.text %>',
             events: {
                 'onReady': onPlayerReady,
@@ -79,7 +93,7 @@
     function onPlayerStateChange(event) {
         if(event.data === 0) {
             console.log('video complete');
-            $('.js-ad-wrapper').fadeOut(function fadeIn() {
+            $('.js-affiliate-wrapper').fadeOut(function fadeIn() {
                 $('.js-survey-wrapper').fadeIn();
             });
             // window.location.replace(window.location.origin);

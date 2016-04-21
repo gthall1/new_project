@@ -3,7 +3,7 @@
 
 .survey-page {
     &.survey-page--mobile {
-        padding: 30px 0;
+        padding: 30px 0 50px;
     }
 
     text-align: left;
@@ -14,7 +14,7 @@
         line-height: $xxxl;
     }
 
-    .ad-wrapper .intro-copy {
+    .affiliate-wrapper .intro-copy {
         padding: 0;
         font-size: $xl;
         line-height: $xxl;
