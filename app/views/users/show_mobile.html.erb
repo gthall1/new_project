@@ -4,13 +4,14 @@
     <%= link_to "Edit", edit_user_path(current_user), class: "btn--outline" %>
 
 
-    <div class="profile-section profile__top">
-        <div class="profile__avatar" style="<% if current_user.oath_image %> background-image: url(<%= current_user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %>"></div>
+    <section class="profile-section profile__top">
+        <div class="profile-section__vert-align">
+            <div class="profile__avatar" style="<% if current_user.oath_image %> background-image: url(<%= current_user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %>"></div>
+            <h1 class="profile__name"><%= @user.name %></h1>
+        </div><!-- /.profile-section__vert-align -->
+    </section><!-- /.profile__top -->
 
-        <h1 class="profile__name"><%= @user.name %></h1>
-    </div><!-- /.profile__top -->
-
-    <div class="profile-section">
+    <section class="profile-section">
         <div class="profile__inline-tout">
             <div class="inline-tout__item">
                 <h1 class="js-inline-tout__title inline-tout__title"><%= @user.credits ||= 0 %></h1>
@@ -27,10 +28,10 @@
                 <h3 class="inline-tout__sub-title">Luckee Rank <i class="fa fa-info-circle"></i></h3>
             </div><!-- /.inline-tout__item -->
         </div><!-- /.profile__inline-tout -->
-    </div><!-- /.profile-section -->
+    </section><!-- /.profile-section -->
 
 
-    <div class="profile-section profile__bottom">
+    <section class="profile-section profile__bottom">
         <div class="profile__legend">
             <ul class="legend">
                 <li class="legend__key">
@@ -56,7 +57,7 @@
                 </li>
             </ul>
         </div>
-    </div><!-- /.profile__bottom -->
+    </section><!-- /.profile__bottom -->
 
     <script>
         $(function() {
@@ -105,7 +106,7 @@
             var copy = canvas.append("text")
                         .text(totalGames)
                         .attr('class', 'js-games-number')
-                        .style('fill', "#fff")
+                        .style('fill', "#727070")
                         .attr('font-size', "32px")
                         .attr("transform", function() {
                             return "translate(" + ((width / 2) - (this.getBBox().width/2)) + "," + ((height / 2) - 10) + ")"
@@ -114,7 +115,7 @@
 
             var copy = canvas.append("text")
                         .text("Total games played")
-                        .style('fill', "#fff")
+                        .style('fill', "#727070")
                         .attr("transform",function() {
                             return "translate(" + ((width / 2) - (this.getBBox().width/2)) + "," + ((height / 2) + 20) + ")"
                         })
