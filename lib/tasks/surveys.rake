@@ -10,7 +10,7 @@ end
 
 #PLAN ON HAVING A CREATOR MUCH MORE SIMPLE THAN THIS AHHGH THIS IS A MESS
 task :add_bellhop_survey => :environment do | t, args | 
-  b = Survey.create({name: "Bellhops", slug:"bellhops",credits:25, survey_type:"video"})
+  b = Survey.create({name: "Bellhops Survey", slug:"bellhops",credits:25, survey_type:"video"})
   
   qv =  Question.create({text:"KoGTWwV0YE8",question_type:"video"})
 

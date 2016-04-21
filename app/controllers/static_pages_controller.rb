@@ -11,6 +11,11 @@ class StaticPagesController < ApplicationController
     end
 
     def home
+        if !params[:promo].blank? && params[:promo].downcase == 'pax'
+            session[:promo] = 'pax'
+        else
+            session[:promo] = nil #clear this out if they go back without it
+        end
         @waitlist_user = WaitlistUser.new
 
        #if someone coming with vid they just lcicked verify token

@@ -16,6 +16,7 @@ module ApplicationHelper
   end
 
   def signups_allowed?
+      return true if session[:promo] == 'pax'
       false
   end
 
