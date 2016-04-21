@@ -78,8 +78,6 @@ Alotto::Application.routes.draw do
 
     match '/waitlist_user', to: 'static_pages#waitlist_user', via: 'post'
 
-
-
     get 'auth/:provider/callback', to: 'sessions#create_from_facebook'
 
     # JSON Routes
@@ -104,5 +102,9 @@ Alotto::Application.routes.draw do
             end
         end
     end
+
+    #CATCH ALL FOR PROMOS
+    match '/:promo', to: 'static_pages#home', via: 'get'
+
 
 end

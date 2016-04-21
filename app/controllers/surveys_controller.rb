@@ -48,8 +48,6 @@ class SurveysController < ApplicationController
       if @user_survey.save
         current_user.add_credits({credits:@user_survey.survey.credits})
         if params[:question] && !params[:question].blank?
-          p params[:question].first
-          p params[:question]
           params[:question].each do | q  | 
              user_survey_answer = UserSurveyAnswer.create({user_id: current_user.id,survey_question_id: q[0], user_survey_id: @user_survey.id,survey_question_answer_id: q[1]})
           end
