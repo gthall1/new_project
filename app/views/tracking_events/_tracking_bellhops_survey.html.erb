@@ -1,0 +1,36 @@
+<script type="text/javascript">
+// Google Analytics Event
+var analyticsEvent = function(c, a, l, v, n) {
+    // universal analytics
+    if (typeof window.ga === 'function') {
+        ga('send', 'event', c, a, l, v, {nonInteraction: n});
+    }
+    // async analytics
+    else if (typeof window._gaq === 'object') {
+        _gaq.push(["_trackEvent", c, a, l, v, n]);
+    }
+    return;
+};
+var analytics = {
+    conf: {
+        affiliateSurvey: '.ga-affiliate-survey',
+        currentUser: '<%= current_user.id %>'
+    },
+    bind: function() {
+        $(analytics.conf.affiliateSurvey).on('click', function() {
+            console.log('GA Bellhops Ad');
+            var lbname = "Bellhops Ad";
+            analyticsEvent("Survey", "Click", lbname, analytics.conf.currentUser, false);
+        });
+    },
+    init: function() {
+        analytics.bind();
+    }
+};
+$(document).ready(function(){
+    var lbname = "Survey Page Loaded";
+    console.log('Survey Page Loaded');
+    analyticsEvent("Survey Landing", "Load", lbname, analytics.conf.currentUser, true);
+    analytics.init();
+});
+</script>

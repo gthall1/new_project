@@ -8,7 +8,7 @@
 <div class="interior-body">
     <section class="card-container">
         <% @surveys.each do |survey| %>
-            <div class="card-tout <% if UserSurvey.where(survey_id: survey.id,user_id:current_user.id,complete:true).present? %> disabled <% end %>">
+            <div class="card-tout <% if survey.slug == "bellhops" %>ga-affiliate-survey<% end %><% if UserSurvey.where(survey_id: survey.id,user_id:current_user.id,complete:true).present? %> disabled <% end %>">
                 <div class="card-inner">
                     <% if UserSurvey.where(survey_id: survey.id,user_id:current_user.id,complete:true).present? %>
                         <h1 class="survey__title"><%= survey.name %></h1>
@@ -27,3 +27,6 @@
         <% end %>
     </section><!-- /.card-container -->
 </div><!--/.interior-body -->
+
+
+<%= render 'tracking_events/tracking_bellhops_survey' %>
