@@ -18,7 +18,7 @@ var analytics = {
     },
     bind: function() {
         $(analytics.conf.affiliateSurvey).on('click', function() {
-            console.log('GA Bellhops Ad');
+            console.log('Analytics - Bellhops Ad Clicked');
             var lbname = "Bellhops Ad";
             analyticsEvent("Survey", "Click", lbname, analytics.conf.currentUser, false);
         });
@@ -29,7 +29,7 @@ var analytics = {
 };
 $(document).ready(function(){
     var lbname = "Survey Page Loaded";
-    console.log('Survey Page Loaded');
+    console.log('Analytics - Survey Page Loaded');
     analyticsEvent("Survey Landing", "Load", lbname, analytics.conf.currentUser, true);
     analytics.init();
 });
