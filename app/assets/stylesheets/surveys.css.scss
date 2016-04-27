@@ -155,6 +155,12 @@
     // margin-top: 10px;
     display: block;
     color: $teal;
+
+    &.survey__completed--bellhops {
+        a {
+            color: $teal;
+        }
+    }
 }
 .survery__admin-control {
     color: $black;
