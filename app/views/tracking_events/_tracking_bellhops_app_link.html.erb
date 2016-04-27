@@ -1,0 +1,35 @@
+<script type="text/javascript">
+// Google Analytics Event
+var analyticsEvent = function(c, a, l, v, n) {
+    // universal analytics
+    if (typeof window.ga === 'function') {
+        ga('send', 'event', c, a, l, v, {nonInteraction: n});
+    }
+    // async analytics
+    else if (typeof window._gaq === 'object') {
+        _gaq.push(["_trackEvent", c, a, l, v, n]);
+    }
+    return;
+};
+var analytics = {
+    conf: {
+        applicationLink: '.ga-bellhops-app-link'
+    },
+    bind: function() {
+        $(analytics.conf.applicationLink).on('click', function() {
+            console.log('Analytics - Bellhops App Link Clicked');
+            var lbname = "Bellhops App Link";
+            analyticsEvent("Application Link", "Click", lbname, analytics.conf.currentUser, false);
+        });
+    },
+    init: function() {
+        analytics.bind();
+    }
+};
+$(document).ready(function(){
+    var lbname = "Join Bellhops Page";
+    console.log('Analytics - Bellhops Application Page Load');
+    analyticsEvent("Bellhops Application Page", "Load", lbname, analytics.conf.currentUser, true);
+    analytics.init();
+});
+</script>
