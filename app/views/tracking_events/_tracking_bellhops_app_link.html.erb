@@ -13,7 +13,8 @@ var analyticsEvent = function(c, a, l, v, n) {
 };
 var analytics = {
     conf: {
-        applicationLink: '.ga-bellhops-app-link'
+        applicationLink: '.ga-bellhops-app-link',
+        currentUser: '<%= current_user.id %>'
     },
     bind: function() {
         $(analytics.conf.applicationLink).on('click', function() {
