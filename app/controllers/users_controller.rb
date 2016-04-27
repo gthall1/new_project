@@ -11,11 +11,12 @@ class UsersController < ApplicationController
     def index
         @users = User.all
         @credits = User.total_user_credits
+        @active_users = @users.where(enabled:[true,nil])
 
         respond_to do |format|
             format.html
-            format.csv { send_data @users.to_csv }
-            format.xls { send_data @users.to_csv(col_sep: "\t") }
+            format.csv { send_data @active_users.to_csv }
+            format.xls { send_data @active_users.to_csv(col_sep: "\t") }
         end
     end
 

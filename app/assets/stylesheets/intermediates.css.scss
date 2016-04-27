@@ -304,6 +304,10 @@ body.waitlist-page {
     display: block;
     margin: 15px 0 30px;
     font-size: $lg;
+
+    .link--underline {
+        text-decoration: underline;
+    }
 }
 .affiliate-page__link--bh {
     color: #37b554;
