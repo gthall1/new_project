@@ -712,15 +712,29 @@ class GamesController < ApplicationController
             end
         end
 
-        game_json = {
-            :c2dictionary => true,
-            :data => {
-             :earned => 0,
-             :total_credits => current_user.credits,
-             :token => session[:game_token],
-             :hscore => high_score
+        if newgame && game.slug == "fall-down"
+
+            game_json = {
+                :c2dictionary => true,
+                :data => {
+                 :earned => 0,
+                 :total_credits => current_user.credits,
+                 :token => session[:game_token],
+                 :hscore => high_score,
+                 :ad_number => !Rails.env.production? ? rand(3..8) : 1, #TODO: Add the real logic for this
+                }
             }
-        }
+        else
+            game_json = {
+                :c2dictionary => true,
+                :data => {
+                 :earned => 0,
+                 :total_credits => current_user.credits,
+                 :token => session[:game_token],
+                 :hscore => high_score
+                }
+            }
+        end
 
         render json: game_json
     end

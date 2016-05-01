@@ -3907,7 +3907,7 @@ quat4.str=function(a){return"["+a[0]+", "+a[1]+", "+a[2]+", "+a[3]+"]"};
 		{
 			this["setSize"](this.original_width, this.original_height, true);
 		}
-		//this.tryLockOrientation();
+		this.tryLockOrientation();
 		this.getready();	// determine things to preload
 		this.go();			// run loading screen
 		this.extra = {};
@@ -4107,7 +4107,7 @@ quat4.str=function(a){return"["+a[0]+", "+a[1]+", "+a[2]+", "+a[3]+"]"};
 			this.ctx["msImageSmoothingEnabled"] = this.linearSampling;
 			this.ctx["imageSmoothingEnabled"] = this.linearSampling;
 		}
-		//this.tryLockOrientation();
+		this.tryLockOrientation();
 		if (!this.isDomFree && (tryHideAddressBar || this.isiPhone))
 		{
 			window.setTimeout(function () {
@@ -21081,11 +21081,11 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.AJAX,
 	cr.plugins_.Browser,
 	cr.plugins_.Dictionary,
-	cr.plugins_.Touch,
-	cr.plugins_.Spritefont2,
+	cr.plugins_.WebStorage,
 	cr.plugins_.Text,
 	cr.plugins_.Sprite,
-	cr.plugins_.WebStorage,
+	cr.plugins_.Touch,
+	cr.plugins_.Spritefont2,
 	cr.behaviors.solid,
 	cr.behaviors.Platform,
 	cr.behaviors.Flash,
@@ -21126,5 +21126,6 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.Dictionary.prototype.acts.JSONLoad,
 	cr.plugins_.AJAX.prototype.exps.LastData,
 	cr.plugins_.Dictionary.prototype.exps.Get,
-	cr.plugins_.Text.prototype.acts.SetText
+	cr.plugins_.Text.prototype.acts.SetText,
+	cr.plugins_.Sprite.prototype.acts.SetAnimFrame
 ];};
