@@ -1,0 +1,48 @@
+<script type="text/javascript">
+// Google Analytics Event
+var analyticsEvent = function(c, a, l, v, n) {
+    // universal analytics
+    if (typeof window.ga === 'function') {
+        ga('send', 'event', c, a, l, v, {nonInteraction: n});
+    }
+    // async analytics
+    else if (typeof window._gaq === 'object') {
+        _gaq.push(["_trackEvent", c, a, l, v, n]);
+    }
+    return;
+};
+var bellhopsAnalytics = {
+    conf: {
+        surveySubmit: '.js-submit-video-survey',
+        currentUser: '<%= current_user.id %>'
+    },
+    play: function() {
+        var lbname = 'Bellhops Video Played'
+
+        console.log('Analytics - Video Played');
+        analyticsEvent("Bellhops Video", "Play", lbname, bellhopsAnalytics.conf.currentUser, false);
+    },
+    complete: function() {
+        var lbname = 'Bellhops Video Ended'
+
+        console.log('Analytics - Video Completed');
+        analyticsEvent("Bellhops Video", "End", lbname, bellhopsAnalytics.conf.currentUser, false);
+    },
+    bind: function() {
+        $(bellhopsAnalytics.conf.surveySubmit).on('click', function() {
+            console.log('Analytics - Survey Submitted');
+            var lbname = "Bellhops Survey Submitted";
+            analyticsEvent("Bellhops Submit", "Click", lbname, bellhopsAnalytics.conf.currentUser, false);
+        });
+    },
+    init: function() {
+        bellhopsAnalytics.bind();
+    }
+};
+$(document).ready(function(){
+    var lbname = "Bellhops Survey Loaded";
+    console.log('Analytics - Video Survey Loaded');
+    analyticsEvent("Bellhops Load", "Load", lbname, bellhopsAnalytics.conf.currentUser, true);
+    bellhopsAnalytics.init();
+});
+</script>

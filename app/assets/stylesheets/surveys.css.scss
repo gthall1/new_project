@@ -29,6 +29,7 @@
         border-radius: 4px;
         margin-top: 20px;
         padding: 10px 20px;
+        margin-bottom: 20px;
         @include bgColorAndHover($lavender);
 
         @include transition();
@@ -154,6 +155,12 @@
     // margin-top: 10px;
     display: block;
     color: $teal;
+
+    &.survey__completed--bellhops {
+        a {
+            color: $teal;
+        }
+    }
 }
 .survery__admin-control {
     color: $black;

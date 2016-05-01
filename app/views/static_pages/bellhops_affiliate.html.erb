@@ -4,9 +4,11 @@
     <h1 class="affiliate-page__copy">You earned +25 points!</h1>
     <img class="affiliate-page__logo" src="/assets/bellhops.jpg">
     <img class="affiliate__logo" src="/assets/bellhops_logo.png">
-    <a class="affiliate-page__link affiliate-page__link--bh" href="https://getbellhops.com/about/careers">Apply now to get all three!</a>
+    <a class="affiliate-page__link affiliate-page__link--bh ga-bellhops-app-link" target="_blank"href="https://getbellhops.com/about/careers"><span class="link--underline">Apply now</span></a>
 </div>
 
 <div>
     <%= link_to "Return to games", root_path, class: "btn--homepage btn--homepage-purple" %>
 </div>
+
+<%= render 'tracking_events/tracking_bellhops_app_link' %>

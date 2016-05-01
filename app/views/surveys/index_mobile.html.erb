@@ -13,12 +13,18 @@
     <section class="list-page__lower">
         <ul class="list-page__list">
             <% @surveys.each do |survey| %>
-                <li class="list-page__list-item <% if survey.slug == "bellhops" %>list-page__list-item--overlay<% end %> <% if UserSurvey.where(survey_id: survey.id,user_id:current_user.id,complete:true).present? %> completed <% end %>">
+                <li class="list-page__list-item <% if survey.slug == "bellhops" %>ga-affiliate-survey list-page__list-item--overlay<% end %> <% if UserSurvey.where(survey_id: survey.id,user_id:current_user.id,complete:true).present? %> completed <% end %>">
                     <div class="list-item__icon" style="<% if survey.slug == "bellhops" %> background-image: url(/assets/bellhops.jpg); <% end %>"><h3 class="list-item__icon-title"><span class="title--mini">+</span><%= survey.credits%></h3></div>
                     <% if UserSurvey.where(survey_id: survey.id,user_id:current_user.id,complete:true).present? %>
                         <div class="list-item__wrapper">
                             <p class="list-item__title"><%= survey.name %></p>
-                            <p class="list-item__sub-cap list-item__sub-cap--teal">Completed</p>
+                            <% if survey.slug == "bellhops" %>
+                                <p class="list-item__sub-cap">
+                                <%= link_to 'Apply to Bellhops', bellhops_affiliate_path %>
+                                </p>
+                            <% else %>
+                                <p class="list-item__sub-cap list-item__sub-cap--teal">Completed</p>
+                            <% end %>
                         </div>
                         <i class="fa fa-check-circle-o"></i>
                     <% else %>
@@ -35,4 +41,4 @@
     </section>
 </div>
 
-
+<%= render 'tracking_events/tracking_bellhops_survey' %>

@@ -188,6 +188,12 @@
     font-weight: 300;
     text-transform: uppercase;
     margin-bottom:  0;
+
+    // Bellhops application link
+    a {
+        color: $teal;
+        text-decoration: none;
+    }
 }
 .list-item__sub-cap--teal {
     color: $teal;
