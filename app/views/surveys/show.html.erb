@@ -14,6 +14,8 @@
     <% else %>
         <% if @survey.survey_type == "video" %>
             <%= render 'survey_video' %> 
+        <% elsif @survey.survey_type == "conditional" %>
+            <%= render 'survey_conditional' %> 
         <% else %>
             <%= render 'survey_new'  %>          
         <% end %>

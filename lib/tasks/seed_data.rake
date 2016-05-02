@@ -119,7 +119,7 @@ task :add_fall_down => :environment do | t, args |
      fd = Game.new
      fd.name = "Fall Down"
      fd.image = "fall_down.png"
-     fd.device_type = 1
+     fd.device_type = 3
      fd.slug = "fall-down"
      fd.sort_order = 2
      fd.save

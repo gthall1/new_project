@@ -9,6 +9,86 @@ task :add_travel_survey => :environment do | t, args |
 end
 
 #PLAN ON HAVING A CREATOR MUCH MORE SIMPLE THAN THIS AHHGH THIS IS A MESS
+task :add_checking_account_survey => :environment do | t, args | 
+  b = Survey.create({name: "Checking Survey", slug:"checking",credits:25, survey_type:"conditional"})
+  
+  qc =  Question.create({text:"Do you have a checking account?",question_type:"condition"})
+
+  sqc = SurveyQuestion.create({survey_id: b.id, question_id: qc.id, display_order: 1})
+    ac1 = Answer.where({text:"yes"}).first
+  sqca1 =  SurveyQuestionAnswer.create({survey_question_id: sqc.id,answer_id:ac1.id})
+    ac2 = Answer.where({text:"no"}).first
+  sqca2 =  SurveyQuestionAnswer.create({survey_question_id: sqc.id,answer_id:ac2.id})
+
+  #IF NO QUESTIONS
+  q2a =  Question.create({text:"How soon would you consider opening a checking account?",question_type:"multiple"})
+    sq1 = SurveyQuestion.create({survey_id: b.id, question_id: q2a.id, display_order: 2, condition_id:ac2.id})
+    a1 = Answer.create({text:"Today"})
+     sqa1 =  SurveyQuestionAnswer.create({survey_question_id: sq1.id,answer_id:a1.id})
+
+    a2 = Answer.create({text:"This month"})
+     sqa2 =  SurveyQuestionAnswer.create({survey_question_id: sq1.id,answer_id:a2.id})
+     
+    a3 = Answer.create({text:"This year"})
+     sqa3 =  SurveyQuestionAnswer.create({survey_question_id: sq1.id,answer_id:a3.id})
+
+    a4 = Answer.create({text:"2-5 years"})
+     sqa4 =  SurveyQuestionAnswer.create({survey_question_id: sq1.id,answer_id:a4.id})
+
+    a5 = Answer.create({text:"Never"})
+     sqa5 =  SurveyQuestionAnswer.create({survey_question_id: sq1.id,answer_id:a5.id})
+
+
+
+  q3a =  Question.create({text:"What would be the most important factor for you when considering opening a checking account?",question_type:"multiple"})
+
+    sq3a = SurveyQuestion.create({survey_id: b.id, question_id: q3a.id, display_order:3,condition_id:ac2.id})
+    a1 = Answer.create({text:"Convenience"})
+     sqa1 =  SurveyQuestionAnswer.create({survey_question_id: sq3a.id,answer_id:a1.id})
+
+    a2 = Answer.create({text:"No Fees"})
+     sqa2 =  SurveyQuestionAnswer.create({survey_question_id: sq3a.id,answer_id:a2.id})
+     
+    a3 = Answer.create({text:"Distance to branch locations"})
+     sqa3 =  SurveyQuestionAnswer.create({survey_question_id: sq3a.id,answer_id:a3.id})
+  ####END IF NO ##
+
+  ###IF YES QUESTIONS
+  #IF NO QUESTIONS
+  q2a =  Question.create({text:"How satisfied are you with your current checking account provider?",question_type:"multiple"})
+    sq1 = SurveyQuestion.create({survey_id: b.id, question_id: q2a.id, display_order: 2,condition_id:ac1.id})
+    a1 = Answer.create({text:"Not at all satisfied"})
+     sqa1 =  SurveyQuestionAnswer.create({survey_question_id: sq1.id,answer_id:a1.id})
+
+    a2 = Answer.create({text:"Unsatisfied"})
+     sqa2 =  SurveyQuestionAnswer.create({survey_question_id: sq1.id,answer_id:a2.id})
+     
+    a3 = Answer.create({text:"Neutral"})
+     sqa3 =  SurveyQuestionAnswer.create({survey_question_id: sq1.id,answer_id:a3.id})
+
+    a4 = Answer.create({text:"Satisfied"})
+     sqa4 =  SurveyQuestionAnswer.create({survey_question_id: sq1.id,answer_id:a4.id})
+
+    a5 = Answer.create({text:"Extremely satisfied"})
+     sqa5 =  SurveyQuestionAnswer.create({survey_question_id: sq1.id,answer_id:a5.id})
+
+
+
+  q3a =  Question.create({text:"What is the most important checking account feature for you?",question_type:"multiple"})
+
+    sq3a = SurveyQuestion.create({survey_id: b.id, question_id: q3a.id, display_order:3,condition_id:ac1.id})
+    a1 = Answer.create({text:"No fees"})
+     sqa1 =  SurveyQuestionAnswer.create({survey_question_id: sq3a.id,answer_id:a1.id})
+
+    a2 = Answer.create({text:"Electronic deposit"})
+     sqa2 =  SurveyQuestionAnswer.create({survey_question_id: sq3a.id,answer_id:a2.id})
+     
+    a3 = Answer.create({text:"fraud alerts"})
+     sqa3 =  SurveyQuestionAnswer.create({survey_question_id: sq3a.id,answer_id:a3.id})
+
+end
+
+#PLAN ON HAVING A CREATOR MUCH MORE SIMPLE THAN THIS AHHGH THIS IS A MESS
 task :add_bellhop_survey => :environment do | t, args | 
   b = Survey.create({name: "Bellhops Survey", slug:"bellhops",credits:25, survey_type:"video"})
   

@@ -28,6 +28,12 @@ class SurveysController < ApplicationController
   # GET /surveys/1.json
   def show
     @show_back_button = true
+
+    #TODO: add this to database to have dynamic conditions in questions
+    if @survey.survey_type == "conditional"
+      @yes_id = Answer.where(text:"yes").first.id
+      @no_id = Answer.where(text:"no").first.id
+    end
     if UserSurvey.where(user_id:current_user.id,survey_id:@survey.id).present?
       @user_survey =  UserSurvey.where(user_id:current_user.id,survey_id:@survey.id).first
     else
