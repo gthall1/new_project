@@ -7,6 +7,9 @@ class GamesController < ApplicationController
 
     include ApplicationHelper
     include GamesHelper
+    require "#{Rails.root}/lib/ad_logic.rb"
+
+    include AdLogic
 
     layout :determine_layout
 
@@ -713,7 +716,7 @@ class GamesController < ApplicationController
         end
 
         if newgame && game.slug == "fall-down"
-
+            
             game_json = {
                 :c2dictionary => true,
                 :data => {
@@ -721,7 +724,7 @@ class GamesController < ApplicationController
                  :total_credits => current_user.credits,
                  :token => session[:game_token],
                  :hscore => high_score,
-                 :ad_number => !Rails.env.production? ? rand(3..8) : 1, #TODO: Add the real logic for this
+                 :ad_number => get_ad
                 }
             }
         else

@@ -10,17 +10,13 @@
     <div class="refer-friend">
         <% @survey.survey_questions.each.with_index(1) do | sq, i |  %>
             <div class="survey__question">
-                <p class="survey__question-copy"><%= i %>. <%= sq.question.text %></p>
-                
-                <label class="control control--radio">Yes
-                <%= radio_button 'watch', 'oscars', 'yes' %>
-                <div class="control__indicator"></div>
-                </label><!-- /.control .control--radio -->
-
-                <label class="control control--radio">No
-                <%= radio_button 'watch', 'oscars', 'no' %>
-                <div class="control__indicator"></div>
-                </label><!-- /.control .control--radio -->
+                <p class="survey__question-copy"><%= i %>. <%= sq.question.text %>
+                    <% sq.survey_question_answers.each do | a | %>
+                        <label class="control control--radio"><%= a.answer.text %>
+                        <%= radio_button 'question', sq.id, a.id %>
+                        <div class="control__indicator"></div>
+                        </label><!-- /.control .control--radio -->
+                    <% end %>                    
             </div><!-- /.control -->
 
         <% end %>

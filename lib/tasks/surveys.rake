@@ -12,7 +12,7 @@ end
 task :add_checking_account_survey => :environment do | t, args | 
   b = Survey.create({name: "Checking Survey", slug:"checking",credits:25, survey_type:"conditional"})
   
-  qc =  Question.create({text:"Do you have a checking account?",question_type:"condition"})
+  qc =  Question.create({text:"Do you have a checking account?",question_type:"condition",slug:"has-checking"})
 
   sqc = SurveyQuestion.create({survey_id: b.id, question_id: qc.id, display_order: 1})
     ac1 = Answer.where({text:"yes"}).first
@@ -21,7 +21,7 @@ task :add_checking_account_survey => :environment do | t, args |
   sqca2 =  SurveyQuestionAnswer.create({survey_question_id: sqc.id,answer_id:ac2.id})
 
   #IF NO QUESTIONS
-  q2a =  Question.create({text:"How soon would you consider opening a checking account?",question_type:"multiple"})
+  q2a =  Question.create({text:"How soon would you consider opening a checking account?",question_type:"multiple",slug:'checking-timeframe'})
     sq1 = SurveyQuestion.create({survey_id: b.id, question_id: q2a.id, display_order: 2, condition_id:ac2.id})
     a1 = Answer.create({text:"Today"})
      sqa1 =  SurveyQuestionAnswer.create({survey_question_id: sq1.id,answer_id:a1.id})
@@ -40,7 +40,7 @@ task :add_checking_account_survey => :environment do | t, args |
 
 
 
-  q3a =  Question.create({text:"What would be the most important factor for you when considering opening a checking account?",question_type:"multiple"})
+  q3a =  Question.create({text:"What would be the most important factor for you when considering opening a checking account?",question_type:"multiple",slug:'checking-importance'})
 
     sq3a = SurveyQuestion.create({survey_id: b.id, question_id: q3a.id, display_order:3,condition_id:ac2.id})
     a1 = Answer.create({text:"Convenience"})
@@ -55,7 +55,7 @@ task :add_checking_account_survey => :environment do | t, args |
 
   ###IF YES QUESTIONS
   #IF NO QUESTIONS
-  q2a =  Question.create({text:"How satisfied are you with your current checking account provider?",question_type:"multiple"})
+  q2a =  Question.create({text:"How satisfied are you with your current checking account provider?",question_type:"multiple",slug:'checking-satisfaction'})
     sq1 = SurveyQuestion.create({survey_id: b.id, question_id: q2a.id, display_order: 2,condition_id:ac1.id})
     a1 = Answer.create({text:"Not at all satisfied"})
      sqa1 =  SurveyQuestionAnswer.create({survey_question_id: sq1.id,answer_id:a1.id})
@@ -74,7 +74,7 @@ task :add_checking_account_survey => :environment do | t, args |
 
 
 
-  q3a =  Question.create({text:"What is the most important checking account feature for you?",question_type:"multiple"})
+  q3a =  Question.create({text:"What is the most important checking account feature for you?",question_type:"multiple",slug:'checking-features'})
 
     sq3a = SurveyQuestion.create({survey_id: b.id, question_id: q3a.id, display_order:3,condition_id:ac1.id})
     a1 = Answer.create({text:"No fees"})
@@ -83,7 +83,7 @@ task :add_checking_account_survey => :environment do | t, args |
     a2 = Answer.create({text:"Electronic deposit"})
      sqa2 =  SurveyQuestionAnswer.create({survey_question_id: sq3a.id,answer_id:a2.id})
      
-    a3 = Answer.create({text:"fraud alerts"})
+    a3 = Answer.create({text:"Fraud alerts"})
      sqa3 =  SurveyQuestionAnswer.create({survey_question_id: sq3a.id,answer_id:a3.id})
 
 end

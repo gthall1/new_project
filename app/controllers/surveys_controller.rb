@@ -55,11 +55,10 @@ class SurveysController < ApplicationController
         current_user.add_credits({credits:@user_survey.survey.credits})
         if params[:question] && !params[:question].blank?
           params[:question].each do | q  | 
-             user_survey_answer = UserSurveyAnswer.create({user_id: current_user.id,survey_question_id: q[0], user_survey_id: @user_survey.id,survey_question_answer_id: q[1]})
+             user_survey_answer = UserSurveyAnswer.create({user_id: current_user.id,survey_question_id: q[0], user_survey_id: @user_survey.id,survey_question_answer_id: q[1], question_id: SurveyQuestion.find(q[0]).question.id, answer_id: SurveyQuestionAnswer.find(q[1]).answer.id})
           end
         end
       end
-
       flash[:success] = "Thank you for completing the survey!"
     elsif @user_survey.complete == true
       flash[:notice] = "This survey has been completed."
