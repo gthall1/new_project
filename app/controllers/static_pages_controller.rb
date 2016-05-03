@@ -11,8 +11,8 @@ class StaticPagesController < ApplicationController
     end
 
     def home
-        if !params[:promo].blank? && params[:promo].downcase == 'pax'
-            session[:promo] = 'pax'
+        if !params[:promo].blank? && params[:promo].downcase == 'vip'
+            session[:promo] = 'vip'
         else
             session[:promo] = nil #clear this out if they go back without it
         end
