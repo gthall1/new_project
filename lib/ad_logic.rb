@@ -37,7 +37,7 @@ module AdLogic
         satisfaction_question = Question.where(slug:'checking-satisfaction').first
 
         fees = Answer.where(text:"No fees").first.id
-        fraud_alert = Answer.where(text:"Fraud alert").first.id
+        fraud_alert = Answer.where(text:"Fraud alerts").first.id
         deposit = Answer.where(text:"Electronic deposit").first.id
 
         features_answer = features_question.user_survey_answers.where(user_id:current_user.id).first
