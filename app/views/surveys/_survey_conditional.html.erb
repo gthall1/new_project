@@ -11,7 +11,7 @@
 
     <div class="refer-friend">
         <% @survey.survey_questions.each.with_index(1) do | sq, i |  %>
-            <div class='survey__question <%= sq.question.question_type == "condition" ? "condition" : "hidden #{@yes_id == sq.condition_id ? "yes-answer-" + sq.display_order.to_s : "no-answer-" + sq.display_order.to_s}" %>'>
+            <div data-survey-question="<%= sq.display_order %>" class='survey__question js-survey__question <%= sq.question.question_type == "condition" ? "condition" : "hidden #{@yes_id == sq.condition_id ? "yes-answer-" + sq.display_order.to_s : "no-answer-" + sq.display_order.to_s}" %>'>
                 <p class="survey__question-copy"><%= sq.display_order %>. <%= sq.question.text %></p>
                     <% sq.survey_question_answers.each do | a | %>
                         <label class="control control--radio"><%= a.answer.text%><%= radio_button 'question', sq.id, a.id %>
