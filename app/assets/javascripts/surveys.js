@@ -16,6 +16,8 @@ var survey = {
                 } else {
                     $('.js-survey__question.no-answer').fadeIn();
                 }
+
+                $('.condition .js-survey__answer').attr('disabled','true');
             }
 
             self.conf.answered = true;
