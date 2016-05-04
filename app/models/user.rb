@@ -9,7 +9,6 @@ class User < ActiveRecord::Base
   has_many :cash_outs
   has_many :user_surveys
   has_many :surveys, :through => :user_surveys
-
   has_many :challenges_as_challenged, :foreign_key => 'challenged_user_id', :class_name => 'Challenge'
   has_many :challenges_as_challenger, :foreign_key => 'user_id', :class_name => 'Challenge'
 
@@ -36,6 +35,16 @@ class User < ActiveRecord::Base
 
   def origin_arrival
     Arrival.where(id:self.arrival_id).first
+  end
+
+  #TODO: Make more accurate so doesnt round
+  def age
+    return Time.now.year-self.dob.year unless self.dob.blank?
+    nil
+  end
+
+  def get_gender
+    self.gender == 1 ? "male" : self.gender == 2 ? "female" : "unknown"
   end
 
   def get_highscore(args={})

@@ -11,10 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160420194645) do
+ActiveRecord::Schema.define(version: 20160503150719) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ad_displays", force: :cascade do |t|
+    t.integer  "ad_unit_id"
+    t.float    "length"
+    t.float    "value"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ad_units", force: :cascade do |t|
+    t.integer  "game_id"
+    t.string   "slug"
+    t.string   "name"
+    t.string   "partner"
+    t.integer  "ad_number"
+    t.float    "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "advertisers", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -65,10 +85,10 @@ ActiveRecord::Schema.define(version: 20160420194645) do
     t.integer  "challenged_user_id"
     t.integer  "game_id"
     t.integer  "winner_id"
-    t.integer  "challenged_score"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "user_score"
+    t.integer  "challenged_score"
   end
 
   create_table "feed_games", force: :cascade do |t|
@@ -151,6 +171,7 @@ ActiveRecord::Schema.define(version: 20160420194645) do
     t.string   "question_type"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.string   "slug"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -176,6 +197,7 @@ ActiveRecord::Schema.define(version: 20160420194645) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "display_order"
+    t.integer  "condition_id"
   end
 
   create_table "surveys", force: :cascade do |t|

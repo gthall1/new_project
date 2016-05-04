@@ -1,3 +1,4 @@
 class Question < ActiveRecord::Base
-  has_one :survey_question
+  has_many :survey_questions
+  has_many :user_survey_answers
 end

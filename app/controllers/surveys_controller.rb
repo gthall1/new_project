@@ -28,6 +28,12 @@ class SurveysController < ApplicationController
   # GET /surveys/1.json
   def show
     @show_back_button = true
+
+    #TODO: add this to database to have dynamic conditions in questions
+    if @survey.survey_type == "conditional"
+      @yes_id = Answer.where(text:"yes").first.id
+      @no_id = Answer.where(text:"no").first.id
+    end
     if UserSurvey.where(user_id:current_user.id,survey_id:@survey.id).present?
       @user_survey =  UserSurvey.where(user_id:current_user.id,survey_id:@survey.id).first
     else
@@ -49,11 +55,10 @@ class SurveysController < ApplicationController
         current_user.add_credits({credits:@user_survey.survey.credits})
         if params[:question] && !params[:question].blank?
           params[:question].each do | q  | 
-             user_survey_answer = UserSurveyAnswer.create({user_id: current_user.id,survey_question_id: q[0], user_survey_id: @user_survey.id,survey_question_answer_id: q[1]})
+             user_survey_answer = UserSurveyAnswer.create({user_id: current_user.id,survey_question_id: q[0], user_survey_id: @user_survey.id,survey_question_answer_id: q[1], question_id: SurveyQuestion.find(q[0]).question.id, answer_id: SurveyQuestionAnswer.find(q[1]).answer.id})
           end
         end
       end
-
       flash[:success] = "Thank you for completing the survey!"
     elsif @user_survey.complete == true
       flash[:notice] = "This survey has been completed."
