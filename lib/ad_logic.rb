@@ -42,7 +42,7 @@ module AdLogic
 
         features_answer = features_question.user_survey_answers.where(user_id:current_user.id).first
       
-        negative_answers = ['Not at all satisfied','Unsatisfied','Neutral']
+        negative_answers = ['Not at all satisfied','Unsatisfied','Neutral','Satisfied']
         negative_answer_ids = Answer.where(text:negative_answers).pluck(:id)
 
         is_unhappy = satisfaction_question.user_survey_answers.where(user_id:current_user.id,answer_id:negative_answer_ids).present?
