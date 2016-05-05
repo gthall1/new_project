@@ -22,7 +22,6 @@
 //= require app
 //= require formvalidation
 //= require siteCookies
-//= require main
 //= require superslides
 //= require jackhammer
 //= require modernizr
@@ -35,4 +34,5 @@
 //= require profiles
 //= require fittext
 //= require cocoon
-
+//= require surveys
+//= require main

@@ -40,6 +40,12 @@
     }
 }
 
+.survey__question {
+    &.hidden {
+        display: none;
+    }
+}
+
 .control {
     font-size: 18px;
     position: relative;
@@ -176,6 +182,10 @@
     .card__credits {
         margin-bottom: 10px;
     }
+}
+
+.survey-wrapper {
+    padding: 20px;
 }
 
 .survey-wrapper {

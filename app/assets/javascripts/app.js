@@ -19,6 +19,8 @@ var app = {
         };
     },
 
+
+
     isWAM: function() {
         if (app.isWebAppMode()) {
             $('body').addClass('wam');
@@ -41,10 +43,8 @@ var app = {
 
     showShareDialog: function() {
         if (Cookies.get('login') === 'initial') {
-            // console.log('Welcome back!');
         } else {
             Cookies.set('login', 'initial', '/games');
-            // $('.js-share-dialog').addClass('show');
         }
     },
 

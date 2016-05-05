@@ -3,6 +3,7 @@ $(document).ready(function(){
     app.init();
     formValidation.init();
     siteCookies.init();
+    survey.init();
 
     // Cashout process
     if (mobileCheck.any()) {
