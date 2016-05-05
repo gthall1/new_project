@@ -54,7 +54,7 @@ class SurveysController < ApplicationController
       if @user_survey.save
         current_user.add_credits({credits:@user_survey.survey.credits})
         if params[:question] && !params[:question].blank?
-          params[:question].each do | q  | 
+          params[:question].each do | q  |
              user_survey_answer = UserSurveyAnswer.create({user_id: current_user.id,survey_question_id: q[0], user_survey_id: @user_survey.id,survey_question_answer_id: q[1], question_id: SurveyQuestion.find(q[0]).question.id, answer_id: SurveyQuestionAnswer.find(q[1]).answer.id})
           end
         end
@@ -130,19 +130,19 @@ class SurveysController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def survey_params
-      params[:survey].permit(:name, :credits, survey_questions_attributes: [:id, 
-                                                                            :survey_id, 
-                                                                            :question_id, 
-                                                                            :_destroy, 
-                                                                            question_attributes: [:text, 
-                                                                                                  :question_type, 
-                                                                                                  :_destroy], 
+      params[:survey].permit(:name, :credits, survey_questions_attributes: [:id,
+                                                                            :survey_id,
+                                                                            :question_id,
+                                                                            :_destroy,
+                                                                            question_attributes: [:text,
+                                                                                                  :question_type,
+                                                                                                  :_destroy],
                                                                             survey_question_answers_attributes: [:id,
                                                                                                                 :survey_question_id,
-                                                                                                                :answer_id, 
-                                                                                                                :_destroy, 
-                                                                                                                answer_attributes: [:id, 
-                                                                                                                                    :text, 
+                                                                                                                :answer_id,
+                                                                                                                :_destroy,
+                                                                                                                answer_attributes: [:id,
+                                                                                                                                    :text,
                                                                                                                                     :_destroy]]])
     end
 
