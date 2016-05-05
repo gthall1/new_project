@@ -35,4 +35,5 @@
 //= require fittext
 //= require cocoon
 //= require surveys
+//= require chosen
 //= require main

@@ -17,7 +17,7 @@ var survey = {
                     $('.js-survey__question.no-answer').fadeIn();
                 }
 
-                $('.condition .js-survey__answer').attr('disabled','true');
+                // $('.condition .js-survey__answer').attr('disabled','true');
             }
 
             self.conf.answered = true;

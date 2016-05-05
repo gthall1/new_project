@@ -14,6 +14,7 @@ var analyticsEvent = function(c, a, l, v, n) {
 var bellhopsAnalytics = {
     conf: {
         surveySubmit: '.js-submit-video-survey',
+        surveyForm: '.ga-survey-form--video form',
         currentUser: '<%= current_user.id %>'
     },
     play: function() {
@@ -29,7 +30,7 @@ var bellhopsAnalytics = {
         analyticsEvent("Bellhops Video", "End", lbname, bellhopsAnalytics.conf.currentUser, false);
     },
     bind: function() {
-        $(bellhopsAnalytics.conf.surveySubmit).on('click', function() {
+        $(bellhopsAnalytics.conf.surveyForm).on('submit', function() {
             console.log('Analytics - Survey Submitted');
             var lbname = "Bellhops Survey Submitted";
             analyticsEvent("Bellhops Submit", "Click", lbname, bellhopsAnalytics.conf.currentUser, false);

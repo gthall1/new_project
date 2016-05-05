@@ -33,6 +33,14 @@
 
         <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %>
 
+
+        <div class="form-select--wrap">
+            <select class="chosen-select">
+                <option>Male</option>
+                <option>Female</option>
+            </select>
+        </div>
+
         <%= f.submit "Create my account", class: "btn btn-outlined btn-white btn-lg btn-Create create-email" %>
 
       <% end %>

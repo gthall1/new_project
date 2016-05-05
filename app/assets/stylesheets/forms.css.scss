@@ -236,3 +236,19 @@ button {
         margin-left: 10px;
     }
 }
+
+.form-select--wrap {
+    padding: 15px 0px 5px;
+
+    select {
+        width: 49%;
+
+        &:first-child {
+            float: left;
+        }
+
+        &:last-child {
+            float: right;
+        }
+    }
+}

@@ -128,5 +128,7 @@ var formValidation = {
     init: function() {
         formValidation.bind();
         formValidation.prepareReqFields();
+
+
     }
 }

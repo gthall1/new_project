@@ -20,7 +20,7 @@
 
         <p class="intro-copy">Complete this survey and receive <%= @survey.credits %> credits!</p>
 
-        <div class="refer-friend">
+        <div class="refer-friend ga-survey-form--video">
         <%= form_for(@user_survey) do |f| %>
                 <% @survey.survey_questions.order('display_order asc').each.with_index(1) do | sq, i |  %>
                     <% if sq.question.question_type != "video" %>
