@@ -47,7 +47,6 @@ class SurveysController < ApplicationController
   end
 
   def user_survey_save
-    binding.pry
     @user_survey = UserSurvey.where(id:params[:user_survey][:id]).first
     if @user_survey && @user_survey.complete != true
       @user_survey.credits = @user_survey.survey.credits
