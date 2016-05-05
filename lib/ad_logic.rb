@@ -68,13 +68,10 @@ module AdLogic
     else
       p "doesnt have checking account"
       if (13..17).include?(current_user.age)
-        p "just showing by demo"
         AdUnit.where(slug:'chase-fall-1').first.ad_number
       elsif (30..999).include?(current_user.age) 
-        p "hsoiwng  y demo"
         AdUnit.where(slug:'bmw-fall-1').first.ad_number
       else
-        p "showind default no age set?"
         1
       end
     end

@@ -716,6 +716,10 @@ class GamesController < ApplicationController
         end
 
         if newgame && game.slug == "fall-down"
+            ad_number = get_ad
+            if ad_number && ad_number != 1
+                AdDisplay.create({user_game_session_id:UserGameSession.where(token:session[:game_token]).first.id,user_id:current_user.id, game_id:game.id,ad_number:ad_number})
+            end
             
             game_json = {
                 :c2dictionary => true,
@@ -836,6 +840,7 @@ class GamesController < ApplicationController
 
             end
             session[:game_token] = game.token
+
         end
     end
 
