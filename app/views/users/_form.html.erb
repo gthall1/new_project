@@ -7,7 +7,10 @@
       <% end %>
     <% else %>
       <%= link_to "/auth/facebook" do %>
-        <%= image_tag 'facebook_button.png', :class => 'facebook-signup' %>
+      <button class="btn--form btn--form-fb">
+          <i class="fa fa-facebook btn--form__icon"></i>
+          <h1 class="btn--form__copy">Register with Facebook</h1>
+      </button><!-- /.btn--form -->
       <% end %>
     <% end %>
 
@@ -18,35 +21,38 @@
       <div class='left-separator'></div><div class='or-separator'>or</div><div class='right-separator'></div>
     </div>
 
-    <%= image_tag 'email_button.png', :class => 'email-signup' %>
+    <button class="btn--form btn--form-purple js-show-signup">
+        <i class="fa fa-envelope btn--form__icon"></i>
+        <h1 class="btn--form__copy">Register with email</h1>
+    </button><!-- /.btn--form -->
 
     <div class='email-form'>
       <h2> Register with email </h2>
       <%= form_for(@user) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
 
-        <%= f.text_field :name, placeholder: 'Username' %>
+        <%= f.text_field :name, placeholder: 'Username', class: "trans-input trans-input--text" %>
 
-        <%= f.text_field :email, placeholder: 'Email' %>
+        <%= f.email_field :email, placeholder: 'Email', class: "trans-input trans-input--text" %>
 
-        <%= f.password_field :password, placeholder: "Password" %>
+        <%= f.password_field :password, placeholder: "Password", class: "trans-input trans-input--text" %>
 
-        <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %>
+        <%= f.password_field :password_confirmation, placeholder: "Confirm Password", class: "trans-input trans-input--text" %>
 
 
-        <div class="form-select--wrap">
+        <!-- <div class="form-select--wrap">
             <select class="chosen-select">
                 <option>Male</option>
                 <option>Female</option>
             </select>
-        </div>
+        </div> -->
 
-        <%= f.submit "Create my account", class: "btn btn-outlined btn-white btn-lg btn-Create create-email" %>
+        <%= f.submit "Create my account", class: "trans-input trans-input--submit" %>
 
       <% end %>
     </div>
       <div class='sign-in'>
-        Already have an account?  <%= link_to "Sign In", signin_path %>
+        Already have an account?  <%= link_to "Sign In", signin_path, class: "form__signin-link" %>
       </div>
 </div>
 <% else %>

@@ -1148,12 +1148,17 @@ h1.arrow2 { font-size: 55px;
   padding-left: 10px;
 }
 
-#user_name, #user_email, #user_zipcode, #user_password, #user_password_confirmation {
-  width: 250px;
-  margin: 10px;
-  font-size: 24px;
-  line-height: 35px;
-}
+/* Get rid of ASAP */
+// body:not(.desktop-home),
+// body:not(.desktop-signup) {
+//   #user_name, #user_email, #user_zipcode, #user_password, #user_password_confirmation {
+//     width: 250px;
+//     margin: 10px;
+//     font-size: 24px;
+//     line-height: 35px;
+//   }
+// }
+
 
 #user_dob_2i {
   width: 105px;
@@ -1402,15 +1407,15 @@ h1.arrow2 { font-size: 55px;
   }
   width:100%;
   margin:auto;
-  input{
-    z-index:10;
-    box-sizing:border-box;
-    height:35px;
-    width:95%;
-    margin:auto;
-    margin-bottom:10px;
-    display:block;
-  }
+  // input{
+  //   z-index:10;
+  //   box-sizing:border-box;
+  //   height:35px;
+  //   width:95%;
+  //   margin:auto;
+  //   margin-bottom:10px;
+  //   display:block;
+  // }
   .small-note{
     color:#ABABAB;
     position:relative;

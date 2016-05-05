@@ -1,7 +1,9 @@
 <% provide(:title, 'Sign up') %>
 
 <% if @is_mobile %>
+    <% content_for :body_class, "mobile-signup" %>
     <%= render 'users/form_mobile'%>
 <% else %>
+    <% content_for :body_class, "desktop-signup" %>
     <%= render 'users/form'%>
 <% end %>

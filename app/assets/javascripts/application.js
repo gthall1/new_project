@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-//= require home
 //= require tabs
 //= require cashout
 //= require challenge

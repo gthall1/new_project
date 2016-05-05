@@ -196,6 +196,11 @@ var app = {
             $('.mobile-container').removeClass('desktop--modal-blur');
         });
 
+        $('.js-show-signup').click(function() {
+            $('.js-show-signup').fadeOut();
+            $('.email-form').slideDown();
+        });
+
         // $('.js-survery-link').click(function() {
         //     Cookies.set('survey_0', 'clicked', { expires: 365 });
         // })

@@ -226,43 +226,6 @@ body.waitlist-page {
     margin-top: 0;
 }
 
-.new_waitlist_user {
-    text-align: center;
-
-    .desktop-home & {
-        .trans-input {
-            background-color: rgba(129, 123, 223, 0.5);
-
-            &.trans-input--submit {
-                border: 2px solid rgba(129, 123, 223, 0.5);
-                color: rgba(129, 123, 223, 0.7);
-                margin-bottom: 10px;
-
-                &:hover {
-                    background-color: rgba(129, 123, 223, 1);
-                    color: $white;
-                    border: 2px solid transparent;
-                }
-            }
-        }
-    }
-
-    .trans-input {
-        @extend %transparent-input;
-
-        &.trans-input--submit {
-            @extend %transparent-submit;
-        }
-
-        @media screen and (max-width: 1024px) {
-            &.trans-input--text {
-                width: calc(100% - 30px) !important;
-            }
-        }
-    }
-}
-
-
 // Ad Affiliate
 .affiliate-wrapper {
     text-align: center;
@@ -316,4 +279,44 @@ body.waitlist-page {
 .affiliate-page__copy {
     font-size: $xl;
     font-weight: 500;
+}
+
+.new_waitlist_user {
+    text-align: center;
+}
+
+
+form {
+    .trans-input {
+        @extend %transparent-input;
+
+        &.trans-input--submit {
+            @extend %transparent-submit;
+        }
+
+        @media screen and (max-width: 1024px) {
+            &.trans-input--text {
+                width: calc(100% - 30px) !important;
+            }
+        }
+    }
+
+    .desktop-home &,
+    .desktop-signup & {
+        .trans-input {
+            background-color: rgba(129, 123, 223, 0.5);
+
+            &.trans-input--submit {
+                border: 2px solid rgba(129, 123, 223, 0.5);
+                color: rgba(129, 123, 223, 0.7);
+                margin-bottom: 10px;
+
+                &:hover {
+                    background-color: rgba(129, 123, 223, 1);
+                    color: $white;
+                    border: 2px solid transparent;
+                }
+            }
+        }
+    }
 }
