@@ -66,7 +66,7 @@ body {
   }
 }
 
-html body {
+html body.desktop-signin-page {
     .form--or {
         color: $white;
         text-transform: uppercase;
@@ -213,11 +213,11 @@ html body {
         position: absolute;
         height: 0;
         width: 0;
-          border-left: 15px solid $background;
-          border-right: 15px solid $background;
-          border-top: 15px solid $form-color;
+          border-left: 10px solid $background;
+          border-right: 10px solid $background;
+          border-top: 10px solid $form-color;
         left: 10%;
-        bottom: -15px;
+        bottom: -10px;
         background-color: #fff;
       }
     }
