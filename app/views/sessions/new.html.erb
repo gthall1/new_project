@@ -7,9 +7,11 @@
             <%= link_to "/auth/facebook" do %>
             <button class="btn--form btn--form-fb">
                 <i class="fa fa-facebook btn--form__icon"></i>
-                <h1 class="btn--form__copy">Register with Facebook</h1>
+                <h1 class="btn--form__copy">Sign in with Facebook</h1>
             </button><!-- /.btn--form -->
             <% end %>
+
+            <h1 class="form--or">OR</h1>
 
             <%= form_for(:session, url: sessions_path) do |f| %>
                 <div class="form__container">
