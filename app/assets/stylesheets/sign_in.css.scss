@@ -58,7 +58,7 @@ body {
     .sign-in--desktop__wrap {
         position: relative;
         top: calc(50vh - 80px);
-        margin-top: -160px;
+        margin-top: -160px !important;
     }
     .navigation {
         // display: none;
@@ -73,7 +73,7 @@ html body.desktop-signin-page {
         font-size: 12px;
         margin: 5px 0;
     }
-    section {
+    .sign-in--desktop__wrap {
         // @include vertical-align;
         width: 325px;
         margin: auto;
