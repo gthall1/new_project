@@ -1,6 +1,9 @@
 <% content_for :body_class, "desktop-home page-background" %>
 
-<a href="/signin" class="desktop-signin">Sign In</a>
+<% if signups_allowed? %>
+    <a href="/signin" class="desktop-signin">Sign In</a>
+<% end %>
+
 <div class="sign-up">
         <img src="/assets/homescreen-logo.png" class="top-title">
 

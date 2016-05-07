@@ -3,7 +3,7 @@
 
 <div class="row">
     <div class="sign-in--desktop">
-        <section>
+        <section class="sign-in--desktop__wrap">
             <%= link_to "/auth/facebook" do %>
             <button class="btn--form btn--form-fb">
                 <i class="fa fa-facebook btn--form__icon"></i>
@@ -26,7 +26,7 @@
                     <div class="form-input__icon">
                       <i class="fa fa-lock" aria-hidden="true"></i>
                     </div>
-                    <%= f.text_field :email, class:"form-input--alt", placeholder: "Password" %>
+                    <%= f.password_field :password, class:"form-input--alt", placeholder: "Password" %>
                     <!-- <input placeholder="Password" class="form-input--alt form-input--with-submit" type="password" /> -->
                     <button type="submit" class="form-input--submit js-form-submit">
                       <i class="hidden fa fa-refresh" aria-hidden="true"></i>
