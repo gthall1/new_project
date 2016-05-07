@@ -1,0 +1,215 @@
+// mixins
+@mixin vertical-align($translateY: -50%) {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY($translateY);
+    -ms-transform: translateY($translateY);
+    transform: translateY($translateY);
+}
+
+@keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+$sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+// colors
+$white: #fff;
+$purple: #817bdf;
+$plum: #423142;
+$purple-dark: #292931;
+$clouds: #dedede;
+$barney: #ad6bad;
+
+$form-color: $plum;
+$background: $purple-dark;
+
+body {
+    &.desktop-signin-page {
+        &.page-background {
+          background-image: none;
+        }
+
+        background-color: $background;
+        height: 100vh;
+
+        .btn--form-fb {
+            margin-bottom: 30px;
+        }
+    }
+
+
+
+  &.desktop-signin-page {
+    .desktop-wrapper {
+        @include vertical-align;
+    }
+    .navigation {
+        display: none;
+    }
+  }
+}
+
+html body {
+    section {
+        // @include vertical-align;
+        width: 325px;
+        margin: auto;
+    }
+
+    .form__sub-links {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .sub-links__title {
+      float: left;
+      margin: 0;
+      font-family: $sans;
+      font-weight: 400;
+      text-transform: uppercase;
+      font-size: 16px;
+      margin-left: 5%;
+      color: $purple;
+      position: relative;
+      top: -10px;
+    }
+
+    .sub-links__forgot {
+      float: right;
+      color: $purple;
+      margin-right: 5%;
+      font-family: $sans;
+      font-size: 14px;
+    }
+
+    .sub-links__title,
+    .sub-links__forgot {
+      display: inline;
+    }
+
+    .form__input-wrap {
+      height: 50px;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 15px;
+      position: relative;
+      & + & {
+        // margin-top: 15px;
+      }
+    }
+
+    .form__container {
+        .form-input--alt {
+          width: calc(100% - 50px);
+          height: 50px !important;
+          box-sizing: border-box;
+          position: absolute;
+          right: 0;
+          top: 0;
+          border: none;
+          font-size: 18px;
+          outline: 0;
+          border-left: 1px solid #cecece;
+          padding-left: 10px;
+
+          &.form-input--with-submit {
+              width: calc(100% - 100px);
+              left: 50px;
+              right: auto;
+          }
+        }
+    }
+
+
+    .form-input--submit {
+      position: absolute;
+      right: 0;
+      height: 50px;
+      width: 50px;
+      border: none;
+      background-color: $purple;
+      outline: 0;
+
+      .fa {
+        color: $white;
+        font-size: 16px;
+
+        &.hidden {
+          display: none;
+        }
+
+        &.rotate {
+          animation: rotating 0.8s linear infinite;
+        }
+      }
+    }
+
+    .form-input__icon {
+      height: 50px;
+      width: 50px;
+      display: block;
+      float: left;
+      background-color: $clouds;
+      text-align: center;
+
+      .fa {
+        @include vertical-align;
+        color: $plum;
+      }
+    }
+
+    .form__container {
+        input {
+            border-radius: 0;
+        }
+      padding: 12px 25px 25px;
+      position: relative;
+      background-color: $form-color;
+      height: 170px;
+      width: 100%;
+      margin: auto;
+      box-sizing: border-box;
+      margin: auto;
+      // box-shadow: 0px 1px 15px 1px black;
+      // top: 50vh;
+      // margin-top: -75px;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: -5px;
+        left: 0;
+        background-color: $purple;
+        height: 5px;
+        width: 100%;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        height: 0;
+        width: 0;
+          border-left: 15px solid $background;
+          border-right: 15px solid $background;
+          border-top: 15px solid $form-color;
+        left: 10%;
+        bottom: -15px;
+        background-color: #fff;
+      }
+    }
+
+}

@@ -1,32 +1,49 @@
 <% provide(:title, "Sign in") %>
-<% content_for :body_class, "page-background" %>
-
-<h1>Sign in</h1>
+<% content_for :body_class, "page-background desktop-signin-page" %>
 
 <div class="row">
     <div class="sign-in--desktop">
-        <%= link_to "/auth/facebook" do %>
-            <% image_tag "sign_in_facebook.png", :width => "250px" %>
-        <% end %>
+        <section>
+            <%= link_to "/auth/facebook" do %>
+            <button class="btn--form btn--form-fb">
+                <i class="fa fa-facebook btn--form__icon"></i>
+                <h1 class="btn--form__copy">Register with Facebook</h1>
+            </button><!-- /.btn--form -->
+            <% end %>
 
-        <div class='form-separator'>
-            <div class='left-separator'></div><div class='or-separator'>or</div><div class='right-separator'></div>
-        </div>
+            <%= form_for(:session, url: sessions_path) do |f| %>
+                <div class="form__container">
+                  <div class="form__input-wrap">
+                     <div class="form-input__icon">
+                      <i class="fa fa-user" aria-hidden="true"></i>
+                    </div>
 
-        <%= form_for(:session, url: sessions_path) do |f| %>
+                    <%= f.text_field :email, class:"form-input--alt", placeholder: "Email" %>
+                    <!-- <input placeholder="Email" class="form-input--alt" type="email" /> -->
+                  </div>
 
-            <%= f.label :email %>
-            <%= f.text_field :email %>
+                  <div class="form__input-wrap">
+                    <div class="form-input__icon">
+                      <i class="fa fa-lock" aria-hidden="true"></i>
+                    </div>
+                    <%= f.text_field :email, class:"form-input--alt", placeholder: "Password" %>
+                    <!-- <input placeholder="Password" class="form-input--alt form-input--with-submit" type="password" /> -->
+                    <button type="submit" class="form-input--submit js-form-submit">
+                      <i class="hidden fa fa-refresh" aria-hidden="true"></i>
+                      <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                </div>
+            <% end %>
 
-            <%= f.label :password %>
-            <%= f.password_field :password %>
 
-            <%= f.submit "Sign in" %>
-        <% end %>
-
-        <% if signups_allowed? %>
-            <p>New user? <%= link_to "Sign up now!", signup_path %></p>
-            <%= link_to "(forgot password)", new_password_reset_path %>
-        <% end %>
+            <div class="form__sub-links">
+              <h1 class="sub-links__title">Sign In</h1>
+              <% if signups_allowed? %>
+                  <!-- <p>New user? <%# link_to "Sign up now!", signup_path %></p> -->
+                  <%= link_to "forgot?", new_password_reset_path, class: "sub-links__forgot" %>
+              <% end %>
+            </div>
+        </section>
     </div>
 </div>

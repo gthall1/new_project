@@ -26,6 +26,13 @@ var formValidation = {
     },
 
     bind: function() {
+        // Sign in form loading
+        $('.js-form-submit').click(function(){
+          $('.fa-refresh').removeClass('hidden');
+          $('.fa-refresh').addClass('rotate');
+          $('.fa-arrow-circle-right').addClass('hidden');
+        });
+
         $(formValidation.selections.requiredField).blur(function(e){
             var $this = $(this),
                 $form = $this.parents('form'),

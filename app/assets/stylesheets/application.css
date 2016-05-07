@@ -14,6 +14,7 @@
  *= require challenge
  *= require reset
  *= require chosen
+ *= require sign_in
  *= require_self
  */
 
