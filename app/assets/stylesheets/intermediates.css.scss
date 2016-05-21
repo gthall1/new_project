@@ -304,16 +304,16 @@ form {
     .desktop-home &,
     .desktop-signup & {
         .trans-input {
-            background-color: rgba(129, 123, 223, 0.5);
+            background-color: rgba($white, 0.5);
 
             &.trans-input--submit {
-                border: 2px solid rgba(129, 123, 223, 0.5);
-                color: rgba(129, 123, 223, 0.7);
+                border: 2px solid rgba($white, 0.5);
+                color: rgba($white, 0.7);
                 margin-bottom: 10px;
 
                 &:hover {
-                    background-color: rgba(129, 123, 223, 1);
-                    color: $white;
+                    background-color: rgba($white, 1);
+                    color: $purple;
                     border: 2px solid transparent;
                 }
             }

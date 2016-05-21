@@ -12,6 +12,7 @@
 @import "social_btn";
 @import "jackhammer";
 @import "profiles";
+@import "landing";
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -1259,6 +1260,9 @@ h1.arrow2 { font-size: 55px;
   max-width: 350px;
   .desktop-home & {
     margin: 2.5% 7.5% 10%;
+    position: absolute;
+    z-index: 100;
+    top: 100px;
   }
 }
 .desktop-signin {
@@ -1324,7 +1328,12 @@ h1.arrow2 { font-size: 55px;
   margin-bottom:20px;
 
   .desktop-home & {
-    font-size: 22px;
+    font-size: $lg;
+    font-weight: normal;
+    text-align: left;
+    font-family: $sans;
+    margin-bottom: 10px;
+    color: $white;
   }
 }
 .sign-in--desktop {

@@ -1,0 +1,183 @@
+.landing-page__nav {
+    height: 80px;
+    box-sizing: border-box;
+    position: absolute;
+    width: 100vw;
+    z-index: 100;
+    padding: 20px 7.5%;
+}
+
+.landing-page__nav-logo {
+    height: 35px;
+    width: auto;
+}
+
+.landing-page__nav--left {
+    float: left;
+}
+
+.landing-page__nav--right {
+    float: right;
+}
+
+.landing-page__nav-list {
+
+}
+
+.landing-page__nav-item {
+    display: inline;
+    list-style: none;
+    position: relative;
+    top: 10px;
+
+    & + & {
+        margin-left: 35px;
+    }
+}
+
+
+.landing-page__nav-link {
+    font-family: $sans;
+    color: $white;
+    text-transform: uppercase;
+    font-size: $md;
+    @include transition(color);
+
+    &:hover {
+        color: $purple;
+        text-decoration: none;
+    }
+}
+
+.landing-page__nav-link--login {
+    border: 2px solid $white;
+    border-radius: 4px;
+    padding: 7.5px 25px;
+    @include transition;
+
+    &:hover {
+        background-color: $white;
+    }
+}
+
+.landing-page__landscape {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    background-position: center center;
+    background-image: url(/assets/landscape-background.png);
+    background-size: cover;
+    background-attachment: fixed;
+
+    &::before {
+        content: '';
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        background-image: url(/assets/svgs/moon.svg);
+        background-repeat: no-repeat;
+        top: 30vh;
+        left: 60%;
+        margin-left: -25px;
+        z-index: 9;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba($black, 0.2);
+        // background-image: url(/assets/vignette.png);
+        top: 0;
+        left: 0;
+        z-index: 11;
+    }
+}
+
+.landing-page__mtns {
+    position: absolute;
+    width: 100vw;
+    height: auto;
+    left: 0;
+    bottom: 0;
+    z-index: 10;
+}
+
+.landing-page__section {
+    z-index: 10;
+    position: relative;
+}
+
+.landing-page__section--how {
+    padding: 50px 7.5%;
+    background-color: $dark-purple;
+}
+
+.section__title {
+    font-size: $xxl;
+    font-family: $sans;
+    color: $purple;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+}
+
+.how__tout {
+    display: block;
+    box-sizing: border-box;
+    width: 33%;
+    float: left;
+    padding: 10px 20px;
+}
+
+.how-it-works-image {
+    width: 100px;
+    margin-bottom: 10px;
+}
+
+.how-it-works-copy {
+    color: $white;
+    font-family: $sans;
+}
+
+.landing-page__windmill-base {
+    height: 100%;
+}
+
+.landing-page__windmill {
+    position: absolute;
+    z-index: 9;
+    right: 150px;
+    // height: 125px;
+    // bottom: 15vh;
+
+    // @media (min-width: 1200px) {
+        bottom: 23vh;
+        height: 200px;
+    // }
+}
+
+.landing-page__windmill-top {
+    position: absolute;
+    top: -47px;
+    right: -22px;
+    height: 100px;
+    animation: rotating 35s linear infinite;
+}
+
+@keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

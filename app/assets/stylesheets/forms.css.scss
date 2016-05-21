@@ -194,8 +194,10 @@ button {
     }
 
     .desktop-home & {
-        line-height: 24px;
+        line-height: 20px;
         text-align: left;
+        color: $white;
+        font-family: $sans;
     }
 }
 .form-input--wrap-submit {

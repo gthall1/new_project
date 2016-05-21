@@ -42,6 +42,7 @@ $dark-font: #4A4A4A;
 $dark-blue: #10172B;
 $dark-teal: #4fd1b5;
 $purple: $lavender;
+$dark-purple: #211E2B;
 $purple-border: #c8ade0;
 $credits-red: #e74c3c;
 $red: #e74c3c;
@@ -57,3 +58,12 @@ $clay: #DB704E;
 $tan: #FDE2C7;
 $midnight-blue: #14112c;
 $midnight: #10162c;
+
+@font-face {
+    font-family: 'Quicksand';
+    src: url('/assets/fonts/Quicksand-Regular.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+$sans: "Quicksand", serif;

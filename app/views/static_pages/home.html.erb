@@ -1,44 +1,137 @@
-<% content_for :body_class, "desktop-home page-background" %>
+<% content_for :body_class, "desktop-home" %>
 
-<a href="/signin" class="desktop-signin">Sign In</a>
+<section class="landing-page__nav">
+    <div class="landing-page__nav--left">
+        <a href="/"><img class="landing-page__nav-logo" src="/assets/small_luckee_font.png"></a>
+    </div><!-- /.landing-page__nav--left -->
+    <div class="landing-page__nav--right">
+        <ul class="landing-page__nav-list">
+            <li class="landing-page__nav-item"><a href="#" class="landing-page__nav-link">How It Works</a></li>
+            <li class="landing-page__nav-item"><a href="#" class="landing-page__nav-link">About</a></li>
+            <li class="landing-page__nav-item"><a href="#" class="landing-page__nav-link">Contact</a></li>
+            <li class="landing-page__nav-item"><a href="#" class="landing-page__nav-link landing-page__nav-link--login">Sign in</a></li>
+        </ul>
+    </div><!-- /.landing-page__nav--right -->
+</section><!-- /.landing-page__nav -->
 
-<div class="sign-up">
-        <img src="/assets/homescreen-logo.png" class="top-title">
+<section class="landing-page__landscape">
+    <div class="sign-up">
+            <% if signups_allowed? %>
+                <%= render 'users/form'%>
+            <% else %>
+                <div class="welcome-box-m">Play free games. Earn real cash.</div>
+                <h1 class="form__title">Thanks for visiting Luckee.  We are in private beta right now, but we invite new users on a first come, first served basis.  Sign up below to gain early access!</h1>
+                <%= render 'static_pages/waitlist_form' %>
+            <% end %>
 
-        <% if signups_allowed? %>
-            <%= render 'users/form'%>
-        <% else %>
-            <div class="welcome-box-m">Play free games. Earn real cash.</div>
-            <h1 class="form__title">Thanks for visiting Luckee.  We are in private beta right now, but we invite new users on a first come, first served basis.  Sign up below to gain early access!</h1>
-            <%= render 'static_pages/waitlist_form' %>
-        <% end %>
+            <h1 class="disclaimer--us-only disclaimer--us-only-home">*Currently available in the US only</h1>
+    </div><!--/.sign-up -->
 
-        <h1 class="disclaimer--us-only disclaimer--us-only-home">*Currently available in the US only</h1>
+    <div class="landing-page__windmill">
+        <img class="landing-page__windmill-top" src="/assets/svgs/moving_windmill_part.svg">
+        <img class="landing-page__windmill-base" src="/assets/svgs/stationary_windmill_part.svg">
+    </div><!-- /.landing-page__windmill -->
+    <img class="landing-page__mtns" src="/assets/mountain.png">
+</section><!-- /.landing-page__landscape -->
 
-        <div class='footer-links'>
-            <a href="/assets/luckee_privacy_policy.pdf"  target="_blank"  class='privacy-link'>Privacy Policy</a>
-            <a href="/assets/luckee_TOS.pdf"  target="_blank"  class='terms-link'>Terms of Service</a>
+<section class='landing-page__section landing-page__section--how'>
+        <h2 class="section__title">How it Works </h2>
+        <div class="how__tout">
+            <img src="/assets/landing_icon_1.png" class="how-it-works-image">
+            <p class="how-it-works-copy">Play any game to<br/> earn credits</p>
         </div>
-</div><!--/.sign-up -->
-<img src="/assets/luckee_group.png" class="luckee-balloon">
 
-<div class='home-bottom'>
-    <div class='mountain-image'>
-            <%= embedded_svg('svgs/mountains.svg', :class => 'mountains') %>
-    </div>
-    <div class='trees'>
-        <%= embedded_svg('svgs/trees_and_low_hills.svg', :class => 'tree-hills') %>
-    </div>
-    <div class='bottom-content'>
-        <%= image_tag 'white_down.png', :class => 'white-down floating' %>
-            <h2>How it Works </h2>
-                <img src="/assets/landing_icon_1.png" class="how-it-works-image">
-                <p>Play any game to<br/> earn credits</p>
+        <div class="how__tout">
+            <img src="/assets/landing_icon_2.png" class="how-it-works-image">
+            <p class="how-it-works-copy">Earn enough<br/> credits to cash <br/> out</p>
+        </div>
 
-                <img src="/assets/landing_icon_2.png" class="how-it-works-image">
-                <p>Earn enough<br/> credits to cash <br/> out</p>
+        <div class="how__tout">
+            <img src="/assets/landing_icon_3.png" class="how-it-works-image">
+            <p class="how-it-works-copy">Request a cash out!<br/> We will redeem your <br/> credits and send you <br/> cash within 24 hours.</p>
+        </div>
+</section> <!-- /.landing-page__section--how -->
 
-                <img src="/assets/landing_icon_3.png" class="how-it-works-image">
-                <p>Request a cash out!<br/> We will redeem your <br/> credits and send you <br/> cash within 24 hours.</p>
-    </div>
-</div>
+
+<script>
+    (function(){
+          ShootingStar = function( id ) {
+            this.n = 0;
+            this.m = 0;
+            this.defaultOptions = { velocity:8, starSize:10, life:300, beamSize:400, dir:-1 };
+            this.options = {};
+            id = ( typeof id != "undefined" )?id:"";
+            this.capa = ( $( id ).lenght > 0 )?"body":id;
+            this.wW = $( this.capa ).innerWidth();
+            this.hW = $( this.capa ).innerHeight();
+          };
+
+          ShootingStar.prototype.addBeamPart = function( x, y ) {
+            this.n++;
+            var name = this.getRandom( 100, 1 );
+            $( "#star"+name ).remove();
+            $( this.capa ).append( "<div id='star"+name+"'></div>" );
+            $( "#star"+name ).append( "<div id='haz"+this.n+"' class='haz' style='position:absolute; color:#FFF; width:10px; height:10px; font-weight:bold; font-size:"+this.options.starSize+"px'>·</div>" );
+            if ( this.n > 1 ) $( "#haz" + ( this.n - 1 ) ).css( { color:"rgba(255,255,255,0.5)" } );
+            $( "#haz" + this.n ).css( { top: y + this.n, left: x + ( this.n * this.options.dir ) } );
+          }
+
+          ShootingStar.prototype.delTrozoHaz = function() {
+            this.m++;
+            $( "#haz" + this.m ).animate( {opacity:0}, 75 );
+            if ( this.m >= this.options.beamSize ) { $( "#ShootingStarParams" ).fadeOut( "slow" ); }
+          }
+
+          ShootingStar.prototype.getRandom = function( max, min ) {
+            return Math.floor( Math.random() * (max - min + 1)) + min;
+          }
+
+          ShootingStar.prototype.toType = function ( obj ) {
+            if ( typeof obj === "undefined" ) { return "undefined"; /* consider: typeof null === object */ }
+            if ( obj === null ) { return "null"; }
+            var type = Object.prototype.toString.call( obj ).match( /^\[object\s(.*)\]$/ )[1] || '';
+            switch ( type ) {
+              case 'Number': if ( isNaN( obj ) ) { return "nan"; } else { return "number"; }
+              case 'String': case 'Boolean': case 'Array': case 'Date': case 'RegExp': case 'Function': return type.toLowerCase();
+            }
+            if ( typeof obj === "object" ) { return "object"; }
+            return undefined;
+          }
+
+          ShootingStar.prototype.launchStar = function( options ) {
+            if ( this.toType( options ) != "object" ) { options = {}; }
+            this.options = $.extend( {}, this.defaultOptions, options );
+            this.n=0;
+            this.m=0;
+            var i=0, l=this.options.beamSize,
+                x=this.getRandom( this.wW - this.options.beamSize - 100, 100 ), y=this.getRandom( this.hW - this.options.beamSize - 100, 100 ),
+                self = this;
+            for( ; i<l; i++ ) { setTimeout( function(){ self.addBeamPart( x, y ); }, self.options.life + ( i * self.options.velocity ) ); }
+            for( i=0; i<l; i++ ) { setTimeout( function(){ self.delTrozoHaz() }, self.options.beamSize + ( i * self.options.velocity ) ); }
+            $( "#ShootingStarParams" ).html( "Launching shooting star. PARAMS: wW: " + this.wW + " - hW: " + this.hW + " - life: " + this.options.life + " - beamSize: " + this.options.beamSize + " - velocity: " + this.options.velocity );
+            $( "#ShootingStarParams" ).fadeIn( "slow" );
+          }
+
+          ShootingStar.prototype.launch = function( everyTime ) {
+            if ( this.toType( everyTime ) != "number" ) { everyTime = 10; }
+            everyTime = everyTime * 1000;
+            this.launchStar();
+            var self = this;
+            setInterval( function() {
+              var options = {
+                dir: ( self.getRandom( 1, 0 ))?1:-1,
+                life: self.getRandom( 400, 100 ),
+                beamSize: self.getRandom( 700, 400 ),
+                velocity: self.getRandom( 20, 8 )
+              }
+              self.launchStar( options );
+            }, everyTime );
+          }
+
+
+          $( document ).ready( function(){
+            var shootingStarObj = new ShootingStar( ".landing-page__landscape" );
+                shootingStarObj.launch();
+          });
+    })();
+</script>
