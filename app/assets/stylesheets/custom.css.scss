@@ -386,27 +386,6 @@ p {
 .hero h1 span { color: #a1a9b0; display: inline-block; }
 .hero p { letter-spacing: 1px; }
 
-
-/* footer */
-
-footer {
-  margin-top: 45px;
-  padding-top: 5px;
-  background-color: #202121;
-  position:fixed;
-  left:0px;
-  bottom:0px;
-  height:150px;
-  width:100%;
-  ul {
-    display: inline-block;
-    list-style: none;
-    li {
-      margin-left: 10px;
-    }
-  }
-}
-
 /* miscellaneous */
 
 .debug_dump {

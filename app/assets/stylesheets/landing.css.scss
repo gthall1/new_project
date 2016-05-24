@@ -1,3 +1,9 @@
+.desktop-home {
+    .desktop-wrapper {
+        position: relative;
+    }
+}
+
 .landing-page__nav {
     height: 80px;
     box-sizing: border-box;
@@ -110,9 +116,11 @@
     padding: 15vh 7.5%;
 }
 
-.landing-page__section--how,
 .landing-page__section--about {
-    // padding: 70px 7.5%;
+    background-color: $clouds;
+}
+
+.landing-page__section--how {
     background-color: $dark-purple;
 }
 
@@ -131,6 +139,10 @@
 
     span {
         color: $purple;
+    }
+
+    .landing-page__section--about & {
+        color: $black;
     }
 }
 
@@ -189,6 +201,54 @@
     right: -22px;
     height: 100px;
     animation: rotating 35s linear infinite;
+}
+
+.landing-page__footer {
+    padding: 35px 7.5%;
+    background-color: $dark-purple;
+    display: inline-block;
+    width: 100vw;
+    position: absolute;
+    bottom: -155px;
+    left: 0;
+    height: 155px;
+}
+
+.footer__list-item {
+    display: inline;
+
+    & + & {
+        margin-left: 15px;
+    }
+}
+
+.footer__left {
+    float: left;
+}
+
+.footer__right {
+    float: right;
+}
+
+.footer__link {
+    font-size: $sm;
+    font-family: $sans;
+    color: $white;
+    @include transition;
+
+    &:hover {
+        color: $purple;
+        text-decoration: none;
+    }
+}
+
+.footer__img {
+    position: absolute;
+    width: 200px;
+    height: auto;
+    left: 50%;
+    margin-left: -80px;
+    bottom: 20px;
 }
 
 @keyframes rotating {
