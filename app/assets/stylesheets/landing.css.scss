@@ -107,10 +107,12 @@
 .landing-page__section {
     z-index: 10;
     position: relative;
+    padding: 15vh 7.5%;
 }
 
-.landing-page__section--how {
-    padding: 50px 7.5%;
+.landing-page__section--how,
+.landing-page__section--about {
+    // padding: 70px 7.5%;
     background-color: $dark-purple;
 }
 
@@ -120,6 +122,30 @@
     color: $purple;
     text-transform: uppercase;
     margin-bottom: 25px;
+}
+
+.section__copy {
+    font-family: $sans;
+    font-size: $lg;
+    color: $white;
+
+    span {
+        color: $purple;
+    }
+}
+
+.section__copy--left {
+    text-align: left;
+    width: 60%;
+    float: left;
+
+    .landing-page__section--about & {
+        margin-top: 85px;
+    }
+}
+
+.about-img {
+    float: right;
 }
 
 .how__tout {
