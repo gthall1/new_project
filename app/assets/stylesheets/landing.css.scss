@@ -113,7 +113,7 @@
 .landing-page__section {
     z-index: 10;
     position: relative;
-    padding: 15vh 7.5%;
+    padding: 80px 7.5%;
 }
 
 .landing-page__section--about {
@@ -125,7 +125,7 @@
 }
 
 .section__title {
-    font-size: $xxl;
+    font-size: $xxxl;
     font-family: $sans;
     color: $purple;
     text-transform: uppercase;
@@ -141,15 +141,36 @@
         color: $purple;
     }
 
-    .landing-page__section--about & {
+    .landing-page__section--about &,
+    .landing-page__section--contact & {
         color: $black;
+    }
+}
+
+.section__copy--right {
+    text-align: right;
+    width: 50%;
+    float: right;
+
+    .section__title {
+        text-align: right;
+        margin-bottom: 10px;
+    }
+
+    .landing-page__section--contact & {
+        margin-top: 85px;
     }
 }
 
 .section__copy--left {
     text-align: left;
-    width: 60%;
+    width: 50%;
     float: left;
+
+    .section__title {
+        text-align: left;
+        margin-bottom: 10px;
+    }
 
     .landing-page__section--about & {
         margin-top: 85px;
@@ -157,7 +178,15 @@
 }
 
 .about-img {
+    width: 30%;
+}
+
+.about-img--right {
     float: right;
+}
+
+.about-img--left {
+    float: left;
 }
 
 .how__tout {
@@ -165,11 +194,12 @@
     box-sizing: border-box;
     width: 33%;
     float: left;
-    padding: 10px 20px;
+    padding: 20px 20px 10px;
 }
 
 .how-it-works-image {
-    width: 100px;
+    width: 150px;
+    height: auto;
     margin-bottom: 10px;
 }
 
@@ -209,9 +239,9 @@
     display: inline-block;
     width: 100vw;
     position: absolute;
-    bottom: -200px;
+    bottom: -220px;
     left: 0;
-    height: 200px;
+    height: 220px;
 }
 
 .footer__list-item {
@@ -248,7 +278,7 @@
     height: auto;
     left: 50%;
     margin-left: -80px;
-    bottom: 20px;
+    bottom: 30px;
 }
 
 @keyframes rotating {
