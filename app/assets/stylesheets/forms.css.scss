@@ -47,6 +47,33 @@ button {
         background-color: lighten($fb-blue, 5%);
     }
 }
+
+.desktop-home {
+    .btn--form-fb,
+    .btn--form-purple {
+        background-color: $white;
+    }
+
+    .btn--form__copy {
+        text-transform: uppercase;
+        font-size: 14px !important;
+    }
+
+    .btn--form-fb {
+        .btn--form__copy,
+        .btn--form__icon {
+            color: $fb-blue;
+        }
+    }
+
+    .btn--form-purple {
+        .btn--form__copy,
+        .btn--form__icon {
+            color: $purple;
+        }
+    }
+}
+
 .btn--form__icon {
     font-size: 16px !important;
     color: $white;

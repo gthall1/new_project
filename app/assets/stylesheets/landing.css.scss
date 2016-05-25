@@ -99,6 +99,49 @@
         left: 0;
         z-index: 11;
     }
+
+    .sign-up {
+        color: $white;
+
+        .welcome-box-m {
+            text-align: center;
+        }
+
+        .small-note {
+            color: $white;
+            font-family: $sans;
+        }
+
+        .already-member {
+            font-family: $sans;
+
+            a {
+                font-family: $sans-sb;
+                color: $black;
+                text-decoration: none;
+                @include transition;
+
+                &:hover {
+                    color: $white;
+                }
+            }
+        }
+
+        .form-separator {
+            font-family: $sans;
+            text-transform: uppercase;
+        }
+
+        .left-separator,
+        .right-separator {
+            border-color: $white;
+        }
+
+        .or-separator {
+            color: $white;
+            font-size: $md;
+        }
+    }
 }
 
 .landing-page__mtns {

@@ -201,6 +201,17 @@ var app = {
             $('.email-form').slideDown();
         });
 
+        $(document).on('click', 'a[href^="#"]', function(e) {
+            // target element id
+            var id = $(this).attr('href');
+
+            // prevent standard hash navigation (avoid blinking in IE)
+            e.preventDefault();
+
+            // animated top scrolling
+            app.scrollToElement(id);
+        });
+
         // $('.js-survery-link').click(function() {
         //     Cookies.set('survey_0', 'clicked', { expires: 365 });
         // })
