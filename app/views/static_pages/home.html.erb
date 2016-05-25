@@ -19,9 +19,11 @@
             <% if signups_allowed? %>
                 <%= render 'users/form'%>
             <% else %>
-                <div class="welcome-box-m">Play free games. Earn real cash.</div>
-                <h1 class="form__title">Thanks for visiting Luckee.  We are in private beta right now, but we invite new users on a first come, first served basis.  Sign up below to gain early access!</h1>
-                <%= render 'static_pages/waitlist_form' %>
+                <section class="sign-up__closed">
+                    <div class="welcome-box-m">Play free games. Earn real cash.</div>
+                    <h1 class="form__title">Thanks for visiting Luckee.  We are in private beta right now, but we invite new users on a first come, first served basis.  Sign up below to gain early access!</h1>
+                    <%= render 'static_pages/waitlist_form' %>
+                </section>
             <% end %>
 
             <h1 class="disclaimer--us-only disclaimer--us-only-home">*Currently available in the US only</h1>
