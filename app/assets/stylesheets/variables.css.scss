@@ -59,11 +59,11 @@ $tan: #FDE2C7;
 $midnight-blue: #14112c;
 $midnight: #10162c;
 
-@font-face {
-    font-family: 'Quicksand';
-    src: url('/assets/fonts/Quicksand-Regular.otf');
-    font-weight: normal;
-    font-style: normal;
-}
+// @font-face {
+//     font-family: 'Quicksand';
+//     src: url('/assets/fonts/Quicksand-Regular.otf');
+//     font-weight: normal;
+//     font-style: normal;
+// }
 
-$sans: "Quicksand", serif;
+$sans: sans-serif;
