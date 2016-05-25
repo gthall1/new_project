@@ -662,7 +662,8 @@ body { margin: 0; font-family: 'Varela Round', sans-serif; }
 a,
 a:focus,
 a:hover {
-  color: #6f5499;
+  color: $purple;
+  text-decoration: none;
 }
 
 /* Custom default button */
