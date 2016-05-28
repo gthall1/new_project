@@ -200,10 +200,6 @@
     font-size: $lg;
     color: $white;
 
-    span {
-        color: $purple;
-    }
-
     .landing-page__section--about &,
     .landing-page__section--contact & {
         color: $black;
@@ -225,6 +221,15 @@
 .section__copy--wrap {
     @include vertical-align();
     // margin-top: 85px;
+}
+
+.section__copy--wrap--how {
+    display: inline-block;
+    width: 100%;
+}
+
+.landing-page__email-link {
+    color: $dark-purple;
 }
 
 .section__copy--right {
