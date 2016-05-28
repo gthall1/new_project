@@ -55,6 +55,21 @@
     }
 }
 
+.landing-page__btn {
+    border: 2px solid $purple;
+    border-radius: 4px;
+    padding: 7.5px 25px;
+    margin-top: 20px;
+    display: inline-block;
+    text-transform: uppercase;
+    @include transition;
+
+    &:hover {
+        background-color: $purple;
+        color: white;
+    }
+}
+
 .landing-page__nav-link--login {
     border: 2px solid $white;
     border-radius: 4px;
