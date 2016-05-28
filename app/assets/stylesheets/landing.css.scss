@@ -194,6 +194,22 @@
     }
 }
 
+.landing-page__section--app {
+    background-color: $purple;
+
+    .section__title {
+        color: $white;
+    }
+
+    .section__copy {
+        color: $white;
+    }
+}
+
+.section__copy--wrap {
+    margin-top: 85px;
+}
+
 .section__copy--right {
     text-align: right;
     width: 50%;
@@ -204,9 +220,9 @@
         margin-bottom: 10px;
     }
 
-    .landing-page__section--contact & {
-        margin-top: 85px;
-    }
+    // .landing-page__section--contact & {
+    //     margin-top: 85px;
+    // }
 }
 
 .section__copy--left {
@@ -219,9 +235,9 @@
         margin-bottom: 10px;
     }
 
-    .landing-page__section--about & {
-        margin-top: 85px;
-    }
+    // .landing-page__section--about & {
+    //     margin-top: 85px;
+    // }
 }
 
 .about-img {
