@@ -51,7 +51,11 @@ button {
 .desktop-home {
     .btn--form-fb,
     .btn--form-purple {
-        background-color: $white;
+        background-color: rgba($white, 0.7);
+
+        &:hover {
+            background-color: rgba($white, 1);
+        }
     }
 
     .btn--form__copy {

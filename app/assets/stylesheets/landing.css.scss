@@ -160,7 +160,8 @@
 .landing-page__section {
     z-index: 10;
     position: relative;
-    padding: 80px 7.5%;
+    padding: 0 7.5%;
+    height: 525px;
 }
 
 .landing-page__section--about {
@@ -207,7 +208,8 @@
 }
 
 .section__copy--wrap {
-    margin-top: 85px;
+    @include vertical-align();
+    // margin-top: 85px;
 }
 
 .section__copy--right {
@@ -241,6 +243,7 @@
 }
 
 .about-img {
+    @include vertical-align();
     width: 30%;
 }
 
