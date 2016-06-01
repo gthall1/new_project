@@ -1,8 +1,9 @@
 <% provide(:title, @user.name) %>
 <% content_for :body_class, "user-profile user-profile--mobile" %>
 
-    <%= link_to "Edit", edit_user_path(current_user), class: "btn--outline" %>
-
+    <% if current_user?(@user) %>
+        <%= link_to "Edit", edit_user_path(current_user), class: "btn--outline" %>
+    <% end %>
 
     <div class="profile-section profile__top">
         <div class="profile__avatar" style="<% if @user.oath_image %> background-image: url(<%= @user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %>"></div>
