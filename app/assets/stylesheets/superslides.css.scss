@@ -1,7 +1,4 @@
-@import "mixins";
-@import "variables";
 $orange-2048: #ffb400;
-// $lavender
 
 #slides {
     position: relative;
@@ -25,12 +22,12 @@ $orange-2048: #ffb400;
 }
 .slides__title {
     text-align: center;
-    color: #ffb400;
+    color: $white;
     margin: 20px 0;
-    font-size: 14px;
+    font-size: $xl;
     text-transform: uppercase;
     letter-spacing: 0px;
-
+    font-family: $sans;
 
     &:first-of-type {
         margin-top: 50px;
@@ -143,19 +140,22 @@ $orange-2048: #ffb400;
     border: 2px solid #ed995b;
 }
 .secondary-copy {
+    font-family: $sans;
     text-align: center;
-    color: white;
+    color: $white;
     margin: 20px 10vw;
     font-size: 14px;
     width: 80vw;
 }
 .secondary__desc {
+    font-family: $sans;
     color: $clouds;
-    font-size: 14px;
+    font-size: $md;
     line-height: 18px;
 }
 .secondary__cap {
-    font-size: 18px;
+    font-family: $sans;
+    font-size: $xl;
     margin-bottom: 10px;
 }
 .nav-btn {
@@ -187,11 +187,13 @@ $orange-2048: #ffb400;
     }
     .slides__title {
         text-transform: none;
-        color: #A8A4E2;
+        color: $white;
         font-weight: 400;
-        font-size: 18px;
+        font-size: $xxl;
         margin: 0 0 30px;
         position: relative;
+        padding: 0 20px;
+        box-sizing: border-box;
 
         &::after {
             // content: '';
@@ -225,17 +227,11 @@ $orange-2048: #ffb400;
         }
     }
     .slides__tut-img {
-        background-size: 85%;
+        background-size: 80%;
 
         &.dial {
             background-size: 75%;
         }
-        &.dollars {
-            background-size: 60%;
-        }
-    }
-    .slides__tut-img--bg {
-        background-size: 90%;
     }
 }
 
