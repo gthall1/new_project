@@ -728,7 +728,7 @@ class GamesController < ApplicationController
                  :total_credits => current_user.credits,
                  :token => session[:game_token],
                  :hscore => high_score,
-                 :ad_number => get_ad
+                 :ad_number => ad_number
                 }
             }
         else
