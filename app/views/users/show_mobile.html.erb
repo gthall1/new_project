@@ -5,7 +5,7 @@
 
 
     <div class="profile-section profile__top">
-        <div class="profile__avatar" style="<% if current_user.oath_image %> background-image: url(<%= current_user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %>"></div>
+        <div class="profile__avatar" style="<% if @user.oath_image %> background-image: url(<%= @user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %>"></div>
 
         <h1 class="profile__name"><%= @user.name %></h1>
     </div><!-- /.profile__top -->
@@ -22,9 +22,13 @@
                 <h3 class="inline-tout__sub-title">Lifetime Credits</h3>
             </div><!-- /.inline-tout__item -->
 
-            <div class="inline-tout__item" data-toggle="tooltip" data-placement="bottom" title="Coming Soon!">
-                <h1 class="js-inline-tout__title inline-tout__title">--</h1>
-                <h3 class="inline-tout__sub-title">Luckee Rank <i class="fa fa-info-circle"></i></h3>
+            <div class="inline-tout__item" data-toggle="tooltip" data-placement="bottom">
+                    <% unless current_user?(@user) %>
+                      <%= render 'follow_form' if signed_in? %>
+                    <% end %>
+                      <section class="stats">
+                        <%= render '/shared/stats' %>
+                      </section>
             </div><!-- /.inline-tout__item -->
         </div><!-- /.profile__inline-tout -->
     </div><!-- /.profile-section -->

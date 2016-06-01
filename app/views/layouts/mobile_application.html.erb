@@ -264,7 +264,7 @@
                         </div>
                     <% end %>
 
-                    <%= link_to user_path(current_user.id) do %>
+                    <%= link_to user_path(name:current_user.name) do %>
                         <div class="bottom-nav__item <%= "active" if @current_page == "profile" %>">
                             <p class="bottom-nav__item-copy"><img class="bottom-nav__img" src="/assets/navbar_5.png">Profile</p>
                         </div>
