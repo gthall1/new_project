@@ -263,9 +263,9 @@ module GamesHelper
             if !user.oath_image.blank?
                 image = user.oath_image
             end
-            { :id => user.id, :image => image, :score => score, :name => user.name }
+            { :id => user.id, :image => image, :score => score, :name => user.name, :url => user_url(name:user.name) }
         else
-            { :id => args[:user_id], :image => image, :score => score, :name => "DELETED" }
+            { :id => args[:user_id], :image => image, :score => score, :name => "DELETED", :url => nil }
         end
     end
 end

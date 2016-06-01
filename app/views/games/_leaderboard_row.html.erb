@@ -2,10 +2,12 @@
     <% current = true if current_user.name == record[1]["name"] %>
     <% break if i > 9 %>
     <div class="leaderboard-row <% if current %> leaderboard-row--current-user <% end %>">
+      <%= link_to record[1]["url"] do %> 
         <div class="leaderboard-row__wrap">
             <span class="leaderboard-rank"><%= record[0] %><span class="leaderboard__avatar" style="background-image: url('<%= record[1]["image"] %>'); "></span></span>
             <span class="leaderboard-user"><%= record[1]["name"] %></span>
             <span class="leaderboard-score"><%= record[1]["score"] %></span>
         </div>
+      <% end %>
     </div>
 <% end %>

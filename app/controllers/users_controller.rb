@@ -3,7 +3,8 @@ class UsersController < ApplicationController
 
     before_action :signed_in_user,
                                 only: [:index, :edit, :update, :destroy, :show, :following, :followers]
-    before_action :correct_user,   only: [:edit, :show, :update]
+    before_action :set_user, only: [:show,:following,:followers]
+    before_action :correct_user,   only: [:edit, :update]
     before_action :admin_user,     only: [:index,:stats, :destroy]
 
     layout :determine_layout
@@ -136,14 +137,12 @@ class UsersController < ApplicationController
 
     def following
         @title = "Following"
-        @user  = User.find_by_name(params[:name])
         @users = @user.following
         render 'show_follow'
     end
 
     def followers
         @title = "Followers"
-        @user  = User.find_by_name(params[:name])
         @users = @user.followers
         render 'show_follow'
     end
@@ -182,6 +181,10 @@ class UsersController < ApplicationController
         end
 
         # Before filters
+
+        def set_user 
+            @user = User.find_by_name(params[:name])
+        end 
 
         def correct_user
             @user = User.find_by_name(params[:name])
