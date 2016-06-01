@@ -6,10 +6,6 @@ class StaticPagesController < ApplicationController
     skip_before_filter :check_country, :only => [:country,:waitlist_user]
     skip_before_filter :check_enabled, :only => [:closed_beta]
 
-    def check_signed_in
-        redirect_to root_path if !signed_in?
-    end
-
     def home
         if !params[:promo].blank? && params[:promo].downcase == 'vip'
             session[:promo] = 'vip'

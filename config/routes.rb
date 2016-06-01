@@ -5,13 +5,18 @@ Alotto::Application.routes.draw do
 
     resources :purchases
     resources :surveys
-    resources :games
-    resources :users
-    resources :users do
+    resources :games, param: :slug
+    resources :users, param: :name
+
+    resources :users, param: :name do
         member do
           get :verify_email
+          get :following, :followers
         end
     end
+    
+    resources :relationships,       only: [:create, :destroy]
+
     resources :sessions,      only: [:new, :create, :destroy]
     resources :password_resets,     only: [:new, :create, :edit, :update]
     resources :cash_outs, only: [:create]
@@ -87,6 +92,12 @@ Alotto::Application.routes.draw do
     #reps
     #same as referral but we giving this to them for ease and use of custom urls and tracking
     get '/r-:referral',to: 'static_pages#home_invite', via: 'get'
+
+    #ERROR ROUTES
+    %w( 404 422 500 ).each do |code|
+      get code, :to => "errors#show", :code => code
+    end
+
 
     #For analytics to grab some data
     namespace :api, defaults: { format: :json } do

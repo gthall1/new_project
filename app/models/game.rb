@@ -5,6 +5,10 @@ class Game < ActiveRecord::Base
   scope :mobile,       -> { where( :device_type=>[1,3,5] )                                 } 
   scope :desktop,       -> { where( :device_type=>[2,3,5] )                                } 
 
+  def to_param
+      slug.parameterize
+  end
+
   def is_mobile?
   	self.device_type == 1 || self.device_type == 3
   end

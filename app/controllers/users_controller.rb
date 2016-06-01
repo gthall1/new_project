@@ -2,7 +2,7 @@ class UsersController < ApplicationController
     include ApplicationHelper
 
     before_action :signed_in_user,
-                                only: [:index, :edit, :update, :destroy, :show]
+                                only: [:index, :edit, :update, :destroy, :show, :following, :followers]
     before_action :correct_user,   only: [:edit, :show, :update]
     before_action :admin_user,     only: [:index,:stats, :destroy]
 
@@ -134,6 +134,20 @@ class UsersController < ApplicationController
         end
     end
 
+    def following
+        @title = "Following"
+        @user  = User.find_by_name(params[:name])
+        @users = @user.following
+        render 'show_follow'
+    end
+
+    def followers
+        @title = "Followers"
+        @user  = User.find_by_name(params[:name])
+        @users = @user.followers
+        render 'show_follow'
+    end
+
     def challenges
         if signed_in?
             @challenges = current_user.challenges
@@ -170,7 +184,7 @@ class UsersController < ApplicationController
         # Before filters
 
         def correct_user
-            @user = User.find(params[:id])
+            @user = User.find_by_name(params[:name])
             redirect_to(root_url) unless current_user?(@user) || current_user.admin?
         end
 

@@ -27,7 +27,8 @@
         # config.i18n.default_locale = :de
         # I18n.enforce_available_locales = true
         I18n.enforce_available_locales = true
-
+        config.exceptions_app = self.routes
+        config.action_view.embed_authenticity_token_in_remote_forms = true
         config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif *.js)
         config.before_configuration do
           env_file = File.join(Rails.root, 'config', 'local_env.yml')

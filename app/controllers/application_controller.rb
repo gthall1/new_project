@@ -33,6 +33,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def check_signed_in
+    redirect_to root_path if !signed_in?
+  end
+  
 	def record_arrival
 		set_is_bot if session[:bot].nil?
 
