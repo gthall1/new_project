@@ -17,7 +17,7 @@ module ApplicationHelper
 
   def signups_allowed?
       return true if session[:promo] == 'vip'
-      false
+      true
   end
 
   def is_mobile?
