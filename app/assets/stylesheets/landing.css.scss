@@ -74,7 +74,7 @@
 .landing-page__nav-link--login {
     border: 2px solid $white;
     border-radius: 4px;
-    padding: 7.5px 25px;
+    padding: 5px 25px;
     @include transition;
 
     &:hover {
@@ -135,14 +135,14 @@
         .already-member {
             font-family: $sans;
 
-            a {
+            .form__signin-link {
                 font-family: $sans-sb;
-                color: $black;
-                text-decoration: none;
+                color: $white;
+                text-decoration: underline;
                 @include transition;
 
                 &:hover {
-                    color: $white;
+                    color: $black;
                 }
             }
         }
@@ -181,7 +181,7 @@
 }
 
 .landing-page__section--about {
-    background-color: $clouds;
+    // background-color: $clouds;
 }
 
 .landing-page__section--how {
