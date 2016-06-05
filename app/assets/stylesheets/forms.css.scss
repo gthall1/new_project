@@ -51,29 +51,52 @@ button {
 .desktop-home {
     .btn--form-fb,
     .btn--form-purple {
-        background-color: rgba($white, 0.7);
+        background-color: transparent;
+        border: 2px solid rgba($white, 0.7);
+
+        .btn--form__copy,
+        .btn--form__icon {
+            color: $white;
+        }
 
         &:hover {
             background-color: rgba($white, 1);
+
+            &.btn--form-purple {
+                .btn--form__copy,
+                .btn--form__icon {
+                    color: $purple;
+                }
+            }
+
+            &.btn--form-fb {
+                .btn--form__copy,
+                .btn--form__icon {
+                    color: $fb-blue;
+                }
+            }
         }
     }
 
     .btn--form__copy {
         text-transform: uppercase;
         font-size: 14px !important;
+        font-family: $sans;
     }
 
     .btn--form-fb {
         .btn--form__copy,
         .btn--form__icon {
-            color: $fb-blue;
+            // color: $fb-blue;
+            color: $white;
         }
     }
 
     .btn--form-purple {
         .btn--form__copy,
         .btn--form__icon {
-            color: $purple;
+            // color: $purple;
+            color: $white;
         }
     }
 }
