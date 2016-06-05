@@ -19,10 +19,9 @@ var app = {
         };
     },
 
-
-
+    // For Spacing Concerns - Testing with Mobile Chrome Browser
     isWAM: function() {
-        if (app.isWebAppMode()) {
+        if (app.isWebAppMode() || mobileCheck.MobileChrome()) {
             $('body').addClass('wam');
         }
     },
