@@ -238,6 +238,36 @@ $orange-2048: #ffb400;
     }
 }
 
+// Onboarding iPhone 5
+@media only screen and (max-width: 320px ) {
+    #onboarding-walkthrough {
+        .slides__title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .secondary__cap {
+            font-size: 18px;
+        }
+
+        .secondary__desc {
+            font-size: 16px;
+        }
+
+        .slides__tut-img {
+            background-size: 75%;
+        }
+
+        .nav-btn {
+            margin-top: 10px;
+        }
+
+        .secondary-copy {
+            margin: 0 10vw;
+        }
+    }
+}
+
 @media only screen and (max-width: 668px) {
     .slides__sm-text,
     .slides__title {
