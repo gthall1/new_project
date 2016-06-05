@@ -11,7 +11,7 @@ var app = {
     },
 
     showOnboarding: function() {
-        if (mobileCheck.iOS() && !mobileCheck.MobileChrome() && !app.isWebAppMode()) {
+        if (mobileCheck.iOS() && !app.isWebAppMode() || mobileCheck.MobileChrome()) {
             if (Cookies.get('onboarding') !== 'shown') {
                 window.location.href = window.location.origin + "/onboarding";
                 Cookies.set('onboarding', 'shown', { expires: 365 });
