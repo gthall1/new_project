@@ -135,14 +135,14 @@
         .already-member {
             font-family: $sans;
 
-            a {
+            .form__signin-link {
                 font-family: $sans-sb;
-                color: $black;
-                text-decoration: none;
+                color: $white;
+                text-decoration: underline;
                 @include transition;
 
                 &:hover {
-                    color: $white;
+                    color: $black;
                 }
             }
         }
