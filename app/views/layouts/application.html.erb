@@ -55,7 +55,7 @@
     <% end %>
   <%= yield(:game_javascript) %>
   </head>
-  <body class="<%= yield (:body_class) %>">
+  <body class="<%= yield (:body_class) %> <% if current_user %> logged-in <% end %>">
     <div class="desktop-wrapper">
     <section class="navigation">
       <div class="nav-left">

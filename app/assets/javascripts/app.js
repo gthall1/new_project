@@ -19,6 +19,10 @@ var app = {
         };
     },
 
+    isLoggedIn: function() {
+        return $('body').hasClass('logged-in');
+    },
+
     // For Spacing Concerns - Testing with Mobile Chrome Browser
     isWAM: function() {
         if (app.isWebAppMode() || mobileCheck.MobileChrome()) {
