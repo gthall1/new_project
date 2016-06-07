@@ -11,12 +11,15 @@ var app = {
     },
 
     showOnboarding: function() {
-        if ( mobileCheck.iOS() && !app.isWebAppMode() || mobileCheck.MobileChrome() || mobileCheck.Android() ) {
-            if (Cookies.get('onboarding') !== 'shown') {
-                window.location.href = window.location.origin + "/onboarding";
-                Cookies.set('onboarding', 'shown', { expires: 365 });
+        // Check to make sure not logged in
+        if (!app.isLoggedIn()) {
+            if ( mobileCheck.iOS() && !app.isWebAppMode() || mobileCheck.MobileChrome() || mobileCheck.Android() ) {
+                if (Cookies.get('onboarding') !== 'shown') {
+                    window.location.href = window.location.origin + "/onboarding";
+                    Cookies.set('onboarding', 'shown', { expires: 365 });
+                }
             }
-        };
+        }
     },
 
     isLoggedIn: function() {
