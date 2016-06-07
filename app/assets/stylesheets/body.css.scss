@@ -5,7 +5,7 @@
 
 // Change these selectors to one body class that can be added to templates, rather than listing out new classes for the same outcome
 body {
-    // padding-top: 60px;
+    padding-top: 60px;
     position: relative;
     z-index: 1;
 
@@ -23,7 +23,8 @@ body {
     &.gameplay-page--2048,
     &.leaderboard-page--mobile,
     &.no-top-padding,
-    &.set-username-page {
+    &.set-username-page,
+    &.list-page--mobile {
         padding-top: 0;
     }
 
