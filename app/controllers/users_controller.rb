@@ -114,24 +114,19 @@ class UsersController < ApplicationController
                 else
                     user_agent = ""
                 end
+                session[:user] = @user
+                UserNotifier.send_confirmation_email({user_id: @user.id,verify_token:@user.verify_token}).deliver
 
-                #only sending confirmation email as a way around native browses from twitter and facebook
-                if user_agent.include?("iPhone" || "iPad" || "iPod") && user_agent.include?("FBAN")
-                    UserNotifier.send_confirmation_email({user_id: @user.id,verify_token:@user.verify_token}).deliver
-                    redirect_to confirm_email_path
-                elsif user_agent.include?("iPhone" || "iPad" || "iPod") && user_agent.include?("Twitter for iPhone")
-                    UserNotifier.send_confirmation_email({user_id: @user.id,verify_token:@user.verify_token}).deliver
-                    redirect_to confirm_email_path
-                else
-                    sign_in @user
-                    cookies.permanent[:u] = @user.id
-                    flash[:success] = "Welcome to Luckee!"
-                    redirect_to(root_url)
-                end
             else
                 render 'new'
             end
         end
+    end
+
+    def resend_verify
+        @user = session[:user]
+        UserNotifier.send_confirmation_email({user_id: @user.id,verify_token:@user.verify_token}).deliver
+
     end
 
     def challenges
