@@ -241,14 +241,14 @@
                 <div class="bottom-navigation bottom-navigation--mobile js-bottom-navigation">
                     <%= link_to games_path do %>
                     <div class="bottom-nav__item <%= "active" if @current_page == "games" %>">
-                        <p class="bottom-nav__item-copy"><img class="bottom-nav__img" src="/assets/navbar_2.png">Games</p>
+                        <p class="bottom-nav__item-copy"><img class="bottom-nav__img" src="/assets/svgs/home.svg">Games</p>
                     </div>
                     <% end %>
 
                     <a href="/surveys" class="js-survery-link">
                         <div class="bottom-nav__item <%= "active" if @current_page == "surveys" %>">
                             <i class="fa fa-exclamation js-survey-notification notification"></i>
-                            <p class="bottom-nav__item-copy"><img class="bottom-nav__img" src="/assets/navbar_1.png">Surveys</p>
+                            <p class="bottom-nav__item-copy"><img class="bottom-nav__img" src="/assets/svgs/survey.svg">Surveys</p>
                         </div>
                     </a>
 
@@ -259,14 +259,14 @@
                         <% end %>
 
                     <%= link_to leaderboards_path do %>
-                        <div class="bottom-nav__item bottom-nav__item--leaderboard <%= "active" if @current_page == "leaderboard" %>">
-                            <p class="bottom-nav__item-copy"><img class="bottom-nav__img" src="/assets/navbar_6.png">Leaders</p>
+                        <div class="bottom-nav__item <%= "active" if @current_page == "leaderboard" %>"> <!-- add bottom-nav__item--leaderboard -->
+                            <p class="bottom-nav__item-copy"><img class="bottom-nav__img" src="/assets/svgs/leader.svg">Leaders</p>
                         </div>
                     <% end %>
 
                     <%= link_to user_path(current_user.id) do %>
-                        <div class="bottom-nav__item <%= "active" if @current_page == "profile" %>">
-                            <p class="bottom-nav__item-copy"><img class="bottom-nav__img" src="/assets/navbar_5.png">Profile</p>
+                        <div class="bottom-nav__item bottom-nav__item--profile <%= "active" if @current_page == "profile" %>">
+                            <p class="bottom-nav__item-copy"><img class="bottom-nav__img" src="/assets/svgs/profile.svg">Profile</p>
                         </div>
                     <% end %>
                 </div><!-- /.bottom-navigation -->
