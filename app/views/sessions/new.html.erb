@@ -4,48 +4,53 @@
 <div class="row">
     <div class="sign-in--desktop">
         <section class="sign-in--desktop__wrap">
+            <a href="/">
+                <img class="sign-in--desktop__logo" src="assets/luckee-font.png">
+            </a>
+
+
             <%= link_to "/auth/facebook" do %>
             <button class="btn--form btn--form-fb">
-                <i class="fa fa-facebook btn--form__icon"></i>
-                <h1 class="btn--form__copy">Sign in with Facebook</h1>
+                    <i class="fa fa-facebook btn--form__icon"></i>
+                    <h1 class="btn--form__copy">Sign in with Facebook</h1>
             </button><!-- /.btn--form -->
             <% end %>
 
             <h1 class="form--or">OR</h1>
 
             <%= form_for(:session, url: sessions_path) do |f| %>
-                <div class="form__container">
-                  <div class="form__input-wrap">
-                     <div class="form-input__icon">
-                      <i class="fa fa-user" aria-hidden="true"></i>
-                    </div>
+                    <div class="form__container">
+                        <div class="form__input-wrap">
+                             <div class="form-input__icon">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                            </div>
 
-                    <%= f.text_field :email, class:"form-input--alt", placeholder: "Email" %>
-                    <!-- <input placeholder="Email" class="form-input--alt" type="email" /> -->
-                  </div>
+                            <%= f.text_field :email, class:"form-input--alt", placeholder: "Email" %>
+                            <!-- <input placeholder="Email" class="form-input--alt" type="email" /> -->
+                        </div>
 
-                  <div class="form__input-wrap">
-                    <div class="form-input__icon">
-                      <i class="fa fa-lock" aria-hidden="true"></i>
+                        <div class="form__input-wrap">
+                            <div class="form-input__icon">
+                                <i class="fa fa-lock" aria-hidden="true"></i>
+                            </div>
+                            <%= f.password_field :password, class:"form-input--alt", placeholder: "Password" %>
+                            <!-- <input placeholder="Password" class="form-input--alt form-input--with-submit" type="password" /> -->
+                            <button type="submit" class="form-input--submit js-form-submit">
+                                <i class="hidden fa fa-refresh" aria-hidden="true"></i>
+                                <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
                     </div>
-                    <%= f.password_field :password, class:"form-input--alt", placeholder: "Password" %>
-                    <!-- <input placeholder="Password" class="form-input--alt form-input--with-submit" type="password" /> -->
-                    <button type="submit" class="form-input--submit js-form-submit">
-                      <i class="hidden fa fa-refresh" aria-hidden="true"></i>
-                      <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-                    </button>
-                  </div>
-                </div>
             <% end %>
 
 
             <div class="form__sub-links">
-              <h1 class="sub-links__title">Sign In</h1>
-              <% if signups_allowed? %>
-                  <!-- <p>New user? <%# link_to "Sign up now!", signup_path %></p> -->
-                  <%= link_to "forgot?", new_password_reset_path, class: "sub-links__forgot" %>
-              <% end %>
+                <%= link_to "Sign Up", new_user_path, class: "sub-links__title" %>
+                <% if signups_allowed? %>
+                        <!-- <p>New user? <%# link_to "Sign up now!", signup_path %></p> -->
+                        <%= link_to "forgot?", new_password_reset_path, class: "sub-links__forgot" %>
+                <% end %>
             </div>
         </section>
-    </div>
+    </div><!-- /.sign-in--desktop -->
 </div>

@@ -1,22 +1,25 @@
-<% content_for :body_class, "confirmation-page no-bg" %>
+<% content_for :body_class, "confirmation-page--desktop confirmation-page no-bg" %>
 
 <%= link_to root_path do %><img src="/assets/homescreen-logo.png" class="header-img--logo"><% end %>
 
-<div class="confirmation-page__content">
-    <h1 class="confirmation-page__title">An email has been sent to <%= @user.email %>. Please confirm your email address by clicking through.</h1>   
+<main class="confirmation-page__content">
+        <a href="/">
+            <img class="confirmation-page__logo" src="assets/luckee-font.png">
+        </a>
 
-   <%= form_tag('/resend_email', remote: true) do |f| %>
-      <label for="user_email">Update Email and Resend</label>
+        <%= embedded_svg('svgs/question.svg', :class => 'confirmation-page__icon') %>
+        <h1 class="confirmation-page__title">Get Verified</h1>
+        <p class="confirmation-page__copy">Thank you for signing up! An email has been sent to <%= @user.email %>. Please confirm your account by clicking the link in the email.</p>
 
-      <%= text_field_tag :e %>
-      <%= hidden_field_tag :update_email, :value => true %>
-      <%= submit_tag "update ", class: "btn" %>
+     <%= form_tag('/resend_email', remote: true) do |f| %>
 
-    <% end %> 
+            <%= text_field_tag :e, nil, {class: "input--text", placeholder: "New Email Address"}%>
+            <%= hidden_field_tag :update_email, :value => true %>
+            <%= submit_tag "Resend Email ", class: "btn" %>
 
-  <div class='change_email_form'>
-    <%= render 'users/resend_update_form'%>
-  </div>
+        <% end %>
 
-  <%= link_to "Return Home", root_path , class: "btn-sec" %>
-</div>
+    <div class='change_email_form'>
+        <%= render 'users/resend_update_form'%>
+    </div>
+</main><!-- /.confirmation-page__content -->

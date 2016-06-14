@@ -1,0 +1,63 @@
+.confirmation-page--desktop {
+    background-image: url(/assets/landscape-bg.jpg);
+    background-position: center;
+
+    .app-wrapper {
+        height: 100vh;
+    }
+
+    .navigation {
+        display: none;
+    }
+
+    .confirmation-page__content {
+        background-color: rgba($white, 0.75);
+        width: 50vw;
+        margin: auto;
+        max-width: 500px;
+        padding: 20px 50px;
+        border-radius: 5px;
+
+        @include vertical-align();
+    }
+
+    .confirmation-page__logo {
+        position: absolute;
+        top: -75px;
+        width: 200px;
+        height: auto;
+        left: 50%;
+        margin-left: -100px;
+    }
+
+    .confirmation-page__icon {
+        width: 50px;
+        height: auto;
+    }
+
+    .confirmation-page__title,
+    .confirmation-page__copy {
+        font-family: $sans;
+    }
+
+    .confirmation-page__title {
+        color: $purple;
+        font-size: $xxxl;
+    }
+
+    .confirmation-page__copy {
+        margin-bottom: 30px;
+    }
+
+    // Move to forms
+    .input--text {
+        border: none;
+        box-shadow: none;
+        border-radius: 2px;
+        background-color: #ecf0f1;
+        height: 45px !important;
+        padding-left: 10px;
+
+        @include input-color(#555);
+    }
+}

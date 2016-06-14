@@ -96,6 +96,24 @@
   }
 }
 
+@mixin input-color($color: $purple) {
+  &::-webkit-input-placeholder {
+     color: $color;
+  }
+
+  &:-moz-placeholder { /* Firefox 18- */
+     color: $color;
+  }
+
+  &::-moz-placeholder {  /* Firefox 19+ */
+     color: $color;
+  }
+
+  &:-ms-input-placeholder {
+     color: $color;
+  }
+}
+
 %transparent-submit {
   background-color: transparent;
   border: 2px solid rgba(236, 240, 241, 0.25);

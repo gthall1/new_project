@@ -1,8 +1,7 @@
  <%= form_tag('/correct_mail', remote: true) do |f| %>
-  <label for="user_email">Update Email and Resend</label>
 
-  <%= text_field_tag :e %>
+  <%= text_field_tag :e, nil, {class: "input--text", placeholder: "New Email Address"}%>
   <%= hidden_field_tag :update_email, :value => true %>
-  <%= submit_tag "update ", class: "btn" %>
+  <%= submit_tag "Resend Email", class: "btn" %>
 
-<% end %> 
+<% end %>

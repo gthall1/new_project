@@ -1,3 +1,5 @@
+@import "mixins";
+
 // mixins
 @mixin vertical-align($translateY: -50%) {
     position: relative;
@@ -24,7 +26,7 @@
   }
 }
 
-$sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$sans: "Quicksand", sans-serif;
 
 // colors
 $white: #fff;
@@ -45,7 +47,8 @@ body {
           background-image: none;
         }
 
-        background-color: $background;
+        background-image: url(/assets/landscape-bg.jpg) !important;
+        background-position: center;
     }
 
 
@@ -53,16 +56,23 @@ body {
   &.desktop-signin-page {
     .sign-in--desktop__wrap {
         position: relative;
-        top: calc(50vh - 80px);
+        // top: calc(50vh - 80px);
+        top: 45vh;
         margin-top: -160px !important;
     }
     .navigation {
-        // display: none;
+        display: none;
     }
   }
 }
 
 html body.desktop-signin-page {
+    .sign-in--desktop__logo {
+      width: 200px;
+      height: auto;
+      margin-bottom: 30px;
+    }
+
     .form--or {
         color: $white;
         text-transform: uppercase;
@@ -86,16 +96,14 @@ html body.desktop-signin-page {
       font-family: $sans;
       font-weight: 400;
       text-transform: uppercase;
-      font-size: 16px;
+      font-size: 12px;
       margin-left: 5%;
-      color: $purple;
-      position: relative;
-      top: -10px;
+      color: $white;
     }
 
     .sub-links__forgot {
       float: right;
-      color: $purple;
+      color: $white;
       margin-right: 5%;
       font-family: $sans;
       font-size: 14px;
@@ -104,6 +112,12 @@ html body.desktop-signin-page {
     .sub-links__title,
     .sub-links__forgot {
       display: inline;
+      @include transition;
+      margin-top: -10px;
+
+      &:hover {
+        color: $purple;
+      }
     }
 
     .form__input-wrap {
@@ -168,13 +182,13 @@ html body.desktop-signin-page {
       width: 50px;
       display: block;
       float: left;
-      background-color: $clouds;
+      background-color: $purple;
       text-align: center;
 
       .fa {
         @include vertical-align();
         top: 45%;
-        color: $plum;
+        color: $white;
       }
     }
 
@@ -184,7 +198,8 @@ html body.desktop-signin-page {
         }
       padding: 12px 25px 25px;
       position: relative;
-      background-color: $form-color;
+      // background-color: $form-color;
+      background-color: rgba($white, 0.75);
       height: 170px;
       width: 100%;
       margin: auto;
@@ -193,29 +208,20 @@ html body.desktop-signin-page {
       // box-shadow: 0px 1px 15px 1px black;
       // top: 50vh;
       // margin-top: -75px;
+      border-top: 5px solid $purple;
 
-      &::before {
-        content: '';
-        position: absolute;
-        top: -5px;
-        left: 0;
-        background-color: $purple;
-        height: 5px;
-        width: 100%;
-      }
-
-      &::after {
-        content: '';
-        position: absolute;
-        height: 0;
-        width: 0;
-          border-left: 10px solid $background;
-          border-right: 10px solid $background;
-          border-top: 10px solid $form-color;
-        left: 10%;
-        bottom: -10px;
-        background-color: #fff;
-      }
+      // &::after {
+      //   content: '';
+      //   position: absolute;
+      //   height: 0;
+      //   width: 0;
+      //     border-left: 10px solid $background;
+      //     border-right: 10px solid $background;
+      //     border-top: 10px solid $form-color;
+      //   left: 10%;
+      //   bottom: -10px;
+      //   background-color: #fff;
+      // }
     }
 
 }

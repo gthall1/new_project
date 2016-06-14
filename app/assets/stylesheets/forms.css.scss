@@ -48,7 +48,8 @@ button {
     }
 }
 
-.desktop-home {
+.desktop-home,
+.desktop-signin-page {
     .btn--form-fb,
     .btn--form-purple {
         background-color: transparent;
@@ -346,4 +347,3 @@ button {
 .form__signin-link {
     color: $purple;
 }
-
