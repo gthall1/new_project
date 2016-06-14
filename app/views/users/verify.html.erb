@@ -5,8 +5,15 @@
 <div class="confirmation-page__content">
     <h1 class="confirmation-page__title">An email has been sent to <%= @user.email %>. Please confirm your email address by clicking through.</h1>   
 
-  <%= render 'users/resend_update_form'%>
-  
+   <%= form_tag('/resend_email', remote: true) do |f| %>
+      <label for="user_email">Update Email and Resend</label>
+
+      <%= text_field_tag :e %>
+      <%= hidden_field_tag :update_email, :value => true %>
+      <%= submit_tag "update ", class: "btn" %>
+
+    <% end %> 
+
   <div class='change_email_form'>
     <%= render 'users/resend_update_form'%>
   </div>

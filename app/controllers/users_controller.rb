@@ -116,11 +116,20 @@ class UsersController < ApplicationController
                 end
                 session[:user] = @user
                 UserNotifier.send_confirmation_email({user_id: @user.id,verify_token:@user.verify_token}).deliver
-
+                redirect_to verify_path
             else
                 render 'new'
             end
         end
+    end
+
+    def verify
+        @user = session[:user]
+    end
+
+    def update_verify
+        @user = session[:user]
+        UserNotifier.send_confirmation_email({user_id: @user.id,verify_token:@user.verify_token}).deliver
     end
 
     def resend_verify
@@ -132,6 +141,30 @@ class UsersController < ApplicationController
     def challenges
         if signed_in?
             @challenges = current_user.challenges
+        end
+    end
+
+    def correct_mail
+        @message = "Error: Something went wrong. Please check the email you entered and try again."
+        @status = "fail"
+        if !session[:user].blank? && !params[:e].blank?
+            @user = session[:user]
+            @user.email = params[:e]
+            if user.save
+                UserNotifier.send_confirmation_email({user_id: @user.id,verify_token:@user.verify_token}).deliver
+                @message = "Success! Please check your email to verify."
+                @status = "Success"
+            elsif User.where(email:params[:e].downcase).present?
+                @message = "Error: An user with that email already exists. "
+            end
+        else
+            @message = "You must enter an email"        
+        end
+
+    
+        respond_to do |format|
+          format.html { redirect_to root_path }
+          format.js
         end
     end
 
