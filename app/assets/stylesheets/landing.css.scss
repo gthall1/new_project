@@ -292,8 +292,11 @@
 }
 
 .how-it-works-copy {
+    margin-top: 10px;
     color: $white;
     font-family: $sans;
+    max-width: 200px;
+    margin: auto;
 }
 
 .landing-page__windmill-base {

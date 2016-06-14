@@ -299,15 +299,15 @@ textarea {
     position: relative;
 
     .bottom-nav__img {
-        height: 20px;
+        height: 23px;
         width: auto;
         display: block;
         margin: 0 auto 5px;
     }
 
     .bottom-nav__item-copy {
-        line-height: 12.5px;
-        font-size: 12px;
+        line-height: 10px;
+        font-size: 10px;
         @include vertical-align();
     }
 
@@ -347,12 +347,9 @@ textarea {
     }
 }
 
-.bottom-nav__item--leaderboard {
+.bottom-nav__item--profile {
     .bottom-nav__img {
-        height: 17.5px;
-        position: relative;
-        top: 1px;
-        margin-bottom: 7px;
+        height: 22px;
     }
 }
 
@@ -1558,7 +1555,7 @@ button {
     .mobile-container {
         padding: 60px 0 50px;
         background-color: #333;
-        font-family: Androgyne;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;;
         background-image: url('http://www.wearewebstars.dk/codepen/img/s1.png'), url('http://www.wearewebstars.dk/codepen/img//s2.png'), url('http://www.wearewebstars.dk/codepen/img//s3.png');
         left: 0;
         position: absolute;
