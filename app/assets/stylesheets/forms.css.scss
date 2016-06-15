@@ -265,12 +265,30 @@ button {
     }
 
     .form-input {
-        background-color: $lavender !important;
+        background-color: $purple !important;
         color: $white;
         width: 100% !important;
         padding-left: 0 !important;
+        @include transition;
+
+        &:hover {
+            background-color: darken($purple, 5%) !important;
+        }
     }
 }
+
+.form-input--wrap-desktop {
+    margin-top: 10px;
+
+    .form-input {
+        max-width: 200px;
+        margin: auto;
+        border-radius: 4px;
+        height: 50px !important;
+        font-family: $sans;
+    }
+}
+
 .form-input {
     height: 100% !important;
     padding: 0 0 0 40px !important;
