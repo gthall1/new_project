@@ -1,0 +1,27 @@
+<% content_for :body_class, "confirmation-page--desktop confirmation-page no-bg" %>
+
+<%= link_to root_path do %><img src="/assets/homescreen-logo.png" class="header-img--logo"><% end %>
+
+<main class="confirmation-page__content">
+        <a href="/">
+            <img class="confirmation-page__logo" src="assets/luckee-font.png">
+        </a>
+
+        <%= embedded_svg('svgs/check.svg', :class => 'confirmation-page__icon') %>
+        <h1 class="confirmation-page__title">Email Confirmed</h1>
+        <p class="confirmation-page__copy">Thank you for confirming your email! Complete the form below and start earning credits!</p>
+
+     <%= form_tag('/resend_email', remote: true) do |f| %>
+        <div>
+        <%= text_field_tag :e, nil, {class: "input--text input--text--2-col", placeholder: "First Name"}%>
+        <%= text_field_tag :e, nil, {class: "input--text input--text--2-col", placeholder: "Last Name"}%>
+        </div>
+        <%= select_tag(:option, options_for_select([[],['Male', 1], ['Female', 2], ['Other', 3]]), { class: "input--select js-input--select", "data-placeholder" => "Gender" }) %>
+        <%# select_tag "gender", "<option>Male</option><option>Female</option><option>Other</option>", {class: "input--select", placeholder: "Gender"}%>
+        <%= select_tag(:option, options_for_select([[],['Dunno', 1], ['Never', 2], ['X-Mas', 3]]), { class: "input--select js-input--select", "data-placeholder" => "Birthday" }) %>
+
+        <div class="form-input--wrap form-input--wrap-submit form-input--wrap-desktop">
+            <%= submit_tag "Resend Email ", class: "form-input" %>
+        </div><!-- /.form-input--wrap -->
+    <% end %>
+</main><!-- /.confirmation-page__content -->

@@ -168,6 +168,9 @@ var app = {
     },
 
     bind: function() {
+        $(".js-input--select").chosen({width: "100%", "disable_search": true});
+
+
         $('.js-share-dialog__close').click(function(){
             $('.js-share-dialog').removeClass('show');
         });

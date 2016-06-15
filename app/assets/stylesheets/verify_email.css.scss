@@ -59,5 +59,60 @@
         padding-left: 10px;
 
         @include input-color(#555);
+
+
+        &.input--text--2-col {
+            width: 49%;
+            display: block;
+
+            &:first-child {
+                float: left;
+            }
+
+            &:last-child {
+                float: right;
+            }
+        }
+    }
+}
+
+.confirmation-page {
+    .chosen-container {
+        width: 100%;
+        background-color: #ecf0f1;
+        height: 45px;
+        text-align: left;
+        border-radius: 4px;
+        border: none;
+        margin-bottom: 10px;
+
+        &::after {
+            content: '';
+            position: absolute;
+            height: 10px;
+            width: 10px;
+            right: 10px;
+            top: 50%;
+            margin-top: -5px;
+            background-image: url(/assets/down-caret.png);
+            background-position: center;
+            background-size: cover;
+        }
+
+        .chosen-single {
+            border: none;
+            height: 45px;
+            border-radius: 0;
+            background: none;
+        }
+
+        span {
+            color: #555;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: $sm;
+            height: 100%;
+            padding-top: 10px;
+            padding-left: 2px;
+        }
     }
 }
