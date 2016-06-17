@@ -11,17 +11,14 @@
         <h1 class="confirmation-page__title">Get Verified</h1>
         <p class="confirmation-page__copy">Thank you for signing up! An email has been sent to <%= @user.email %>. Please confirm your account by clicking the link in the email.</p>
 
-     <%= form_tag('/resend_email', remote: true) do |f| %>
+    <%= form_tag('/resend_verify', remote: true) do |f| %>
 
-            <%= text_field_tag :e, nil, {class: "input--text", placeholder: "New Email Address"}%>
-            <%= hidden_field_tag :update_email, :value => true %>
+        <div class="form-input--wrap form-input--wrap-submit form-input--wrap-desktop">
+            <%= submit_tag "Resend Email ", class: "form-input" %>
+        </div><!-- /.form-input--wrap -->
+    <% end %>
 
-            <div class="form-input--wrap form-input--wrap-submit form-input--wrap-desktop">
-                <%= submit_tag "Resend Email ", class: "form-input" %>
-            </div><!-- /.form-input--wrap -->
-        <% end %>
-
-    <div class='change_email_form'>
+    <div class='change_email_form' style='display:none'>
         <%= render 'users/resend_update_form'%>
     </div>
 </main><!-- /.confirmation-page__content -->

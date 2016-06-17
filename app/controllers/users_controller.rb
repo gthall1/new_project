@@ -140,6 +140,10 @@ class UsersController < ApplicationController
         @user = session[:user]
         UserNotifier.send_confirmation_email({user_id: @user.id,verify_token:@user.verify_token}).deliver
 
+        respond_to do |format|
+          format.html { redirect_to root_path }
+          format.js
+        end       
     end
 
     def challenges
