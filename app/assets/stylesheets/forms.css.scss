@@ -365,3 +365,13 @@ button {
 .form__signin-link {
     color: $purple;
 }
+
+.show-email-form {
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.change_email_form--hidden {
+    display: none;
+}

@@ -17,8 +17,10 @@
         <%= text_field_tag :e, nil, {class: "input--text input--text--2-col", placeholder: "Last Name"}%>
         </div>
         <%= select_tag(:option, options_for_select([[],['Male', 1], ['Female', 2], ['Other', 3]]), { class: "input--select js-input--select", "data-placeholder" => "Gender" }) %>
-        <%# select_tag "gender", "<option>Male</option><option>Female</option><option>Other</option>", {class: "input--select", placeholder: "Gender"}%>
-        <%= select_tag(:option, options_for_select([[],['Dunno', 1], ['Never', 2], ['X-Mas', 3]]), { class: "input--select js-input--select", "data-placeholder" => "Birthday" }) %>
+        <!-- Tried to use rails form helper but jquery ui datepicker was throwing an error -->
+        <%# text_field_tag :e, nil, {class: "input--text js-datepicker", placeholder: "Birthday"}%>
+        <input class="js-datepicker input--text" placeholder="Birthday" type="text" >
+
 
         <div class="form-input--wrap form-input--wrap-submit form-input--wrap-desktop">
             <%= submit_tag "Submit", class: "form-input" %>

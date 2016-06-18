@@ -167,9 +167,26 @@ var app = {
         }
     },
 
+    showEmailUpdate: function() {
+        $('.resend-email').slideUp(function(){
+            $('.js-change_email_form').slideDown();
+        });
+    },
+
+    initDatepicker: function() {
+        $( ".js-datepicker" ).datepicker({
+          changeMonth: true,
+          changeYear: true,
+          yearRange: "-80:-0"
+        });
+    },
+
     bind: function() {
         $(".js-input--select").chosen({width: "100%", "disable_search": true});
 
+        $('.js-show-email-form').on('click', function() {
+            app.showEmailUpdate();
+        });
 
         $('.js-share-dialog__close').click(function(){
             $('.js-share-dialog').removeClass('show');
@@ -229,6 +246,7 @@ var app = {
     },
 
     init: function() {
+        app.initDatepicker();
         app.hideCopyBtn();
         app.showShareDialog();
         app.setAddToHomescreen();

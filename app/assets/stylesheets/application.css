@@ -15,6 +15,7 @@
  *= require reset
  *= require chosen
  *= require sign_in
+ *= require jquery-ui
  *= require_self
  */
 

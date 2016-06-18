@@ -35,4 +35,5 @@
 //= require cocoon
 //= require surveys
 //= require chosen
+//= require jquery-ui
 //= require main

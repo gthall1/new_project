@@ -102,7 +102,7 @@
         .chosen-single {
             border: none;
             height: 45px;
-            border-radius: 0;
+            border-radius: 4px;
             background: none;
         }
 
@@ -113,6 +113,12 @@
             height: 100%;
             padding-top: 10px;
             padding-left: 2px;
+        }
+
+        &.chosen-container-active.chosen-with-drop {
+            .chosen-single {
+                background: none;
+            }
         }
     }
 }
