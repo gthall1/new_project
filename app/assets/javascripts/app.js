@@ -177,7 +177,7 @@ var app = {
         $( ".js-datepicker" ).datepicker({
           changeMonth: true,
           changeYear: true,
-          yearRange: "-80:-0"
+          yearRange: "-100:-0"
         });
     },
 
