@@ -11,15 +11,15 @@
         <h1 class="confirmation-page__title">Email Confirmed</h1>
         <p class="confirmation-page__copy">Thank you for confirming your email! Complete the form below and start earning credits!</p>
 
-     <%= form_tag('/resend_email', remote: true) do |f| %>
+     <%= form_tag('/user_details') do |f| %>
         <div>
-        <%= text_field_tag :e, nil, {class: "input--text input--text--2-col", placeholder: "First Name"}%>
-        <%= text_field_tag :e, nil, {class: "input--text input--text--2-col", placeholder: "Last Name"}%>
+        <%= text_field_tag :first_name, nil, {class: "input--text input--text--2-col", placeholder: "First Name",required: true}%>
+        <%= text_field_tag :last_name, nil, {class: "input--text input--text--2-col", placeholder: "Last Name", required: true}%>
         </div>
-        <%= select_tag(:option, options_for_select([[],['Male', 1], ['Female', 2], ['Other', 3]]), { class: "input--select js-input--select", "data-placeholder" => "Gender" }) %>
+        <%= select_tag(:gender, options_for_select([[],['Male', 1], ['Female', 2], ['Other', 3]]), { class: "input--select js-input--select", "data-placeholder" => "Gender",required: true }) %>
         <!-- Tried to use rails form helper but jquery ui datepicker was throwing an error -->
         <%# text_field_tag :e, nil, {class: "input--text js-datepicker", placeholder: "Birthday"}%>
-        <input class="js-datepicker input--text" placeholder="Birthday" type="text" >
+        <%= text_field_tag :birthday, nil, {class: "js-datepicker input--text", placeholder: "Birthday", required: true}%>
 
 
         <div class="form-input--wrap form-input--wrap-submit form-input--wrap-desktop">

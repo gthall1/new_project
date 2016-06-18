@@ -26,9 +26,11 @@ Alotto::Application.routes.draw do
     match '/stats', to: 'users#stats', via: 'get'
     match '/challenges', to: 'users#challenges',as: 'user_challenges', via: 'get'
     match '/update_username',  to: 'users#update_username',         via: 'patch'
+    match '/user_details',  to: 'users#user_details',         via: 'post'
+
     match '/verify', to: 'users#verify', via: 'get'
     match '/confirmed', to: 'users#confirmed', via: 'get'
-    match '/correct_mail', to: 'users#correct_mail', via: 'get'
+    match '/correct_mail', to: 'users#correct_mail', via: 'post'
     # Static Pages
     # match '/kd', to: 'static_pages#kd_home', via: 'get'
     match '/faq',    to: 'static_pages#faq',    via: 'get'

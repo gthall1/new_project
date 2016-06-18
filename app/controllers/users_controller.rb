@@ -152,15 +152,31 @@ class UsersController < ApplicationController
         end
     end
 
+    def user_details
+        if !params[:first_name].blank? && !params[:last_name].blank? && !params[:gender].blank? && !params[:birthday].blank?
+            current_user.firstname = params[:first_name]
+            current_user.lastname = params[:last_name]
+            current_user.gender = params[:gender]
+            current_user.dob = Date.strptime(params[:birthday], "%m/%d/%Y")
+            if current_user.save
+                redirect_to root_path
+            else
+                redirect_to confirmed_path
+            end
+        else
+            redirect_to confirmed_path, flash[:error] = "All fields are required. Please fill out all fields to continue."
+        end
+    end
+
     def correct_mail
         @message = "Error: Something went wrong. Please check the email you entered and try again."
         @status = "fail"
         if !session[:user].blank? && !params[:e].blank?
             @user = session[:user]
             @user.email = params[:e]
-            if user.save
+            if @user.save
                 UserNotifier.send_confirmation_email({user_id: @user.id,verify_token:@user.verify_token}).deliver
-                @message = "Success! Please check your email to verify."
+                @message = "Success! Please check your email #{@user.email} to verify."
                 @status = "Success"
             elsif User.where(email:params[:e].downcase).present?
                 @message = "Error: An user with that email already exists. "
