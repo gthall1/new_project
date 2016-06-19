@@ -1,0 +1,34 @@
+<% content_for :body_class, "confirmation-page--mobile confirmation-page no-bg" %>
+
+<%= link_to root_path do %><img src="/assets/homescreen-logo.png" class="header-img--logo"><% end %>
+
+<main class="confirmation-page__content">
+        <%= embedded_svg('svgs/question.svg', :class => 'confirmation-page__icon') %>
+        <h1 class="confirmation-page__title">Get Verified</h1>
+        <p class="confirmation-page__copy">Thank you for signing up! An email has been sent to <%= @user.email %>. Please confirm your account by clicking the link in the email.</p>
+
+    <div class="js-resend-email resend-email">
+        <%= form_tag('/resend_verify', remote: true) do |f| %>
+
+            <div class="form-input--wrap form-input--wrap-submit">
+                <%= submit_tag "Resend Email ", class: "form-input" %>
+            </div><!-- /.form-input--wrap -->
+        <% end %>
+
+        <p class="js-show-email-form show-email-form disclaimer--us-only disclaimer--us-only-home">Not Your Email?</p>
+    </div>
+
+    <div class='js-change_email_form change_email_form change_email_form--hidden'>
+         <%= form_tag('/correct_mail', remote: true) do |f| %>
+            <div class="form-input--wrap">
+                <%= text_field_tag :e, nil, {class: "form-input form-input--no-icon", placeholder: "New Email Address"}%>
+            </div>
+            <%= hidden_field_tag :update_email, :value => true %>
+
+            <div class="form-input--wrap form-input--wrap-submit">
+                <%= submit_tag "Update & Resend ", class: "form-input" %>
+            </div><!-- /.form-input--wrap -->
+        <% end %>
+
+    </div>
+</main><!-- /.confirmation-page__content -->

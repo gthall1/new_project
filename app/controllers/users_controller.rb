@@ -125,10 +125,12 @@ class UsersController < ApplicationController
 
     def verify
         @user = session[:user]
+        render "verify_mobile" if is_mobile?
     end
 
     def confirmed
         @user = session[:user]
+        render "confirmed_mobile" if is_mobile?
     end
 
     def update_verify
@@ -143,7 +145,7 @@ class UsersController < ApplicationController
         respond_to do |format|
           format.html { redirect_to root_path }
           format.js
-        end       
+        end
     end
 
     def challenges

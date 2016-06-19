@@ -1,0 +1,35 @@
+<% content_for :body_class, "confirmation-page--mobile confirmation-page no-bg" %>
+
+<%= link_to root_path do %><img src="/assets/homescreen-logo.png" class="header-img--logo"><% end %>
+
+<main class="confirmation-page__content">
+        <a href="/">
+            <img class="confirmation-page__logo" src="assets/luckee-font.png">
+        </a>
+
+        <%= embedded_svg('svgs/check.svg', :class => 'confirmation-page__icon') %>
+        <h1 class="confirmation-page__title">Email Confirmed</h1>
+        <p class="confirmation-page__copy">Thank you for confirming your email! Complete the form quick below!</p>
+
+     <%= form_tag('/user_details') do |f| %>
+        <div class="confirmation-page__input-wrap">
+            <div class="form-input--wrap">
+                <%= text_field_tag :first_name, nil, {class: "form-input form-input--no-icon", placeholder: "First Name", required: true}%>
+            </div>
+
+            <div class="form-input--wrap">
+                <%= text_field_tag :last_name, nil, {class: "form-input form-input--no-icon", placeholder: "Last Name", required: true}%>
+            </div>
+        </div><!-- /.confirmation-page__input-wrap -->
+
+        <%= select_tag(:gender, options_for_select([['Male', 1], ['Female', 2], ['Other', 3]]), { class: "input--select", required: true, prompt: "Gender" }) %>
+
+        <div class="form-input--wrap">
+            <%= text_field_tag :birthday, nil, {class: "js-datepicker form-input form-input--no-icon", placeholder: "Birthday", required: true}%>
+        </div>
+
+        <div class="form-input--wrap form-input--wrap-submit">
+            <%= submit_tag "Submit", class: "form-input" %>
+        </div><!-- /.form-input--wrap -->
+    <% end %>
+</main><!-- /.confirmation-page__content -->

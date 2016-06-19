@@ -33,14 +33,12 @@ var tabs = {
 
         $(self.selections.tabSelectContainer).on('click', tabs.selections.categoryControl, function(e){
             var $this = $(this);
-            // debugger;
             $(self.selections.tabSelectContainer).attr('id', 'leaderboard__cat--' + $this.index());
             tabs.toggle($this, tabs.selections.tabContainer);
         });
 
         $(tabs.selections.difficultyControl).on('click', function(e) {
             var $this = $(this);
-
             tabs.toggle($this, tabs.selections.tabContainerDifficulty);
         });
     },
