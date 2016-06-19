@@ -129,8 +129,14 @@ class UsersController < ApplicationController
     end
 
     def confirmed
-        @user = session[:user]
-        render "confirmed_mobile" if is_mobile?
+        if params[:vid] && User.find_by_verify_token(params[:vid])
+            user = User.find_by_verify_token(params[:vid])
+            sign_in user
+            user.email_activate
+            render "confirmed_mobile" if is_mobile?
+        else
+            redirect_to root_path
+        end        
     end
 
     def update_verify
