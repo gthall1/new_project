@@ -17,12 +17,16 @@
      <%= form_tag('/user_details') do |f| %>
         <div class="confirmation-page__input-wrap">
             <div class="form-input--wrap">
-                <%= text_field_tag :first_name, nil, {class: "form-input form-input--no-icon", placeholder: "First Name", required: true}%>
+                <%= text_field_tag :first_name, current_user.firstname, {class: "form-input form-input--no-icon", placeholder: "First Name", required: true}%>
             </div>
 
             <div class="form-input--wrap">
-                <%= text_field_tag :last_name, nil, {class: "form-input form-input--no-icon", placeholder: "Last Name", required: true}%>
+                <%= text_field_tag :last_name, current_user.lastname, {class: "form-input form-input--no-icon", placeholder: "Last Name", required: true}%>
             </div>
+            
+            <% if current_user.provider == 'facebook' %>
+                <%= text_field_tag :username, current_user.name, {class: "form-input form-input--no-icon", placeholder: "Username (shown to other users)", required: true}%>
+            <% end %>
         </div><!-- /.confirmation-page__input-wrap -->
 
         <%= select_tag(:gender, options_for_select([['Male', 1], ['Female', 2], ['Other', 3]]), { class: "input--select", required: true, prompt: "Gender" }) %>

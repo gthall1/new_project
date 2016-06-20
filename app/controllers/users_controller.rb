@@ -170,6 +170,10 @@ class UsersController < ApplicationController
             current_user.gender = params[:gender]
             current_user.dob = Date.strptime(params[:birthday], "%m/%d/%Y")
             
+            if !params[:username].blank?
+                current_user.name = params[:username]
+            end
+
             if current_user.dob > 13.years.ago || current_user.dob < 125.years.ago
                 flash[:error] = "You must enter a valid date of birth, and be at least 13 years of age to play."
                 redirect_to confirmed_path
