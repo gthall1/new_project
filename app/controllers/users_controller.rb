@@ -118,7 +118,8 @@ class UsersController < ApplicationController
                 UserNotifier.send_confirmation_email({user_id: @user.id,verify_token:@user.verify_token}).deliver
                 redirect_to verify_path
             else
-                render 'new'
+                flash[:error] = "We're sorry! Something went wrong. Please check your email and username again."
+                redirect_to root_path
             end
         end
     end
