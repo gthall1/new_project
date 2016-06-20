@@ -35,8 +35,8 @@ var formValidation = {
 
     validateAge: function(date, minAge) {
         var today = new Date(),
-            date = new Date (date[2], date[0] - 1, date[1]),
             dateArr = date.split('/'),
+            date = new Date (dateArr[2], dateArr[0] - 1, dateArr[1]),
             msecInYear = 31557600000,
             age = Math.floor((today - date)/msecInYear);
 

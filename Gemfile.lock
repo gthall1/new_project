@@ -201,10 +201,13 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
+    timeliness (0.3.8)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (3.0.0)
       execjs (>= 0.3.0, < 3)
+    validates_timeliness (4.0.2)
+      timeliness (~> 0.3.7)
 
 PLATFORMS
   ruby
@@ -237,3 +240,4 @@ DEPENDENCIES
   sass-rails (~> 4.0.2)
   sprockets (= 2.11.0)
   uglifier (= 3.0.0)
+  validates_timeliness (~> 4.0)

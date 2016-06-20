@@ -21,6 +21,9 @@ class User < ActiveRecord::Base
     validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
     validates_uniqueness_of :name
     validates_uniqueness_of :email, :on => :create
+    # validates_date :dob, on_or_after: lambda { 125.years.ago }, :after_message => "must not be this old. You don't have much time left, please spend it elsewhere.", :on => :update
+    # validates_date :dob, on_or_before: lambda { 13.years.ago }, :before_message => "must be at least 13 years old", :on => :update
+
 
     has_secure_password
     validates :password, length: { minimum: 6 } ,:if => '!password.nil?'
@@ -34,6 +37,10 @@ class User < ActiveRecord::Base
 
     def origin_arrival
         Arrival.where(id:self.arrival_id).first
+    end
+
+    def completed_profile
+        !gender.blank? && !firstname.blank? && !lastname.blank? && !dob.blank? 
     end
 
     #TODO: Make more accurate so doesnt round
@@ -206,10 +213,10 @@ class User < ActiveRecord::Base
         update_attribute(:reset_sent_at, Time.zone.now)
     end
 
-
         
     private
-        
+
+
     #generates password before verified
     def generate_password
         pass = SecureRandom.urlsafe_base64

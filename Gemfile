@@ -27,6 +27,7 @@ gem 'httpi', '~> 2.2.4'
 gem 'raygun4ruby'
 gem 'activerecord-session_store'
 gem 'geoip'
+gem 'validates_timeliness', '~> 4.0'
 
 group :development do
     gem 'pry-rails'
