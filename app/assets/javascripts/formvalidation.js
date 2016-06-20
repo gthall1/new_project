@@ -33,21 +33,20 @@ var formValidation = {
         $('input[required]').after('<span class="js-form__required form__required">required</span>');
     },
 
-    validateAge: function(date, minAge) {
+    validAge: function(date, minAge) {
         var today = new Date(),
             dateArr = date.split('/'),
             date = new Date (dateArr[2], dateArr[0] - 1, dateArr[1]),
             msecInYear = 31557600000,
             age = Math.floor((today - date)/msecInYear);
 
-        debugger;
         return age > minAge;
     },
 
-    checkNewUserbirthday: function() {
+    checkNewUserbirthday: function(e) {
         var birthday = $('.js-validate-date').val();
 
-        if (formValidation.validateAge(birthday, formValidation.conf.minAge)) {
+        if (formValidation.validAge(birthday, formValidation.conf.minAge)) {
             if (!formValidation.validateDateFormat(birthday)) {
                 e.preventDefault();
                 alert('Please correct format: MM/DD/YYYY');
@@ -57,13 +56,13 @@ var formValidation = {
             }
         } else {
             e.preventDefault();
-            alert('Must be at least ')
+            alert('Must be at least ' + formValidation.conf.minAge + ' years old');
         }
     },
 
     bind: function() {
         $('.js-form-validate-date').on('submit', function(e) {
-            formValidation.checkNewUserbirthday();
+            formValidation.checkNewUserbirthday(e);
         });
 
         // Sign in form loading
