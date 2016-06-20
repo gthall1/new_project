@@ -45,7 +45,7 @@
             <%= render 'shared/error_messages', object: f.object %>
             <div class="form-input--wrap">
                 <i class="fa fa-user"></i>
-                <%= f.text_field :name, required: true, min: 2, placeholder: 'Username', class: "form-input" %>
+                <%= f.text_field :name, required: true, min: 2, placeholder: 'Username', class: "form-input js-validate-input" %>
             </div><!-- /.form-input--wrap -->
 
             <div class="form-input--wrap">
@@ -55,7 +55,7 @@
                     <span class="js-error-case js-error-case--invalid">invalid email</span>
                     <span class="js-error-case js-error-case--taken">email taken</span>
                 </span>
-                <%= f.email_field :email, placeholder: 'Email', class: "form-input js-validate js-validate--email" %>
+                <%= f.email_field :email, placeholder: 'Email', class: "form-input js-validate-input js-validate js-validate--email" %>
             </div><!-- /.form-input--wrap -->
 
             <div class="form-input--wrap form-input--wrap-submit">

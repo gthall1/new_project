@@ -223,8 +223,10 @@ var app = {
         });
 
         $('.js-show-signup').click(function() {
-            $('.js-show-signup').fadeOut();
-            $('.email-form').slideDown();
+            $('.js-show-signup').fadeOut(function() {
+                $('.email-form').fadeIn();
+                $('.js-auto-focus').focus();
+            });
         });
 
         $(document).on('click', 'a[href^="#"]', function(e) {

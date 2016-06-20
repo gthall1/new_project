@@ -3,18 +3,20 @@
 <%= link_to root_path do %><img src="/assets/homescreen-logo.png" class="header-img--logo"><% end %>
 
 <main class="confirmation-page__content">
-        <a href="/">
-            <img class="confirmation-page__logo" src="assets/luckee-font.png">
-        </a>
-        <% if @verified_incomplete %>
-            <h1 class="confirmation-page__title">Complete your profile</h1>
-            <p class="confirmation-page__copy">Complete the form below to continue gaming!</p>
-        <% else %>
+    <a href="/">
+        <img class="confirmation-page__logo" src="assets/luckee-font.png">
+    </a>
+
+    <% if @verified_incomplete %>
+        <h1 class="confirmation-page__title">Complete your profile</h1>
+        <p class="confirmation-page__copy">Complete the form below to continue gaming!</p>
+    <% else %>
         <%= embedded_svg('svgs/check.svg', :class => 'confirmation-page__icon') %>
-            <h1 class="confirmation-page__title">Email Confirmed</h1>
-            <p class="confirmation-page__copy">Thank you for confirming your email! Complete the form quick below!</p>
-        <% end %>
-     <%= form_tag('/user_details') do |f| %>
+        <h1 class="confirmation-page__title">Email Confirmed</h1>
+        <p class="confirmation-page__copy">Thank you for confirming your email! Complete the form quick below!</p>
+    <% end %>
+
+    <%= form_tag '/user_details', method: :post, class: "js-form-validate-date" do |f| %>
         <div class="confirmation-page__input-wrap">
             <div class="form-input--wrap">
                 <%= text_field_tag :first_name, current_user.firstname, {class: "form-input form-input--no-icon", placeholder: "First Name", required: true}%>
@@ -32,7 +34,7 @@
         <%= select_tag(:gender, options_for_select([['Male', 1], ['Female', 2], ['Other', 3]]), { class: "input--select", required: true, prompt: "Gender" }) %>
 
         <div class="form-input--wrap">
-            <%= text_field_tag :birthday, nil, {class: "js-datepicker form-input form-input--no-icon", placeholder: "Birthday", required: true}%>
+            <%= text_field_tag :birthday, nil, {class: "js-validate-date form-input form-input--no-icon", placeholder: "Birthday: mm/dd/yyyy", required: true}%>
         </div>
 
         <div class="form-input--wrap form-input--wrap-submit">
@@ -40,3 +42,4 @@
         </div><!-- /.form-input--wrap -->
     <% end %>
 </main><!-- /.confirmation-page__content -->
+
