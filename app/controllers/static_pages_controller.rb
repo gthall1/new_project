@@ -3,11 +3,13 @@ class StaticPagesController < ApplicationController
 
     layout :determine_layout
     before_filter :check_signed_in, :only => [:redeem,:redeem_credits,:refer,:new_cash_out,:new_donation]
+
     skip_before_filter :check_country, :only => [:country,:waitlist_user]
     skip_before_filter :check_enabled, :only => [:closed_beta]
 
     def check_signed_in
         redirect_to root_path if !signed_in?
+        redirect_to confirmed_path if !current_user.profile_complete?
     end
 
     def home

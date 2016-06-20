@@ -134,6 +134,8 @@ class UsersController < ApplicationController
             sign_in user
             user.email_activate
             render "confirmed_mobile" if is_mobile?
+        elsif signed_in? && current_user && !current_user.profile_complete?
+            @verified_incomplete = true
         else
             redirect_to root_path
         end        
@@ -166,13 +168,18 @@ class UsersController < ApplicationController
             current_user.lastname = params[:last_name]
             current_user.gender = params[:gender]
             current_user.dob = Date.strptime(params[:birthday], "%m/%d/%Y")
-            if current_user.save
+            
+            if current_user.dob > 13.years.ago || current_user.dob < 125.years.ago
+                flash[:error] = "You must enter a valid date of birth, and be at least 13 years of age to play."
+                redirect_to confirmed_path
+            elsif current_user.save
                 redirect_to root_path
             else
                 redirect_to confirmed_path
             end
         else
-            redirect_to confirmed_path, flash[:error] = "All fields are required. Please fill out all fields to continue."
+            flash[:error] = "All fields are required. Please fill out all fields to continue."
+            redirect_to confirmed_path
         end
     end
 
