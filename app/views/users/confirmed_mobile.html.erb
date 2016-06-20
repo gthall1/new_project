@@ -11,7 +11,7 @@
         <h1 class="confirmation-page__title">Email Confirmed</h1>
         <p class="confirmation-page__copy">Thank you for confirming your email! Complete the form quick below!</p>
 
-     <%= form_tag('/user_details') do |f| %>
+     <%= form_tag '/user_details', method: :post, class: "js-form-validate-date" do |f| %>
         <div class="confirmation-page__input-wrap">
             <div class="form-input--wrap">
                 <%= text_field_tag :first_name, nil, {class: "form-input form-input--no-icon", placeholder: "First Name", required: true}%>
@@ -25,7 +25,7 @@
         <%= select_tag(:gender, options_for_select([['Male', 1], ['Female', 2], ['Other', 3]]), { class: "input--select", required: true, prompt: "Gender" }) %>
 
         <div class="form-input--wrap">
-            <%= text_field_tag :birthday, nil, {class: "js-datepicker form-input form-input--no-icon", placeholder: "Birthday", required: true}%>
+            <%= text_field_tag :birthday, nil, {class: "js-validate-date form-input form-input--no-icon", placeholder: "Birthday: mm/dd/yyyy", required: true}%>
         </div>
 
         <div class="form-input--wrap form-input--wrap-submit">
@@ -33,3 +33,4 @@
         </div><!-- /.form-input--wrap -->
     <% end %>
 </main><!-- /.confirmation-page__content -->
+

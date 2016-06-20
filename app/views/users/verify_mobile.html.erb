@@ -2,7 +2,7 @@
 
 <%= link_to root_path do %><img src="/assets/homescreen-logo.png" class="header-img--logo"><% end %>
 
-<main class="confirmation-page__content">
+<main class="confirmation-page__content--mobile">
         <%= embedded_svg('svgs/question.svg', :class => 'confirmation-page__icon') %>
         <h1 class="confirmation-page__title">Get Verified</h1>
         <p class="confirmation-page__copy">Thank you for signing up! An email has been sent to <%= @user.email %>. Please confirm your account by clicking the link in the email.</p>
@@ -31,4 +31,4 @@
         <% end %>
 
     </div>
-</main><!-- /.confirmation-page__content -->
+</main><!-- /.confirmation-page__content--mobile -->

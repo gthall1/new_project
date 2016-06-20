@@ -54,6 +54,7 @@
     &.confirmation-page--desktop {
         background-image: url(/assets/landscape-bg.jpg);
         background-position: center;
+        background-color: #1d1c2e;
 
         .app-wrapper {
             height: 100vh;
@@ -157,8 +158,11 @@
             height: 100vh;
         }
 
-        .confirmation-page__content {
-            @include vertical-align;
+        .confirmation-page__content--mobile {
+            // @include vertical-align;
+            margin-top: 80px;
+            text-align: center;
+            padding: 0 7.5%;
         }
 
         .form-input {

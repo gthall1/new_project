@@ -1,12 +1,20 @@
 var formValidation = {
     selections: {
-        requiredField: 'input[required]',
-        emailField : 'input[type="email"]',
-        requiredError: '.js-form__required'
+        requiredField: '.js-validate-input',
+        valUsernameField: '.js-validate--name',
+        valEmailField: '.js-validate--email',
+        requiredError: '.js-form__required',
+        formSubmitBtn: '.js-form-submit'
     },
 
     conf: {
-        nameMin: 2
+        nameMin: 2,
+        minAge: 13
+    },
+
+    validateDateFormat: function (testdate) {
+        var date_regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/ ;
+        return date_regex.test(testdate);
     },
 
     validateEmail: function (email) {
@@ -25,9 +33,41 @@ var formValidation = {
         $('input[required]').after('<span class="js-form__required form__required">required</span>');
     },
 
+    validateAge: function(date, minAge) {
+        var today = new Date(),
+            date = new Date (date[2], date[0] - 1, date[1]),
+            dateArr = date.split('/'),
+            msecInYear = 31557600000,
+            age = Math.floor((today - date)/msecInYear);
+
+        debugger;
+        return age > minAge;
+    },
+
+    checkNewUserbirthday: function() {
+        var birthday = $('.js-validate-date').val();
+
+        if (formValidation.validateAge(birthday, formValidation.conf.minAge)) {
+            if (!formValidation.validateDateFormat(birthday)) {
+                e.preventDefault();
+                alert('Please correct format: MM/DD/YYYY');
+            } else if (birthday === "") {
+                e.preventDefault();
+                alert('Please fill in birthday');
+            }
+        } else {
+            e.preventDefault();
+            alert('Must be at least ')
+        }
+    },
+
     bind: function() {
+        $('.js-form-validate-date').on('submit', function(e) {
+            formValidation.checkNewUserbirthday();
+        });
+
         // Sign in form loading
-        $('.js-form-submit').click(function(){
+        $(formValidation.selections.formSubmitBtn).click(function(){
           $('.fa-refresh').removeClass('hidden');
           $('.fa-refresh').addClass('rotate');
           $('.fa-arrow-circle-right').addClass('hidden');
@@ -47,11 +87,7 @@ var formValidation = {
             }
         });
 
-        $(formValidation.selections.emailField).blur(function(e){
-            // consolidate email validation
-        });
-
-        $('.js-validate--name').blur(function(e){
+        $(formValidation.selections.valUsernameField).blur(function(e){
             var name = $(this).val();
 
             $.ajax({
@@ -89,7 +125,7 @@ var formValidation = {
         });
 
         // Validate New User Email
-        $('.js-validate--email').blur(function(e){
+        $(formValidation.selections.valEmailField).blur(function(e){
             var email = $(this).val();
 
             $.ajax({
