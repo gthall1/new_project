@@ -15,6 +15,7 @@
 @import "loading";
 @import "surveys";
 @import "verify_email";
+@import "2048/main";
 
 @mixin box_sizing {
     -moz-box-sizing: border-box;
@@ -1124,6 +1125,10 @@ p {
 .game-container{
     min-height:800px;
     background:#000;
+    &.g-2048{
+        padding-top:60px;
+        background:inherit;
+    }
 }
 
 

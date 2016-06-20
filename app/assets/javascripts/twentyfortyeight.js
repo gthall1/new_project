@@ -10,4 +10,13 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require 2048/liberty
+//= require 2048/bind_polyfill
+//= require 2048/classlist_polyfill
+//= require 2048/animframe_polyfill
+//= require 2048/keyboard_input_manager
+//= require 2048/html_actuator
+//= require 2048/grid
+//= require 2048/tile
+//= require 2048/local_storage_manager
+//= require 2048/game_manager
+//= require 2048/app_2048

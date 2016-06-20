@@ -113,7 +113,7 @@ class GamesController < ApplicationController
                 @top_scores = UserGameSession.where(game_id:@game.id).where.not(score:nil).order("score asc").limit(10)
             when "Helicopter"
                 @top_scores = UserGameSession.where(game_id:@game.id).where.not(score:nil).order("score desc").limit(10)
-            when "Sorcerer Game","2048","Black Hole"
+            when "Sorcerer Game","Black Hole"
                 set_game_token({game_name:@game.name})
         end
 
@@ -139,7 +139,7 @@ class GamesController < ApplicationController
             current_high_score = current_user.get_highscore({timeframe:'at',slug: game_session.game.slug,version:game_session.version})
 
             case game_session.game.slug
-                when '2048','black-hole','sorcerer-game'
+                when 'black-hole','sorcerer-game'
                     game_json = {
                          :earned => game_session.credits_earned,
                          :total_credits => current_user.credits,
@@ -147,7 +147,7 @@ class GamesController < ApplicationController
                          :status => status,
                          :hscore => current_high_score
                         }
-                when 'flappy-pilot','traffic','fall-down','tap-color'
+                when 'flappy-pilot','traffic','fall-down','tap-color','2048'
                     if game_session.game.slug == 'flappy-pilot'
                         current_high_score = current_high_score.to_s.rjust(3, '0')
                     end
@@ -224,7 +224,7 @@ class GamesController < ApplicationController
             #   current_user.add_credits({credits:credits_to_apply})
             #   game_session.credits_earned = credits
             #   game_session.save
-            elsif user.enabled != false
+            elsif user.enabled == false
                 status = "user not active"
             elsif game_session && !game_session.active
                 status = "closed"
@@ -264,7 +264,7 @@ class GamesController < ApplicationController
         #shouldnt happen just a safety check
         if game_session
             case game_session.game.slug
-                when '2048','black-hole','sorcerer-game'
+                when 'black-hole','sorcerer-game'
                     game_json = {
                          :earned => game_session.credits_earned,
                          :total_credits => user.credits,
@@ -272,7 +272,7 @@ class GamesController < ApplicationController
                          :status => status,
                          :hscore => current_high_score
                         }
-                when 'flappy-pilot','traffic','fall-down','tap-color','gold-runner'
+                when '2048','flappy-pilot','traffic','fall-down','tap-color','gold-runner'
                     if game_session.game.slug == 'flappy-pilot'
                         current_high_score = current_high_score.to_s.rjust(3, '0')
                     end

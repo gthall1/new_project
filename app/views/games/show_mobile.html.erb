@@ -1,4 +1,4 @@
-<div class="game-container">
+<div class="game-container <%= @game.slug =='2048' ? 'g-2048' : '' %>">
 
   <% case @game.slug %>
     <% when 'sorcerer-game' %>
@@ -20,10 +20,6 @@
   <% end %>
 </div>
 
-<% if @game.slug == '2048' %>
-<input type="hidden" id="game_token" name="game_token" value="<%= session[:game_token] %>" />
-<input type="hidden" id="credits_earned" name="credits_earned" value=0 />
-<% end %>
 <script type='text/javascript'>
 
 </script>
