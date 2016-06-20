@@ -15,7 +15,6 @@ class User < ActiveRecord::Base
 
     before_validation :generate_password
     before_create :create_remember_token, :create_referral_code,:create_verify_token
-    after_create :send_welcome_email
     validates :name, presence: true, length: { maximum: 50 }
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
     validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
@@ -153,6 +152,7 @@ class User < ActiveRecord::Base
         self.email_verified = true
         self.verify_token = nil
         save!(:validate => false)
+        send_welcome_email
     end
     
     def self.total_user_credits
