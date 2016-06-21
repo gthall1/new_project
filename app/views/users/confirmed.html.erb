@@ -8,6 +8,7 @@
         </a>
 
         <% if @verified_incomplete %>
+            <%= embedded_svg('svgs/avitar.svg', :class => 'confirmation-page__icon') %>
             <h1 class="confirmation-page__title">Complete your profile</h1>
             <p class="confirmation-page__copy">Complete the form below to continue gaming!</p>
         <% else %>
@@ -20,7 +21,7 @@
         <div class="confirmation-page__input-wrap">
             <%= text_field_tag :first_name, current_user.firstname, {class: "input--text input--text--left input--text--2-col", placeholder: "First Name", required: true}%>
             <%= text_field_tag :last_name, current_user.lastname, {class: "input--text input--text--right input--text--2-col", placeholder: "Last Name", required: true}%>
-            
+
             <% if current_user.provider == 'facebook' %>
                 <%= text_field_tag :username, current_user.name, {class: "input--text input--text--right input--text--2-col", placeholder: "Username (shown to other users)", required: true}%>
             <% end %>

@@ -30,7 +30,8 @@ body {
 
     &.gameplay-page,
     &.intermediate,
-    &.tutorial-page  {
+    &.tutorial-page,
+    &.confirmation-page--mobile  {
         .bottom-navigation {
             display: none;
         }
