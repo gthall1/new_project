@@ -56,7 +56,7 @@ class UsersController < ApplicationController
         name = params[:name]
         name = name.downcase
 
-        if  signed_in? && current_user && current_user current_user.name != name && User.where('lower(name) = ?', name).present?
+        if  signed_in? && current_user && current_user.name != name && User.where('lower(name) = ?', name).present?
             render json: data = {:available => false, :name => name}
         elsif User.where('lower(name) = ?', name).present?
             render json: data = {:available => false, :name => name}
