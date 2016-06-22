@@ -8,7 +8,7 @@ var formValidation = {
     },
 
     conf: {
-        nameMin: 2,
+        nameMin: 1,
         minAge: 13
     },
 
@@ -75,7 +75,7 @@ var formValidation = {
         $(formValidation.selections.requiredField).blur(function(e){
             var $this = $(this),
                 $form = $this.parents('form'),
-                minVal = $this.attr('min') || 2;
+                minVal = $this.attr('min') || formValidation.conf.nameMin;
 
             if ($this.val().length >= minVal) {
                 $this.siblings(formValidation.selections.requiredError).removeClass('show');
@@ -86,15 +86,16 @@ var formValidation = {
             }
         });
 
+        // Validate new username
         $(formValidation.selections.valUsernameField).blur(function(e){
             var name = $(this).val();
-
             $.ajax({
                 type: "GET",
                 url: window.location.origin + '/validate_name',
                 data: {name: name},
                 dataType: "json",
                 success: function(data) {
+                    debugger;
                     var isAvailable = data.available,
                         $form = $('.js-validate-name').parents('form'),
                         name = data.name;
