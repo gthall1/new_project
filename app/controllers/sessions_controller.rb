@@ -44,7 +44,7 @@ class SessionsController < ApplicationController
                 if !user.oath_token.blank?
                     session[:auth_token] = user.oath_token
                 end
-                sign_in user
+                sign_in user unless !user.email_verified
                 cookies.permanent[:u] = user.id
                 if session[:arrival_id]
                     a = Arrival.where(id:session[:arrival_id]).first
@@ -54,7 +54,8 @@ class SessionsController < ApplicationController
                     end
                 end
                 if user.created_at > Time.now-30.seconds
-                    redirect_to confirmed_path
+                    session[:user] = user
+                    redirect_to verify_path
                 else
                     redirect_to root_path
                 end
