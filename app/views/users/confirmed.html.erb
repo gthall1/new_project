@@ -21,12 +21,11 @@
         <div class="confirmation-page__input-wrap">
             <%= text_field_tag :first_name, current_user.firstname, {class: "input--text input--text--left input--text--2-col", placeholder: "First Name", required: true}%>
             <%= text_field_tag :last_name, current_user.lastname, {class: "input--text input--text--right input--text--2-col", placeholder: "Last Name", required: true}%>
+        </div><!-- /.confirmation-page__input-wrap -->
 
-            <% if current_user.provider == 'facebook' %>
-                <%= text_field_tag :username, current_user.name, {class: "input--text input--text--right input--text--2-col", placeholder: "Username (shown to other users)", required: true}%>
-            <% end %>
-        </div><!-- /.confirmation-page__input-wrap
-         -->
+         <% if current_user.provider == 'facebook' %>
+             <%= text_field_tag :username, current_user.name, {class: "input--text", placeholder: "Username (shown to other users)", required: true}%>
+         <% end %>
 
         <%= select_tag(:gender, options_for_select([[],['Male', 1], ['Female', 2], ['Other', 3]]), { class: "input--select js-input--select", "data-placeholder" => "Gender",required: true }) %>
         <!-- Tried to use rails form helper but jquery ui datepicker was throwing an error -->
