@@ -53,8 +53,8 @@ class SessionsController < ApplicationController
                         a.save
                     end
                 end
-                if user.created_at > Time.now-5.minutes
-                    redirect_to set_username_path
+                if user.created_at > Time.now-30.seconds
+                    redirect_to confirmed_path
                 else
                     redirect_to root_path
                 end
