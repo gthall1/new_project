@@ -60,7 +60,7 @@ class SessionsController < ApplicationController
                 elsif !user.email_verified && !user.profile_complete?
                     sign_in user
                     redirect_to confirmed_path
-                elsif user.profile_complete
+                elsif user.profile_complete?
                     sign_in user
                     redirect_to root_path 
                 else        
