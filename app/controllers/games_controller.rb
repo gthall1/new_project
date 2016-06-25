@@ -2,8 +2,8 @@ class GamesController < ApplicationController
     before_action :set_game, only: [:show, :purchase_confirm, :edit, :update, :destroy]
     before_action :check_purchase, only: [:show]
 
-    before_filter :check_signed_in,:set_notifications
-    skip_before_filter  :verify_authenticity_token, only:[:score_update,:reset_game,:get_random_challenge_user]
+    before_filter :check_signed_in,:set_notifications, except:[:check_branded]
+    skip_before_filter  :verify_authenticity_token, only:[:score_update,:reset_game,:get_random_challenge_user, :check_branded]
 
     include ApplicationHelper
     include GamesHelper
@@ -16,6 +16,18 @@ class GamesController < ApplicationController
     def check_purchase
         redirect_to root_path if (@game.device_type == 5 && current_user && !current_user.has_purchased_game(@game.id)) || current_user.nil?
         true
+    end
+
+    def check_branded
+        params[:slug] == 'flappy-pilot'
+        res = {
+            :c2dictionary => true,
+            :data => {
+             :branded => params[:slug] == 'flappy-pilot' ? 9 : 0
+            }
+        }
+        p res
+        render json: res
     end
 
     # GET /games
