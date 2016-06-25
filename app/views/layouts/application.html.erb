@@ -14,6 +14,8 @@
     <!-- Propeller ads -->
     <meta name="propeller" content="6d0c37444c1cbc4f10031a713459e4ba" />
 
+    <%= yield :head_tags %>
+
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
