@@ -53,12 +53,20 @@ class SessionsController < ApplicationController
                         a.save
                     end
                 end
+
                 if user.created_at > Time.now-30.seconds
                     session[:user] = user
                     redirect_to verify_path
-                else
-                    redirect_to root_path
+                elsif !user.email_verified && !user.profile_complete?
+                    sign_in user
+                    redirect_to confirmed_path
+                elsif user.profile_complete?
+                    sign_in user
+                    redirect_to root_path 
+                else        
+                    redirect_to root_path           
                 end
+
             elsif !signups_allowed?
                 flash[:notice] = 'We are currently restricting new users for our closed beta. Please join our wait list to receive an invite in the future!'
                 redirect_to root_path
