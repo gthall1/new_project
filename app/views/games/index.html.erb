@@ -11,7 +11,7 @@
             <%= link_to game_path(g) do %>
                 <div class="game-wrapper game--<%= g.slug %> js-game--<%= g.slug %>">
 
-                    <%= image_tag(g.desktop_image, :class=>'game-image') %>
+                    <%= image_tag(g.game_image({advertiser_id:nil,desktop:true}), :class=>'game-image') %>
 
                     <div class="game__info">
                         <h1 class="game__title"><%= g.name %></h1>

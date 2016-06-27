@@ -12,5 +12,12 @@ end
 
 
 task :add_dd_ad_units => :environment do | t, args |
-  a = AdUnit.create({ game_id: Game.where(slug:'flappy-pilot').first.id, slug: 'dd-flygirl', name: 'Flygirl DD', partner: 'Dunkin Donuts', ad_number: 9, value: 0})
+  if !Advertiser.where(name:'Dunkin Donuts').present?
+    a = Advertiser.create({name:'Dunkin Donuts'})
+    a = BrandedGameProperty.create({game_id: Game.where(slug:'flappy-pilot').first.id,advertiser_id:a.id,branded_game_name:'Fastest Way To Dunkin',branded_game_image_m:'dd_flappy_m.png',branded_game_image_d:'dd_flappy_d.png'})
+  end
+  
+  if !AdUnit.where(slug:'dd-flygirl').present?
+    a = AdUnit.create({ game_id: Game.where(slug:'flappy-pilot').first.id, slug: 'dd-flygirl', name: 'Flygirl DD', partner: 'Dunkin Donuts', ad_number: 9, value: 0})
+  end
 end
