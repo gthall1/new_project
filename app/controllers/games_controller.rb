@@ -46,6 +46,8 @@ class GamesController < ApplicationController
             verify_link = true
         end
         redirect_to root_path if !signed_in? && !verify_link
+        redirect_to confirmed_path if signed_in? && current_user && !current_user.profile_complete?
+
     end
 
     #sets notifications for surveys not taken

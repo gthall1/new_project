@@ -9,7 +9,7 @@ class StaticPagesController < ApplicationController
 
     def check_signed_in
         redirect_to root_path if !signed_in?
-        redirect_to confirmed_path if !current_user.profile_complete?
+        redirect_to confirmed_path if signed_in? && current_user && !current_user.profile_complete?
     end
 
     def home

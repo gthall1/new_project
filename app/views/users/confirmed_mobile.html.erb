@@ -3,11 +3,8 @@
 <%= link_to root_path do %><img src="/assets/homescreen-logo.png" class="header-img--logo"><% end %>
 
 <main class="confirmation-page__content">
-    <a href="/">
-        <img class="confirmation-page__logo" src="assets/luckee-font.png">
-    </a>
-
     <% if @verified_incomplete %>
+        <%= embedded_svg('svgs/avitar.svg', :class => 'confirmation-page__icon') %>
         <h1 class="confirmation-page__title">Complete your profile</h1>
         <p class="confirmation-page__copy">Complete the form below to continue gaming!</p>
     <% else %>
@@ -25,11 +22,13 @@
             <div class="form-input--wrap">
                 <%= text_field_tag :last_name, current_user.lastname, {class: "form-input form-input--no-icon", placeholder: "Last Name", required: true}%>
             </div>
-            
+        </div><!-- /.confirmation-page__input-wrap -->
+
+        <div class="form-input--wrap">
             <% if current_user.provider == 'facebook' %>
                 <%= text_field_tag :username, current_user.name, {class: "form-input form-input--no-icon", placeholder: "Username (shown to other users)", required: true}%>
             <% end %>
-        </div><!-- /.confirmation-page__input-wrap -->
+        </div>
 
         <%= select_tag(:gender, options_for_select([['Male', 1], ['Female', 2], ['Other', 3]]), { class: "input--select", required: true, prompt: "Gender" }) %>
 

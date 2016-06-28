@@ -379,3 +379,44 @@ button {
 .change_email_form--hidden {
     display: none;
 }
+
+
+// Form Validation/Error Bar
+.form-errors-bar {
+    background-color: $red;
+    height: 60px;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: -60px;
+    width: 100vw;
+    z-index: 100;
+    text-align: center;
+
+    @include transition;
+
+
+
+    &.show {
+        opacity: 0.9;
+        top: 0;
+    }
+}
+
+.form-error__list {
+    @include vertical-align;
+    margin: 0;
+}
+
+.form-error__item {
+    color: $white;
+    font-size: $sm;
+    list-style: none;
+}
+
+.form-errors__close {
+    color: white;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}

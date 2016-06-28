@@ -123,6 +123,7 @@ class User < ActiveRecord::Base
             user.arrival_id = arrival_id if user.arrival_id.blank?
             user.oath_expires_at = Time.at(auth.credentials.expires_at)
             user.save!
+            UserNotifier.send_confirmation_email({user_id: user.id,verify_token:user.verify_token}).deliver
         end
     end
 

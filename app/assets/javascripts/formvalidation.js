@@ -8,7 +8,7 @@ var formValidation = {
     },
 
     conf: {
-        nameMin: 2,
+        nameMin: 1,
         minAge: 13
     },
 
@@ -49,20 +49,42 @@ var formValidation = {
         if (formValidation.validAge(birthday, formValidation.conf.minAge)) {
             if (!formValidation.validateDateFormat(birthday)) {
                 e.preventDefault();
-                alert('Please correct format: MM/DD/YYYY');
+                formValidation.setValidationBarMsg('Please correct format: MM/DD/YYYY');
             } else if (birthday === "") {
                 e.preventDefault();
-                alert('Please fill in birthday');
+                formValidation.setValidationBarMsg('Please fill in birthday');
+            } else {
+                formValidation.hideValidationBar();
             }
         } else {
             e.preventDefault();
-            alert('Must be at least ' + formValidation.conf.minAge + ' years old');
+            formValidation.setValidationBarMsg('Must be at least ' + formValidation.conf.minAge + ' years old')
         }
     },
 
+    setValidationBarMsg: function(err) {
+        $('.js-form-error__item').text(err);
+
+        formValidation.showValidationBar();
+    },
+
+    showValidationBar: function() {
+        $('.js-form-errors-bar').addClass('show');
+    },
+
+    hideValidationBar: function() {
+        $('.js-form-errors-bar').removeClass('show');
+    },
+
     bind: function() {
+        self = this;
+
         $('.js-form-validate-date').on('submit', function(e) {
             formValidation.checkNewUserbirthday(e);
+        });
+
+        $('.js-form-errors-bar').on('click', function() {
+            formValidation.hideValidationBar();
         });
 
         // Sign in form loading
@@ -75,7 +97,7 @@ var formValidation = {
         $(formValidation.selections.requiredField).blur(function(e){
             var $this = $(this),
                 $form = $this.parents('form'),
-                minVal = $this.attr('min') || 2;
+                minVal = $this.attr('min') || formValidation.conf.nameMin;
 
             if ($this.val().length >= minVal) {
                 $this.siblings(formValidation.selections.requiredError).removeClass('show');
@@ -86,9 +108,9 @@ var formValidation = {
             }
         });
 
+        // Validate new username
         $(formValidation.selections.valUsernameField).blur(function(e){
             var name = $(this).val();
-
             $.ajax({
                 type: "GET",
                 url: window.location.origin + '/validate_name',
@@ -103,14 +125,17 @@ var formValidation = {
                         $('.js-invalid--name').removeClass('show')
                         $('.js-valid--name').addClass('show');
                         $form.removeClass('js-prevent-form');
+                        self.hideValidationBar();
                     } else {
                         $('.js-valid--name').removeClass('show');
                         $('.js-invalid--name .js-error-case').hide();
 
                         if (!isAvailable){
-                            $('.js-invalid--name .js-error-case--taken').show();
+                            self.setValidationBarMsg('Username has already been taken');
+                            // $('.js-invalid--name .js-error-case--taken').show();
                         } else if (name.length <= 0) {
-                            $('.js-invalid--name .js-error-case--invalid').show();
+                            // $('.js-invalid--name .js-error-case--invalid').show();
+                            self.setValidationBarMsg('Please enter a username');
                         }
 
                         $('.js-invalid--name').addClass('show');
@@ -139,15 +164,15 @@ var formValidation = {
                         if (isValid && isAvailable) {
                             $('.js-invalid--email').removeClass('show');
                             $('.js-valid--email').addClass('show');
+                            self.hideValidationBar();
                         } else {
                             $('.js-valid--email').removeClass('show');
                             $('.js-invalid--email .js-error-case').hide();
 
                             if (!isValid && isAvailable) {
-                                $('.js-invalid--email .js-error-case--invalid').show();
-
+                                self.setValidationBarMsg('Invalid email');
                             } else if (isValid && !isAvailable) {
-                                $('.js-invalid--email .js-error-case--taken').show();
+                                self.setValidationBarMsg('Email has already been used');
                             }
 
                             $('.js-invalid--email').addClass('show');

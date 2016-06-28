@@ -45,7 +45,7 @@
             <%= render 'shared/error_messages', object: f.object %>
             <div class="form-input--wrap">
                 <i class="fa fa-user"></i>
-                <%= f.text_field :name, required: true, min: 2, placeholder: 'Username', class: "form-input js-validate-input" %>
+                <%= f.text_field :name, required: true, min: 1, placeholder: 'Username', class: "form-input js-validate-input js-validate--name" %>
             </div><!-- /.form-input--wrap -->
 
             <div class="form-input--wrap">

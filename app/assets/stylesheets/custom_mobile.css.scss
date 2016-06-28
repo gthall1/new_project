@@ -957,7 +957,8 @@ p {
     color: $red;
 }
 .mobile-header{
-    .mobile-header--hide & {
+    .mobile-header--hide &,
+    .confirmation-page--mobile & {
         display: none;
     }
         position: fixed;

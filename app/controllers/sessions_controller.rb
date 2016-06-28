@@ -44,7 +44,7 @@ class SessionsController < ApplicationController
                 if !user.oath_token.blank?
                     session[:auth_token] = user.oath_token
                 end
-                sign_in user
+                sign_in user unless !user.email_verified
                 cookies.permanent[:u] = user.id
                 if session[:arrival_id]
                     a = Arrival.where(id:session[:arrival_id]).first
@@ -53,11 +53,20 @@ class SessionsController < ApplicationController
                         a.save
                     end
                 end
-                if user.created_at > Time.now-5.minutes
-                    redirect_to set_username_path
-                else
-                    redirect_to root_path
+
+                if user.created_at > Time.now-30.seconds
+                    session[:user] = user
+                    redirect_to verify_path
+                elsif !user.email_verified && !user.profile_complete?
+                    sign_in user
+                    redirect_to confirmed_path
+                elsif user.profile_complete?
+                    sign_in user
+                    redirect_to root_path 
+                else        
+                    redirect_to root_path           
                 end
+
             elsif !signups_allowed?
                 flash[:notice] = 'We are currently restricting new users for our closed beta. Please join our wait list to receive an invite in the future!'
                 redirect_to root_path

@@ -56,7 +56,9 @@ class UsersController < ApplicationController
         name = params[:name]
         name = name.downcase
 
-        if User.where('lower(name) = ?', name).present? && current_user.name != name
+        if  signed_in? && current_user && current_user.name != name && User.where('lower(name) = ?', name).present?
+            render json: data = {:available => false, :name => name}
+        elsif User.where('lower(name) = ?', name).present?
             render json: data = {:available => false, :name => name}
         else
             render json: data = {:available => true, :name => name}
@@ -137,9 +139,10 @@ class UsersController < ApplicationController
             render "confirmed_mobile" if is_mobile?
         elsif signed_in? && current_user && !current_user.profile_complete?
             @verified_incomplete = true
+            render "confirmed_mobile" if is_mobile?
         else
             redirect_to root_path
-        end        
+        end
     end
 
     def update_verify
@@ -169,7 +172,7 @@ class UsersController < ApplicationController
             current_user.lastname = params[:last_name]
             current_user.gender = params[:gender]
             current_user.dob = Date.strptime(params[:birthday], "%m/%d/%Y")
-            
+
             if !params[:username].blank?
                 current_user.name = params[:username]
             end
