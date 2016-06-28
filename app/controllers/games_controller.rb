@@ -64,9 +64,11 @@ class GamesController < ApplicationController
         end
 
         @is_mobile = is_mobile?
-
-        render "games/index_mobile" if is_mobile?  
-        render "games/index"      
+        if is_mobile?
+            render "games/index_mobile"
+        else
+            render "games/index"
+        end    
     end
 
     def purchase_confirm
