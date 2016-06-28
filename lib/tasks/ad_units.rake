@@ -13,7 +13,7 @@ end
 
 task :add_dd_ad_units => :environment do | t, args |
   if !Advertiser.where(name:'Dunkin Donuts').present?
-    a = Advertiser.create({name:'Dunkin Donuts'})
+    a = Advertiser.create({name:'Dunkin Donuts',slug:'dunkin-donuts'})
     a = BrandedGameProperty.create({game_id: Game.where(slug:'flappy-pilot').first.id,advertiser_id:a.id,branded_game_name:'Fastest Way To Dunkin',branded_game_image_m:'dd_flappy_m.png',branded_game_image_d:'dd_flappy_d.png'})
   end
   

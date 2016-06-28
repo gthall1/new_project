@@ -15,7 +15,7 @@ class Game < ActiveRecord::Base
   end  
 
   def game_title(args={})
-    if !args[:advertiser_id].blank?
+    if !args[:advertiser_id].blank? && !self.branded_game_properties.blank?
       self.branded_game_properties.find_by_advertiser_id(args[:advertiser_id]).branded_game_name
     else
       self.name
@@ -23,7 +23,7 @@ class Game < ActiveRecord::Base
   end
 
   def game_image(args={})
-    advertiser_id = args[:advertiser_id]
+    advertiser_id = args[:advertiser_id] 
     if args[:desktop] == true
       self.get_desktop_game_image({advertiser_id: advertiser_id})
     else
@@ -32,7 +32,7 @@ class Game < ActiveRecord::Base
   end
 
   def get_desktop_game_image(args={})
-    if !args[:advertiser_id].blank?
+    if !args[:advertiser_id].blank? && !self.branded_game_properties.blank?
       self.branded_game_properties.find_by_advertiser_id(args[:advertiser_id]).branded_game_image_d
     else
       self.desktop_image
@@ -40,7 +40,7 @@ class Game < ActiveRecord::Base
   end
 
   def get_mobile_game_image(args={})
-    if !args[:advertiser_id].blank?
+    if !args[:advertiser_id].blank? && !self.branded_game_properties.blank?
       self.branded_game_properties.find_by_advertiser_id(args[:advertiser_id]).branded_game_image_m
     else
       self.desktop_image

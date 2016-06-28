@@ -8,13 +8,13 @@
 <div class='game-list-container'>
         <% @games.each do | g | %>
             <% if g.device_type != 5 || current_user.has_purchased_game(g.id) %>
-            <%= link_to game_path(g) do %>
+            <%= link_to game_path(g,a:@advertiser_id) do %>
                 <div class="game-wrapper game--<%= g.slug %> js-game--<%= g.slug %>">
 
-                    <%= image_tag(g.game_image({advertiser_id:nil,desktop:true}), :class=>'game-image') %>
+                    <%= image_tag(g.game_image({advertiser_id:@advertiser_id,desktop:true}), :class=>'game-image') %>
 
                     <div class="game__info">
-                        <h1 class="game__title"><%= g.name %></h1>
+                        <h1 class="game__title"><%= g.game_title({advertiser_id:@advertiser_id}) %></h1>
                         <span class="credits">Earn Credits</span>
                     </div>
 
@@ -30,7 +30,7 @@
                         </div><!-- /.game-img-wrap -->
 
                         <div class="game__info">
-                            <h1 class="game__title"><%= g.name %></h1>
+                            <h1 class="game__title"><%= g.game_title({advertiser_id:@advertiser_id}) %></h1>
                             <span class="credits">Unlock Game:</span>
                             <span class="game__cost"><%= g.credit_cost %> credits</span>
                         </div>

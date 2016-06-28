@@ -96,6 +96,9 @@ Alotto::Application.routes.draw do
 
     match '/check_branded', to: 'games#check_branded', via: 'post'
 
+
+    match '/dunkin', to: 'games#dunkin', via: 'get'
+
     #For analytics to grab some data
     namespace :api, defaults: { format: :json } do
         namespace :v1 do

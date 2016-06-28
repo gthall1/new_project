@@ -5,7 +5,7 @@
             <% if g.device_type != 5 || current_user.has_purchased_game(g.id) %>
                 <%= link_to game_path(g) do %>
                     <div class="game-wrapper game--<%= g.slug %> js-game--<%= g.slug %>" data-game-id="<%= g.id %>">
-                    <%= image_tag(g.game_image({advertiser_id:nil,desktop:false}), :class=>'game-image') %>
+                    <%= image_tag(g.game_image({advertiser_id:@advertiser_id,desktop:false}), :class=>'game-image') %>
                     </div>
                 <% end %>
             <% else %>

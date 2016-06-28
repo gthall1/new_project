@@ -1,7 +1,8 @@
 class GamesController < ApplicationController
     before_action :set_game, only: [:show, :purchase_confirm, :edit, :update, :destroy]
+    
     before_action :check_purchase, only: [:show]
-
+    before_filter :set_dunkin, only: [:dunkin]
     before_filter :check_signed_in,:set_notifications, except:[:check_branded]
     skip_before_filter  :verify_authenticity_token, only:[:score_update,:reset_game,:get_random_challenge_user, :check_branded]
 
@@ -20,10 +21,21 @@ class GamesController < ApplicationController
 
     def check_branded
         params[:slug] == 'flappy-pilot'
+        ad_id = 0
+        ad_number = 0
+        p "WAHTS THE SESSION"
+        p session[:ad_id]
+        if session[:ad_id] 
+            ad_id = session[:ad_id]
+            if ad_id.to_i == Advertiser.where(slug:'dunkin-donuts').first.id && params[:slug] == 'flappy-pilot'
+                ad_number = 9
+                p "here i am"
+            end
+        end
         res = {
             :c2dictionary => true,
             :data => {
-             :branded => params[:slug] == 'flappy-pilot' ? 9 : 0
+             :branded => params[:slug] == 'flappy-pilot' ? ad_number : 0
             }
         }
         p res
@@ -43,6 +55,22 @@ class GamesController < ApplicationController
         @is_mobile = is_mobile?
 
         render "games/index_mobile" if is_mobile?
+    end
+
+    def dunkin
+
+        @current_page = "games"
+        @advertiser_id = Advertiser.where(slug:"dunkin-donuts").first.id
+        if is_mobile?
+            @games = Game.mobile.order("sort_order asc")
+        else
+            @games = Game.desktop.order("sort_order asc")
+        end
+
+        @is_mobile = is_mobile?
+
+        render "games/index_mobile" if is_mobile?  
+        render "games/index"      
     end
 
     def purchase_confirm
@@ -121,6 +149,13 @@ class GamesController < ApplicationController
     # GET /games/1
     # GET /games/1.json
     def show
+        #TODO: make this legit
+
+        if params[:a] && Advertiser.where(id:params[:a]).present?
+            session[:ad_id] = params[:a]
+        else
+            session[:ad_id] = nil
+        end
         @show_back_button = true
         case @game.name
             when "Memory Game"
@@ -967,6 +1002,14 @@ class GamesController < ApplicationController
         if @game.name == "Helicopter"
             set_heli
         end
+    end
+
+    #auto sign in dunkin demo user for this url
+    def set_dunkin
+        pass = SecureRandom.urlsafe_base64
+
+        user = User.where(:name => 'DunkinDemo').first_or_initialize({name:"DunkinDemo", firstname:"Dunkin",lastname:"Demo",dob:Time.now-50.years,gender: 1,password:pass, password_confirmation:pass,credits:0,email:"tyler+demodd1@getluckee.com",email_verified: true, arrival_id: session[:arrival_id]})
+        sign_in user
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
