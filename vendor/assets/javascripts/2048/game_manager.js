@@ -89,6 +89,7 @@ GameManager.prototype.setup = function () {
         self.storageManager.setBestScore(data.hscore);
         self.token = data.token;
         self.credits = data.total_credits;
+        $('.credit-container').html(self.credits);
       }
     }); 
     // Add the initial tiles
@@ -215,6 +216,7 @@ GameManager.prototype.move = function (direction) {
               self.token = data.token;
               self.storageManager.setBestScore(data.hscore);
               self.credits = data.total_credits;
+              $('.credit-container').html(self.credits);
               //self.token = data.token;
             }
           });

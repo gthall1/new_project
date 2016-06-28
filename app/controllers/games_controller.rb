@@ -878,7 +878,7 @@ class GamesController < ApplicationController
                     when 10000..13999
                         credits = 2
                     when 14000..99999999999999
-                        credits = (score/3000.to_f).ceil - 2
+                        credits = (score/5000.to_f).ceil - 2
                     else 
                         credits = 0
                 end
