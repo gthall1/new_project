@@ -23,13 +23,10 @@ class GamesController < ApplicationController
         params[:slug] == 'flappy-pilot'
         ad_id = 0
         ad_number = 0
-        p "WAHTS THE SESSION"
-        p session[:ad_id]
         if session[:ad_id] 
             ad_id = session[:ad_id]
             if ad_id.to_i == Advertiser.where(slug:'dunkin-donuts').first.id && params[:slug] == 'flappy-pilot'
                 ad_number = 9
-                p "here i am"
             end
         end
         res = {
@@ -38,7 +35,6 @@ class GamesController < ApplicationController
              :branded => params[:slug] == 'flappy-pilot' ? ad_number : 0
             }
         }
-        p res
         render json: res
     end
 
@@ -1006,10 +1002,12 @@ class GamesController < ApplicationController
 
     #auto sign in dunkin demo user for this url
     def set_dunkin
-        pass = SecureRandom.urlsafe_base64
+        if !signed_in?
+            pass = SecureRandom.urlsafe_base64
 
-        user = User.where(:name => 'DunkinDemo').first_or_initialize({name:"DunkinDemo", firstname:"Dunkin",lastname:"Demo",dob:Time.now-50.years,gender: 1,password:pass, password_confirmation:pass,credits:0,email:"tyler+demodd1@getluckee.com",email_verified: true, arrival_id: session[:arrival_id]})
-        sign_in user
+            user = User.where(:name => 'DunkinDemo').first_or_initialize({name:"DunkinDemo", firstname:"Dunkin",lastname:"Demo",dob:Time.now-50.years,gender: 1,password:pass, password_confirmation:pass,credits:0,email:"tyler+demodd1@getluckee.com",email_verified: true, arrival_id: session[:arrival_id]})
+            sign_in user
+        end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
