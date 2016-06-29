@@ -20,7 +20,6 @@ class GamesController < ApplicationController
     end
 
     def check_branded
-        params[:slug] == 'flappy-pilot'
         ad_id = 0
         ad_number = 0
         if session[:ad_id] 
@@ -41,7 +40,12 @@ class GamesController < ApplicationController
     # GET /games
     # GET /games.json
     def index
+        #TODO: Fix this hack
+        if request && request.referer.include?('?a=')
+            redirect_to dunkin_path
+        end
         @current_page = "games"
+        
         if is_mobile?
             @games = Game.mobile.order("sort_order asc")
         else
@@ -54,9 +58,9 @@ class GamesController < ApplicationController
     end
 
     def dunkin
-
         @current_page = "games"
         @advertiser_id = Advertiser.where(slug:"dunkin-donuts").first.id
+
         if is_mobile?
             @games = Game.mobile.order("sort_order asc")
         else
