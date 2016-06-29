@@ -29,6 +29,14 @@ html {
 
 body {
   padding-top: 0px;
+
+
+  &.gameplay-page {
+      #doorbell-button {
+          display: none !important;
+          visibility: hidden !important;
+      }
+  }
 }
 .page-background {
   background-image: url(home_screen.jpg);

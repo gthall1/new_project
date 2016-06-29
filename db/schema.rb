@@ -11,13 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160601150609) do
+ActiveRecord::Schema.define(version: 20160628224902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "ad_display_tables", force: :cascade do |t|
-  end
 
   create_table "ad_displays", force: :cascade do |t|
     t.integer "ad_number"
@@ -42,6 +39,7 @@ ActiveRecord::Schema.define(version: 20160601150609) do
     t.string   "logo",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
 
   create_table "answers", force: :cascade do |t|
@@ -69,6 +67,16 @@ ActiveRecord::Schema.define(version: 20160601150609) do
     t.integer  "referred_by"
   end
 
+  create_table "branded_game_properties", force: :cascade do |t|
+    t.integer  "game_id"
+    t.integer  "advertiser_id"
+    t.string   "branded_game_name"
+    t.string   "branded_game_image_m"
+    t.string   "branded_game_image_d"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
   create_table "cash_outs", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "credits"
@@ -86,10 +94,10 @@ ActiveRecord::Schema.define(version: 20160601150609) do
     t.integer  "challenged_user_id"
     t.integer  "game_id"
     t.integer  "winner_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "user_score"
     t.integer  "challenged_score"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "user_score"
   end
 
   create_table "feed_games", force: :cascade do |t|
