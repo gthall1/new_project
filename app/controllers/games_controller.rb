@@ -62,7 +62,7 @@ class GamesController < ApplicationController
         @advertiser_id = Advertiser.where(slug:"dunkin-donuts").first.id
 
         game_ids = BrandedGameProperty.where(advertiser_id: @advertiser_id).map{|g| g.game_id }
-        @games = Game.where(id:game_ids)
+        @games = Game.where(id:game_ids).order("sort_order asc")
 
         @is_mobile = is_mobile?
         if is_mobile?
