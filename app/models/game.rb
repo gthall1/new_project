@@ -43,7 +43,7 @@ class Game < ActiveRecord::Base
     if !args[:advertiser_id].blank? && !self.branded_game_properties.blank?
       self.branded_game_properties.find_by_advertiser_id(args[:advertiser_id]).branded_game_image_m
     else
-      self.desktop_image
+      self.image
     end
   end
 
