@@ -158,7 +158,9 @@ class GamesController < ApplicationController
         else
             session[:ad_id] = nil
         end
+
         @show_back_button = true
+
         case @game.name
             when "Memory Game"
                 @top_scores = UserGameSession.where(game_id:@game.id).where.not(score:nil).order("score asc").limit(10)
@@ -767,7 +769,12 @@ class GamesController < ApplicationController
         end
 
         if newgame && game.slug == "fall-down"
-            ad_number = get_ad
+            if session[:branded_ad]
+                ad_number = session[:branded_ad]
+            else
+                ad_number = get_ad
+            end
+            
             if ad_number && ad_number != 1
                 AdDisplay.create({user_game_session_id:UserGameSession.where(token:session[:game_token]).first.id,user_id:current_user.id, game_id:game.id,ad_number:ad_number})
             end
@@ -1008,6 +1015,7 @@ class GamesController < ApplicationController
 
     #auto sign in dunkin demo user for this url
     def set_dunkin
+        session[:branded_ad] = 9
         if !signed_in?
             pass = SecureRandom.urlsafe_base64
 
