@@ -41,7 +41,7 @@ class GamesController < ApplicationController
     # GET /games.json
     def index
         #TODO: Fix this hack
-        if request && request.referer.include?('?a=')
+        if request && request.referer && request.referer.include?('?a=')
             redirect_to dunkin_path
         end
         @current_page = "games"
