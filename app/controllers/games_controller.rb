@@ -156,6 +156,7 @@ class GamesController < ApplicationController
         if params[:a] && Advertiser.where(id:params[:a]).present?
             session[:ad_id] = params[:a]
         else
+            session[:branded_ad] = nil
             session[:ad_id] = nil
         end
 
