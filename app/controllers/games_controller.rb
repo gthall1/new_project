@@ -61,11 +61,8 @@ class GamesController < ApplicationController
         @current_page = "games"
         @advertiser_id = Advertiser.where(slug:"dunkin-donuts").first.id
 
-        if is_mobile?
-            @games = Game.mobile.order("sort_order asc")
-        else
-            @games = Game.desktop.order("sort_order asc")
-        end
+        game_ids = BrandedGameProperty.where(advertiser_id: @advertiser_id).map{|g| g.game_id }
+        @games = Game.where(id:game_ids)
 
         @is_mobile = is_mobile?
         if is_mobile?
@@ -1016,6 +1013,7 @@ class GamesController < ApplicationController
 
     #auto sign in dunkin demo user for this url
     def set_dunkin
+        @games = 
         session[:branded_ad] = 9
         if !signed_in?
             pass = SecureRandom.urlsafe_base64
