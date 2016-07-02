@@ -37,6 +37,11 @@ class GamesController < ApplicationController
         render json: res
     end
 
+    def fetch_assets
+        slug = params[:slug]
+        #check for current campaigns
+    end
+
     # GET /games
     # GET /games.json
     def index
