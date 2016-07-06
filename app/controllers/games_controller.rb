@@ -1018,7 +1018,6 @@ class GamesController < ApplicationController
 
     #auto sign in dunkin demo user for this url
     def set_dunkin
-        @games = 
         session[:branded_ad] = 9
         if !signed_in?
             pass = SecureRandom.urlsafe_base64
