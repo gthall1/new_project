@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
     before_action :set_game, only: [:show, :purchase_confirm, :edit, :update, :destroy]
-    
+
     before_action :check_purchase, only: [:show]
     before_filter :set_dunkin, only: [:dunkin]
     before_filter :check_signed_in,:set_notifications, except:[:check_branded]
@@ -22,7 +22,7 @@ class GamesController < ApplicationController
     def check_branded
         ad_id = 0
         ad_number = 0
-        if session[:ad_id] 
+        if session[:ad_id]
             ad_id = session[:ad_id]
             if ad_id.to_i == Advertiser.where(slug:'dunkin-donuts').first.id && params[:slug] == 'flappy-pilot'
                 ad_number = 9
@@ -45,7 +45,7 @@ class GamesController < ApplicationController
             redirect_to dunkin_path
         end
         @current_page = "games"
-        
+
         if is_mobile?
             @games = Game.mobile.order("sort_order asc")
         else
@@ -60,6 +60,7 @@ class GamesController < ApplicationController
     def dunkin
         @current_page = "games"
         @advertiser_id = Advertiser.where(slug:"dunkin-donuts").first.id
+        @dunkin_user = is_dunkin_user?
 
         game_ids = BrandedGameProperty.where(advertiser_id: @advertiser_id).map{|g| g.game_id }
         @games = Game.where(id:game_ids)
@@ -69,7 +70,7 @@ class GamesController < ApplicationController
             render "games/index_mobile"
         else
             render "games/index"
-        end    
+        end
     end
 
     def purchase_confirm
@@ -772,11 +773,11 @@ class GamesController < ApplicationController
             else
                 ad_number = get_ad
             end
-            
+
             if ad_number && ad_number != 1
                 AdDisplay.create({user_game_session_id:UserGameSession.where(token:session[:game_token]).first.id,user_id:current_user.id, game_id:game.id,ad_number:ad_number})
             end
-            
+
             game_json = {
                 :c2dictionary => true,
                 :data => {
@@ -935,7 +936,7 @@ class GamesController < ApplicationController
                         credits = 2
                     when 14000..99999999999999
                         credits = (score/3000.to_f).ceil - 2
-                    else 
+                    else
                         credits = 0
                 end
             when "traffic"
@@ -969,10 +970,10 @@ class GamesController < ApplicationController
                     when 28..37
                         credits = 4
                     when 37..99999
-                        credits = (score/10.to_f).ceil + 1 
-                    else 
+                        credits = (score/10.to_f).ceil + 1
+                    else
                         credits = 0
-                end                
+                end
                 #credits = (score/3.to_f).ceil - 1
                 credits
         end
@@ -1013,7 +1014,7 @@ class GamesController < ApplicationController
 
     #auto sign in dunkin demo user for this url
     def set_dunkin
-        @games = 
+        @games =
         session[:branded_ad] = 9
         if !signed_in?
             pass = SecureRandom.urlsafe_base64

@@ -28,6 +28,10 @@ module ApplicationHelper
     end
   end
 
+  def is_dunkin_user?
+    return session[:branded_ad] == 9
+  end
+
   def determine_layout
   	is_mobile? ? "mobile_application" : "application"
   end

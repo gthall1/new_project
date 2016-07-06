@@ -27,7 +27,7 @@
     <%= render 'layouts/shim' %>
 
     <% if Rails.env.production? %>
-    
+
       <!-- Facebook Pixel Code -->
       <script>
       !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -75,38 +75,7 @@
   </head>
   <body class="<%= yield (:body_class) %> <% if current_user %> logged-in <% end %>">
     <div class="desktop-wrapper">
-    <section class="navigation">
-      <div class="nav-left">
-        <%= link_to root_path do %><img class="nav-logo" src="/assets/small_luckee_font.png"><% end %>
-        <% if current_user %>
-        <p class="nav-dropdown__user-credits" data-toggle="tooltip" data-placement="bottom" title="Credits Earned"><%= current_user.credits ||= 0 %></p>
-        <% end %>
-      </div>
-      <% if current_user %>
-        <div class="nav-right">
-          <%# link_to 'Games', games_path %>
-          <div class="nav-dropdown">
-            <a href="/surveys" class="js-survery-link"><span style="position:relative;"><img class="nav-dropdown__icon nav-dropdown__icon--survey" src="/assets/navbar_1.png">Surveys <i class="fa fa-exclamation js-survey-notification notification"></i></span></a>
-            <%= link_to redeem_path do %><img class="nav-dropdown__icon nav-dropdown__icon--redeem" src="/assets/navbar_3.png"> Redeem <% end %>
-            <%= link_to leaderboards_path do %><img class="nav-dropdown__icon nav-dropdown__icon--leaders" src="/assets/navbar_6.png"> Leaders <% end %>
-            <p class="js-nav-dropdown__name nav-dropdown__name"><i class="fa fa-caret-down"></i> <%= current_user.name %></p>
-
-              <%= link_to user_path(current_user) do %><span class="nav-dropdown__avatar" data-toggle="tooltip" data-placement="bottom" title="View Profile" style="<% if current_user.oath_image %>background-image: url(<%= current_user.oath_image %>); <% else %> background-image: url(/assets/avatar-icon.png); <% end %> "> <% end %>
-              <i class="fa fa-exclamation js-notification notification"></i>
-            </span>
-            <ul class="nav-dropdown__list">
-              <li class="nav-dropdown__item"><%= link_to 'Games', games_path %></li>
-              <li class="nav-dropdown__item"><%= link_to 'Profile', user_path(current_user) %></li>
-              <li class="nav-dropdown__item"><%= link_to refer_path do %>Invite Friends <span class="nav-dropdown__credits">+25</span> <% end %></li>
-              <li class="nav-dropdown__item"><a href="mailto:support@getluckee.com" target="_top">Contact Us</a></li>
-              <li class="nav-dropdown__item"><%= link_to 'Settings', edit_user_path(current_user) %></li>
-              <li class="nav-dropdown__item nav-dropdown__signout"><%= link_to "Sign out", signout_path, method: "delete" %></li>
-            </ul>
-          </div>
-
-        </div> <!--/.nav-right -->
-      <% end %>
-    </section>
+      <%= render 'static_pages/navigation_desktop' %>
     <div class="app-wrapper">
       <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>"><%= value %></div>
