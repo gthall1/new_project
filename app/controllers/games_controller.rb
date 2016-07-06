@@ -1006,9 +1006,9 @@ class GamesController < ApplicationController
                 end
              end
         elsif params[:slug] && !params[:slug].blank?
-             @game = Game.where(slug:params[:slug]).first
+            @game = Game.where(slug:params[:slug]).first
         else
-             @game = Game.find(params[:id])
+            @game = Game.find(params[:id])
         end
 
         if @game.name == "Helicopter"

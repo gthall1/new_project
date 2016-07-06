@@ -5,7 +5,7 @@ Alotto::Application.routes.draw do
 
     resources :purchases
     resources :surveys
-    resources :games
+    resources :games, param: :slug
     resources :users
     resources :users do
         member do
