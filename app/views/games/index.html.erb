@@ -1,3 +1,5 @@
+<% content_for :title, "Play Free Games. Earn real cash." %>
+
 <% content_for :body_class, "desktop-games-page games-page" %>
 
 <% if show_ads %>
@@ -8,7 +10,7 @@
 <div class='game-list-container'>
         <% @games.each do | g | %>
             <% if g.device_type != 5 || current_user.has_purchased_game(g.id) %>
-            <%= link_to game_path(g,a:@advertiser_id) do %>
+            <%= link_to game_path(g.slug,a:@advertiser_id) do %>
                 <div class="game-wrapper game--<%= g.slug %> js-game--<%= g.slug %>">
 
                     <%= image_tag(g.game_image({advertiser_id:@advertiser_id,desktop:true}), :class=>'game-image') %>

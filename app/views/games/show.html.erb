@@ -1,6 +1,12 @@
+<% content_for :title, "#{@game.name}" %>
+<% content_for :description, "#{@game.description}" %>
+
 <% if show_ads %>
     <%= render partial: "/ad_units/ad_wide", :locals => {ad_slot: "3917225076"} %>
 <% end %>
+  <% if session[:branded_ad].nil? %>
+    <h2 style='font-size:18px;'><%= @game.name %></h2>
+  <% end %>
 <p id="notice"><%= notice %></p>
   <% case @game.slug %>
     <% when 'test' %>
@@ -30,8 +36,13 @@
       <%= render 'tap_color' %>      
     <% when 'gold-runner' %>
       <%= render 'gold_runner' %>  
+  <% end %> 
+  <% if session[:branded_ad].nil? %>
+    <br /> <br/>
+    <p class='game-description container' > 
+      <%= @game.description %>
+    </p>
   <% end %>
-
 <% if @game.slug == '2048' %>
   <input type="hidden" id="game_token" name="game_token" value="<%= session[:game_token] %>" />
 <% end %>

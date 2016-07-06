@@ -1,6 +1,7 @@
 class Game < ActiveRecord::Base
   has_many :user_game_sessions
   has_many :branded_game_properties
+  has_many :branded_game_assets
   #device types 0:none 1:mobile-only 2:desktop-only 3:mobile-and-desktop 5:purchasable
 
   scope :mobile,       -> { where( :device_type=>[1,3,5] )                                 } 

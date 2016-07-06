@@ -37,6 +37,11 @@ class GamesController < ApplicationController
         render json: res
     end
 
+    def fetch_assets
+        slug = params[:slug]
+        #check for current campaigns
+    end
+
     # GET /games
     # GET /games.json
     def index
@@ -1001,9 +1006,9 @@ class GamesController < ApplicationController
                 end
              end
         elsif params[:slug] && !params[:slug].blank?
-             @game = Game.where(slug:params[:slug]).first
+            @game = Game.where(slug:params[:slug]).first
         else
-             @game = Game.find(params[:id])
+            @game = Game.find(params[:id])
         end
 
         if @game.name == "Helicopter"
@@ -1013,7 +1018,6 @@ class GamesController < ApplicationController
 
     #auto sign in dunkin demo user for this url
     def set_dunkin
-        @games = 
         session[:branded_ad] = 9
         if !signed_in?
             pass = SecureRandom.urlsafe_base64
