@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160628224902) do
+ActiveRecord::Schema.define(version: 20160706034458) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,19 @@ ActiveRecord::Schema.define(version: 20160628224902) do
     t.integer  "referred_by"
   end
 
+  create_table "branded_game_assets", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "width"
+    t.integer  "height"
+    t.string   "slug"
+    t.integer  "game_id"
+    t.integer  "campaign_id"
+    t.string   "asset_url"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "branded_game_properties", force: :cascade do |t|
     t.integer  "game_id"
     t.integer  "advertiser_id"
@@ -75,6 +88,16 @@ ActiveRecord::Schema.define(version: 20160628224902) do
     t.string   "branded_game_image_d"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+  end
+
+  create_table "campaigns", force: :cascade do |t|
+    t.integer  "advertiser_id"
+    t.string   "description"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.boolean  "active"
   end
 
   create_table "cash_outs", force: :cascade do |t|
@@ -137,6 +160,7 @@ ActiveRecord::Schema.define(version: 20160628224902) do
     t.integer  "sort_order"
     t.string   "desktop_image"
     t.integer  "credit_cost"
+    t.string   "description"
   end
 
   create_table "identities", force: :cascade do |t|
