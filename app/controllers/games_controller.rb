@@ -45,7 +45,7 @@ class GamesController < ApplicationController
         # bg_url = ActionController::Base.helpers.asset_path(BrandedGameAsset.where(slug:'fall-down-bg').first.asset_url)
         if session[:branded_ad] == 9
             ball_url  = "/assets/fall_down/#{BrandedGameAsset.where(slug:'fall-down-ball').first.asset_url}"
-            bg_url = "/assets/fall_down/#{BrandedGameAsset.where(slug:'fall-down-bg').first.asset_url}"
+            bg_url = "/assets/fall_down/#{BrandedGameAsset.where(slug:'fall-down-bg').order('random()').first.asset_url}"
         else
             bg_url = nil
             ball_url = nil
