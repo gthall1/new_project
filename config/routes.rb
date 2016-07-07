@@ -120,5 +120,4 @@ Alotto::Application.routes.draw do
     #CATCH ALL FOR PROMOS
     match '/:promo', to: 'static_pages#home', via: 'get'
 
-
 end

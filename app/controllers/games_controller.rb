@@ -3,8 +3,8 @@ class GamesController < ApplicationController
 
     before_action :check_purchase, only: [:show]
     before_filter :set_dunkin, only: [:dunkin]
-    before_filter :check_signed_in,:set_notifications, except:[:check_branded]
-    skip_before_filter  :verify_authenticity_token, only:[:score_update,:reset_game,:get_random_challenge_user, :check_branded]
+    before_filter :check_signed_in,:set_notifications, except:[:check_branded,:fetch_assets]
+    skip_before_filter  :verify_authenticity_token, only:[:score_update,:reset_game,:get_random_challenge_user, :check_branded, :fetch_assets]
 
     include ApplicationHelper
     include GamesHelper
@@ -38,8 +38,28 @@ class GamesController < ApplicationController
     end
 
     def fetch_assets
-        slug = params[:slug]
         #check for current campaigns
+
+        slug = params[:slug]
+        # ball_url = ActionController::Base.helpers.asset_path(BrandedGameAsset.where(slug:'fall-down-ball').first.asset_url)
+        # bg_url = ActionController::Base.helpers.asset_path(BrandedGameAsset.where(slug:'fall-down-bg').first.asset_url)
+        if session[:branded_ad] == 9
+            ball_url  = "/assets/fall_down/#{BrandedGameAsset.where(slug:'fall-down-ball').first.asset_url}"
+            bg_url = "/assets/fall_down/#{BrandedGameAsset.where(slug:'fall-down-bg').first.asset_url}"
+        else
+            bg_url = nil
+            ball_url = nil
+        end
+        game_json = {
+            :c2dictionary => true,
+            :data => {
+             :ball_image =>ball_url,
+             :bg_image =>bg_url,
+             :alt_assets => 'true',
+            }
+        }
+
+        render json: game_json
     end
 
     # GET /games

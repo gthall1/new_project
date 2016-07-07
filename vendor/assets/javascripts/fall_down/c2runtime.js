@@ -21081,11 +21081,11 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.AJAX,
 	cr.plugins_.Browser,
 	cr.plugins_.Dictionary,
-	cr.plugins_.Text,
 	cr.plugins_.Touch,
+	cr.plugins_.Spritefont2,
 	cr.plugins_.Sprite,
 	cr.plugins_.WebStorage,
-	cr.plugins_.Spritefont2,
+	cr.plugins_.Text,
 	cr.behaviors.solid,
 	cr.behaviors.Platform,
 	cr.behaviors.Flash,
@@ -21122,10 +21122,12 @@ cr.getObjectRefTable = function () { return [
 	cr.system_object.prototype.acts.SubVar,
 	cr.plugins_.Touch.prototype.cnds.IsTouchingObject,
 	cr.behaviors.Platform.prototype.acts.SimulateControl,
+	cr.plugins_.Sprite.prototype.acts.RotateCounterclockwise,
+	cr.plugins_.Sprite.prototype.acts.RotateClockwise,
 	cr.plugins_.AJAX.prototype.cnds.OnComplete,
 	cr.plugins_.Dictionary.prototype.acts.JSONLoad,
 	cr.plugins_.AJAX.prototype.exps.LastData,
 	cr.plugins_.Dictionary.prototype.exps.Get,
 	cr.plugins_.Text.prototype.acts.SetText,
-	cr.plugins_.Sprite.prototype.acts.SetAnimFrame
+	cr.plugins_.Sprite.prototype.acts.LoadURL
 ];};
