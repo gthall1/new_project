@@ -79,6 +79,8 @@ class SurveysController < ApplicationController
 
     if Survey.find(@user_survey.survey_id).slug == "bellhops"
       redirect_to bellhops_affiliate_path
+    elsif is_dunkin_user?
+      redirect_to dunkin_path
     else
       redirect_to surveys_path
     end
