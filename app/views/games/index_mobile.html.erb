@@ -1,5 +1,14 @@
 <% content_for :body_class, "mobile-games-page games-page" %>
 
+<div class='game-list-container'>
+    <% if is_dunkin_user? %>
+        <a href="//www.youtube.com/watch?v=X_X16Iwk4N4" data-lity>
+            <div class="game-wrapper game--fastest-way-to-dd js-game--fastest-way-to-dd %>">
+                <img class="game-image" src="/assets/fastest-way-to-dd.jpg">
+            </div>
+        </a>
+    <% end %>
+
     <div class='game-list-container'>
         <% @games.each do | g | %>
             <% if g.device_type != 5 || current_user.has_purchased_game(g.id) %>
@@ -16,5 +25,14 @@
                     </div>
                 <% end %>
             <% end %>
-        <% end %>
-    </div>
+    <% end %>
+
+    <p class="fine-copy">This page is for demonstration purposes only.</p>
+</div>
+
+<% if is_dunkin_user? %>
+    <script>
+        var lightbox = lity();
+        $(document).on('click', '[data-lity]', lightbox);
+    </script>
+<% end %>

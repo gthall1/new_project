@@ -1,19 +1,23 @@
 <% content_for :title, "Play Free Games. Earn real cash." %>
 
-<% content_for :body_class, "desktop-games-page games-page" %>
+<% if is_dunkin_user? %>
+    <% content_for :body_class, "desktop-games-page games-page games-page--dunkin" %>
+<% else %>
+    <% content_for :body_class, "desktop-games-page games-page" %>
+<% end %>
 
 <% if show_ads %>
     <%= render partial: "/ad_units/ad_wide", :locals => {ad_slot: "2440491879"} %>
 <% end %>
 
-<% if @dunkin_user %>
+<% if is_dunkin_user? %>
     <h1 class="page__title">Play free games. Earn real rewards.</h1>
 <% else %>
     <h1 class="page__title">Play free games. Earn real cash.</h1>
 <% end %>
 
 <div class='game-list-container'>
-    <% if @dunkin_user %>
+    <% if is_dunkin_user? %>
         <a href="//www.youtube.com/watch?v=X_X16Iwk4N4" data-lity>
             <div class="game-wrapper game--fastest-way-to-dd js-game--fastest-way-to-dd">
 
@@ -61,11 +65,13 @@
                 <% end %>
             <% end %>
         <% end %>
+
+        <p class="fine-copy">This page is for demonstration purposes only.</p>
 </div><!-- /.game-list-container -->
 
-<% if @dunkin_user %>
+<% if is_dunkin_user? %>
     <script>
         var lightbox = lity();
-        $(document).on('click', '[data-lightbox]', lightbox);
+        $(document).on('click', '[data-lity]', lightbox);
     </script>
 <% end %>

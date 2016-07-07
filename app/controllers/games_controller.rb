@@ -85,7 +85,6 @@ class GamesController < ApplicationController
     def dunkin
         @current_page = "games"
         @advertiser_id = Advertiser.where(slug:"dunkin-donuts").first.id
-        @dunkin_user = is_dunkin_user?
 
         game_ids = BrandedGameProperty.where(advertiser_id: @advertiser_id).map{|g| g.game_id }
         @games = Game.where(id:game_ids).order("sort_order asc")
@@ -828,22 +827,25 @@ class GamesController < ApplicationController
         render json: game_json
     end
 
-    # def leaderboard
-    #     @current_page = "leaderboard"
-    #     @game = Game.where(slug:params[:game_slug]).first
-    # end
-
     def leaderboard
         @current_page = "leaderboard"
         @game = Game.where(slug:params[:game_slug]).first
 
-        # if is_mobile?
-        #     render "games/leaderboard"
-        # else
-        #     render "games/leaderboard_old"
-        # end
-
         render "games/leaderboard"
+    end
+
+    def dunkin_leaderboard
+        @current_page = "leaderboard"
+        @advertiser_id = Advertiser.where(slug:"dunkin-donuts").first.id
+
+        game_ids = BrandedGameProperty.where(advertiser_id: @advertiser_id).map{|g| g.game_id }
+        @games = Game.where(id:game_ids)
+
+        if is_mobile?
+            render "games/games_leaderboard_new"
+        else
+            render "games/games_leaderboard"
+        end
     end
 
     def games_leaderboard

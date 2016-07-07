@@ -21,6 +21,7 @@ Alotto::Application.routes.draw do
     match '/signin',  to: 'sessions#new',         via: 'get'
     match '/signout', to: 'sessions#destroy',     via: 'delete'
     match '/user_survey', to: 'surveys#user_survey_save', via: 'patch'
+    match '/dunkin_surveys', to: 'surveys#dunkin_index', via: 'get'
     match '/current_jackpot', to:'jackpots#current_jackpot', via: 'get'
     match '/deposit',  to: 'jackpots#show',         via: 'get'
     match '/stats', to: 'users#stats', via: 'get'
@@ -39,6 +40,7 @@ Alotto::Application.routes.draw do
     match '/about',   to: 'static_pages#about',   via: 'get'
     match '/confirm_email',   to: 'static_pages#confirm_email',   via: 'get'
     match '/redeem',   to: 'static_pages#redeem',   via: 'get'
+    match '/dunkin_redeem',   to: 'static_pages#dunkin_redeem',   via: 'get'
     match '/donate',   to: 'static_pages#donate',   via: 'get'
     match '/redeem_credits/(:credits)',   to: 'static_pages#redeem_credits',as: 'redeem_credits',  via: 'get'
     match '/donate_credits/(:credits)',   to: 'static_pages#donate_credits',as: 'donate_credits',  via: 'get'
@@ -62,6 +64,7 @@ Alotto::Application.routes.draw do
     #match '/leaderboard/:game_slug', to: 'games#leaderboard', as: 'game_leaderboard', via: 'get'
     match '/leaderboard/:game_slug', to: 'games#leaderboard', as: 'game_leaderboard', via: 'get'
     match '/leaderboards', to: 'games#games_leaderboard', via: 'get'
+    match '/dunkin_leaderboards', to: 'games#dunkin_leaderboard', via: 'get'
     match '/get_advertisers', to: 'games#get_advertisers', via: 'get'
     match '/reset_timer', to: 'games#reset_game', via: 'get'
     match '/get_advertiser_logo', to: 'games#get_advertiser_logo', via: 'get'
@@ -94,7 +97,7 @@ Alotto::Application.routes.draw do
     match '/reset_game', to: 'games#reset_game', via: 'post'
     match '/score_update', to: 'games#score_update', via: 'get'
     match '/score_update', to: 'games#score_update', via: 'post'
-    
+
     #Promo Demo Page
     match '/dunkin', to: 'games#dunkin', via: 'get'
 

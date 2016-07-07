@@ -6,6 +6,17 @@
 }
 .interior-page {
     background: $white !important;
+
+    &.interior-page--dd {
+        .donations__link {
+            @include bgColorAndHover(#EC4A98);
+        }
+
+        .donations {
+            background-image: url(dd-love.png);
+            background-size: 20%;
+        }
+    }
 }
 .interior-hero {
     background-color: $lavender;
