@@ -40,6 +40,7 @@ Alotto::Application.routes.draw do
     match '/about',   to: 'static_pages#about',   via: 'get'
     match '/confirm_email',   to: 'static_pages#confirm_email',   via: 'get'
     match '/redeem',   to: 'static_pages#redeem',   via: 'get'
+    match '/dunkin_redeem',   to: 'static_pages#dunkin_redeem',   via: 'get'
     match '/donate',   to: 'static_pages#donate',   via: 'get'
     match '/redeem_credits/(:credits)',   to: 'static_pages#redeem_credits',as: 'redeem_credits',  via: 'get'
     match '/donate_credits/(:credits)',   to: 'static_pages#donate_credits',as: 'donate_credits',  via: 'get'

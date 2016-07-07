@@ -126,6 +126,17 @@ class StaticPagesController < ApplicationController
     def confirm_email
     end
 
+    def dunkin_redeem
+        @current_page = "redeem"
+        @show_back_button = true
+
+        if is_mobile?
+            render "static_pages/redeem_mobile"
+        else
+            render "static_pages/redeem"
+        end
+    end
+
     def redeem
         @current_page = "redeem"
         @show_back_button = true

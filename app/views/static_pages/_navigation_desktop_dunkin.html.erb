@@ -10,7 +10,7 @@
       <%# link_to 'Games', games_path %>
       <div class="nav-dropdown">
         <a href="/dunkin_surveys" class="js-survery-link"><span style="position:relative;"><img class="nav-dropdown__icon nav-dropdown__icon--survey" src="/assets/navbar_1.png">Surveys <i class="fa fa-exclamation js-survey-notification notification"></i></span></a>
-        <%= link_to redeem_path do %><img class="nav-dropdown__icon nav-dropdown__icon--redeem" src="/assets/navbar_3.png"> Redeem <% end %>
+        <%= link_to dunkin_redeem_path do %><img class="nav-dropdown__icon nav-dropdown__icon--redeem" src="/assets/navbar_3.png"> Redeem <% end %>
         <%= link_to dunkin_leaderboards_path do %><img class="nav-dropdown__icon nav-dropdown__icon--leaders" src="/assets/navbar_6.png"> Leaders <% end %>
         <p class="js-nav-dropdown__name nav-dropdown__name"><i class="fa fa-caret-down"></i> <%= current_user.name %></p>
 
