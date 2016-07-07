@@ -69,6 +69,7 @@ class GamesController < ApplicationController
         if request && request.referer && request.referer.include?('?a=')
             redirect_to dunkin_path
         else
+            session[:branded_ad] = nil
             @current_page = "games"
 
             if is_mobile?
