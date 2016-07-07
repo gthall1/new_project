@@ -25,6 +25,16 @@ class SurveysController < ApplicationController
     redirect_to confirmed_path if signed_in? && current_user && !current_user.profile_complete?
   end
 
+  def dunkin_index
+    @surveys = Survey.where(name: "Coffee Survey")
+
+    if is_mobile?
+      render "index_mobile"
+    else
+      render "index"
+    end
+  end
+
   # GET /surveys/1
   # GET /surveys/1.json
   def show
