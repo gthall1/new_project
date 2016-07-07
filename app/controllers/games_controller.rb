@@ -814,6 +814,9 @@ class GamesController < ApplicationController
         render "games/leaderboard"
     end
 
+    def dunkin_game_leaderboard
+    end
+
     def dunkin_leaderboard
         @current_page = "leaderboard"
         @advertiser_id = Advertiser.where(slug:"dunkin-donuts").first.id
