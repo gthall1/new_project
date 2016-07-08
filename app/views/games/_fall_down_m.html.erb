@@ -1,4 +1,8 @@
-<% content_for :body_class, "gameplay-page gameplay-page--fall-down" %>
+<% if is_dunkin_user? %>
+	<% content_for :body_class, "gameplay-page gameplay-page--dunkin" %>
+<% else %>
+	<% content_for :body_class, "gameplay-page gameplay-page--fall-down" %>
+<% end %>
 
 <script>
 	// Issue a warning if trying to preview an exported project on disk.
@@ -10,6 +14,8 @@
 		}
 	})();
 	</script>
+
+	<img class="tower-banner tower-banner--left" src="/assets/dd-pitch.png">
 
 	<!-- The canvas must be inside a div called c2canvasdiv -->
 	<div id="c2canvasdiv">
@@ -30,6 +36,7 @@
 
 	</div>
 
+	<img class="tower-banner tower-banner--right" src="/assets/papi.png">
 
  <%= content_for(:game_javascript) do %>
   <%= javascript_include_tag "fall_down", "data-turbolinks-track" => true %>
