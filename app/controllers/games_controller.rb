@@ -68,18 +68,20 @@ class GamesController < ApplicationController
         #TODO: Fix this hack
         if request && request.referer && request.referer.include?('?a=')
             redirect_to dunkin_path
-        end
-        @current_page = "games"
-
-        if is_mobile?
-            @games = Game.mobile.order("sort_order asc")
         else
-            @games = Game.desktop.order("sort_order asc")
+            session[:branded_ad] = nil
+            @current_page = "games"
+
+            if is_mobile?
+                @games = Game.mobile.order("sort_order asc")
+            else
+                @games = Game.desktop.order("sort_order asc")
+            end
+
+            @is_mobile = is_mobile?
+
+            render "games/index_mobile" if is_mobile?
         end
-
-        @is_mobile = is_mobile?
-
-        render "games/index_mobile" if is_mobile?
     end
 
     def dunkin
