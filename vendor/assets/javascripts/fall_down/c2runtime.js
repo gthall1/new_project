@@ -3907,7 +3907,7 @@ quat4.str=function(a){return"["+a[0]+", "+a[1]+", "+a[2]+", "+a[3]+"]"};
 		{
 			this["setSize"](this.original_width, this.original_height, true);
 		}
-		this.tryLockOrientation();
+		//this.tryLockOrientation();
 		this.getready();	// determine things to preload
 		this.go();			// run loading screen
 		this.extra = {};
@@ -4107,7 +4107,7 @@ quat4.str=function(a){return"["+a[0]+", "+a[1]+", "+a[2]+", "+a[3]+"]"};
 			this.ctx["msImageSmoothingEnabled"] = this.linearSampling;
 			this.ctx["imageSmoothingEnabled"] = this.linearSampling;
 		}
-		this.tryLockOrientation();
+		//this.tryLockOrientation();
 		if (!this.isDomFree && (tryHideAddressBar || this.isiPhone))
 		{
 			window.setTimeout(function () {
@@ -21115,7 +21115,6 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.Spritefont2.prototype.acts.SetText,
 	cr.plugins_.Sprite.prototype.cnds.PickByUID,
 	cr.plugins_.Sprite.prototype.acts.SetX,
-	cr.plugins_.Sprite.prototype.acts.SetPosToObject,
 	cr.plugins_.Sprite.prototype.cnds.CompareY,
 	cr.plugins_.Sprite.prototype.acts.Destroy,
 	cr.plugins_.Sprite.prototype.cnds.OnCollision,
