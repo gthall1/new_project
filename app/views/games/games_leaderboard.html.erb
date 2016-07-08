@@ -8,11 +8,16 @@
 <div class="interior-body">
     <section class="card-container">
         <% @games.each do | g | %>
-            <div class="card-tout" style="background-image:url(/assets/<%= g.desktop_image %>);">
+            <div class="card-tout" style="background-image:url(/assets/<%= g.game_image({advertiser_id:@advertiser_id,desktop:true}) %>);">
                 <div class="card-inner">
-                    <%= link_to game_leaderboard_path(game_slug:g.slug) do %>
-                        <h1 class="survey__title"><%= g.name %></h1>
-                        <!-- <span class='card__lower'>View Leaderboard</span> -->
+                    <% if is_dunkin_user? %>
+                        <%= link_to dunkin_game_leaderboard_path do %>
+                            <h1 class="survey__title"><%= g.game_title({advertiser_id:@advertiser_id}) %></h1>
+                        <% end %>
+                    <% else %>
+                        <%= link_to game_leaderboard_path(game_slug:g.slug) do %>
+                            <h1 class="survey__title"><%= g.game_title({advertiser_id:@advertiser_id}) %></h1>
+                        <% end %>
                     <% end %>
                 </div>
             </div>

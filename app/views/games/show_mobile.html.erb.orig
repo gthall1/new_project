@@ -1,0 +1,32 @@
+<<<<<<< HEAD
+<div class="game-container <%= @game.slug =='2048' ? 'g-2048' : '' %>">
+=======
+<% content_for :title, "#{@game.name}" %>
+<% content_for :description, "#{@game.description}" %>
+
+<div class="game-container">
+>>>>>>> dd_demo
+
+  <% case @game.slug %>
+    <% when 'sorcerer-game' %>
+      <%= render 'sorcerer_m' %>
+    <% when '2048' %>
+      <%= render 'twentyfortyeight_m' %>     
+    <% when 'black-hole' %>
+      <%= render 'blackhole_m' %>   
+    <% when 'traffic' %>
+      <%= render 'traffic_m' %> 
+    <% when 'flappy-pilot' %>
+      <%= render 'flappy_pilot_m' %>  
+    <% when 'fall-down' %>
+      <%= render 'fall_down_m' %>  
+    <% when 'tap-color' %>
+     <%= render 'tap_color' %>  
+    <% when 'gold-runner' %>
+      <%= render 'gold_runner' %>      
+  <% end %>
+</div>
+
+<script type='text/javascript'>
+
+</script>

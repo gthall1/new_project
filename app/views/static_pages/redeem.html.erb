@@ -1,45 +1,58 @@
-<% content_for :body_class, "interior-page" %>
+<% if is_dunkin_user? %>
+    <% content_for :body_class, "interior-page interior-page--dd" %>
+<% else %>
+    <% content_for :body_class, "interior-page" %>
+<% end %>
 
 <div class="interior-hero">
-  <h1 class="interior-hero__title">Balance: <span class='credits'>
-        <%= current_user.credits.blank? ? "0" : current_user.credits %> credits</span></h1>
-  <p class="interior-hero__desc">Redeem your credits. Once you have earned enough credits, trade them in for cash or donate their value to charity!</p>
+    <h1 class="interior-hero__title">Balance: <span class='credits'>
+    <%= current_user.credits.blank? ? "0" : current_user.credits %> credits</span></h1>
+    <p class="interior-hero__desc">Redeem your credits. Once you have earned enough credits, trade them in for cash or donate their value to charity!</p>
 </div> <!--/.interior-hero -->
 
 <div class='interior-body'>
-  <div class="donations">
-    <div class="donations__wrapper">
-      <h1 class="donations__caption">Get in the spirit of giving and support The American Red Cross</h1>
-      <a class="donations__link donations__link--holiday" href="/donate">Donate Credits</a>
-    </div>
-  </div>
+    <% if is_dunkin_user? %>
+        <div class="donations">
+            <div class="donations__wrapper">
+                <h1 class="donations__caption">Turn your credits into Dunkin' Donuts Coffee, Munchkins and more</h1>
+                <a class="donations__link donations__link--holiday" href="#" data-toggle="tooltip" data-placement="bottom" title="You do not have enough credits">Redeem Credits</a>
+            </div>
+        </div>
+    <% else %>
+        <div class="donations">
+            <div class="donations__wrapper">
+                <h1 class="donations__caption">Get in the spirit of giving and support The American Red Cross</h1>
+                <a class="donations__link donations__link--holiday" href="/donate">Donate Credits</a>
+            </div>
+        </div><!-- /.donations -->
 
-  <section class="card-container">
-    <p class="interior-body__caption">Or​ redeem your credits for cash</p>
-    <%= link_to redeem_credits_path(credits: 1000) do %>
-      <div class="card-tout">
-        <div class="card-inner">
-          <h1 class="card__big-title">$5</h1>
-          <span class='card__credits card__lower'>-1000 credits</span>
-        </div>
-      </div>
+        <section class="card-container">
+            <p class="interior-body__caption">Or​ redeem your credits for cash</p>
+            <%= link_to redeem_credits_path(credits: 1000) do %>
+                <div class="card-tout">
+                    <div class="card-inner">
+                        <h1 class="card__big-title">$5</h1>
+                        <span class='card__credits card__lower'>-1000 credits</span>
+                    </div>
+                </div>
+            <% end %>
+            <%= link_to redeem_credits_path(credits: 1950) do %>
+                <div class="card-tout">
+                    <div class="card-inner">
+                        <h1 class="card__big-title">$10</h1>
+                        <span class='card__credits card__lower'>-1950 credits</span>
+                    </div>
+                </div>
+            <% end %>
+            <%= link_to redeem_credits_path(credits: 3900) do %>
+                <div class="card-tout">
+                    <div class="card-inner">
+                        <h1 class="card__big-title">$20</h1>
+                        <span class='card__credits card__lower'>-3900 credits</span>
+                    </div>
+                </div>
+            <% end %>
+        </section>
     <% end %>
-    <%= link_to redeem_credits_path(credits: 1950) do %>
-      <div class="card-tout">
-        <div class="card-inner">
-          <h1 class="card__big-title">$10</h1>
-          <span class='card__credits card__lower'>-1950 credits</span>
-        </div>
-      </div>
-    <% end %>
-    <%= link_to redeem_credits_path(credits: 3900) do %>
-      <div class="card-tout">
-        <div class="card-inner">
-          <h1 class="card__big-title">$20</h1>
-          <span class='card__credits card__lower'>-3900 credits</span>
-        </div>
-      </div>
-    <% end %>
-  </section>
 </div><!-- /.interior-body -->
 

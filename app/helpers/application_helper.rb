@@ -2,11 +2,11 @@ module ApplicationHelper
 
   # Returns the full title on a per-page basis.
   def full_title(page_title)
-    base_title = "Luckee"
+    base_title = "GetLuckee"
     if page_title.empty?
       base_title
     else
-      "#{base_title} | #{page_title}"
+      "#{page_title} | #{base_title}"
     end
   end
 
@@ -26,6 +26,10 @@ module ApplicationHelper
     else
       true
     end
+  end
+
+  def is_dunkin_user?
+    return session[:branded_ad] == 9
   end
 
   def determine_layout

@@ -5,7 +5,7 @@ Alotto::Application.routes.draw do
 
     resources :purchases
     resources :surveys
-    resources :games
+    resources :games, param: :slug
     resources :users
     resources :users do
         member do
@@ -21,6 +21,7 @@ Alotto::Application.routes.draw do
     match '/signin',  to: 'sessions#new',         via: 'get'
     match '/signout', to: 'sessions#destroy',     via: 'delete'
     match '/user_survey', to: 'surveys#user_survey_save', via: 'patch'
+    match '/dunkin_surveys', to: 'surveys#dunkin_index', via: 'get'
     match '/current_jackpot', to:'jackpots#current_jackpot', via: 'get'
     match '/deposit',  to: 'jackpots#show',         via: 'get'
     match '/stats', to: 'users#stats', via: 'get'
@@ -39,6 +40,7 @@ Alotto::Application.routes.draw do
     match '/about',   to: 'static_pages#about',   via: 'get'
     match '/confirm_email',   to: 'static_pages#confirm_email',   via: 'get'
     match '/redeem',   to: 'static_pages#redeem',   via: 'get'
+    match '/dunkin_redeem',   to: 'static_pages#dunkin_redeem',   via: 'get'
     match '/donate',   to: 'static_pages#donate',   via: 'get'
     match '/redeem_credits/(:credits)',   to: 'static_pages#redeem_credits',as: 'redeem_credits',  via: 'get'
     match '/donate_credits/(:credits)',   to: 'static_pages#donate_credits',as: 'donate_credits',  via: 'get'
@@ -53,25 +55,17 @@ Alotto::Application.routes.draw do
 
     # Games Pages
     match '2048_home', to: 'games#twentyfortyeight_home', via: 'get'
-    match '/updates', to: 'games#test_game_check', via: 'get'
-    match '/heliwin', to: 'games#helicopter_check', via: 'get'
-    match '/sorcend', to: 'games#sorcerer_end', via: 'get'
-    match '/score_update', to: 'games#score_update', via: 'get'
-    match '/score_update', to: 'games#score_update', via: 'post'
     match '/get_high_scores', to: 'games#get_high_scores', via: 'get'
-    match '/close_game', to: 'games#close_game', via: 'post'
-    match '/close_game', to: 'games#close_game', via: 'get'
-    match '/new_game', to: 'games#new_game_session', via: 'get'
-    match '/reset_game', to: 'games#reset_game', via: 'get'
-    match '/reset_game', to: 'games#reset_game', via: 'post'
     match '/memorywin', to: 'games#memory_check', via: 'get'
-    match '/challenge/:game_slug', to: 'games#challenge', as: 'game_challenge', via: 'get'
-    match '/challenge_play/:c', to: 'games#show', as: 'challenge_accept', via: 'get'
-    match '/challenge_user', to: 'games#challenge_create',as: 'challenges', via: 'post'
-    match '/ro', to: 'games#get_random_challenge_user', via: 'get'
+   # match '/challenge/:game_slug', to: 'games#challenge', as: 'game_challenge', via: 'get'
+   # match '/challenge_play/:c', to: 'games#show', as: 'challenge_accept', via: 'get'
+   # match '/challenge_user', to: 'games#challenge_create',as: 'challenges', via: 'post'
+   # match '/ro', to: 'games#get_random_challenge_user', via: 'get'
     #match '/leaderboard/:game_slug', to: 'games#leaderboard', as: 'game_leaderboard', via: 'get'
+    match '/dunkin_game_leaderboard', to: 'games#dunkin_game_leaderboard', via: 'get'
     match '/leaderboard/:game_slug', to: 'games#leaderboard', as: 'game_leaderboard', via: 'get'
     match '/leaderboards', to: 'games#games_leaderboard', via: 'get'
+    match '/dunkin_leaderboards', to: 'games#dunkin_leaderboard', via: 'get'
     match '/get_advertisers', to: 'games#get_advertisers', via: 'get'
     match '/reset_timer', to: 'games#reset_game', via: 'get'
     match '/get_advertiser_logo', to: 'games#get_advertiser_logo', via: 'get'
@@ -94,6 +88,20 @@ Alotto::Application.routes.draw do
     #same as referral but we giving this to them for ease and use of custom urls and tracking
     get '/r-:referral',to: 'static_pages#home_invite', via: 'get'
 
+    #Calls from within games
+    match '/check_branded', to: 'games#check_branded', via: 'post'
+    match '/fetch_assets', to: 'games#fetch_assets', via: 'post'
+    match '/close_game', to: 'games#close_game', via: 'post'
+    match '/close_game', to: 'games#close_game', via: 'get'
+    match '/new_game', to: 'games#new_game_session', via: 'get'
+    match '/reset_game', to: 'games#reset_game', via: 'get'
+    match '/reset_game', to: 'games#reset_game', via: 'post'
+    match '/score_update', to: 'games#score_update', via: 'get'
+    match '/score_update', to: 'games#score_update', via: 'post'
+
+    #Promo Demo Page
+    match '/dunkin', to: 'games#dunkin', via: 'get'
+
     #For analytics to grab some data
     namespace :api, defaults: { format: :json } do
         namespace :v1 do
@@ -111,6 +119,5 @@ Alotto::Application.routes.draw do
 
     #CATCH ALL FOR PROMOS
     match '/:promo', to: 'static_pages#home', via: 'get'
-
 
 end

@@ -222,7 +222,7 @@
                     <% if @game %>
                         <h2 style='font-size:27px;'><%= @game.name %><br /><span class='credits' <% if @game.name == 'Sorcerer Game' %>style='top:0px'<% end %>><%= current_user.credits ||= 0 %> credits</span></h2>
                     <% else %>
-                        <h2><%= link_to games_path do %><img src="/assets/luckee-font.png" class="mobile-header__logo"><% end %><br /><span class='credits mobile-header__credits'><%= current_user.credits ||= 0 %> credits</span></h2>
+                        <h2><%= link_to games_path do %><img src="/assets/small_luckee_font-no-beta.png" class="mobile-header__logo"><% end %><br /><span class='credits mobile-header__credits'><%= current_user.credits ||= 0 %> credits</span></h2>
                     <% end %>
 
                     <div class='referral-link'>

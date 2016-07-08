@@ -7,28 +7,29 @@
 
 <div class="interior-body">
     <section class="card-container">
-        <% @surveys.each do |survey| %>
-            <div class="card-tout <% if survey.slug == "bellhops" %>ga-affiliate-survey<% end %><% if UserSurvey.where(survey_id: survey.id,user_id:current_user.id,complete:true).present? %> disabled <% end %>">
-                <div class="card-inner">
-                    <% if UserSurvey.where(survey_id: survey.id,user_id:current_user.id,complete:true).present? %>
-                        <h1 class="survey__title"><%= survey.name %></h1>
-                        <span class='card__credits card__lower'>+<%= survey.credits%> credits</span>
-                    <% else %>
-                    <%= link_to  survey do %>
-                        <h1 class="survey__title"><%= survey.name %></h1>
-                        <span class='card__credits card__lower'>+<%= survey.credits%> credits</span>
-                    <% end %>
-                    <% end %>
-                    <% if UserSurvey.where(survey_id: survey.id,user_id:current_user.id,complete:true).present? %>
-                        <% if survey.slug == "bellhops" %>
-                            <span class="survey__completed survey__completed--bellhops"><%= link_to 'Apply to Bellhops', bellhops_affiliate_path %></span>
+            <% @surveys.each do |survey| %>
+                <div class="card-tout <% if survey.slug == "bellhops" %>ga-affiliate-survey<% end %><% if UserSurvey.where(survey_id: survey.id,user_id:current_user.id,complete:true).present? %> disabled <% end %>">
+                    <div class="card-inner">
+                        <% if UserSurvey.where(survey_id: survey.id,user_id:current_user.id,complete:true).present? %>
+                            <h1 class="survey__title"><%= survey.name %></h1>
+                            <span class='card__credits card__lower'>+<%= survey.credits%> credits</span>
                         <% else %>
-                            <span class='survey__completed'>Survey Completed</span>
+                        <%= link_to  survey do %>
+                            <h1 class="survey__title"><%= survey.name %></h1>
+                            <span class='card__credits card__lower'>+<%= survey.credits%> credits</span>
                         <% end %>
-                    <% end %>
+                        <% end %>
+                        <% if UserSurvey.where(survey_id: survey.id,user_id:current_user.id,complete:true).present? %>
+                            <% if survey.slug == "bellhops" %>
+                                <span class="survey__completed survey__completed--bellhops"><%= link_to 'Apply to Bellhops', bellhops_affiliate_path %></span>
+                            <% else %>
+                                <span class='survey__completed'>Survey Completed</span>
+                            <% end %>
+                        <% end %>
+                    </div>
                 </div>
-            </div>
-        <% end %>
+            <% end %>
+
     </section><!-- /.card-container -->
 </div><!--/.interior-body -->
 

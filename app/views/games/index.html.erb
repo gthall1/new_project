@@ -1,20 +1,46 @@
-<% content_for :body_class, "desktop-games-page games-page" %>
+<% content_for :title, "Play Free Games. Earn real cash." %>
+
+<% if is_dunkin_user? %>
+    <% content_for :body_class, "desktop-games-page games-page games-page--dunkin" %>
+<% else %>
+    <% content_for :body_class, "desktop-games-page games-page" %>
+<% end %>
 
 <% if show_ads %>
     <%= render partial: "/ad_units/ad_wide", :locals => {ad_slot: "2440491879"} %>
 <% end %>
-<h1 class="page__title">Play free games. Earn real cash.</h1>
+
+<% if is_dunkin_user? %>
+    <h1 class="page__title">Play free games. Earn real rewards.</h1>
+<% else %>
+    <h1 class="page__title">Play free games. Earn real cash.</h1>
+<% end %>
 
 <div class='game-list-container'>
+    <% if is_dunkin_user? %>
+        <a href="//www.youtube.com/watch?v=X_X16Iwk4N4" data-lity>
+            <div class="game-wrapper game--fastest-way-to-dd js-game--fastest-way-to-dd">
+
+                <img class="game-image" src="/assets/fastest-way-to-dd.jpg">
+
+                <div class="game__info">
+                    <h1 class="game__title">Watch Fastest Way to Dunkin</h1>
+                    <span class="credits">Earn 20 Credits</span>
+                </div>
+
+            </div> <!--/ .game-wrapper -->
+        </a>
+    <% end %>
+
         <% @games.each do | g | %>
             <% if g.device_type != 5 || current_user.has_purchased_game(g.id) %>
-            <%= link_to game_path(g) do %>
+            <%= link_to game_path(g.slug,a:@advertiser_id) do %>
                 <div class="game-wrapper game--<%= g.slug %> js-game--<%= g.slug %>">
 
-                    <%= image_tag(g.desktop_image, :class=>'game-image') %>
+                    <%= image_tag(g.game_image({advertiser_id:@advertiser_id,desktop:true}), :class=>'game-image') %>
 
                     <div class="game__info">
-                        <h1 class="game__title"><%= g.name %></h1>
+                        <h1 class="game__title"><%= g.game_title({advertiser_id:@advertiser_id}) %></h1>
                         <span class="credits">Earn Credits</span>
                     </div>
 
@@ -30,7 +56,7 @@
                         </div><!-- /.game-img-wrap -->
 
                         <div class="game__info">
-                            <h1 class="game__title"><%= g.name %></h1>
+                            <h1 class="game__title"><%= g.game_title({advertiser_id:@advertiser_id}) %></h1>
                             <span class="credits">Unlock Game:</span>
                             <span class="game__cost"><%= g.credit_cost %> credits</span>
                         </div>
@@ -39,4 +65,15 @@
                 <% end %>
             <% end %>
         <% end %>
-</div>
+
+        <% if is_dunkin_user? %>
+            <p class="fine-copy">This page is for demonstration purposes only.<br> For full site visit <a style="color:#817bdf;" href="/">www.getluckee.com</p>
+        <% end %>
+</div><!-- /.game-list-container -->
+
+<% if is_dunkin_user? %>
+    <script>
+        var lightbox = lity();
+        $(document).on('click', '[data-lity]', lightbox);
+    </script>
+<% end %>

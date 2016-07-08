@@ -7,13 +7,14 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
 
   private
-    def set_is_bot
-	    if request && request.user_agent
-	      session[:bot] = !request.user_agent.match(/\(.*https?:\/\/.*\)/).blank? || !request.user_agent.match(/Twitterbot\/1.0/).blank?
-	    elsif session[:bot].blank?
-	      session[:bot] = false
-	    end
+  
+  def set_is_bot
+    if request && request.user_agent
+      session[:bot] = !request.user_agent.match(/\(.*https?:\/\/.*\)/).blank? || !request.user_agent.match(/Twitterbot\/1.0/).blank?
+    elsif session[:bot].blank?
+      session[:bot] = false
     end
+  end
 
   def check_country
     if request && request.ip

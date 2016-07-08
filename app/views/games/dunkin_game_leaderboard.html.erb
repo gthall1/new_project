@@ -1,0 +1,31 @@
+<% if is_mobile? %>
+    <% content_for :body_class, "leaderboard-page--mobile" %>
+<% else %>
+    <% content_for :body_class, "leaderboard-page" %>
+<% end %>
+
+<% @mobile_container_id = "leaderboard--placeholder" %>
+
+<section class="leaderboard-nav">
+    <h1 class="leaderboard__title leaderboard__title--headline">Dunkin Leaderboard</h1>
+
+    <!-- Fix: change id of leaderboard__cat => .leaderboard__cat--1  -->
+    <div id="leaderboard__cat--1" class="js-leaderboard__cat leaderboard__cat">
+        <h2 class="tab-control__title js-tab--cat ga-tab--myfriends" data-tab-cat=".leaderboard--my-friends">My Friends</h2> <!-- Fix: add class .active  -->
+        <h2 class="tab-control__title js-tab--cat ga-tab--alltime active" data-tab-cat=".leaderboard--all-time">All-Time</h2>
+        <h2 class="tab-control__title js-tab--cat ga-tab--weekly" data-tab-cat=".leaderboard--weekly" >Weekly</h2>
+    </div>
+</section>
+
+<section class="game-leaderboard">
+    <img src="/assets/dunkin-leaderboard.png">
+</section><!-- /.game-leaderboard -->
+
+<% if show_ads %>
+    <%= render partial: "/ad_units/ad_wide", :locals => {ad_slot: "6870691477"} %>
+<% end %>
+<script>
+    // $(window).load(function(){
+    //     $('.leaderboard-row--current-user').addClass('animate');
+    // })
+</script>

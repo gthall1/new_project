@@ -1,9 +1,10 @@
 class GamesController < ApplicationController
     before_action :set_game, only: [:show, :purchase_confirm, :edit, :update, :destroy]
-    before_action :check_purchase, only: [:show]
 
-    before_filter :check_signed_in,:set_notifications
-    skip_before_filter  :verify_authenticity_token, only:[:score_update,:reset_game,:get_random_challenge_user]
+    before_action :check_purchase, only: [:show]
+    before_filter :set_dunkin, only: [:dunkin]
+    before_filter :check_signed_in,:set_notifications, except:[:check_branded,:fetch_assets]
+    skip_before_filter  :verify_authenticity_token, only:[:score_update,:reset_game,:get_random_challenge_user, :check_branded, :fetch_assets]
 
     include ApplicationHelper
     include GamesHelper
@@ -18,19 +19,84 @@ class GamesController < ApplicationController
         true
     end
 
+    def check_branded
+        ad_id = 0
+        ad_number = 0
+        if session[:ad_id]
+            ad_id = session[:ad_id]
+            if ad_id.to_i == Advertiser.where(slug:'dunkin-donuts').first.id && params[:slug] == 'flappy-pilot'
+                ad_number = 9
+            end
+        end
+        res = {
+            :c2dictionary => true,
+            :data => {
+             :branded => params[:slug] == 'flappy-pilot' ? ad_number : 0
+            }
+        }
+        render json: res
+    end
+
+    def fetch_assets
+        #check for current campaigns
+
+        slug = params[:slug]
+        # ball_url = ActionController::Base.helpers.asset_path(BrandedGameAsset.where(slug:'fall-down-ball').first.asset_url)
+        # bg_url = ActionController::Base.helpers.asset_path(BrandedGameAsset.where(slug:'fall-down-bg').first.asset_url)
+        if session[:branded_ad] == 9
+            ball_url  = "/assets/fall_down/#{BrandedGameAsset.where(slug:'fall-down-ball').first.asset_url}"
+            bg_url = "/assets/fall_down/#{BrandedGameAsset.where(slug:'fall-down-bg').order('random()').first.asset_url}"
+        else
+            bg_url = nil
+            ball_url = nil
+        end
+        game_json = {
+            :c2dictionary => true,
+            :data => {
+             :ball_image =>ball_url,
+             :bg_image =>bg_url,
+             :alt_assets => 'true',
+            }
+        }
+
+        render json: game_json
+    end
+
     # GET /games
     # GET /games.json
     def index
-        @current_page = "games"
-        if is_mobile?
-            @games = Game.mobile.order("sort_order asc")
+        #TODO: Fix this hack
+        if request && request.referer && request.referer.include?('?a=')
+            redirect_to dunkin_path
         else
-            @games = Game.desktop.order("sort_order asc")
+            session[:branded_ad] = nil
+            @current_page = "games"
+
+            if is_mobile?
+                @games = Game.mobile.order("sort_order asc")
+            else
+                @games = Game.desktop.order("sort_order asc")
+            end
+
+            @is_mobile = is_mobile?
+
+            render "games/index_mobile" if is_mobile?
         end
+    end
+
+    def dunkin
+        @current_page = "games"
+        @advertiser_id = Advertiser.where(slug:"dunkin-donuts").first.id
+
+        game_ids = BrandedGameProperty.where(advertiser_id: @advertiser_id).map{|g| g.game_id }
+        @games = Game.where(id:game_ids).order("sort_order asc")
 
         @is_mobile = is_mobile?
-
-        render "games/index_mobile" if is_mobile?
+        if is_mobile?
+            render "games/index_mobile"
+        else
+            render "games/index"
+        end
     end
 
     def purchase_confirm
@@ -109,7 +175,17 @@ class GamesController < ApplicationController
     # GET /games/1
     # GET /games/1.json
     def show
+        #TODO: make this legit
+
+        if params[:a] && Advertiser.where(id:params[:a]).present?
+            session[:ad_id] = params[:a]
+        else
+            session[:branded_ad] = nil
+            session[:ad_id] = nil
+        end
+
         @show_back_button = true
+
         case @game.name
             when "Memory Game"
                 @top_scores = UserGameSession.where(game_id:@game.id).where.not(score:nil).order("score asc").limit(10)
@@ -718,11 +794,16 @@ class GamesController < ApplicationController
         end
 
         if newgame && game.slug == "fall-down"
-            ad_number = get_ad
+            if session[:branded_ad]
+                ad_number = session[:branded_ad]
+            else
+                ad_number = get_ad
+            end
+
             if ad_number && ad_number != 1
                 AdDisplay.create({user_game_session_id:UserGameSession.where(token:session[:game_token]).first.id,user_id:current_user.id, game_id:game.id,ad_number:ad_number})
             end
-            
+
             game_json = {
                 :c2dictionary => true,
                 :data => {
@@ -748,22 +829,28 @@ class GamesController < ApplicationController
         render json: game_json
     end
 
-    # def leaderboard
-    #     @current_page = "leaderboard"
-    #     @game = Game.where(slug:params[:game_slug]).first
-    # end
-
     def leaderboard
         @current_page = "leaderboard"
         @game = Game.where(slug:params[:game_slug]).first
 
-        # if is_mobile?
-        #     render "games/leaderboard"
-        # else
-        #     render "games/leaderboard_old"
-        # end
-
         render "games/leaderboard"
+    end
+
+    def dunkin_game_leaderboard
+    end
+
+    def dunkin_leaderboard
+        @current_page = "leaderboard"
+        @advertiser_id = Advertiser.where(slug:"dunkin-donuts").first.id
+
+        game_ids = BrandedGameProperty.where(advertiser_id: @advertiser_id).map{|g| g.game_id }
+        @games = Game.where(id:game_ids)
+
+        if is_mobile?
+            render "games/games_leaderboard_new"
+        else
+            render "games/games_leaderboard"
+        end
     end
 
     def games_leaderboard
@@ -915,10 +1002,10 @@ class GamesController < ApplicationController
                     when 28..37
                         credits = 4
                     when 37..99999
-                        credits = (score/10.to_f).ceil + 1 
-                    else 
+                        credits = (score/10.to_f).ceil + 1
+                    else
                         credits = 0
-                end                
+                end
                 #credits = (score/3.to_f).ceil - 1
                 credits
         end
@@ -947,13 +1034,24 @@ class GamesController < ApplicationController
                 end
              end
         elsif params[:slug] && !params[:slug].blank?
-             @game = Game.where(slug:params[:slug]).first
+            @game = Game.where(slug:params[:slug]).first
         else
-             @game = Game.find(params[:id])
+            @game = Game.find(params[:id])
         end
 
         if @game.name == "Helicopter"
             set_heli
+        end
+    end
+
+    #auto sign in dunkin demo user for this url
+    def set_dunkin
+        session[:branded_ad] = 9
+        if !signed_in?
+            pass = SecureRandom.urlsafe_base64
+
+            user = User.where(:name => 'DunkinDemo').first_or_initialize({name:"DunkinDemo", firstname:"Dunkin",lastname:"Demo",dob:Time.now-50.years,gender: 1,password:pass, password_confirmation:pass,credits:0,email:"tyler+demodd1@getluckee.com",email_verified: true, arrival_id: session[:arrival_id]})
+            sign_in user
         end
     end
 
