@@ -9,16 +9,17 @@
             <h2 class="game-page__subtitle game-page__subtitle--backdrop">Home</h2>
         </a>
 
-        <a href="/leaderboard/<%= @game.name %>" class="game-page__link">
+        <a href="/leaderboard/<%= @game.slug %>" class="game-page__link">
             <img src="/assets/white_leaderboard.svg" class="game-page__icon">
             <h2 class="game-page__subtitle game-page__subtitle--backdrop">Leaderboard</h2>
         </a>
     </div>
 
+
     <a href="/2048_tutorial" class="game-page__tut-btn game-page__tut-btn--2048">How to Play</a>
 
-    <a href="/games/<%= @game.id %>" class="game-page__play">
+    <%= link_to game_path('2048',a:@advertiser_id),:class=>'game-page__play' do %>
         <i class="fa fa-play"></i>
         <h2 class="game-page__subtitle">Play now!</h2>
-    </a>
+    <% end %>
 </div>
