@@ -4,35 +4,30 @@
     <% if is_dunkin_user? %>
         <a href="//www.youtube.com/watch?v=X_X16Iwk4N4" data-lity>
             <div class="game-wrapper game--fastest-way-to-dd js-game--fastest-way-to-dd %>">
-                <img class="game-image" src="/assets/fastest-way-to-dd.jpg">
+                <img class="game-image" src="/assets/fastest-way-to-dd_mobile.jpg">
             </div>
         </a>
     <% end %>
 
-    <div class='game-list-container'>
-        <% @games.each do | g | %>
-            <% if g.device_type != 5 || current_user.has_purchased_game(g.id) %>
-                <%= link_to game_path(g.slug,a:@advertiser_id) do %>
-                    <div class="game-wrapper game--<%= g.slug %> js-game--<%= g.slug %>" data-game-id="<%= g.id %>">
-                    <%= image_tag(g.game_image({advertiser_id:@advertiser_id,desktop:false}), :class=>'game-image') %>
-                    </div>
-                <% end %>
-            <% else %>
-                <%= link_to unlock_game_path(g.slug) do %>
-                    <div class="game-wrapper--locked game-wrapper game--<%= g.slug %> js-game--<%= g.slug %>" data-game-id="<%= g.id %>">
-                        <%= image_tag(g.game_image({advertiser_id:nil,desktop:false}), :class=>'game-image') %>
-                        <img src="/assets/locked.png" class="locks">
-                    </div>
-                <% end %>
+    <% @games.each do | g | %>
+        <% if g.device_type != 5 || current_user.has_purchased_game(g.id) %>
+            <%= link_to game_path(g.slug,a:@advertiser_id) do %>
+                <div class="game-wrapper game--<%= g.slug %> js-game--<%= g.slug %>" data-game-id="<%= g.id %>">
+                <%= image_tag(g.game_image({advertiser_id:@advertiser_id,desktop:false}), :class=>'game-image') %>
+                </div>
             <% end %>
+        <% else %>
+            <%= link_to unlock_game_path(g.slug) do %>
+                <div class="game-wrapper--locked game-wrapper game--<%= g.slug %> js-game--<%= g.slug %>" data-game-id="<%= g.id %>">
+                    <%= image_tag(g.game_image({advertiser_id:nil,desktop:false}), :class=>'game-image') %>
+                    <img src="/assets/locked.png" class="locks">
+                </div>
+            <% end %>
+        <% end %>
     <% end %>
 
-    <p class="fine-copy">This page is for demonstration purposes only.<br> For full site visit <a href="/">www.getluckee.com</a></p>
+    <% if is_dunkin_user? %>
+        <p class="fine-copy">This page is for demonstration purposes only.<br> For full site visit <a style="color:#817bdf;" href="/">www.getluckee.com</p>
+    <% end %>
 </div>
 
-<% if is_dunkin_user? %>
-    <script>
-        var lightbox = lity();
-        $(document).on('click', '[data-lity]', lightbox);
-    </script>
-<% end %>

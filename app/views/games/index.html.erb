@@ -66,7 +66,9 @@
             <% end %>
         <% end %>
 
-        <p class="fine-copy">This page is for demonstration purposes only.<br> For full site visit <a style="color:#817bdf;" href="/">www.getluckee.com</p>
+        <% if is_dunkin_user? %>
+            <p class="fine-copy">This page is for demonstration purposes only.<br> For full site visit <a style="color:#817bdf;" href="/">www.getluckee.com</p>
+        <% end %>
 </div><!-- /.game-list-container -->
 
 <% if is_dunkin_user? %>
