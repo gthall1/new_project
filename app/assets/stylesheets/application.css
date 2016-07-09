@@ -16,7 +16,7 @@
  *= require chosen
  *= require sign_in
  *= require jquery-ui
- *= require lity
+ *= require fancybox
  *= require_self
  */
 
