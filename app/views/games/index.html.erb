@@ -18,7 +18,7 @@
 
 <div class='game-list-container'>
     <% if is_dunkin_user? %>
-        <a href="//www.youtube.com/watch?v=X_X16Iwk4N4" data-lity>
+        <a class="fancybox fancybox.iframe" href="http://www.youtube.com/embed/X_X16Iwk4N4?enablejsapi=1&wmode=opaque">
             <div class="game-wrapper game--fastest-way-to-dd js-game--fastest-way-to-dd">
 
                 <img class="game-image" src="/assets/fastest-way-to-dd.jpg">
@@ -29,7 +29,7 @@
                 </div>
 
             </div> <!--/ .game-wrapper -->
-        </a>
+        </a><!-- /.fancybox -->
     <% end %>
 
         <% @games.each do | g | %>
@@ -71,9 +71,56 @@
         <% end %>
 </div><!-- /.game-list-container -->
 
-<% if is_dunkin_user? %>
-    <script>
-        var lightbox = lity();
-        $(document).on('click', '[data-lity]', lightbox);
-    </script>
-<% end %>
+<script>
+    // loads the IFrame Player API code asynchronously.
+    var tag = document.createElement('script');
+
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    // Fires whenever a player has finished loading
+    function onPlayerReady(event) {
+        event.target.playVideo();
+        console.log('loaded!');
+    }
+
+    // Fires when the player's state changes.
+    function onPlayerStateChange(event) {
+        // Go to the next video after the current one is finished playing
+        if (event.data === 0) {
+            $.fancybox.close();
+        }
+    }
+
+    // The API will call this function when the page has finished downloading the JavaScript for the player API
+    function onYouTubePlayerAPIReady() {
+
+        // Initialise the fancyBox after the DOM is loaded
+        $(document).ready(function() {
+            $(".fancybox")
+                .attr('rel', 'gallery')
+                .fancybox({
+                    openEffect  : 'none',
+                    closeEffect : 'none',
+                    nextEffect  : 'none',
+                    prevEffect  : 'none',
+                    padding     : 0,
+                    margin      : 50,
+                    beforeShow  : function() {
+                        // Find the iframe ID
+                        var id = $.fancybox.inner.find('iframe').attr('id');
+
+                        // Create video player object and add event listeners
+                        var player = new YT.Player(id, {
+                            events: {
+                                'onReady': onPlayerReady,
+                                'onStateChange': onPlayerStateChange
+                            }
+                        });
+                    }
+                });
+        });
+
+    }
+</script>

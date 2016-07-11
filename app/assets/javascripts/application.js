@@ -36,5 +36,5 @@
 //= require surveys
 //= require chosen
 //= require jquery-ui
-//= require lity
+//= require fancybox
 //= require main
