@@ -6,8 +6,6 @@
     <% content_for :body_class, "desktop-games-page games-page" %>
 <% end %>
 
-<script src="https://www.youtube.com/player_api"></script>
-
 <% if show_ads %>
     <%= render partial: "/ad_units/ad_wide", :locals => {ad_slot: "2440491879"} %>
 <% end %>
@@ -74,6 +72,13 @@
 </div><!-- /.game-list-container -->
 
 <script>
+    // loads the IFrame Player API code asynchronously.
+    var tag = document.createElement('script');
+
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
     // Fires whenever a player has finished loading
     function onPlayerReady(event) {
         event.target.playVideo();
