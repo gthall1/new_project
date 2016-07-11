@@ -830,10 +830,14 @@ class GamesController < ApplicationController
     end
 
     def leaderboard
-        @current_page = "leaderboard"
-        @game = Game.where(slug:params[:game_slug]).first
+        if request && request.referer && request.referer.include?('?a=')
+            redirect_to dunkin_game_leaderboard_path
+        else
+            @current_page = "leaderboard"
+            @game = Game.where(slug:params[:game_slug]).first
 
-        render "games/leaderboard"
+            render "games/leaderboard"
+        end
     end
 
     def dunkin_game_leaderboard
