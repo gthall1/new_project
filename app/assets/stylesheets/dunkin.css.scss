@@ -1,0 +1,33 @@
+// Hide Tower banners on mobile
+.tower-banner {
+    .gameplay-page--mobile & {
+        display: none;
+    }
+}
+
+// Hide bottom nav on mobile for dunkin testers
+.bottom-navigation--mobile {
+    .dunkin-tester--mobile & {
+        display: none;
+    }
+}
+
+.game-leaderboard {
+    .dunkin-tester--mobile & {
+        display: none;
+    }
+}
+
+.dunkin-leaderboard {
+    display: none;
+    margin-top: 60px;
+
+    .dunkin-tester--mobile & {
+        display: block;
+    }
+}
+
+.dunkin-leaderboard__img {
+    width: 100%;
+    height: auto;
+}

@@ -1,4 +1,6 @@
-<% if is_dunkin_user? %>
+<% if is_dunkin_user? && is_mobile? %>
+	<% content_for :body_class, "gameplay-page gameplay-page--mobile gameplay-page--dunkin" %>
+<% elsif is_dunkin_user? %>
 	<% content_for :body_class, "gameplay-page gameplay-page--dunkin" %>
 <% else %>
 	<% content_for :body_class, "gameplay-page gameplay-page--fall-down" %>

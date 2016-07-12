@@ -143,7 +143,7 @@
         <% end %>
         <%= yield(:game_javascript) %>
     </head>
-    <body ondragstart="return false;" ondrop="return false;" id="<%= yield (:body_id) %>" class="<%= yield (:body_class) %> <% if @game && Game.where(slug:['traffic','flappy-pilot','fall-down','tap-color','gold-runner']).pluck(:id).include?(@game.id) %> mobile-header--hide <% end %> <% if current_user %> logged-in <% end %>">
+    <body ondragstart="return false;" ondrop="return false;" id="<%= yield (:body_id) %>" class="<%= yield (:body_class) %> <% if @game && Game.where(slug:['traffic','flappy-pilot','fall-down','tap-color','gold-runner']).pluck(:id).include?(@game.id) %> mobile-header--hide <% end %> <% if current_user %> logged-in <% end %> <% if is_dunkin_user? %>dunkin-tester--mobile<% end %>">
 
         <%= render 'layouts/form_errors' %>
         <%= render 'layouts/loading_screen' %>
