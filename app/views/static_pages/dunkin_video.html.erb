@@ -1,0 +1,52 @@
+<section class="affiliate-wrapper">
+    <img class="affiliate__logo affiliate__logo--header" src="/assets/ddperks.png">
+    <div id="player"></div>
+    <p class="affiliate__msg">Watch the video below and earn 20 credits</p>
+
+    <%= link_to "Return to games", dunkin_path, class: "btn--homepage btn--homepage-purple" %>
+</section>
+
+<script>
+    // Load API Async
+    var tag = document.createElement('script'),
+        vidHeight = 'auto'
+        vidWidth = '100%';
+
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+
+    // create youtube player
+    var player;
+    function onYouTubePlayerAPIReady() {
+        player = new YT.Player('player', {
+            height: vidHeight,
+            width: vidWidth,
+            videoId: 'X_X16Iwk4N4',
+            events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+            },
+            playerVars: {
+                'autoplay': 0,
+                'controls': 0,
+                'rel' : 0,
+                'showinfo': 0
+            }
+        });
+    }
+
+    // autoplay video
+    function onPlayerReady(event) {
+        console.log('player ready');
+        // event.target.playVideo();
+    }
+
+    // when video ends
+    function onPlayerStateChange(event) {
+        if(event.data === 0) {
+            window.location = "/dunkin";
+        }
+    }
+</script>
