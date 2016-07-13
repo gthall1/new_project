@@ -9,8 +9,6 @@
         (function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(chref=d.href).replace(e.href,"").indexOf("#")&&(!/^[a-z\+\.\-]+:/i.test(chref)||chref.indexOf(e.protocol+"//"+e.host)===0)&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone");
         </script>
 
-
-
         <%= stylesheet_link_tag "mobile", media: "all",
                                                "data-turbolinks-track" => true %>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -143,7 +141,7 @@
         <% end %>
         <%= yield(:game_javascript) %>
     </head>
-    <body ondragstart="return false;" ondrop="return false;" id="<%= yield (:body_id) %>" class="<%= yield (:body_class) %> <% if @game && Game.where(slug:['traffic','flappy-pilot','fall-down','tap-color','gold-runner']).pluck(:id).include?(@game.id) %> mobile-header--hide <% end %> <% if current_user %> logged-in <% end %>">
+    <body ondragstart="return false;" ondrop="return false;" id="<%= yield (:body_id) %>" class="<%= yield (:body_class) %> <% if @game && Game.where(slug:['traffic','flappy-pilot','fall-down','tap-color','gold-runner']).pluck(:id).include?(@game.id) %> mobile-header--hide <% end %> <% if current_user %> logged-in <% end %> <% if is_dunkin_user? %>dunkin-tester--mobile<% end %>">
 
         <%= render 'layouts/form_errors' %>
         <%= render 'layouts/loading_screen' %>
@@ -206,12 +204,24 @@
                     <% if @show_back_button %>
                         <% if @back_button_action %>
                             <span class='<%= @back_button_action %>'style='display:none'><i class="fa fa-chevron-left back-button"></i></span>
-                                <%= link_to games_path, :class=>'back-link' do %>
-                                 <i class="fa fa-chevron-left back-button"></i>
+                                <% if is_dunkin_user? %>
+                                    <%= link_to dunkin_path, :class=>'back-link' do %>
+                                     <i class="fa fa-chevron-left back-button"></i>
+                                    <% end %>
+                                <% else %>
+                                    <%= link_to games_path, :class=>'back-link' do %>
+                                    <i class="fa fa-chevron-left back-button"></i>
+                                    <% end %>
                                 <% end %>
                         <% else @show_back_button %>
-                            <%= link_to games_path do %>
-                             <i class="fa fa-chevron-left back-button"></i>
+                            <% if is_dunkin_user? %>
+                                <%= link_to dunkin_path, :class=>'back-link' do %>
+                                 <i class="fa fa-chevron-left back-button"></i>
+                                <% end %>
+                            <% else %>
+                                <%= link_to games_path, :class=>'back-link' do %>
+                                <i class="fa fa-chevron-left back-button"></i>
+                                <% end %>
                             <% end %>
                         <% end %>
                     <% else %>

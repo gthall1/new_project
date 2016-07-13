@@ -15,8 +15,11 @@
 @import "loading";
 @import "surveys";
 @import "verify_email";
-@import "dunkin";
+<<<<<<< HEAD
 @import "2048/main";
+=======
+@import "dunkin";
+>>>>>>> master
 
 @mixin box_sizing {
     -moz-box-sizing: border-box;

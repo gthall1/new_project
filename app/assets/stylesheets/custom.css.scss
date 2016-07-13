@@ -67,6 +67,23 @@ body {
     }
 }
 
+.gameplay-page--adsense {
+    .app-wrapper {
+        position: relative;
+    }
+    .adsense-tower {
+        position: absolute;
+        top: 92px;
+    }
+    .adsense-tower--left {
+        left: 20px;
+    }
+
+    .adsense-tower--right {
+        right: 20px;
+    }
+}
+
 .page-background {
     background-image: url(home_screen.jpg);
 }

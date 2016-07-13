@@ -1,14 +1,12 @@
 <% content_for :body_class, "mobile-games-page games-page" %>
 
-<script src="https://www.youtube.com/player_api"></script>
-
 <div class='game-list-container'>
     <% if is_dunkin_user? %>
-        <a class="fancybox fancybox.iframe" href="http://www.youtube.com/embed/X_X16Iwk4N4?enablejsapi=1&wmode=opaque">
+        <%= link_to dunkin_video_path do %>
             <div class="game-wrapper game--fastest-way-to-dd js-game--fastest-way-to-dd %>">
                 <img class="game-image" src="/assets/fastest-way-to-dd_mobile.jpg">
             </div>
-        </a>
+        <% end %>
     <% end %>
 
     <% @games.each do | g | %>
@@ -43,8 +41,8 @@
 
     // Fires whenever a player has finished loading
     function onPlayerReady(event) {
-        event.target.playVideo();
-        console.log('loaded!');
+        // event.target.playVideo();
+        console.log('Video ready')
     }
 
     // Fires when the player's state changes.

@@ -11,8 +11,7 @@ module ApplicationHelper
   end
 
   def show_ads
-    !is_mobile?
-    false
+    !is_mobile? && !session[:branded_ad] && !is_dunkin_user? && GenericSwitch.where(name:'adsense').present? && GenericSwitch.where(name:'adsense').first.active == true
   end
 
   def signups_allowed?

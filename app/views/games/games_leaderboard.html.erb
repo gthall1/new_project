@@ -1,5 +1,4 @@
 <% content_for :body_class, "interior-page leaderboard-landing" %>
-
 <div class="interior-hero">
     <h1 class="interior-hero__title">View the top contenders</h1>
     <p class="interior-hero__desc" >Check out the leaderboards below to see who your competition is.</p>
@@ -8,19 +7,14 @@
 <div class="interior-body">
     <section class="card-container">
         <% @games.each do | g | %>
-            <div class="card-tout" style="background-image:url(/assets/<%= g.game_image({advertiser_id:@advertiser_id,desktop:true}) %>);">
-                <div class="card-inner">
-                    <% if is_dunkin_user? %>
-                        <%= link_to dunkin_game_leaderboard_path do %>
-                            <h1 class="survey__title"><%= g.game_title({advertiser_id:@advertiser_id}) %></h1>
-                        <% end %>
-                    <% else %>
-                        <%= link_to game_leaderboard_path(game_slug:g.slug) do %>
-                            <h1 class="survey__title"><%= g.game_title({advertiser_id:@advertiser_id}) %></h1>
-                        <% end %>
-                    <% end %>
+        <% game_path = is_dunkin_user? ? dunkin_game_leaderboard_path : game_leaderboard_path(game_slug:g.slug) %>
+            <%= link_to game_path do %>
+                <div class="card-tout" style="background-image:url(/assets/<%= g.game_image({advertiser_id:@advertiser_id,desktop:true}) %>);">
+                    <div class="card-inner">    
+                        <h1 class="survey__title"><%= g.game_title({advertiser_id:@advertiser_id}) %></h1>
+                    </div>
                 </div>
-            </div>
+            <% end %>
         <% end %>
     </section><!-- /.card-container -->
 </div><!--/.interior-body -->

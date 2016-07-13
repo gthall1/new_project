@@ -63,19 +63,21 @@ html body {
         }
     }
     .btn--homepage {
-        width: 40vw;
+        width: calc(50% - 20px);
         background-color: $teal;
         color: $white;
-        padding: 10px 0 12px;
+        padding: 10px 10px 12px;
         display: inline-block;
         border-radius: 4px;
         border: 2px solid $teal;
         font-weight: 500;
         font-size: 16px;
+        box-sizing: border-box;
 
         & + .btn--homepage {
-            margin-left: 15px;
+            margin-left: 20px;
         }
+
         &:hover {
             text-decoration: none;
         }
