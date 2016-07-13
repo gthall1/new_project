@@ -2,20 +2,10 @@
 <% content_for :description, "#{@game.description}" %>
 
 <% if show_ads %>
-    <%= render partial: "/ad_units/ad_wide", :locals => {ad_slot: "3917225076"} %>
+    <%= render partial: "/ad_units/ad_wide", :locals => {ad_slot: "8147654679"} %>
 <% end %>
-  <% if session[:branded_ad].nil? %>
-    <h2 style='font-size:18px;'><%= @game.name %></h2>
-  <% end %>
 <p id="notice"><%= notice %></p>
   <% case @game.slug %>
-    <% when 'test' %>
-      <h2 class="outcome">Click to play! 1/5 wins a credit!</h2>
-      <div class="ad-space">
-        A partner image will show here sometimes!
-      </div>
-      <button class="play">Click here!</button>
-      <%= javascript_include_tag "game" %>
     <% when 'memory-game' %>
       <%= render 'memory' %>
     <% when 'helicopter' %>
