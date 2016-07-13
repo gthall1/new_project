@@ -1,4 +1,4 @@
-<% content_for :body_class, "intermediate intermediate--2048" %>
+<% content_for :body_class, "intermediate intermediate--2048 #{show_ads ? 'gameplay-page--adsense' : ''}" %>
 <% if show_ads %>
     <%= render partial: "/ad_units/ad_skyscraper", :locals => {ad_slot: "6670921476",side:'left'} %>
 <% end %>
