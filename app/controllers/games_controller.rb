@@ -307,8 +307,8 @@ class GamesController < ApplicationController
             elsif game_session && !game_session.active
                 status = "closed"
             elsif !game_session
-                game_id = request.referer.split('/').last.to_i
-                create_new_game_session(params[:score],game_id)
+                slug = request.referer.split('/').last
+                create_new_game_session(params[:score],slug)
                 status = "skip"
             else
                 status = "skip"
@@ -332,7 +332,7 @@ class GamesController < ApplicationController
             if challenge
                 game_id = challenge.game_id
             elsif request && request.referer
-                game_id = request.referer.split('/').last.to_i
+                game_id = request.referer.split('/').last
             end
 
             create_new_game_session(params[:score],game_id)
@@ -966,12 +966,14 @@ class GamesController < ApplicationController
                 credits = (score/5000.to_f).ceil - 1 #subtract 1 otherwise itll give a credit once anything is scored
             when "2048"
                 case score
-                    when 5000..9999
+                    when 3000..6999
                         credits = 1
-                    when 10000..13999
+                    when 7000..9999
                         credits = 2
-                    when 14000..99999999999999
-                        credits = (score/5000.to_f).ceil - 2
+                    when 10000..14999
+                        credits = 3
+                    when score > 14999
+                        credits = (score/3000.to_f).ceil - 4
                     else 
                         credits = 0
                 end
@@ -1020,9 +1022,9 @@ class GamesController < ApplicationController
         credits_to_apply
     end
 
-    def create_new_game_session(score,game_id)
+    def create_new_game_session(score,slug)
      # old_game = UserGameSession.where(user_id:current_user).last
-        set_game_token({game_name:Game.where(id:game_id).first.name,score:score})
+        set_game_token({game_name:Game.where(slug:slug).first.name,score:score})
     end
 
     # Use callbacks to share common setup or constraints between actions.
