@@ -55,9 +55,10 @@ class StaticPagesController < ApplicationController
     end
 
     def kd_home
-
     end
 
+    def dunkin_video
+    end
 
     def waitlist_user
         waitlist_user = WaitlistUser.new(waitlist_user_params)
