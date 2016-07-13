@@ -1,5 +1,7 @@
 <% content_for :body_class, "gameplay-page gameplay-page--traffic" %>
-
+	<% if show_ads %>
+		<%= render partial: "/ad_units/ad_skyscraper", :locals => {ad_slot: "6670921476",side:'left'} %>
+	<% end %>
 	<!-- The canvas must be inside a div called c2canvasdiv -->
 	<div id="c2canvasdiv">
 
@@ -47,7 +49,9 @@
 		document.addEventListener("msvisibilitychange", onVisibilityChanged, false);
 
     </script>
-
+	<% if show_ads %>
+		<%= render partial: "/ad_units/ad_skyscraper", :locals => {ad_slot: "9624387870",side:'right'} %>
+	<% end %>
 
 <%= content_for(:game_javascript) do %>
   <%= javascript_include_tag "traffic", "data-turbolinks-track" => true %>
