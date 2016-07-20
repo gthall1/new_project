@@ -14,6 +14,10 @@ module ApplicationHelper
     !is_mobile? && !session[:branded_ad] && !is_dunkin_user? && GenericSwitch.where(name:'adsense').present? && GenericSwitch.where(name:'adsense').first.active == true
   end
 
+  def show_mobile_ads
+    !is_dunkin_user? && GenericSwitch.where(name:'adsense').present? && GenericSwitch.where(name:'adsense').first.active == true
+  end
+
   def signups_allowed?
       return true if session[:promo] == 'vip'
       true
