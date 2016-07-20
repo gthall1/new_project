@@ -17,7 +17,7 @@
   <div class="container">
     <div class="heading" style='height:110px'>
       <div class="above-game">
-        <a class="restart-button">New Game</a>
+        <a class="restart-button" href='/games/2048'>New Game</a>
       </div>      
       <div class="scores-container">
         <div class="credit-container"><%= current_user.credits.blank? ? '0' : current_user.credits %></div>
