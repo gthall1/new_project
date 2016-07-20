@@ -80,18 +80,18 @@ GameManager.prototype.setup = function () {
     this.won         = false;
     this.keepPlaying = false;
     self = this;
-    $.ajax({
-      type: "POST",
-      url: "/reset_game",
-      data: {newgame:true, slug:'2048'},
-      success:function(response) {
-        data = response.data;
-        self.storageManager.setBestScore(data.hscore);
-        self.token = data.token;
-        self.credits = data.total_credits;
-        $('.credit-container').html(self.credits);
-      }
-    }); 
+    // $.ajax({
+    //   type: "POST",
+    //   url: "/reset_game",
+    //   data: {newgame:true, slug:'2048'},
+    //   success:function(response) {
+    //     data = response.data;
+    //     self.storageManager.setBestScore(data.hscore);
+    //     self.token = data.token;
+    //     self.credits = data.total_credits;
+    //     $('.credit-container').html(self.credits);
+    //   }
+    // }); 
     // Add the initial tiles
     this.addStartTiles();
   }
@@ -125,6 +125,23 @@ GameManager.prototype.actuate = function () {
 
   // Clear the state when the game is over (game over only, not win)
   if (this.over) {
+    var self = this;
+    $.ajax({
+      type: "POST",
+      url: "/score_update",
+      data: {token:self.token, score:self.score, finish:true},
+      success:function(response) {
+        data = response.data;
+        if(data !='undefined'){
+          self.token = data.token;
+          self.storageManager.setBestScore(data.hscore);
+          self.credits = data.total_credits;
+          $('.credit-container').html(self.credits);   
+        }
+
+        //self.token = data.token;
+      }
+    });
     this.storageManager.clearGameState();
   } else {
     this.storageManager.setGameState(this.serialize());
