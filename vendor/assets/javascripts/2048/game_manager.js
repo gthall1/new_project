@@ -134,7 +134,9 @@ GameManager.prototype.actuate = function () {
         data = response.data;
         if(data !='undefined'){
           self.token = data.token;
-          self.storageManager.setBestScore(data.hscore);
+          if(data.hscore != null){
+            self.storageManager.setBestScore(data.hscore);
+          }
           self.credits = data.total_credits;
           $('.credit-container').html(self.credits);   
         }
@@ -231,7 +233,9 @@ GameManager.prototype.move = function (direction) {
             success:function(response) {
               data = response.data;
               self.token = data.token;
-              self.storageManager.setBestScore(data.hscore);
+              if (data.hscore != null){
+                self.storageManager.setBestScore(data.hscore);
+              }
               self.credits = data.total_credits;
               $('.credit-container').html(self.credits);
               //self.token = data.token;
