@@ -70,6 +70,6 @@
   <% if show_ads %>
     <%= render partial: "/ad_units/ad_skyscraper", :locals => {ad_slot: "9624387870",side:'right'} %>
   <% end %>
-<%= content_for(:game_javascript) do %>
+<%= content_for(:extra_bottom_js) do %>
   <%= javascript_include_tag "twentyfortyeight" %>
 <% end %>
