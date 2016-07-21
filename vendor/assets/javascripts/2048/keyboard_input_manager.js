@@ -130,7 +130,7 @@ KeyboardInputManager.prototype.listen = function () {
 KeyboardInputManager.prototype.restart = function (event) {
   event.preventDefault();
   this.emit("restart");
-  location.reload();
+  //location.reload();
 };
 
 KeyboardInputManager.prototype.keepPlaying = function (event) {
