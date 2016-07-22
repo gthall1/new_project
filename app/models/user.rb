@@ -220,9 +220,11 @@ class User < ActiveRecord::Base
 
     #generates password before verified
     def generate_password
-        pass = SecureRandom.urlsafe_base64
-        self.password = pass
-        self.password_confirmation = pass
+        if self.password.blank?
+            pass = SecureRandom.urlsafe_base64
+            self.password = pass
+            self.password_confirmation = pass
+        end
     end
 
     def create_verify_token
