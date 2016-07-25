@@ -8,12 +8,12 @@
       <%= hidden_field_tag :email, @user.email %>
 
       <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
+      <%= f.password_field :password, class: 'form-control', style:'max-width:250px' %>
 
       <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
+      <%= f.password_field :password_confirmation, class: 'form-control',style:'max-width:250px' %>
       <br />
-      <%= f.submit "Update password", class: "btn btn-primary" %>
+      <%= f.submit "Update password", class: "btn btn-primary",style: 'background:#0065CC' %>
     <% end %>
   </div>
 </div>
