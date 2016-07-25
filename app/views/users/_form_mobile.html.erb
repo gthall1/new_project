@@ -7,25 +7,26 @@
 <span class="js-go-back go-back"><i class="fa fa-chevron-left"></i></span>
 
 <div class="form-wrap js-form-wrap">
-    <div class="facebook-login-wrap js-facebook-btn">
-    <% if @facebook_link %>
-        <%= link_to @facebook_lin do %>
-            <button class="btn--form btn--form-fb">
-                <i class="fa fa-facebook btn--form__icon"></i>
-                <h1 class="btn--form__copy">Sign up with Facebook</h1>
-            </button><!-- /.btn--form -->
+    <% if false %>
+        <div class="facebook-login-wrap js-facebook-btn">
+        <% if @facebook_link %>
+            <%= link_to @facebook_lin do %>
+                <button class="btn--form btn--form-fb">
+                    <i class="fa fa-facebook btn--form__icon"></i>
+                    <h1 class="btn--form__copy">Sign up with Facebook</h1>
+                </button><!-- /.btn--form -->
+            <% end %>
+        <% else %>
+            <%= link_to "/auth/facebook" do %>
+                <button class="btn--form btn--form-fb">
+                    <i class="fa fa-facebook btn--form__icon"></i>
+                    <h1 class="btn--form__copy">Sign up with Facebook</h1>
+                </button><!-- /.btn--form -->
+            <% end %>
         <% end %>
-    <% else %>
-        <%= link_to "/auth/facebook" do %>
-            <button class="btn--form btn--form-fb">
-                <i class="fa fa-facebook btn--form__icon"></i>
-                <h1 class="btn--form__copy">Sign up with Facebook</h1>
-            </button><!-- /.btn--form -->
-        <% end %>
+            <p class="form-disclaimer">We won't post anything to Facebook. Promise.</p>
+        </div>
     <% end %>
-        <p class="form-disclaimer">We won't post anything to Facebook. Promise.</p>
-    </div>
-
     <button class="btn--form btn--form-prime js-show-form">
         <i class="fa fa-envelope btn--form__icon"></i>
         <h1 class="btn--form__copy">Sign up with Email</h1>

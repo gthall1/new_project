@@ -106,14 +106,14 @@ class User < ActiveRecord::Base
             arrival = Arrival.where(id:arrival_id).last
 
             if arrival && !arrival.referred_by.blank? 
-                    referral_user = User.unscoped.where(id:arrival.referred_by).first
-                    if referral_user
-                            if referral_user.user_type_name == 'rep'
-                                referral_user.add_credits({credits: 0})
-                            else
-                                referral_user.add_credits({credits: 50})
-                            end
-                    end
+                referral_user = User.unscoped.where(id:arrival.referred_by).first
+                if referral_user
+                        if referral_user.user_type_name == 'rep'
+                            referral_user.add_credits({credits: 0})
+                        else
+                            referral_user.add_credits({credits: 50})
+                        end
+                end
             end
 
             user.gender = auth.extra.raw_info.gender == "male" ? 1 : auth.extra.raw_info.gender == "female" ? 2 : nil
