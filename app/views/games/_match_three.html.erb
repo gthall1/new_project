@@ -1,0 +1,70 @@
+<% content_for :body_class, "gameplay-page gameplay-page--match-three #{show_ads ? 'gameplay-page--adsense' : ''}" %>
+
+<script>
+	// Issue a warning if trying to preview an exported project on disk.
+	(function(){
+		// Check for running exported on file protocol
+		if (window.location.protocol.substr(0, 4) === "file")
+		{
+			alert("Exported games won't work until you upload them. (When running on the file:/// protocol, browsers block many features from working for security reasons.)");
+		}
+	})();
+	</script>
+	<% if show_ads %>
+		<%= render partial: "/ad_units/ad_skyscraper", :locals => {ad_slot: "6670921476",side:'left'} %>
+	<% end %>
+	<!-- The canvas must be inside a div called c2canvasdiv -->
+	<div id="c2canvasdiv">
+
+		<!-- The canvas the project will render to.  If you change its ID, don't forget to change the
+		ID the runtime looks for in the jQuery events above (ready() and cr_sizeCanvas()). -->
+		<canvas id="c2canvas" width="720" height="1280">
+			<!-- This text is displayed if the visitor's browser does not support HTML5.
+			You can change it, but it is a good idea to link to a description of a browser
+			and provide some links to download some popular HTML5-compatible browsers. -->
+			<h1>Your browser does not appear to support HTML5.  Try upgrading your browser to the latest version.  <a href="http://www.whatbrowser.org">What is a browser?</a>
+			<br/><br/><a href="http://www.microsoft.com/windows/internet-explorer/default.aspx">Microsoft Internet Explorer</a><br/>
+			<a href="http://www.mozilla.com/firefox/">Mozilla Firefox</a><br/>
+			<a href="http://www.google.com/chrome/">Google Chrome</a><br/>
+			<a href="http://www.apple.com/safari/download/">Apple Safari</a><br/>
+			<a href="http://www.google.com/chromeframe">Google Chrome Frame for Internet Explorer</a><br/></h1>
+		</canvas>
+
+	</div>
+	<% if show_ads %>
+		<%= render partial: "/ad_units/ad_skyscraper", :locals => {ad_slot: "9624387870",side:'right'} %>
+	<% end %>
+
+ <%= content_for(:game_javascript) do %>
+  <%= javascript_include_tag "match_three", "data-turbolinks-track" => true %>
+<% end %>
+
+<!-- Pages load faster with scripts at the bottom -->
+
+<script>
+	// Size the canvas to fill the browser viewport.
+	jQuery(window).resize(function() {
+		cr_sizeCanvas(jQuery(window).width(), jQuery(window).height());
+	});
+
+	// Start the Construct 2 project running on window load.
+	$(window).load(function()
+	{
+		// Create new runtime using the c2canvas
+		cr_createRuntime("c2canvas");
+	});
+
+	// Pause and resume on page becoming visible/invisible
+	function onVisibilityChanged() {
+		if (document.hidden || document.mozHidden || document.webkitHidden || document.msHidden)
+			cr_setSuspended(true);
+		else
+			cr_setSuspended(false);
+	};
+
+	document.addEventListener("visibilitychange", onVisibilityChanged, false);
+	document.addEventListener("mozvisibilitychange", onVisibilityChanged, false);
+	document.addEventListener("webkitvisibilitychange", onVisibilityChanged, false);
+	document.addEventListener("msvisibilitychange", onVisibilityChanged, false);
+
+</script>

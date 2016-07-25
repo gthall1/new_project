@@ -1,7 +1,8 @@
 class GamesController < ApplicationController
     before_action :set_game, only: [:show, :purchase_confirm, :edit, :update, :destroy]
 
-    before_action :check_purchase, only: [:show]
+
+    before_action :check_purchase,:check_active, only: [:show]
     before_filter :set_dunkin, only: [:dunkin]
     before_filter :check_signed_in,:set_notifications, except:[:check_branded,:fetch_assets]
     skip_before_filter  :verify_authenticity_token, only:[:score_update,:reset_game,:get_random_challenge_user, :check_branded, :fetch_assets]
@@ -225,7 +226,7 @@ class GamesController < ApplicationController
                          :status => status,
                          :hscore => current_high_score
                         }
-                when 'flappy-pilot','traffic','fall-down','tap-color','2048'
+                when 'flappy-pilot','traffic','fall-down','tap-color','2048','match-three','gold-runner'
                     if game_session.game.slug == 'flappy-pilot'
                         current_high_score = current_high_score.to_s.rjust(3, '0')
                     end
@@ -350,7 +351,7 @@ class GamesController < ApplicationController
                          :status => status,
                          :hscore => current_high_score
                         }
-                when '2048','flappy-pilot','traffic','fall-down','tap-color','gold-runner'
+                when '2048','flappy-pilot','traffic','fall-down','tap-color','gold-runner','match-three'
                     if game_session.game.slug == 'flappy-pilot'
                         current_high_score = current_high_score.to_s.rjust(3, '0')
                     end
@@ -997,6 +998,8 @@ class GamesController < ApplicationController
                     else
                         credits = (score/15.to_f).ceil - 1
                 end
+            when "match-three"
+                credits = (score/2000.to_f).ceil - 1
             when 'gold-runner'
                 case score
                     when 5..14
@@ -1041,12 +1044,12 @@ class GamesController < ApplicationController
              end
         elsif params[:slug] && !params[:slug].blank?
             @game = Game.where(slug:params[:slug]).first
-        else
+        elsif params
             @game = Game.find(params[:id])
         end
 
-        if @game.name == "Helicopter"
-            set_heli
+        if @game.nil? 
+            redirect_to root_path
         end
     end
 
@@ -1068,6 +1071,10 @@ class GamesController < ApplicationController
 
     def challenge_params
         params.require(:challenge).permit(:user_id,:game_id,:challenged_user_id)
+    end
+
+    def check_active
+        redirect_to root_path unless @game && @game.device_type != nil
     end
 
     def init_testgame(game_id)

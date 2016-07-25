@@ -11,10 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160707024135) do
+ActiveRecord::Schema.define(version: 20160725155513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ad_display_tables", force: :cascade do |t|
+  end
 
   create_table "ad_displays", force: :cascade do |t|
     t.integer "ad_number"
@@ -117,10 +120,10 @@ ActiveRecord::Schema.define(version: 20160707024135) do
     t.integer  "challenged_user_id"
     t.integer  "game_id"
     t.integer  "winner_id"
-    t.integer  "challenged_score"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "user_score"
+    t.integer  "challenged_score"
   end
 
   create_table "feed_games", force: :cascade do |t|
@@ -161,6 +164,13 @@ ActiveRecord::Schema.define(version: 20160707024135) do
     t.string   "desktop_image"
     t.integer  "credit_cost"
     t.string   "description"
+  end
+
+  create_table "generic_switches", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "identities", force: :cascade do |t|
