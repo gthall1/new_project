@@ -1,11 +1,15 @@
 var app = {
-    // Script to prompt user to add Luckee App shortcut to homescreen
+
+    conf: {
+        beta: false // bool
+    },
+
     setAddToHomescreen: function() {
-        if (mobileCheck.iOS() && !mobileCheck.MobileChrome() && !app.isWebAppMode() && Cookies.get('onboarding-complete') === 'true' && !app.isSocialBrowser() ) {
-            if (Cookies.get('user') === 'returning') {
-                console.log('Welcome home!');
-            } else {
-                    $('body').addClass('overlay-screen add-to-home');
+        // Check to make sure iOS device, not web app mode and not a social browser (FB and TWTR)
+        if (mobileCheck.iOS() && !app.isWebAppMode() && !app.isSocialBrowser() ) {
+            // Check to make sure they just finished the confirmation page
+            if (window.location.origin + '/confirmation' == document.referrer) {
+                $('body').addClass('overlay-screen add-to-home');
             }
         };
     },
@@ -20,6 +24,10 @@ var app = {
                 }
             }
         }
+    },
+
+    runBetaMode: function() {
+        $('.mobile-home .mobile-container').addClass('beta-version');
     },
 
     isLoggedIn: function() {

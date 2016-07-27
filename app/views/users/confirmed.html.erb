@@ -23,6 +23,12 @@
             <%= text_field_tag :last_name, current_user.lastname, {class: "input--text input--text--right input--text--2-col", placeholder: "Last Name", required: true}%>
         </div><!-- /.confirmation-page__input-wrap -->
 
+        <div class="confirmation-page__input-wrap">
+        <%= password_field_tag :password, current_user.password, { required: true, placeholder: "Password", class: "input--text" }%>
+
+        <%# password_field_tag :password_confirmation, current_user.password_confirmation, { required: true, placeholder: "Confirm Password", class: "input--text" } %>
+        </div>
+
          <% if current_user.provider == 'facebook' %>
              <%= text_field_tag :username, current_user.name, {class: "input--text", placeholder: "Username (shown to other users)", required: true}%>
          <% end %>

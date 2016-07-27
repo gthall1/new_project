@@ -22,11 +22,16 @@
             <div class="form-input--wrap">
                 <%= text_field_tag :last_name, current_user.lastname, {class: "form-input form-input--no-icon", placeholder: "Last Name", required: true}%>
             </div>
+
+            <div class="form-input--wrap">
+                <%= password_field_tag :password, current_user.password, { required: true, placeholder: "Password", class: "form-input form-input--no-icon" } %>
+            </div><!-- /.form-input--wrap -->
         </div><!-- /.confirmation-page__input-wrap -->
+
 
         <% if current_user.provider == 'facebook' %>
             <div class="form-input--wrap">
-                    <%= text_field_tag :username, current_user.name, {class: "form-input form-input--no-icon", placeholder: "Username (shown to other users)", required: true}%>
+                    <% text_field_tag :username, current_user.name, {class: "form-input form-input--no-icon", placeholder: "Username (shown to other users)", required: true} %>
             </div>
         <% end %>
 

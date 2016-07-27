@@ -300,7 +300,9 @@ form {
 
         @media screen and (max-width: 1024px) {
             &.trans-input--text {
-                width: calc(100% - 30px) !important;
+                // width: calc(100% - 30px) !important;
+                width: 100%;
+                box-sizing: border-box;
             }
         }
     }

@@ -15,8 +15,8 @@ $(document).ready(function(){
     // Tab functionality
     tabs.init();
 
-    //Remove this line once out of BETA
-    $('.mobile-home .mobile-container').addClass('beta-version');
+    // Check to see if app is in beta mode
+    app.conf.beta ? app.runBetaMode() : null;
 });
 
 $(window).load(function(){
