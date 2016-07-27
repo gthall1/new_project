@@ -8,20 +8,17 @@ var app = {
         // Check to make sure iOS device, not web app mode and not a social browser (FB and TWTR)
         if (mobileCheck.iOS() && !app.isWebAppMode() && !app.isSocialBrowser() ) {
             // Check to make sure they just finished the confirmation page
-            if (window.location.origin + '/confirmation' == document.referrer) {
-                $('body').addClass('overlay-screen add-to-home');
+            if ($('body').hasClass('mobile-games-page') && !app.isDevelopment()) {
+                $('body').addClass('overlay-screen add-to-home--ios');
             }
         };
     },
 
     showOnboarding: function() {
-        // Check to make sure not logged in
-        if (!app.isLoggedIn()) {
-            if ( mobileCheck.iOS() && !app.isWebAppMode() || mobileCheck.MobileChrome() || mobileCheck.Android() ) {
-                if (Cookies.get('onboarding') !== 'shown') {
-                    window.location.href = window.location.origin + "/onboarding";
-                    Cookies.set('onboarding', 'shown', { expires: 365 });
-                }
+        if ( mobileCheck.iOS() && app.isWebAppMode() || mobileCheck.MobileChrome() || mobileCheck.Android() ) {
+            if (Cookies.get('onboarding') !== 'shown') {
+                window.location.href = window.location.origin + "/onboarding";
+                Cookies.set('onboarding', 'shown', { expires: 365 });
             }
         }
     },
@@ -32,6 +29,10 @@ var app = {
 
     isLoggedIn: function() {
         return $('body').hasClass('logged-in');
+    },
+
+    isDevelopment: function() {
+        return $('body').hasClass('development');
     },
 
     // For Spacing Concerns - Testing with Mobile Chrome Browser

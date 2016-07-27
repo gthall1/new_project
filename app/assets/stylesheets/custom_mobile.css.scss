@@ -1405,6 +1405,10 @@ p {
     }
 
     .overlay-screen {
+        &.add-to-home--ios {
+            padding-top: 0 !important;
+        }
+
         .mobile-container {
             height: 100vh;
             overflow: hidden;
@@ -1484,13 +1488,7 @@ p {
     }
 }
 
-.add-to-home {
-    &.kd-campaign {
-        .mobile--overlay {
-            background-image: none;
-            background-color: $kd-green;
-        }
-    }
+.add-to-home--ios {
     .mobile--overlay {
         background-image: url(/assets/blur.jpg);
     }
