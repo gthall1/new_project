@@ -6,7 +6,7 @@ var app = {
 
     setAddToHomescreen: function() {
         // Check to make sure iOS device, not web app mode and not a social browser (FB and TWTR)
-        if (mobileCheck.iOS() && !app.isWebAppMode() && !app.isSocialBrowser() ) {
+        if (mobileCheck.iOS() && !mobileCheck.MobileChrome() && !app.isWebAppMode() && !app.isSocialBrowser() ) {
             // Check to make sure they just finished the confirmation page
             if ($('body').hasClass('mobile-games-page') && !app.isDevelopment()) {
                 $('body').addClass('overlay-screen add-to-home--ios');
