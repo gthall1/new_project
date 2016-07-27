@@ -8,15 +8,15 @@
 
 </div>
 
-<h1 class="intro-header intro-header--mobile" style='color:#000'>Forgot password</h1>
+<h1 class="intro-header intro-header--mobile">Forgot password</h1>
 
 <div class="row" >
-    <div class="sign-in">
+    <div class="sign-in forgot-password-form">
         <%= form_for(:password_reset, url: password_resets_path) do |f| %>
-            <%= f.label :email, style: 'color:#000' %>
+            <%= f.label :email%>
             <%= f.email_field :email, class: 'session__input',style:'max-width:300px' %>
             <br />
-            <%= f.submit "Submit", class: "form-submit btn--homepage "%>
+            <%= f.submit "Submit", class: "form-submit btn--homepage btn "%>
         <% end %>
     </div>
 </div>

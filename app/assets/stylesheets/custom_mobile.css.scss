@@ -11,6 +11,7 @@
 @import "buttons";
 @import "profiles";
 @import "forms";
+@import "password_resets";
 @import "jackhammer";
 @import "loading";
 @import "surveys";
@@ -1290,6 +1291,7 @@ p {
 .intro-header--mobile {
     margin: 0;
     padding: 20px;
+    color:#000;
 }
 .side-nav__close {
     text-transform: uppercase;
