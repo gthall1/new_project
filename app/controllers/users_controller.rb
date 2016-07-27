@@ -137,7 +137,7 @@ class UsersController < ApplicationController
             sign_in user
             user.email_activate
             render "confirmed_mobile" if is_mobile?
-        elsif true || signed_in? && current_user && !current_user.profile_complete?
+        elsif signed_in? && current_user && !current_user.profile_complete?
             @verified_incomplete = true
             render "confirmed_mobile" if is_mobile?
         else
