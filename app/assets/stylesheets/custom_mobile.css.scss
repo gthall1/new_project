@@ -44,7 +44,31 @@ html {
         font-size: $lg;
         margin: 0;
     }
+    .confirmation-page__radio-but{
+        width: 49%;
+        margin: auto;
+        display: inline-block;
+        height: 40px;
+        border: 1px solid #dedede;
+        text-align: center;
+        cursor: pointer;
+        color: #817BDF;
+        background: #fff;
+        margin-bottom: 15px;
+        vertical-align: top;
+        padding-top: 20px;
+        &:hover{
+            background:#C0BDEF;
+            color:#fff;
+        }
+        &.gender-selected{
+            background:#C0BDEF;
+            color:#fff;
+        }
+
+    }
 }
+
 .fine-copy {
     color: $black;
     margin-top: 25px;

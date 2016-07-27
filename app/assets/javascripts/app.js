@@ -215,6 +215,20 @@ var app = {
             e.preventDefault();
         });
 
+        $('.confirmation-page__radio-male').on('click', function() {
+            $('#confirm_gender').val("1") 
+        });
+
+        $('.confirmation-page__radio-female').on('click', function() {
+            $('#confirm_gender').val("2") 
+        });
+        $('.confirmation-page__radio-but').on('click', function() {
+            console.log('clicked');
+            $('.confirmation-page__radio-but').removeClass('gender-selected');
+            $(this).addClass('gender-selected');
+        });
+
+
         $('.js-overlay__opt-out').click(function(){
             Cookies.set('user', 'returning', { expires: 1 });
         });

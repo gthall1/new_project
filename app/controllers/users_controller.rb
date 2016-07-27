@@ -137,7 +137,7 @@ class UsersController < ApplicationController
             sign_in user
             user.email_activate
             render "confirmed_mobile" if is_mobile?
-        elsif signed_in? && current_user && !current_user.profile_complete?
+        elsif true || signed_in? && current_user && !current_user.profile_complete?
             @verified_incomplete = true
             render "confirmed_mobile" if is_mobile?
         else
@@ -170,8 +170,9 @@ class UsersController < ApplicationController
         if !params[:first_name].blank? && !params[:last_name].blank? && !params[:gender].blank? && !params[:birthday].blank?
             current_user.firstname = params[:first_name]
             current_user.lastname = params[:last_name]
-            current_user.gender = params[:gender]
+            current_user.gender = params[:gender].to_i
             current_user.dob = Date.strptime(params[:birthday], "%m/%d/%Y")
+            current_user.password = params[:password]
 
             if !params[:username].blank?
                 current_user.name = params[:username]
@@ -238,8 +239,7 @@ class UsersController < ApplicationController
     private
 
         def user_params
-            params.require(:user).permit(:name, :email, :password,:gender,:dob,:zipcode,
-                                                                     :password_confirmation)
+            params.require(:user).permit(:name, :email, :password,:gender,:birthday)
         end
 
         # Before filters

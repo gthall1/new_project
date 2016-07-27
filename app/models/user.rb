@@ -23,7 +23,6 @@ class User < ActiveRecord::Base
     # validates_date :dob, on_or_after: lambda { 125.years.ago }, :after_message => "must not be this old. You don't have much time left, please spend it elsewhere.", :on => :update
     # validates_date :dob, on_or_before: lambda { 13.years.ago }, :before_message => "must be at least 13 years old", :on => :update
 
-
     has_secure_password
     validates :password, length: { minimum: 6 } ,:if => '!password.nil?'
     
