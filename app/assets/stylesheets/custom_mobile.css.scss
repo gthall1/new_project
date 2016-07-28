@@ -46,25 +46,23 @@ html {
         margin: 0;
     }
     .confirmation-page__radio-but{
-        width: 48%;
+        width: 47%;
         margin: auto;
         display: inline-block;
-        height: 40px;
-        border: 1px solid #dedede;
+        border: 2px solid #dedede;
         text-align: center;
         cursor: pointer;
         color: #817BDF;
         background: #fff;
-        margin-bottom: 15px;
-        vertical-align: top;
-        padding-top: 20px;
-        &:hover{
+        margin: -2px 0 8px;
+        padding: 14px 0;
+        border-radius: 4px;
+
+        &:hover,
+        &.gender-selected {
             background:#C0BDEF;
-            color:#fff;
-        }
-        &.gender-selected{
-            background:#C0BDEF;
-            color:#fff;
+            color: $white;
+            border: 2px solid transparent;
         }
 
     }

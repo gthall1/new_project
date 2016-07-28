@@ -216,11 +216,11 @@ var app = {
         });
 
         $('.confirmation-page__radio-male').on('click', function() {
-            $('#confirm_gender').val("1") 
+            $('#confirm_gender').val("1")
         });
 
         $('.confirmation-page__radio-female').on('click', function() {
-            $('#confirm_gender').val("2") 
+            $('#confirm_gender').val("2")
         });
         $('.confirmation-page__radio-but').on('click', function() {
             console.log('clicked');
@@ -283,6 +283,10 @@ var app = {
         app.bind();
         app.isWAM();
         app.addSocialMediaClass();
+        var cleave = new Cleave('.js-cleave--date', {
+            date: true,
+            datePattern: ['m', 'd', 'Y']
+        });
         // app.initheadroom();
     }
 };

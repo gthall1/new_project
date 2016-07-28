@@ -37,4 +37,5 @@
 //= require chosen
 //= require jquery-ui
 //= require fancybox
+//= require cleave
 //= require main

@@ -28,12 +28,14 @@
             </div><!-- /.form-input--wrap -->
         </div><!-- /.confirmation-page__input-wrap -->
 
-        <div class='confirmation-page__radio-but confirmation-page__radio-male'>
-            Male
-        </div>
-        <div class='confirmation-page__radio-but confirmation-page__radio-female'>
-            Female
-        </div>
+        <div class="radio-but__container">
+            <div class='confirmation-page__radio-but confirmation-page__radio-male'>
+                Male
+            </div>
+            <div class='confirmation-page__radio-but confirmation-page__radio-female'>
+                Female
+            </div>
+        </div><!-- /.radio-but__container -->
 
         <%= hidden_field_tag :gender, :id => 'confirm_gender',:name => 'gender' %>
 
@@ -44,7 +46,8 @@
         <% end %>
 
         <div class="form-input--wrap">
-            <%= text_field_tag :birthday, nil, {class: "js-validate-date form-input form-input--no-icon", placeholder: "Birthday: mm/dd/yyyy", required: true}%>
+            <!-- js-validate-date -->
+            <%= text_field_tag :birthday, nil, {class: "js-cleave--date form-input form-input--no-icon", placeholder: "Birthday: mm/dd/yyyy", required: true}%>
         </div>
 
         <div class="form-input--wrap form-input--wrap-submit">

@@ -1482,28 +1482,7 @@ h1.arrow2 { font-size: 55px;
         }
     }
 }
-.confirmation-page__radio-but{
-  width:198px;
-  margin:auto;
-  display:inline-block;
-  height:50px;
-  border:1px solid #dedede;
-  text-align:center;
-  padding-top:13px;
-  cursor:pointer;
-  color:#817BDF;
-  background:#fff;
-  margin-bottom:10px;
-  &:hover{
-    background:#C0BDEF;
-    color:#fff;
-  }
-  &.gender-selected{
-    background:#C0BDEF;
-    color:#fff;
-  }
 
-}
 .game-list-container{
     width:90%;
     margin:auto;
