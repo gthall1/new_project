@@ -8,7 +8,7 @@ var app = {
         // Check to make sure iOS device, not web app mode and not a social browser (FB and TWTR)
         if (mobileCheck.iOS() && !mobileCheck.MobileChrome() && !app.isWebAppMode() && !app.isSocialBrowser() ) {
             // Check to make sure they just finished the confirmation page
-            if ($('body').hasClass('mobile-games-page') && !app.isDevelopment()) {
+            if ($('body').hasClass('mobile-games-page') && !app.isDevelopment() && !app.isPromo()) {
                 $('body').addClass('overlay-screen add-to-home--ios');
             }
         };
@@ -29,6 +29,10 @@ var app = {
 
     isLoggedIn: function() {
         return $('body').hasClass('logged-in');
+    },
+
+    isPromo: function() {
+        return $('body').hasClass('dunkin-tester--mobile');
     },
 
     isDevelopment: function() {
