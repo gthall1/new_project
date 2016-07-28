@@ -26,7 +26,7 @@
         <div class="confirmation-page__input-wrap">
         <%= password_field_tag :password, current_user.password, { required: true, placeholder: "Password", class: "input--text" }%>
 
-        <%= select_tag(:gender, options_for_select([[],['Male', 1], ['Female', 2], ['Other', 3]]), { class: "input--select js-input--select", "data-placeholder" => "Gender",required: true }) %>
+        <%= select_tag(:gender, options_for_select([[],['Male', 1], ['Female', 2]]), { class: "input--select js-input--select", "data-placeholder" => "Gender",required: true }) %>
 
         <%# password_field_tag :password_confirmation, current_user.password_confirmation, { required: true, placeholder: "Confirm Password", class: "input--text" } %>
         </div>

@@ -163,7 +163,7 @@ var app = {
         $('.js-notification-banner__copy').text(copy);
     },
 
-    is_confirmed: function() {
+    isConfirmed: function() {
         if (app.getParams("confirmed") == "true") {
             app.setBannerCopy('Email Confirmed!');
             $('body').addClass('show-banner');
@@ -188,6 +188,15 @@ var app = {
           changeYear: true,
           yearRange: "-100:-0"
         });
+    },
+
+    formatDate: function() {
+        if ($('body').hasClass('confirmation-page--mobile')) {
+            new Cleave('.js-cleave--date', {
+                date: true,
+                datePattern: ['m', 'd', 'Y']
+            });
+        }
     },
 
     bind: function() {
@@ -263,30 +272,23 @@ var app = {
             app.scrollToElement(id);
         });
 
-        // $('.js-survery-link').click(function() {
-        //     Cookies.set('survey_0', 'clicked', { expires: 365 });
-        // })
-
         document.addEventListener("touchstart", function(){}, true);
     },
 
     init: function() {
-        app.initDatepicker();
+        app.addSocialMediaClass();
+        app.bind();
+        app.fitToContainer(".js-inline-tout__title", 0.5);
+        app.formatDate();
         app.hideCopyBtn();
-        app.showShareDialog();
+        app.initDatepicker();
+        app.isConfirmed();
+        app.isWAM();
+        app.notify();
         app.setAddToHomescreen();
         app.show2048Tutorial();
         app.showOnboarding();
-        app.notify();
-        app.is_confirmed();
-        app.fitToContainer(".js-inline-tout__title", 0.5);
-        app.bind();
-        app.isWAM();
-        app.addSocialMediaClass();
-        var cleave = new Cleave('.js-cleave--date', {
-            date: true,
-            datePattern: ['m', 'd', 'Y']
-        });
+        app.showShareDialog();
         // app.initheadroom();
     }
 };
