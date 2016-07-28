@@ -38,7 +38,7 @@ class GamesController < ApplicationController
         render json: res
     end
 
-    def fetch_assets
+    def fetch_assets 
         #check for current campaigns
 
         slug = params[:slug]
@@ -999,7 +999,7 @@ class GamesController < ApplicationController
                         credits = (score/15.to_f).ceil - 1
                 end
             when "match-three"
-                credits = (score/2000.to_f).ceil - 1
+                credits = (score/1500.to_f).ceil - 1
             when 'gold-runner'
                 case score
                     when 5..14
