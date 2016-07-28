@@ -322,6 +322,7 @@ class GamesController < ApplicationController
                 if score >= current_high_score
                     $redis.del("at_#{game_session.game.slug}_#{game_session.version}")
                     $redis.del("w_#{game_session.game.slug}_#{game_session.version}")
+                    $redis.del("w_#{game_session.game.slug}_v#{game_session.version}_user_#{user.id}")
                 elsif $redis.get("w_#{game_session.game.slug}_v#{game_session.version}_user_#{user.id}") && JSON.parse($redis.get("w_#{game_session.game.slug}_v#{game_session.version}_user_#{user.id}"))["score"]
                     $redis.del("w_#{game_session.game.slug}_#{game_session.version}")
                     $redis.del("w_#{game_session.game.slug}_v#{game_session.version}_user_#{user.id}")
