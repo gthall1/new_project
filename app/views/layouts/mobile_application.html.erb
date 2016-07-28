@@ -199,9 +199,7 @@
 
         <div <%= "id=#{@mobile_container_id}" if @mobile_container_id %> class='mobile-container' style="width:100%;">
             <div class="mobile--overlay">
-                <% if !is_dunkin_user? %>
-                    <%= render 'static_pages/overlay_add_to_home' %>
-                <% end %>
+                <%= render 'static_pages/overlay_add_to_home' %>
                 <%= render 'static_pages/overlay_rotate_to_play' %>
             </div><!-- /.mobile--overlay -->
             <% if signed_in? %>
