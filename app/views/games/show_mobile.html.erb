@@ -11,7 +11,7 @@
         });
       </script>
     <% end %>
-  <% elsif if Rails.env.production? %>
+  <% elsif Rails.env.production? %>
       <%= render partial: "/ad_units/ad_mobile", :locals => {ad_slot: "9703283073"} %>
   <% end %>
 <% end %>
