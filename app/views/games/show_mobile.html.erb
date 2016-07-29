@@ -11,8 +11,12 @@
         });
       </script>
     <% end %>
-  <% elsif Rails.env.production? %>
-      <%= render partial: "/ad_units/ad_mobile", :locals => {ad_slot: "9703283073"} %>
+  <% elsif @game.slug == '2048' %>
+    <%= content_for :extra_top_js do %>
+      <div style='width:320px;margin:auto;margin-top:60px;'>
+        <%= render partial: "/ad_units/ad_mobile", :locals => {ad_slot: "9703283073"} %>
+      </div>
+    <% end %>
   <% end %>
 <% end %>
 <div class="game-container <%= @game.slug =='2048' ? 'g-2048' : '' %>">
