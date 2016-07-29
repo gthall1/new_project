@@ -1,7 +1,7 @@
 <% content_for :title, "#{@game.name}" %>
 <% content_for :description, "#{@game.description}" %>
 <% if show_mobile_ads %>
-  <% if Rails.env.production? %>
+  <% if Rails.env.production? && @game.slug != '2048' %>
     <%= content_for :extra_top_js do %>
       <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
       <script>
@@ -11,6 +11,8 @@
         });
       </script>
     <% end %>
+  <% elsif if Rails.env.production? %>
+      <%= render partial: "/ad_units/ad_mobile", :locals => {ad_slot: "9703283073"} %>
   <% end %>
 <% end %>
 <div class="game-container <%= @game.slug =='2048' ? 'g-2048' : '' %>">

@@ -22,10 +22,11 @@
             <div class="form-input--wrap">
                 <%= text_field_tag :last_name, current_user.lastname, {class: "form-input form-input--no-icon", placeholder: "Last Name", required: true}%>
             </div>
-
-            <div class="form-input--wrap">
-                <%= password_field_tag :password, current_user.password, { required: true, placeholder: "Password", class: "form-input form-input--no-icon" } %>
-            </div><!-- /.form-input--wrap -->
+            <% if !@hide_password %>
+                <div class="form-input--wrap">
+                    <%= password_field_tag :password, current_user.password, { required: true,pattern:".{6,}", title: "6 characters minimum", placeholder: "Password", class: "form-input form-input--no-icon" } %>
+                </div><!-- /.form-input--wrap -->
+            <% end %>
         </div><!-- /.confirmation-page__input-wrap -->
 
         <div class="radio-but__container">

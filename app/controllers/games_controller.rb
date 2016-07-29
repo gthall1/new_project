@@ -309,6 +309,11 @@ class GamesController < ApplicationController
                 status = "closed"
             elsif !game_session
                 slug = request.referer.split('/').last
+
+                #remove any extra params
+                if slug.include?("?")
+                    slug = slug.split("?").first
+                end
                 create_new_game_session(params[:score],slug)
                 status = "skip"
             else

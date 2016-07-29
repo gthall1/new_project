@@ -150,7 +150,7 @@ class User < ActiveRecord::Base
 
     def email_activate
         self.email_verified = true
-        self.verify_token = nil
+        #self.verify_token = nil
         save!(:validate => false)
         send_welcome_email
     end

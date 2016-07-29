@@ -24,8 +24,9 @@
         </div><!-- /.confirmation-page__input-wrap -->
 
         <div class="confirmation-page__input-wrap">
-        <%= password_field_tag :password, current_user.password, { required: true, placeholder: "Password", class: "input--text" }%>
-
+        <% if !@hide_password %>
+            <%= password_field_tag :password, current_user.password, { required: true, pattern:".{6,}", title: "6 characters minimum", placeholder: "Password", class: "input--text" }%>
+        <% end %>
         <%= select_tag(:gender, options_for_select([[],['Male', 1], ['Female', 2]]), { class: "input--select js-input--select", "data-placeholder" => "Gender",required: true }) %>
 
         <%# password_field_tag :password_confirmation, current_user.password_confirmation, { required: true, placeholder: "Confirm Password", class: "input--text" } %>
