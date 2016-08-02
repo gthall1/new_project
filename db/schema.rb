@@ -11,10 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160727170030) do
+ActiveRecord::Schema.define(version: 20160802011353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ad_display_tables", force: :cascade do |t|
+  end
 
   create_table "ad_displays", force: :cascade do |t|
     t.integer "ad_number"
@@ -104,12 +107,13 @@ ActiveRecord::Schema.define(version: 20160727170030) do
     t.integer  "user_id"
     t.integer  "credits"
     t.integer  "cash"
-    t.string   "venmo",        limit: 255
-    t.string   "paypal",       limit: 255
+    t.string   "venmo",              limit: 255
+    t.string   "paypal",             limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "cashout_type"
     t.integer  "arrival_id"
+    t.integer  "charity_partner_id"
   end
 
   create_table "challenges", force: :cascade do |t|
@@ -117,10 +121,20 @@ ActiveRecord::Schema.define(version: 20160727170030) do
     t.integer  "challenged_user_id"
     t.integer  "game_id"
     t.integer  "winner_id"
-    t.integer  "challenged_score"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "user_score"
+    t.integer  "challenged_score"
+  end
+
+  create_table "charity_partners", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "logo_m"
+    t.string   "logo_d"
+    t.string   "slug"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "feed_games", force: :cascade do |t|
@@ -319,7 +333,7 @@ ActiveRecord::Schema.define(version: 20160727170030) do
     t.string   "password_digest",  limit: 255
     t.string   "remember_token",   limit: 255
     t.boolean  "admin"
-    t.integer  "credits"
+    t.integer  "credits",                      default: 0
     t.date     "dob"
     t.string   "zipcode",          limit: 255
     t.integer  "gender"

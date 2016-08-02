@@ -176,7 +176,7 @@ class StaticPagesController < ApplicationController
         elsif current_user.credits < @cash_out.credits
             redirect_to donate_credits_path(credits:@cash_out.credits), alert: "You dont have enough credits to cash that out! This requires #{@cash_out.credits}, and you have #{current_user.credits}."
         elsif !@cash_out.cashout_type.nil? && @cash_out.save
-            @current_user.credits = current_user.credits - @cash_out.credits
+            current_user.credits = current_user.credits - @cash_out.credits
             current_user.pending_credits = @cash_out.credits
             current_user.save
             if Rails.env.production?
