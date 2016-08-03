@@ -1,7 +1,6 @@
 class GamesController < ApplicationController
     before_action :set_game, only: [:show, :purchase_confirm, :edit, :update, :destroy]
 
-
     before_action :check_purchase,:check_active, only: [:show]
     before_filter :set_dunkin, only: [:dunkin]
     before_filter :check_signed_in,:set_notifications, except:[:check_branded,:fetch_assets]
@@ -48,8 +47,8 @@ class GamesController < ApplicationController
             ball_url  = "/assets/fall_down/#{BrandedGameAsset.where(slug:'fall-down-ball').first.asset_url}"
             bg_url = "/assets/fall_down/#{BrandedGameAsset.where(slug:'fall-down-bg').order('random()').first.asset_url}"
         else
-            bg_url = nil
-            ball_url = nil
+            bg_url = "/assets/fall_down/harley_quinn.png"
+            ball_url = "/assets/fall_down/fall_down_ball.png"
         end
         game_json = {
             :c2dictionary => true,
