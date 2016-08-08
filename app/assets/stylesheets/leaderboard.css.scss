@@ -152,7 +152,7 @@ $falldown-font: #FEE2C7;
 
     &#leaderboard__cat--1 {
         &::after {
-            left: 33.33%;
+            left: 50%;
         }
     }
 
@@ -164,7 +164,7 @@ $falldown-font: #FEE2C7;
 
     &::after {
         content: "";
-        width: 33.33%;
+        width: 50%;
         height: 4px;
         background-color: #aaa7df;
         bottom: 0;
@@ -181,7 +181,7 @@ $falldown-font: #FEE2C7;
         display: block;
         float: left;
         color: $white;
-        width: 33.33%;
+        width: 50%;
         &:hover {
             cursor: pointer;
         }
@@ -199,7 +199,7 @@ $falldown-font: #FEE2C7;
     position: fixed;
 
     .tab-control__title {
-        width: 33.33%;
+        width: 50%;
         padding: 15px 0;
         float: left;
         display: block;
@@ -389,7 +389,7 @@ $falldown-font: #FEE2C7;
         top: -10px;
     }
     .tab-control__title {
-        width: 33%;
+        width: 50%;
         letter-spacing: 0.25px;
     }
     .social-share {

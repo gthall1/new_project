@@ -82,6 +82,8 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="mobile-web-app-capable" content="yes">
 
+        <!-- Keywords to help adsense targetting -->
+        <meta name='keywords' content='games, rewards, free, play, gaming, free games, play free online, earn cash, cash, cash rewards, charity, play free games, flappy bird, 2048, frogger, candy crush, bejewled, stick runner, match three, match 3, mobile games, mobile, desktop games, browser games, html5 games'>
 
         <!-- Tile icon for Win8 (144x144 + tile color) -->
         <meta name="msapplication-TileImage" content="img/touch/apple-touch-icon-144x144-precomposed.png">
@@ -139,9 +141,10 @@
             </script>
             <!-- end google analytics -->
         <% end %>
-        <%= yield(:game_javascript) %>
+        <%= yield :extra_top_js %>
+        <%= yield :game_javascript %>
     </head>
-    <body ondragstart="return false;" ondrop="return false;" id="<%= yield (:body_id) %>" class="<%= yield (:body_class) %> <% if @game && Game.where(slug:['traffic','flappy-pilot','fall-down','tap-color','gold-runner']).pluck(:id).include?(@game.id) %> mobile-header--hide <% end %> <% if current_user %> logged-in <% end %> <% if is_dunkin_user? %>dunkin-tester--mobile<% end %>">
+    <body ondragstart="return false;" ondrop="return false;" id="<%= yield (:body_id) %>" class="<%= yield (:body_class) %> <% if @game && Game.where(slug:['traffic','flappy-pilot','fall-down','tap-color','gold-runner','match-three']).pluck(:id).include?(@game.id) %>mobile-header--hide<% end %> <% if current_user %>logged-in<% end %> <% if is_dunkin_user? %>dunkin-tester--mobile<% end %> <% if Rails.env.development? %>development<% end %>">
 
         <%= render 'layouts/form_errors' %>
         <%= render 'layouts/loading_screen' %>

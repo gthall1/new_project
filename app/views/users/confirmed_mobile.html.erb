@@ -22,20 +22,33 @@
             <div class="form-input--wrap">
                 <%= text_field_tag :last_name, current_user.lastname, {class: "form-input form-input--no-icon", placeholder: "Last Name", required: true}%>
             </div>
+            <% if !@hide_password %>
+                <div class="form-input--wrap">
+                    <%= password_field_tag :password, current_user.password, { required: true,pattern:".{6,}", title: "6 characters minimum", placeholder: "Password", class: "form-input form-input--no-icon" } %>
+                </div><!-- /.form-input--wrap -->
+            <% end %>
         </div><!-- /.confirmation-page__input-wrap -->
+
+        <div class="radio-but__container">
+            <div class='confirmation-page__radio-but confirmation-page__radio-male'>
+                Male
+            </div>
+            <div class='confirmation-page__radio-but confirmation-page__radio-female'>
+                Female
+            </div>
+        </div><!-- /.radio-but__container -->
+
+        <%= hidden_field_tag :gender, :id => 'confirm_gender',:name => 'gender' %>
 
         <% if current_user.provider == 'facebook' %>
             <div class="form-input--wrap">
-                    <%= text_field_tag :username, current_user.name, {class: "form-input form-input--no-icon", placeholder: "Username (shown to other users)", required: true}%>
+                    <% text_field_tag :username, current_user.name, {class: "form-input form-input--no-icon", placeholder: "Username (shown to other users)", required: true} %>
             </div>
         <% end %>
 
         <div class="form-input--wrap">
-            <%= select_tag(:gender, options_for_select([['Male', 1], ['Female', 2], ['Other', 3]]), { class: "input--select", required: true, prompt: "Gender" }) %>
-        </div>
-
-        <div class="form-input--wrap">
-            <%= text_field_tag :birthday, nil, {class: "js-validate-date form-input form-input--no-icon", placeholder: "Birthday: mm/dd/yyyy", required: true}%>
+            <!-- js-validate-date -->
+            <%= text_field_tag :birthday, nil, {class: "js-cleave--date js-validate-date form-input form-input--no-icon", placeholder: "Birthday: mm/dd/yyyy", required: true}%>
         </div>
 
         <div class="form-input--wrap form-input--wrap-submit">

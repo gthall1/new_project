@@ -23,7 +23,6 @@ class User < ActiveRecord::Base
     # validates_date :dob, on_or_after: lambda { 125.years.ago }, :after_message => "must not be this old. You don't have much time left, please spend it elsewhere.", :on => :update
     # validates_date :dob, on_or_before: lambda { 13.years.ago }, :before_message => "must be at least 13 years old", :on => :update
 
-
     has_secure_password
     validates :password, length: { minimum: 6 } ,:if => '!password.nil?'
     
@@ -106,14 +105,14 @@ class User < ActiveRecord::Base
             arrival = Arrival.where(id:arrival_id).last
 
             if arrival && !arrival.referred_by.blank? 
-                    referral_user = User.unscoped.where(id:arrival.referred_by).first
-                    if referral_user
-                            if referral_user.user_type_name == 'rep'
-                                referral_user.add_credits({credits: 0})
-                            else
-                                referral_user.add_credits({credits: 50})
-                            end
-                    end
+                referral_user = User.unscoped.where(id:arrival.referred_by).first
+                if referral_user
+                        if referral_user.user_type_name == 'rep'
+                            referral_user.add_credits({credits: 0})
+                        else
+                            referral_user.add_credits({credits: 50})
+                        end
+                end
             end
 
             user.gender = auth.extra.raw_info.gender == "male" ? 1 : auth.extra.raw_info.gender == "female" ? 2 : nil
@@ -151,7 +150,7 @@ class User < ActiveRecord::Base
 
     def email_activate
         self.email_verified = true
-        self.verify_token = nil
+        #self.verify_token = nil
         save!(:validate => false)
         send_welcome_email
     end
@@ -220,9 +219,11 @@ class User < ActiveRecord::Base
 
     #generates password before verified
     def generate_password
-        pass = SecureRandom.urlsafe_base64
-        self.password = pass
-        self.password_confirmation = pass
+        if self.password.blank?
+            pass = SecureRandom.urlsafe_base64
+            self.password = pass
+            self.password_confirmation = pass
+        end
     end
 
     def create_verify_token

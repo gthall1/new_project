@@ -33,27 +33,11 @@
     <div class="profile-section profile__bottom">
         <div class="profile__legend">
             <ul class="legend">
-                <li class="legend__key">
-                    <span class="key-color js-key-color"></span> 2048
-                </li>
-                <li class="legend__key">
-                    <span class="key-color js-key-color"></span> Black Hole
-                </li>
-                <li class="legend__key">
-                    <span class="key-color js-key-color"></span> Fall Down
-                </li>
-                <li class="legend__key">
-                    <span class="key-color js-key-color"></span> Flappy Pilot
-                </li>
-                <li class="legend__key">
-                    <span class="key-color js-key-color"></span> Sorcerer
-                </li>
-                <li class="legend__key">
-                    <span class="key-color js-key-color"></span> Tap the Color
-                </li>
-                <li class="legend__key">
-                    <span class="key-color js-key-color"></span> Traffic
-                </li>
+                <% Game.where(device_type:[1,2,3,5]).each do |g| %>
+                    <li class="legend__key">
+                        <span class="key-color js-key-color"></span> <%= g.name %>
+                    </li>
+                <% end %>
             </ul>
         </div>
     </div><!-- /.profile__bottom -->
@@ -131,7 +115,7 @@
     <% if current_user && current_user.admin? && false%>
         Total Games Played: <br />
 
-        <% Game.where(device_type:1).each do | g | %>
+        <% Game.where(device_type:[1,2,3,5]).each do | g | %>
             <%= g.name %> | sessions: <%= UserGameSession.where(user_id:@user.id).where(game_id:g.id).size %> <br />
         <% end %>
     <% end %>

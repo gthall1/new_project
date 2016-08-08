@@ -9,11 +9,13 @@
 @import "reset";
 @import "surveys";
 @import "forms";
+@import "password_resets";
 @import "social_btn";
 @import "jackhammer";
 @import "profiles";
 @import "landing";
 @import "verify_email";
+@import "2048/main";
 
 @mixin box_sizing {
     -moz-box-sizing: border-box;
@@ -1474,12 +1476,13 @@ h1.arrow2 { font-size: 55px;
     }
     .email-form{
         z-index:10;
-        display:none;
+        //display:none;
         h2{
             color:$dark-font;
         }
     }
 }
+
 .game-list-container{
     width:90%;
     margin:auto;

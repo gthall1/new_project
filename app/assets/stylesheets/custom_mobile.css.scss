@@ -11,11 +11,13 @@
 @import "buttons";
 @import "profiles";
 @import "forms";
+@import "password_resets";
 @import "jackhammer";
 @import "loading";
 @import "surveys";
 @import "verify_email";
 @import "dunkin";
+@import "2048/main";
 
 @mixin box_sizing {
     -moz-box-sizing: border-box;
@@ -43,7 +45,29 @@ html {
         font-size: $lg;
         margin: 0;
     }
+    .confirmation-page__radio-but{
+        width: 47%;
+        margin: auto;
+        display: inline-block;
+        border: 2px solid #dedede;
+        text-align: center;
+        cursor: pointer;
+        color: #817BDF;
+        background: #fff;
+        margin: -2px 0 8px;
+        padding: 13px 0;
+        border-radius: 4px;
+
+        &:hover,
+        &.gender-selected {
+            background:#C0BDEF;
+            color: $white;
+            border: 2px solid transparent;
+        }
+
+    }
 }
+
 .fine-copy {
     color: $black;
     margin-top: 25px;
@@ -1131,6 +1155,11 @@ p {
 .game-container{
     min-height:800px;
     background:#000;
+    &.g-2048{
+        padding-top:60px;
+        background:inherit;
+        min-height:400px;
+    }
 }
 
 
@@ -1261,6 +1290,7 @@ p {
 .intro-header--mobile {
     margin: 0;
     padding: 20px;
+    color:#000;
 }
 .side-nav__close {
     text-transform: uppercase;
@@ -1400,6 +1430,10 @@ p {
     }
 
     .overlay-screen {
+        &.add-to-home--ios {
+            padding-top: 0 !important;
+        }
+
         .mobile-container {
             height: 100vh;
             overflow: hidden;
@@ -1479,13 +1513,7 @@ p {
     }
 }
 
-.add-to-home {
-    &.kd-campaign {
-        .mobile--overlay {
-            background-image: none;
-            background-color: $kd-green;
-        }
-    }
+.add-to-home--ios {
     .mobile--overlay {
         background-image: url(/assets/blur.jpg);
     }
@@ -1498,6 +1526,10 @@ p {
         display: inline-block !important;
         @include floating();
     }
+}
+
+.tower-banner{
+    display:none;
 }
 
 .rotate-dialogue,

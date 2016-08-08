@@ -1,29 +1,42 @@
 var app = {
-    // Script to prompt user to add Luckee App shortcut to homescreen
+
+    conf: {
+        beta: false // bool
+    },
+
     setAddToHomescreen: function() {
-        if (mobileCheck.iOS() && !mobileCheck.MobileChrome() && !app.isWebAppMode() && Cookies.get('onboarding-complete') === 'true' && !app.isSocialBrowser() ) {
-            if (Cookies.get('user') === 'returning') {
-                console.log('Welcome home!');
-            } else {
-                    $('body').addClass('overlay-screen add-to-home');
+        // Check to make sure iOS device, not web app mode and not a social browser (FB and TWTR)
+        if (mobileCheck.iOS() && !mobileCheck.MobileChrome() && !app.isWebAppMode() && !app.isSocialBrowser() ) {
+            // Check to make sure they just finished the confirmation page
+            if ($('body').hasClass('mobile-games-page') && !app.isDevelopment() && !app.isPromo()) {
+                $('body').addClass('overlay-screen add-to-home--ios');
             }
         };
     },
 
     showOnboarding: function() {
-        // Check to make sure not logged in
-        if (!app.isLoggedIn()) {
-            if ( mobileCheck.iOS() && !app.isWebAppMode() || mobileCheck.MobileChrome() || mobileCheck.Android() ) {
-                if (Cookies.get('onboarding') !== 'shown') {
-                    window.location.href = window.location.origin + "/onboarding";
-                    Cookies.set('onboarding', 'shown', { expires: 365 });
-                }
+        if ( mobileCheck.iOS() && app.isWebAppMode() || mobileCheck.MobileChrome() || mobileCheck.Android() ) {
+            if (Cookies.get('onboarding') !== 'shown') {
+                window.location.href = window.location.origin + "/onboarding";
+                Cookies.set('onboarding', 'shown', { expires: 365 });
             }
         }
     },
 
+    runBetaMode: function() {
+        $('.mobile-home .mobile-container').addClass('beta-version');
+    },
+
     isLoggedIn: function() {
         return $('body').hasClass('logged-in');
+    },
+
+    isPromo: function() {
+        return $('body').hasClass('dunkin-tester--mobile');
+    },
+
+    isDevelopment: function() {
+        return $('body').hasClass('development');
     },
 
     // For Spacing Concerns - Testing with Mobile Chrome Browser
@@ -154,7 +167,7 @@ var app = {
         $('.js-notification-banner__copy').text(copy);
     },
 
-    is_confirmed: function() {
+    isConfirmed: function() {
         if (app.getParams("confirmed") == "true") {
             app.setBannerCopy('Email Confirmed!');
             $('body').addClass('show-banner');
@@ -181,6 +194,15 @@ var app = {
         });
     },
 
+    formatDate: function() {
+        if ($('body').hasClass('confirmation-page--mobile')) {
+            new Cleave('.js-cleave--date', {
+                date: true,
+                datePattern: ['m', 'd', 'Y']
+            });
+        }
+    },
+
     bind: function() {
         $(".js-input--select").chosen({width: "100%", "disable_search": true});
 
@@ -205,6 +227,20 @@ var app = {
             $(this).addClass('copied')
             e.preventDefault();
         });
+
+        $('.confirmation-page__radio-male').on('click', function() {
+            $('#confirm_gender').val("1")
+        });
+
+        $('.confirmation-page__radio-female').on('click', function() {
+            $('#confirm_gender').val("2")
+        });
+        $('.confirmation-page__radio-but').on('click', function() {
+            console.log('clicked');
+            $('.confirmation-page__radio-but').removeClass('gender-selected');
+            $(this).addClass('gender-selected');
+        });
+
 
         $('.js-overlay__opt-out').click(function(){
             Cookies.set('user', 'returning', { expires: 1 });
@@ -240,26 +276,23 @@ var app = {
             app.scrollToElement(id);
         });
 
-        // $('.js-survery-link').click(function() {
-        //     Cookies.set('survey_0', 'clicked', { expires: 365 });
-        // })
-
         document.addEventListener("touchstart", function(){}, true);
     },
 
     init: function() {
-        app.initDatepicker();
+        app.addSocialMediaClass();
+        app.bind();
+        app.fitToContainer(".js-inline-tout__title", 0.5);
+        app.formatDate();
         app.hideCopyBtn();
-        app.showShareDialog();
+        app.initDatepicker();
+        app.isConfirmed();
+        app.isWAM();
+        app.notify();
         app.setAddToHomescreen();
         app.show2048Tutorial();
         app.showOnboarding();
-        app.notify();
-        app.is_confirmed();
-        app.fitToContainer(".js-inline-tout__title", 0.5);
-        app.bind();
-        app.isWAM();
-        app.addSocialMediaClass();
+        app.showShareDialog();
         // app.initheadroom();
     }
 };

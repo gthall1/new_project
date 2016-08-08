@@ -1,41 +1,70 @@
 <% content_for :body_class, "gameplay-page gameplay-page--2048 #{show_ads ? 'gameplay-page--adsense' : ''}" %>
- <style>
-    canvas {
-      image-rendering: optimizeSpeed;
-      -webkit-interpolation-mode: nearest-neighbor;
-      margin: 0px;
-      padding: 0px;
-      border: 0px;
-    }
-    :-webkit-full-screen #canvas {
-         width: 100%;
-         height: 100%;
-    }
-    :-webkit-full-screen {
-       width: 100%;
-       height: 100%;
-    }
-  </style>
-    <% if show_ads %>
+  <% if show_ads %>
     <%= render partial: "/ad_units/ad_skyscraper", :locals => {ad_slot: "6670921476",side:'left'} %>
   <% end %>
-  <div class="gm4html5_div_class" id="gm4html5_div_id">
- <img src="/assets/2048/splash.png" id="GM4HTML5_loadingscreen" alt="smilegames:HTML5 loading screen" style="display:none;max-width:100vw;max-height:100vh;"/>
-      <!-- Create the canvas element the game draws to -->
-      <canvas id="canvas" width="525" height="800" style='margin-top:60px;'>
-         <p>Your browser doesn't support HTML5 canvas.</p>
-      </canvas>
+  <div class="container">
+    <div class="heading" style='height:110px'>
+      <div class="above-game">
+        <a class="restart-button" href='/games/2048'>New Game</a>
+      </div>      
+      <div class="scores-container">
+        <div class="credit-container"><%= current_user.credits.blank? ? '0' : current_user.credits %></div>
+        <div class="score-container">0</div>
+        <div class="best-container">0</div>
+      </div>
+    </div>
+    <div class="game-container-2048">
+      <div class="game-message">
+        <p></p>
+        <div class="lower">
+          <a class="keep-playing-button" href='/games/2048'>Keep going</a>
+          <a class="retry-button" href='/games/2048'>Try again</a>
+        </div>
+      </div>
+
+      <div class="grid-container">
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+      </div>
+  
+
+      <div class="tile-container">
+
+      </div>
+    </div>
   </div>
   <% if show_ads %>
     <%= render partial: "/ad_units/ad_skyscraper", :locals => {ad_slot: "9624387870",side:'right'} %>
   <% end %>
-        <!-- Run the game code -->
-<script>
-  document.body.setAttribute("style","-ms-touch-action: none;");
-  window.scrollBy(0,42);
-</script>
+  <% if show_ads %>
+    <%= content_for(:extra_bottom_js) do %>
+      <%= javascript_include_tag "twentyfortyeight" %>
+    <% end %>
+  <% else %>
+    <%= content_for(:game_javascript) do %>
+      <%= javascript_include_tag "twentyfortyeight" %>
+    <% end %>
+  <% end %>
 
-
-<%= content_for(:game_javascript) do %>
-  <%= javascript_include_tag "twentyfortyeight", "data-turbolinks-track" => true %>
-<% end %>

@@ -2,7 +2,7 @@ module ApplicationHelper
 
   # Returns the full title on a per-page basis.
   def full_title(page_title)
-    base_title = "GetLuckee"
+    base_title = "Luckee"
     if page_title.empty?
       base_title
     else
@@ -11,7 +11,11 @@ module ApplicationHelper
   end
 
   def show_ads
-    !is_mobile? && !session[:branded_ad] && Rails.env.production? && !is_dunkin_user? && GenericSwitch.where(name:'adsense').present? && GenericSwitch.where(name:'adsense').first.active == true
+    !is_mobile? && !session[:branded_ad] && !is_dunkin_user? && GenericSwitch.where(name:'adsense').present? && GenericSwitch.where(name:'adsense').first.active == true
+  end
+
+  def show_mobile_ads
+    !is_dunkin_user? && GenericSwitch.where(name:'adsense').present? && GenericSwitch.where(name:'adsense').first.active == true
   end
 
   def signups_allowed?

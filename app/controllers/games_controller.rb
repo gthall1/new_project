@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
     before_action :set_game, only: [:show, :purchase_confirm, :edit, :update, :destroy]
 
-    before_action :check_purchase, only: [:show]
+    before_action :check_purchase,:check_active, only: [:show]
     before_filter :set_dunkin, only: [:dunkin]
     before_filter :check_signed_in,:set_notifications, except:[:check_branded,:fetch_assets]
     skip_before_filter  :verify_authenticity_token, only:[:score_update,:reset_game,:get_random_challenge_user, :check_branded, :fetch_assets]
@@ -37,7 +37,7 @@ class GamesController < ApplicationController
         render json: res
     end
 
-    def fetch_assets
+    def fetch_assets 
         #check for current campaigns
 
         slug = params[:slug]
@@ -47,8 +47,8 @@ class GamesController < ApplicationController
             ball_url  = "/assets/fall_down/#{BrandedGameAsset.where(slug:'fall-down-ball').first.asset_url}"
             bg_url = "/assets/fall_down/#{BrandedGameAsset.where(slug:'fall-down-bg').order('random()').first.asset_url}"
         else
-            bg_url = nil
-            ball_url = nil
+            bg_url = "/assets/fall_down/harley_quinn.png"
+            ball_url = "/assets/fall_down/fall_down_ball.png"
         end
         game_json = {
             :c2dictionary => true,
@@ -191,7 +191,7 @@ class GamesController < ApplicationController
                 @top_scores = UserGameSession.where(game_id:@game.id).where.not(score:nil).order("score asc").limit(10)
             when "Helicopter"
                 @top_scores = UserGameSession.where(game_id:@game.id).where.not(score:nil).order("score desc").limit(10)
-            when "Sorcerer Game","2048","Black Hole"
+            when "Sorcerer Game","Black Hole"
                 set_game_token({game_name:@game.name})
         end
 
@@ -217,7 +217,7 @@ class GamesController < ApplicationController
             current_high_score = current_user.get_highscore({timeframe:'at',slug: game_session.game.slug,version:game_session.version})
 
             case game_session.game.slug
-                when '2048','black-hole','sorcerer-game'
+                when 'black-hole','sorcerer-game'
                     game_json = {
                          :earned => game_session.credits_earned,
                          :total_credits => current_user.credits,
@@ -225,7 +225,7 @@ class GamesController < ApplicationController
                          :status => status,
                          :hscore => current_high_score
                         }
-                when 'flappy-pilot','traffic','fall-down','tap-color'
+                when 'flappy-pilot','traffic','fall-down','tap-color','2048','match-three','gold-runner'
                     if game_session.game.slug == 'flappy-pilot'
                         current_high_score = current_high_score.to_s.rjust(3, '0')
                     end
@@ -302,13 +302,18 @@ class GamesController < ApplicationController
             #   current_user.add_credits({credits:credits_to_apply})
             #   game_session.credits_earned = credits
             #   game_session.save
-            elsif user.enabled != false
+            elsif user.enabled == false
                 status = "user not active"
             elsif game_session && !game_session.active
                 status = "closed"
             elsif !game_session
-                game_id = request.referer.split('/').last.to_i
-                create_new_game_session(params[:score],game_id)
+                slug = request.referer.split('/').last
+
+                #remove any extra params
+                if slug.include?("?")
+                    slug = slug.split("?").first
+                end
+                create_new_game_session(params[:score],slug)
                 status = "skip"
             else
                 status = "skip"
@@ -321,6 +326,7 @@ class GamesController < ApplicationController
                 if score >= current_high_score
                     $redis.del("at_#{game_session.game.slug}_#{game_session.version}")
                     $redis.del("w_#{game_session.game.slug}_#{game_session.version}")
+                    $redis.del("w_#{game_session.game.slug}_v#{game_session.version}_user_#{user.id}")
                 elsif $redis.get("w_#{game_session.game.slug}_v#{game_session.version}_user_#{user.id}") && JSON.parse($redis.get("w_#{game_session.game.slug}_v#{game_session.version}_user_#{user.id}"))["score"]
                     $redis.del("w_#{game_session.game.slug}_#{game_session.version}")
                     $redis.del("w_#{game_session.game.slug}_v#{game_session.version}_user_#{user.id}")
@@ -332,7 +338,7 @@ class GamesController < ApplicationController
             if challenge
                 game_id = challenge.game_id
             elsif request && request.referer
-                game_id = request.referer.split('/').last.to_i
+                game_id = request.referer.split('/').last
             end
 
             create_new_game_session(params[:score],game_id)
@@ -342,7 +348,7 @@ class GamesController < ApplicationController
         #shouldnt happen just a safety check
         if game_session
             case game_session.game.slug
-                when '2048','black-hole','sorcerer-game'
+                when 'black-hole','sorcerer-game'
                     game_json = {
                          :earned => game_session.credits_earned,
                          :total_credits => user.credits,
@@ -350,7 +356,7 @@ class GamesController < ApplicationController
                          :status => status,
                          :hscore => current_high_score
                         }
-                when 'flappy-pilot','traffic','fall-down','tap-color','gold-runner'
+                when '2048','flappy-pilot','traffic','fall-down','tap-color','gold-runner','match-three'
                     if game_session.game.slug == 'flappy-pilot'
                         current_high_score = current_high_score.to_s.rjust(3, '0')
                     end
@@ -966,13 +972,15 @@ class GamesController < ApplicationController
                 credits = (score/5000.to_f).ceil - 1 #subtract 1 otherwise itll give a credit once anything is scored
             when "2048"
                 case score
-                    when 5000..9999
+                    when 3000..6999
                         credits = 1
-                    when 10000..13999
+                    when 7000..9999
                         credits = 2
-                    when 14000..99999999999999
-                        credits = (score/3000.to_f).ceil - 2
-                    else
+                    when 10000..14999
+                        credits = 3
+                    when score > 14999
+                        credits = (score/3000.to_f).ceil - 4
+                    else 
                         credits = 0
                 end
             when "traffic"
@@ -995,6 +1003,8 @@ class GamesController < ApplicationController
                     else
                         credits = (score/15.to_f).ceil - 1
                 end
+            when "match-three"
+                credits = (score/1500.to_f).ceil - 1
             when 'gold-runner'
                 case score
                     when 5..14
@@ -1020,9 +1030,9 @@ class GamesController < ApplicationController
         credits_to_apply
     end
 
-    def create_new_game_session(score,game_id)
+    def create_new_game_session(score,slug)
      # old_game = UserGameSession.where(user_id:current_user).last
-        set_game_token({game_name:Game.where(id:game_id).first.name,score:score})
+        set_game_token({game_name:Game.where(slug:slug).first.name,score:score})
     end
 
     # Use callbacks to share common setup or constraints between actions.
@@ -1039,12 +1049,12 @@ class GamesController < ApplicationController
              end
         elsif params[:slug] && !params[:slug].blank?
             @game = Game.where(slug:params[:slug]).first
-        else
+        elsif params
             @game = Game.find(params[:id])
         end
 
-        if @game.name == "Helicopter"
-            set_heli
+        if @game.nil? 
+            redirect_to root_path
         end
     end
 
@@ -1066,6 +1076,10 @@ class GamesController < ApplicationController
 
     def challenge_params
         params.require(:challenge).permit(:user_id,:game_id,:challenged_user_id)
+    end
+
+    def check_active
+        redirect_to root_path unless @game && @game.device_type != nil
     end
 
     def init_testgame(game_id)

@@ -1,22 +1,24 @@
 <% provide(:title, "Forgot password") %>
-<% content_for :body_class, "page-background" %>
+<% content_for :body_class, "page-background desktop-signin-page" %>
 <div class='mobile-header'>
+
         <%= link_to root_path do %>
-        <i class="fa fa-chevron-left back-button"></i>
+            <i class="fa fa-chevron-left back-button"></i> <% if !is_mobile? %> Go Back<% end %>
         <% end %>
 
-        <h2>Luckee</h2>
 </div>
 
 <h1 class="intro-header intro-header--mobile">Forgot password</h1>
 
-<div class="row">
-    <div class="sign-in">
+<div class="row" >
+    <div class="sign-in forgot-password-form">
         <%= form_for(:password_reset, url: password_resets_path) do |f| %>
-            <%= f.label :email %>
-            <%= f.email_field :email, class: 'session__input' %>
-
-            <%= f.submit "Submit", class: "form-submit" %>
+            <%= f.label :email%>
+            <%= f.email_field :email, class: 'session__input',style:'max-width:300px' %>
+            <br />
+            <%= f.submit "Submit", class: "form-submit btn--homepage btn "%>
         <% end %>
     </div>
 </div>
+
+

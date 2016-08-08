@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
     include ApplicationHelper
-
     before_action :signed_in_user,
                                 only: [:index, :edit, :update, :destroy, :show]
     before_action :correct_user,   only: [:edit, :show, :update]
@@ -135,10 +134,19 @@ class UsersController < ApplicationController
         if params[:vid] && User.find_by_verify_token(params[:vid])
             user = User.find_by_verify_token(params[:vid])
             sign_in user
+
+            #dont show set password for older users with incomplete profiles, 
+            #just for new users coming on 5 days seems lie a good threshold, prob can be shorter
+            if user.created_at > Time.now-5.days 
+                @hide_password = true
+            end
             user.email_activate
             render "confirmed_mobile" if is_mobile?
         elsif signed_in? && current_user && !current_user.profile_complete?
             @verified_incomplete = true
+            if current_user.created_at > Time.now-5.days 
+                @hide_password = true
+            end
             render "confirmed_mobile" if is_mobile?
         else
             redirect_to root_path
@@ -170,8 +178,9 @@ class UsersController < ApplicationController
         if !params[:first_name].blank? && !params[:last_name].blank? && !params[:gender].blank? && !params[:birthday].blank?
             current_user.firstname = params[:first_name]
             current_user.lastname = params[:last_name]
-            current_user.gender = params[:gender]
+            current_user.gender = params[:gender].to_i
             current_user.dob = Date.strptime(params[:birthday], "%m/%d/%Y")
+            current_user.password = params[:password] if !params[:password].blank?
 
             if !params[:username].blank?
                 current_user.name = params[:username]
@@ -183,6 +192,7 @@ class UsersController < ApplicationController
             elsif current_user.save
                 redirect_to root_path
             else
+                flash[:error] = "There was an error processing the data. Please check fields and try again."
                 redirect_to confirmed_path
             end
         else
@@ -238,8 +248,7 @@ class UsersController < ApplicationController
     private
 
         def user_params
-            params.require(:user).permit(:name, :email, :password,:gender,:dob,:zipcode,
-                                                                     :password_confirmation)
+            params.require(:user).permit(:name, :email, :password,:gender,:birthday)
         end
 
         # Before filters

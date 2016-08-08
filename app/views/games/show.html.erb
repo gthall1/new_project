@@ -26,10 +26,12 @@
       <%= render 'tap_color' %>      
     <% when 'gold-runner' %>
       <%= render 'gold_runner' %>  
+    <% when 'match-three' %>
+      <%= render 'match_three' %> 
   <% end %> 
-  <% if session[:branded_ad].nil? %>
+  <% if session[:branded_ad].nil? && @game.slug != '2048' %>
     <br /> <br/>
-    <p class='game-description container' style='clear:both;text-align:center; position:absolute;left:15%; bottom:-400px;' > 
+    <p class='game-description container' style='clear:both;text-align:center; width:90%;bottom:-100px;padding-bottom:20px;' > 
       <%= @game.description %>
     </p>
   <% end %>

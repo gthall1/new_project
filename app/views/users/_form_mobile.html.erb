@@ -7,40 +7,28 @@
 <span class="js-go-back go-back"><i class="fa fa-chevron-left"></i></span>
 
 <div class="form-wrap js-form-wrap">
-    <div class="facebook-login-wrap js-facebook-btn">
-    <% if @facebook_link %>
-        <%= link_to @facebook_lin do %>
-            <button class="btn--form btn--form-fb">
-                <i class="fa fa-facebook btn--form__icon"></i>
-                <h1 class="btn--form__copy">Sign up with Facebook</h1>
-            </button><!-- /.btn--form -->
+    <% if false %>
+        <div class="facebook-login-wrap js-facebook-btn">
+        <% if @facebook_link %>
+            <%= link_to @facebook_lin do %>
+                <button class="btn--form btn--form-fb">
+                    <i class="fa fa-facebook btn--form__icon"></i>
+                    <h1 class="btn--form__copy">Sign up with Facebook</h1>
+                </button><!-- /.btn--form -->
+            <% end %>
+        <% else %>
+            <%= link_to "/auth/facebook" do %>
+                <button class="btn--form btn--form-fb">
+                    <i class="fa fa-facebook btn--form__icon"></i>
+                    <h1 class="btn--form__copy">Sign up with Facebook</h1>
+                </button><!-- /.btn--form -->
+            <% end %>
         <% end %>
-    <% else %>
-        <%= link_to "/auth/facebook" do %>
-            <button class="btn--form btn--form-fb">
-                <i class="fa fa-facebook btn--form__icon"></i>
-                <h1 class="btn--form__copy">Sign up with Facebook</h1>
-            </button><!-- /.btn--form -->
-        <% end %>
+            <p class="form-disclaimer">We won't post anything to Facebook. Promise.</p>
+        </div>
     <% end %>
-        <p class="form-disclaimer">We won't post anything to Facebook. Promise.</p>
-    </div>
 
-    <button class="btn--form btn--form-prime js-show-form">
-        <i class="fa fa-envelope btn--form__icon"></i>
-        <h1 class="btn--form__copy">Sign up with Email</h1>
-    </button><!-- /.btn--form -->
-
-    <div class='app-legal--signup'>
-        <a href="/assets/luckee_privacy_policy.pdf"  target="_blank"  class='legal-link'>Privacy Policy</a>
-        <a href="/assets/luckee_TOS.pdf"  target="_blank"  class='legal-link'>Terms of Service</a>
-    </div>
-
-    <h1 class="disclaimer--us-only">*Currently available in the US only</h1>
-</div><!-- /.form-wrap -->
-
-<div class="form-wrap">
-    <div class='form-register js-form-register hidden'>
+    <div class='form-register js-form-register'>
         <%= form_for(@user) do |f| %>
             <%= render 'shared/error_messages', object: f.object %>
             <div class="form-input--wrap">
@@ -65,6 +53,18 @@
 
         <% end %>
     </div><!-- /.form-register -->
+
+    <!-- <button class="btn--form btn--form-prime js-show-form">
+        <i class="fa fa-envelope btn--form__icon"></i>
+        <h1 class="btn--form__copy">Sign up with Email</h1>
+    </button> -->
+
+    <div class='app-legal--signup'>
+        <a href="/assets/luckee_privacy_policy.pdf"  target="_blank"  class='legal-link'>Privacy Policy</a>
+        <a href="/assets/luckee_TOS.pdf"  target="_blank"  class='legal-link'>Terms of Service</a>
+    </div>
+
+    <!-- <h1 class="disclaimer--us-only">*Currently available in the US only</h1> -->
 </div><!-- /.form-wrap -->
 
 <div class='form-swap js-form-swap'>

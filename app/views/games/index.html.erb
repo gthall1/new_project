@@ -71,56 +71,58 @@
         <% end %>
 </div><!-- /.game-list-container -->
 
-<script>
-    // loads the IFrame Player API code asynchronously.
-    var tag = document.createElement('script');
+<% if is_dunkin_user? %>
+    <script>
+        // loads the IFrame Player API code asynchronously.
+        var tag = document.createElement('script');
 
-    tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-    // Fires whenever a player has finished loading
-    function onPlayerReady(event) {
-        event.target.playVideo();
-        console.log('loaded!');
-    }
-
-    // Fires when the player's state changes.
-    function onPlayerStateChange(event) {
-        // Go to the next video after the current one is finished playing
-        if (event.data === 0) {
-            $.fancybox.close();
+        // Fires whenever a player has finished loading
+        function onPlayerReady(event) {
+            event.target.playVideo();
+            console.log('loaded!');
         }
-    }
 
-    // The API will call this function when the page has finished downloading the JavaScript for the player API
-    function onYouTubePlayerAPIReady() {
+        // Fires when the player's state changes.
+        function onPlayerStateChange(event) {
+            // Go to the next video after the current one is finished playing
+            if (event.data === 0) {
+                $.fancybox.close();
+            }
+        }
 
-        // Initialise the fancyBox after the DOM is loaded
-        $(document).ready(function() {
-            $(".fancybox")
-                .attr('rel', 'gallery')
-                .fancybox({
-                    openEffect  : 'none',
-                    closeEffect : 'none',
-                    nextEffect  : 'none',
-                    prevEffect  : 'none',
-                    padding     : 0,
-                    margin      : 50,
-                    beforeShow  : function() {
-                        // Find the iframe ID
-                        var id = $.fancybox.inner.find('iframe').attr('id');
+        // The API will call this function when the page has finished downloading the JavaScript for the player API
+        function onYouTubePlayerAPIReady() {
 
-                        // Create video player object and add event listeners
-                        var player = new YT.Player(id, {
-                            events: {
-                                'onReady': onPlayerReady,
-                                'onStateChange': onPlayerStateChange
-                            }
-                        });
-                    }
-                });
-        });
+            // Initialise the fancyBox after the DOM is loaded
+            $(document).ready(function() {
+                $(".fancybox")
+                    .attr('rel', 'gallery')
+                    .fancybox({
+                        openEffect  : 'none',
+                        closeEffect : 'none',
+                        nextEffect  : 'none',
+                        prevEffect  : 'none',
+                        padding     : 0,
+                        margin      : 50,
+                        beforeShow  : function() {
+                            // Find the iframe ID
+                            var id = $.fancybox.inner.find('iframe').attr('id');
 
-    }
-</script>
+                            // Create video player object and add event listeners
+                            var player = new YT.Player(id, {
+                                events: {
+                                    'onReady': onPlayerReady,
+                                    'onStateChange': onPlayerStateChange
+                                }
+                            });
+                        }
+                    });
+            });
+
+        }
+    </script>
+<% end %>

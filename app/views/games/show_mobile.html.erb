@@ -1,7 +1,19 @@
 <% content_for :title, "#{@game.name}" %>
 <% content_for :description, "#{@game.description}" %>
-
-<div class="game-container">
+<% if show_mobile_ads %>
+  <% if Rails.env.production? && @game.slug != '2048' %>
+    <%= content_for :extra_top_js do %>
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-9909143434790892",
+          enable_page_level_ads: true
+        });
+      </script>
+    <% end %>
+  <% end %>
+<% end %>
+<div class="game-container <%= @game.slug =='2048' ? 'g-2048' : '' %>">
 
   <% case @game.slug %>
     <% when 'sorcerer-game' %>
@@ -19,14 +31,14 @@
     <% when 'tap-color' %>
      <%= render 'tap_color' %>  
     <% when 'gold-runner' %>
-      <%= render 'gold_runner' %>      
+      <%= render 'gold_runner' %>    
+    <% when 'match-three' %>
+      <%= render 'match_three' %>   
   <% end %>
 </div>
 
 <% if @game.slug == '2048' %>
-<input type="hidden" id="game_token" name="game_token" value="<%= session[:game_token] %>" />
-<input type="hidden" id="credits_earned" name="credits_earned" value=0 />
+    <div style='width:320px;margin:auto;margin-top:60px;'>
+      <%= render partial: "/ad_units/ad_mobile", :locals => {ad_slot: "9703283073"} %>
+    </div>
 <% end %>
-<script type='text/javascript'>
-
-</script>

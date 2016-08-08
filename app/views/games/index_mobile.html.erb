@@ -1,13 +1,6 @@
 <% content_for :body_class, "mobile-games-page games-page" %>
 
 <div class='game-list-container'>
-    <% if is_dunkin_user? %>
-        <%= link_to dunkin_video_path do %>
-            <div class="game-wrapper game--fastest-way-to-dd js-game--fastest-way-to-dd %>">
-                <img class="game-image" src="/assets/fastest-way-to-dd_mobile.jpg">
-            </div>
-        <% end %>
-    <% end %>
 
     <% @games.each do | g | %>
         <% if g.device_type != 5 || current_user.has_purchased_game(g.id) %>
@@ -26,6 +19,14 @@
         <% end %>
     <% end %>
 
+    <% if is_dunkin_user? %>
+        <%= link_to dunkin_video_path do %>
+            <div class="game-wrapper game--fastest-way-to-dd js-game--fastest-way-to-dd %>">
+                <img class="game-image" src="/assets/fastest-way-to-dd_mobile.jpg">
+            </div>
+        <% end %>
+    <% end %>
+    
     <% if is_dunkin_user? %>
         <p class="fine-copy">This page is for demonstration purposes only.<br> For full site visit <a style="color:#817bdf;" href="/">www.getluckee.com</p>
     <% end %>

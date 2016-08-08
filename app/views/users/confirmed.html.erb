@@ -17,17 +17,25 @@
             <p class="confirmation-page__copy">Thank you for confirming your email! Complete the form quick below!</p>
         <% end %>
 
-     <%= form_tag '/user_details', method: :post, class: "js-form-validate-date" do |f| %>
+    <%= form_tag '/user_details', method: :post, class: "js-form-validate-date" do |f| %>
         <div class="confirmation-page__input-wrap">
             <%= text_field_tag :first_name, current_user.firstname, {class: "input--text input--text--left input--text--2-col", placeholder: "First Name", required: true}%>
             <%= text_field_tag :last_name, current_user.lastname, {class: "input--text input--text--right input--text--2-col", placeholder: "Last Name", required: true}%>
         </div><!-- /.confirmation-page__input-wrap -->
 
+        <div class="confirmation-page__input-wrap">
+        <% if !@hide_password %>
+            <%= password_field_tag :password, current_user.password, { required: true, pattern:".{6,}", title: "6 characters minimum", placeholder: "Password", class: "input--text" }%>
+        <% end %>
+        <%= select_tag(:gender, options_for_select([[],['Male', 1], ['Female', 2]]), { class: "input--select js-input--select", "data-placeholder" => "Gender",required: true }) %>
+
+        <%# password_field_tag :password_confirmation, current_user.password_confirmation, { required: true, placeholder: "Confirm Password", class: "input--text" } %>
+        </div>
+
          <% if current_user.provider == 'facebook' %>
              <%= text_field_tag :username, current_user.name, {class: "input--text", placeholder: "Username (shown to other users)", required: true}%>
          <% end %>
 
-        <%= select_tag(:gender, options_for_select([[],['Male', 1], ['Female', 2], ['Other', 3]]), { class: "input--select js-input--select", "data-placeholder" => "Gender",required: true }) %>
         <!-- Tried to use rails form helper but jquery ui datepicker was throwing an error -->
         <%# text_field_tag :e, nil, {class: "input--text js-datepicker", placeholder: "Birthday"}%>
         <%= text_field_tag :birthday, nil, {class: "js-datepicker js-validate-date input--text", placeholder: "Birthday", required: true}%>

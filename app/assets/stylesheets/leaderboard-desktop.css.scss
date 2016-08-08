@@ -152,8 +152,9 @@ $falldown-font: #FEE2C7;
         font-size: 14px;
         padding: 5px 0;
         margin: 0;
-        display: block;
-        float: left;
+        display: inline-block;
+        position: relative;
+        display: inline-block;
         color: $black;
         width: 50%;
         &:hover {
@@ -166,7 +167,7 @@ $falldown-font: #FEE2C7;
 }
 .leaderboard__cat--3 {
     .tab-control__title {
-        width: 33.33% !important;
+        width: 50% !important;
         padding: 5px 0;
         float: left;
         display: block;

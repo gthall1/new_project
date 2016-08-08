@@ -1,6 +1,9 @@
 <% if !params[:promo].blank? && session[:promo].downcase == "vip" %>
     <%= link_to "Preview in Browser", session[:promo], class: "js-overlay__opt-out overlay__opt-out ga-preview-event" %>
-<% else %>
+<% end %>
+
+<!-- All users must add to homescreen for now - unless in dev, then show -->
+<% if false %>
     <a href="/" class="js-overlay__opt-out overlay__opt-out ga-preview-event">Preview in Browser</a>
 <% end %>
 
