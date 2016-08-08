@@ -13,8 +13,8 @@ class User < ActiveRecord::Base
     has_many :challenges_as_challenger, :foreign_key => 'user_id', :class_name => 'Challenge'
 
 
-    before_validation :generate_password
-    before_create :create_remember_token, :create_referral_code,:create_verify_token
+    #before_validation :generate_password
+    before_create :create_remember_token, :create_referral_code
     validates :name, presence: true, length: { maximum: 50 }
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
     validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }

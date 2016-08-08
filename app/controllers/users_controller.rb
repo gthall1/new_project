@@ -74,10 +74,57 @@ class UsersController < ApplicationController
 
     def new
         @waitlist_user = WaitlistUser.new
-        @user = User.new
+        @user = UserLead.new
         @is_mobile = is_mobile?
     end
 
+    def create_lead
+        @user_lead = UserLead.new(user_lead_params)
+
+        if !signups_allowed?
+            flash[:notice] = 'We are currently restricting new users for our closed beta. Please join our wait list to receive an invite in the future!'
+            redirect_to root_path
+        else
+            if session[:arrival_id]
+                @user_lead.arrival_id = session[:arrival_id]
+            elsif cookies[:a_id]
+                @user_lead.arrival_id = cookies[:a_id]
+            end
+
+            if @user_lead.save
+                if !@user_lead.oath_token.blank?
+                    session[:auth_token] = @user_lead.oath_token
+                end
+                arrival = Arrival.where(id:session[:arrival_id]).first
+                if arrival
+                    arrival.user_lead_id = @user_lead.id
+                    arrival.save
+                end
+                if session[:referred_user_id]
+                    referral_user = UserLead.where(id:session[:referred_user_id]).first
+                    if referral_user
+                        referral_user.add_credits({credits:get_refer_credits(referral_user.user_type_name)})
+                        referral_user.save
+                        @user_lead.referred_user_id = referral_user.id
+                        session[:referred_user_id] = nil
+                    end
+                end
+
+                #some weird things, the request doesnt exist
+                if request && request.user_agent
+                    user_agent = request.user_agent
+                else
+                    user_agent = ""
+                end
+                session[:user_lead] = @user_lead
+                UserNotifier.send_confirmation_lead_email({user_lead_id: @user_lead.id,verify_token:@user.verify_token}).deliver
+                redirect_to verify_path
+            else
+                flash[:error] = "We're sorry! Something went wrong. Please check your email and username again."
+                redirect_to root_path
+            end
+        end
+    end
     def create
         @user = User.new(user_params)
 
@@ -247,10 +294,13 @@ class UsersController < ApplicationController
 
     private
 
+        def user_lead_params
+            params.require(:user_lead).permit(:name, :email)
+        end
+
         def user_params
             params.require(:user).permit(:name, :email, :password,:gender,:birthday)
         end
-
         # Before filters
 
         def correct_user
