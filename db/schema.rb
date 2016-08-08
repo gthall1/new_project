@@ -11,13 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160802011353) do
+ActiveRecord::Schema.define(version: 20160802153537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "ad_display_tables", force: :cascade do |t|
-  end
 
   create_table "ad_displays", force: :cascade do |t|
     t.integer "ad_number"
@@ -121,10 +118,10 @@ ActiveRecord::Schema.define(version: 20160802011353) do
     t.integer  "challenged_user_id"
     t.integer  "game_id"
     t.integer  "winner_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "user_score"
     t.integer  "challenged_score"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "user_score"
   end
 
   create_table "charity_partners", force: :cascade do |t|

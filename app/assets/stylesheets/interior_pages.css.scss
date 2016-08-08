@@ -1,8 +1,10 @@
 @import "reset";
 // Interior Pages
 .desktop-games-page {
-    background-image: url(star_background.jpg);
-    background-size: 70%;
+    background-image: url(mountain_landscape_bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .interior-page {
     background: $white !important;
