@@ -15,7 +15,7 @@ module ApplicationHelper
   end
 
   def is_luckee_co?
-    request.host.split('.').first == 'luckee'
+    request.domain.split('.').first == 'luckee'
   end
 
   def show_ads
