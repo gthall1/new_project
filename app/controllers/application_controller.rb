@@ -35,9 +35,10 @@ class ApplicationController < ActionController::Base
   end
 
 	def record_arrival
+    p "HOST IS: #{request.host}"
 		set_is_bot if session[:bot].nil?
 
-        skip = request && request.fullpath.include?('/api/v1')
+    skip = request && request.fullpath.include?('/api/v1')
 
 		if !skip && !session[:arrival_id] && cookies[:a_id]
 			session[:arrival_id] = cookies[:a_id]
@@ -60,6 +61,7 @@ class ApplicationController < ActionController::Base
       if cookies[:survey] && Time.now <= Survey.last.created_at + 1.week
           cookies.delete :survey
       end
+
 			if request
 				landing_url = request.fullpath.truncate(250) if request.fullpath
 				if request.user_agent

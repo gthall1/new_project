@@ -2,14 +2,21 @@ class StaticPagesController < ApplicationController
     include ApplicationHelper
 
     layout :determine_layout
+    before_filter :check_host, :except => [:promo_home]
     before_filter :check_signed_in, :only => [:redeem,:redeem_credits,:refer,:new_cash_out,:new_donation]
+    skip_before_filter :check_signed_in, :only => [:promo_home]
 
     skip_before_filter :check_country, :only => [:country,:waitlist_user]
     skip_before_filter :check_enabled, :only => [:closed_beta]
 
     def check_signed_in
-        redirect_to root_path if !signed_in?
-        redirect_to confirmed_path if signed_in? && current_user && !current_user.profile_complete?
+        if !is_luckee_co?
+            redirect_to root_path if !signed_in?
+            redirect_to confirmed_path if signed_in? && current_user && !current_user.profile_complete?
+        end
+    end
+
+    def promo_home
     end
 
     def home
@@ -188,8 +195,6 @@ class StaticPagesController < ApplicationController
         end
     end
 
-
-
     def new_cash_out
         @show_back_button = true
         @cash_out = CashOut.new(cash_out_params)
@@ -267,6 +272,10 @@ class StaticPagesController < ApplicationController
     end
 
     private
+        def check_host
+            redirect_to promo_home_path if is_luckee_co?
+        end
+
         def cash_out_params
             params.require(:cash_out).permit(:user_id, :credits, :cash,:venmo,:paypal,:cashout_type)
         end

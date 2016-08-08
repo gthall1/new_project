@@ -10,8 +10,16 @@ module ApplicationHelper
     end
   end
 
+  def is_game_only?
+      !session[:game_only].blank?
+  end
+
+  def is_luckee_co?
+    request.host.split('.').first == 'luckee'
+  end
+
   def show_ads
-    !is_mobile? && !session[:branded_ad] && !is_dunkin_user? && GenericSwitch.where(name:'adsense').present? && GenericSwitch.where(name:'adsense').first.active == true
+    !is_mobile? && !is_luckee_co? && !session[:branded_ad] && !is_dunkin_user? && GenericSwitch.where(name:'adsense').present? && GenericSwitch.where(name:'adsense').first.active == true
   end
 
   def show_mobile_ads
