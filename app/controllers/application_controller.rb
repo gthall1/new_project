@@ -50,6 +50,7 @@ class ApplicationController < ActionController::Base
 			ip = nil
 			mobile = 0
 
+
 			if cookies[:u]
 				user_id = cookies[:u]
 			elsif signed_in? && current_user
@@ -71,6 +72,13 @@ class ApplicationController < ActionController::Base
 				referer = request.referer.truncate(250) if request.referer
 				ip = request.ip if request.ip
 			end
+      
+      if !cookies[:gvid]
+        session[:global_visitor_id] = SecureRandom.base64
+        cookies.permanent[:gvid] = session[:global_visitor_id]
+      else
+        session[:global_visitor_id] = cookies[:gvid]
+      end
 
 			arrival = Arrival.create({landing_url: landing_url, referer: referer, user_agent:user_agent,ip:ip,mobile:mobile,user_id:user_id})
 			session[:arrival_id] = arrival.id

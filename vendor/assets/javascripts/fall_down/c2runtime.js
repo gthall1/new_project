@@ -3907,7 +3907,7 @@ quat4.str=function(a){return"["+a[0]+", "+a[1]+", "+a[2]+", "+a[3]+"]"};
 		{
 			this["setSize"](this.original_width, this.original_height, true);
 		}
-		//this.tryLockOrientation();
+		this.tryLockOrientation();
 		this.getready();	// determine things to preload
 		this.go();			// run loading screen
 		this.extra = {};
@@ -4107,7 +4107,7 @@ quat4.str=function(a){return"["+a[0]+", "+a[1]+", "+a[2]+", "+a[3]+"]"};
 			this.ctx["msImageSmoothingEnabled"] = this.linearSampling;
 			this.ctx["imageSmoothingEnabled"] = this.linearSampling;
 		}
-		//this.tryLockOrientation();
+		this.tryLockOrientation();
 		if (!this.isDomFree && (tryHideAddressBar || this.isiPhone))
 		{
 			window.setTimeout(function () {
@@ -21081,8 +21081,8 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.AJAX,
 	cr.plugins_.Browser,
 	cr.plugins_.Dictionary,
-	cr.plugins_.Touch,
 	cr.plugins_.Spritefont2,
+	cr.plugins_.Touch,
 	cr.plugins_.Sprite,
 	cr.plugins_.WebStorage,
 	cr.plugins_.Text,
@@ -21095,19 +21095,27 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.WebStorage.prototype.acts.StoreLocal,
 	cr.system_object.prototype.cnds.EveryTick,
 	cr.plugins_.Browser.prototype.acts.GoToURL,
+	cr.system_object.prototype.cnds.OnLayoutStart,
+	cr.plugins_.AJAX.prototype.acts.Post,
+	cr.plugins_.AJAX.prototype.cnds.OnComplete,
+	cr.plugins_.Dictionary.prototype.acts.JSONLoad,
+	cr.plugins_.AJAX.prototype.exps.LastData,
+	cr.plugins_.Sprite.prototype.acts.LoadURL,
+	cr.plugins_.Dictionary.prototype.exps.Get,
+	cr.plugins_.Dictionary.prototype.cnds.HasKey,
+	cr.plugins_.Dictionary.prototype.cnds.CompareValue,
+	cr.plugins_.Sprite.prototype.acts.SetVisible,
 	cr.system_object.prototype.cnds.Every,
 	cr.system_object.prototype.cnds.CompareVar,
 	cr.system_object.prototype.acts.CreateObject,
 	cr.plugins_.Sprite.prototype.exps.X,
 	cr.plugins_.Sprite.prototype.exps.Width,
 	cr.system_object.prototype.acts.AddVar,
-	cr.plugins_.AJAX.prototype.acts.Post,
 	cr.plugins_.Sprite.prototype.acts.SetY,
 	cr.plugins_.Sprite.prototype.exps.Y,
 	cr.plugins_.Sprite.prototype.cnds.OnCreated,
 	cr.plugins_.Sprite.prototype.acts.SetWidth,
 	cr.system_object.prototype.exps.random,
-	cr.system_object.prototype.cnds.OnLayoutStart,
 	cr.system_object.prototype.acts.SetVar,
 	cr.system_object.prototype.acts.SetTimescale,
 	cr.system_object.prototype.acts.SetObjectTimescale,
@@ -21123,10 +21131,5 @@ cr.getObjectRefTable = function () { return [
 	cr.behaviors.Platform.prototype.acts.SimulateControl,
 	cr.plugins_.Sprite.prototype.acts.RotateCounterclockwise,
 	cr.plugins_.Sprite.prototype.acts.RotateClockwise,
-	cr.plugins_.AJAX.prototype.cnds.OnComplete,
-	cr.plugins_.Dictionary.prototype.acts.JSONLoad,
-	cr.plugins_.AJAX.prototype.exps.LastData,
-	cr.plugins_.Dictionary.prototype.exps.Get,
-	cr.plugins_.Text.prototype.acts.SetText,
-	cr.plugins_.Sprite.prototype.acts.LoadURL
+	cr.plugins_.Text.prototype.acts.SetText
 ];};

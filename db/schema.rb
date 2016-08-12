@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160802011353) do
+ActiveRecord::Schema.define(version: 20160812162215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20160802011353) do
     t.integer "user_id"
     t.integer "user_game_session_id"
     t.integer "game_id"
+    t.integer "campaign_id"
   end
 
   create_table "ad_units", force: :cascade do |t|
@@ -59,15 +60,17 @@ ActiveRecord::Schema.define(version: 20160802011353) do
   end
 
   create_table "arrivals", force: :cascade do |t|
-    t.string   "landing_url", limit: 255
-    t.string   "referer",     limit: 255
-    t.string   "user_agent",  limit: 255
-    t.string   "ip",          limit: 255
-    t.string   "mobile",      limit: 255
+    t.string   "landing_url",       limit: 255
+    t.string   "referer",           limit: 255
+    t.string   "user_agent",        limit: 255
+    t.string   "ip",                limit: 255
+    t.string   "mobile",            limit: 255
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "referred_by"
+    t.integer  "user_lead_id"
+    t.string   "global_visitor_id"
   end
 
   create_table "branded_game_assets", force: :cascade do |t|
@@ -304,6 +307,16 @@ ActiveRecord::Schema.define(version: 20160802011353) do
   add_index "user_game_sessions", ["updated_at"], name: "index_user_game_sessions_on_updated_at", using: :btree
   add_index "user_game_sessions", ["user_id"], name: "index_user_game_sessions_on_user_id", using: :btree
 
+  create_table "user_leads", force: :cascade do |t|
+    t.string   "username"
+    t.string   "email"
+    t.boolean  "verified"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "arrival_id"
+  end
+
   create_table "user_survey_answers", force: :cascade do |t|
     t.integer  "user_survey_id"
     t.integer  "user_id"
@@ -357,6 +370,7 @@ ActiveRecord::Schema.define(version: 20160802011353) do
     t.string   "verify_token"
     t.integer  "user_type"
     t.boolean  "enabled"
+    t.integer  "user_lead_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

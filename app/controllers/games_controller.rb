@@ -47,19 +47,28 @@ class GamesController < ApplicationController
         if session[:branded_ad] == 9
             ball_url  = "/assets/fall_down/#{BrandedGameAsset.where(slug:'fall-down-ball').first.asset_url}"
             bg_url = "/assets/fall_down/#{BrandedGameAsset.where(slug:'fall-down-bg').order('random()').first.asset_url}"
-        elsif session[:promotion] == 'julie'
-            bg_url = "/assets/fall_down/promos/julie_game.png"
-            ball_url = "/assets/fall_down/promos/soccer_ball.png"
+        elsif !session[:promotion].blank? && Advertiser.where(slug:session[:promotion]).present? 
+            advertiser = Advertiser.where(slug:session[:promotion]).first
+            campaign = Campaign.where(advertiser_id:advertiser.id,active:true).first
+            assets = BrandedGameAsset.where(campaign_id:campaign.id,game_id:Game.where(slug:params[:slug]))
+
+            bg_url = assets.find_by_slug('fall-down-bg').asset_url
+            ball_url = assets.find_by_slug('fall-down-ball').asset_url
+            title_bg_url = assets.find_by_slug('fall-down-title-bg').asset_url
+            play_url = assets.find_by_slug('fall-down-play').asset_url
         else
             bg_url = "/assets/fall_down/harley_quinn.png"
             ball_url = "/assets/fall_down/fall_down_ball.png"
         end
+
         game_json = {
             :c2dictionary => true,
             :data => {
-             :ball_image =>ball_url,
-             :bg_image =>bg_url,
-             :alt_assets => 'true',
+             :ball_image => ball_url,
+             :bg_image => bg_url,
+             :title_bg_url => title_bg_url,
+             :play_url => play_url,
+             :alt_assets => 'true'
             }
         }
 
@@ -112,12 +121,13 @@ class GamesController < ApplicationController
     end
 
     def check_signed_in
-        if params[:vid] && User.find_by_verify_token(params[:vid])
-            verify_link = true
+        if !is_luckee_co?
+            if params[:vid] && User.find_by_verify_token(params[:vid])
+                verify_link = true
+            end
+            redirect_to root_path if !signed_in? && !verify_link
+            redirect_to confirmed_path if signed_in? && current_user && !current_user.profile_complete?
         end
-        redirect_to root_path if !signed_in? && !verify_link
-        redirect_to confirmed_path if signed_in? && current_user && !current_user.profile_complete?
-
     end
 
     #sets notifications for surveys not taken
