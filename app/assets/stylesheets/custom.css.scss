@@ -49,6 +49,10 @@ body {
     }
 }
 
+.desktop-games-page {
+    background-color: #ac94a2;
+}
+
 .gameplay-page--dunkin {
     .app-wrapper {
         position: relative;
@@ -222,9 +226,9 @@ p {
 .nav-dropdown__user-credits {
     font-size: 14px;
     display: inline-block;
-    background: $purple-light;
+    background-color: $white;
     border-radius: 100px;
-    color: $white;
+    color: $purple-light;
     padding: 10px 20px 10px 50px;
     position: relative;
     margin-left: 20px;
@@ -319,7 +323,7 @@ p {
     z-index: 10;
 
     .desktop-games-page & {
-        background-color: #5b5877;
+        background-color: #7d7a92;
     }
 
     .nav-left {
