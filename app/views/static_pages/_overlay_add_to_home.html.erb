@@ -1,4 +1,4 @@
-<% if !params[:promo].blank? && session[:promo].downcase == "vip" %>
+<% if !session[:promo].blank? && session[:promo].downcase == "vip" %>
     <%= link_to "Preview in Browser", session[:promo], class: "js-overlay__opt-out overlay__opt-out ga-preview-event" %>
 <% end %>
 

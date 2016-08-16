@@ -95,7 +95,7 @@
         <div class="desktop-wrapper">
         <% if is_dunkin_user? %>
             <%= render 'static_pages/navigation_desktop_dunkin' %>
-        <% else %>
+        <% elsif !is_luckee_co? %>
             <%= render 'static_pages/navigation_desktop' %>
         <% end %>
         <div class="app-wrapper">

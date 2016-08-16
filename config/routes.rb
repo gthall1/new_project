@@ -103,6 +103,9 @@ Alotto::Application.routes.draw do
     #Promo Demo Page
     match '/dunkin', to: 'games#dunkin', via: 'get'
 
+
+    match '/landing', to: 'static_pages#promo_home', via: 'get',as: 'promo_home'
+
     #For analytics to grab some data
     namespace :api, defaults: { format: :json } do
         namespace :v1 do
@@ -118,7 +121,7 @@ Alotto::Application.routes.draw do
         end
     end
 
-    #CATCH ALL FOR PROMOS
-    match '/:promo', to: 'static_pages#home', via: 'get'
+    #Promo Game Page
+    match '/:promo', to: 'games#promotional', via: 'get'
 
 end
