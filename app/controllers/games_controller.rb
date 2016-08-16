@@ -51,7 +51,7 @@ class GamesController < ApplicationController
             advertiser = Advertiser.where(slug:session[:promotion]).first
             campaign = Campaign.where(advertiser_id:advertiser.id,active:true).first
             assets = BrandedGameAsset.where(campaign_id:campaign.id,game_id:Game.where(slug:params[:slug]))
-
+            promo = campaign.id
             bg_url = assets.find_by_slug('fall-down-bg').asset_url
             ball_url = assets.find_by_slug('fall-down-ball').asset_url
             title_bg_url = assets.find_by_slug('fall-down-title-bg').asset_url
@@ -66,9 +66,10 @@ class GamesController < ApplicationController
             :data => {
              :ball_image => ball_url,
              :bg_image => bg_url,
-             :title_bg_url => title_bg_url,
-             :play_url => play_url,
-             :alt_assets => 'true'
+             :home_bg_image => title_bg_url,
+             :play_image => play_url,
+             :alt_assets => 'true',
+             :promo => promo
             }
         }
 
@@ -614,18 +615,24 @@ class GamesController < ApplicationController
             set_game_token({game_name:old_game_name})
         end
         # TODO: this is all gettng messy need to clean this up and standardize
-        if game && game.slug == "tap-color"
-            version = 1
+        if game 
+            version = nil
             if params[:v] && !params[:v].blank?
                 version = params[:v].to_i
             end
-            high_score = get_current_highscore_for_version({game_id:game_id,version_id:version})
-        else
-            high_score = get_current_highscore({game_id:game_id})
+            if current_user
+                high_score = current_user.get_highscore({timeframe:'at',slug: game.slug,version:version})
+            else
+                if session[:arrival_id]
+                    high_score = Arrival.find(session[:arrival_id]).get_highscore({timeframe:'at',slug: game.slug,version:version})
+                else
+                    high_score = 0 #fallback
+                end
+            end
         end
 
         if old_game
-            if !old_game.challenge_id.nil?
+            if false && !old_game.challenge_id.nil?
                 challenge = Challenge.where(id:old_game.challenge_id).first
                 # if current_user.id == challenge.user_id
                 #   challenge.user_score = old_game.score
@@ -674,19 +681,32 @@ class GamesController < ApplicationController
         if newgame && game.slug == "fall-down"
             if session[:branded_ad]
                 ad_number = session[:branded_ad]
+            elsif session[:promotion]
+                advertiser = Advertiser.where(slug:session[:promotion]).first
+                campaign = Campaign.where(advertiser_id:advertiser.id,active:true).first
+                ad_number = campaign.id 
             else
                 ad_number = get_ad
             end
 
             if ad_number && ad_number != 1
-                AdDisplay.create({user_game_session_id:UserGameSession.where(token:session[:game_token]).first.id,user_id:current_user.id, game_id:game.id,ad_number:ad_number})
+                user_id = nil
+                if current_user
+                    user_id = current_user.id
+                end
+
+                AdDisplay.create({user_game_session_id:UserGameSession.where(token:session[:game_token]).first.id,user_id:user_id, global_visitor_id:session[:global_visitor_id],arrival_id:session[:arrival_id],game_id:game.id,ad_number:ad_number})
             end
 
+            credits = 'N/A'
+            if current_user
+                credits = current_user.credits
+            end
             game_json = {
                 :c2dictionary => true,
                 :data => {
                  :earned => 0,
-                 :total_credits => current_user.credits,
+                 :total_credits => credits,
                  :token => session[:game_token],
                  :hscore => high_score,
                  :ad_number => ad_number
@@ -775,8 +795,8 @@ class GamesController < ApplicationController
         score = args[:score] ||= 0
         game_name = args[:game_name] ||= "Memory Game"
         version = args[:version] ||= nil
-        if current_user
-            old_games = UserGameSession.where(user_id:current_user.id,active:true)
+        if session[:arrival_id]
+            old_games = UserGameSession.where(arrival_id:session[:arrival_id],active:true)
             # if old_games && old_games.last.created_at >= (Time.now-1.minutes-30.seconds)
             #     redirect_to root_path, notice: 'Rate limit on games hit. Please play check back later.'
             # end
@@ -787,7 +807,7 @@ class GamesController < ApplicationController
 
             game = UserGameSession.new
             game.token = SecureRandom.urlsafe_base64
-            game.user_id = current_user.id
+            game.user_id = current_user.id if current_user
             if version
                 game.version = version
             end
