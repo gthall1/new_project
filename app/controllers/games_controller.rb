@@ -290,12 +290,14 @@ class GamesController < ApplicationController
             game_session = UserGameSession.where(token: params[:token]).first
 
          # p "Score : #{score} | Game SEssion Score: #{game_session.score}"
-            if game_session && game_session.active && user.enabled != false
+            if game_session && game_session.active && ( is_luckee_co? || user.enabled != false )
                 game_session.last_score_update = Time.now
                 credits_to_apply = get_credits_to_apply(game_session.game.slug,score,game_session.credits_applied,game_session.version)
                 if user && credits_to_apply > 0
                     user.add_credits({credits:credits_to_apply})
                     game_session.credits_applied += credits_to_apply
+                elsif is_luckee_co?
+                    status = 'luckee co'
                 elsif !user
                     status = "error"
                 else
@@ -347,7 +349,7 @@ class GamesController < ApplicationController
             else
                 status = "skip"
             end
-            if game_session
+            if !is_luckee_co? && game_session
 
                 current_high_score = current_user.get_highscore({timeframe:'at',slug: game_session.game.slug,version:game_session.version})
 
@@ -361,6 +363,12 @@ class GamesController < ApplicationController
                     $redis.del("w_#{game_session.game.slug}_v#{game_session.version}_user_#{user.id}")
                 elsif $redis.get("w_#{game_session.game.slug}_v#{game_session.version}_user_#{user.id}").blank?
                     $redis.del("w_#{game_session.game.slug}_#{game_session.version}")
+                end
+            else
+                if session[:arrival_id]
+                    current_high_score = Arrival.find(session[:arrival_id]).get_highscore({timeframe:'at',slug: game_session.game.slug,version:game_session.version})
+                else
+                    current_high_score = 0
                 end
             end
         elsif params[:score] && !params[:score].empty?
@@ -386,6 +394,11 @@ class GamesController < ApplicationController
                          :hscore => current_high_score
                         }
                 when '2048','flappy-pilot','traffic','fall-down','tap-color','gold-runner','match-three'
+                    if is_luckee_co?
+                        credits = 'N/A'
+                    else
+                        credits = user.credits
+                    end
                     if game_session.game.slug == 'flappy-pilot'
                         current_high_score = current_high_score.to_s.rjust(3, '0')
                     end
@@ -393,7 +406,7 @@ class GamesController < ApplicationController
                         :c2dictionary => true,
                         :data => {
                          :earned => game_session.credits_earned,
-                         :total_credits => user.credits,
+                         :total_credits => credits,
                          :token => game_session.token,
                          :status => status,
                          :hscore => current_high_score
