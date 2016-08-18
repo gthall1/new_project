@@ -609,9 +609,9 @@ class GamesController < ApplicationController
             old_game = UserGameSession.where(token:session[:game_token]).last
         end
 
-        if !newgame && !old_game
-            game_id = request.referer.split('/').last.to_i
-            old_game_name = Game.where(id:game_id).last.name
+        if !newgame && !old_game 
+            game_id = request.referer.split('/').last
+            old_game_name = Game.where(slug:game_id).last.name
         elsif old_game
             old_game_name = old_game.game.name
             game_id = old_game.id
