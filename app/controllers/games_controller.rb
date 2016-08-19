@@ -397,7 +397,7 @@ class GamesController < ApplicationController
                         }
                 when '2048','flappy-pilot','traffic','fall-down','tap-color','gold-runner','match-three'
                     if is_luckee_co?
-                        credits = "Julies High Score: 86"
+                        credits = "Julies Best: 86"
                     elsif game_session.game.slug == 'fall-down'
                         credits = "Credits: #{user.credits}"
                     else
