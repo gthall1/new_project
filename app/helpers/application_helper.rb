@@ -15,7 +15,7 @@ module ApplicationHelper
   end
 
   def is_luckee_co?
-    if Rails.env.staging?
+    if !Rails.env.development?
       request.host.split('.').second == 'luckee' #since subdomain
     else
       request.host.split('.').first == 'luckee'
