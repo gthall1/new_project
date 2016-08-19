@@ -42,6 +42,7 @@ class GamesController < ApplicationController
         #check for current campaigns
 
         slug = params[:slug]
+        session[:current_game_slug] = slug
         # ball_url = ActionController::Base.helpers.asset_path(BrandedGameAsset.where(slug:'fall-down-ball').first.asset_url)
         # bg_url = ActionController::Base.helpers.asset_path(BrandedGameAsset.where(slug:'fall-down-bg').first.asset_url)
         if session[:branded_ad] == 9
@@ -59,6 +60,7 @@ class GamesController < ApplicationController
         else
             bg_url = "/assets/fall_down/harley_quinn.png"
             ball_url = "/assets/fall_down/fall_down_ball.png"
+            promo = 0
         end
 
         game_json = {
@@ -609,7 +611,7 @@ class GamesController < ApplicationController
             old_game = UserGameSession.where(token:session[:game_token]).last
         end
 
-        if !newgame && !old_game 
+        if !newgame && !old_game && request.referer
             game_id = request.referer.split('/').last
             old_game_name = Game.where(slug:game_id).last.name
         elsif old_game
@@ -620,6 +622,8 @@ class GamesController < ApplicationController
                 #     redirect_to root_path, notice: 'Rate limit on games hit. Please play check back later.'
                 # end
             end
+        else
+            old_game_name = Game.find_by_slug(session[:current_game_slug]).name
         end
 
         if newgame
