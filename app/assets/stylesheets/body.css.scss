@@ -17,6 +17,12 @@ body {
         }
     }
 
+    &.mobile-games-page {
+        background-image: url(/assets/svgs/background-mobile.svg);
+        background-position: center;
+        background-size: cover;
+    }
+
     &.confirmation-page,
     &.mobile-header--hide,
     &.mobile-home,

@@ -1,0 +1,16 @@
+<%= link_to game_path(game.slug,a: advertiser_id) do %>
+    <div class="game-wrapper game--<%= game.slug %> js-game--<%= game.slug %>">
+
+        <%= image_tag(game.game_image({advertiser_id: advertiser_id, desktop:true}), :class=>'game-image') %>
+
+<!--         <div class="wrapper__hover-info">
+            <h1 class="hover-info__copy">Play to earch credits</h1>
+        </div> -->
+
+        <div class="game__info">
+            <h1 class="game__title"><%= game.game_title({advertiser_id: advertiser_id}) %></h1>
+            <span class="credits">Earn Credits</span>
+        </div>
+
+    </div> <!--/ .game-wrapper -->
+<% end %>

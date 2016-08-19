@@ -1,0 +1,20 @@
+<%= link_to unlock_game_path(game.slug) do %>
+    <div class="game-wrapper--locked game-wrapper game--<%= game.slug %> js-game--<%= game.slug %>">
+
+        <div class="game-img-wrap">
+            <%= image_tag(game.desktop_image, :class=>'game-image') %>
+            <img src="/assets/locked.png" class="locks">
+        </div><!-- /.game-img-wrap -->
+
+        <div class="wrapper__hover-info">
+            <h1 class="hover-info__copy"><%= game.credit_cost %> credits to unlock</h1>
+        </div><!-- /.wrapper__hover-info -->
+
+        <div class="game__info">
+            <h1 class="game__title"><%= game.game_title({advertiser_id:@advertiser_id}) %></h1>
+            <span class="credits">Unlock Game:</span>
+            <span class="game__cost"><%= game.credit_cost %></span>
+        </div>
+
+    </div> <!--/ .game-wrapper -->
+<% end %>
