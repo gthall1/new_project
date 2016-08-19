@@ -11,16 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160802153537) do
+ActiveRecord::Schema.define(version: 20160818010037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ad_display_tables", force: :cascade do |t|
+  end
 
   create_table "ad_displays", force: :cascade do |t|
     t.integer "ad_number"
     t.integer "user_id"
     t.integer "user_game_session_id"
     t.integer "game_id"
+    t.integer "campaign_id"
+    t.string  "global_visitor_id"
+    t.integer "arrival_id"
   end
 
   create_table "ad_units", force: :cascade do |t|
@@ -56,15 +62,17 @@ ActiveRecord::Schema.define(version: 20160802153537) do
   end
 
   create_table "arrivals", force: :cascade do |t|
-    t.string   "landing_url", limit: 255
-    t.string   "referer",     limit: 255
-    t.string   "user_agent",  limit: 255
-    t.string   "ip",          limit: 255
-    t.string   "mobile",      limit: 255
+    t.string   "landing_url",       limit: 255
+    t.string   "referer",           limit: 255
+    t.string   "user_agent",        limit: 255
+    t.string   "ip",                limit: 255
+    t.string   "mobile",            limit: 255
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "referred_by"
+    t.integer  "user_lead_id"
+    t.string   "global_visitor_id"
   end
 
   create_table "branded_game_assets", force: :cascade do |t|
@@ -118,10 +126,10 @@ ActiveRecord::Schema.define(version: 20160802153537) do
     t.integer  "challenged_user_id"
     t.integer  "game_id"
     t.integer  "winner_id"
-    t.integer  "challenged_score"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "user_score"
+    t.integer  "challenged_score"
   end
 
   create_table "charity_partners", force: :cascade do |t|

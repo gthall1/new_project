@@ -47,19 +47,29 @@ class GamesController < ApplicationController
         if session[:branded_ad] == 9
             ball_url  = "/assets/fall_down/#{BrandedGameAsset.where(slug:'fall-down-ball').first.asset_url}"
             bg_url = "/assets/fall_down/#{BrandedGameAsset.where(slug:'fall-down-bg').order('random()').first.asset_url}"
-        elsif session[:promotion] == 'julie'
-            bg_url = "/assets/fall_down/promos/julie_game.png"
-            ball_url = "/assets/fall_down/promos/soccer_ball.png"
+        elsif !session[:promotion].blank? && Advertiser.where(slug:session[:promotion]).present? 
+            advertiser = Advertiser.where(slug:session[:promotion]).first
+            campaign = Campaign.where(advertiser_id:advertiser.id,active:true).first
+            assets = BrandedGameAsset.where(campaign_id:campaign.id,game_id:Game.where(slug:params[:slug]))
+            promo = campaign.id
+            bg_url = assets.find_by_slug('fall-down-bg').asset_url
+            ball_url = assets.find_by_slug('fall-down-ball').asset_url
+            title_bg_url = assets.find_by_slug('fall-down-title-bg').asset_url
+            play_url = assets.find_by_slug('fall-down-play').asset_url
         else
             bg_url = "/assets/fall_down/harley_quinn.png"
             ball_url = "/assets/fall_down/fall_down_ball.png"
         end
+
         game_json = {
             :c2dictionary => true,
             :data => {
-             :ball_image =>ball_url,
-             :bg_image =>bg_url,
+             :ball_image => ball_url,
+             :bg_image => bg_url,
+             :home_bg_image => title_bg_url,
+             :play_image => play_url,
              :alt_assets => 'true',
+             :promo => promo
             }
         }
 
@@ -112,12 +122,13 @@ class GamesController < ApplicationController
     end
 
     def check_signed_in
-        if params[:vid] && User.find_by_verify_token(params[:vid])
-            verify_link = true
+        if !is_luckee_co?
+            if params[:vid] && User.find_by_verify_token(params[:vid])
+                verify_link = true
+            end
+            redirect_to root_path if !signed_in? && !verify_link
+            redirect_to confirmed_path if signed_in? && current_user && !current_user.profile_complete?
         end
-        redirect_to root_path if !signed_in? && !verify_link
-        redirect_to confirmed_path if signed_in? && current_user && !current_user.profile_complete?
-
     end
 
     #sets notifications for surveys not taken
@@ -279,12 +290,14 @@ class GamesController < ApplicationController
             game_session = UserGameSession.where(token: params[:token]).first
 
          # p "Score : #{score} | Game SEssion Score: #{game_session.score}"
-            if game_session && game_session.active && user.enabled != false
+            if game_session && game_session.active && ( is_luckee_co? || user.enabled != false )
                 game_session.last_score_update = Time.now
                 credits_to_apply = get_credits_to_apply(game_session.game.slug,score,game_session.credits_applied,game_session.version)
                 if user && credits_to_apply > 0
                     user.add_credits({credits:credits_to_apply})
                     game_session.credits_applied += credits_to_apply
+                elsif is_luckee_co?
+                    status = 'luckee co'
                 elsif !user
                     status = "error"
                 else
@@ -336,7 +349,7 @@ class GamesController < ApplicationController
             else
                 status = "skip"
             end
-            if game_session
+            if !is_luckee_co? && game_session
 
                 current_high_score = current_user.get_highscore({timeframe:'at',slug: game_session.game.slug,version:game_session.version})
 
@@ -350,6 +363,12 @@ class GamesController < ApplicationController
                     $redis.del("w_#{game_session.game.slug}_v#{game_session.version}_user_#{user.id}")
                 elsif $redis.get("w_#{game_session.game.slug}_v#{game_session.version}_user_#{user.id}").blank?
                     $redis.del("w_#{game_session.game.slug}_#{game_session.version}")
+                end
+            else
+                if session[:arrival_id]
+                    current_high_score = Arrival.find(session[:arrival_id]).get_highscore({timeframe:'at',slug: game_session.game.slug,version:game_session.version})
+                else
+                    current_high_score = 0
                 end
             end
         elsif params[:score] && !params[:score].empty?
@@ -375,6 +394,11 @@ class GamesController < ApplicationController
                          :hscore => current_high_score
                         }
                 when '2048','flappy-pilot','traffic','fall-down','tap-color','gold-runner','match-three'
+                    if is_luckee_co?
+                        credits = 'N/A'
+                    else
+                        credits = user.credits
+                    end
                     if game_session.game.slug == 'flappy-pilot'
                         current_high_score = current_high_score.to_s.rjust(3, '0')
                     end
@@ -382,7 +406,7 @@ class GamesController < ApplicationController
                         :c2dictionary => true,
                         :data => {
                          :earned => game_session.credits_earned,
-                         :total_credits => user.credits,
+                         :total_credits => credits,
                          :token => game_session.token,
                          :status => status,
                          :hscore => current_high_score
@@ -585,9 +609,9 @@ class GamesController < ApplicationController
             old_game = UserGameSession.where(token:session[:game_token]).last
         end
 
-        if !newgame && !old_game
-            game_id = request.referer.split('/').last.to_i
-            old_game_name = Game.where(id:game_id).last.name
+        if !newgame && !old_game 
+            game_id = request.referer.split('/').last
+            old_game_name = Game.where(slug:game_id).last.name
         elsif old_game
             old_game_name = old_game.game.name
             game_id = old_game.id
@@ -604,18 +628,24 @@ class GamesController < ApplicationController
             set_game_token({game_name:old_game_name})
         end
         # TODO: this is all gettng messy need to clean this up and standardize
-        if game && game.slug == "tap-color"
-            version = 1
+        if game 
+            version = nil
             if params[:v] && !params[:v].blank?
                 version = params[:v].to_i
             end
-            high_score = get_current_highscore_for_version({game_id:game_id,version_id:version})
-        else
-            high_score = get_current_highscore({game_id:game_id})
+            if current_user
+                high_score = current_user.get_highscore({timeframe:'at',slug: game.slug,version:version})
+            else
+                if session[:arrival_id]
+                    high_score = Arrival.find(session[:arrival_id]).get_highscore({timeframe:'at',slug: game.slug,version:version})
+                else
+                    high_score = 0 #fallback
+                end
+            end
         end
 
         if old_game
-            if !old_game.challenge_id.nil?
+            if false && !old_game.challenge_id.nil?
                 challenge = Challenge.where(id:old_game.challenge_id).first
                 # if current_user.id == challenge.user_id
                 #   challenge.user_score = old_game.score
@@ -664,19 +694,32 @@ class GamesController < ApplicationController
         if newgame && game.slug == "fall-down"
             if session[:branded_ad]
                 ad_number = session[:branded_ad]
+            elsif session[:promotion]
+                advertiser = Advertiser.where(slug:session[:promotion]).first
+                campaign = Campaign.where(advertiser_id:advertiser.id,active:true).first
+                ad_number = campaign.id 
             else
                 ad_number = get_ad
             end
 
             if ad_number && ad_number != 1
-                AdDisplay.create({user_game_session_id:UserGameSession.where(token:session[:game_token]).first.id,user_id:current_user.id, game_id:game.id,ad_number:ad_number})
+                user_id = nil
+                if current_user
+                    user_id = current_user.id
+                end
+
+                AdDisplay.create({user_game_session_id:UserGameSession.where(token:session[:game_token]).first.id,user_id:user_id, global_visitor_id:session[:global_visitor_id],arrival_id:session[:arrival_id],game_id:game.id,ad_number:ad_number})
             end
 
+            credits = 'N/A'
+            if current_user
+                credits = current_user.credits
+            end
             game_json = {
                 :c2dictionary => true,
                 :data => {
                  :earned => 0,
-                 :total_credits => current_user.credits,
+                 :total_credits => credits,
                  :token => session[:game_token],
                  :hscore => high_score,
                  :ad_number => ad_number
@@ -765,8 +808,8 @@ class GamesController < ApplicationController
         score = args[:score] ||= 0
         game_name = args[:game_name] ||= "Memory Game"
         version = args[:version] ||= nil
-        if current_user
-            old_games = UserGameSession.where(user_id:current_user.id,active:true)
+        if session[:arrival_id]
+            old_games = UserGameSession.where(arrival_id:session[:arrival_id],active:true)
             # if old_games && old_games.last.created_at >= (Time.now-1.minutes-30.seconds)
             #     redirect_to root_path, notice: 'Rate limit on games hit. Please play check back later.'
             # end
@@ -777,7 +820,7 @@ class GamesController < ApplicationController
 
             game = UserGameSession.new
             game.token = SecureRandom.urlsafe_base64
-            game.user_id = current_user.id
+            game.user_id = current_user.id if current_user
             if version
                 game.version = version
             end
