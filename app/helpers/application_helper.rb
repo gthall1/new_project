@@ -15,10 +15,10 @@ module ApplicationHelper
   end
 
   def is_luckee_co?
-    if !Rails.env.development?
-      request.host.split('.').second == 'luckee' #since subdomain
-    else
+    if Rails.env.development? || !request.host.include?('www')
       request.host.split('.').first == 'luckee'
+    else
+      request.host.split('.').second == 'luckee' #since subdomain
     end
   end
 

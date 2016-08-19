@@ -80,9 +80,12 @@
                 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
                 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-                ga('create', 'UA-58032053-2', {'userId': strUserId}); //reset third argument to 'auto'
-                ga('set', 'dimension1', strUserId);
+                 <% if is_luckee_co? %>
+                    ga('create', 'UA-58032053-3'); 
+                <% else %>
+                    ga('create', 'UA-58032053-2', {'userId': strUserId}); //reset third argument to 'auto'
+                    ga('set', 'dimension1', strUserId);
+                <% end %>               
                 // if (strUserId) { ga('set', 'userId', strUserId); };
                 ga('send', 'pageview');
 
