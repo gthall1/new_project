@@ -625,7 +625,9 @@ class GamesController < ApplicationController
                 # end
             end
         else
-            old_game_name = Game.find_by_slug(session[:current_game_slug]).name
+            if session[:current_game_slug]
+                old_game_name = Game.find_by_slug(session[:current_game_slug]).name
+            end
         end
 
         if newgame
