@@ -196,6 +196,7 @@ class StaticPagesController < ApplicationController
     end
 
     def new_cash_out
+        redirect_to new_donation_path
         @show_back_button = true
         @cash_out = CashOut.new(cash_out_params)
         if session[:arrival_id]
@@ -235,13 +236,17 @@ class StaticPagesController < ApplicationController
     end
 
     def redeem_credits
-        @back_button_action = "back-choice"
-        @show_back_button = true
-        @amount = params[:credits]
-        @cash_out = CashOut.new
+        if true
+            redirect_to donate_credits_path
+        else
+            @back_button_action = "back-choice"
+            @show_back_button = true
+            @amount = params[:credits]
+            @cash_out = CashOut.new
 
-        if is_mobile?
-            render "static_pages/redeem_credits_mobile"
+            if is_mobile?
+                render "static_pages/redeem_credits_mobile"
+            end
         end
     end
 

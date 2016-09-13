@@ -25,7 +25,7 @@
                 <a class="donations__link donations__link--holiday" href="/donate">Donate Credits</a>
             </div>
         </div><!-- /.donations -->
-
+        <% if false %>
         <section class="card-container">
             <p class="interior-body__caption">Or​ redeem your credits for cash</p>
             <%= link_to redeem_credits_path(credits: 1000) do %>
@@ -53,6 +53,7 @@
                 </div>
             <% end %>
         </section>
+        <% end %>
     <% end %>
 </div><!-- /.interior-body -->
 
