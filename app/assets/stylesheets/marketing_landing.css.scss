@@ -1,0 +1,87 @@
+// Settings & Variables
+$white: #fff;
+$purple: #817bdf;
+$dark-purple: #272542;
+
+// Mixins
+@mixin btn($background: $purple, $color: $white, $border-rad: 4px) {
+    background-color: $background;
+    border-radius: $border-rad;
+    color: $color;
+    display: inline-block;
+    min-height: 40px;
+    min-width: 120px;
+    text-align: center;
+    text-transform: uppercase;
+
+    &:hover {
+        color: $color;
+    }
+}
+
+@mixin transition($type: all, $duration: 0.25s, $motion: ease, $delay: 0s) {
+  transition: $type $duration $motion $delay;
+}
+
+@mixin vertical-align($position: relative, $top: 50%) {
+  position: $position;
+  top: $top;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+
+// General Style
+* {
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+}
+
+a {
+    @include transition;
+    &:hover {
+        color: $purple;
+        text-decoration: none;
+    }
+}
+
+.button {
+    @include btn;
+    border-radius: 0;
+    padding: 10px 20px;
+}
+
+// Navigation
+.navigation {
+    background: $white;
+    height: 80px;
+    padding: 20px 40px;
+    width: 100%;
+}
+
+.navigation__right {
+    float: right;
+}
+
+// Body
+
+// Footer
+.footer {
+    background-color: $dark-purple;
+    bottom: -215px;
+    height: 215px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.footer__icon {
+    display: block;
+    margin: 0 auto;
+    width: 180px;
+    @include vertical-align;
+}

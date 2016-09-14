@@ -22,6 +22,10 @@ module ApplicationHelper
     end
   end
 
+  def is_marketing_site?
+    request.original_url.split('/').last == "landing"
+  end
+
   def show_ads
     !is_mobile? && !is_luckee_co? && !session[:branded_ad] && !is_dunkin_user? && GenericSwitch.where(name:'adsense').present? && GenericSwitch.where(name:'adsense').first.active == true
   end
@@ -48,7 +52,11 @@ module ApplicationHelper
   end
 
   def determine_layout
-  	is_mobile? ? "mobile_application" : "application"
+    if is_marketing_site?
+      return "marketing"
+    else
+    	is_mobile? ? "mobile_application" : "application"
+    end
   end
 
   def embedded_svg(filename, options = {})

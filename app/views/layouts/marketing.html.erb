@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= full_title(yield(:title)) %></title>
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="/assets/favicon-16x16.png">
+
+        <!-- FB Open Graph Data -->
+        <meta property="og:url" content="http://www.getluckee.com/" />
+        <meta property="og:title" content="Luckee" />
+        <meta property="og:description" content="Play free games. Earn Real Cash" />
+        <meta property="og:image" content="http://www.getluckee.com/assets/getluckee.jpg" />
+
+        <!-- Keywords to help adsense targetting -->
+        <meta name='keywords' content='games, rewards, free, play, gaming, free games, play free online, earn cash, cash, cash rewards, charity, play free games, flappy bird, 2048, frogger, candy crush, bejewled, stick runner, match three, match 3, mobile games, mobile, desktop games, browser games, html5 games'>
+
+        <!-- Propeller ads -->
+        <meta name="propeller" content="6d0c37444c1cbc4f10031a713459e4ba" />
+
+        <%= yield :head_tags %>
+
+        <%= stylesheet_link_tag "marketing", media: "all", "data-turbolinks-track" => true %>
+        <%= javascript_include_tag "marketing", "data-turbolinks-track" => true %>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <!-- Greensock for jackhammer -->
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"/></script>
+
+        <%= csrf_meta_tags %>
+        <%= render 'layouts/shim' %>
+
+        <% if Rails.env.production? %>
+            <% if false && show_ads %>
+                <script type="text/javascript">
+                  var googletag = googletag || {};
+                  googletag.cmd = googletag.cmd || [];
+                  (function() {
+                    var gads = document.createElement("script");
+                    gads.async = true;
+                    gads.type = "text/javascript";
+                   var useSSL = "https:" == document.location.protocol;
+                   gads.src = (useSSL ? "https:" : "http:") +
+                   "//www.googletagservices.com/tag/js/gpt.js";
+                   var node = document.getElementsByTagName("script")[0];
+                   node.parentNode.insertBefore(gads, node);
+                 })();
+                </script>
+            <% end %>
+            <!-- Facebook Pixel Code -->
+            <script>
+            !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+            n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+            document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+            fbq('init', '1639191719738644');
+            fbq('track', "PageView");</script>
+            <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=1639191719738644&ev=PageView&noscript=1"
+            /></noscript>
+            <!-- End Facebook Pixel Code -->
+
+            <script type="text/javascript">
+                !function(a,b,c,d,e,f,g,h){a.RaygunObject=e,a[e]=a[e]||function(){
+                (a[e].o=a[e].o||[]).push(arguments)},f=b.createElement(c),g=b.getElementsByTagName(c)[0],
+                f.async=1,f.src=d,g.parentNode.insertBefore(f,g),h=a.onerror,a.onerror=function(b,c,d,f,g){
+                h&&h(b,c,d,f,g),g||(g=new Error(b)),a[e].q=a[e].q||[],a[e].q.push({
+                e:g})}}(window,document,"script","//cdn.raygun.io/raygun4js/raygun.min.js","rg4js");
+            </script>
+
+            <!-- start google analytics -->
+            <script>
+                var strUserId = null;
+                <% if current_user %>
+                strUserId = "<%= current_user.id %>";
+                <% end %>
+
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+                 <% if is_luckee_co? %>
+                    ga('create', 'UA-58032053-3');
+                <% else %>
+                    ga('create', 'UA-58032053-2', {'userId': strUserId}); //reset third argument to 'auto'
+                    ga('set', 'dimension1', strUserId);
+                <% end %>
+                // if (strUserId) { ga('set', 'userId', strUserId); };
+                ga('send', 'pageview');
+
+            </script>
+            <!-- end google analytics -->
+        <% end %>
+    <%= yield(:game_javascript) %>
+    </head>
+    <body class="<%= yield (:body_class) %>">
+        <% flash.each do |key, value| %>
+            <div class="alert alert-<%= key %>"><%= value %></div>
+        <% end %>
+
+        <nav class="navigation">
+            <div class="navigation__left">
+                <a href=""><img src=""></a>
+            </div>
+
+            <div class="navigation__right">
+                <a class="button" href="">Demo</a>
+            </div>
+        </nav>
+
+        <main class="content">
+            <%= yield %>
+        </main>
+
+        <footer class="footer">
+            <img src="/assets/mwib_font.png" class="footer__icon">
+        </footer>
+
+        <script type="text/javascript">
+            window.doorbellOptions = {
+                    appKey: 'DXiwSFA07av7bWEUB3bHshorFfU1fsHNJ4RDPy0ra9jnG268xCOuFkjwDsNH5k47'
+            };
+            (function(d, t) {
+                    var g = d.createElement(t);g.id = 'doorbellScript';g.type = 'text/javascript';g.async = true;g.src = 'https://embed.doorbell.io/button/1117?t='+(new Date().getTime());(d.getElementsByTagName('head')[0]||d.getElementsByTagName('body')[0]).appendChild(g);
+            }(document, 'script'));
+        </script>
+    </body>
+</html>
