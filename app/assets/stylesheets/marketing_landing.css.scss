@@ -1,21 +1,92 @@
+@font-face {
+    font-family: Tiempo;
+    src: url(/assets/marketing/Tiempo.ttf);
+}
+
 // Settings & Variables
-$white: #fff;
-$purple: #817bdf;
+$black: #000;
+$dark-font: #272542;
 $dark-purple: #272542;
+$purple: #817bdf;
+$white: #fff;
+$light-grey: #fbfbfd;
+
+// Fonts
+$sans-serif: 'Open Sans', sans-serif;
+$serif-reg: 'Tiempo', serif;
+// $serif-reg: 'Playfair Display', serif;
+
+// Typography
+%alpha {
+    color: $white;
+    font-family: $serif-reg;
+    font-size: 80px;
+    font-weight: 300;
+}
+
+%bravo {
+    color: $dark-font;
+    font-family: $sans-serif;
+    font-size: 32px;
+    font-weight: 300;
+    line-height: 42px;
+}
+
+%charlie {
+    color: $white;
+    font-family: $sans-serif;
+    font-size: 82px;
+    font-weight: 300;
+}
+
+%delta {
+    color: $white;
+    font-family: $sans-serif;
+    font-size: 24px;
+    font-weight: 300;
+}
+
+%echo {
+    color: $dark-font;
+    font-family: $serif-reg;
+    font-size: 32px;
+    font-weight: 300;
+}
+
+%foxtrot {
+    color: $white;
+    font-family: $sans-serif;
+    font-size: 21px;
+    font-weight: 300;
+    line-height: 32px;
+}
+
+%gamma {
+    color: $dark-font;
+    font-family: $sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 24px;
+}
 
 // Mixins
-@mixin btn($background: $purple, $color: $white, $border-rad: 4px) {
+@mixin btn($background: $purple, $color: $white, $border-rad: 3px) {
     background-color: $background;
+    border-bottom: 2px solid darken($purple, 10%);
     border-radius: $border-rad;
     color: $color;
     display: inline-block;
-    min-height: 40px;
+    font-family: $sans-serif;
+    font-weight: 300;
+    min-height: 35px;
     min-width: 120px;
     text-align: center;
     text-transform: uppercase;
 
     &:hover {
         color: $color;
+        background-color: darken($background, 5%);
+        border-bottom: 2px solid darken($purple, 5%);
     }
 }
 
@@ -49,18 +120,26 @@ a {
     }
 }
 
+.content {
+    max-width: 1020px;
+    margin: auto;
+}
+
 .button {
     @include btn;
-    border-radius: 0;
-    padding: 10px 20px;
+    padding: 7.5px 20px;
 }
 
 // Navigation
 .navigation {
     background: $white;
-    height: 80px;
+    height: 70px;
     padding: 20px 40px;
     width: 100%;
+}
+
+.navigation__left {
+    float: left;
 }
 
 .navigation__right {
@@ -68,6 +147,178 @@ a {
 }
 
 // Body
+.hero {
+    // background-color: $black;
+    height: calc(100vh - 80px);
+    position: relative;
+}
+
+.stats__tout {
+    color: $white;
+}
+
+.content--hero {
+    color: $white;
+    text-align: center;
+    @include vertical-align(relative, 45%);
+}
+
+.hero__title {
+    @extend %alpha;
+    color: $purple;
+    margin-bottom: 40px;
+}
+
+.hero__copy {
+    @extend %bravo;
+    margin-bottom: 30px;
+}
+
+.hero__btn {
+    @include btn;
+    padding:  17.5px 50px;
+}
+
+.continue-arrow {
+    bottom: 7.5vh;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.stats {
+    background-color: $purple;
+    display: inline-block;
+    width: 100vw;
+}
+
+.content--stats {
+    height: 170px;
+}
+
+.stats__tout {
+    display: block;
+    float: left;
+    text-align: center;
+    width: 33.33%;
+    @include vertical-align;
+}
+
+.stats__num {
+    @extend %charlie;
+    margin-bottom: 20px;
+}
+
+.stats__subtitle {
+    @extend %delta;
+}
+
+// Mission
+.mission {
+    background-image: url(/assets/marketing/headphones.jpg);
+    background-position: 110% 100%;
+    background-repeat: no-repeat;
+    background-size: 30%;
+}
+
+.content--mission {
+    height: 100vh;
+}
+
+.mission__left,
+.mission__right {
+    @include vertical-align;
+}
+
+.mission__left {
+    float: left;
+    text-align: center;
+    width: 50%;
+}
+
+.mission__right {
+    float: right;
+    width: 50%;
+    padding-right: 10%;
+}
+
+.content__title {
+    @extend %echo;
+    margin-bottom: 15px;
+}
+
+.content__copy {
+    @extend %foxtrot;
+    color: $dark-font;
+    margin-bottom: 20px;
+}
+
+.content__title--process {
+    max-width: 600px;
+    margin: 0 auto 50px;
+}
+
+.content__btn {
+    @include btn;
+    padding: 10px 20px;
+}
+
+.process {
+    background-color: $light-grey;
+    display: inline-block;
+    margin-top: -10px;
+    text-align: center;
+    width: 100vw;
+}
+
+.content--process {
+    height: 60vh;
+}
+
+.process__wrapper {
+    display: inline-block;
+    width: 100%;
+    @include vertical-align;
+}
+
+.process__tout {
+    display: block;
+    float: left;
+    width: 33.33%;
+}
+
+.process__title {
+    @extend %gamma;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+.process__desc {
+    @extend %gamma;
+}
+
+.landing-cta {
+    display: inline-block;
+    height: 40vh;
+    position: relative;
+    width: 100vw;
+}
+
+.landing-cta__left {
+}
+
+.cta__img {
+    bottom: 0;
+    height: 250px;
+    position: absolute;
+    right: 10vw;
+    width: auto;
+}
 
 // Footer
 .footer {
