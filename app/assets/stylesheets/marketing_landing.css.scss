@@ -196,7 +196,7 @@ a {
 .hero__btn {
     // @include btn;
     background-color: transparent;
-    border: 1px solid $white;
+    border: 2px solid $white;
     border-radius: 0;
     color: $white;
     display: inline-block;
@@ -328,7 +328,31 @@ a {
 .process__tout {
     display: block;
     float: left;
+    position: relative;
     width: 33.33%;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 200px;
+        left: 0;
+        right: 0;
+        z-index: 0;
+        height: 1px;
+        background-image: url(/assets/marketing/dot.png);
+        background-repeat: repeat-x;
+        z-index: 1;
+    }
+
+    &:nth-child(1)::after {
+        width: 50%;
+        left: 50%;
+    }
+
+    &:nth-child(3)::after {
+        width: 50%;
+        right: 50%;
+    }
 }
 
 .process__title {
@@ -339,6 +363,27 @@ a {
 
 .process__desc {
     @extend %hotel;
+    margin-bottom: 20px;
+}
+
+// .process__touts {
+//     display: inline-block;
+//     width: 100%;
+// }
+
+.process__num {
+    background-color: $light-grey;
+    border: 1px solid $purple;
+    border-radius: 100%;
+    box-shadow: 0 0 1px #d7d8db,0 0 0 4px #fbfbfd,0 0 1px 5px hsla(33,14%,69%,.5),0 0 0 14px #fbfbfd;
+    display: inline-block;
+    font-family: $serif-reg;
+    font-size: 15px;
+    color: $dark-font;
+    padding: 8px 8px 7px;
+    position: relative;
+    z-index: 10;
+    line-height: 15px;
 }
 
 .landing-cta {
