@@ -169,32 +169,54 @@ a {
     // background-color: $black;
     height: calc(100vh - 80px);
     position: relative;
+    background-image: url(/assets/marketing/group.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .content--hero {
     color: $white;
     text-align: center;
-    @include vertical-align(relative, 45%);
+    @include vertical-align;
 }
 
 .hero__title {
     @extend %alpha;
-    color: $purple;
+    // color: $purple;
+    color: $white;
     margin-bottom: 40px;
 }
 
 .hero__copy {
     @extend %bravo;
+    color: $white;
     margin-bottom: 30px;
 }
 
 .hero__btn {
-    @include btn;
+    // @include btn;
+    background-color: transparent;
+    border: 1px solid $white;
+    border-radius: 0;
+    color: $white;
+    display: inline-block;
+    font-family: $sans-serif;
+    font-weight: 300;
+    min-height: 35px;
+    min-width: 120px;
     padding:  17.5px 50px;
+    text-align: center;
+    text-transform: uppercase;
+    @include transition;
+
+    &:hover {
+        background-color: $white;
+        color: $black;
+    }
 }
 
 .continue-arrow {
-    bottom: 7.5vh;
+    bottom: 5vh;
     left: 0;
     margin: auto;
     position: absolute;
