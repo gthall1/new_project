@@ -5,7 +5,7 @@
 
 // Settings & Variables
 $black: #000;
-$dark-font: #272542;
+$dark-font: #353839;
 $dark-purple: #272542;
 $purple: #817bdf;
 $white: #fff;
@@ -61,13 +61,31 @@ $serif-reg: 'Tiempo', serif;
     line-height: 32px;
 }
 
-%gamma {
+%golf {
     color: $dark-font;
     font-family: $sans-serif;
     font-size: 18px;
     font-weight: 300;
     line-height: 24px;
 }
+
+%hotel {
+    color: $dark-font;
+    font-family: $sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 16px;
+}
+
+%india {
+    color: $dark-font;
+    font-family: $serif-reg;
+    font-size: 48px;
+    font-weight: 300;
+    line-height: 48px;
+}
+
+// %julia
 
 // Mixins
 @mixin btn($background: $purple, $color: $white, $border-rad: 3px) {
@@ -153,10 +171,6 @@ a {
     position: relative;
 }
 
-.stats__tout {
-    color: $white;
-}
-
 .content--hero {
     color: $white;
     text-align: center;
@@ -193,7 +207,7 @@ a {
 
 .stats {
     background-color: $purple;
-    display: inline-block;
+    display: none; //Hide until we have stats
     width: 100vw;
 }
 
@@ -265,6 +279,9 @@ a {
 
 .content__btn {
     @include btn;
+    font-size: 14px;
+    line-height: 20px;
+    min-width: 150px;
     padding: 10px 20px;
 }
 
@@ -293,13 +310,13 @@ a {
 }
 
 .process__title {
-    @extend %gamma;
+    @extend %golf;
     font-weight: 500;
-    margin-bottom: 0;
+    margin-bottom: 5px;
 }
 
 .process__desc {
-    @extend %gamma;
+    @extend %hotel;
 }
 
 .landing-cta {
@@ -309,15 +326,29 @@ a {
     width: 100vw;
 }
 
-.landing-cta__left {
-}
-
 .cta__img {
     bottom: 0;
     height: 250px;
     position: absolute;
-    right: 10vw;
+    right: 15vw;
     width: auto;
+}
+
+.landing-cta__title {
+    @extend %india;
+}
+
+.landing-cta__subtitle {
+    @extend %golf;
+    margin-bottom: 20px;
+}
+
+.landing-cta__left {
+    padding-left: 7.5vw;
+}
+
+.content--landing-cta {
+    @include vertical-align;
 }
 
 // Footer
