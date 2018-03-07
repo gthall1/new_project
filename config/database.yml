@@ -10,4 +10,3 @@ production:
   encoding: unicode
   database: alotto
   pool: 5
-  url: <%= ENV['HEROKU_POSTGRESQL_YELLOW_URL'] %>
